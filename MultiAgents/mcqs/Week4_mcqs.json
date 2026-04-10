@@ -1,0 +1,901 @@
+{
+  "module": "MultiAgents",
+  "week": 4,
+  "title": "Cooperative Game Theory",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "1. Introduction to Cooperative Game Theory",
+      "questions": [
+        {
+          "id": "q1",
+          "source_ref": "Section 1.1: Motivation: From Non-Cooperative to Cooperative Settings",
+          "text": "Which of the following correctly explain why mutual cooperation fails in the standard Prisoner's Dilemma, and what cooperative game theory assumes to overcome this? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Players cannot commit credibly to a joint course of action in the non-cooperative setting"},
+            {"letter": "B", "text": "Binding contracts are assumed to be feasible and enforceable in cooperative game theory"},
+            {"letter": "C", "text": "Mutual cooperation fails because players have no dominant strategy"},
+            {"letter": "D", "text": "Cooperative game theory abstracts away from the strategic details of how agreements are reached"},
+            {"letter": "E", "text": "Binding contracts allow players to rule out the non-cooperative outcome and implement mutually beneficial agreements"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The key missing ingredient in the Prisoner's Dilemma is the ability to commit credibly to a joint course of action.", "section_ref": "Section 1.1: Motivation", "notes_quote": "The key missing ingredient is the ability to commit credibly to a joint course of action."},
+            {"letter": "B", "is_correct": true, "text": "Cooperative game theory assumes players can write and enforce binding contracts specifying what each will do and how payoffs are shared.", "section_ref": "Section 1.1: Motivation", "notes_quote": "If players could write and enforce binding contracts specifying what each will do and how payoffs are shared, they could rule out the non-cooperative outcome"},
+            {"letter": "C", "is_correct": false, "text": "In the Prisoner's Dilemma each player does have a dominant strategy (defect). The failure of cooperation is due to the inability to make binding commitments, not the absence of a dominant strategy.", "section_ref": "Section 1.1: Motivation", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "Cooperative game theory explicitly abstracts away from the strategic details of how agreements are reached.", "section_ref": "Section 1.1: Motivation", "notes_quote": "Cooperative game theory abstracts away from the strategic details of how agreements are reached"},
+            {"letter": "E", "is_correct": true, "text": "With binding contracts, players can rule out the non-cooperative outcome and implement mutually beneficial agreements.", "section_ref": "Section 1.1: Motivation", "notes_quote": "they could rule out the non-cooperative outcome and implement mutually beneficial agreements"}
+          ]
+        },
+        {
+          "id": "q2",
+          "source_ref": "Section 1.1: Motivation",
+          "text": "Which of the following are the three central questions asked by cooperative game theory? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Which coalitions can form?"},
+            {"letter": "B", "text": "What total value can each coalition generate?"},
+            {"letter": "C", "text": "How should value be divided under fairness and stability concepts such as the core and Shapley value?"},
+            {"letter": "D", "text": "What is the Nash equilibrium of the underlying stage game?"},
+            {"letter": "E", "text": "Which dominant strategies exist for each individual agent?"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The first central question is which coalitions can form.", "section_ref": "Section 1.1: Motivation", "notes_quote": "Which coalitions can form?"},
+            {"letter": "B", "is_correct": true, "text": "The second central question is what total value each coalition can generate.", "section_ref": "Section 1.1: Motivation", "notes_quote": "What total value can they generate?"},
+            {"letter": "C", "is_correct": true, "text": "The third central question is how value should be divided under fairness and stability concepts.", "section_ref": "Section 1.1: Motivation", "notes_quote": "How should this value be divided among participants under various fairness and stability concepts (e.g., the core, the Shapley value)?"},
+            {"letter": "D", "is_correct": false, "text": "Nash equilibrium is a non-cooperative concept. Cooperative game theory abstracts away from strategic details and focuses on coalition formation and payoff division.", "section_ref": "Section 1.1: Motivation", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "Dominant strategies belong to non-cooperative game theory. Cooperative game theory focuses on what coalitions form and how value is divided, not individual strategic dominance.", "section_ref": "Section 1.1: Motivation", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q3",
+          "source_ref": "Section 1.2: Cooperative vs. Non-Cooperative Games",
+          "text": "Which of the following correctly distinguish cooperative from non-cooperative game theory? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Non-cooperative games ask: what will each agent do independently?"},
+            {"letter": "B", "text": "Binding agreements are feasible and enforceable in cooperative games"},
+            {"letter": "C", "text": "Defection is always a concern in cooperative games, just as in non-cooperative games"},
+            {"letter": "D", "text": "Cooperative game theory focuses on collective actions and agreements of groups"},
+            {"letter": "E", "text": "In cooperative games, defection is eliminated by binding commitment"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The comparison table gives the non-cooperative central question as: what will each agent do independently?", "section_ref": "Section 1.2: Cooperative vs. Non-Cooperative Games", "notes_quote": "What will each agent do independently?"},
+            {"letter": "B", "is_correct": true, "text": "Binding agreements are listed as feasible and enforceable in the cooperative column.", "section_ref": "Section 1.2: Cooperative vs. Non-Cooperative Games", "notes_quote": "Binding agreements: Feasible and enforceable"},
+            {"letter": "C", "is_correct": false, "text": "Defection is always a concern in non-cooperative games but is eliminated by binding commitment in cooperative games.", "section_ref": "Section 1.2: Cooperative vs. Non-Cooperative Games", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The cooperative focus is on collective actions and agreements of groups.", "section_ref": "Section 1.2: Cooperative vs. Non-Cooperative Games", "notes_quote": "Focus: Collective actions and agreements of groups"},
+            {"letter": "E", "is_correct": true, "text": "In cooperative games, defection is eliminated by binding commitment.", "section_ref": "Section 1.2: Cooperative vs. Non-Cooperative Games", "notes_quote": "Defection: Eliminated by binding commitment"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "2. Transferable vs. Non-Transferable Utility",
+      "questions": [
+        {
+          "id": "q4",
+          "source_ref": "Section 2.1: Transferable Utility (TU) Games",
+          "text": "Which of the following correctly describe Transferable Utility (TU) games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A coalition generates a total pot of payoff that is then freely divided among its members"},
+            {"letter": "B", "text": "TU games are natural in monetary contexts where side payments are feasible"},
+            {"letter": "C", "text": "Individual payoffs are determined directly by the coalition's actions with no further redistribution"},
+            {"letter": "D", "text": "Partners splitting revenue is an example of a TU setting"},
+            {"letter": "E", "text": "TU games require all coalition members to receive equal shares of the total value"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "In TU games a coalition first generates a total pot of payoff and members then negotiate how to divide it.", "section_ref": "Section 2.1: Transferable Utility (TU) Games", "notes_quote": "a coalition first generates a total pot of payoff (joint profit or collective surplus), and then its members negotiate and agree on how to divide it among themselves"},
+            {"letter": "B", "is_correct": true, "text": "The divisibility assumption is natural in monetary contexts where side payments are feasible.", "section_ref": "Section 2.1: Transferable Utility (TU) Games", "notes_quote": "This divisibility assumption is natural in monetary contexts where side payments are feasible"},
+            {"letter": "C", "is_correct": false, "text": "Direct determination of payoffs with no redistribution describes NTU games. In TU games there is a separate division stage.", "section_ref": "Section 2.2: Non-Transferable Utility (NTU) Games", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "Partners splitting revenue is listed as an example of a TU monetary context.", "section_ref": "Section 2.1: Transferable Utility (TU) Games", "notes_quote": "Partners splitting revenue"},
+            {"letter": "E", "is_correct": false, "text": "TU games allow free redistribution of value; equal shares are not required. Members can divide the value in any agreed proportion.", "section_ref": "Section 2.1: Transferable Utility (TU) Games", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q5",
+          "source_ref": "Section 2.2: Non-Transferable Utility (NTU) Games",
+          "text": "Which of the following correctly describe Non-Transferable Utility (NTU) games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Individual payoffs cannot be freely redistributed among coalition members"},
+            {"letter": "B", "text": "The academic collaboration example (researchers rewarded by their home institution) is an NTU game"},
+            {"letter": "C", "text": "In NTU games, a coalition first generates a divisible pot that members then negotiate to split"},
+            {"letter": "D", "text": "Rewards in NTU games are often institution-specific and non-transferable"},
+            {"letter": "E", "text": "NTU games require a separate payoff division stage after value generation"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "In NTU games, individual payoffs are determined directly by actions and cannot be freely redistributed.", "section_ref": "Section 2.2: Non-Transferable Utility (NTU) Games", "notes_quote": "individual payoffs are determined directly by the coalition's actions and cannot be freely redistributed"},
+            {"letter": "B", "is_correct": true, "text": "The academic collaboration example is the NTU example in the notes.", "section_ref": "Section 2.2: Non-Transferable Utility (NTU) Games", "notes_quote": "Researchers across universities form collaboration groups. Each author is rewarded by their home institution... These rewards are institution-specific and non-transferable"},
+            {"letter": "C", "is_correct": false, "text": "Generating a divisible pot and then splitting it describes TU games, not NTU games.", "section_ref": "Section 2.3: Phases of a Coalitional Game", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly state that rewards in the NTU academic example are institution-specific and non-transferable.", "section_ref": "Section 2.2: Non-Transferable Utility (NTU) Games", "notes_quote": "These rewards are institution-specific and non-transferable"},
+            {"letter": "E", "is_correct": false, "text": "A separate payoff division stage is a feature of TU games. In NTU games there is no redistribution.", "section_ref": "Section 2.3: Phases of a Coalitional Game", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q6",
+          "source_ref": "Section 2.3: Phases of a Coalitional Game",
+          "text": "Which of the following correctly describe the phases of a TU coalitional game and how they differ in NTU games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The Coalition Formation Stage is where agents decide which coalitions to form, partitioning the player set"},
+            {"letter": "B", "text": "In TU games, generating value and receiving utility are two distinct stages"},
+            {"letter": "C", "text": "The Action Stage precedes the Coalition Formation Stage"},
+            {"letter": "D", "text": "In NTU games, the actions of all coalitions jointly determine each player's payoff directly, with no further redistribution"},
+            {"letter": "E", "text": "The Payoff Division Stage is where questions of fairness, stability, and individual incentives become acute in TU games"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The first stage is Coalition Formation, where agents decide which coalitions to form.", "section_ref": "Section 2.3: Phases of a Coalitional Game", "notes_quote": "Coalition Formation Stage: Agents decide which coalitions to form (partition of the player set into groups)"},
+            {"letter": "B", "is_correct": true, "text": "In TU games, generating value and receiving utility are two different things and require a division stage.", "section_ref": "Section 2.3: Phases of a Coalitional Game", "notes_quote": "In TU games, generating value and receiving utility are two different things -- the division stage is required."},
+            {"letter": "C", "is_correct": false, "text": "The Action Stage follows the Coalition Formation Stage. The correct order is: Coalition Formation → Action → Value Generation → Payoff Division.", "section_ref": "Section 2.3: Phases of a Coalitional Game", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "In NTU games, all coalitions' actions jointly determine each player's payoff directly with no further redistribution.", "section_ref": "Section 2.3: Phases of a Coalitional Game", "notes_quote": "In NTU games, the actions taken by all coalitions jointly determine each player's payoff directly with no further redistribution."},
+            {"letter": "E", "is_correct": true, "text": "The Payoff Division Stage is where fairness, stability, and individual incentive questions become acute.", "section_ref": "Section 2.3: Phases of a Coalitional Game", "notes_quote": "Members negotiate and agree on a payoff division -- this is where questions of fairness, stability, and individual incentives become acute"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "3. Formal Definition of TU Games",
+      "questions": [
+        {
+          "id": "q7",
+          "source_ref": "Section 3.1: Characteristic Function Games",
+          "text": "Which of the following correctly describe the formal definition and standard assumptions of a TU characteristic function game $(N, v)$? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$v: 2^N \\to \\mathbb{R}$ assigns a real value to each coalition $C \\subseteq N$"},
+            {"letter": "B", "text": "The set $N$ of all players is called the grand coalition"},
+            {"letter": "C", "text": "Standard assumptions include normalisation ($v(\\emptyset) = 0$) and non-negativity ($v(C) \\geq 0$)"},
+            {"letter": "D", "text": "Monotonicity requires: if $S \\subseteq T$ then $v(S) \\geq v(T)$"},
+            {"letter": "E", "text": "$v(C)$ represents the amount coalition $C$ can earn by working together"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The characteristic function maps each coalition to a real value.", "section_ref": "Section 3.1: Characteristic Function Games", "notes_quote": "$v: 2^N \\to \\mathbb{R}$ is the characteristic function that assigns to each coalition $C \\subseteq N$ a real value $v(C)$"},
+            {"letter": "B", "is_correct": true, "text": "The set $N$ of all players is defined as the grand coalition.", "section_ref": "Section 3.1: Characteristic Function Games", "notes_quote": "The set $N$ of all players is called the grand coalition."},
+            {"letter": "C", "is_correct": true, "text": "Both normalisation and non-negativity are standard assumptions.", "section_ref": "Section 3.1: Characteristic Function Games", "notes_quote": "Normalized: $v(\\emptyset) = 0$; Non-negative: $v(C) \\geq 0$ for all $C \\subseteq N$"},
+            {"letter": "D", "is_correct": false, "text": "Monotonicity requires $v(S) \\leq v(T)$ when $S \\subseteq T$ — the inequality is reversed. Larger coalitions have at least as much value.", "section_ref": "Section 3.1: Characteristic Function Games", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "$v(C)$ is the amount coalition members can earn by working together.", "section_ref": "Section 3.1: Characteristic Function Games", "notes_quote": "$v(C)$ is the amount that the members of $C$ can earn by working together (taking their best possible action)"}
+          ]
+        },
+        {
+          "id": "q8",
+          "source_ref": "Section 3.2: Partition Function Games vs. Characteristic Function Games",
+          "text": "Which of the following correctly distinguish Partition Function Games (PFGs) from Characteristic Function Games (CFGs)? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In a PFG, a coalition's payoff depends on both its own composition and the partition of remaining players"},
+            {"letter": "B", "text": "In a CFG, a coalition's payoff is independent of the actions and arrangement of outsiders"},
+            {"letter": "C", "text": "The core and Shapley value were originally developed for PFGs because their richer structure enables tractable analysis"},
+            {"letter": "D", "text": "The Ice Cream Game is an example of a CFG"},
+            {"letter": "E", "text": "The Farmers' game (where market prices respond to total supply from all coalitions) is an example of a PFG"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "In a PFG, payoff depends on the coalition's composition AND the partition of remaining players.", "section_ref": "Section 3.2: Partition Function Games vs. Characteristic Function Games", "notes_quote": "Partition Function Game (PFG): Payoff depends on the coalition's own composition AND the partition of remaining players and their actions"},
+            {"letter": "B", "is_correct": true, "text": "In a CFG, payoff depends only on the coalition's own composition and choice, independent of outsiders.", "section_ref": "Section 3.2: Partition Function Games vs. Characteristic Function Games", "notes_quote": "Characteristic Function Game (CFG): Payoff depends only on the coalition's own composition and choice (independent of outsiders)"},
+            {"letter": "C", "is_correct": false, "text": "The core and Shapley value were developed for CFGs, not PFGs. CFGs' simpler payoff structure makes analysis tractable. Extending to PFGs is an active research frontier.", "section_ref": "Section 3.2: Partition Function Games vs. Characteristic Function Games", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The Ice Cream Game is listed as the CFG example.", "section_ref": "Section 3.2: Partition Function Games vs. Characteristic Function Games", "notes_quote": "Characteristic Function Game (CFG): ... Ice cream game"},
+            {"letter": "E", "is_correct": true, "text": "The Farmers' game is a PFG because market prices respond to total supply from all coalitions.", "section_ref": "Section 3.2: Partition Function Games vs. Characteristic Function Games", "notes_quote": "Farmers' game (market prices respond to total supply from all coalitions)"}
+          ]
+        },
+        {
+          "id": "q9",
+          "source_ref": "Section 3.3: The Ice Cream Game",
+          "text": "In the Ice Cream Game (Charlie: £4, Marcy: £3, Patty: £2; tubs cost £9 for 1 kg, £7 for 750 g, £5 for 500 g), which of the following coalition values are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$v(\\{C\\}) = 0$ because £4 is less than the cheapest tub priced at £5"},
+            {"letter": "B", "text": "$v(\\{C, M\\}) = 750$ because together they pool £7 to buy the 750 g tub"},
+            {"letter": "C", "text": "$v(\\{M, P\\}) = 750$ because together they pool £5"},
+            {"letter": "D", "text": "$v(\\{C, M, P\\}) = 1000$ because they pool £9 to buy the 1 kg tub"},
+            {"letter": "E", "text": "$v(\\{C, P\\}) = 500$ because together they pool £6 to buy the 500 g tub"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Charlie alone has £4, less than the cheapest tub (£5), so $v(\\{C\\}) = 0$.", "section_ref": "Section 3.3: The Ice Cream Game", "notes_quote": "$\\{C\\}$: Money = 4, Can buy = Nothing (cheapest is 5), $v(C) = 0$"},
+            {"letter": "B", "is_correct": true, "text": "Charlie + Marcy = £7, which buys the 750 g tub, so $v(\\{C,M\\}) = 750$.", "section_ref": "Section 3.3: The Ice Cream Game", "notes_quote": "$\\{C, M\\}$: Money = 7, Can buy = 750g tub, $v(C) = 750$"},
+            {"letter": "C", "is_correct": false, "text": "Marcy + Patty pool only £5, which buys the 500 g tub (not 750 g), so $v(\\{M,P\\}) = 500$, not 750.", "section_ref": "Section 3.3: The Ice Cream Game", "notes_quote": "$\\{M, P\\}$: Money = 5, Can buy = 500g tub, $v(C) = 500$"},
+            {"letter": "D", "is_correct": true, "text": "All three pool £9, buying the 1 kg (1000 g) tub, so $v(\\{C,M,P\\}) = 1000$.", "section_ref": "Section 3.3: The Ice Cream Game", "notes_quote": "$\\{C, M, P\\}$: Money = 9, Can buy = 1kg tub, $v(C) = 1000$"},
+            {"letter": "E", "is_correct": true, "text": "Charlie + Patty pool £6, buying the 500 g tub, so $v(\\{C,P\\}) = 500$.", "section_ref": "Section 3.3: The Ice Cream Game", "notes_quote": "$\\{C, P\\}$: Money = 6, Can buy = 500g tub, $v(C) = 500$"}
+          ]
+        },
+        {
+          "id": "q10",
+          "source_ref": "Section 3.4: Outcomes of a TU Game",
+          "text": "Which of the following correctly describe a valid outcome $(CS, \\mathbf{x})$ of a TU game? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$CS$ is a partition of $N$ into disjoint coalitions whose union is $N$"},
+            {"letter": "B", "text": "The payoff vector must satisfy $\\sum_{i \\in C_j} x_i = v(C_j)$ for each coalition $C_j \\in CS$"},
+            {"letter": "C", "text": "Players may receive negative payoffs in a valid outcome"},
+            {"letter": "D", "text": "The notation $x(C) = \\sum_{i \\in C} x_i$ is used for convenience to denote the sum of payoffs in coalition $C$"},
+            {"letter": "E", "text": "All singletons $\\{\\{C\\},\\{M\\},\\{P\\}\\}$ with $\\mathbf{x}=(0,0,0)$ is a valid outcome of the Ice Cream game"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "$CS$ is defined as a partition of $N$ into disjoint coalitions whose union is $N$.", "section_ref": "Section 3.4: Outcomes of a TU Game", "notes_quote": "$CS = \\{C_1, C_2, \\ldots, C_k\\}$ is a coalition structure -- a partition of $N$ into disjoint coalitions whose union is $N$"},
+            {"letter": "B", "is_correct": true, "text": "Each coalition must distribute exactly its characteristic function value.", "section_ref": "Section 3.4: Outcomes of a TU Game", "notes_quote": "For each coalition $C_j \\in CS$: $\\sum_{i \\in C_j} x_i = v(C_j)$ (the coalition distributes exactly its value)"},
+            {"letter": "C", "is_correct": false, "text": "A valid outcome requires $x_i \\geq 0$ for each player $i$. Negative payoffs are not permitted.", "section_ref": "Section 3.4: Outcomes of a TU Game", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The notation $x(C) = \\sum_{i \\in C} x_i$ is introduced for convenience.", "section_ref": "Section 3.4: Outcomes of a TU Game", "notes_quote": "We write $x(C) = \\sum_{i \\in C} x_i$ for convenience."},
+            {"letter": "E", "is_correct": true, "text": "All singletons with $\\mathbf{x}=(0,0,0)$ is listed as a valid outcome: each singleton has $v=0$ and distributes 0.", "section_ref": "Section 3.4: Outcomes of a TU Game", "notes_quote": "All singletons: $CS = \\{\\{C\\}, \\{M\\}, \\{P\\}\\}$, $\\mathbf{x} = (0, 0, 0)$"}
+          ]
+        },
+        {
+          "id": "q11",
+          "source_ref": "Section 3.5: Imputations",
+          "text": "Which of the following correctly describe imputations in a TU game? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "An imputation requires individual rationality: $x_i \\geq v(\\{i\\})$ for all $i \\in N$"},
+            {"letter": "B", "text": "Individual rationality means each agent receives at least as much as they would earn by forming a singleton coalition"},
+            {"letter": "C", "text": "Every valid outcome $(CS, \\mathbf{x})$ automatically qualifies as an imputation"},
+            {"letter": "D", "text": "A valid outcome can fail to be an imputation if some player receives less than their singleton value"},
+            {"letter": "E", "text": "Imputations guarantee that the coalition structure maximises social welfare"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "An imputation requires $x_i \\geq v(\\{i\\})$ for all $i \\in N$ (individual rationality).", "section_ref": "Section 3.5: Imputations", "notes_quote": "$x_i \\geq v(\\{i\\}) \\quad \\text{for all } i \\in N$"},
+            {"letter": "B", "is_correct": true, "text": "Individual rationality ensures each agent does at least as well as their singleton payoff.", "section_ref": "Section 3.5: Imputations", "notes_quote": "Each agent receives at least as much as they would earn by forming a singleton coalition."},
+            {"letter": "C", "is_correct": false, "text": "A valid outcome only requires $x_i \\geq 0$ and exact distribution of coalition value. An imputation additionally requires $x_i \\geq v(\\{i\\})$, a stricter condition.", "section_ref": "Section 3.5: Imputations", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "If any player $i$ receives $x_i < v(\\{i\\})$, the outcome fails individual rationality and is not an imputation.", "section_ref": "Section 3.5: Imputations", "notes_quote": "$x_i \\geq v(\\{i\\}) \\quad \\text{for all } i \\in N$"},
+            {"letter": "E", "is_correct": false, "text": "Maximising social welfare (efficiency) is a property of core outcomes, not imputations. Imputations only enforce individual rationality.", "section_ref": "Section 6.4: Stability Implies Efficiency", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "4. Examples of TU Games",
+      "questions": [
+        {
+          "id": "q12",
+          "source_ref": "Section 4.1: Weighted Voting Games",
+          "text": "Which of the following correctly describe the structure of weighted voting games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Each player has a weight $w_i$ and there is a quota $q$"},
+            {"letter": "B", "text": "$v(C) = 1$ if $w(C) = \\sum_{i \\in C} w_i \\geq q$"},
+            {"letter": "C", "text": "$v(C) = 0$ if $w(C) < q$"},
+            {"letter": "D", "text": "A winning coalition receives value equal to its total weight $w(C)$"},
+            {"letter": "E", "text": "Weighted voting games with non-negative weights are simple games"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "A weighted voting game is defined by $N$ players each with weight $w_i$ and a quota $q$.", "section_ref": "Section 4.1: Weighted Voting Games", "notes_quote": "$N$ players, each with a weight $w_i$; A quota $q$"},
+            {"letter": "B", "is_correct": true, "text": "$v(C) = 1$ when the coalition's total weight meets the quota.", "section_ref": "Section 4.1: Weighted Voting Games", "notes_quote": "$v(C) = 1$ if $w(C) \\geq q$ (winning coalition)"},
+            {"letter": "C", "is_correct": true, "text": "$v(C) = 0$ when the coalition's total weight falls below the quota.", "section_ref": "Section 4.1: Weighted Voting Games", "notes_quote": "$v(C) = 0$ if $w(C) < q$ (losing coalition)"},
+            {"letter": "D", "is_correct": false, "text": "Weighted voting games are simple games: a winning coalition gets value 1, not its total weight. The characteristic function is binary.", "section_ref": "Section 4.1: Weighted Voting Games", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Weighted voting games with non-negative weights are simple games.", "section_ref": "Section 5.1: Simple Games", "notes_quote": "Weighted voting games with non-negative weights are simple games."}
+          ]
+        },
+        {
+          "id": "q13",
+          "source_ref": "Section 4.1: Weighted Voting Games",
+          "text": "In the UK General Election 2010 (quota = 326; Conservative: 306, Labour: 258, Lib Dem: 57, SNP: 6, DUP: 8), which of the following coalition evaluations are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$v(\\{Con, Lab\\}) = 1$ since $306 + 258 = 564 \\geq 326$"},
+            {"letter": "B", "text": "$v(\\{Con, LD\\}) = 1$ since $306 + 57 = 363 \\geq 326$"},
+            {"letter": "C", "text": "$v(\\{Lab, LD\\}) = 1$ since $258 + 57 = 315 \\geq 326$"},
+            {"letter": "D", "text": "$v(\\{Lab, LD, SNP, DUP\\}) = 1$ since $258 + 57 + 6 + 8 = 329 \\geq 326$"},
+            {"letter": "E", "text": "Conservative alone formed a winning coalition in 2010"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Conservative + Labour = 564 seats $\\geq$ 326, so $v(\\{Con, Lab\\}) = 1$.", "section_ref": "Section 4.1: Weighted Voting Games", "notes_quote": "$v(\\{Con, Lab\\}) = 1$ (564 seats)"},
+            {"letter": "B", "is_correct": true, "text": "Conservative + Lib Dem = 363 seats $\\geq$ 326, so $v(\\{Con, LD\\}) = 1$.", "section_ref": "Section 4.1: Weighted Voting Games", "notes_quote": "$v(\\{Con, LD\\}) = 1$ (363 seats)"},
+            {"letter": "C", "is_correct": false, "text": "Labour + Lib Dem = 315 seats $< 326$, so $v(\\{Lab, LD\\}) = 0$ (a losing coalition).", "section_ref": "Section 4.1: Weighted Voting Games", "notes_quote": "$v(\\{Lab, LD\\}) = 0$ (315 seats < 326)"},
+            {"letter": "D", "is_correct": true, "text": "Labour + Lib Dem + SNP + DUP = 329 $\\geq$ 326, forming a winning coalition.", "section_ref": "Section 4.1: Weighted Voting Games", "notes_quote": "$v(\\{Lab, LD, SNP, DUP\\}) = 1$ (329 seats)"},
+            {"letter": "E", "is_correct": false, "text": "In 2010 Conservative had only 306 seats, below the 326 quota. Conservative alone became a winning coalition in 2019 (365 seats), not 2010.", "section_ref": "Section 5.1: Simple Games", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q14",
+          "source_ref": "Section 4.2: Network Flow Games",
+          "text": "Which of the following correctly describe Network Flow Games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Players are the edges of a network with source $s$, sink $t$, and edge capacities"},
+            {"letter": "B", "text": "$v(C)$ is the maximum flow from $s$ to $t$ using only the edges in coalition $C$"},
+            {"letter": "C", "text": "Players are the vertices of the network"},
+            {"letter": "D", "text": "Network flow games are superadditive"},
+            {"letter": "E", "text": "$v(C)$ is the total weight of edges internal to the subgraph induced by $C$"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "In network flow games, players are the edges of the network.", "section_ref": "Section 4.2: Network Flow Games", "notes_quote": "Network $G = (V, E)$ with source $s$, sink $t$, and edge capacities; Players are the edges"},
+            {"letter": "B", "is_correct": true, "text": "$v(C)$ equals the maximum flow from $s$ to $t$ using only edges in coalition $C$.", "section_ref": "Section 4.2: Network Flow Games", "notes_quote": "$v(C)$ = maximum flow from $s$ to $t$ using only the edges in coalition $C$"},
+            {"letter": "C", "is_correct": false, "text": "Players are edges in network flow games. Players as vertices is the setup for graph-induced games.", "section_ref": "Section 4.3: Graph-Induced Games", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "Network flow games are listed as the canonical example of superadditive games.", "section_ref": "Section 5.2: Superadditivity", "notes_quote": "Example: Network flow games are superadditive."},
+            {"letter": "E", "is_correct": false, "text": "Total internal edge weight is the value function for graph-induced games, not network flow games.", "section_ref": "Section 4.3: Graph-Induced Games", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q15",
+          "source_ref": "Section 4.3: Graph-Induced Games",
+          "text": "Which of the following correctly describe Graph-Induced Games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Players are vertices of a weighted graph"},
+            {"letter": "B", "text": "$v(C)$ is the total weight of edges internal to the subgraph induced by $C$"},
+            {"letter": "C", "text": "Edge weights must be strictly positive to model social networks"},
+            {"letter": "D", "text": "An example outcome gives each player half the weight of their adjacent edges"},
+            {"letter": "E", "text": "$v(C)$ equals the maximum flow through the subgraph induced by $C$"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "In graph-induced games, players are vertices of a weighted graph.", "section_ref": "Section 4.3: Graph-Induced Games", "notes_quote": "Players are vertices of a weighted graph"},
+            {"letter": "B", "is_correct": true, "text": "$v(C)$ is the total weight of edges internal to the subgraph induced by $C$.", "section_ref": "Section 4.3: Graph-Induced Games", "notes_quote": "$v(C)$ = total weight of edges internal to the subgraph induced by $C$"},
+            {"letter": "C", "is_correct": false, "text": "Edge weights can be negative (representing negative relationships). The notes explicitly mention this possibility.", "section_ref": "Section 4.3: Graph-Induced Games", "notes_quote": "edge weights can be negative (negative relationships)"},
+            {"letter": "D", "is_correct": true, "text": "The notes give as an example outcome the grand coalition where each player receives half the weight of their adjacent edges.", "section_ref": "Section 4.3: Graph-Induced Games", "notes_quote": "Example outcome: grand coalition where each player receives half the weight of their adjacent edges"},
+            {"letter": "E", "is_correct": false, "text": "Maximum flow is the value function for network flow games. Graph-induced games use total internal edge weight.", "section_ref": "Section 4.2: Network Flow Games", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "5. Special Classes of TU Games",
+      "questions": [
+        {
+          "id": "q16",
+          "source_ref": "Section 5.1: Simple Games",
+          "text": "Which of the following correctly describe simple games and player types within them? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A game is simple if $v(C) \\in \\{0, 1\\}$ for all $C \\subseteq N$ and the characteristic function is monotone"},
+            {"letter": "B", "text": "A null player is one such that $v(C \\cup \\{i\\}) = v(C)$ for all $C$ — adding them never changes coalition value"},
+            {"letter": "C", "text": "A veto player is one such that $v(C) = 0$ whenever $i \\notin C$ — no coalition can win without them"},
+            {"letter": "D", "text": "In simple games, players are assumed to form all possible two-player coalitions rather than the grand coalition"},
+            {"letter": "E", "text": "Due to monotonicity, players in simple games are typically assumed to form the grand coalition"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "A simple game requires binary values and monotonicity.", "section_ref": "Section 5.1: Simple Games", "notes_quote": "$v(C) \\in \\{0, 1\\}$ for all $C \\subseteq N$; The characteristic function is monotone"},
+            {"letter": "B", "is_correct": true, "text": "A null player's addition to any coalition leaves the value unchanged.", "section_ref": "Section 5.1: Simple Games", "notes_quote": "Null player: $v(C \\cup \\{i\\}) = v(C)$ for all $C$ -- Adding player $i$ to any coalition does not change its value"},
+            {"letter": "C", "is_correct": true, "text": "A veto player is one whose absence makes every coalition lose.", "section_ref": "Section 5.1: Simple Games", "notes_quote": "Veto player: $v(C) = 0$ whenever $i \\notin C$ -- No coalition can win without player $i$"},
+            {"letter": "D", "is_correct": false, "text": "In simple games players are assumed to form the grand coalition, not all two-player coalitions, because monotonicity means larger coalitions are at least as good.", "section_ref": "Section 5.1: Simple Games", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Due to monotonicity, in simple games players are typically assumed to form the grand coalition.", "section_ref": "Section 5.1: Simple Games", "notes_quote": "In simple games, due to monotonicity, we typically assume players form the grand coalition (unless specified otherwise)."}
+          ]
+        },
+        {
+          "id": "q17",
+          "source_ref": "Section 5.1: Simple Games",
+          "text": "Which of the following correctly describe the UK election examples for null and veto players? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In the 2010 election there were no null players and no veto players"},
+            {"letter": "B", "text": "In the 2019 election (Conservative: 365), Conservative alone was a winning coalition, making it a veto player"},
+            {"letter": "C", "text": "In the 2019 election all non-Conservative parties became null players"},
+            {"letter": "D", "text": "In the 2017 election (Conservative: 317) Conservative was a veto player because no other party could form a majority without them"},
+            {"letter": "E", "text": "In the 2010 election Conservative paired with any other listed party formed a winning coalition"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes state that in 2010 there were no null players and no veto players.", "section_ref": "Section 5.1: Simple Games", "notes_quote": "2010: No null players, no veto players"},
+            {"letter": "B", "is_correct": true, "text": "In 2019 Conservative had 365 seats $\\geq$ 326, forming a winning coalition alone and becoming a veto player.", "section_ref": "Section 5.1: Simple Games", "notes_quote": "2019 (Con: 365): Conservative alone was a winning coalition ($365 \\geq 326$), making it a veto player"},
+            {"letter": "C", "is_correct": true, "text": "When one player is a veto player with a solo majority, all others are null players.", "section_ref": "Section 5.1: Simple Games", "notes_quote": "making it a veto player and all other players null players"},
+            {"letter": "D", "is_correct": false, "text": "In 2017 Conservative was NOT a veto player — other parties together could still form a winning coalition without them: $v(N \\setminus \\{Con\\}) = 1$.", "section_ref": "Section 5.1: Simple Games", "notes_quote": "2017 (Con: 317): Conservative was not a veto player (others together could still win without them: $v(N \\setminus \\{Con\\}) = 1$)"},
+            {"letter": "E", "is_correct": true, "text": "In 2010 Conservative paired with any other listed party formed a winning coalition.", "section_ref": "Section 5.1: Simple Games", "notes_quote": "Conservative paired with any other party formed a winning coalition"}
+          ]
+        },
+        {
+          "id": "q18",
+          "source_ref": "Section 5.2: Superadditivity",
+          "text": "Which of the following correctly describe superadditive games and their implications? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A game is superadditive if $v(S \\cup T) \\geq v(S) + v(T)$ for all disjoint $S, T \\subseteq N$"},
+            {"letter": "B", "text": "Superadditivity implies players always have incentives to merge, so the grand coalition can be assumed"},
+            {"letter": "C", "text": "In superadditive games, outcomes can be identified with just the payoff vector $\\mathbf{x}$ without specifying the coalition structure"},
+            {"letter": "D", "text": "Superadditivity implies convexity"},
+            {"letter": "E", "text": "Network flow games are superadditive"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The formal definition of superadditivity requires the merged coalition's value to be at least the sum of the parts'.", "section_ref": "Section 5.2: Superadditivity", "notes_quote": "$v(S \\cup T) \\geq v(S) + v(T) \\quad \\text{for all disjoint } S, T \\subseteq N$"},
+            {"letter": "B", "is_correct": true, "text": "Superadditivity means players always have incentives to merge, so the grand coalition can be assumed.", "section_ref": "Section 5.2: Superadditivity", "notes_quote": "Players always have incentives to merge, so we can assume they form the grand coalition."},
+            {"letter": "C", "is_correct": true, "text": "In superadditive games, since the grand coalition forms, outcomes need only specify the payoff vector.", "section_ref": "Section 5.2: Superadditivity", "notes_quote": "outcomes can be identified with just the payoff vector $\\mathbf{x}$ (no need to specify coalition structure)"},
+            {"letter": "D", "is_correct": false, "text": "The relationship is the reverse: convexity (supermodularity) implies superadditivity, but not the other way around.", "section_ref": "Section 5.3: Convexity and Supermodularity", "notes_quote": "Supermodular $\\Rightarrow$ Superadditive (but not conversely)"},
+            {"letter": "E", "is_correct": true, "text": "Network flow games are listed as the canonical example of superadditive games.", "section_ref": "Section 5.2: Superadditivity", "notes_quote": "Example: Network flow games are superadditive."}
+          ]
+        },
+        {
+          "id": "q19",
+          "source_ref": "Section 5.3: Convexity and Supermodularity",
+          "text": "Which of the following correctly describe convex games and the supermodularity condition? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A TU game is convex if its characteristic function is supermodular"},
+            {"letter": "B", "text": "Supermodularity requires $f(A \\cup B) + f(A \\cap B) \\geq f(A) + f(B)$ for any $A, B \\subseteq N$"},
+            {"letter": "C", "text": "In a convex game, a player is more useful when joining a bigger coalition"},
+            {"letter": "D", "text": "Formally, convexity means: if $T \\subseteq S$ and $i \\notin S$, then $v(T \\cup \\{i\\}) - v(T) \\leq v(S \\cup \\{i\\}) - v(S)$"},
+            {"letter": "E", "text": "All superadditive games are also convex"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "A TU game is convex if its characteristic function is supermodular.", "section_ref": "Section 5.3: Convexity and Supermodularity", "notes_quote": "A TU game is convex if its characteristic function is supermodular."},
+            {"letter": "B", "is_correct": true, "text": "Supermodularity is defined by the inequality $f(A \\cup B) + f(A \\cap B) \\geq f(A) + f(B)$.", "section_ref": "Section 5.3: Convexity and Supermodularity", "notes_quote": "For any $A, B \\subseteq N$ (not necessarily disjoint): $f(A \\cup B) + f(A \\cap B) \\geq f(A) + f(B)$"},
+            {"letter": "C", "is_correct": true, "text": "The key property of convex games is that a player is more useful when joining a bigger coalition.", "section_ref": "Section 5.3: Convexity and Supermodularity", "notes_quote": "Key property of convex games: A player is more useful when joining a bigger coalition."},
+            {"letter": "D", "is_correct": true, "text": "This is the formal statement of increasing marginal contributions in convex games.", "section_ref": "Section 5.3: Convexity and Supermodularity", "notes_quote": "if $T \\subseteq S$ and $i \\notin S$, then $v(T \\cup \\{i\\}) - v(T) \\leq v(S \\cup \\{i\\}) - v(S)$"},
+            {"letter": "E", "is_correct": false, "text": "Supermodularity (convexity) implies superadditivity, but not vice versa — the ice cream game is superadditive but not convex.", "section_ref": "Section 5.3: Convexity and Supermodularity", "notes_quote": "Supermodular $\\Rightarrow$ Superadditive (but not conversely)"}
+          ]
+        },
+        {
+          "id": "q20",
+          "source_ref": "Section 5.3: Convexity and Supermodularity",
+          "text": "Regarding the properties of the three example games (ice cream, graph-induced, weighted voting), which of the following are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The ice cream game is superadditive but not convex"},
+            {"letter": "B", "text": "The graph-induced game is superadditive and convex if and only if all edge weights are non-negative"},
+            {"letter": "C", "text": "A weighted voting game with $q > \\frac{w(N)}{2}$ is convex"},
+            {"letter": "D", "text": "A weighted voting game is superadditive only if $q > \\frac{w(N)}{2}$"},
+            {"letter": "E", "text": "The three-player majority game ($w_1=w_2=w_3=1$, $q=2$) is not convex, shown by $A=\\{1,2\\}$, $B=\\{2,3\\}$: $v(A\\cup B)+v(A\\cap B)=1 < v(A)+v(B)=2$"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes explicitly classify the ice cream game as superadditive but not convex.", "section_ref": "Section 5.3: Convexity and Supermodularity", "notes_quote": "Ice cream game: Superadditive? Yes; Convex? No"},
+            {"letter": "B", "is_correct": true, "text": "Graph-induced games are superadditive and convex if and only if all edge weights are non-negative.", "section_ref": "Section 5.3: Convexity and Supermodularity", "notes_quote": "Graph-induced game: Superadditive? Iff all edge weights $\\geq 0$; Convex? Iff all edge weights $\\geq 0$"},
+            {"letter": "C", "is_correct": false, "text": "A weighted voting game with $q > \\frac{w(N)}{2}$ is superadditive but not convex — the notes explicitly state it is not convex even in this case.", "section_ref": "Section 5.3: Convexity and Supermodularity", "notes_quote": "Weighted voting game: Convex? Not even when $q > \\frac{w(N)}{2}$"},
+            {"letter": "D", "is_correct": true, "text": "Weighted voting games are superadditive only if $q > \\frac{w(N)}{2}$.", "section_ref": "Section 5.3: Convexity and Supermodularity", "notes_quote": "Weighted voting game: Superadditive? Only if $q > \\frac{w(N)}{2}$"},
+            {"letter": "E", "is_correct": true, "text": "The counterexample: $v(A\\cup B)+v(A\\cap B)=1+0=1 < v(A)+v(B)=1+1=2$, violating supermodularity.", "section_ref": "Section 5.3: Convexity and Supermodularity", "notes_quote": "$v(A \\cup B) + v(A \\cap B) = v(\\{1,2,3\\}) + v(\\{2\\}) = 1 + 0 = 1$, but $v(A) + v(B) = 1 + 1 = 2$. Since $1 < 2$, this is not convex."}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "6. The Core",
+      "questions": [
+        {
+          "id": "q21",
+          "source_ref": "Section 6.1: Stability vs. Fairness",
+          "text": "Which of the following correctly describe the two criteria for evaluating outcomes in cooperative games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Stability asks whether any group has an incentive to deviate from the coalition structure"},
+            {"letter": "B", "text": "Fairness asks how well each agent's payoff reflects their contribution"},
+            {"letter": "C", "text": "The core is a fairness-based solution concept"},
+            {"letter": "D", "text": "The Shapley value is a stability-based solution concept"},
+            {"letter": "E", "text": "Stability and fairness give rise to two distinct families of solution concepts"}
+          ],
+          "correct": ["A", "B", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Stability asks what incentives agents have to stay in the coalition structure — no group should want to deviate.", "section_ref": "Section 6.1: Stability vs. Fairness", "notes_quote": "Stability: What incentives do agents have to stay in the coalition structure? (No group should want to deviate.)"},
+            {"letter": "B", "is_correct": true, "text": "Fairness asks how well each agent's payoff reflects their contribution.", "section_ref": "Section 6.1: Stability vs. Fairness", "notes_quote": "Fairness: How well does each agent's payoff reflect their contribution?"},
+            {"letter": "C", "is_correct": false, "text": "The core is a stability-based concept. The Shapley value is the fairness-based concept.", "section_ref": "Section 9.1: Stability vs. Fairness", "notes_quote": ""},
+            {"letter": "D", "is_correct": false, "text": "The Shapley value is a fairness-based concept, not stability-based. The core is the stability concept.", "section_ref": "Section 9.1: Stability vs. Fairness", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Stability and fairness give rise to two families of solution concepts.", "section_ref": "Section 6.1: Stability vs. Fairness", "notes_quote": "These give rise to two families of solution concepts."}
+          ]
+        },
+        {
+          "id": "q22",
+          "source_ref": "Section 6.2: Definition of the Core",
+          "text": "Which of the following correctly describe the core $\\mathcal{C}(G)$ of a characteristic function game? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The core is the set of all outcomes $(CS, \\mathbf{x})$ such that $x(C) \\geq v(C)$ for all $C \\subseteq N$"},
+            {"letter": "B", "text": "The core condition ensures no coalition $C$ can deviate and do better on its own"},
+            {"letter": "C", "text": "A coalition wants to deviate if its members collectively receive strictly less than $v(C)$ in the current outcome"},
+            {"letter": "D", "text": "The core condition $x(C) \\geq v(C)$ must hold only for the grand coalition, not for proper subsets"},
+            {"letter": "E", "text": "The core may be empty for some games"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The core is formally defined as the set of outcomes where $x(C) \\geq v(C)$ for all $C \\subseteq N$.", "section_ref": "Section 6.2: Definition of the Core", "notes_quote": "The core $\\mathcal{C}(G)$ ... is the set of all outcomes $(CS, \\mathbf{x})$ such that $x(C) \\geq v(C) \\quad \\text{for all } C \\subseteq N$"},
+            {"letter": "B", "is_correct": true, "text": "The core ensures no coalition can deviate because members already collectively receive at least $v(C)$.", "section_ref": "Section 6.2: Definition of the Core", "notes_quote": "No coalition $C$ can deviate and do better on its own, because the members of $C$ already collectively receive at least $v(C)$ in the current outcome."},
+            {"letter": "C", "is_correct": true, "text": "A coalition wants to deviate when its collective payoff is less than $v(C)$ — it can guarantee itself more by acting independently.", "section_ref": "Section 6.2: Definition of the Core", "notes_quote": "No coalition $C$ can deviate and do better on its own, because the members of $C$ already collectively receive at least $v(C)$"},
+            {"letter": "D", "is_correct": false, "text": "The core condition must hold for ALL coalitions $C \\subseteq N$, including all proper subsets.", "section_ref": "Section 6.2: Definition of the Core", "notes_quote": "$x(C) \\geq v(C) \\quad \\text{for all } C \\subseteq N$"},
+            {"letter": "E", "is_correct": true, "text": "Some games have empty cores — no stable outcome exists.", "section_ref": "Section 6.5: Empty Cores", "notes_quote": "some games have empty cores -- no stable outcome exists"}
+          ]
+        },
+        {
+          "id": "q23",
+          "source_ref": "Section 6.3: Core of the Ice Cream Game",
+          "text": "Which of the following are valid core outcomes of the Ice Cream Game ($v(\\{C,M,P\\})=1000$, $v(\\{C,M\\})=750$, $v(\\{C,P\\})=500$, $v(\\{M,P\\})=500$)? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$(400, 400, 200)$"},
+            {"letter": "B", "text": "$(500, 400, 100)$"},
+            {"letter": "C", "text": "$(350, 350, 300)$"},
+            {"letter": "D", "text": "$(500, 500, 0)$"},
+            {"letter": "E", "text": "$(0, 800, 200)$"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "$(400,400,200)$: sums to 1000; $x_C+x_M=800\\geq750$; $x_C+x_P=600\\geq500$; $x_M+x_P=600\\geq500$. All core constraints satisfied.", "section_ref": "Section 6.3: Core of the Ice Cream Game", "notes_quote": "Some core outcomes: $(400, 400, 200)$"},
+            {"letter": "B", "is_correct": true, "text": "$(500,400,100)$: sums to 1000; $x_C+x_M=900\\geq750$; $x_C+x_P=600\\geq500$; $x_M+x_P=500\\geq500$. All constraints satisfied.", "section_ref": "Section 6.3: Core of the Ice Cream Game", "notes_quote": "Some core outcomes: $(500, 400, 100)$"},
+            {"letter": "C", "is_correct": false, "text": "$(350,350,300)$ is NOT in the core: $x_C+x_M=700 < 750$, so Charlie and Marcy would deviate.", "section_ref": "Section 6.3: Core of the Ice Cream Game", "notes_quote": "$(350, 350, 300)$ is NOT in the core because $x_C + x_M = 700 < 750$, so Charlie and Marcy would deviate."},
+            {"letter": "D", "is_correct": true, "text": "$(500,500,0)$: sums to 1000; $x_C+x_M=1000\\geq750$; $x_C+x_P=500\\geq500$; $x_M+x_P=500\\geq500$. All constraints satisfied.", "section_ref": "Section 6.3: Core of the Ice Cream Game", "notes_quote": "Some core outcomes: $(500, 500, 0)$"},
+            {"letter": "E", "is_correct": false, "text": "$(0,800,200)$: $x_C+x_P=200<500$, so Charlie and Patty would deviate. Not in the core.", "section_ref": "Section 6.3: Core of the Ice Cream Game", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q24",
+          "source_ref": "Section 6.3: Core of the Ice Cream Game",
+          "text": "Which of the following are correct about the coalition structure and constraints in any core outcome of the Ice Cream Game? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Any core outcome must use the grand coalition $\\{C,M,P\\}$ as the coalition structure"},
+            {"letter": "B", "text": "The grand coalition must form because $v(\\{C,M,P\\})=1000$ exceeds the social welfare of any other partition"},
+            {"letter": "C", "text": "The partition $\\{\\{C,M\\},\\{P\\}\\}$ could be a valid core coalition structure"},
+            {"letter": "D", "text": "Core outcomes require $x_C + x_M + x_P = 1000$"},
+            {"letter": "E", "text": "Core outcomes require $x_C + x_M \\geq 750$"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Any core outcome uses the grand coalition because no other partition achieves the same social welfare.", "section_ref": "Section 6.3: Core of the Ice Cream Game", "notes_quote": "For any outcome in the core, the coalition structure must be the grand coalition"},
+            {"letter": "B", "is_correct": true, "text": "The grand coalition generates value 1000, which exceeds the sum of values under any other partition.", "section_ref": "Section 6.3: Core of the Ice Cream Game", "notes_quote": "the coalition structure must be the grand coalition (because $v(\\{C,M,P\\}) = 1000$ exceeds the social welfare of any other partition)"},
+            {"letter": "C", "is_correct": false, "text": "The partition $\\{\\{C,M\\},\\{P\\}\\}$ generates only $750+0=750 < 1000$. Core outcomes require the grand coalition.", "section_ref": "Section 6.4: Stability Implies Efficiency", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The grand coalition distributes its full value of 1000.", "section_ref": "Section 6.3: Core of the Ice Cream Game", "notes_quote": "$x_C + x_M + x_P = 1000$"},
+            {"letter": "E", "is_correct": true, "text": "The core constraint for coalition $\\{C,M\\}$ requires $x_C+x_M \\geq v(\\{C,M\\}) = 750$.", "section_ref": "Section 6.3: Core of the Ice Cream Game", "notes_quote": "$x_C + x_M \\geq 750$"}
+          ]
+        },
+        {
+          "id": "q25",
+          "source_ref": "Section 6.4: Stability Implies Efficiency",
+          "text": "Which of the following correctly state or follow from the theorem that stability implies efficiency? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "If $(CS, \\mathbf{x})$ is in the core of a CFG, then $CS$ maximises social welfare over all possible coalition structures"},
+            {"letter": "B", "text": "The proof proceeds by contradiction: assume $CS$ is in the core but a better coalition structure $CS'$ exists"},
+            {"letter": "C", "text": "The contradiction arises because the core condition implies $x(C') \\geq v(C')$ for every $C' \\in CS'$, but the assumption requires the opposite"},
+            {"letter": "D", "text": "A core outcome can be stable but inefficient — efficiency is a separate property"},
+            {"letter": "E", "text": "Core outcomes always maximise the total payoff distributed to all players"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Core outcomes always maximise social welfare over all possible coalition structures.", "section_ref": "Section 6.4: Stability Implies Efficiency", "notes_quote": "If an outcome $(CS, \\mathbf{x})$ is in the core of a CFG $G$, then $CS$ maximises social welfare (the total payoff to all players) over all possible coalition structures."},
+            {"letter": "B", "is_correct": true, "text": "The proof assumes a core outcome $CS$ alongside a better coalition structure $CS'$ and derives a contradiction.", "section_ref": "Section 6.4: Stability Implies Efficiency", "notes_quote": "Suppose $CS$ is in the core but there exists $CS'$ with $\\text{val}(CS') > \\text{val}(CS)$."},
+            {"letter": "C", "is_correct": true, "text": "The core condition forces $x(C') \\geq v(C')$ for every $C' \\in CS'$, contradicting the assumption that $\\sum v(C') > \\sum x(C')$.", "section_ref": "Section 6.4: Stability Implies Efficiency", "notes_quote": "since $(CS, \\mathbf{x})$ is in the core, $x(C') \\geq v(C')$ for every $C' \\in CS'$"},
+            {"letter": "D", "is_correct": false, "text": "The theorem proves the opposite: stability automatically implies efficiency. They are not independent.", "section_ref": "Section 6.4: Stability Implies Efficiency", "notes_quote": "Therefore, core outcomes are always efficient."},
+            {"letter": "E", "is_correct": true, "text": "Core outcomes maximise total payoff (social welfare) — the definition of efficiency here.", "section_ref": "Section 6.4: Stability Implies Efficiency", "notes_quote": "core outcomes are always efficient"}
+          ]
+        },
+        {
+          "id": "q26",
+          "source_ref": "Section 6.5: Empty Cores",
+          "text": "Which of the following correctly explain why the three-player majority game ($w_1=w_2=w_3=1$, $q=2$) has an empty core? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Under three singletons, all payoffs are 0 but the grand coalition can deviate and get value 1"},
+            {"letter": "B", "text": "Under a pair-and-singleton structure, the disadvantaged player in the pair can team with the singleton to form a new winning coalition"},
+            {"letter": "C", "text": "Under the grand coalition, some player $i$ has $x_i > 0$, and $N \\setminus \\{i\\}$ can deviate because $x(N\\setminus\\{i\\}) < v(N\\setminus\\{i\\})$"},
+            {"letter": "D", "text": "The core is empty because no player satisfies individual rationality"},
+            {"letter": "E", "text": "The core is empty because in every case some coalition has an incentive to deviate"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "With three singletons all payoffs are 0, but the grand coalition can deviate and secure value 1.", "section_ref": "Section 6.5: Empty Cores", "notes_quote": "Three singletons: All payoffs must be 0, but the grand coalition can deviate and win (getting value 1)."},
+            {"letter": "B", "is_correct": true, "text": "In the pair-and-singleton case, the lower-paid member can defect to form a new winning pair with the singleton.", "section_ref": "Section 6.5: Empty Cores", "notes_quote": "the disadvantaged player teams with player 3 to form a winning coalition and both get more"},
+            {"letter": "C", "is_correct": true, "text": "Under the grand coalition, some player $i$ must have $x_i > 0$; then $x(N\\setminus\\{i\\}) < 1 = v(N\\setminus\\{i\\})$, so that pair can deviate.", "section_ref": "Section 6.5: Empty Cores", "notes_quote": "Some player $i$ has $x_i > 0$... The coalition $N \\setminus \\{i\\}$ has $x(N \\setminus \\{i\\}) < 1 = v(N \\setminus \\{i\\})$, so that pair can deviate."},
+            {"letter": "D", "is_correct": false, "text": "Individual rationality is not the issue — with $v(\\{i\\})=0$ any non-negative payoff satisfies it. The core is empty because of coalition deviations.", "section_ref": "Section 6.5: Empty Cores", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The proof by case analysis shows that in every possible coalition structure some coalition has an incentive to deviate.", "section_ref": "Section 6.5: Empty Cores", "notes_quote": "In every case, some coalition has an incentive to deviate, so the core is empty."}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "7. The Shapley Value",
+      "questions": [
+        {
+          "id": "q27",
+          "source_ref": "Section 7.1: Motivation: Fairness-Based Payoff Division",
+          "text": "Which of the following correctly describe the motivation for the Shapley value? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The core captures stability but does not guarantee fairness"},
+            {"letter": "B", "text": "$(500, 500, 0)$ is in the core of the ice cream game, but giving Patty nothing seems unfair"},
+            {"letter": "C", "text": "The Shapley value is based on the intuition that each agent's payment should be proportional to their contribution"},
+            {"letter": "D", "text": "The Shapley value was designed to replace the core wherever the core is non-empty"},
+            {"letter": "E", "text": "The Shapley value is a stability-based solution concept like the core"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The core captures stability but a core outcome can be unfair.", "section_ref": "Section 7.1: Motivation", "notes_quote": "The core captures stability, but is it fair?"},
+            {"letter": "B", "is_correct": true, "text": "$(500,500,0)$ is a valid core outcome, yet giving Patty nothing is cited as the motivating unfairness.", "section_ref": "Section 7.1: Motivation", "notes_quote": "$(500, 500, 0)$ is in the core of the ice cream game, but giving Patty nothing seems unfair."},
+            {"letter": "C", "is_correct": true, "text": "The Shapley value is based on paying each agent proportional to their contribution.", "section_ref": "Section 7.1: Motivation", "notes_quote": "each agent's payment should be proportional to their contribution to the coalitions they participate in"},
+            {"letter": "D", "is_correct": false, "text": "The Shapley value addresses fairness and is always well-defined; it is not designed to replace the core. Both coexist.", "section_ref": "Section 9.2: Core vs. Shapley Value", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "The Shapley value is a fairness-based concept, not stability-based.", "section_ref": "Section 9.1: Stability vs. Fairness", "notes_quote": "Shapley value: Fairness — Average marginal contribution over all orderings"}
+          ]
+        },
+        {
+          "id": "q28",
+          "source_ref": "Section 7.2: Why Not Simple Marginal Contribution?",
+          "text": "Which of the following correctly explain why paying each player their marginal contribution to the grand coalition fails? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The total payments $\\sum_i [v(N) - v(N \\setminus \\{i\\})]$ may not equal $v(N)$"},
+            {"letter": "B", "text": "In the three-player majority game, each player's marginal contribution to $N$ is $1-1=0$, so $\\sum_i x_i = 0 \\neq 1$"},
+            {"letter": "C", "text": "This approach violates individual rationality because players can earn more as singletons"},
+            {"letter": "D", "text": "The naive approach is efficient only in superadditive games"},
+            {"letter": "E", "text": "The naive marginal contribution approach fails the efficiency property"}
+          ],
+          "correct": ["A", "B", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The sum of marginal contributions to the grand coalition need not equal $v(N)$, violating efficiency.", "section_ref": "Section 7.2: Why Not Simple Marginal Contribution?", "notes_quote": "The total payoff $\\sum_i x_i$ may not equal $v(N)$."},
+            {"letter": "B", "is_correct": true, "text": "In the three-player majority game $v(N)-v(N\\setminus\\{i\\})=1-1=0$ for each player, giving total payments of 0 instead of 1.", "section_ref": "Section 7.2: Why Not Simple Marginal Contribution?", "notes_quote": "In the three-player majority game, $v(N) - v(N \\setminus \\{i\\}) = 1 - 1 = 0$ for each player, so $\\sum_i x_i = 0 \\neq 1 = v(N)$."},
+            {"letter": "C", "is_correct": false, "text": "Individual rationality is not the issue. The problem is the failure of efficiency (payments not summing to $v(N)$).", "section_ref": "Section 7.2: Why Not Simple Marginal Contribution?", "notes_quote": ""},
+            {"letter": "D", "is_correct": false, "text": "The notes do not claim this. The three-player majority game (superadditive) is the counterexample.", "section_ref": "Section 7.2: Why Not Simple Marginal Contribution?", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The naive approach fails because $\\sum_i x_i$ may not equal $v(N)$, which is the efficiency requirement.", "section_ref": "Section 7.2: Why Not Simple Marginal Contribution?", "notes_quote": "The total payoff $\\sum_i x_i$ may not equal $v(N)$."}
+          ]
+        },
+        {
+          "id": "q29",
+          "source_ref": "Section 7.3: Why Not a Fixed Ordering?",
+          "text": "Which of the following correctly describe the fixed-ordering approach and its shortcomings? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In a fixed ordering, agent $k$ is paid $v(\\{1,\\ldots,k\\}) - v(\\{1,\\ldots,k-1\\})$"},
+            {"letter": "B", "text": "The fixed-ordering approach is efficient — payments sum to $v(N)$"},
+            {"letter": "C", "text": "The fixed-ordering approach is fair because symmetric players always receive the same payoff"},
+            {"letter": "D", "text": "In the three-player majority game with ordering $(1,2,3)$: agent 1 gets 0, agent 2 gets 1, agent 3 gets 0"},
+            {"letter": "E", "text": "The fixed-ordering approach is rejected because it is both inefficient and unfair"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Each agent receives their marginal contribution to the coalition of predecessors.", "section_ref": "Section 7.3: Why Not a Fixed Ordering?", "notes_quote": "Agent $k$ gets $v(\\{1,\\ldots,k\\}) - v(\\{1,\\ldots,k-1\\})$"},
+            {"letter": "B", "is_correct": true, "text": "The fixed-ordering approach is efficient: payments telescope and sum to $v(N)$.", "section_ref": "Section 7.3: Why Not a Fixed Ordering?", "notes_quote": "This is efficient (sums to $v(N)$)"},
+            {"letter": "C", "is_correct": false, "text": "The fixed-ordering approach is unfair: symmetric players may receive very different payoffs depending on the ordering.", "section_ref": "Section 7.3: Why Not a Fixed Ordering?", "notes_quote": "unfair: symmetric players may receive very different payoffs depending on the ordering"},
+            {"letter": "D", "is_correct": true, "text": "With ordering $(1,2,3)$: agent 1 gets 0, agent 2 gets 1, agent 3 gets 0. But all three players are identical.", "section_ref": "Section 7.3: Why Not a Fixed Ordering?", "notes_quote": "agent 1 gets 0, agent 2 gets 1 (becomes a winning pair), agent 3 gets 0. But all three players are identical."},
+            {"letter": "E", "is_correct": false, "text": "The fixed-ordering approach IS efficient. It is rejected because it is unfair, not inefficient.", "section_ref": "Section 7.3: Why Not a Fixed Ordering?", "notes_quote": "This is efficient (sums to $v(N)$), but unfair"}
+          ]
+        },
+        {
+          "id": "q30",
+          "source_ref": "Section 7.4: The Shapley Value: Averaging Over All Orderings",
+          "text": "Which of the following correctly describe the Shapley value formula and its probabilistic interpretation? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The Shapley value averages marginal contributions over all $n!$ permutations of $N$"},
+            {"letter": "B", "text": "$S^{\\pi}(i) = \\{j \\in N : \\pi(j) < \\pi(i)\\}$ denotes the set of predecessors of $i$ in permutation $\\pi$"},
+            {"letter": "C", "text": "$\\phi_i(v) = \\frac{1}{n!} \\sum_{\\pi \\in \\Pi(N)} [v(S^{\\pi}(i) \\cup \\{i\\}) - v(S^{\\pi}(i))]$"},
+            {"letter": "D", "text": "$\\phi_i(v)$ is the expected marginal contribution of player $i$ when a permutation is chosen uniformly at random"},
+            {"letter": "E", "text": "The Shapley value averages over all $2^{n-1}$ coalitions not containing $i$"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The Shapley value averages over all $n!$ permutations.", "section_ref": "Section 7.4: The Shapley Value", "notes_quote": "average marginal contributions over all permutations"},
+            {"letter": "B", "is_correct": true, "text": "$S^{\\pi}(i)$ is defined as the set of predecessors of $i$ in permutation $\\pi$.", "section_ref": "Section 7.4: The Shapley Value", "notes_quote": "$S^{\\pi}(i) = \\{j \\in N : \\pi(j) < \\pi(i)\\}$ be the set of predecessors of $i$ in $\\pi$"},
+            {"letter": "C", "is_correct": true, "text": "This is the exact formula for the Shapley value.", "section_ref": "Section 7.4: The Shapley Value", "notes_quote": "$\\phi_i(v) = \\frac{1}{n!} \\sum_{\\pi \\in \\Pi(N)} \\Delta_i^{\\pi}(v)$"},
+            {"letter": "D", "is_correct": true, "text": "$\\phi_i(v)$ is the expected marginal contribution when a permutation is chosen uniformly at random.", "section_ref": "Section 7.4: The Shapley Value", "notes_quote": "If we choose a permutation uniformly at random, $\\phi_i(v)$ is the expected marginal contribution of player $i$ to the coalition of their predecessors."},
+            {"letter": "E", "is_correct": false, "text": "Averaging over all $2^{n-1}$ coalitions not containing $i$ is the Banzhaf index, not the Shapley value.", "section_ref": "Section 8.1: Definition", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q31",
+          "source_ref": "Section 7.5: Computing the Shapley Value: Ice Cream Example (Patty)",
+          "text": "In the Ice Cream Game, which of the following are correct about Patty's Shapley value computation? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "When Patty's predecessors are $\\{C, M\\}$, her marginal contribution is $1000 - 750 = 250$"},
+            {"letter": "B", "text": "When Patty is first in the ordering (predecessors $= \\emptyset$), her marginal contribution is $v(\\{P\\}) - v(\\emptyset) = 0$"},
+            {"letter": "C", "text": "When Patty's only predecessor is Charlie, her marginal contribution is $v(\\{C,P\\}) - v(\\{C\\}) = 500 - 0 = 500$"},
+            {"letter": "D", "text": "$\\phi_P = \\frac{250+250+500+500+0+0}{6} = 250$"},
+            {"letter": "E", "text": "Patty's Shapley value equals her marginal contribution to the grand coalition, $v(N) - v(N\\setminus\\{P\\}) = 250$, which is always equal to the Shapley value"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "When predecessors are $\\{C,M\\}$, Patty's marginal contribution is $1000-750=250$.", "section_ref": "Section 7.5: Computing the Shapley Value", "notes_quote": "$(C, M, P)$: $v(\\{C,M,P\\}) - v(\\{C,M\\}) = 1000 - 750 = 250$"},
+            {"letter": "B", "is_correct": true, "text": "When Patty is first, predecessors $=\\emptyset$, marginal contribution $= v(\\{P\\}) - v(\\emptyset) = 0$.", "section_ref": "Section 7.5: Computing the Shapley Value", "notes_quote": "$(P, C, M)$: $v(\\{P\\}) - v(\\emptyset) = 0 - 0 = 0$"},
+            {"letter": "C", "is_correct": true, "text": "With only Charlie as predecessor, $v(\\{C,P\\})-v(\\{C\\})=500-0=500$.", "section_ref": "Section 7.5: Computing the Shapley Value", "notes_quote": "$(C, P, M)$: $v(\\{C,P\\}) - v(\\{C\\}) = 500 - 0 = 500$"},
+            {"letter": "D", "is_correct": true, "text": "Patty's Shapley value is the average of her six marginal contributions: $1500/6 = 250$.", "section_ref": "Section 7.5: Computing the Shapley Value", "notes_quote": "$\\phi_P = \\frac{250 + 250 + 500 + 500 + 0 + 0}{6} = \\frac{1500}{6} = 250$"},
+            {"letter": "E", "is_correct": false, "text": "The numerical coincidence here is not general. Section 7.2 shows the simple marginal contribution to $N$ need not equal the Shapley value — in the majority game all marginal contributions to $N$ are 0.", "section_ref": "Section 7.2: Why Not Simple Marginal Contribution?", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q32",
+          "source_ref": "Section 7.6: Properties of the Shapley Value",
+          "text": "Which of the following correctly state the four axiomatic properties of the Shapley value? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Efficiency: $\\sum_{i \\in N} \\phi_i(v) = v(N)$"},
+            {"letter": "B", "text": "Null Player: if $v(C \\cup \\{i\\}) = v(C)$ for all $C \\subseteq N \\setminus \\{i\\}$, then $\\phi_i(v) = 0$"},
+            {"letter": "C", "text": "Symmetry: if $v(C \\cup \\{i\\}) = v(C \\cup \\{j\\})$ for all $C \\subseteq N \\setminus \\{i,j\\}$, then $\\phi_i(v) = \\phi_j(v)$"},
+            {"letter": "D", "text": "Additivity: $\\phi_i(v_1 + v_2) = \\phi_i(v_1) + \\phi_i(v_2)$"},
+            {"letter": "E", "text": "Monotonicity: $\\phi_i(v) \\geq \\phi_j(v)$ whenever player $i$ has a higher weight than player $j$"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Efficiency requires the Shapley value to distribute the full value of the grand coalition.", "section_ref": "Section 7.6: Properties of the Shapley Value", "notes_quote": "Efficiency: $\\sum_{i \\in N} \\phi_i(v) = v(N)$. It distributes the full value of the grand coalition."},
+            {"letter": "B", "is_correct": true, "text": "A null (dummy) player who contributes nothing to any coalition receives zero.", "section_ref": "Section 7.6: Properties of the Shapley Value", "notes_quote": "Null (Dummy) Player: If $v(C \\cup \\{i\\}) = v(C)$ for all $C \\subseteq N \\setminus \\{i\\}$, then $\\phi_i(v) = 0$."},
+            {"letter": "C", "is_correct": true, "text": "Symmetric players receive equal Shapley values.", "section_ref": "Section 7.6: Properties of the Shapley Value", "notes_quote": "Symmetry: If players $i$ and $j$ are symmetric ... then $\\phi_i(v) = \\phi_j(v)$."},
+            {"letter": "D", "is_correct": true, "text": "Additivity means the Shapley value of a sum of games equals the sum of individual Shapley values.", "section_ref": "Section 7.6: Properties of the Shapley Value", "notes_quote": "Additivity: If $G^+ = (N, v_1 + v_2)$ ... then $\\phi_i(v_1 + v_2) = \\phi_i(v_1) + \\phi_i(v_2)$."},
+            {"letter": "E", "is_correct": false, "text": "Monotonicity is not among the four Shapley axioms. The four are efficiency, null player, symmetry, and additivity.", "section_ref": "Section 7.6: Properties of the Shapley Value", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q33",
+          "source_ref": "Section 7.6: Properties of the Shapley Value",
+          "text": "Which of the following correctly describe the Uniqueness Theorem for the Shapley value? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The Shapley value is the only payoff division scheme satisfying efficiency, null player, symmetry, and additivity"},
+            {"letter": "B", "text": "There exist other efficient and symmetric schemes that also satisfy null player and additivity"},
+            {"letter": "C", "text": "The Banzhaf index also satisfies all four Shapley axioms"},
+            {"letter": "D", "text": "Uniqueness means no other function can satisfy all four axioms simultaneously"},
+            {"letter": "E", "text": "Uniqueness means the Shapley value is the only fair allocation method in all of cooperative game theory"}
+          ],
+          "correct": ["A", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The Uniqueness Theorem states the Shapley value is the only scheme satisfying all four axioms.", "section_ref": "Section 7.6: Properties of the Shapley Value", "notes_quote": "The Shapley value is the only payoff division scheme satisfying all four properties."},
+            {"letter": "B", "is_correct": false, "text": "The Uniqueness Theorem proves no other scheme can satisfy all four axioms simultaneously.", "section_ref": "Section 7.6: Properties of the Shapley Value", "notes_quote": ""},
+            {"letter": "C", "is_correct": false, "text": "The Banzhaf index fails efficiency, so it does not satisfy all four Shapley axioms.", "section_ref": "Section 8.2: Properties", "notes_quote": "Efficiency: No -- the Banzhaf index does NOT necessarily distribute $v(N)$"},
+            {"letter": "D", "is_correct": true, "text": "Uniqueness means exactly that no other function simultaneously satisfies all four axioms.", "section_ref": "Section 7.6: Properties of the Shapley Value", "notes_quote": "The Shapley value is the only payoff division scheme satisfying all four properties."},
+            {"letter": "E", "is_correct": false, "text": "Uniqueness is relative to the four specific axioms. The Banzhaf index is another valid fairness measure with different properties.", "section_ref": "Section 8.1: Definition", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q34",
+          "source_ref": "Section 7.7: Using Properties to Simplify Computation",
+          "text": "For the game with $n$ players where $v(N)=1$ and $v(C)=0$ for all $C \\subsetneq N$, which of the following correctly compute or justify the Shapley value? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "By direct computation: player $i$'s marginal contribution is 1 only when last in the permutation, giving $\\phi_i = \\frac{(n-1)!}{n!} = \\frac{1}{n}$"},
+            {"letter": "B", "text": "By symmetry and efficiency: all players are symmetric so each gets the same, and efficiency forces $\\phi_i = \\frac{1}{n}$"},
+            {"letter": "C", "text": "Player $i$'s marginal contribution is 1 whenever $|S^{\\pi}(i)| \\geq 1$"},
+            {"letter": "D", "text": "There are $(n-1)!$ permutations where player $i$ is last out of $n!$ total"},
+            {"letter": "E", "text": "The null player axiom gives $\\phi_i = 0$ for all players in this game"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Player $i$'s marginal contribution is 1 only in the $(n-1)!$ permutations where $i$ is last, giving $\\phi_i = 1/n$.", "section_ref": "Section 7.7: Using Properties to Simplify Computation", "notes_quote": "Player $i$'s marginal contribution is 1 only if $i$ is last in the permutation ($(n-1)!$ such permutations out of $n!$). So $\\phi_i = \\frac{(n-1)!}{n!} = \\frac{1}{n}$."},
+            {"letter": "B", "is_correct": true, "text": "Symmetry and efficiency together immediately give $\\phi_i = 1/n$.", "section_ref": "Section 7.7: Using Properties to Simplify Computation", "notes_quote": "All players are symmetric, so by symmetry they all get the same value. By efficiency, $n \\cdot \\phi_i = 1$, so $\\phi_i = \\frac{1}{n}$."},
+            {"letter": "C", "is_correct": false, "text": "Player $i$'s marginal contribution is 1 only when ALL other $n-1$ players are predecessors (i.e., $i$ is last). With fewer predecessors, $v(S^{\\pi}(i)\\cup\\{i\\}) = 0$.", "section_ref": "Section 7.7: Using Properties to Simplify Computation", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "There are exactly $(n-1)!$ permutations where a fixed player $i$ is placed last.", "section_ref": "Section 7.7: Using Properties to Simplify Computation", "notes_quote": "$(n-1)!$ such permutations out of $n!$"},
+            {"letter": "E", "is_correct": false, "text": "No player is a null player here: player $i$'s addition to coalition $N\\setminus\\{i\\}$ changes the value from 0 to 1.", "section_ref": "Section 7.6: Properties of the Shapley Value", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-8",
+      "title": "8. The Banzhaf Index",
+      "questions": [
+        {
+          "id": "q35",
+          "source_ref": "Section 8.1: Definition",
+          "text": "Which of the following correctly describe the Banzhaf index $\\beta_i(v)$? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$\\beta_i(v) = \\frac{1}{2^{n-1}} \\sum_{C \\subseteq N \\setminus \\{i\\}} [v(C \\cup \\{i\\}) - v(C)]$"},
+            {"letter": "B", "text": "The Banzhaf index averages marginal contributions over all coalitions not containing player $i$"},
+            {"letter": "C", "text": "The Banzhaf index averages over all $n!$ permutations of $N$"},
+            {"letter": "D", "text": "There are $2^{n-1}$ coalitions that do not contain player $i$"},
+            {"letter": "E", "text": "Like the Shapley value, the Banzhaf index measures expected marginal contributions but with a different averaging scheme"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the exact formula for the Banzhaf index.", "section_ref": "Section 8.1: Definition", "notes_quote": "$\\beta_i(v) = \\frac{1}{2^{n-1}} \\sum_{C \\subseteq N \\setminus \\{i\\}} [v(C \\cup \\{i\\}) - v(C)]$"},
+            {"letter": "B", "is_correct": true, "text": "The Banzhaf index averages over all coalitions rather than all permutations.", "section_ref": "Section 8.1: Definition", "notes_quote": "the Banzhaf index measures agents' expected marginal contributions, but it averages over all coalitions rather than all permutations"},
+            {"letter": "C", "is_correct": false, "text": "Averaging over all $n!$ permutations is the Shapley value. The Banzhaf index sums over $2^{n-1}$ coalitions.", "section_ref": "Section 8.1: Definition", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "There are $2^{n-1}$ subsets of $N$ not containing player $i$.", "section_ref": "Section 8.1: Definition", "notes_quote": "The sum is over all $2^{n-1}$ coalitions that do not contain player $i$."},
+            {"letter": "E", "is_correct": true, "text": "Both measure expected marginal contributions, but with different averaging: permutations vs. coalitions.", "section_ref": "Section 8.1: Definition", "notes_quote": "Like the Shapley value, the Banzhaf index measures agents' expected marginal contributions, but it averages over all coalitions rather than all permutations."}
+          ]
+        },
+        {
+          "id": "q36",
+          "source_ref": "Section 8.2: Properties",
+          "text": "Which of the following correctly describe the properties satisfied by the Banzhaf index? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The Banzhaf index satisfies the null player property"},
+            {"letter": "B", "text": "The Banzhaf index satisfies the symmetry property"},
+            {"letter": "C", "text": "The Banzhaf index satisfies the additivity property (for the unnormalized version)"},
+            {"letter": "D", "text": "The Banzhaf index satisfies efficiency: $\\sum_{i} \\beta_i(v) = v(N)$"},
+            {"letter": "E", "text": "The Banzhaf index satisfies three of the four Shapley axioms, failing only efficiency"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The null player property is satisfied.", "section_ref": "Section 8.2: Properties", "notes_quote": "Null (Dummy) Player: Yes"},
+            {"letter": "B", "is_correct": true, "text": "The symmetry property is satisfied.", "section_ref": "Section 8.2: Properties", "notes_quote": "Symmetry: Yes"},
+            {"letter": "C", "is_correct": true, "text": "The additivity property is satisfied for the unnormalized Banzhaf index.", "section_ref": "Section 8.2: Properties", "notes_quote": "Additivity: Yes"},
+            {"letter": "D", "is_correct": false, "text": "Efficiency is the one Shapley axiom the Banzhaf index does NOT satisfy.", "section_ref": "Section 8.2: Properties", "notes_quote": "Efficiency: No -- the Banzhaf index does NOT necessarily distribute $v(N)$"},
+            {"letter": "E", "is_correct": true, "text": "The Banzhaf index satisfies null player, symmetry, and additivity, but fails efficiency.", "section_ref": "Section 8.2: Properties", "notes_quote": "The Banzhaf index satisfies three of the four Shapley value properties"}
+          ]
+        },
+        {
+          "id": "q37",
+          "source_ref": "Section 8.3: Example: Banzhaf Index Computation",
+          "text": "For the game with $n$ players where $v(N)=1$ and $v(C)=0$ for all $C \\subsetneq N$, which of the following are correct about the Banzhaf index? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Player $i$'s marginal contribution is 1 only when $C = N \\setminus \\{i\\}$, and 0 otherwise"},
+            {"letter": "B", "text": "$\\beta_i = \\frac{1}{2^{n-1}}$"},
+            {"letter": "C", "text": "$\\sum_{i \\in N} \\beta_i = \\frac{n}{2^{n-1}}$, which equals 1 for all $n \\geq 2$"},
+            {"letter": "D", "text": "$\\sum_{i \\in N} \\beta_i = \\frac{n}{2^{n-1}} \\neq 1$ for $n \\geq 3$, confirming the lack of efficiency"},
+            {"letter": "E", "text": "For $n=2$, $\\sum_{i} \\beta_i = 1$, so the Banzhaf index is efficient in this case"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Only the coalition $N\\setminus\\{i\\}$ gives marginal contribution 1; all others give 0.", "section_ref": "Section 8.3: Example", "notes_quote": "the marginal contribution is 1 only when $C = N \\setminus \\{i\\}$, and 0 for all other coalitions"},
+            {"letter": "B", "is_correct": true, "text": "Since only one of $2^{n-1}$ coalitions gives contribution 1, $\\beta_i = 1/2^{n-1}$.", "section_ref": "Section 8.3: Example", "notes_quote": "$\\beta_i = \\frac{1}{2^{n-1}}$"},
+            {"letter": "C", "is_correct": false, "text": "$\\sum \\beta_i = n/2^{n-1}$, which equals 1 only when $n=2$. For $n\\geq 3$ it does not equal 1.", "section_ref": "Section 8.3: Example", "notes_quote": "$\\sum_{i \\in N} \\beta_i = \\frac{n}{2^{n-1}} \\neq 1$ (for $n \\geq 3$)"},
+            {"letter": "D", "is_correct": true, "text": "The sum $n/2^{n-1} \\neq 1$ for $n\\geq 3$, confirming the Banzhaf index fails efficiency.", "section_ref": "Section 8.3: Example", "notes_quote": "Sum over all players: $\\sum_{i \\in N} \\beta_i = \\frac{n}{2^{n-1}} \\neq 1$ (for $n \\geq 3$), confirming the lack of efficiency."},
+            {"letter": "E", "is_correct": true, "text": "For $n=2$: $2/2^1 = 1 = v(N)$, so efficiency holds in this special case.", "section_ref": "Section 8.3: Example", "notes_quote": "$\\sum_{i \\in N} \\beta_i = \\frac{n}{2^{n-1}} \\neq 1$ (for $n \\geq 3$)"}
+          ]
+        },
+        {
+          "id": "q38",
+          "source_ref": "Section 8.4: Normalized Banzhaf Index",
+          "text": "Which of the following correctly describe the normalized Banzhaf index and its trade-offs? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$\\beta_i^* = \\frac{\\beta_i}{\\sum_{j \\in N} \\beta_j} \\cdot v(N)$"},
+            {"letter": "B", "text": "Normalization restores the efficiency property"},
+            {"letter": "C", "text": "Normalization preserves the additivity property"},
+            {"letter": "D", "text": "There is a fundamental trade-off: normalization breaks additivity"},
+            {"letter": "E", "text": "The normalized Banzhaf index satisfies all four Shapley axioms"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the exact formula for the normalized Banzhaf index.", "section_ref": "Section 8.4: Normalized Banzhaf Index", "notes_quote": "$\\beta_i^* = \\frac{\\beta_i}{\\sum_{j \\in N} \\beta_j} \\cdot v(N)$"},
+            {"letter": "B", "is_correct": true, "text": "Normalization is introduced specifically to ensure efficiency.", "section_ref": "Section 8.4: Normalized Banzhaf Index", "notes_quote": "To ensure efficiency, we can normalize"},
+            {"letter": "C", "is_correct": false, "text": "Normalization breaks additivity — the notes state this is a fundamental trade-off.", "section_ref": "Section 8.4: Normalized Banzhaf Index", "notes_quote": "normalization breaks the additivity property -- there is a fundamental trade-off"},
+            {"letter": "D", "is_correct": true, "text": "Normalization breaks additivity, creating a fundamental trade-off.", "section_ref": "Section 8.4: Normalized Banzhaf Index", "notes_quote": "normalization breaks the additivity property -- there is a fundamental trade-off"},
+            {"letter": "E", "is_correct": false, "text": "Even after normalization the Banzhaf index fails additivity, so it cannot satisfy all four Shapley axioms.", "section_ref": "Section 7.6: Properties of the Shapley Value", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q39",
+          "source_ref": "Section 8.5: Power Indices in Simple Games",
+          "text": "Which of the following correctly describe power indices in simple games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In simple games both the Shapley value and Banzhaf index have a natural interpretation as power indices"},
+            {"letter": "B", "text": "A swing player is one who turns a losing coalition into a winning one by joining it"},
+            {"letter": "C", "text": "In simple games, the Shapley value is called the Shapley-Shubik power index"},
+            {"letter": "D", "text": "Power indices measure the probability that a player is a veto player"},
+            {"letter": "E", "text": "Power indices measure the probability that a player can influence the outcome"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "In simple games both indices have a natural power index interpretation.", "section_ref": "Section 8.5: Power Indices in Simple Games", "notes_quote": "both the Shapley value and Banzhaf index have a natural interpretation as power indices"},
+            {"letter": "B", "is_correct": true, "text": "A swing player turns a losing coalition into a winning one.", "section_ref": "Section 8.5: Power Indices in Simple Games", "notes_quote": "a swing player who turns a losing coalition into a winning one"},
+            {"letter": "C", "is_correct": true, "text": "In simple games the Shapley value is known as the Shapley-Shubik power index.", "section_ref": "Section 8.5: Power Indices in Simple Games", "notes_quote": "the Shapley value is called the Shapley-Shubik power index"},
+            {"letter": "D", "is_correct": false, "text": "Power indices measure the probability of being a swing player, not a veto player. These are distinct concepts.", "section_ref": "Section 8.5: Power Indices in Simple Games", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Power indices measure the probability that a player can influence the outcome (i.e., is a swing player).", "section_ref": "Section 8.5: Power Indices in Simple Games", "notes_quote": "they measure the probability that a player can influence the outcome (i.e., is a swing player who turns a losing coalition into a winning one)"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-9",
+      "title": "9. Summary and Comparison of Solution Concepts",
+      "questions": [
+        {
+          "id": "q40",
+          "source_ref": "Section 9.1: Stability vs. Fairness",
+          "text": "Which of the following correctly classify the three main solution concepts by type and key idea? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The core is a stability concept: no coalition can do better by deviating"},
+            {"letter": "B", "text": "The Shapley value is a fairness concept: average marginal contribution over all orderings"},
+            {"letter": "C", "text": "The Banzhaf index is a fairness concept: average marginal contribution over all coalitions"},
+            {"letter": "D", "text": "The Banzhaf index is a stability concept because it does not guarantee efficiency"},
+            {"letter": "E", "text": "The Shapley value is a stability concept because it always exists"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The core is classified as a stability concept.", "section_ref": "Section 9.1: Stability vs. Fairness", "notes_quote": "Core: Stability — No coalition can do better by deviating"},
+            {"letter": "B", "is_correct": true, "text": "The Shapley value is a fairness concept based on average marginal contributions over orderings.", "section_ref": "Section 9.1: Stability vs. Fairness", "notes_quote": "Shapley value: Fairness — Average marginal contribution over all orderings"},
+            {"letter": "C", "is_correct": true, "text": "The Banzhaf index is a fairness concept: average marginal contribution over all coalitions.", "section_ref": "Section 9.1: Stability vs. Fairness", "notes_quote": "Banzhaf index: Fairness — Average marginal contribution over all coalitions"},
+            {"letter": "D", "is_correct": false, "text": "The Banzhaf index is a fairness concept, not stability-based. Failing efficiency does not make it stability-based.", "section_ref": "Section 9.1: Stability vs. Fairness", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "Always existing is a property of the Shapley value, but it remains a fairness concept, not stability-based.", "section_ref": "Section 9.1: Stability vs. Fairness", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q41",
+          "source_ref": "Section 9.2: Core vs. Shapley Value",
+          "text": "Which of the following correctly contrast the core and the Shapley value? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The core may be empty; the Shapley value always exists and is unique"},
+            {"letter": "B", "text": "The core is a set of outcomes; the Shapley value is a single payoff vector"},
+            {"letter": "C", "text": "The core guarantees stability but not necessarily fairness; the Shapley value guarantees fairness but not necessarily stability"},
+            {"letter": "D", "text": "Both the core (when non-empty) and the Shapley value are always efficient"},
+            {"letter": "E", "text": "The Shapley value guarantees stability; the core guarantees fairness"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The core can be empty; the Shapley value always exists and is unique.", "section_ref": "Section 9.2: Core vs. Shapley Value", "notes_quote": "Always exists? Core: No (can be empty); Shapley Value: Yes (always unique)"},
+            {"letter": "B", "is_correct": true, "text": "The core is a set; the Shapley value is a single vector.", "section_ref": "Section 9.2: Core vs. Shapley Value", "notes_quote": "Can contain multiple outcomes? Core: Yes (a set); Shapley Value: No (a single vector)"},
+            {"letter": "C", "is_correct": true, "text": "The core guarantees stability but not fairness; the Shapley value guarantees fairness but not stability.", "section_ref": "Section 9.2: Core vs. Shapley Value", "notes_quote": "Guarantees stability? Core: Yes; Shapley Value: Not necessarily. Guarantees fairness? Core: Not necessarily; Shapley Value: Yes (by axioms)"},
+            {"letter": "D", "is_correct": true, "text": "Both are efficient: core when non-empty (by the stability-implies-efficiency theorem), and Shapley value always.", "section_ref": "Section 9.2: Core vs. Shapley Value", "notes_quote": "Efficient? Core: Yes (when non-empty); Shapley Value: Yes (always)"},
+            {"letter": "E", "is_correct": false, "text": "This reverses the classification. The core guarantees stability (not fairness), and the Shapley value guarantees fairness (not stability).", "section_ref": "Section 9.2: Core vs. Shapley Value", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q42",
+          "source_ref": "Section 9.3: Shapley Value vs. Banzhaf Index",
+          "text": "Which of the following correctly contrast the Shapley value and the Banzhaf index? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The Shapley value averages over $n!$ permutations; the Banzhaf index averages over $2^{n-1}$ coalitions"},
+            {"letter": "B", "text": "Both satisfy null player, symmetry, and additivity (for the unnormalized Banzhaf index)"},
+            {"letter": "C", "text": "The Shapley value satisfies efficiency; the Banzhaf index does not (unless normalized)"},
+            {"letter": "D", "text": "Normalizing the Banzhaf index restores efficiency while preserving additivity"},
+            {"letter": "E", "text": "The Shapley value is the unique scheme satisfying all four properties; no such uniqueness claim applies to the Banzhaf index"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The comparison table confirms these different averaging denominators.", "section_ref": "Section 9.3: Shapley Value vs. Banzhaf Index", "notes_quote": "Averages over: Shapley Value — Permutations ($n!$); Banzhaf Index — Coalitions ($2^{n-1}$)"},
+            {"letter": "B", "is_correct": true, "text": "Both satisfy null player, symmetry, and additivity (for unnormalized Banzhaf).", "section_ref": "Section 9.3: Shapley Value vs. Banzhaf Index", "notes_quote": "Null player: both Yes. Symmetry: both Yes. Additivity: Shapley Value Yes; Banzhaf Index Yes (but lost if normalized)"},
+            {"letter": "C", "is_correct": true, "text": "Efficiency holds for the Shapley value always, but not for the unnormalized Banzhaf index.", "section_ref": "Section 9.3: Shapley Value vs. Banzhaf Index", "notes_quote": "Efficiency: Shapley Value — Yes; Banzhaf Index — No (unless normalized)"},
+            {"letter": "D", "is_correct": false, "text": "Normalizing the Banzhaf index restores efficiency but breaks additivity — there is a fundamental trade-off.", "section_ref": "Section 8.4: Normalized Banzhaf Index", "notes_quote": "normalization breaks the additivity property -- there is a fundamental trade-off"},
+            {"letter": "E", "is_correct": true, "text": "The Shapley value's uniqueness theorem has no direct analogue for the Banzhaf index.", "section_ref": "Section 9.3: Shapley Value vs. Banzhaf Index", "notes_quote": "Uniqueness: Shapley Value — Only scheme with all 4 properties; Banzhaf Index — --"}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,707 @@
+{
+  "module": "MultiAgents",
+  "week": 8,
+  "title": "Fair Division (Part II) -- Indivisible Goods",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "8.1 Indivisible Items: Model and Applications",
+      "questions": [
+        {
+          "id": "q1",
+          "source_ref": "Section 8.1: Indivisible Items: Model and Applications",
+          "text": "Which of the following correctly describe the indivisible goods allocation model and its applications? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Indivisible goods allocation is a combinatorial optimisation problem because items cannot be split into fractions"},
+            {"letter": "B", "text": "Typical applications include inheritance division, task allocation, dormitory room assignment, and computing resource distribution"},
+            {"letter": "C", "text": "In the formal model, valuations are functions $v_i : G \\to \\mathbb{R}$ defined only on single goods"},
+            {"letter": "D", "text": "A complete allocation requires the bundles to be pairwise disjoint and their union to equal $G$"},
+            {"letter": "E", "text": "An allocation is partial whenever some good is assigned to more than one agent"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes explicitly identify indivisible allocation as a combinatorial optimisation problem because goods cannot be fractionally divided.", "section_ref": "Section 8.1: Indivisible Items: Model and Applications", "notes_quote": "Finding an optimal allocation is a combinatorial optimization problem because items cannot be divided as fractions"},
+            {"letter": "B", "is_correct": true, "text": "All four examples are listed as real-world applications in the notes.", "section_ref": "Section 8.1: Indivisible Items: Model and Applications", "notes_quote": "Dividing inheritance items among heirs; Allocating tasks among team members; Assigning dormitory rooms to students; Distributing computing resources in data centres"},
+            {"letter": "C", "is_correct": false, "text": "The formal model uses set valuations on bundles: $v_i : 2^G \\to \\mathbb{R}$ (or $\\mathbb{Z}$ computationally), not only on single goods.", "section_ref": "Section 8.1: Indivisible Items: Model and Applications", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "Completeness and disjointness are both part of the allocation definition.", "section_ref": "Section 8.1: Indivisible Items: Model and Applications", "notes_quote": "$A_i \\cap A_j = \\emptyset$ for $i \\neq j$ ... Allocation is complete if $\\bigcup_{i \\in N} A_i = G$"},
+            {"letter": "E", "is_correct": false, "text": "A partial allocation means not all goods are allocated. Assigning one good to multiple agents would violate the partition requirement rather than define partiality.", "section_ref": "Section 8.1: Indivisible Items: Model and Applications", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q2",
+          "source_ref": "Section 8.1: Indivisible Items: Model and Applications",
+          "text": "Which of the following correctly describe additive valuations and allocation structure in the formal model? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Additivity means $v_i(S) = \\sum_{g \\in S} v_i(g)$ for all $S \\subseteq G$"},
+            {"letter": "B", "text": "The model assumes $v_i(\\emptyset) = 0$"},
+            {"letter": "C", "text": "If valuations are additive, then every complete allocation is automatically envy-free"},
+            {"letter": "D", "text": "A bundle $A_i$ is the subset of goods allocated to agent $i$"},
+            {"letter": "E", "text": "Additivity requires every agent to assign the same value to each good"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the exact definition of additive valuations given in the notes.", "section_ref": "Section 8.1: Indivisible Items: Model and Applications", "notes_quote": "Additive valuations: $v_i(S) = \\sum_{g \\in S} v_i(g)$"},
+            {"letter": "B", "is_correct": true, "text": "The valuation normalisation for the empty bundle is stated explicitly.", "section_ref": "Section 8.1: Indivisible Items: Model and Applications", "notes_quote": "$v_i(\\emptyset) = 0$"},
+            {"letter": "C", "is_correct": false, "text": "Additivity alone does not imply envy-freeness; the notes later introduce EF1 precisely because exact fairness is often infeasible.", "section_ref": "Section 8.2: Solution Concepts and Relaxations (PROP1 and EF1)", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The allocation is written as $A = (A_1, \\ldots, A_n)$ where each $A_i$ is the bundle assigned to agent $i$.", "section_ref": "Section 8.1: Indivisible Items: Model and Applications", "notes_quote": "$A_i \\subseteq G$ is the bundle allocated to agent $i$"},
+            {"letter": "E", "is_correct": false, "text": "Additivity concerns how bundle values decompose into item values for each agent; it does not require identical valuations across agents.", "section_ref": "Section 8.1: Indivisible Items: Model and Applications", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "8.2 Solution Concepts and Relaxations (PROP1 and EF1)",
+      "questions": [
+        {
+          "id": "q3",
+          "source_ref": "Section 8.2: Basic Solution Concepts",
+          "text": "Which of the following correctly define the basic fairness and efficiency concepts for indivisible goods? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Proportionality requires $v_i(A_i) \\geq v_i(G)/n$ for every agent $i$"},
+            {"letter": "B", "text": "Envy-freeness requires $v_i(A_i) \\geq v_i(A_j)$ for all agents $i,j$"},
+            {"letter": "C", "text": "Equitability requires every agent to receive the same bundle of goods"},
+            {"letter": "D", "text": "Pareto-optimality means there is no other allocation making everyone weakly better off and someone strictly better off"},
+            {"letter": "E", "text": "An equitable allocation satisfies $v_i(A_i) = v_j(A_j)$ for all $i,j$"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the proportionality definition stated in the notes.", "section_ref": "Section 8.2: Basic Solution Concepts", "notes_quote": "Proportional if $v_i(A_i) \\geq v_i(G)/n$ for all $i \\in N$"},
+            {"letter": "B", "is_correct": true, "text": "This is the exact envy-free condition.", "section_ref": "Section 8.2: Basic Solution Concepts", "notes_quote": "Envy-free (EF) if $v_i(A_i) \\geq v_i(A_j)$ for all $i, j \\in N$"},
+            {"letter": "C", "is_correct": false, "text": "Equitability requires equal achieved utility, not identical bundles. Different bundles may still be equitable if agents value them equally.", "section_ref": "Section 8.2: Basic Solution Concepts", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "This matches the Pareto-optimality definition in the notes.", "section_ref": "Section 8.2: Basic Solution Concepts", "notes_quote": "there is no other allocation $B = (B_1, \\ldots, B_n)$ such that $v_i(B_i) \\geq v_i(A_i)$ for all $i \\in N$ and $v_i(B_i) > v_i(A_i)$ for some $i \\in N$"},
+            {"letter": "E", "is_correct": true, "text": "Equitability is defined by equality of attained utilities across agents.", "section_ref": "Section 8.2: Basic Solution Concepts", "notes_quote": "Equitable if $v_i(A_i) = v_j(A_j)$ for all $i, j \\in N$"}
+          ]
+        },
+        {
+          "id": "q4",
+          "source_ref": "Section 8.2: The Core Challenge; Section 8.2: Relaxations: PROP1 and EF1",
+          "text": "Which of the following correctly describe why relaxations such as PROP1 and EF1 are needed? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "With indivisible goods, exact envy-freeness and proportionality are generally infeasible"},
+            {"letter": "B", "text": "A counterexample is 2 agents and 1 positively valued item, where no proportional, envy-free, or equitable allocation exists"},
+            {"letter": "C", "text": "The infeasibility disappears once the allocation is complete"},
+            {"letter": "D", "text": "Unlike cake cutting, indivisible goods cannot simply be divided into fractions to satisfy exact fairness"},
+            {"letter": "E", "text": "PROP1 and EF1 are introduced as weaker notions that can still hold when exact fairness fails"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes state this as the central challenge for indivisible goods.", "section_ref": "Section 8.2: The Core Challenge", "notes_quote": "With indivisible goods, envy-freeness and proportionality are generally infeasible"},
+            {"letter": "B", "is_correct": true, "text": "This is the explicit counterexample used in the notes.", "section_ref": "Section 8.2: The Core Challenge", "notes_quote": "Counterexample: 2 agents, 1 item, both assign positive value -- no proportional, envy-free, or equitable allocation exists"},
+            {"letter": "C", "is_correct": false, "text": "Completeness alone does not restore exact fairness. The notes later show complete EF1 allocations that are still not proportional for general valuations.", "section_ref": "Section 8.2: PROP1 vs. EF1", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The contrast with divisible settings is stated directly.", "section_ref": "Section 8.2: The Core Challenge", "notes_quote": "Unlike divisible settings (cake cutting), we cannot simply divide each good"},
+            {"letter": "E", "is_correct": true, "text": "These notions are introduced precisely as relaxations of exact fairness.", "section_ref": "Section 8.2: Relaxations: PROP1 and EF1", "notes_quote": "Relaxations: PROP1 and EF1"}
+          ]
+        },
+        {
+          "id": "q5",
+          "source_ref": "Section 8.2: Relaxations: PROP1 and EF1",
+          "text": "Which of the following correctly define PROP1 and EF1? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "PROP1 means that for each agent $i$ there exists an item $g \\in G$ such that $v_i(A_i \\cup \\{g\\}) \\geq v_i(G)/n$"},
+            {"letter": "B", "text": "EF1 means that for each pair $i,j$ there exists an item $g \\in A_j$ such that $v_i(A_i) \\geq v_i(A_j \\setminus \\{g\\})$"},
+            {"letter": "C", "text": "EF1 requires the same single item $g$ to work simultaneously for every pair of agents"},
+            {"letter": "D", "text": "Under PROP1, each agent can reach their proportional share by adding at most one extra good to their bundle"},
+            {"letter": "E", "text": "In the 2-agent, 1-house example, giving the house to one agent is both PROP1 and EF1"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the formal PROP1 definition from the notes.", "section_ref": "Section 8.2: Relaxations: PROP1 and EF1", "notes_quote": "An allocation $A = (A_1, \\ldots, A_n)$ is proportional up to 1 good (PROP1) if for each agent $i$ there is an item $g \\in G$ such that: $v_i(A_i \\cup \\{g\\}) \\geq v_i(G)/n$"},
+            {"letter": "B", "is_correct": true, "text": "This is the exact EF1 condition.", "section_ref": "Section 8.2: Relaxations: PROP1 and EF1", "notes_quote": "An allocation $A = (A_1, \\ldots, A_n)$ is envy-free up to 1 good (EF1) if for each pair of agents $i, j$ there is an item $g \\in A_j$ such that: $v_i(A_i) \\geq v_i(A_j \\setminus \\{g\\})$"},
+            {"letter": "C", "is_correct": false, "text": "EF1 only requires existence of some suitable item for each ordered pair $(i,j)$; it need not be the same item across all pairs.", "section_ref": "Section 8.2: Relaxations: PROP1 and EF1", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "This is the intuition given immediately after the PROP1 definition.", "section_ref": "Section 8.2: Relaxations: PROP1 and EF1", "notes_quote": "Each agent could reach their proportional $1/n$-th share by adding at most one extra good to their bundle"},
+            {"letter": "E", "is_correct": true, "text": "The notes use the one-house example to illustrate both relaxations.", "section_ref": "Section 8.2: Relaxations: PROP1 and EF1", "notes_quote": "Example: 2 agents, 1 house. Giving the house to one agent is both PROP1 and EF1"}
+          ]
+        },
+        {
+          "id": "q6",
+          "source_ref": "Section 8.2: PROP1 vs. EF1",
+          "text": "Which of the following correctly describe the relationship between EF1 and PROP1? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "For general valuations, EF1 plus completeness does not necessarily imply PROP1"},
+            {"letter": "B", "text": "The counterexample for general valuations gives each agent one item, yielding EF and completeness but still not PROP1"},
+            {"letter": "C", "text": "For additive valuations, EF1 and completeness imply PROP1"},
+            {"letter": "D", "text": "In the additive proof, one chooses for agent $i$ a most valuable item $g^*$ in $G \\setminus A_i$"},
+            {"letter": "E", "text": "The additive proof concludes PROP1 by showing $n \\times v_i(A_i) \\geq v_i(G)$ directly, without adding any item"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes explicitly say the implication fails for general valuations.", "section_ref": "Section 8.2: PROP1 vs. EF1", "notes_quote": "NO for general valuations"},
+            {"letter": "B", "is_correct": true, "text": "That is exactly how the counterexample is described: the allocation is EF and complete, yet adding one item still leaves value 0 for each agent.", "section_ref": "Section 8.2: PROP1 vs. EF1", "notes_quote": "Giving each agent one item is EF (hence EF1) and complete, but not PROP1 because adding one item to any bundle still gives value 0"},
+            {"letter": "C", "is_correct": true, "text": "The notes prove this implication for additive valuations.", "section_ref": "Section 8.2: PROP1 vs. EF1", "notes_quote": "YES for additive valuations"},
+            {"letter": "D", "is_correct": true, "text": "The proof begins by selecting the most valuable item outside $A_i$.", "section_ref": "Section 8.2: PROP1 vs. EF1", "notes_quote": "Consider agent $i$; let $g^*$ be their most valuable item in $G \\setminus A_i$"},
+            {"letter": "E", "is_correct": false, "text": "The proof first augments $A_i$ with $g^*$ and derives $n \\times v_i(A_i \\cup \\{g^*\\}) \\geq v_i(G)$, not the stronger statement without adding an item.", "section_ref": "Section 8.2: PROP1 vs. EF1", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "8.3 Round-Robin Algorithm for Additive Valuations",
+      "questions": [
+        {
+          "id": "q7",
+          "source_ref": "Section 8.3: The Algorithm",
+          "text": "Which of the following correctly describe the Round-Robin algorithm? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Agents take turns choosing their most preferred remaining item"},
+            {"letter": "B", "text": "Agent $i$ chooses in rounds $i, n+i, 2n+i, \\ldots$"},
+            {"letter": "C", "text": "Round-Robin is defined for arbitrary monotone valuations because it only compares bundles"},
+            {"letter": "D", "text": "The algorithm is presented for additive valuations"},
+            {"letter": "E", "text": "Round-Robin requires all agents to pick simultaneously in each round"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the core rule of the algorithm.", "section_ref": "Section 8.3: The Algorithm", "notes_quote": "Agents take turns choosing their most preferred item among the remaining items"},
+            {"letter": "B", "is_correct": true, "text": "The notes specify the turn structure exactly this way.", "section_ref": "Section 8.3: The Algorithm", "notes_quote": "Agent $i$ chooses in rounds $i, n+i, 2n+i, \\ldots$"},
+            {"letter": "C", "is_correct": false, "text": "The notes later state Round-Robin is not even defined for non-additive valuations because it relies on evaluating individual items.", "section_ref": "Section 8.4: Motivation", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The section title and theorem both restrict RR to additive valuations.", "section_ref": "Section 8.3: Round-Robin Algorithm for Additive Valuations", "notes_quote": "Round-Robin Algorithm for Additive Valuations"},
+            {"letter": "E", "is_correct": false, "text": "Agents pick sequentially in a fixed order, not simultaneously.", "section_ref": "Section 8.3: The Algorithm", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q8",
+          "source_ref": "Section 8.3: Worked Example (from slides)",
+          "text": "Given the Round-Robin valuation table from the slides:\n\n|       | $g_1$ | $g_2$ | $g_3$ | $g_4$ | $g_5$ |\n|-------|-------|-------|-------|-------|-------|\n| $a_1$ | 20    | 50    | 12    | 45    | 3     |\n| $a_2$ | 35    | 22    | 90    | 40    | 4     |\n| $a_3$ | 30    | 80    | 7     | 18    | 25    |\n\nwith order $a_1 \\to a_2 \\to a_3$, which of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In round 1, $a_1$ picks $g_2$, $a_2$ picks $g_3$, and $a_3$ picks $g_1$"},
+            {"letter": "B", "text": "In round 2, $a_1$ picks $g_4$ and $a_2$ picks $g_5$"},
+            {"letter": "C", "text": "The final allocation is $A_1 = \\{g_2, g_4\\}$, $A_2 = \\{g_3, g_5\\}$, $A_3 = \\{g_1\\}$"},
+            {"letter": "D", "text": "$a_3$ receives two items because $a_3$ values $g_2$ at 80"},
+            {"letter": "E", "text": "$a_2$'s total value for their bundle is 94"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These are exactly the first-round picks listed in the worked example.", "section_ref": "Section 8.3: Worked Example (from slides)", "notes_quote": "Round 1: $a_1$ picks $g_2$ (value 50), $a_2$ picks $g_3$ (value 90), $a_3$ picks $g_1$ (value 30)"},
+            {"letter": "B", "is_correct": true, "text": "These are the second-round picks after the first three items are removed.", "section_ref": "Section 8.3: Worked Example (from slides)", "notes_quote": "Round 2: $a_1$ picks $g_4$ (value 45), $a_2$ picks $g_5$ (value 4)"},
+            {"letter": "C", "is_correct": true, "text": "This is the final allocation reported in the notes.", "section_ref": "Section 8.3: Worked Example (from slides)", "notes_quote": "Result: $A_1 = \\{g_2, g_4\\}$, $A_2 = \\{g_3, g_5\\}$, $A_3 = \\{g_1\\}$"},
+            {"letter": "D", "is_correct": false, "text": "$a_3$ receives only one item because there are five goods and the order ends after $a_2$'s second pick. Also $g_2$ is already taken by $a_1$ in round 1.", "section_ref": "Section 8.3: Worked Example (from slides)", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "$a_2$ gets $g_3$ and $g_5$, worth $90 + 4 = 94$ to $a_2$.", "section_ref": "Section 8.3: Worked Example (from slides)", "notes_quote": "$a_2$ picks $g_3$ (value 90) ... $a_2$ picks $g_5$ (value 4)"}
+          ]
+        },
+        {
+          "id": "q9",
+          "source_ref": "Section 8.3: Worked Example (from LGT notes)",
+          "text": "Given the LGT Round-Robin example:\n\n|       | A  | B  | C  | D  |\n|-------|----|----|----|----|\n| $v_1$ | 9  | 5  | 4  | 1  |\n| $v_2$ | 6  | 7  | 5  | 2  |\n| $v_3$ | 3  | 2  | 8  | 10 |\n\nwith order $1 \\to 2 \\to 3 \\to 1$, which of the following are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Agent 1 first picks A, agent 2 picks B, and agent 3 picks D"},
+            {"letter": "B", "text": "Agent 1's second pick is C"},
+            {"letter": "C", "text": "The final allocation is $A_1 = \\{A, C\\}$, $A_2 = \\{B\\}$, $A_3 = \\{D\\}$"},
+            {"letter": "D", "text": "Agent 1's value for their final bundle is 14"},
+            {"letter": "E", "text": "Agent 3's value for their final bundle is 10"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These are the first three picks in the example.", "section_ref": "Section 8.3: Worked Example (from LGT notes)", "notes_quote": "$a_1$ picks A (value 9), $a_2$ picks B (value 7), $a_3$ picks D (value 10)"},
+            {"letter": "B", "is_correct": true, "text": "After A, B, and D are taken, agent 1 picks C.", "section_ref": "Section 8.3: Worked Example (from LGT notes)", "notes_quote": "$a_1$ picks C (value 4)"},
+            {"letter": "C", "is_correct": true, "text": "This is the final allocation stated in the notes.", "section_ref": "Section 8.3: Worked Example (from LGT notes)", "notes_quote": "Result: $A_1 = \\{A, C\\}$ ($v_1 = 13$), $A_2 = \\{B\\}$ ($v_2 = 7$), $A_3 = \\{D\\}$ ($v_3 = 10$)"},
+            {"letter": "D", "is_correct": false, "text": "Agent 1 values $A$ and $C$ at $9 + 4 = 13$, not 14.", "section_ref": "Section 8.3: Worked Example (from LGT notes)", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Agent 3 receives D, which they value at 10.", "section_ref": "Section 8.3: Worked Example (from LGT notes)", "notes_quote": "$A_3 = \\{D\\}$ ($v_3 = 10$)"}
+          ]
+        },
+        {
+          "id": "q10",
+          "source_ref": "Section 8.3: Theorem: Round-Robin Outputs EF1 (and hence PROP1) for Additive Valuations",
+          "text": "Which of the following correctly describe why Round-Robin outputs EF1 for additive valuations? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "If $i < j$, then each item picked by $i$ is at least as good for $i$ as the corresponding item picked later by $j$"},
+            {"letter": "B", "text": "Therefore, when $i < j$, agent $i$ does not envy agent $j$"},
+            {"letter": "C", "text": "If $j < i$, removing $i$'s first item is enough to eliminate $j$'s envy of $i$"},
+            {"letter": "D", "text": "The proof relies on additivity to extend per-round comparisons across the whole bundle"},
+            {"letter": "E", "text": "The theorem proves Round-Robin is always Pareto-optimal because no envy remains"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first step of the proof for the case where $i$ picks before $j$.", "section_ref": "Section 8.3: Theorem: Round-Robin Outputs EF1 (and hence PROP1) for Additive Valuations", "notes_quote": "$i$'s first item is no worse to $i$ than $j$'s first item ... $i$'s second item is no worse to $i$ than $j$'s second item"},
+            {"letter": "B", "is_correct": true, "text": "The notes conclude from the per-round comparison that $i$ does not envy $j$.", "section_ref": "Section 8.3: Theorem: Round-Robin Outputs EF1 (and hence PROP1) for Additive Valuations", "notes_quote": "Therefore, $i$ does not envy $j$"},
+            {"letter": "C", "is_correct": true, "text": "This is the second case in the proof when the other agent picked earlier.", "section_ref": "Section 8.3: Theorem: Round-Robin Outputs EF1 (and hence PROP1) for Additive Valuations", "notes_quote": "If $j < i$ ... remove $i$'s first item ... $j$ does not envy $i$ after removing $i$'s first item"},
+            {"letter": "D", "is_correct": true, "text": "The proof explicitly invokes additivity to aggregate the round-by-round inequalities.", "section_ref": "Section 8.3: Theorem: Round-Robin Outputs EF1 (and hence PROP1) for Additive Valuations", "notes_quote": "Since valuations are additive, these per-round claims extend across rounds"},
+            {"letter": "E", "is_correct": false, "text": "The theorem only establishes EF1, and the notes later give a counterexample showing RR is not Pareto-optimal.", "section_ref": "Section 8.3: Limitations of Round-Robin", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q11",
+          "source_ref": "Section 8.3: Limitations of Round-Robin",
+          "text": "Consider the Round-Robin Pareto-optimality counterexample:\n\n| Item | Agent 1 | Agent 2 |\n|------|---------|---------|\n| 1    | 10      | 100     |\n| 2    | 9       | 3       |\n| 3    | 8       | 2       |\n| 4    | 7       | 1       |\n\nWhich of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Round-Robin gives items 1 and 3 to agent 1, and items 2 and 4 to agent 2"},
+            {"letter": "B", "text": "Under that RR allocation, agent 1 gets utility 18 and agent 2 gets utility 4"},
+            {"letter": "C", "text": "A trade can make both agents strictly better off, so the RR allocation is not Pareto-optimal"},
+            {"letter": "D", "text": "The example shows RR is not strategyproof rather than not Pareto-optimal"},
+            {"letter": "E", "text": "The notes use this example to show that EF1 implies Pareto-optimality for additive valuations"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the RR outcome stated in the notes.", "section_ref": "Section 8.3: Limitations of Round-Robin", "notes_quote": "RR gives: items 1, 3 to agent 1 ... items 2, 4 to agent 2"},
+            {"letter": "B", "is_correct": true, "text": "The utilities are explicitly given as 18 and 4.", "section_ref": "Section 8.3: Limitations of Round-Robin", "notes_quote": "RR gives: items 1, 3 to agent 1 (utility 18); items 2, 4 to agent 2 (utility 4)"},
+            {"letter": "C", "is_correct": true, "text": "The improving trade demonstrates a Pareto improvement, so the RR allocation is not PO.", "section_ref": "Section 8.3: Limitations of Round-Robin", "notes_quote": "Improving trade ... Both improve"},
+            {"letter": "D", "is_correct": false, "text": "This specific table is used for the non-PO counterexample. Strategyproofness is shown by a different table later in the notes.", "section_ref": "Section 8.3: Limitations of Round-Robin", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "The notes say the opposite: RR is EF1, but not Pareto-optimal.", "section_ref": "Section 8.3: Limitations of Round-Robin", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q12",
+          "source_ref": "Section 8.3: Limitations of Round-Robin",
+          "text": "Consider the Round-Robin strategyproofness counterexample:\n\n| Item | Agent 1 | Agent 2 |\n|------|---------|---------|\n| 1    | 9       | 1       |\n| 2    | 8       | 9       |\n| 3    | 2       | 2       |\n| 4    | 1       | 3       |\n\nWhich of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Under truthful Round-Robin, agent 1 gets items 1 and 3 for utility 11"},
+            {"letter": "B", "text": "If agent 1 strategically picks item 2 first, they can later also get item 1"},
+            {"letter": "C", "text": "Under that manipulation, agent 1's utility rises from 11 to 17"},
+            {"letter": "D", "text": "This shows Round-Robin is not strategyproof, even for additive valuations"},
+            {"letter": "E", "text": "The manipulation works because agent 2 is forced to take item 3 after item 2 is removed"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the truthful outcome described in the notes.", "section_ref": "Section 8.3: Limitations of Round-Robin", "notes_quote": "Truthful RR: agent 1 gets items 1, 3 (utility 11)"},
+            {"letter": "B", "is_correct": true, "text": "The notes describe exactly this profitable deviation.", "section_ref": "Section 8.3: Limitations of Round-Robin", "notes_quote": "If agent 1 picks item 2 first (misreporting preferences): agent 2 takes item 4, then agent 1 takes item 1"},
+            {"letter": "C", "is_correct": true, "text": "The manipulated bundle gives agent 1 utility 17 instead of 11.", "section_ref": "Section 8.3: Limitations of Round-Robin", "notes_quote": "Agent 1 gets items 1, 2 (utility 17 vs. 11)"},
+            {"letter": "D", "is_correct": true, "text": "This is the conclusion drawn from the example.", "section_ref": "Section 8.3: Limitations of Round-Robin", "notes_quote": "Not strategyproof, even for additive valuations"},
+            {"letter": "E", "is_correct": false, "text": "The notes say agent 2 takes item 4, not item 3, after agent 1 grabs item 2 first.", "section_ref": "Section 8.3: Limitations of Round-Robin", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "8.4 Envy-Cycle Elimination Algorithm for Monotone Valuations",
+      "questions": [
+        {
+          "id": "q13",
+          "source_ref": "Section 8.4: Motivation; Section 8.4: Key Idea: Extending a Partial EF1 Allocation",
+          "text": "Which of the following correctly describe the motivation and key idea behind Envy-Cycle Elimination (ECE)? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Round-Robin is not even defined for non-additive valuations because it relies on evaluating individual items"},
+            {"letter": "B", "text": "ECE targets monotone valuations, where $S \\subseteq T$ implies $v_i(S) \\leq v_i(T)$"},
+            {"letter": "C", "text": "If an agent is unenvied, giving them an unallocated item preserves EF1"},
+            {"letter": "D", "text": "If every agent is envied by someone, EF1 is impossible and the algorithm must terminate unsuccessfully"},
+            {"letter": "E", "text": "The notes ask whether EF1 can still be achieved for monotone valuations"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the explicit motivation for moving beyond RR.", "section_ref": "Section 8.4: Motivation", "notes_quote": "Round-robin is not even defined for non-additive valuations (it relies on evaluating individual items)"},
+            {"letter": "B", "is_correct": true, "text": "This is the monotonicity condition stated in the notes.", "section_ref": "Section 8.4: Motivation", "notes_quote": "Monotone valuations: For all $S \\subseteq T \\subseteq G$ and every agent $i$: $v_i(S) \\leq v_i(T)$"},
+            {"letter": "C", "is_correct": true, "text": "The key extension lemma says an unenvied agent can safely receive an unallocated item while preserving EF1.", "section_ref": "Section 8.4: Key Idea: Extending a Partial EF1 Allocation", "notes_quote": "If there is an agent $i$ whom nobody envies, we can safely give $i$ an unallocated item and preserve EF1"},
+            {"letter": "D", "is_correct": false, "text": "If every agent is envied by someone, the notes introduce envy cycles and RAC steps rather than failure.", "section_ref": "Section 8.4: The ECE Algorithm", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the motivating question posed in the notes.", "section_ref": "Section 8.4: Motivation", "notes_quote": "Can we achieve EF1 for monotone valuations?"}
+          ]
+        },
+        {
+          "id": "q14",
+          "source_ref": "Section 8.4: The Envy Graph; Section 8.4: Worked Example (Envy Graph)",
+          "text": "Given the envy-graph example allocation $A_1 = \\{g_1, g_5\\}$, $A_2 = \\{g_2, g_3\\}$, $A_3 = \\{g_4\\}$, which of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The envy graph has a directed edge from $i$ to $j$ when $v_i(A_i) < v_i(A_j)$"},
+            {"letter": "B", "text": "In the worked example, $a_1$ envies $a_2$, $a_2$ envies $a_3$, and $a_3$ envies $a_1$"},
+            {"letter": "C", "text": "These envy relations form a cycle $a_1 \\to a_2 \\to a_3 \\to a_1$"},
+            {"letter": "D", "text": "Because the envy graph contains a cycle, the allocation cannot be EF1"},
+            {"letter": "E", "text": "The notes state that the allocation is EF1 because removing one item from each envied bundle eliminates envy"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition of an envy edge.", "section_ref": "Section 8.4: The Envy Graph", "notes_quote": "Directed edge from $i$ to $j$ if $i$ envies $j$ (i.e., $v_i(A_i) < v_i(A_j)$)"},
+            {"letter": "B", "is_correct": true, "text": "These three envy relations are listed explicitly in the example.", "section_ref": "Section 8.4: Worked Example (Envy Graph)", "notes_quote": "$a_1$ envies $a_2$ ... $a_2$ envies $a_3$ ... $a_3$ envies $a_1$"},
+            {"letter": "C", "is_correct": true, "text": "The notes identify this as an envy cycle.", "section_ref": "Section 8.4: Worked Example (Envy Graph)", "notes_quote": "This forms an envy cycle: $a_1 \\to a_2 \\to a_3 \\to a_1$"},
+            {"letter": "D", "is_correct": false, "text": "The notes explicitly say the allocation is EF1 even though the envy graph contains a cycle.", "section_ref": "Section 8.4: Worked Example (Envy Graph)", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the explanation given for why the example allocation is EF1.", "section_ref": "Section 8.4: Worked Example (Envy Graph)", "notes_quote": "The allocation is EF1 (removing one item from each envied bundle eliminates envy)"}
+          ]
+        },
+        {
+          "id": "q15",
+          "source_ref": "Section 8.4: Reallocation Along a Cycle (RAC); Section 8.4: Bounding the Number of RAC Steps",
+          "text": "Which of the following correctly describe reallocation along a cycle (RAC) and its analysis? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In RAC, each agent on a cycle receives the next agent's bundle along the cycle"},
+            {"letter": "B", "text": "RAC preserves EF1 because the set of bundles does not change"},
+            {"letter": "C", "text": "Every agent on the cycle receives a strictly more preferred bundle"},
+            {"letter": "D", "text": "The total score used in the runtime argument strictly decreases after each RAC step"},
+            {"letter": "E", "text": "The notes bound the number of consecutive RAC steps by at most $n(n-1)$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is exactly how RAC is defined.", "section_ref": "Section 8.4: Reallocation Along a Cycle (RAC)", "notes_quote": "Give $A_j$ to $i$, $A_k$ to $j$, ..., $A_i$ to $t$"},
+            {"letter": "B", "is_correct": true, "text": "The notes say EF1 is preserved because the set of bundles remains the same.", "section_ref": "Section 8.4: Reallocation Along a Cycle (RAC)", "notes_quote": "The set of bundles does not change, so the allocation remains EF1"},
+            {"letter": "C", "is_correct": true, "text": "Each agent on the cycle strictly prefers the bundle they receive after RAC.", "section_ref": "Section 8.4: Reallocation Along a Cycle (RAC)", "notes_quote": "Each agent on the cycle receives a strictly more preferred bundle"},
+            {"letter": "D", "is_correct": false, "text": "The score strictly increases after each RAC step; that increase is what yields the termination bound.", "section_ref": "Section 8.4: Bounding the Number of RAC Steps", "notes_quote": "Therefore strictly increases the total score"},
+            {"letter": "E", "is_correct": true, "text": "This is the explicit bound proved in the notes.", "section_ref": "Section 8.4: Bounding the Number of RAC Steps", "notes_quote": "At most $n(n-1)$ consecutive RAC steps before termination"}
+          ]
+        },
+        {
+          "id": "q16",
+          "source_ref": "Section 8.4: The ECE Algorithm",
+          "text": "Which of the following correctly describe the ECE algorithm and its runtime? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "ECE starts from the empty allocation, which is trivially EF1"},
+            {"letter": "B", "text": "Whenever an unenvied agent exists, ECE allocates an unallocated item to that agent"},
+            {"letter": "C", "text": "If no unenvied agent exists, the notes argue there must be an envy cycle and RAC can be applied"},
+            {"letter": "D", "text": "The runtime bound stated in the notes is $O(m \\cdot n^2)$ steps"},
+            {"letter": "E", "text": "ECE guarantees a Pareto-optimal allocation for all monotone valuations"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first step of the algorithm.", "section_ref": "Section 8.4: The ECE Algorithm", "notes_quote": "Start with an empty allocation $A$ (which is trivially EF1)"},
+            {"letter": "B", "is_correct": true, "text": "This is the main allocation step when an unenvied agent is available.", "section_ref": "Section 8.4: The ECE Algorithm", "notes_quote": "If there is an unenvied agent, allocate them an unallocated item ($A$ remains EF1)"},
+            {"letter": "C", "is_correct": true, "text": "The notes present a dichotomy: either there is a cycle or there is an unenvied agent.", "section_ref": "Section 8.4: The ECE Algorithm", "notes_quote": "Otherwise, there must be an envy cycle -- perform an RAC step"},
+            {"letter": "D", "is_correct": true, "text": "The polynomial runtime is stated explicitly.", "section_ref": "Section 8.4: The ECE Algorithm", "notes_quote": "Total: $O(m \\cdot n^2)$ steps"},
+            {"letter": "E", "is_correct": false, "text": "The notes later give a counterexample showing ECE is not Pareto-optimal, even with additive valuations.", "section_ref": "Section 8.4: ECE Is Also Not Pareto-Optimal", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q17",
+          "source_ref": "Section 8.4: ECE Is Also Not Pareto-Optimal; Section 8.4: ECE Worked Example (from LGT notes)",
+          "text": "Which of the following correctly describe the ECE examples in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The additive counterexample with items 1 to 4 shows ECE can fail to be Pareto-optimal because swapping items 3 and 4 makes both agents strictly better off"},
+            {"letter": "B", "text": "In the LGT worked example, an envy cycle arises between $a_2$ and $a_3$ after bundles $\\{C\\}$ and $\\{B\\}$ are assigned"},
+            {"letter": "C", "text": "The RAC step in the LGT example swaps the bundles of $a_2$ and $a_3$"},
+            {"letter": "D", "text": "The final ECE allocation in the LGT example differs from the Round-Robin outcome"},
+            {"letter": "E", "text": "The notes say the final ECE allocation in that example is $A_1 = \\{A, C\\}$, $A_2 = \\{B\\}$, $A_3 = \\{D\\}$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the improving trade used to show ECE is not PO.", "section_ref": "Section 8.4: ECE Is Also Not Pareto-Optimal", "notes_quote": "Improving trade: swap items 3 and 4 -- both agents strictly improve"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly identify an envy cycle between agents 2 and 3 at that stage.", "section_ref": "Section 8.4: ECE Worked Example (from LGT notes)", "notes_quote": "Envy cycle between $a_2$ and $a_3$"},
+            {"letter": "C", "is_correct": true, "text": "The RAC step swaps those two bundles.", "section_ref": "Section 8.4: ECE Worked Example (from LGT notes)", "notes_quote": "RAC: swap bundles of $a_2$ and $a_3$: $A_2 = \\{B\\}$, $A_3 = \\{C\\}$"},
+            {"letter": "D", "is_correct": false, "text": "The notes say the final ECE allocation is the same as RR in this case.", "section_ref": "Section 8.4: ECE Worked Example (from LGT notes)", "notes_quote": "Final: $A_1 = \\{A, C\\}$, $A_2 = \\{B\\}$, $A_3 = \\{D\\}$ (same as RR in this case)"},
+            {"letter": "E", "is_correct": true, "text": "This is the final allocation reported in the worked example.", "section_ref": "Section 8.4: ECE Worked Example (from LGT notes)", "notes_quote": "Final: $A_1 = \\{A, C\\}$, $A_2 = \\{B\\}$, $A_3 = \\{D\\}$"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "8.5 Concepts of Welfare",
+      "questions": [
+        {
+          "id": "q18",
+          "source_ref": "Section 8.5: Fairness vs. Efficiency Summary; Section 8.5: Three Welfare Concepts",
+          "text": "Which of the following correctly describe the welfare concepts and the fairness-efficiency summary? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Utilitarian welfare is $UW(A) = \\sum_{i \\in N} v_i(A_i)$"},
+            {"letter": "B", "text": "Egalitarian welfare is $EW(A) = \\min_{i \\in N} v_i(A_i)$"},
+            {"letter": "C", "text": "Nash welfare is $NW(A) = \\prod_{i \\in N} v_i(A_i)$"},
+            {"letter": "D", "text": "The notes state that EF1 plus Pareto-optimality can always be guaranteed simultaneously in the general case"},
+            {"letter": "E", "text": "The notes summarise that EF1 always exists for additive valuations via RR and for monotone valuations via ECE"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the utilitarian welfare definition.", "section_ref": "Section 8.5: Three Welfare Concepts", "notes_quote": "$UW(A) = \\sum_{i \\in N} v_i(A_i)$"},
+            {"letter": "B", "is_correct": true, "text": "This is the egalitarian welfare definition.", "section_ref": "Section 8.5: Three Welfare Concepts", "notes_quote": "$EW(A) = \\min_{i \\in N} v_i(A_i)$"},
+            {"letter": "C", "is_correct": true, "text": "This is the Nash welfare definition.", "section_ref": "Section 8.5: Three Welfare Concepts", "notes_quote": "$NW(A) = \\prod_{i \\in N} v_i(A_i)$"},
+            {"letter": "D", "is_correct": false, "text": "The notes say the opposite: EF1 and PO cannot be simultaneously guaranteed in the general case.", "section_ref": "Section 8.5: Fairness vs. Efficiency Summary", "notes_quote": "EF1 + PO cannot be simultaneously guaranteed in the general case"},
+            {"letter": "E", "is_correct": true, "text": "This is part of the summary at the start of the section.", "section_ref": "Section 8.5: Fairness vs. Efficiency Summary", "notes_quote": "EF1: Always exists for additive (Round-Robin) and monotone (ECE) valuations"}
+          ]
+        },
+        {
+          "id": "q19",
+          "source_ref": "Section 8.5: Worked Example",
+          "text": "For the welfare example with five goods where $a_1$ values every item at 10, $a_2$ values every item at 1, and $a_3$ values every item at 3, which of the following are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Maximising utilitarian welfare gives all five items to $a_1$, yielding $UW = 50$"},
+            {"letter": "B", "text": "The notes describe the utilitarian optimum as highly unfair"},
+            {"letter": "C", "text": "A max-egalitarian allocation can give 3 items to $a_2$, 1 to $a_1$, and 1 to $a_3$, yielding $EW = 3$"},
+            {"letter": "D", "text": "A max-Nash allocation gives one item to each agent and leaves two items unallocated"},
+            {"letter": "E", "text": "The notes state a max-Nash welfare value of 120 in this example"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the utilitarian optimum reported in the notes.", "section_ref": "Section 8.5: Worked Example", "notes_quote": "Max Utilitarian welfare: Give all 5 items to $a_1$ $\\Rightarrow UW = 50$"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly comment on its unfairness.", "section_ref": "Section 8.5: Worked Example", "notes_quote": "Highly unfair"},
+            {"letter": "C", "is_correct": true, "text": "This is the egalitarian optimum described in the notes.", "section_ref": "Section 8.5: Worked Example", "notes_quote": "Max Egalitarian welfare: Give 3 items to $a_2$, 1 to $a_1$, 1 to $a_3$ $\\Rightarrow EW = 3$"},
+            {"letter": "D", "is_correct": false, "text": "The notes say the max-Nash allocation gives 2 items each to two agents and 1 item to the third, not that items are left unallocated.", "section_ref": "Section 8.5: Worked Example", "notes_quote": "2 agents get 2 items each, 1 gets 1 item"},
+            {"letter": "E", "is_correct": true, "text": "The stated Nash welfare value is 120.", "section_ref": "Section 8.5: Worked Example", "notes_quote": "Max Nash welfare ... $NW = 120$"}
+          ]
+        },
+        {
+          "id": "q20",
+          "source_ref": "Section 8.5: Worked Example (from LGT notes); Section 8.5: Properties of Welfare Maximisers",
+          "text": "Using the LGT valuation table for items A, B, C, D, which of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A utilitarian welfare maximiser allocates A to agent 1, B to agent 2, and C,D to agent 3, for total welfare 34"},
+            {"letter": "B", "text": "An egalitarian welfare maximiser in the notes is $A_1 = \\{A\\}$, $A_2 = \\{B, C\\}$, $A_3 = \\{D\\}$, with minimum utility 9"},
+            {"letter": "C", "text": "The Nash welfare maximiser in the notes is the same allocation as the utilitarian maximiser"},
+            {"letter": "D", "text": "The notes state that utilitarian maximisers are always Pareto-optimal"},
+            {"letter": "E", "text": "The notes state that egalitarian welfare maximisers are always EF1"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the utilitarian optimum computed in the notes.", "section_ref": "Section 8.5: Worked Example (from LGT notes)", "notes_quote": "Max Utilitarian welfare: Allocate each item to the agent who values it most: $A_1 = \\{A\\}$ (9), $A_2 = \\{B\\}$ (7), $A_3 = \\{C, D\\}$ (18). $\\sum = 34$"},
+            {"letter": "B", "is_correct": true, "text": "This is the egalitarian optimum listed in the notes.", "section_ref": "Section 8.5: Worked Example (from LGT notes)", "notes_quote": "Max Egalitarian welfare: $A_1 = \\{A\\}$ (9), $A_2 = \\{B, C\\}$ (12), $A_3 = \\{D\\}$ (10). $\\min = 9$"},
+            {"letter": "C", "is_correct": true, "text": "The notes give the same allocation for the Nash optimum in this example.", "section_ref": "Section 8.5: Worked Example (from LGT notes)", "notes_quote": "Max Nash welfare: $A_1 = \\{A\\}$ (9), $A_2 = \\{B\\}$ (7), $A_3 = \\{C, D\\}$ (18)"},
+            {"letter": "D", "is_correct": true, "text": "This is one of the stated properties of welfare maximisers.", "section_ref": "Section 8.5: Properties of Welfare Maximisers", "notes_quote": "Utilitarian welfare maximiser is PO"},
+            {"letter": "E", "is_correct": false, "text": "The notes explicitly say egalitarian welfare maximisers are not necessarily EF1.", "section_ref": "Section 8.5: Properties of Welfare Maximisers", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q21",
+          "source_ref": "Section 8.5: Properties of Welfare Maximisers",
+          "text": "Which of the following correctly describe the properties of utilitarian, egalitarian, and Nash welfare maximisers? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Any Pareto improvement to a utilitarian welfare maximiser would increase the sum of utilities, contradicting maximality"},
+            {"letter": "B", "text": "The notes give a counterexample showing an egalitarian welfare maximiser need not be Pareto-optimal"},
+            {"letter": "C", "text": "For additive valuations, a Nash welfare maximiser is always Pareto-optimal and EF1"},
+            {"letter": "D", "text": "The EF1 guarantee for Nash welfare maximisers is proved in full detail in the notes"},
+            {"letter": "E", "text": "The notes say utilitarian welfare maximisers may be highly unfair"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the proof idea given for utilitarian Pareto-optimality.", "section_ref": "Section 8.5: Properties of Welfare Maximisers", "notes_quote": "Any Pareto improvement would increase the sum, contradicting maximality"},
+            {"letter": "B", "is_correct": true, "text": "The notes provide a 2-agent, 3-item example showing egalitarian maximality need not imply PO.", "section_ref": "Section 8.5: Properties of Welfare Maximisers", "notes_quote": "Egalitarian welfare maximiser is NOT necessarily PO"},
+            {"letter": "C", "is_correct": true, "text": "This is the headline property of Nash welfare maximisers for additive valuations.", "section_ref": "Section 8.5: Properties of Welfare Maximisers", "notes_quote": "Nash welfare maximiser gives both PO and EF1 (for additive valuations)"},
+            {"letter": "D", "is_correct": false, "text": "The notes explicitly say the EF1 proof for Nash welfare is non-trivial and beyond course scope.", "section_ref": "Section 8.5: Properties of Welfare Maximisers", "notes_quote": "EF1: Proof is non-trivial (beyond course scope)"},
+            {"letter": "E", "is_correct": true, "text": "This is stated both in the summary and in the worked example discussion.", "section_ref": "Section 8.5: Fairness vs. Efficiency Summary", "notes_quote": "Utilitarian welfare maximiser is always PO but can be unfair"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "8.6 Envy-Freeness up to Any Good (EFX)",
+      "questions": [
+        {
+          "id": "q22",
+          "source_ref": "Section 8.6: Definition; Section 8.6: EF1 vs. EFX vs. EF",
+          "text": "Which of the following correctly describe EFX and its relation to EF1 and EF? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "EFX requires that for each pair of agents $i,j$ and for each item $g \\in A_j$, we have $v_i(A_i) \\geq v_i(A_j \\setminus \\{g\\})$"},
+            {"letter": "B", "text": "EF implies EFX, and EFX implies EF1"},
+            {"letter": "C", "text": "EF1 requires envy to disappear after removing every item from the envied bundle"},
+            {"letter": "D", "text": "EFX is strictly stronger than EF1 and strictly weaker than EF"},
+            {"letter": "E", "text": "Under EF, no envy exists at all, so no item removal is needed"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the formal definition of EFX.", "section_ref": "Section 8.6: Definition", "notes_quote": "An allocation $A = (A_1, \\ldots, A_n)$ is envy-free up to any good (EFX) if for each pair of agents $i, j \\in N$ and for each item $g \\in A_j$: $v_i(A_i) \\geq v_i(A_j \\setminus \\{g\\})$"},
+            {"letter": "B", "is_correct": true, "text": "The implication chain is stated explicitly.", "section_ref": "Section 8.6: EF1 vs. EFX vs. EF", "notes_quote": "$\\text{EF} \\implies \\text{EFX} \\implies \\text{EF1}$"},
+            {"letter": "C", "is_correct": false, "text": "That is EFX, not EF1. EF1 only requires existence of some item whose removal eliminates envy.", "section_ref": "Section 8.6: EF1 vs. EFX vs. EF", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The notes state this comparison directly.", "section_ref": "Section 8.6: EF1 vs. EFX vs. EF", "notes_quote": "EFX is strictly stronger than EF1 and strictly weaker than EF"},
+            {"letter": "E", "is_correct": true, "text": "This is the interpretation of exact envy-freeness given in the notes.", "section_ref": "Section 8.6: EF1 vs. EFX vs. EF", "notes_quote": "EF: No envy exists at all (no removal needed)"}
+          ]
+        },
+        {
+          "id": "q23",
+          "source_ref": "Section 8.6: Existence of EFX (Open Problem); Section 8.6: EFX for Identical Additive Valuations",
+          "text": "Which of the following correctly describe the existence status of EFX and the identical-valuations result? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "For 2 agents with monotone valuations, EFX existence is known to be true"},
+            {"letter": "B", "text": "For 3 agents with additive valuations, EFX existence is known to be true"},
+            {"letter": "C", "text": "For $n \\geq 4$ agents with additive valuations, EFX existence is listed as an open problem"},
+            {"letter": "D", "text": "For identical additive valuations and any number of agents, EFX allocations are guaranteed to exist"},
+            {"letter": "E", "text": "The algorithm for identical additive valuations sorts items by increasing value and gives each item to the currently most satisfied agent"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is one row of the existence table.", "section_ref": "Section 8.6: Existence of EFX (Open Problem)", "notes_quote": "2 agents, monotone valuations | Yes"},
+            {"letter": "B", "is_correct": true, "text": "This is another row of the existence table.", "section_ref": "Section 8.6: Existence of EFX (Open Problem)", "notes_quote": "3 agents, additive valuations | Yes"},
+            {"letter": "C", "is_correct": true, "text": "The notes identify this as the major open case.", "section_ref": "Section 8.6: Existence of EFX (Open Problem)", "notes_quote": "$n \\geq 4$ agents, additive valuations | Open problem"},
+            {"letter": "D", "is_correct": true, "text": "The theorem states existence and polynomial-time computability for identical additive valuations.", "section_ref": "Section 8.6: EFX for Identical Additive Valuations", "notes_quote": "EFX allocations are guaranteed to exist (and can be found in polynomial time) if all agents have identical additive valuations"},
+            {"letter": "E", "is_correct": false, "text": "The algorithm sorts items by decreasing value and gives each item to the currently least satisfied agent.", "section_ref": "Section 8.6: EFX for Identical Additive Valuations", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q24",
+          "source_ref": "Section 8.6: EFX for Identical Additive Valuations",
+          "text": "Which of the following correctly describe the algorithm and proof idea for EFX under identical additive valuations? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The algorithm sorts items by decreasing value"},
+            {"letter": "B", "text": "Each next item is given to the currently least satisfied agent"},
+            {"letter": "C", "text": "In the proof, if agent $i$ envies agent $j$, the last item received by $j$ is used as the key comparison item"},
+            {"letter": "D", "text": "The proof argues that when $j$ received that last item, agent $i$ was at least as satisfied as agent $j$"},
+            {"letter": "E", "text": "The proof concludes only EF1, not EFX, because the smallest item may fail for some agents"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first step of the algorithm.", "section_ref": "Section 8.6: EFX for Identical Additive Valuations", "notes_quote": "Sort items by decreasing value"},
+            {"letter": "B", "is_correct": true, "text": "This is the allocation rule in the algorithm.", "section_ref": "Section 8.6: EFX for Identical Additive Valuations", "notes_quote": "Allocate one by one, giving each item to the currently least satisfied agent"},
+            {"letter": "C", "is_correct": true, "text": "The proof focuses on the last item received by the envied agent, which is their smallest item.", "section_ref": "Section 8.6: EFX for Identical Additive Valuations", "notes_quote": "Let $g$ be the last item received by $j$ (this is $j$'s smallest item)"},
+            {"letter": "D", "is_correct": true, "text": "This is the central invariant used in the proof.", "section_ref": "Section 8.6: EFX for Identical Additive Valuations", "notes_quote": "When $j$ received $g$, agent $i$ was at least as satisfied as agent $j$"},
+            {"letter": "E", "is_correct": false, "text": "The proof concludes EFX by showing $v_i(A_i) \\geq v_i(A_j \\setminus \\{g\\})$ for the relevant smallest item, not merely EF1.", "section_ref": "Section 8.6: EFX for Identical Additive Valuations", "notes_quote": "Hence $v_i(A_i) \\geq v_i(A_j \\setminus \\{g\\})$"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "Exercises and Solutions (SGT8)",
+      "questions": [
+        {
+          "id": "q25",
+          "source_ref": "Section Exercises and Solutions (SGT8): Exercise 1: Nash Welfare Invariance Under Scaling",
+          "text": "Which of the following correctly explain why scaling one agent's valuation by 10 preserves the Nash welfare maximiser? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "If $v'_i(g) = 10 \\cdot v_i(g)$, then every allocation's Nash welfare is multiplied by the same factor 10"},
+            {"letter": "B", "text": "Because all allocations are scaled by the same constant factor, the argmax does not change"},
+            {"letter": "C", "text": "The argument relies on additivity when passing from item values to bundle values"},
+            {"letter": "D", "text": "Scaling one agent's valuation changes the ranking of allocations because only one term in the product changes"},
+            {"letter": "E", "text": "The notes conclude that the original allocation still maximises Nash welfare after the scaling"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the core observation in the solution.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 1: Nash Welfare Invariance Under Scaling", "notes_quote": "scaling agent $i$'s valuation multiplies the Nash welfare by exactly 10"},
+            {"letter": "B", "is_correct": true, "text": "If every candidate objective value is multiplied by the same positive constant, the maximiser is unchanged.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 1: Nash Welfare Invariance Under Scaling", "notes_quote": "Since all allocations' Nash welfare is scaled by the same factor, the maximiser does not change"},
+            {"letter": "C", "is_correct": true, "text": "The notes explicitly mention additivity in the justification.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 1: Nash Welfare Invariance Under Scaling", "notes_quote": "by additivity"},
+            {"letter": "D", "is_correct": false, "text": "Although one factor changes, it changes by the same multiplicative constant for every allocation, so the ranking does not change.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 1: Nash Welfare Invariance Under Scaling", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "That is the final conclusion of the exercise solution.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 1: Nash Welfare Invariance Under Scaling", "notes_quote": "$(A_1, \\ldots, A_n)$ still maximise Nash welfare"}
+          ]
+        },
+        {
+          "id": "q26",
+          "source_ref": "Section Exercises and Solutions (SGT8): Exercise 2: MMS Allocation When |G| <= |N| + 1",
+          "text": "Which of the following correctly describe the proof that an MMS allocation exists when $|G| \\leq n+1$ and valuations are additive? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "If $|G| < n$, every partition has an empty bundle, so each agent's MMS is 0 and any allocation works"},
+            {"letter": "B", "text": "If $|G| = n$, any allocation giving each agent one item is MMS"},
+            {"letter": "C", "text": "If $|G| = n+1$, the proof lets $n-1$ agents sequentially pick favourite remaining items, leaving the last agent two items"},
+            {"letter": "D", "text": "The proof for $|G| = n+1$ shows the last agent necessarily gets utility exactly equal to their top-ranked item"},
+            {"letter": "E", "text": "The proof bounds the MMS by $\\min\\{v_i(g_{n-1}), v_i(g_n)+v_i(g_{n+1})\\}$ in the $|G| = n+1$ case"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first case in the proof.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 2: MMS Allocation When |G| <= |N| + 1", "notes_quote": "If $|G| < n$: every partition has an empty bundle, so each agent's MMS = 0. Any allocation works"},
+            {"letter": "B", "is_correct": true, "text": "This is the second case in the proof.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 2: MMS Allocation When |G| <= |N| + 1", "notes_quote": "If $|G| = n$: MMS = value of least valuable item. Any allocation giving each agent one item is MMS"},
+            {"letter": "C", "is_correct": true, "text": "This is the constructive argument for the $n+1$ case.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 2: MMS Allocation When |G| <= |N| + 1", "notes_quote": "Let $n-1$ agents sequentially pick their favourite remaining item ... The last agent gets the remaining 2 items"},
+            {"letter": "D", "is_correct": false, "text": "The proof only guarantees the last agent gets two remaining items worth at least their MMS, not exactly their top-ranked item.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 2: MMS Allocation When |G| <= |N| + 1", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This bound appears explicitly in the proof sketch.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 2: MMS Allocation When |G| <= |N| + 1", "notes_quote": "has MMS $= \\min\\{v_i(g_{n-1}), v_i(g_n) + v_i(g_{n+1})\\}$"}
+          ]
+        },
+        {
+          "id": "q27",
+          "source_ref": "Section Exercises and Solutions (SGT8): Exercise 3: Round-Robin Guarantees 2/3 MMS",
+          "text": "Which of the following correctly describe the $\\frac{2}{3}$-MMS guarantee proved for Round-Robin? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The assumptions include additive valuations, $v_i(G)=1$, and each item worth at most $1/(3n)$ to any agent"},
+            {"letter": "B", "text": "The proof uses the fact that RR outputs EF1"},
+            {"letter": "C", "text": "For each agent $i$ and each $j \\neq i$, the proof derives $v_i(A_i) \\geq v_i(A_j) - 1/(3n)$"},
+            {"letter": "D", "text": "Summing these inequalities yields $n \\cdot v_i(A_i) \\geq 2/3$, so $v_i(A_i) \\geq 2/3$ for every agent"},
+            {"letter": "E", "text": "Since $\\text{MMS}_i \\leq 1/n$, the proof concludes $v_i(A_i) \\geq \\frac{2}{3} \\cdot \\text{MMS}_i$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These are the exact assumptions of the exercise.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 3: Round-Robin Guarantees 2/3 MMS", "notes_quote": "All agents have additive valuations, $v_i(G) = 1$, each item worth $\\leq 1/(3n)$"},
+            {"letter": "B", "is_correct": true, "text": "The proof starts from RR's EF1 guarantee.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 3: Round-Robin Guarantees 2/3 MMS", "notes_quote": "RR outputs EF1"},
+            {"letter": "C", "is_correct": true, "text": "This is the key inequality used before summing over all $j$.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 3: Round-Robin Guarantees 2/3 MMS", "notes_quote": "For agent $i$ and each $j \\neq i$: $v_i(A_i) \\geq v_i(A_j) - 1/(3n)$"},
+            {"letter": "D", "is_correct": false, "text": "The proof gets $n \\cdot v_i(A_i) \\geq 2/3$, hence $v_i(A_i) \\geq 2/(3n)$, not $2/3$.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 3: Round-Robin Guarantees 2/3 MMS", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the final step of the argument.", "section_ref": "Section Exercises and Solutions (SGT8): Exercise 3: Round-Robin Guarantees 2/3 MMS", "notes_quote": "Thus $v_i(A_i) \\geq \\frac{2}{3} \\cdot \\text{MMS}_i$"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-8",
+      "title": "Additional Concepts from LGT Notes",
+      "questions": [
+        {
+          "id": "q28",
+          "source_ref": "Section Additional Concepts from LGT Notes: Maximin Share (MMS) Guarantee",
+          "text": "Which of the following correctly describe the maximin share (MMS) guarantee? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$\\text{MMS}_i = \\max_{(X_1, \\ldots, X_n)} \\min_j v_i(X_j)$"},
+            {"letter": "B", "text": "The intuition is: agent $i$ partitions the goods into $n$ bundles and then receives the least valuable bundle under their own valuation"},
+            {"letter": "C", "text": "An MMS allocation guarantees $v_i(A_i) \\geq \\text{MMS}_i$ for all agents"},
+            {"letter": "D", "text": "For $n \\geq 3$, additive valuations always admit an MMS allocation"},
+            {"letter": "E", "text": "Later work cited in the notes shows that allocations giving each player at least $3/4$ of their MMS can always be found"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the formal definition given in the notes.", "section_ref": "Section Additional Concepts from LGT Notes: Maximin Share (MMS) Guarantee", "notes_quote": "$\\text{MMS}_i = \\max_{(X_1, \\ldots, X_n)} \\min_j v_i(X_j)$"},
+            {"letter": "B", "is_correct": true, "text": "The notes explain MMS using the cut-and-choose style intuition.", "section_ref": "Section Additional Concepts from LGT Notes: Maximin Share (MMS) Guarantee", "notes_quote": "What's the best I could do if I had to divide items into $n$ piles, knowing I'll get the least valuable pile?"},
+            {"letter": "C", "is_correct": true, "text": "This is the definition of an MMS allocation.", "section_ref": "Section Additional Concepts from LGT Notes: Maximin Share (MMS) Guarantee", "notes_quote": "An MMS allocation ensures $v_i(A_i) \\geq \\text{MMS}_i$ for all $i \\in N$"},
+            {"letter": "D", "is_correct": false, "text": "The notes say the opposite: for $n \\geq 3$, there are additive valuations with no MMS allocation.", "section_ref": "Section Additional Concepts from LGT Notes: Maximin Share (MMS) Guarantee", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the approximation guarantee mentioned at the end of the section.", "section_ref": "Section Additional Concepts from LGT Notes: Maximin Share (MMS) Guarantee", "notes_quote": "Later work showed: can always find allocations giving each player $\\geq 3/4$ of their MMS"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-9",
+      "title": "Key Definitions",
+      "questions": [
+        {
+          "id": "q29",
+          "source_ref": "Section Key Definitions",
+          "text": "Which of the following correctly match key fair-division terms with their definitions? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Monotone valuations: if $S \\subseteq T$, then $v_i(S) \\leq v_i(T)$"},
+            {"letter": "B", "text": "Envy graph: a directed graph with edge $i \\to j$ if $i$ envies $j$"},
+            {"letter": "C", "text": "RAC: reallocation along a cycle in the envy graph"},
+            {"letter": "D", "text": "PROP1: removing one item from another agent's bundle eliminates envy"},
+            {"letter": "E", "text": "ECE: Envy-Cycle Elimination, which iteratively allocates to unenvied agents and uses RAC steps"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the key-definition entry for monotone valuations.", "section_ref": "Section Key Definitions", "notes_quote": "Monotone valuations | $S \\subseteq T \\implies v_i(S) \\leq v_i(T)$"},
+            {"letter": "B", "is_correct": true, "text": "This is the key-definition entry for envy graph.", "section_ref": "Section Key Definitions", "notes_quote": "Envy graph | Directed graph: edge $i \\to j$ if $i$ envies $j$"},
+            {"letter": "C", "is_correct": true, "text": "This is the key-definition entry for RAC.", "section_ref": "Section Key Definitions", "notes_quote": "RAC | Reallocation along a cycle in the envy graph"},
+            {"letter": "D", "is_correct": false, "text": "That is EF1, not PROP1. PROP1 means adding one item to an agent's own bundle makes it proportional.", "section_ref": "Section Key Definitions", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the key-definition entry for ECE.", "section_ref": "Section Key Definitions", "notes_quote": "ECE | Envy-Cycle Elimination: iteratively allocate to unenvied agents + RAC steps"}
+          ]
+        },
+        {
+          "id": "q30",
+          "source_ref": "Section Key Definitions",
+          "text": "Which of the following correctly match welfare and fairness terms from the key definitions table? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Utilitarian welfare: $UW(A) = \\sum_{i \\in N} v_i(A_i)$"},
+            {"letter": "B", "text": "Egalitarian welfare: $EW(A) = \\max_{i \\in N} v_i(A_i)$"},
+            {"letter": "C", "text": "Nash welfare: $NW(A) = \\prod_{i \\in N} v_i(A_i)$"},
+            {"letter": "D", "text": "EFX: removing any item from $A_j$ eliminates $i$'s envy of $j$"},
+            {"letter": "E", "text": "MMS: $\\max_{(X_1,\\ldots,X_n)} \\min_j v_i(X_j)$, the best guarantee under adversarial choice"}
+          ],
+          "correct": ["A", "C", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the key-definition entry for utilitarian welfare.", "section_ref": "Section Key Definitions", "notes_quote": "Utilitarian welfare | $UW(A) = \\sum_{i \\in N} v_i(A_i)$"},
+            {"letter": "B", "is_correct": false, "text": "Egalitarian welfare is the minimum utility, not the maximum.", "section_ref": "Section Key Definitions", "notes_quote": ""},
+            {"letter": "C", "is_correct": true, "text": "This is the key-definition entry for Nash welfare.", "section_ref": "Section Key Definitions", "notes_quote": "Nash welfare | $NW(A) = \\prod_{i \\in N} v_i(A_i)$"},
+            {"letter": "D", "is_correct": true, "text": "This is the key-definition entry for EFX.", "section_ref": "Section Key Definitions", "notes_quote": "EFX | Removing any item from $A_j$ eliminates $i$'s envy of $j$"},
+            {"letter": "E", "is_correct": true, "text": "This is the key-definition entry for MMS, including the adversarial-choice intuition.", "section_ref": "Section Key Definitions", "notes_quote": "MMS | $\\max_{(X_1,\\ldots,X_n)} \\min_j v_i(X_j)$ -- best guarantee under adversarial choice"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-10",
+      "title": "Learning Objectives — Integrative Questions",
+      "questions": [
+        {
+          "id": "q31",
+          "source_ref": "Learning Objectives; Section 8.2: PROP1 vs. EF1; Section 8.3: Theorem: Round-Robin Outputs EF1 (and hence PROP1) for Additive Valuations",
+          "text": "Which of the following integrative statements correctly connect fairness notions and algorithmic guarantees from Week 8? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "For additive valuations, a complete EF1 allocation is also PROP1"},
+            {"letter": "B", "text": "Round-Robin provides an EF1 allocation for additive valuations, and therefore also a PROP1 allocation"},
+            {"letter": "C", "text": "ECE provides EF1 for monotone valuations by alternating between allocating to unenvied agents and performing RAC steps"},
+            {"letter": "D", "text": "Exact envy-freeness is always achievable for indivisible goods once valuations are additive"},
+            {"letter": "E", "text": "Week 8 presents EF1 as a relaxation that is algorithmically achievable even when exact fairness is infeasible"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is one of the central theoretical results of the week.", "section_ref": "Section 8.2: PROP1 vs. EF1", "notes_quote": "YES for additive valuations"},
+            {"letter": "B", "is_correct": true, "text": "The RR theorem states EF1, and the section title explicitly adds 'and hence PROP1'.", "section_ref": "Section 8.3: Theorem: Round-Robin Outputs EF1 (and hence PROP1) for Additive Valuations", "notes_quote": "Round-Robin Outputs EF1 (and hence PROP1) for Additive Valuations"},
+            {"letter": "C", "is_correct": true, "text": "This summarises the ECE algorithm correctly.", "section_ref": "Section 8.4: The ECE Algorithm", "notes_quote": "If there is an unenvied agent, allocate them an unallocated item ... Otherwise, there must be an envy cycle -- perform an RAC step"},
+            {"letter": "D", "is_correct": false, "text": "The notes say exact envy-freeness is generally infeasible for indivisible goods; additivity does not remove that impossibility in general.", "section_ref": "Section 8.2: The Core Challenge", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the overall conceptual arc of the week.", "section_ref": "Section 8.2: The Core Challenge; Section 8.2: Relaxations: PROP1 and EF1", "notes_quote": "With indivisible goods, envy-freeness and proportionality are generally infeasible ... Relaxations: PROP1 and EF1"}
+          ]
+        },
+        {
+          "id": "q32",
+          "source_ref": "Learning Objectives; Section 8.5: Properties of Welfare Maximisers; Section 8.6: Existence of EFX (Open Problem); Section Additional Concepts from LGT Notes: Maximin Share (MMS) Guarantee",
+          "text": "Which of the following integrative statements correctly summarise the limits and open problems discussed in Week 8? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Neither Round-Robin nor ECE guarantees Pareto-optimality in general"},
+            {"letter": "B", "text": "For additive valuations, Nash welfare maximisation is highlighted as achieving both PO and EF1"},
+            {"letter": "C", "text": "The existence of EFX for $n \\geq 4$ agents with additive valuations remains open"},
+            {"letter": "D", "text": "For $n \\geq 3$, exact MMS allocations are always guaranteed for additive valuations"},
+            {"letter": "E", "text": "Even though exact MMS allocations may fail to exist for $n \\geq 3$, the notes mention universal $3/4$-MMS approximations"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Both algorithms are shown to have non-PO counterexamples.", "section_ref": "Section 8.3: Limitations of Round-Robin; Section 8.4: ECE Is Also Not Pareto-Optimal", "notes_quote": "Not Pareto-optimal ... ECE Is Also Not Pareto-Optimal"},
+            {"letter": "B", "is_correct": true, "text": "This is one of the main positive results in the welfare section.", "section_ref": "Section 8.5: Properties of Welfare Maximisers", "notes_quote": "Nash welfare maximiser gives both PO and EF1 (for additive valuations)"},
+            {"letter": "C", "is_correct": true, "text": "This is the major open problem highlighted in the EFX section.", "section_ref": "Section 8.6: Existence of EFX (Open Problem)", "notes_quote": "$n \\geq 4$ agents, additive valuations | Open problem"},
+            {"letter": "D", "is_correct": false, "text": "The notes say the opposite: for $n \\geq 3$, there are additive valuations with no MMS allocation.", "section_ref": "Section Additional Concepts from LGT Notes: Maximin Share (MMS) Guarantee", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the approximation guarantee mentioned in the MMS discussion.", "section_ref": "Section Additional Concepts from LGT Notes: Maximin Share (MMS) Guarantee", "notes_quote": "can always find allocations giving each player $\\geq 3/4$ of their MMS"}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,549 @@
+{
+  "module": "MultiAgents",
+  "week": 10,
+  "title": "Voting Theory (Part I)",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "10.1 Voting Theory: Introduction",
+      "questions": [
+        {
+          "id": "q1",
+          "source_ref": "Section 10.1: Computational Social Choice",
+          "text": "Which of the following correctly describe computational social choice? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "It lies at the intersection of algorithms, game theory, and social choice"},
+            {"letter": "B", "text": "It studies how groups of agents make collective decisions in a principled way"},
+            {"letter": "C", "text": "It ignores paradoxes and impossibility results because those belong only to political science"},
+            {"letter": "D", "text": "It investigates how computational complexity affects feasibility and strategic manipulation"},
+            {"letter": "E", "text": "It analyses how voting rules aggregate individual preferences into a single outcome"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the opening characterisation of the field in the notes.", "section_ref": "Section 10.1: Computational Social Choice", "notes_quote": "Field at the intersection of algorithms, game theory, and social choice"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly state this as a central aim of the field.", "section_ref": "Section 10.1: Computational Social Choice", "notes_quote": "Studies how groups of agents make collective decisions in a principled way"},
+            {"letter": "C", "is_correct": false, "text": "The notes say the opposite: computational social choice explicitly explores paradoxes and impossibility results such as Arrow and Gibbard-Satterthwaite.", "section_ref": "Section 10.1: Computational Social Choice", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "Complexity is presented both as a feasibility issue and as a possible protection against manipulation.", "section_ref": "Section 10.1: Computational Social Choice", "notes_quote": "Investigates how computational complexity affects feasibility"},
+            {"letter": "E", "is_correct": true, "text": "This is one of the core tasks listed in the notes.", "section_ref": "Section 10.1: Computational Social Choice", "notes_quote": "Analyses how voting rules aggregate individual preferences into a single outcome"}
+          ]
+        },
+        {
+          "id": "q2",
+          "source_ref": "Section 10.1: Applications Beyond Political Elections",
+          "text": "Which of the following correctly describe applications of voting theory beyond political elections? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Recommender systems can aggregate user ratings via voting rules to represent diverse tastes"},
+            {"letter": "B", "text": "Participatory budgeting and project selection are examples of resource-allocation applications"},
+            {"letter": "C", "text": "Voting theory is irrelevant to multi-agent AI because agents cannot vote over actions or plans"},
+            {"letter": "D", "text": "Multiple agents or models can vote over actions or plans in distributed AI settings"},
+            {"letter": "E", "text": "The notes restrict applications entirely to national elections and referenda"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the recommender-systems application listed in the notes.", "section_ref": "Section 10.1: Applications Beyond Political Elections", "notes_quote": "Recommender systems: aggregate user ratings via voting rules to represent diverse tastes"},
+            {"letter": "B", "is_correct": true, "text": "The resource-allocation application is described exactly this way.", "section_ref": "Section 10.1: Applications Beyond Political Elections", "notes_quote": "Resource allocation: choose subsets of projects in participatory budgeting; allocate resources fairly"},
+            {"letter": "C", "is_correct": false, "text": "The notes explicitly include multi-agent AI as an application area where agents or models vote over actions or plans.", "section_ref": "Section 10.1: Applications Beyond Political Elections", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "This is the multi-agent AI application given in the notes.", "section_ref": "Section 10.1: Applications Beyond Political Elections", "notes_quote": "Multi-agent AI: multiple agents/models \"vote\" over actions/plans; coordinate swarms, robot teams, distributed AI"},
+            {"letter": "E", "is_correct": false, "text": "The section is specifically titled 'Applications Beyond Political Elections' and lists several non-political uses.", "section_ref": "Section 10.1: Applications Beyond Political Elections", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q3",
+          "source_ref": "Section 10.1: Setting; Section 10.1: Preference Formats; Section 10.1: Outcome Formats",
+          "text": "Which of the following correctly describe the formal setting, preference formats, and outcome formats introduced in Week 10? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The set of alternatives is denoted $C = \\{c_1, \\ldots, c_m\\}$ and the set of voters is $N = \\{1, \\ldots, n\\}$"},
+            {"letter": "B", "text": "A preference profile $R$ is the collection of all voters' preferences"},
+            {"letter": "C", "text": "The notes allow rankings, approval sets, and numerical scores as preference formats"},
+            {"letter": "D", "text": "A social welfare function outputs one winning alternative only"},
+            {"letter": "E", "text": "Multi-winner rules output a committee or set of $k$ winners"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These are the formal symbols introduced in the setting.", "section_ref": "Section 10.1: Setting", "notes_quote": "Set of alternatives (candidates): $C = \\{c_1, \\ldots, c_m\\}$; Set of voters (agents): $N = \\{1, \\ldots, n\\}$"},
+            {"letter": "B", "is_correct": true, "text": "The notes define the preference profile exactly this way.", "section_ref": "Section 10.1: Setting", "notes_quote": "Preference profile $R$: collection of all voters' preferences"},
+            {"letter": "C", "is_correct": true, "text": "All three formats appear in the preference-format table.", "section_ref": "Section 10.1: Preference Formats", "notes_quote": "Rankings ... Approval sets ... Scores/stars"},
+            {"letter": "D", "is_correct": false, "text": "A social welfare function outputs a complete ranking of all alternatives, not just a single winner. Single-winner rules are social choice functions.", "section_ref": "Section 10.1: Outcome Formats", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the outcome-format entry for multi-winner rules.", "section_ref": "Section 10.1: Outcome Formats", "notes_quote": "Multi-winner rules | Committee or set of $k$ winners"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "10.2 Single-Winner Voting Rules",
+      "questions": [
+        {
+          "id": "q4",
+          "source_ref": "Section 10.2: Formal Model",
+          "text": "Which of the following correctly describe the formal model for single-winner voting rules? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$\\mathcal{L}(C)$ denotes the set of all strict linear orders on $C$"},
+            {"letter": "B", "text": "A profile is written $R = (R_1, \\ldots, R_n) \\in \\mathcal{L}(C)^n$"},
+            {"letter": "C", "text": "A voting rule is a function $F: \\mathcal{L}(C)^n \\to 2^C \\setminus \\{\\emptyset\\}$"},
+            {"letter": "D", "text": "A rule is resolute if it always returns every candidate tied for first place"},
+            {"letter": "E", "text": "Most rules are described as irresolute and therefore need tie-breaking"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the notation introduced in the formal model.", "section_ref": "Section 10.2: Formal Model", "notes_quote": "$\\mathcal{L}(C)$: set of all strict linear orders on $C$"},
+            {"letter": "B", "is_correct": true, "text": "The notes define the profile exactly in this form.", "section_ref": "Section 10.2: Formal Model", "notes_quote": "Each voter $i$ supplies ballot $R_i$, giving profile $R = (R_1, \\ldots, R_n) \\in \\mathcal{L}(C)^n$"},
+            {"letter": "C", "is_correct": true, "text": "This is the formal type signature of a voting rule in the notes.", "section_ref": "Section 10.2: Formal Model", "notes_quote": "Voting rule: $F: \\mathcal{L}(C)^n \\to 2^C \\setminus \\{\\emptyset\\}$"},
+            {"letter": "D", "is_correct": false, "text": "Resolute means $|F(R)| = 1$ for all profiles, not that all tied winners are returned.", "section_ref": "Section 10.2: Formal Model", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The notes explicitly say most rules are irresolute and need tie-breaking.", "section_ref": "Section 10.2: Formal Model", "notes_quote": "most rules are irresolute (need tie-breaking)"}
+          ]
+        },
+        {
+          "id": "q5",
+          "source_ref": "Section 10.2: Plurality",
+          "text": "Which of the following correctly describe plurality voting? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Plurality elects the alternative ranked first most often"},
+            {"letter": "B", "text": "Its scoring vector is $(1, 0, \\ldots, 0)$"},
+            {"letter": "C", "text": "The notes describe plurality as anonymous and neutral"},
+            {"letter": "D", "text": "For 3 or more candidates, plurality always elects the Condorcet winner whenever one exists"},
+            {"letter": "E", "text": "For 3 or more candidates, plurality may elect a candidate without majority support"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition of plurality in the notes.", "section_ref": "Section 10.2: Plurality", "notes_quote": "Elect the alternative ranked first most often"},
+            {"letter": "B", "is_correct": true, "text": "The scoring vector is stated explicitly.", "section_ref": "Section 10.2: Plurality", "notes_quote": "Scoring vector $(1, 0, \\ldots, 0)$"},
+            {"letter": "C", "is_correct": true, "text": "These two properties are listed directly under plurality.", "section_ref": "Section 10.2: Plurality", "notes_quote": "Anonymous and neutral"},
+            {"letter": "D", "is_correct": false, "text": "The notes say plurality can fail badly for 3 or more candidates, even electing a Condorcet loser.", "section_ref": "Section 10.2: Plurality", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is one of the limitations highlighted in the notes.", "section_ref": "Section 10.2: Plurality", "notes_quote": "For 3+ candidates: winner may lack majority support"}
+          ]
+        },
+        {
+          "id": "q6",
+          "source_ref": "Section 10.2: Plurality; Section 10.2: Borda Count",
+          "text": "Using the worked profile below, which of the following statements are correct? (Select ALL that apply.)\n\n| 1 | 2 | 3 | 4 | 5 |\n|---|---|---|---|---|\n| a | a | b | c | d |\n| b | b | c | b | b |\n| c | c | d | d | c |\n| d | d | a | a | a |",
+          "options": [
+            {"letter": "A", "text": "Under plurality, the scores are $a=2$, $b=1$, $c=1$, $d=1$, so $a$ wins"},
+            {"letter": "B", "text": "In the same example, voters 3, 4, and 5 rank $a$ last"},
+            {"letter": "C", "text": "Candidate $b$ is ranked first or second by every voter and beats $a$ head-to-head 3-2"},
+            {"letter": "D", "text": "Under Borda count on this profile, $a$ is the winner with 11 points"},
+            {"letter": "E", "text": "Under Borda count on this profile, the scores are $a=6$, $b=11$, $c=8$, $d=5$, so $b$ wins"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These are the plurality tallies given in the worked example.", "section_ref": "Section 10.2: Plurality", "notes_quote": "Plurality: a=2, b=1, c=1, d=1. Winner: a"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly point this out to show plurality's weakness.", "section_ref": "Section 10.2: Plurality", "notes_quote": "But voters 3,4,5 rank a last"},
+            {"letter": "C", "is_correct": true, "text": "This is the head-to-head comparison highlighted in the notes.", "section_ref": "Section 10.2: Plurality", "notes_quote": "B is ranked 1st or 2nd by everyone and beats a head-to-head 3-2"},
+            {"letter": "D", "is_correct": false, "text": "Under Borda, $b$ wins with 11 points; $a$ has only 6.", "section_ref": "Section 10.2: Borda Count", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "These are the Borda totals reported in the notes.", "section_ref": "Section 10.2: Borda Count", "notes_quote": "Same example: a=6, b=11, c=8, d=5. Borda winner: b"}
+          ]
+        },
+        {
+          "id": "q7",
+          "source_ref": "Section 10.2: Positional Scoring Rules (PSR)",
+          "text": "Which of the following correctly describe positional scoring rules (PSRs)? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A PSR is defined by a scoring vector $s = (s_1, \\ldots, s_m)$ with $s_1 \\geq s_2 \\geq \\ldots \\geq s_m$ and $s_1 > s_m$"},
+            {"letter": "B", "text": "Plurality, Borda, veto, and $k$-approval are all examples of PSRs"},
+            {"letter": "C", "text": "Veto uses the scoring vector $(1, 1, \\ldots, 1, 0)$"},
+            {"letter": "D", "text": "$k$-approval uses the scoring vector $(k, k-1, \\ldots, 1, 0, \\ldots, 0)$"},
+            {"letter": "E", "text": "Borda uses the scoring vector $(m-1, m-2, \\ldots, 0)$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the formal PSR definition in the notes.", "section_ref": "Section 10.2: Positional Scoring Rules (PSR)", "notes_quote": "Defined by scoring vector $s = (s_1, \\ldots, s_m)$ with $s_1 \\geq s_2 \\geq \\ldots \\geq s_m$ and $s_1 > s_m$"},
+            {"letter": "B", "is_correct": true, "text": "All four rules appear in the PSR table.", "section_ref": "Section 10.2: Positional Scoring Rules (PSR)", "notes_quote": "Borda ... Plurality ... Veto ... $k$-approval"},
+            {"letter": "C", "is_correct": true, "text": "This is the veto scoring vector listed in the table.", "section_ref": "Section 10.2: Positional Scoring Rules (PSR)", "notes_quote": "Veto | $(1, 1, \\ldots, 1, 0)$"},
+            {"letter": "D", "is_correct": false, "text": "$k$-approval gives 1 point to the top $k$ positions and 0 thereafter; it does not use descending scores $k, k-1, \\ldots$.", "section_ref": "Section 10.2: Positional Scoring Rules (PSR)", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the Borda scoring vector in the notes.", "section_ref": "Section 10.2: Positional Scoring Rules (PSR)", "notes_quote": "Borda | $(m-1, m-2, \\ldots, 0)$"}
+          ]
+        },
+        {
+          "id": "q8",
+          "source_ref": "Section 10.2: Elimination-Based Methods",
+          "text": "Which of the following correctly describe plurality with runoff and IRV? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Plurality with runoff sends the top two plurality candidates to a majority runoff"},
+            {"letter": "B", "text": "IRV repeatedly eliminates the candidate with the fewest first-place votes until one candidate remains"},
+            {"letter": "C", "text": "The notes list Ireland, Australia, Maine, Alaska, and NYC as places using IRV"},
+            {"letter": "D", "text": "IRV is identical to Borda count whenever there are at least four candidates"},
+            {"letter": "E", "text": "The notes present IRV as an elimination-based method"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition given for plurality with runoff.", "section_ref": "Section 10.2: Elimination-Based Methods", "notes_quote": "Plurality with runoff: Top two from plurality go to a majority runoff"},
+            {"letter": "B", "is_correct": true, "text": "This is the IRV procedure stated in the notes.", "section_ref": "Section 10.2: Elimination-Based Methods", "notes_quote": "Repeatedly eliminate the candidate with fewest first-place votes; last standing wins"},
+            {"letter": "C", "is_correct": true, "text": "These jurisdictions are listed explicitly in the notes.", "section_ref": "Section 10.2: Elimination-Based Methods", "notes_quote": "Used in Ireland, Australia, Maine, Alaska, NYC"},
+            {"letter": "D", "is_correct": false, "text": "IRV and Borda are different rules with different winner computations; the notes do not identify them as equivalent.", "section_ref": "Section 10.2: Elimination-Based Methods", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "IRV appears under the elimination-based methods heading.", "section_ref": "Section 10.2: Elimination-Based Methods", "notes_quote": "Elimination-Based Methods"}
+          ]
+        },
+        {
+          "id": "q9",
+          "source_ref": "Section 10.2: Elimination-Based Methods",
+          "text": "Using the IRV worked example on the same profile, which of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In round 1, the first-place counts are $a=2$, $b=1$, $c=1$, $d=1$"},
+            {"letter": "B", "text": "Candidate $b$ is eliminated first by alphabetical tie-break"},
+            {"letter": "C", "text": "After eliminating $b$, round 2 gives $a=2$, $c=2$, $d=1$"},
+            {"letter": "D", "text": "The final IRV winner is $c$"},
+            {"letter": "E", "text": "The example shows IRV electing the Condorcet winner $b$"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These are the round-1 counts listed in the notes.", "section_ref": "Section 10.2: Elimination-Based Methods", "notes_quote": "Round 1: a=2, b=1, c=1, d=1"},
+            {"letter": "B", "is_correct": true, "text": "The notes specify that $b$ is eliminated first by alphabetical tie-break.", "section_ref": "Section 10.2: Elimination-Based Methods", "notes_quote": "Eliminate b (alphabetical tie-break)"},
+            {"letter": "C", "is_correct": true, "text": "These are the round-2 counts after removing $b$.", "section_ref": "Section 10.2: Elimination-Based Methods", "notes_quote": "Round 2 (without b): a=2, c=2, d=1"},
+            {"letter": "D", "is_correct": true, "text": "The notes conclude with $c$ as the IRV winner.", "section_ref": "Section 10.2: Elimination-Based Methods", "notes_quote": "Round 3: a=2, c=3. Winner: c"},
+            {"letter": "E", "is_correct": false, "text": "The notes say IRV eliminated $b$, who was the Condorcet winner, so IRV failed the Condorcet criterion here.", "section_ref": "Section 10.2: Elimination-Based Methods", "notes_quote": "IRV eliminated b, who was the Condorcet winner"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "10.3 Condorcet Principle",
+      "questions": [
+        {
+          "id": "q10",
+          "source_ref": "Section 10.3: Condorcet's Paradox; Section 10.3: Condorcet Winner",
+          "text": "Which of the following correctly describe Condorcet's paradox and the Condorcet winner concept? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Condorcet's paradox shows that majority preferences can be cyclical"},
+            {"letter": "B", "text": "A Condorcet winner defeats every other candidate in pairwise majority comparison"},
+            {"letter": "C", "text": "The Condorcet criterion requires electing the Condorcet winner whenever one exists"},
+            {"letter": "D", "text": "Condorcet's paradox implies that pairwise majority comparisons are always transitive"},
+            {"letter": "E", "text": "The notes illustrate the paradox with 3 voters and 3 alternatives having cyclically shifted rankings"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the core content of Condorcet's paradox in the notes.", "section_ref": "Section 10.3: Condorcet's Paradox", "notes_quote": "Majority preferences can be cyclical: $a \\succ b \\succ c \\succ a$"},
+            {"letter": "B", "is_correct": true, "text": "This is the definition of a Condorcet winner.", "section_ref": "Section 10.3: Condorcet Winner", "notes_quote": "A Condorcet winner defeats every other candidate in pairwise majority comparison"},
+            {"letter": "C", "is_correct": true, "text": "This is the Condorcet criterion as stated in the notes.", "section_ref": "Section 10.3: Condorcet Winner", "notes_quote": "The Condorcet criterion requires electing the Condorcet winner whenever one exists"},
+            {"letter": "D", "is_correct": false, "text": "The paradox shows the opposite: majority preferences can fail to be transitive and can cycle.", "section_ref": "Section 10.3: Condorcet's Paradox", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the example format mentioned in the notes.", "section_ref": "Section 10.3: Condorcet's Paradox", "notes_quote": "Example: 3 voters, 3 alternatives with cyclically shifted rankings"}
+          ]
+        },
+        {
+          "id": "q11",
+          "source_ref": "Section 10.3: Condorcet Consistency of Common Rules",
+          "text": "Which of the following correctly describe Condorcet consistency of common voting rules? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "No positional scoring rule is Condorcet-consistent for $m \\geq 3$"},
+            {"letter": "B", "text": "Plurality, Borda, and IRV are all given as examples of rules that fail Condorcet consistency"},
+            {"letter": "C", "text": "Borda is Condorcet-consistent whenever there are exactly four candidates"},
+            {"letter": "D", "text": "The notes say the failure of PSRs is proven for any scoring vector"},
+            {"letter": "E", "text": "IRV can fail Condorcet consistency because it may eliminate the Condorcet winner before the final round"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the headline theorem stated in the notes.", "section_ref": "Section 10.3: Condorcet Consistency of Common Rules", "notes_quote": "No PSR is Condorcet-consistent (for $m \\geq 3$)"},
+            {"letter": "B", "is_correct": true, "text": "These three rules are explicitly listed as failing Condorcet consistency.", "section_ref": "Section 10.3: Condorcet Consistency of Common Rules", "notes_quote": "Plurality, Borda, IRV all fail Condorcet consistency"},
+            {"letter": "C", "is_correct": false, "text": "The notes say no PSR is Condorcet-consistent for $m \\geq 3$, so Borda is not an exception at four candidates.", "section_ref": "Section 10.3: Condorcet Consistency of Common Rules", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly say the non-Condorcet-consistency result is proven for any scoring vector.", "section_ref": "Section 10.3: Condorcet Consistency of Common Rules", "notes_quote": "proven for any scoring vector"},
+            {"letter": "E", "is_correct": true, "text": "This is exactly what happened in the IRV worked example.", "section_ref": "Section 10.2: Elimination-Based Methods", "notes_quote": "IRV eliminated b, who was the Condorcet winner"}
+          ]
+        },
+        {
+          "id": "q12",
+          "source_ref": "Section 10.3: Condorcet-Consistent Methods",
+          "text": "Which of the following correctly describe Copeland's rule, maximin, and Dodgson's rule? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Copeland's rule gives +1 for each pairwise win and +0.5 for each tie"},
+            {"letter": "B", "text": "A Condorcet winner under Copeland's rule gets score $m-1$ and is uniquely maximal"},
+            {"letter": "C", "text": "Maximin elects the candidate whose minimum pairwise support is highest"},
+            {"letter": "D", "text": "Dodgson's score is the maximum number of adjacent swaps needed to become a Condorcet winner"},
+            {"letter": "E", "text": "The notes state that computing Dodgson's rule is NP-hard"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition of Copeland's rule in the notes.", "section_ref": "Section 10.3: Condorcet-Consistent Methods", "notes_quote": "+1 per pairwise win, +0.5 per tie"},
+            {"letter": "B", "is_correct": true, "text": "This is the reason Copeland is Condorcet-consistent.", "section_ref": "Section 10.3: Condorcet-Consistent Methods", "notes_quote": "Condorcet winner scores $m-1$ (uniquely maximal)"},
+            {"letter": "C", "is_correct": true, "text": "This is the maximin definition given in the notes.", "section_ref": "Section 10.3: Condorcet-Consistent Methods", "notes_quote": "For each candidate, find minimum pairwise support; Elect candidate with highest minimum"},
+            {"letter": "D", "is_correct": false, "text": "Dodgson's score is the minimum, not maximum, number of adjacent swaps needed to become a Condorcet winner.", "section_ref": "Section 10.3: Condorcet-Consistent Methods", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The computational hardness of Dodgson's rule is stated explicitly.", "section_ref": "Section 10.3: Condorcet-Consistent Methods", "notes_quote": "NP-hard to compute"}
+          ]
+        },
+        {
+          "id": "q13",
+          "source_ref": "Section 10.3: Condorcet-Consistent Methods",
+          "text": "Which of the following correctly describe the worked examples for Copeland and Dodgson? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In the Copeland example, the scores are $A=0$, $B=3$, $C=2$, $D=1$"},
+            {"letter": "B", "text": "The Copeland winner in the example is $B$"},
+            {"letter": "C", "text": "In the Dodgson example, candidate $B$ needs 3 adjacent swaps to become a Condorcet winner"},
+            {"letter": "D", "text": "The notes give Dodgson score 0 to $B$ in the example because $B$ is already the Condorcet winner"},
+            {"letter": "E", "text": "The notes specify the three swaps as swapping $B$ with $C$ in voter 4, $B$ with $D$ in voter 4, and $A$ with $B$ in voter 1"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These are the Copeland scores reported in the notes.", "section_ref": "Section 10.3: Condorcet-Consistent Methods", "notes_quote": "Copeland Example: A=0, B=3, C=2, D=1"},
+            {"letter": "B", "is_correct": true, "text": "The notes identify $B$ as the Copeland winner.", "section_ref": "Section 10.3: Condorcet-Consistent Methods", "notes_quote": "Winner: B"},
+            {"letter": "C", "is_correct": true, "text": "This is the Dodgson score given in the example.", "section_ref": "Section 10.3: Condorcet-Consistent Methods", "notes_quote": "B needs 3 swaps ... Dodgson score of B = 3"},
+            {"letter": "D", "is_correct": false, "text": "The notes explicitly say $B$ needs 3 swaps, so its Dodgson score is 3, not 0.", "section_ref": "Section 10.3: Condorcet-Consistent Methods", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "These are the exact swaps listed in the notes.", "section_ref": "Section 10.3: Condorcet-Consistent Methods", "notes_quote": "swap B-C in voter 4, B-D in voter 4, A-B in voter 1"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "Strategic Manipulation (from LGT)",
+      "questions": [
+        {
+          "id": "q14",
+          "source_ref": "Section Strategic Manipulation (from LGT): Definitions",
+          "text": "Which of the following correctly describe strategic manipulation and strategyproofness? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A ballot need not equal a voter's true preference, because a voter may misreport"},
+            {"letter": "B", "text": "A rule is strategyproof if no voter can benefit by submitting an untruthful ballot"},
+            {"letter": "C", "text": "The formal definition compares the truthful outcome $F(R)$ with the manipulated outcome $F(R'_i, R_{-i})$ according to voter $i$'s true ranking $R_i$"},
+            {"letter": "D", "text": "A rule is strategyproof whenever every voter has the same top-ranked candidate"},
+            {"letter": "E", "text": "The notes distinguish explicitly between a ballot and a true preference"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This distinction is the starting point of the manipulation section.", "section_ref": "Section Strategic Manipulation (from LGT): Definitions", "notes_quote": "Ballot $\\neq$ true preference: voter may misreport"},
+            {"letter": "B", "is_correct": true, "text": "This is the informal content of the formal strategyproofness definition.", "section_ref": "Section Strategic Manipulation (from LGT): Definitions", "notes_quote": "$F$ is strategyproof if no voter ... and untruthful ballot $R'_i$ exist such that $R_i$ ranks $F(R'_i, R_{-i})$ above $F(R)$"},
+            {"letter": "C", "is_correct": true, "text": "The formal definition is stated exactly in these terms.", "section_ref": "Section Strategic Manipulation (from LGT): Definitions", "notes_quote": "$R_i$ ranks $F(R'_i, R_{-i})$ above $F(R)$"},
+            {"letter": "D", "is_correct": false, "text": "Strategyproofness is a property of the rule across all profiles, not a condition that only concerns unanimous top choices.", "section_ref": "Section Strategic Manipulation (from LGT): Definitions", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The notes explicitly emphasise this distinction.", "section_ref": "Section Strategic Manipulation (from LGT): Definitions", "notes_quote": "Ballot $\\neq$ true preference"}
+          ]
+        },
+        {
+          "id": "q15",
+          "source_ref": "Section Strategic Manipulation (from LGT): Manipulation Examples",
+          "text": "Which of the following correctly describe the manipulation examples in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In the Borda manipulation example, voter 3 changes from $a \\succ b \\succ c \\succ d$ to $a \\succ c \\succ d \\succ b$"},
+            {"letter": "B", "text": "That Borda manipulation lowers $b$'s score from 8 to 6 and makes $a$ win"},
+            {"letter": "C", "text": "Plurality is strategyproof for 2 alternatives but not for 3 or more"},
+            {"letter": "D", "text": "The plurality manipulation idea described is to vote for a second choice to prevent a third choice from winning"},
+            {"letter": "E", "text": "The notes claim Borda is strategyproof because point totals reveal all manipulations immediately"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the exact misreport given in the notes.", "section_ref": "Section Strategic Manipulation (from LGT): Manipulation Examples", "notes_quote": "Voter 3 (true: $a \\succ b \\succ c \\succ d$) changes to $a \\succ c \\succ d \\succ b$"},
+            {"letter": "B", "is_correct": true, "text": "The notes explain the effect of the manipulation in exactly these terms.", "section_ref": "Section Strategic Manipulation (from LGT): Manipulation Examples", "notes_quote": "dropping b from 8 to 6 points, making a win instead"},
+            {"letter": "C", "is_correct": true, "text": "This is the plurality statement in the notes.", "section_ref": "Section Strategic Manipulation (from LGT): Manipulation Examples", "notes_quote": "Plurality: Strategyproof for 2 alternatives, not for 3+"},
+            {"letter": "D", "is_correct": true, "text": "This is the strategic intuition given for plurality with 3 or more alternatives.", "section_ref": "Section Strategic Manipulation (from LGT): Manipulation Examples", "notes_quote": "vote for second choice to prevent third choice winning"},
+            {"letter": "E", "is_correct": false, "text": "The notes present Borda as manipulable via the worked example, not strategyproof.", "section_ref": "Section Strategic Manipulation (from LGT): Manipulation Examples", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q16",
+          "source_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem",
+          "text": "Which of the following correctly describe the Gibbard-Satterthwaite theorem and its definitions? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Onto (surjective) means every candidate can win under some profile"},
+            {"letter": "B", "text": "Dictatorial means one voter's top choice always wins"},
+            {"letter": "C", "text": "For $m \\geq 3$, a resolute SCF is strategyproof and onto if and only if it is a dictatorship"},
+            {"letter": "D", "text": "The theorem implies every non-dictatorial onto rule with at least 3 candidates is manipulable"},
+            {"letter": "E", "text": "The theorem states that every anonymous rule is strategyproof"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition of onto in the notes.", "section_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem", "notes_quote": "Onto (surjective): every candidate can win under some profile"},
+            {"letter": "B", "is_correct": true, "text": "This is the definition of dictatorship given in the notes.", "section_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem", "notes_quote": "Dictatorial: one voter's top choice always wins"},
+            {"letter": "C", "is_correct": true, "text": "This is the theorem statement exactly as written.", "section_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem", "notes_quote": "Let $m \\geq 3$. A resolute SCF $F$ is strategyproof and onto $C$ if and only if $F$ is a dictatorship"},
+            {"letter": "D", "is_correct": true, "text": "This is the immediate implication drawn in the notes.", "section_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem", "notes_quote": "Any non-dictatorial, onto voting rule with $m \\geq 3$ is manipulable"},
+            {"letter": "E", "is_correct": false, "text": "The theorem does not say anonymous rules are strategyproof; in fact, it shows strong impossibility for non-dictatorial onto rules.", "section_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q17",
+          "source_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem",
+          "text": "Which of the following correctly describe the proof sketch of Gibbard-Satterthwaite given in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "One step proves strong monotonicity: if $F(R)=a$, then preserving $a$ above others keeps $a$ the winner"},
+            {"letter": "B", "text": "Another step proves unanimity: if all voters rank $a$ above $b$, then an SP+onto rule cannot output $b$"},
+            {"letter": "C", "text": "The proof sketch assumes neutrality and $m \\geq n$"},
+            {"letter": "D", "text": "The proof sketch concludes voter 1 must be a dictator via neutrality after constructing a symmetric cyclic profile"},
+            {"letter": "E", "text": "The proof sketch relies on Condorcet consistency rather than strategyproofness"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first numbered step in the proof sketch.", "section_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem", "notes_quote": "Strong monotonicity: If $F$ is SP and $F(R)=a$, then $F(R')=a$ for all $R'$ preserving $a$'s relative position above others"},
+            {"letter": "B", "is_correct": true, "text": "This is the second numbered step in the proof sketch.", "section_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem", "notes_quote": "Unanimity: If all voters rank $a$ above $b$ and $F$ is SP+onto, then $F(R) \\neq b$"},
+            {"letter": "C", "is_correct": true, "text": "These assumptions are stated in the proof sketch heading.", "section_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem", "notes_quote": "Proof sketch (with neutrality, $m \\geq n$)"},
+            {"letter": "D", "is_correct": true, "text": "This is the final move described in the proof sketch.", "section_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem", "notes_quote": "show voter 1 must be a dictator via neutrality"},
+            {"letter": "E", "is_correct": false, "text": "The proof sketch is built around strategyproofness, onto-ness, neutrality, strong monotonicity, and unanimity, not Condorcet consistency.", "section_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q18",
+          "source_ref": "Section Strategic Manipulation (from LGT): Barriers to Manipulation",
+          "text": "Which of the following correctly describe the barriers to manipulation discussed in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Under single-peaked preferences, each voter's preference decreases monotonically away from their peak on a line"},
+            {"letter": "B", "text": "For odd $n$, single-peaked preferences guarantee a Condorcet winner at the median peak"},
+            {"letter": "C", "text": "Black's Median Voter Theorem states that under single-peaked preferences and odd $n$, the Condorcet winner equals the median peak"},
+            {"letter": "D", "text": "If the $F$-manipulation problem is NP-hard, the rule is called resistant to manipulation"},
+            {"letter": "E", "text": "Single-peaked preferences make Condorcet cycles more likely because voters cluster around extremes"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition of single-peakedness given in the notes.", "section_ref": "Section Strategic Manipulation (from LGT): Barriers to Manipulation", "notes_quote": "Profile is single-peaked w.r.t. ordering $\\gg$ if each voter's preference decreases monotonically away from their peak on the line"},
+            {"letter": "B", "is_correct": true, "text": "This is one of the consequences listed for single-peaked preferences.", "section_ref": "Section Strategic Manipulation (from LGT): Barriers to Manipulation", "notes_quote": "Condorcet winner always exists (odd $n$) = candidate at median peak"},
+            {"letter": "C", "is_correct": true, "text": "This is Black's Median Voter Theorem as stated in the notes.", "section_ref": "Section Strategic Manipulation (from LGT): Barriers to Manipulation", "notes_quote": "Under single-peaked preferences (odd $n$), Condorcet winner exists and equals the median peak"},
+            {"letter": "D", "is_correct": true, "text": "This is the computational-barrier definition in the notes.", "section_ref": "Section Strategic Manipulation (from LGT): Barriers to Manipulation", "notes_quote": "If the $F$-manipulation problem ... is NP-hard, then $F$ is resistant to manipulation"},
+            {"letter": "E", "is_correct": false, "text": "The notes say the opposite: under single-peaked preferences, Condorcet cycles cannot occur.", "section_ref": "Section Strategic Manipulation (from LGT): Barriers to Manipulation", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "Exercises (SGT10)",
+      "questions": [
+        {
+          "id": "q19",
+          "source_ref": "Section Exercises (SGT10): Exercise 1: 100-Voter Profile",
+          "text": "Which of the following correctly describe Exercise 1 and its computational task? (Select ALL that apply.)\n\n| 33 | 16 | 3 | 8 | 18 | 22 |\n|----|-----|---|---|-----|-----|\n| a | b | c | c | d | e |\n| b | d | d | e | e | c |\n| c | c | b | b | c | b |\n| d | e | a | d | b | d |\n| e | a | e | a | a | a |",
+          "options": [
+            {"letter": "A", "text": "The profile contains 100 voters in total"},
+            {"letter": "B", "text": "The exercise asks for winners under plurality, Borda, Llull's, Dodgson's, maximin, and IRV"},
+            {"letter": "C", "text": "The exercise is purely theoretical and does not ask for any winner computations"},
+            {"letter": "D", "text": "The alternatives appearing in the profile are $a,b,c,d,e$"},
+            {"letter": "E", "text": "The six voter blocks have sizes 33, 16, 3, 8, 18, and 22"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Summing the six voter blocks gives 100, matching the exercise title.", "section_ref": "Section Exercises (SGT10): Exercise 1: 100-Voter Profile", "notes_quote": "Exercise 1: 100-Voter Profile"},
+            {"letter": "B", "is_correct": true, "text": "These are exactly the rules listed in the exercise prompt.", "section_ref": "Section Exercises (SGT10): Exercise 1: 100-Voter Profile", "notes_quote": "Compute winners under plurality, Borda, Llull's, Dodgson's, maximin, and IRV"},
+            {"letter": "C", "is_correct": false, "text": "The exercise explicitly asks for winner computations under six different rules.", "section_ref": "Section Exercises (SGT10): Exercise 1: 100-Voter Profile", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "Those are the five alternatives shown in the table.", "section_ref": "Section Exercises (SGT10): Exercise 1: 100-Voter Profile", "notes_quote": "| a | b | c | c | d | e |"},
+            {"letter": "E", "is_correct": true, "text": "These are the six block sizes in the profile header.", "section_ref": "Section Exercises (SGT10): Exercise 1: 100-Voter Profile", "notes_quote": "| 33 | 16 | 3 | 8 | 18 | 22 |"}
+          ]
+        },
+        {
+          "id": "q20",
+          "source_ref": "Section Exercises (SGT10): Exercise 2: Impossibility of Anonymous + Neutral (2 voters, 2 alternatives)",
+          "text": "Which of the following correctly describe the anonymity-neutrality impossibility exercise? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The profile considered has voter 1 ranking $a \\succ b$ and voter 2 ranking $b \\succ a$"},
+            {"letter": "B", "text": "Anonymity means swapping the voters does not change the outcome"},
+            {"letter": "C", "text": "Neutrality means swapping $a$ and $b$ in all rankings should swap the winner"},
+            {"letter": "D", "text": "The contradiction arises because the profile is symmetric under both operations"},
+            {"letter": "E", "text": "The exercise concludes that anonymity and neutrality together imply dictatorship"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the exact profile used in the exercise.", "section_ref": "Section Exercises (SGT10): Exercise 2: Impossibility of Anonymous + Neutral (2 voters, 2 alternatives)", "notes_quote": "With voter 1: $a \\succ b$, voter 2: $b \\succ a$"},
+            {"letter": "B", "is_correct": true, "text": "This is the definition of anonymity used in the exercise.", "section_ref": "Section Exercises (SGT10): Exercise 2: Impossibility of Anonymous + Neutral (2 voters, 2 alternatives)", "notes_quote": "Anonymity: swapping voters doesn't change outcome"},
+            {"letter": "C", "is_correct": true, "text": "This is the neutrality condition stated in the exercise.", "section_ref": "Section Exercises (SGT10): Exercise 2: Impossibility of Anonymous + Neutral (2 voters, 2 alternatives)", "notes_quote": "Neutrality: swapping $a \\leftrightarrow b$ in all rankings should swap the winner"},
+            {"letter": "D", "is_correct": true, "text": "This symmetry is exactly what yields the contradiction in the exercise.", "section_ref": "Section Exercises (SGT10): Exercise 2: Impossibility of Anonymous + Neutral (2 voters, 2 alternatives)", "notes_quote": "the profile is symmetric under both operations -- contradiction"},
+            {"letter": "E", "is_correct": false, "text": "The exercise establishes a contradiction for anonymity plus neutrality in this setting; it does not conclude dictatorship.", "section_ref": "Section Exercises (SGT10): Exercise 2: Impossibility of Anonymous + Neutral (2 voters, 2 alternatives)", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q21",
+          "source_ref": "Section Exercises (SGT10): Exercise 3: No PSR is Condorcet-Consistent (m >= 3); Section Exercises (SGT10): Exercise 4: Approval Voting is Non-Manipulable",
+          "text": "Which of the following correctly describe Exercises 3 and 4? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Exercise 3 splits into the cases $s_2 = 0$ and $s_2 > 0$"},
+            {"letter": "B", "text": "When $s_2 = 0$, Exercise 3 identifies the rule as plurality"},
+            {"letter": "C", "text": "When $s_2 > 0$, Exercise 3 says to modify the Borda counterexample"},
+            {"letter": "D", "text": "Exercise 4 argues approval voting is non-manipulable because changing approvals can only help less-preferred candidates or hurt preferred ones"},
+            {"letter": "E", "text": "Exercise 4 proves approval voting is manipulable whenever there are at least three candidates"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These are the two cases listed in Exercise 3.", "section_ref": "Section Exercises (SGT10): Exercise 3: No PSR is Condorcet-Consistent (m >= 3)", "notes_quote": "Case $s_2 = 0$ ... Case $s_2 > 0$"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly identify the $s_2=0$ case with plurality.", "section_ref": "Section Exercises (SGT10): Exercise 3: No PSR is Condorcet-Consistent (m >= 3)", "notes_quote": "Case $s_2 = 0$: this is plurality"},
+            {"letter": "C", "is_correct": true, "text": "This is the instruction given for the second case.", "section_ref": "Section Exercises (SGT10): Exercise 3: No PSR is Condorcet-Consistent (m >= 3)", "notes_quote": "Case $s_2 > 0$: modify the Borda counterexample"},
+            {"letter": "D", "is_correct": true, "text": "This is the reasoning given in Exercise 4.", "section_ref": "Section Exercises (SGT10): Exercise 4: Approval Voting is Non-Manipulable", "notes_quote": "approving a less-preferred candidate only helps that candidate; removing approval from a preferred candidate only hurts them"},
+            {"letter": "E", "is_correct": false, "text": "The notes state the opposite in Exercise 4: approval voting is non-manipulable.", "section_ref": "Section Exercises (SGT10): Exercise 4: Approval Voting is Non-Manipulable", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "Key Definitions",
+      "questions": [
+        {
+          "id": "q22",
+          "source_ref": "Section Key Definitions",
+          "text": "Which of the following correctly match voting-rule terms with their definitions from the key definitions table? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Plurality: PSR $(1,0,\\ldots,0)$ based on top-choice count"},
+            {"letter": "B", "text": "Borda count: PSR $(m-1, m-2, \\ldots, 0)$"},
+            {"letter": "C", "text": "IRV/STV: iteratively eliminate the lowest-plurality candidate"},
+            {"letter": "D", "text": "Copeland: minimum adjacent swaps to become Condorcet winner"},
+            {"letter": "E", "text": "Dodgson: minimum swaps to become Condorcet winner; NP-hard"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the plurality entry in the key definitions table.", "section_ref": "Section Key Definitions", "notes_quote": "Plurality | PSR $(1,0,\\ldots,0)$; top-choice count"},
+            {"letter": "B", "is_correct": true, "text": "This is the Borda entry in the key definitions table.", "section_ref": "Section Key Definitions", "notes_quote": "Borda count | PSR $(m-1, m-2, \\ldots, 0)$"},
+            {"letter": "C", "is_correct": true, "text": "This is the IRV/STV entry in the key definitions table.", "section_ref": "Section Key Definitions", "notes_quote": "IRV/STV | Iteratively eliminate lowest-plurality candidate"},
+            {"letter": "D", "is_correct": false, "text": "That definition belongs to Dodgson, not Copeland. Copeland gives +1 per pairwise win and is Condorcet-consistent.", "section_ref": "Section Key Definitions", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the Dodgson entry in the key definitions table.", "section_ref": "Section Key Definitions", "notes_quote": "Dodgson | Min swaps to become Condorcet winner; NP-hard"}
+          ]
+        },
+        {
+          "id": "q23",
+          "source_ref": "Section Key Definitions",
+          "text": "Which of the following correctly match strategic and preference-structure terms from the key definitions table? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Condorcet winner: beats every other candidate head-to-head"},
+            {"letter": "B", "text": "Condorcet cycle: cyclical majority preferences"},
+            {"letter": "C", "text": "Strategyproof: no voter benefits from misreporting"},
+            {"letter": "D", "text": "Single-peaked: preferences decrease away from a peak on a line"},
+            {"letter": "E", "text": "Median-voter rule: elect the plurality winner among the two median-ranked candidates"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the Condorcet winner entry in the table.", "section_ref": "Section Key Definitions", "notes_quote": "Condorcet winner | Beats every other candidate head-to-head"},
+            {"letter": "B", "is_correct": true, "text": "This is the Condorcet cycle entry in the table.", "section_ref": "Section Key Definitions", "notes_quote": "Condorcet cycle | Cyclical majority preferences"},
+            {"letter": "C", "is_correct": true, "text": "This is the strategyproofness entry in the table.", "section_ref": "Section Key Definitions", "notes_quote": "Strategyproof | No voter benefits from misreporting"},
+            {"letter": "D", "is_correct": true, "text": "This is the single-peakedness entry in the table.", "section_ref": "Section Key Definitions", "notes_quote": "Single-peaked | Preferences decrease away from peak on a line"},
+            {"letter": "E", "is_correct": false, "text": "The median-voter rule elects the median peak and is strategyproof for single-peaked preferences; it is not defined via plurality among two median-ranked candidates.", "section_ref": "Section Key Definitions", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "Learning Objectives — Integrative Questions",
+      "questions": [
+        {
+          "id": "q24",
+          "source_ref": "Learning Objectives; Section 10.2: Single-Winner Voting Rules; Section 10.3: Condorcet Principle",
+          "text": "Which of the following integrative statements correctly compare the main voting rules and principles from Week 10? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Plurality, Borda, veto, and $k$-approval are all positional scoring rules"},
+            {"letter": "B", "text": "No positional scoring rule is Condorcet-consistent for $m \\geq 3$"},
+            {"letter": "C", "text": "IRV is Condorcet-consistent because it uses repeated majority comparisons"},
+            {"letter": "D", "text": "Copeland and maximin are presented as Condorcet-consistent methods"},
+            {"letter": "E", "text": "The worked examples show that plurality and IRV can both fail to elect the Condorcet winner"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These four rules are grouped together under PSRs in the notes.", "section_ref": "Section 10.2: Positional Scoring Rules (PSR)", "notes_quote": "Borda ... Plurality ... Veto ... $k$-approval"},
+            {"letter": "B", "is_correct": true, "text": "This is one of the main theoretical results of the week.", "section_ref": "Section 10.3: Condorcet Consistency of Common Rules", "notes_quote": "No PSR is Condorcet-consistent (for $m \\geq 3$)"},
+            {"letter": "C", "is_correct": false, "text": "The notes explicitly show IRV eliminating the Condorcet winner in the worked example.", "section_ref": "Section 10.2: Elimination-Based Methods", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "Both are listed under Condorcet-consistent methods.", "section_ref": "Section 10.3: Condorcet-Consistent Methods", "notes_quote": "Copeland's rule ... Condorcet-consistent ... Maximin rule ... Condorcet-consistent"},
+            {"letter": "E", "is_correct": true, "text": "Plurality elects $a$ in the worked example even though $b$ beats $a$ head-to-head, and IRV eliminates $b$ despite $b$ being the Condorcet winner.", "section_ref": "Section 10.2: Plurality; Section 10.2: Elimination-Based Methods", "notes_quote": "B ... beats a head-to-head 3-2 ... IRV eliminated b, who was the Condorcet winner"}
+          ]
+        },
+        {
+          "id": "q25",
+          "source_ref": "Learning Objectives; Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem; Section Strategic Manipulation (from LGT): Barriers to Manipulation",
+          "text": "Which of the following integrative statements correctly summarise manipulation, impossibility, and barriers from Week 10? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Gibbard-Satterthwaite implies that any non-dictatorial onto resolute rule with at least 3 candidates is manipulable"},
+            {"letter": "B", "text": "Single-peaked preferences provide a domain restriction under which strategyproof rules such as the median-voter rule become possible"},
+            {"letter": "C", "text": "Computational hardness of the manipulation problem can act as a barrier to manipulation"},
+            {"letter": "D", "text": "The notes conclude that all anonymous and neutral rules are strategyproof"},
+            {"letter": "E", "text": "Week 10 presents both structural barriers (single-peakedness) and computational barriers (NP-hard manipulation)"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the main implication of Gibbard-Satterthwaite stated in the notes.", "section_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem", "notes_quote": "Any non-dictatorial, onto voting rule with $m \\geq 3$ is manipulable"},
+            {"letter": "B", "is_correct": true, "text": "The notes identify the median-voter rule as strategyproof under single-peaked preferences.", "section_ref": "Section Strategic Manipulation (from LGT): Barriers to Manipulation", "notes_quote": "Median-voter rule is strategyproof"},
+            {"letter": "C", "is_correct": true, "text": "This is the computational-barrier idea in the notes.", "section_ref": "Section Strategic Manipulation (from LGT): Barriers to Manipulation", "notes_quote": "If the $F$-manipulation problem ... is NP-hard, then $F$ is resistant to manipulation"},
+            {"letter": "D", "is_correct": false, "text": "The notes do not claim this; instead they present impossibility and manipulation results for broad classes of rules.", "section_ref": "Section Strategic Manipulation (from LGT): Gibbard-Satterthwaite Theorem", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This captures the two kinds of barriers discussed in the notes.", "section_ref": "Section Strategic Manipulation (from LGT): Barriers to Manipulation", "notes_quote": "1. Domain restriction -- Single-peaked preferences ... 2. Computational barriers"}
+          ]
+        }
+      ]
+    }
+  ]
+}

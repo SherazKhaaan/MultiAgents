@@ -1,0 +1,989 @@
+{
+  "module": "MultiAgents",
+  "week": 9,
+  "title": "Mechanism Design and Auctions",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "9.1 Auctions and Mechanism Design",
+      "questions": [
+        {
+          "id": "q1",
+          "source_ref": "Section 9.1: Game Theory in Multi-Agent Systems",
+          "text": "Which of the following correctly describe the roles game theory plays in multi-agent systems? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "It helps agents understand what strategies are best, reasonable, or safe to take"},
+            {"letter": "B", "text": "It helps the system administrator predict outcomes and steer agents toward stable or optimal ones"},
+            {"letter": "C", "text": "It helps the system designer design systems with desirable outcomes"},
+            {"letter": "D", "text": "It is used only by agents themselves, not by administrators or designers"},
+            {"letter": "E", "text": "It replaces the need to specify payoff rules or information flows in a system"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes explicitly list helping agents choose best, reasonable, or safe strategies as one of the three roles.", "section_ref": "Section 9.1: Game Theory in Multi-Agent Systems", "notes_quote": "The agents -- to understand what are best/reasonable/safe strategies to take"},
+            {"letter": "B", "is_correct": true, "text": "The system administrator uses game theory to predict outcomes and make agents achieve stable or optimal ones.", "section_ref": "Section 9.1: Game Theory in Multi-Agent Systems", "notes_quote": "The system administrator -- to predict possible system outcomes and make agents achieve stable/optimal ones"},
+            {"letter": "C", "is_correct": true, "text": "The notes identify system design for desirable outcomes as the third role.", "section_ref": "Section 9.1: Game Theory in Multi-Agent Systems", "notes_quote": "The system designer -- to design systems with desirable outcomes"},
+            {"letter": "D", "is_correct": false, "text": "Game theory is used by agents, system administrators, and system designers, not just by agents themselves.", "section_ref": "Section 9.1: Game Theory in Multi-Agent Systems", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "Mechanism design specifically involves specifying action spaces, information flows, and payoff rules. Game theory does not remove that need.", "section_ref": "Section 9.1: What is Mechanism Design?", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q2",
+          "source_ref": "Section 9.1: What is Mechanism Design?",
+          "text": "Which of the following correctly describe mechanism design and its goals? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Mechanism design flips the usual game-theoretic problem by designing the game rather than merely analysing a given one"},
+            {"letter": "B", "text": "Its goal is to specify action spaces, information flows, and payoff rules so desired objectives are achieved at equilibrium"},
+            {"letter": "C", "text": "Mechanism design is relevant to auction theory, voting systems, and resource allocation protocols"},
+            {"letter": "D", "text": "Mechanism design assumes equilibrium outcomes in existing games are always desirable, so redesign is unnecessary"},
+            {"letter": "E", "text": "Mechanism design requires agents to stop maximising their own expected utility"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the central contrast drawn in the notes between standard analysis and mechanism design.", "section_ref": "Section 9.1: What is Mechanism Design?", "notes_quote": "mechanism design flips the problem: instead of analysing a given game, we design the game itself"},
+            {"letter": "B", "is_correct": true, "text": "The notes define the design goal in terms of action spaces, information flows, payoff rules, and equilibrium objectives.", "section_ref": "Section 9.1: What is Mechanism Design?", "notes_quote": "Goal: specify action spaces, information flows, and payoff rules so that certain objectives are achieved at equilibrium"},
+            {"letter": "C", "is_correct": true, "text": "These are listed as core application areas of the framework.", "section_ref": "Section 9.1: What is Mechanism Design?", "notes_quote": "This framework underpins auction theory, voting systems, resource allocation protocols"},
+            {"letter": "D", "is_correct": false, "text": "The notes begin by observing that equilibrium outcomes in some games are undesirable, which is exactly why mechanism design is needed.", "section_ref": "Section 9.1: What is Mechanism Design?", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "Mechanism design works under the assumption that each agent maximises their own expected utility; it designs rules around that fact.", "section_ref": "Section 9.1: What is Mechanism Design?", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q3",
+          "source_ref": "Section 9.1: Examples of Mechanism Design Goals",
+          "text": "Which of the following are examples of mechanism design goals mentioned in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Design voting protocols to minimise unsatisfied voters"},
+            {"letter": "B", "text": "Design voting protocols to ensure a particular candidate wins"},
+            {"letter": "C", "text": "Design auctions so the outcome is efficient and maximises the sum of utilities"},
+            {"letter": "D", "text": "Design auctions only to eliminate all payments from the protocol"},
+            {"letter": "E", "text": "Design auctions to maximise or minimise the seller's profit"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is one of the election-related goals explicitly listed.", "section_ref": "Section 9.1: Examples of Mechanism Design Goals", "notes_quote": "design voting protocols to minimise unsatisfied voters"},
+            {"letter": "B", "is_correct": true, "text": "The notes also mention ensuring a particular candidate wins as a possible design objective.", "section_ref": "Section 9.1: Examples of Mechanism Design Goals", "notes_quote": "or ensure a particular candidate wins"},
+            {"letter": "C", "is_correct": true, "text": "Efficiency in the sense of maximising the sum of utilities is given as a marketplace design goal.", "section_ref": "Section 9.1: Examples of Mechanism Design Goals", "notes_quote": "The outcome is efficient (maximises sum of utilities)"},
+            {"letter": "D", "is_correct": false, "text": "The notes discuss allocation and payments as part of auctions; they do not say the goal is always to eliminate payments.", "section_ref": "Section 9.1: What is an Auction?", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Seller profit maximisation or minimisation is explicitly listed as another marketplace objective.", "section_ref": "Section 9.1: Examples of Mechanism Design Goals", "notes_quote": "Or maximises/minimises seller's profit"}
+          ]
+        },
+        {
+          "id": "q4",
+          "source_ref": "Section 9.1: What is an Auction?",
+          "text": "Which of the following correctly define or describe an auction in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "An auction is a protocol for multi-agent resource allocation"},
+            {"letter": "B", "text": "It allocates discrete resources or goods among selfish agents"},
+            {"letter": "C", "text": "Formally, it lets agents indicate interest in resources and uses those indications to determine both an allocation and payments"},
+            {"letter": "D", "text": "An auction determines allocation only; payments are outside the protocol"},
+            {"letter": "E", "text": "Auctions are relevant only for art sales and not for computational settings"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes define auctions as protocols for multi-agent resource allocation.", "section_ref": "Section 9.1: What is an Auction?", "notes_quote": "Auctions are protocols for multi-agent resource allocation"},
+            {"letter": "B", "is_correct": true, "text": "The notes describe auctions as tools for allocating discrete resources among selfish agents.", "section_ref": "Section 9.1: What is an Auction?", "notes_quote": "A tool for allocating discrete resources/goods among selfish agents"},
+            {"letter": "C", "is_correct": true, "text": "The formal description includes both allocation and payments.", "section_ref": "Section 9.1: What is an Auction?", "notes_quote": "any protocol that allows agents to indicate interest in resources and uses these indications to determine both an allocation and a set of payments"},
+            {"letter": "D", "is_correct": false, "text": "Payments are part of the formal definition of an auction in the notes, not something external to it.", "section_ref": "Section 9.1: What is an Auction?", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "The notes explicitly mention computational uses such as allocating bandwidth and processing power.", "section_ref": "Section 9.1: Why Auctions Matter", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q5",
+          "source_ref": "Section 9.1: Why Auctions Matter",
+          "text": "Which of the following correctly explain why auctions matter in practice and theory? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Millions of people use auctions daily on internet consumer websites"},
+            {"letter": "B", "text": "Governments use auctions to sell public resources such as electromagnetic spectrum"},
+            {"letter": "C", "text": "All financial markets are described in the notes as a type of auction, namely double auctions"},
+            {"letter": "D", "text": "Auctions are theoretically unimportant outside settings explicitly labelled as auctions"},
+            {"letter": "E", "text": "Auctions provide a general framework for understanding resource allocation among self-interested agents"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is listed under the practical importance of auctions.", "section_ref": "Section 9.1: Why Auctions Matter", "notes_quote": "Millions use auctions daily on internet consumer websites"},
+            {"letter": "B", "is_correct": true, "text": "The notes give spectrum sales as a government use case.", "section_ref": "Section 9.1: Why Auctions Matter", "notes_quote": "Governments use auctions to sell public resources (e.g., electromagnetic spectrum)"},
+            {"letter": "C", "is_correct": true, "text": "The notes explicitly classify financial markets as double auctions.", "section_ref": "Section 9.1: Why Auctions Matter", "notes_quote": "All financial markets are a type of auction (double auctions)"},
+            {"letter": "D", "is_correct": false, "text": "The notes say auctions are important even in settings not normally thought of as auctions, such as sharing computational power in grid computers.", "section_ref": "Section 9.1: Why Auctions Matter", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the main theoretical reason given for studying auctions.", "section_ref": "Section 9.1: Why Auctions Matter", "notes_quote": "Provide a general framework for understanding resource allocation among self-interested agents"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "9.2 Single-Good Auctions",
+      "questions": [
+        {
+          "id": "q6",
+          "source_ref": "Section 9.2: Setting",
+          "text": "Which of the following correctly describe the standard single-good auction setting? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "There is one good for sale, one seller, and multiple potential buyers"},
+            {"letter": "B", "text": "Each buyer has a private valuation $\\theta_i$ known only to themselves"},
+            {"letter": "C", "text": "The auction is single-sided because competition is only among buyers"},
+            {"letter": "D", "text": "These auctions are used to study trade-offs among efficiency, revenue, and incentive compatibility"},
+            {"letter": "E", "text": "The standard setting assumes buyers know all other buyers' valuations exactly"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the basic environment stated at the start of the section.", "section_ref": "Section 9.2: Setting", "notes_quote": "One good for sale, one seller, multiple potential buyers"},
+            {"letter": "B", "is_correct": true, "text": "Private valuation is defined as each buyer's willingness to pay, known only to themselves.", "section_ref": "Section 9.2: Setting", "notes_quote": "Each buyer has a private valuation $\\theta_i$ (willingness to pay), known only to themselves"},
+            {"letter": "C", "is_correct": true, "text": "The notes explicitly call this a single-sided auction because only buyers compete.", "section_ref": "Section 9.2: Setting", "notes_quote": "Single-sided auction: competition only among buyers"},
+            {"letter": "D", "is_correct": true, "text": "The notes say these auctions capture essential trade-offs among these three criteria.", "section_ref": "Section 9.2: Setting", "notes_quote": "These auctions capture essential trade-offs: efficiency, revenue, incentive compatibility"},
+            {"letter": "E", "is_correct": false, "text": "The notes say valuations are private and bidders only have beliefs about others' valuations, not exact knowledge.", "section_ref": "Section 9.2: Formal Model", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q7",
+          "source_ref": "Section 9.2: Four Classic Auction Formats",
+          "text": "Which of the following correctly match classic auction formats with how bidding works and what the winner pays? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "English auction: open-cry ascending auction; the highest bidder wins and pays their own bid"},
+            {"letter": "B", "text": "Dutch auction: open-cry descending auction; the first bidder to call wins at the current price"},
+            {"letter": "C", "text": "First-price sealed-bid auction: highest bidder wins and pays their own bid"},
+            {"letter": "D", "text": "Second-price sealed-bid (Vickrey) auction: highest bidder wins and pays the second-highest bid or reserve price"},
+            {"letter": "E", "text": "In a Dutch auction, the winner pays the second-highest bid submitted in sealed form"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This matches the table in the notes.", "section_ref": "Section 9.2: Four Classic Auction Formats", "notes_quote": "English (ascending) | Open-cry; bidding starts low, bidders raise price | Highest bid (own bid)"},
+            {"letter": "B", "is_correct": true, "text": "This is the Dutch auction format exactly as described.", "section_ref": "Section 9.2: Four Classic Auction Formats", "notes_quote": "Dutch (descending) | Open-cry; price starts high, auctioneer lowers until someone bids | Current price when first bidder calls"},
+            {"letter": "C", "is_correct": true, "text": "The first-price sealed-bid winner pays their own bid.", "section_ref": "Section 9.2: Four Classic Auction Formats", "notes_quote": "First-price sealed-bid | Sealed envelopes; highest bidder wins | Own bid"},
+            {"letter": "D", "is_correct": true, "text": "The Vickrey auction winner pays the second-highest bid, or the reserve price if applicable.", "section_ref": "Section 9.2: Four Classic Auction Formats", "notes_quote": "Second-price sealed-bid (Vickrey) | Sealed envelopes; highest bidder wins | Second-highest bid (or reserve price)"},
+            {"letter": "E", "is_correct": false, "text": "A Dutch auction is descending open-cry and the winner pays the current price when they stop the clock, not a sealed second-highest bid.", "section_ref": "Section 9.2: Four Classic Auction Formats", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q8",
+          "source_ref": "Section 9.2: Formal Model",
+          "text": "Which of the following correctly describe the formal model of a single-good auction? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "If bidder $i$ wins and pays $p_i$, their quasi-linear utility is $u_i = \\theta_i - p_i$"},
+            {"letter": "B", "text": "If bidder $i$ loses, their utility is 0 in the basic model"},
+            {"letter": "C", "text": "$\\theta_i$ is the price at which bidder $i$ is indifferent between winning and losing"},
+            {"letter": "D", "text": "Bidders know others' valuations exactly, so no beliefs or distributions are needed"},
+            {"letter": "E", "text": "The initial analysis assumes no collusion"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the quasi-linear utility formula given in the notes.", "section_ref": "Section 9.2: Formal Model", "notes_quote": "$u_i = \\begin{cases} \\theta_i - p_i & \\text{if } i \\text{ wins the item and pays } p_i \\\\ 0 & \\text{otherwise} \\end{cases}$"},
+            {"letter": "B", "is_correct": true, "text": "The utility formula assigns 0 utility when the bidder does not win.", "section_ref": "Section 9.2: Formal Model", "notes_quote": "$0$ otherwise"},
+            {"letter": "C", "is_correct": true, "text": "The notes interpret $\\theta_i$ as the indifference price between winning and losing.", "section_ref": "Section 9.2: Formal Model", "notes_quote": "$\\theta_i$ is the price at which bidder $i$ is indifferent between winning and losing"},
+            {"letter": "D", "is_correct": false, "text": "The notes say bidders do not know others' valuations; instead they have beliefs about a distribution $F$ with density $f$.", "section_ref": "Section 9.2: Formal Model", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The no-collusion assumption is stated explicitly as an initial assumption.", "section_ref": "Section 9.2: Formal Model", "notes_quote": "We assume (initially) no collusion"}
+          ]
+        },
+        {
+          "id": "q9",
+          "source_ref": "Section 9.2: Bayesian Games",
+          "text": "Which of the following correctly describe Bayesian games and strategies in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A Bayesian game includes action sets, type spaces, utility functions, and a common prior over types"},
+            {"letter": "B", "text": "In the tuple $(N, (A_i, \\Theta_i, u_i)_{i \\in N}, Pr)$, $Pr$ is a common prior over type profiles"},
+            {"letter": "C", "text": "A strategy is a mapping $s_i : \\Theta_i \\to A_i$ from types to actions"},
+            {"letter": "D", "text": "In a Bayesian game, a player's utility function depends only on actions and never on types"},
+            {"letter": "E", "text": "Expected utility is computed by summing over opponents' types weighted by their probabilities"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These are exactly the components listed in the Bayesian game tuple.", "section_ref": "Section 9.2: Bayesian Games", "notes_quote": "A Bayesian game is a tuple $(N, (A_i, \\Theta_i, u_i)_{i \\in N}, Pr)$"},
+            {"letter": "B", "is_correct": true, "text": "The notes define $Pr$ as the common prior over the joint type space.", "section_ref": "Section 9.2: Bayesian Games", "notes_quote": "$Pr: \\Theta_1 \\times \\ldots \\times \\Theta_n \\to [0,1]$ = common prior over types"},
+            {"letter": "C", "is_correct": true, "text": "The strategy definition is given exactly in this form.", "section_ref": "Section 9.2: Bayesian Games", "notes_quote": "A strategy is a mapping $s_i: \\Theta_i \\to A_i$"},
+            {"letter": "D", "is_correct": false, "text": "The utility function in the notes depends on the action profile and the player's type $\\theta_i$.", "section_ref": "Section 9.2: Bayesian Games", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The expected utility expression sums over $\\theta_{-i}$ and weights utilities by $Pr(\\theta_{-i})$.", "section_ref": "Section 9.2: Bayesian Games", "notes_quote": "$$\\sum_{\\theta_{-i}} Pr(\\theta_{-i}) \\cdot u_i(\\theta_i, s_i(\\theta_i), s_{-i}(\\theta_{-i}))$$"}
+          ]
+        },
+        {
+          "id": "q10",
+          "source_ref": "Section 9.2: Bayes-Nash Equilibrium (BNE)",
+          "text": "Which of the following correctly characterise a Bayes-Nash equilibrium? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A strategy profile is a BNE if no player can improve expected utility by deviating unilaterally for any type they may have"},
+            {"letter": "B", "text": "The BNE condition compares expected utility from the prescribed action with expected utility from any alternative action $a_i$"},
+            {"letter": "C", "text": "The expectation is taken over the other players' types using the common prior"},
+            {"letter": "D", "text": "A BNE requires every type of every player to choose the same action"},
+            {"letter": "E", "text": "BNE is defined for every $i \\in N$, every $\\theta_i \\in \\Theta_i$, and every alternative action $a_i \\in A_i$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the equilibrium idea expressed in the notes: no profitable unilateral deviation in expected utility terms.", "section_ref": "Section 9.2: Bayes-Nash Equilibrium (BNE)", "notes_quote": "A strategy profile $s$ is a Bayes-Nash equilibrium if for every $i \\in N$, $\\theta_i \\in \\Theta_i$, and $a_i \\in A_i$"},
+            {"letter": "B", "is_correct": true, "text": "The inequality compares the expected utility from $s_i(\\theta_i)$ against any alternative action $a_i$.", "section_ref": "Section 9.2: Bayes-Nash Equilibrium (BNE)", "notes_quote": "$$\\sum_{\\theta_{-i}} Pr(\\theta_{-i}) \\cdot u_i(\\theta_i, s_i(\\theta_i), s_{-i}(\\theta_{-i})) \\geq \\sum_{\\theta_{-i}} Pr(\\theta_{-i}) \\cdot u_i(\\theta_i, a_i, s_{-i}(\\theta_{-i}))$$"},
+            {"letter": "C", "is_correct": true, "text": "The summation is over opponents' types and uses the prior probabilities.", "section_ref": "Section 9.2: Bayes-Nash Equilibrium (BNE)", "notes_quote": "$$\\sum_{\\theta_{-i}} Pr(\\theta_{-i}) \\cdot u_i(...)$$"},
+            {"letter": "D", "is_correct": false, "text": "A strategy in a Bayesian game maps types to actions, so different types may optimally choose different actions.", "section_ref": "Section 9.2: Bayesian Games", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The quantifiers in the definition explicitly range over all players, types, and alternative actions.", "section_ref": "Section 9.2: Bayes-Nash Equilibrium (BNE)", "notes_quote": "for every $i \\in N$, $\\theta_i \\in \\Theta_i$, and $a_i \\in A_i$"}
+          ]
+        },
+        {
+          "id": "q11",
+          "source_ref": "Section 9.2: First-Price Sealed-Bid Auction: Worked Example",
+          "text": "Given the first-price sealed-bid payoff matrix for $\\theta_1 = 4$ and $\\theta_2 = 2$:\n\n|  | $b_2=0$ | $b_2=1$ | $b_2=2$ | $b_2=3$ | $b_2=4$ |\n|--|---------|---------|---------|---------|---------|\n| $b_1=0$ | 2, 1 | 0, 1 | 0, 0 | 0, -1 | 0, -2 |\n| $b_1=1$ | 3, 0 | 1.5, 0.5 | 0, 0 | 0, -1 | 0, -2 |\n| $b_1=2$ | 2, 0 | 2, 0 | 1, 0 | 0, -1 | 0, -2 |\n| $b_1=3$ | 1, 0 | 1, 0 | 1, 0 | 0.5, -0.5 | 0, -2 |\n| $b_1=4$ | 0, 0 | 0, 0 | 0, 0 | 0, 0 | 0, -1 |\n\nWhich of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "If both players bid 0, the expected payoff is $(2, 1)$ because the tie is broken randomly"},
+            {"letter": "B", "text": "If player 1 bids 1 and player 2 bids 1, the expected payoff is $(1.5, 0.5)$"},
+            {"letter": "C", "text": "If player 1 bids 4 and player 2 bids 4, both players get payoff 0"},
+            {"letter": "D", "text": "The worked example is incomplete as a model of realistic auctions because it assumes known valuations rather than private information"},
+            {"letter": "E", "text": "The matrix already fully captures private information, so no Bayesian analysis is needed"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The matrix entry at $(b_1,b_2)=(0,0)$ is $(2,1)$, reflecting random tie-breaking with valuations 4 and 2.", "section_ref": "Section 9.2: First-Price Sealed-Bid Auction: Worked Example", "notes_quote": "Two players: $\\theta_1 = 4$, $\\theta_2 = 2$... Ties broken randomly"},
+            {"letter": "B", "is_correct": true, "text": "The matrix entry for equal bids of 1 is explicitly $(1.5, 0.5)$.", "section_ref": "Section 9.2: First-Price Sealed-Bid Auction: Worked Example", "notes_quote": "| $b_1=1$ | 3, 0 | 1.5, 0.5 | 0, 0 | 0, -1 | 0, -2 |"},
+            {"letter": "C", "is_correct": false, "text": "At $(4,4)$ the matrix gives $(0,-1)$, not $(0,0)$. Player 2 can get negative utility because paying 4 exceeds their valuation 2 when they win a tie half the time.", "section_ref": "Section 9.2: First-Price Sealed-Bid Auction: Worked Example", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly say the missing aspect is that valuations are assumed known, whereas in reality they are private information.", "section_ref": "Section 9.2: First-Price Sealed-Bid Auction: Worked Example", "notes_quote": "Missing aspect: This assumes known valuations, but valuations are private information"},
+            {"letter": "E", "is_correct": false, "text": "The notes say the opposite: because valuations are private, Bayesian modelling is needed beyond this complete-information matrix.", "section_ref": "Section 9.2: First-Price Sealed-Bid Auction: Worked Example", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q12",
+          "source_ref": "Section 9.2: First-Price Sealed-Bid: BNE (Continuous)",
+          "text": "Which of the following correctly describe the continuous first-price sealed-bid BNE under i.i.d. $U(0,1)$ values? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The equilibrium bid function is $s_i(\\theta_i) = \\frac{n-1}{n} \\cdot \\theta_i$"},
+            {"letter": "B", "text": "Bidders shade their bids below their true values"},
+            {"letter": "C", "text": "For $n=2$, the equilibrium bid is $\\frac{1}{2}\\theta_i$"},
+            {"letter": "D", "text": "As $n \\to \\infty$, bid shading increases and bids move further below true values"},
+            {"letter": "E", "text": "Because the strategy is monotonically increasing, the highest-value bidder wins and the auction is efficient"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This theorem is stated explicitly in the notes.", "section_ref": "Section 9.2: First-Price Sealed-Bid: BNE (Continuous)", "notes_quote": "$$s_i(\\theta_i) = \\frac{n-1}{n} \\cdot \\theta_i$$"},
+            {"letter": "B", "is_correct": true, "text": "The notes interpret the formula as bid shading below true value.", "section_ref": "Section 9.2: First-Price Sealed-Bid: BNE (Continuous)", "notes_quote": "Bidders shade their bid below their true value"},
+            {"letter": "C", "is_correct": true, "text": "Substituting $n=2$ into the theorem gives $\\frac{1}{2}\\theta_i$.", "section_ref": "Section 9.2: First-Price Sealed-Bid: BNE (Continuous)", "notes_quote": "For $n = 2$: bid $\\frac{1}{2}\\theta_i$"},
+            {"letter": "D", "is_correct": false, "text": "The notes say shading decreases as competition increases, so bids move closer to true values as $n$ grows.", "section_ref": "Section 9.2: First-Price Sealed-Bid: BNE (Continuous)", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Monotonicity implies the highest valuation corresponds to the highest bid, so the allocation is efficient.", "section_ref": "Section 9.2: First-Price Sealed-Bid: BNE (Continuous)", "notes_quote": "Strategy is monotonically increasing $\\implies$ highest-value bidder always wins $\\implies$ auction is efficient"}
+          ]
+        },
+        {
+          "id": "q13",
+          "source_ref": "Section 9.2: Strategic Equivalences",
+          "text": "Which of the following correctly describe the strategic equivalences among classic auctions? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Dutch auctions are strategically equivalent to first-price sealed-bid auctions"},
+            {"letter": "B", "text": "English auctions are strategically equivalent to second-price sealed-bid auctions"},
+            {"letter": "C", "text": "Dutch auctions are sometimes called open first-price auctions"},
+            {"letter": "D", "text": "English auctions are sometimes called open second-price auctions"},
+            {"letter": "E", "text": "English auctions are strategically equivalent to first-price sealed-bid auctions because both winners pay their own bids"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes state this equivalence explicitly.", "section_ref": "Section 9.2: Strategic Equivalences", "notes_quote": "Dutch auction $\\equiv$ First-price sealed-bid"},
+            {"letter": "B", "is_correct": true, "text": "The notes also state this equivalence explicitly.", "section_ref": "Section 9.2: Strategic Equivalences", "notes_quote": "English auction $\\equiv$ Second-price sealed-bid (Vickrey)"},
+            {"letter": "C", "is_correct": true, "text": "This terminology is given directly in the notes.", "section_ref": "Section 9.2: Strategic Equivalences", "notes_quote": "Dutch is sometimes called the open first-price auction"},
+            {"letter": "D", "is_correct": true, "text": "This terminology is also given directly in the notes.", "section_ref": "Section 9.2: Strategic Equivalences", "notes_quote": "English is sometimes called the open second-price auction"},
+            {"letter": "E", "is_correct": false, "text": "English auctions are paired with second-price sealed-bid auctions in the notes, not with first-price sealed-bid auctions.", "section_ref": "Section 9.2: Strategic Equivalences", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q14",
+          "source_ref": "Section 9.2: Vickrey Auction: Truthfulness",
+          "text": "Which of the following correctly explain why truthful bidding is weakly dominant in a Vickrey auction? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "If you win by bidding truthfully, bidding lower does not reduce the price you pay but may cause you to lose the item"},
+            {"letter": "B", "text": "If you win by bidding truthfully, bidding higher changes the payment because you then pay your own bid"},
+            {"letter": "C", "text": "If you lose by bidding truthfully, bidding higher may make you win and then pay more than your true valuation, giving negative utility"},
+            {"letter": "D", "text": "Because the payment is the second-highest bid, truthful bidding is weakly dominant"},
+            {"letter": "E", "text": "A second-price sealed-bid auction is therefore truthful, strategyproof, and incentive compatible in dominant strategies"}
+          ],
+          "correct": ["A", "C", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is exactly the first case in the proof intuition.", "section_ref": "Section 9.2: Vickrey Auction: Truthfulness", "notes_quote": "Bidding lower: no change to payment, but risk losing the item"},
+            {"letter": "B", "is_correct": false, "text": "In a Vickrey auction the winner does not pay their own bid; they pay the second-highest bid, so bidding higher does not change the payment when you already win.", "section_ref": "Section 9.2: Vickrey Auction: Truthfulness", "notes_quote": ""},
+            {"letter": "C", "is_correct": true, "text": "This is the second case in the proof intuition.", "section_ref": "Section 9.2: Vickrey Auction: Truthfulness", "notes_quote": "Bidding higher: you might win, but then the second-highest bid exceeds your true valuation $\\implies$ negative utility"},
+            {"letter": "D", "is_correct": true, "text": "The theorem states that bidding your true valuation is a weakly dominant strategy in the second-price sealed-bid auction.", "section_ref": "Section 9.2: Vickrey Auction: Truthfulness", "notes_quote": "In the second-price sealed-bid auction, bidding your true valuation $\\theta_i$ is a weakly dominant strategy"},
+            {"letter": "E", "is_correct": true, "text": "The notes explicitly list these synonymous descriptions of the auction.", "section_ref": "Section 9.2: Vickrey Auction: Truthfulness", "notes_quote": "Such an auction is called truthful / strategyproof / incentive compatible in dominant strategies"}
+          ]
+        },
+        {
+          "id": "q15",
+          "source_ref": "Section 9.2: Revenue Equivalence Theorem",
+          "text": "Which of the following are assumptions or consequences of the Revenue Equivalence Theorem as stated in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Valuations are i.i.d. from a continuous distribution on $[L,H]$"},
+            {"letter": "B", "text": "Agents are risk-neutral expected utility maximisers"},
+            {"letter": "C", "text": "Any two auctions that allocate efficiently in equilibrium and give zero utility to the lowest possible valuation yield the same expected revenue"},
+            {"letter": "D", "text": "The theorem implies all four classic auctions are revenue equivalent under the stated assumptions"},
+            {"letter": "E", "text": "The theorem says truthful auctions always generate strictly higher expected revenue than first-price auctions"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is one of the explicit assumptions listed before the theorem.", "section_ref": "Section 9.2: Revenue Equivalence Theorem", "notes_quote": "Valuations are i.i.d. drawn from a continuous distribution on $[L, H]$"},
+            {"letter": "B", "is_correct": true, "text": "Risk neutrality is the second explicit assumption.", "section_ref": "Section 9.2: Revenue Equivalence Theorem", "notes_quote": "Agents are risk-neutral (expected utility maximisers)"},
+            {"letter": "C", "is_correct": true, "text": "This is the theorem statement in the notes.", "section_ref": "Section 9.2: Revenue Equivalence Theorem", "notes_quote": "Any two auctions that (1) allocate the item in equilibrium to the bidder with the highest valuation, and (2) give utility zero to the agent with the lowest possible valuation, yield the same expected revenue"},
+            {"letter": "D", "is_correct": true, "text": "The notes draw this consequence immediately after the theorem.", "section_ref": "Section 9.2: Revenue Equivalence Theorem", "notes_quote": "All four classic auctions (English, Dutch, first-price, second-price) are revenue equivalent"},
+            {"letter": "E", "is_correct": false, "text": "The theorem states equality of expected revenue under its assumptions, not strict superiority of truthful auctions.", "section_ref": "Section 9.2: Revenue Equivalence Theorem", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "9.3 Collusion and Other Issues",
+      "questions": [
+        {
+          "id": "q16",
+          "source_ref": "Section 9.3: Collusion",
+          "text": "Which of the following correctly describe collusion across auction formats? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In second-price and English auctions, agents may benefit by coordinating bids even though truthful bidding is individually optimal"},
+            {"letter": "B", "text": "In an English auction, a bidding ring can agree not to bid against each other and thereby obtain the item at an artificially low price"},
+            {"letter": "C", "text": "Defection from an English-auction bidding ring is visible and can be punished, which helps make the ring stable"},
+            {"letter": "D", "text": "Dutch auctions are described as robust to collusion because a ring member can break the agreement without giving others a chance to respond"},
+            {"letter": "E", "text": "The notes say Dutch auctions are more vulnerable to collusion than English auctions because defection is easy to detect"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes contrast individual truthfulness with the possibility of coordinated manipulation.", "section_ref": "Section 9.3: Collusion", "notes_quote": "In second-price and English auctions, agents have no individual incentive to misreport, but they can benefit by coordinating bids"},
+            {"letter": "B", "is_correct": true, "text": "This is the specific English-auction collusion mechanism described.", "section_ref": "Section 9.3: Collusion", "notes_quote": "A bidding ring agrees not to bid against each other"},
+            {"letter": "C", "is_correct": true, "text": "Visibility of defection is the reason the notes give for ring stability.", "section_ref": "Section 9.3: Collusion", "notes_quote": "Defection is visible and can be punished $\\implies$ ring is stable"},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly say Dutch auctions are robust to collusion for this reason.", "section_ref": "Section 9.3: Collusion", "notes_quote": "Dutch auction is robust to collusion: Nothing stops a member from breaking the agreement (others have no opportunity to respond)"},
+            {"letter": "E", "is_correct": false, "text": "The notes say the opposite: Dutch auctions are robust to collusion, not more vulnerable to it.", "section_ref": "Section 9.3: Collusion", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q17",
+          "source_ref": "Section 9.3: Collusion in Second-Price Auction: Worked Example",
+          "text": "In the worked example with two colluding bidders in a second-price auction, which of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "With honest play and no other bidders, player 1 wins and pays $\\theta_2$"},
+            {"letter": "B", "text": "With optimal collusion and no other bidders, player 2 bids 0 and player 1 bids any positive amount"},
+            {"letter": "C", "text": "Under that collusive plan, player 1 wins and pays 0"},
+            {"letter": "D", "text": "The extra surplus from collusion in the two-bidder case is $\\theta_2$, which is split evenly"},
+            {"letter": "E", "text": "With no other bidders, honest play and collusion generate the same total surplus"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the honest-play benchmark in the notes.", "section_ref": "Section 9.3: Collusion in Second-Price Auction: Worked Example", "notes_quote": "Honest play: Player 1 wins, pays $\\theta_2$"},
+            {"letter": "B", "is_correct": true, "text": "This is the collusive bidding plan described in the notes.", "section_ref": "Section 9.3: Collusion in Second-Price Auction: Worked Example", "notes_quote": "Optimal collusion: Player 2 bids 0, Player 1 bids any positive amount"},
+            {"letter": "C", "is_correct": true, "text": "Because the second-highest bid is then 0, player 1 pays 0.", "section_ref": "Section 9.3: Collusion in Second-Price Auction: Worked Example", "notes_quote": "Player 1 wins, pays 0"},
+            {"letter": "D", "is_correct": true, "text": "The notes compute the extra surplus and say it is split evenly between the colluders.", "section_ref": "Section 9.3: Collusion in Second-Price Auction: Worked Example", "notes_quote": "Extra surplus from collusion = $\\theta_2$, split evenly: each gets $\\theta_2/2$"},
+            {"letter": "E", "is_correct": false, "text": "The notes say collusion increases total surplus from $\\theta_1 - \\theta_2$ to $\\theta_1$, so the surplus is not the same.", "section_ref": "Section 9.3: Collusion in Second-Price Auction: Worked Example", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q18",
+          "source_ref": "Section 9.3: Collusion in Second-Price Auction: Worked Example",
+          "text": "With a third non-colluding player where $\\theta_3 \\sim U[0,1]$, which of the following are correct according to the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The optimal collusive plan is for player 2 to bid 0 and player 1 to bid $\\theta_1$"},
+            {"letter": "B", "text": "The honest expected payoff is $\\frac{\\theta_1^2 - \\theta_2^2}{2}$"},
+            {"letter": "C", "text": "The colluding expected payoff is $\\frac{\\theta_1^2}{2}$"},
+            {"letter": "D", "text": "The extra surplus from collusion is $\\frac{\\theta_2^2}{2}$, so each colluder gets $\\frac{\\theta_2^2}{4}$"},
+            {"letter": "E", "text": "The notes conclude that collusion yields no gain once a third bidder is present"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the optimal collusive strategy described for the three-player setting.", "section_ref": "Section 9.3: Collusion in Second-Price Auction: Worked Example", "notes_quote": "Optimal: Player 2 bids 0, Player 1 bids $\\theta_1$"},
+            {"letter": "B", "is_correct": true, "text": "The honest expected payoff formula is given explicitly.", "section_ref": "Section 9.3: Collusion in Second-Price Auction: Worked Example", "notes_quote": "Honest expected payoff: $\\frac{\\theta_1^2 - \\theta_2^2}{2}$"},
+            {"letter": "C", "is_correct": true, "text": "The colluding expected payoff formula is also given explicitly.", "section_ref": "Section 9.3: Collusion in Second-Price Auction: Worked Example", "notes_quote": "Colluding expected payoff: $\\frac{\\theta_1^2}{2}$"},
+            {"letter": "D", "is_correct": true, "text": "The notes compute the extra surplus and equal split in this case as well.", "section_ref": "Section 9.3: Collusion in Second-Price Auction: Worked Example", "notes_quote": "Extra surplus = $\\frac{\\theta_2^2}{2}$, each colluder gets $\\frac{\\theta_2^2}{4}$"},
+            {"letter": "E", "is_correct": false, "text": "The notes explicitly compute a positive extra surplus from collusion even with a third bidder present.", "section_ref": "Section 9.3: Collusion in Second-Price Auction: Worked Example", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q19",
+          "source_ref": "Section 9.3: Auctioneer Manipulation",
+          "text": "Which of the following correctly describe auctioneer manipulation risks? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In a second-price auction, a dishonest auctioneer can lie about the second-highest bid"},
+            {"letter": "B", "text": "In an English auction, an auctioneer can use shill bids to inflate prices"},
+            {"letter": "C", "text": "The notes say these manipulations are impossible because auctioneers are always perfectly observable"},
+            {"letter": "D", "text": "The second-price manipulation problem arises because nobody can verify the true second-highest bid"},
+            {"letter": "E", "text": "Shill bids are fake bids introduced to push the price upward"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first manipulation risk listed in the notes.", "section_ref": "Section 9.3: Auctioneer Manipulation", "notes_quote": "In second-price auction: dishonest auctioneer can lie about the second-highest bid"},
+            {"letter": "B", "is_correct": true, "text": "This is the English-auction manipulation risk listed in the notes.", "section_ref": "Section 9.3: Auctioneer Manipulation", "notes_quote": "In English auction: auctioneer can introduce shill bids to inflate prices"},
+            {"letter": "C", "is_correct": false, "text": "The notes identify these as real vulnerabilities, not impossible events.", "section_ref": "Section 9.3: Auctioneer Manipulation", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly justify the second-price risk by saying nobody can verify the second-highest bid.", "section_ref": "Section 9.3: Auctioneer Manipulation", "notes_quote": "nobody can verify"},
+            {"letter": "E", "is_correct": true, "text": "The notes describe shill bids as a way to inflate prices, which is exactly their role.", "section_ref": "Section 9.3: Auctioneer Manipulation", "notes_quote": "shill bids to inflate prices"}
+          ]
+        },
+        {
+          "id": "q20",
+          "source_ref": "Section 9.3: Winner's Curse",
+          "text": "Which of the following correctly describe the winner's curse and its mitigation? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Winner's curse occurs in auctions with common value and incomplete information"},
+            {"letter": "B", "text": "It arises because the winner is the bidder with the highest estimate, which is likely to be an overestimate"},
+            {"letter": "C", "text": "Formally, the notes state $E[\\text{value of item} - \\text{price} \\mid \\text{winning}] < 0$"},
+            {"letter": "D", "text": "A mitigation is bid shading: bid below your ex-ante estimate to reflect your ex-post belief conditional on winning"},
+            {"letter": "E", "text": "The winner's curse becomes less severe as the number of bidders increases"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes define the setting for the winner's curse in exactly these terms.", "section_ref": "Section 9.3: Winner's Curse", "notes_quote": "Occurs in auctions with common value and incomplete information"},
+            {"letter": "B", "is_correct": true, "text": "The winner is the most optimistic estimator, which is why winning is bad news about the true value.", "section_ref": "Section 9.3: Winner's Curse", "notes_quote": "The winner is the bidder with the highest estimate -- likely an overestimate"},
+            {"letter": "C", "is_correct": true, "text": "This formal inequality is stated directly in the notes.", "section_ref": "Section 9.3: Winner's Curse", "notes_quote": "Formally: $E[\\text{value of item} - \\text{price} \\mid \\text{winning}] < 0$"},
+            {"letter": "D", "is_correct": true, "text": "The notes recommend bid shading based on the posterior belief conditional on winning.", "section_ref": "Section 9.3: Winner's Curse", "notes_quote": "Bid shading -- bid below your ex-ante estimate, equal to your ex-post belief about value given that you win"},
+            {"letter": "E", "is_correct": false, "text": "The notes say the winner's curse is more severe with more bidders because the maximum of more estimates is further from the mean.", "section_ref": "Section 9.3: Winner's Curse", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "9.4 VCG and Other Auctions",
+      "questions": [
+        {
+          "id": "q21",
+          "source_ref": "Section 9.4: Reverse Auctions",
+          "text": "Which of the following correctly describe reverse auctions? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In a reverse auction, one buyer accepts bids from multiple sellers"},
+            {"letter": "B", "text": "Insurance quotes are given as an example of a reverse auction"},
+            {"letter": "C", "text": "The notes say the same analysis applies as in regular auctions after swapping buyer and seller roles and negating prices"},
+            {"letter": "D", "text": "A reverse auction is just another name for a double auction with many buyers and many sellers"},
+            {"letter": "E", "text": "Reverse auctions invert the direction of competition relative to standard single-seller auctions"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition given in the notes.", "section_ref": "Section 9.4: Reverse Auctions", "notes_quote": "One buyer accepts bids from multiple sellers"},
+            {"letter": "B", "is_correct": true, "text": "Insurance quotes are the example used in the notes.", "section_ref": "Section 9.4: Reverse Auctions", "notes_quote": "(e.g., insurance quotes)"},
+            {"letter": "C", "is_correct": true, "text": "The notes explicitly state this transformation of the standard analysis.", "section_ref": "Section 9.4: Reverse Auctions", "notes_quote": "Same analysis as regular auctions but swap buyer/seller and negate prices"},
+            {"letter": "D", "is_correct": false, "text": "A double auction has many buyers and many sellers, whereas a reverse auction has one buyer and multiple sellers.", "section_ref": "Section 9.4: Reverse Auctions", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Competition is among sellers rather than among buyers, so the direction of competition is reversed.", "section_ref": "Section 9.4: Reverse Auctions", "notes_quote": "One buyer accepts bids from multiple sellers"}
+          ]
+        },
+        {
+          "id": "q22",
+          "source_ref": "Section 9.4: Auctions with Entry Costs",
+          "text": "Which of the following correctly describe auctions with entry costs? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Entry costs can include researching, driving, or time spent participating"},
+            {"letter": "B", "text": "In second-price and English auctions, once a bidder decides to enter, truthful bidding remains optimal"},
+            {"letter": "C", "text": "In first-price auctions, the equilibrium strategy becomes harder to analyse because it depends on the number of participants"},
+            {"letter": "D", "text": "The notes say entry costs have no effect on strategic analysis in any auction format"},
+            {"letter": "E", "text": "Entry costs matter before bidding even if truthful bidding remains optimal after entry in some formats"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These are the examples of participation costs listed in the notes.", "section_ref": "Section 9.4: Auctions with Entry Costs", "notes_quote": "Bidders pay a cost to participate (researching, driving, time)"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly preserve truthful bidding after the entry decision in these formats.", "section_ref": "Section 9.4: Auctions with Entry Costs", "notes_quote": "For second-price/English: once you decide to enter, truthful bidding remains optimal"},
+            {"letter": "C", "is_correct": true, "text": "The notes say first-price equilibrium depends on the number of participants and is harder to analyse.", "section_ref": "Section 9.4: Auctions with Entry Costs", "notes_quote": "For first-price: equilibrium strategy depends on number of participants -- harder to analyse"},
+            {"letter": "D", "is_correct": false, "text": "The notes explicitly distinguish the strategic effects across formats, so entry costs do affect the analysis.", "section_ref": "Section 9.4: Auctions with Entry Costs", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The notes separate the participation decision from the bidding decision, showing entry costs matter even when truthful bidding remains optimal after entry.", "section_ref": "Section 9.4: Auctions with Entry Costs", "notes_quote": "once you decide to enter, truthful bidding remains optimal"}
+          ]
+        },
+        {
+          "id": "q23",
+          "source_ref": "Section 9.4: Multi-Unit Auctions",
+          "text": "Which of the following correctly describe multi-unit auctions in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A multi-unit auction sells $k$ identical copies of one good to multiple bidders"},
+            {"letter": "B", "text": "Under discriminatory pricing, each winning bidder pays their own bid"},
+            {"letter": "C", "text": "Under uniform pricing, all winners pay the same price such as the highest losing bid or lowest winning bid"},
+            {"letter": "D", "text": "An all-or-nothing bid means the bidder names a quantity and will accept any smaller quantity at the same per-unit price"},
+            {"letter": "E", "text": "A divisible bid means the bidder names a quantity but accepts any smaller number at the same per-unit price"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the setup stated in the notes.", "section_ref": "Section 9.4: Multi-Unit Auctions", "notes_quote": "$k$ identical copies of one good, multiple bidders"},
+            {"letter": "B", "is_correct": true, "text": "This is the definition of discriminatory pricing in the notes.", "section_ref": "Section 9.4: Multi-Unit Auctions", "notes_quote": "Discriminatory pricing: each winning bidder pays their own bid"},
+            {"letter": "C", "is_correct": true, "text": "This is the definition of uniform pricing in the notes.", "section_ref": "Section 9.4: Multi-Unit Auctions", "notes_quote": "Uniform pricing: all winners pay the same (highest losing bid or lowest winning bid)"},
+            {"letter": "D", "is_correct": false, "text": "That description belongs to divisible bids. All-or-nothing means the bidder names a quantity and will not accept fewer.", "section_ref": "Section 9.4: Multi-Unit Auctions", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is exactly how divisible bids are defined in the notes.", "section_ref": "Section 9.4: Multi-Unit Auctions", "notes_quote": "Divisible: bidder names a quantity but accepts any smaller number at same per-unit price"}
+          ]
+        },
+        {
+          "id": "q24",
+          "source_ref": "Section 9.4: K+1 Price Auction (Multi-Unit Vickrey)",
+          "text": "Which of the following correctly describe the $(k+1)$-price auction? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "It applies to $k$ identical goods when bidders have single-unit demand"},
+            {"letter": "B", "text": "The $k$ goods are sold to the $k$ highest bidders"},
+            {"letter": "C", "text": "Each winner pays the $(k+1)$-st highest bid"},
+            {"letter": "D", "text": "The notes describe it as a special case of VCG"},
+            {"letter": "E", "text": "Each winner pays their own bid, so it is just discriminatory pricing under another name"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes specify single-unit demand as part of the setting.", "section_ref": "Section 9.4: K+1 Price Auction (Multi-Unit Vickrey)", "notes_quote": "For $k$ identical goods with single-unit demand"},
+            {"letter": "B", "is_correct": true, "text": "This is the allocation rule stated in the notes.", "section_ref": "Section 9.4: K+1 Price Auction (Multi-Unit Vickrey)", "notes_quote": "Sell $k$ goods to the $k$ highest bidders"},
+            {"letter": "C", "is_correct": true, "text": "This is the pricing rule stated in the notes.", "section_ref": "Section 9.4: K+1 Price Auction (Multi-Unit Vickrey)", "notes_quote": "Price = $(k+1)$-st highest bid (same for all winners)"},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly identify this auction as a special case of VCG.", "section_ref": "Section 9.4: K+1 Price Auction (Multi-Unit Vickrey)", "notes_quote": "This is a special case of VCG"},
+            {"letter": "E", "is_correct": false, "text": "The $(k+1)$-price auction charges the common $(k+1)$-st highest bid, not each winner's own bid.", "section_ref": "Section 9.4: K+1 Price Auction (Multi-Unit Vickrey)", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q25",
+          "source_ref": "Section 9.4: Combinatorial Auctions",
+          "text": "Which of the following correctly describe combinatorial auctions and their formal model? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Combinatorial auctions involve multiple different goods, and bidders may value combinations of goods"},
+            {"letter": "B", "text": "They are useful when complementarities matter, so valuations depend on which set of goods a bidder receives"},
+            {"letter": "C", "text": "A mechanism is represented as a pair $(F,T)$ of allocation and transfer functions"},
+            {"letter": "D", "text": "The utility formula is $u_i(x,t,\\theta_i) = v(x_i,\\theta_i) + t_i$, where $t_i < 0$ means the agent pays"},
+            {"letter": "E", "text": "Combinatorial auctions assume bidders care only about single items and never about subsets"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the basic description of combinatorial auctions in the notes.", "section_ref": "Section 9.4: Combinatorial Auctions", "notes_quote": "Multiple different goods; bidders value combinations of goods"},
+            {"letter": "B", "is_correct": true, "text": "The notes motivate combinatorial auctions using complementarities across sets of goods.", "section_ref": "Section 9.4: Combinatorial Auctions", "notes_quote": "Valuations depend strongly on which set of goods a bidder receives (complementarities)"},
+            {"letter": "C", "is_correct": true, "text": "The formal model defines a mechanism as the pair $(F,T)$.", "section_ref": "Section 9.4: Combinatorial Auctions", "notes_quote": "A mechanism is a pair $(F, T)$"},
+            {"letter": "D", "is_correct": true, "text": "This quasi-linear utility formula is stated directly in the notes.", "section_ref": "Section 9.4: Combinatorial Auctions", "notes_quote": "Utility (quasi-linear): $u_i(x, t, \\theta_i) = v(x_i, \\theta_i) + t_i$ (where $t_i < 0$ means agent pays)"},
+            {"letter": "E", "is_correct": false, "text": "The whole point of combinatorial auctions is that bidders value subsets or bundles, not just isolated single items.", "section_ref": "Section 9.4: Combinatorial Auctions", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q26",
+          "source_ref": "Section 9.4: The VCG Mechanism",
+          "text": "Which of the following correctly describe the VCG allocation and transfer rules? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The allocation function chooses a feasible allocation that maximises total reported welfare"},
+            {"letter": "B", "text": "The transfer for agent $i$ is based on the effect of their presence on the welfare of the other agents"},
+            {"letter": "C", "text": "The first term in $t_i$ is the total value of other agents under the allocation with $i$ present"},
+            {"letter": "D", "text": "The second term in $t_i$ is the maximum total value of the other agents without $i$"},
+            {"letter": "E", "text": "If $t_i < 0$, the mechanism pays agent $i$ because their presence helps others"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the VCG allocation rule stated in the notes.", "section_ref": "Section 9.4: The VCG Mechanism", "notes_quote": "Choose the allocation that maximises total reported welfare"},
+            {"letter": "B", "is_correct": true, "text": "The notes interpret the transfer as the externality imposed on others.", "section_ref": "Section 9.4: The VCG Mechanism", "notes_quote": "Pay each agent the amount by which their presence affects other participants"},
+            {"letter": "C", "is_correct": true, "text": "This is exactly how the first term is explained in the notes.", "section_ref": "Section 9.4: The VCG Mechanism", "notes_quote": "First term: total value of other agents under allocation with $i$ present"},
+            {"letter": "D", "is_correct": true, "text": "This is exactly how the second term is explained in the notes.", "section_ref": "Section 9.4: The VCG Mechanism", "notes_quote": "Second term: maximum total value of other agents without $i$"},
+            {"letter": "E", "is_correct": false, "text": "If $t_i < 0$, the notes say agent $i$ pays the mechanism because their presence hurts others by displacing them.", "section_ref": "Section 9.4: The VCG Mechanism", "notes_quote": "If $t_i < 0$: agent $i$ pays to the mechanism"}
+          ]
+        },
+        {
+          "id": "q27",
+          "source_ref": "Section 9.4: Second-Price Auction as Special Case of VCG",
+          "text": "Which of the following correctly explain how the second-price auction is a special case of VCG? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The allocation gives the item to the highest bidder"},
+            {"letter": "B", "text": "For the winner, the transfer is $t_{\\text{winner}} = 0 - \\theta_{(2)} = -\\theta_{(2)}$"},
+            {"letter": "C", "text": "For losing bidders, $t_i = 0$ because they have no effect on the allocation"},
+            {"letter": "D", "text": "This reproduces the rule that the winner pays the second-highest bid"},
+            {"letter": "E", "text": "This special case shows that the winner in a second-price auction pays their own bid whenever they are efficient"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes describe the allocation as giving the item to the highest bidder.", "section_ref": "Section 9.4: Second-Price Auction as Special Case of VCG", "notes_quote": "Allocation: give item to highest bidder (efficient)"},
+            {"letter": "B", "is_correct": true, "text": "The transfer formula for the winner is written exactly this way in the notes.", "section_ref": "Section 9.4: Second-Price Auction as Special Case of VCG", "notes_quote": "$t_{\\text{winner}} = 0 - \\theta_{(2)} = -\\theta_{(2)}$"},
+            {"letter": "C", "is_correct": true, "text": "The notes say losers have zero transfer because they do not affect the allocation.", "section_ref": "Section 9.4: Second-Price Auction as Special Case of VCG", "notes_quote": "Transfer for losers: $t_i = 0$ (no effect on allocation)"},
+            {"letter": "D", "is_correct": true, "text": "The transfer rule exactly reproduces the second-price payment rule.", "section_ref": "Section 9.4: Second-Price Auction as Special Case of VCG", "notes_quote": "pay the second-highest bid"},
+            {"letter": "E", "is_correct": false, "text": "The special case shows the winner pays the second-highest bid, not their own bid.", "section_ref": "Section 9.4: Second-Price Auction as Special Case of VCG", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q28",
+          "source_ref": "Section 9.4: Properties of VCG",
+          "text": "Which of the following properties of VCG are stated in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "VCG is efficient because it maximises total welfare"},
+            {"letter": "B", "text": "VCG is dominant-strategy truthful"},
+            {"letter": "C", "text": "VCG is individually rational"},
+            {"letter": "D", "text": "VCG is weakly budget-balanced but not strongly budget-balanced"},
+            {"letter": "E", "text": "VCG is strongly budget-balanced because it never has surplus"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes list efficiency and explain it as welfare maximisation.", "section_ref": "Section 9.4: Properties of VCG", "notes_quote": "Efficient | Yes -- maximises total welfare"},
+            {"letter": "B", "is_correct": true, "text": "Truthfulness in dominant strategies is listed explicitly.", "section_ref": "Section 9.4: Properties of VCG", "notes_quote": "Dominant-strategy truthful | Yes -- truthful reporting is weakly dominant"},
+            {"letter": "C", "is_correct": true, "text": "Individual rationality is listed explicitly.", "section_ref": "Section 9.4: Properties of VCG", "notes_quote": "Individually rational | Yes -- every agent gets non-negative utility"},
+            {"letter": "D", "is_correct": true, "text": "The notes distinguish weak from strong budget balance and say only the weak version holds.", "section_ref": "Section 9.4: Properties of VCG", "notes_quote": "Weakly budget-balanced | Yes -- never pays more than it collects"},
+            {"letter": "E", "is_correct": false, "text": "The notes say VCG is not strongly budget-balanced and may have surplus.", "section_ref": "Section 9.4: Properties of VCG", "notes_quote": "Strongly budget-balanced | No -- may have surplus"}
+          ]
+        },
+        {
+          "id": "q29",
+          "source_ref": "Section 9.4: Double Auctions",
+          "text": "Which of the following correctly describe double auctions? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Double auctions involve many buyers and many sellers"},
+            {"letter": "B", "text": "Financial and stock markets are given as typical examples"},
+            {"letter": "C", "text": "In a continuous double auction, buyers and sellers bid at their own pace continuously"},
+            {"letter": "D", "text": "Trades occur where a buyer's bid is at least as high as a seller's ask"},
+            {"letter": "E", "text": "The equilibrium price is defined as the midpoint between the highest buyer bid and lowest seller ask regardless of supply and demand"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the basic definition given in the notes.", "section_ref": "Section 9.4: Double Auctions", "notes_quote": "Many buyers and many sellers -- typical in financial/stock markets"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly mention financial and stock markets as the typical setting.", "section_ref": "Section 9.4: Double Auctions", "notes_quote": "typical in financial/stock markets"},
+            {"letter": "C", "is_correct": true, "text": "This is the definition of a continuous double auction in the notes.", "section_ref": "Section 9.4: Double Auctions", "notes_quote": "Continuous double auction: buyers and sellers bid at their own pace, continuously"},
+            {"letter": "D", "is_correct": true, "text": "This is the trade condition stated in the notes.", "section_ref": "Section 9.4: Double Auctions", "notes_quote": "Trades occur for buyer-seller pairs where buyer's bid $\\geq$ seller's ask"},
+            {"letter": "E", "is_correct": false, "text": "The notes define the equilibrium price as where the demand curve meets the supply curve, not as a simple midpoint rule.", "section_ref": "Section 9.4: Double Auctions", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "Exercises and Solutions",
+      "questions": [
+        {
+          "id": "q30",
+          "source_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue",
+          "text": "In LGT Exercise 1 on second-price auction expected revenue, which of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "With two bidders whose values are each in $\\{1,2\\}$ with probability $1/2$, the expected revenue is $\\frac{5}{4}$"},
+            {"letter": "B", "text": "With three such bidders, the expected revenue is $\\frac{3}{2}$"},
+            {"letter": "C", "text": "As the number of bidders increases, the expected revenue increases because the expected second-highest bid grows"},
+            {"letter": "D", "text": "With reserve price $R$ satisfying $1 < R < 2$ and two bidders, expected revenue is $\\frac{R+1}{2}$"},
+            {"letter": "E", "text": "The notes conclude that a reserve price is beneficial whenever $R \\geq 1$"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the expected revenue computed in part (a).", "section_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue", "notes_quote": "$$E[\\text{revenue}] = 1 \\cdot \\frac{3}{4} + 2 \\cdot \\frac{1}{4} = \\frac{5}{4}$$"},
+            {"letter": "B", "is_correct": true, "text": "This is the expected revenue computed in part (b).", "section_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue", "notes_quote": "$$E[\\text{revenue}] = 1 \\cdot \\frac{1}{2} + 2 \\cdot \\frac{1}{2} = \\frac{3}{2}$$"},
+            {"letter": "C", "is_correct": true, "text": "Part (c) states exactly this comparative-static conclusion.", "section_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue", "notes_quote": "As number of bidders increases, expected revenue increases because the expected second-highest bid grows"},
+            {"letter": "D", "is_correct": true, "text": "This is the formula derived in part (d).", "section_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue", "notes_quote": "$$E[\\text{revenue}] = 0 \\cdot \\frac{1}{4} + R \\cdot \\frac{2}{4} + 2 \\cdot \\frac{1}{4} = \\frac{R+1}{2}$$"},
+            {"letter": "E", "is_correct": false, "text": "Part (e) says the reserve price is beneficial when $R \\geq \\frac{3}{2}$, not merely when $R \\geq 1$.", "section_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q31",
+          "source_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue",
+          "text": "Given the entry-fee subproblem from LGT Exercise 1 with fee 0.5, which of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "If only one bidder enters, their expected utility is $1$"},
+            {"letter": "B", "text": "If both bidders enter, each bidder's expected utility is $-\\frac{1}{4}$ after paying the fee"},
+            {"letter": "C", "text": "The payoff matrix is:\n\n|  | Yes | No |\n|--|-----|-----|\n| **Yes** | $-1/4, -1/4$ | $1, 0$ |\n| **No** | $0, 1$ | $0, 0$ |"},
+            {"letter": "D", "text": "Both entering is not an equilibrium"},
+            {"letter": "E", "text": "The unique equilibrium is that both bidders enter because entry is always profitable"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes compute $E[v]-0.5 = 1.5-0.5 = 1$ when only one bidder enters.", "section_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue", "notes_quote": "If only one bidder enters: expected utility = $E[v] - 0.5 = 1.5 - 0.5 = 1$"},
+            {"letter": "B", "is_correct": true, "text": "The notes compute $1/4 - 1/2 = -1/4$ when both enter.", "section_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue", "notes_quote": "If both enter: expected utility from auction = $1/4$ ... minus fee = $1/4 - 1/2 = -1/4$"},
+            {"letter": "C", "is_correct": true, "text": "This matrix is reproduced exactly from the notes.", "section_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue", "notes_quote": "| **Yes** | $-1/4, -1/4$ | $1, 0$ |"},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly say both entering is not an equilibrium because $-1/4 < 0$.", "section_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue", "notes_quote": "Both entering is not an equilibrium ($-1/4 < 0$)"},
+            {"letter": "E", "is_correct": false, "text": "The notes say the equilibria are asymmetric: one bidder enters and the other stays out.", "section_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q32",
+          "source_ref": "Section Exercises: LGT Exercise 2: Revenue Equivalence Discussion",
+          "text": "According to LGT Exercise 2, why might truthful auctions be preferred despite revenue equivalence? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Revenue equivalence relies on strong assumptions such as rationality, BNE play, and common knowledge of distributions"},
+            {"letter": "B", "text": "Dominant-strategy truthful auctions require fewer assumptions"},
+            {"letter": "C", "text": "When true valuations are revealed, efficient allocation maximising social welfare can be implemented"},
+            {"letter": "D", "text": "Truthful auctions are preferred because the theorem proves they always earn strictly more revenue"},
+            {"letter": "E", "text": "The exercise argues for truthful auctions on robustness grounds rather than on guaranteed higher revenue"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first reason listed in the exercise discussion.", "section_ref": "Section Exercises: LGT Exercise 2: Revenue Equivalence Discussion", "notes_quote": "Revenue equivalence requires strong assumptions (rationality, BNE play, common knowledge of distributions)"},
+            {"letter": "B", "is_correct": true, "text": "This is the second reason listed.", "section_ref": "Section Exercises: LGT Exercise 2: Revenue Equivalence Discussion", "notes_quote": "Dominant-strategy truthful auctions need fewer assumptions"},
+            {"letter": "C", "is_correct": true, "text": "The exercise explicitly links truthful revelation to efficient allocation.", "section_ref": "Section Exercises: LGT Exercise 2: Revenue Equivalence Discussion", "notes_quote": "When true valuations are revealed, efficient allocation (maximising social welfare) can be implemented"},
+            {"letter": "D", "is_correct": false, "text": "The exercise does not claim strictly higher revenue; it emphasises weaker assumptions and implementability of efficiency.", "section_ref": "Section Exercises: LGT Exercise 2: Revenue Equivalence Discussion", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The preference is justified by robustness and implementability, not by a theorem of strictly higher revenue.", "section_ref": "Section Exercises: LGT Exercise 2: Revenue Equivalence Discussion", "notes_quote": "Dominant-strategy truthful auctions need fewer assumptions"}
+          ]
+        },
+        {
+          "id": "q33",
+          "source_ref": "Section Exercises: LGT Exercise 3: Direct vs. Indirect Mechanisms",
+          "text": "Which of the following correctly distinguish direct and indirect mechanisms? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A direct mechanism asks agents to report their private valuations or types directly"},
+            {"letter": "B", "text": "A sealed-bid Vickrey auction is given as an example of a direct mechanism"},
+            {"letter": "C", "text": "An indirect mechanism has agents interact through actions or information such as price updates rather than directly reporting types"},
+            {"letter": "D", "text": "English and Dutch auctions are given as examples of indirect mechanisms"},
+            {"letter": "E", "text": "The notes define direct mechanisms as those where agents never reveal any private information to the mechanism"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition of a direct mechanism in the notes.", "section_ref": "Section Exercises: LGT Exercise 3: Direct vs. Indirect Mechanisms", "notes_quote": "A mechanism is direct if bidders directly report their private valuation (\"type\") to the mechanism"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly cite sealed-bid Vickrey as a direct mechanism.", "section_ref": "Section Exercises: LGT Exercise 3: Direct vs. Indirect Mechanisms", "notes_quote": "(e.g., sealed-bid Vickrey)"},
+            {"letter": "C", "is_correct": true, "text": "This is the definition of an indirect mechanism in the notes.", "section_ref": "Section Exercises: LGT Exercise 3: Direct vs. Indirect Mechanisms", "notes_quote": "A mechanism is indirect if bidders interact by acting on information (like price updates) rather than reporting valuations"},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly cite English and Dutch auctions as indirect mechanisms.", "section_ref": "Section Exercises: LGT Exercise 3: Direct vs. Indirect Mechanisms", "notes_quote": "(e.g., English, Dutch auctions)"},
+            {"letter": "E", "is_correct": false, "text": "Direct mechanisms are defined by direct type reporting, not by the absence of private information revelation.", "section_ref": "Section Exercises: LGT Exercise 3: Direct vs. Indirect Mechanisms", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q34",
+          "source_ref": "Section Exercises: Revelation Principle",
+          "text": "Which of the following correctly state the Revelation Principle and its significance? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "If a social choice function is implementable in Bayesian Nash equilibrium by some mechanism, then it is also implementable by a direct incentive-compatible mechanism"},
+            {"letter": "B", "text": "In the direct revelation mechanism, truthful reporting is a Bayes-Nash equilibrium"},
+            {"letter": "C", "text": "On truthful reports, the direct mechanism reproduces the same social choice function $f(\\theta)$"},
+            {"letter": "D", "text": "The significance is that implementability can be studied by focusing on incentive-compatible direct mechanisms without loss of generality"},
+            {"letter": "E", "text": "The Revelation Principle says every indirect mechanism is impossible, so only direct mechanisms matter in practice"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the theorem statement in the notes.", "section_ref": "Section Exercises: Revelation Principle", "notes_quote": "Any social choice function ... that is implementable in (Bayesian Nash) equilibrium by some mechanism is also implementable by a direct, incentive-compatible mechanism"},
+            {"letter": "B", "is_correct": true, "text": "Truthful reporting as a BNE is part of the formal statement.", "section_ref": "Section Exercises: Revelation Principle", "notes_quote": "Truthful reporting $\\hat{\\theta}_i = \\theta_i$ is a BNE"},
+            {"letter": "C", "is_correct": true, "text": "The direct mechanism is required to reproduce the same outcome function on truthful reports.", "section_ref": "Section Exercises: Revelation Principle", "notes_quote": "The outcome on truthful reports is exactly $f(\\theta)$"},
+            {"letter": "D", "is_correct": true, "text": "This is the significance paragraph given in the notes.", "section_ref": "Section Exercises: Revelation Principle", "notes_quote": "To study what is implementable, we can focus on incentive-compatible direct mechanisms without loss of generality"},
+            {"letter": "E", "is_correct": false, "text": "The principle does not say indirect mechanisms are impossible; it says any implementable outcome via some mechanism can also be implemented by a suitable direct mechanism.", "section_ref": "Section Exercises: Revelation Principle", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q35",
+          "source_ref": "Section Exercises: SGT Exercise 1: VCG with Multiple Identical Items",
+          "text": "In SGT Exercise 1 with 5 identical items and valuations $v_1=70, v_2=30, v_3=27, v_4=25, v_5=12, v_6=5, v_7=2$, which of the following are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The 5 items are allocated to buyers 1, 2, 3, 4, and 5"},
+            {"letter": "B", "text": "Each winner pays 5, the 6th-highest valuation"},
+            {"letter": "C", "text": "For buyers 6 and 7, the transfer is 0"},
+            {"letter": "D", "text": "The general rule is that in a $k$-item single-unit-demand auction, each winner pays the $(k+1)$-st highest bid"},
+            {"letter": "E", "text": "Buyer 1 pays 70 because VCG charges each winner their own valuation in this setting"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes allocate the items to the five highest-valued buyers.", "section_ref": "Section Exercises: SGT Exercise 1: VCG with Multiple Identical Items", "notes_quote": "Items go to the 5 highest bidders: buyers 1, 2, 3, 4, 5"},
+            {"letter": "B", "is_correct": true, "text": "The transfer calculation shows each winner pays the 6th-highest valuation, which is 5.", "section_ref": "Section Exercises: SGT Exercise 1: VCG with Multiple Identical Items", "notes_quote": "Each winner pays 5 (the 6th highest valuation)"},
+            {"letter": "C", "is_correct": true, "text": "The notes explicitly state $t_i = 0$ for buyers 6 and 7.", "section_ref": "Section Exercises: SGT Exercise 1: VCG with Multiple Identical Items", "notes_quote": "For $i = 6, 7$: $t_i = 0$"},
+            {"letter": "D", "is_correct": true, "text": "This is the general rule extracted in part (c).", "section_ref": "Section Exercises: SGT Exercise 1: VCG with Multiple Identical Items", "notes_quote": "In $k$-item, single-unit demand auction, VCG allocates to $k$ highest bidders, each paying the $(k+1)$-st highest bid"},
+            {"letter": "E", "is_correct": false, "text": "VCG charges the externality imposed on others, which here equals 5 for each winner, not their own valuation.", "section_ref": "Section Exercises: SGT Exercise 1: VCG with Multiple Identical Items", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q36",
+          "source_ref": "Section Exercises: SGT Exercise 2: VCG Combinatorial Auction",
+          "text": "In SGT Exercise 2 with items $\\{A,B\\}$ and valuations:\n\n| | $\\emptyset$ | $A$ | $B$ | $\\{A,B\\}$ |\n|--|---|---|---|---|\n| Buyer 1 | 0 | 5 | 3 | 23 |\n| Buyer 2 | 0 | 3 | 12 | 15 |\n| Buyer 3 | 0 | 15 | 5 | 18 |\n\nWhich of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The efficient allocation is to give $A$ to buyer 3 and $B$ to buyer 2, for total welfare 27"},
+            {"letter": "B", "text": "Buyer 3's transfer is $t_3 = 12 - 23 = -11$, so buyer 3 pays 11"},
+            {"letter": "C", "text": "Buyer 2's transfer is $t_2 = 15 - 23 = -8$, so buyer 2 pays 8"},
+            {"letter": "D", "text": "Buyer 1 has transfer 0 because they do not affect the chosen allocation"},
+            {"letter": "E", "text": "The mechanism is strongly budget-balanced because it collects exactly 23, matching buyer 1's losing bundle bid"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes compare giving both items to buyer 1 with splitting them and conclude the split allocation yields welfare 27.", "section_ref": "Section Exercises: SGT Exercise 2: VCG Combinatorial Auction", "notes_quote": "Efficient allocation: buyer 3 gets A, buyer 2 gets B. Welfare = 27"},
+            {"letter": "B", "is_correct": true, "text": "This transfer is computed explicitly in the notes.", "section_ref": "Section Exercises: SGT Exercise 2: VCG Combinatorial Auction", "notes_quote": "$t_3 = 12 - 23 = -11$ (buyer 3 pays 11)"},
+            {"letter": "C", "is_correct": true, "text": "This transfer is also computed explicitly in the notes.", "section_ref": "Section Exercises: SGT Exercise 2: VCG Combinatorial Auction", "notes_quote": "$t_2 = 15 - 23 = -8$ (buyer 2 pays 8)"},
+            {"letter": "D", "is_correct": true, "text": "The notes state $t_1 = 0$ because buyer 1 has no effect on the allocation.", "section_ref": "Section Exercises: SGT Exercise 2: VCG Combinatorial Auction", "notes_quote": "$t_1 = 0$ (no effect on allocation)"},
+            {"letter": "E", "is_correct": false, "text": "The notes say the mechanism collects 19, not 23, and is weakly but not strongly budget-balanced.", "section_ref": "Section Exercises: SGT Exercise 2: VCG Combinatorial Auction", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q37",
+          "source_ref": "Section Exercises: SGT Exercise 2: VCG Combinatorial Auction",
+          "text": "Which of the following conclusions from SGT Exercise 2 are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Buyer 1 could object that they bid 23 for $\\{A,B\\}$ but the mechanism sold the items for only 19 in total"},
+            {"letter": "B", "text": "The mechanism is weakly budget-balanced because it collects 19 and pays out 0"},
+            {"letter": "C", "text": "The mechanism is individually rational because the resulting utilities are $u_1=0$, $u_2=4$, and $u_3=4$"},
+            {"letter": "D", "text": "The exercise concludes the mechanism is not strongly budget-balanced because it has positive surplus"},
+            {"letter": "E", "text": "The exercise concludes buyer 2 and buyer 3 both receive negative utility after transfers"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This objection is stated explicitly in part (b).", "section_ref": "Section Exercises: SGT Exercise 2: VCG Combinatorial Auction", "notes_quote": "Buyer 1 could object that she was willing to pay more"},
+            {"letter": "B", "is_correct": true, "text": "Part (c) states that the mechanism collects 19 and pays 0, so it is weakly budget-balanced.", "section_ref": "Section Exercises: SGT Exercise 2: VCG Combinatorial Auction", "notes_quote": "Mechanism collects 19, pays 0. Surplus = 19 > 0. Weakly budget-balanced but not strongly"},
+            {"letter": "C", "is_correct": true, "text": "Part (d) computes these utilities and uses them to show individual rationality.", "section_ref": "Section Exercises: SGT Exercise 2: VCG Combinatorial Auction", "notes_quote": "$u_1 = 0 \\geq 0$, $u_2 = 12 - 8 = 4 \\geq 0$, $u_3 = 15 - 11 = 4 \\geq 0$"},
+            {"letter": "D", "is_correct": true, "text": "Positive surplus is exactly why strong budget balance fails here.", "section_ref": "Section Exercises: SGT Exercise 2: VCG Combinatorial Auction", "notes_quote": "Weakly budget-balanced but not strongly"},
+            {"letter": "E", "is_correct": false, "text": "The notes compute positive utilities of 4 for both buyer 2 and buyer 3, not negative utilities.", "section_ref": "Section Exercises: SGT Exercise 2: VCG Combinatorial Auction", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q38",
+          "source_ref": "Section Exercises: SGT Exercise 3: Double Auction",
+          "text": "In SGT Exercise 3 with buyers having limit prices 2, 4, 6, 8, 10 and sellers having limit prices 4, 8, 12, which of the following are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The equilibrium price is \\pounds 8"},
+            {"letter": "B", "text": "At price 8, the buyers with limit prices 8 and 10 transact"},
+            {"letter": "C", "text": "At price 8, the sellers with limit prices 4 and 8 transact"},
+            {"letter": "D", "text": "At price 8, the seller with limit price 12 also transacts"},
+            {"letter": "E", "text": "The exercise illustrates that double-auction equilibrium is determined by matching supply and demand at a market-clearing price"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The equilibrium price is stated directly in the notes.", "section_ref": "Section Exercises: SGT Exercise 3: Double Auction", "notes_quote": "Equilibrium price: \\pounds 8"},
+            {"letter": "B", "is_correct": true, "text": "The notes identify the buyers at 8 and 10 as the transacting buyers.", "section_ref": "Section Exercises: SGT Exercise 3: Double Auction", "notes_quote": "Buyers with limit prices $\\geq 8$: buyers at 8 and 10 transact"},
+            {"letter": "C", "is_correct": true, "text": "The notes identify the sellers at 4 and 8 as the transacting sellers.", "section_ref": "Section Exercises: SGT Exercise 3: Double Auction", "notes_quote": "Sellers with limit prices $\\leq 8$: sellers at 4 and 8 transact"},
+            {"letter": "D", "is_correct": false, "text": "A seller with limit price 12 does not transact at price 8 because 12 exceeds the equilibrium price.", "section_ref": "Section Exercises: SGT Exercise 3: Double Auction", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The exercise is a concrete instance of the supply-demand intersection idea from the double-auction section.", "section_ref": "Section Exercises: SGT Exercise 3: Double Auction", "notes_quote": "Equilibrium price: \\pounds 8"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "Key Definitions",
+      "questions": [
+        {
+          "id": "q39",
+          "source_ref": "Section Key Definitions",
+          "text": "Which of the following correctly match key terms with their definitions from the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Mechanism design: engineering the rules of interaction so self-interested agents produce socially desirable outcomes"},
+            {"letter": "B", "text": "Private valuation $\\theta_i$: agent $i$'s willingness to pay, known only to themselves"},
+            {"letter": "C", "text": "Quasi-linear utility: $u_i = v_i(\\text{allocation}) - p_i$"},
+            {"letter": "D", "text": "Bayes-Nash equilibrium: a profile where no player can improve expected utility by unilateral deviation, given beliefs"},
+            {"letter": "E", "text": "Winner's curse: the winner always pays exactly their own bid in a first-price auction"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This definition appears verbatim in the key definitions table.", "section_ref": "Section Key Definitions", "notes_quote": "Mechanism design | Engineering the rules of interaction so self-interested agents produce socially desirable outcomes"},
+            {"letter": "B", "is_correct": true, "text": "This definition appears verbatim in the key definitions table.", "section_ref": "Section Key Definitions", "notes_quote": "Private valuation $\\theta_i$ | Agent $i$'s willingness to pay, known only to themselves"},
+            {"letter": "C", "is_correct": true, "text": "This formula appears verbatim in the key definitions table.", "section_ref": "Section Key Definitions", "notes_quote": "Quasi-linear utility | $u_i = v_i(\\text{allocation}) - p_i$"},
+            {"letter": "D", "is_correct": true, "text": "This definition appears verbatim in the key definitions table.", "section_ref": "Section Key Definitions", "notes_quote": "Bayes-Nash equilibrium | Strategy profile where no player can improve expected utility by unilateral deviation, given beliefs"},
+            {"letter": "E", "is_correct": false, "text": "Winner's curse is defined as the tendency for the winner to be the most optimistic estimator and therefore overpay in common-value auctions.", "section_ref": "Section Key Definitions", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q40",
+          "source_ref": "Section Key Definitions",
+          "text": "Which of the following correctly distinguish related mechanism-design concepts from the key definitions table? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Strategyproof or truthful means truthful reporting is a weakly dominant strategy"},
+            {"letter": "B", "text": "Weakly budget-balanced means the mechanism never runs a deficit"},
+            {"letter": "C", "text": "Strongly budget-balanced means the mechanism collects exactly what it pays out, with no surplus and no deficit"},
+            {"letter": "D", "text": "A direct mechanism has agents report their types directly, whereas an indirect mechanism has them interact through actions such as bidding rounds"},
+            {"letter": "E", "text": "Revenue equivalence means all auctions are truthful whenever they are efficient"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition given for strategyproof or truthful mechanisms.", "section_ref": "Section Key Definitions", "notes_quote": "Strategyproof / Truthful | Truthful reporting is a (weakly) dominant strategy"},
+            {"letter": "B", "is_correct": true, "text": "This is the definition given for weak budget balance.", "section_ref": "Section Key Definitions", "notes_quote": "Weakly budget-balanced | Mechanism never runs a deficit"},
+            {"letter": "C", "is_correct": true, "text": "This is the definition given for strong budget balance.", "section_ref": "Section Key Definitions", "notes_quote": "Strongly budget-balanced | Mechanism collects exactly what it pays out (no surplus, no deficit)"},
+            {"letter": "D", "is_correct": true, "text": "These are the paired definitions of direct and indirect mechanisms in the table.", "section_ref": "Section Key Definitions", "notes_quote": "Direct mechanism | Agents report their types directly; mechanism computes outcome"},
+            {"letter": "E", "is_correct": false, "text": "Revenue equivalence concerns expected revenue under certain assumptions, not universal truthfulness of efficient auctions.", "section_ref": "Section Key Definitions", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "Learning Objectives — Integrative Questions",
+      "questions": [
+        {
+          "id": "q41",
+          "source_ref": "Learning Objective 1: core concepts of mechanism design",
+          "text": "Which of the following statements integrate the core concepts of mechanism design covered this week? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Mechanism design studies how to engineer rules so equilibrium outcomes satisfy objectives such as efficiency or truthful reporting"},
+            {"letter": "B", "text": "A social choice function can be studied through direct truthful mechanisms because of the Revelation Principle"},
+            {"letter": "C", "text": "Strategyproofness means truthful reporting is weakly dominant, as in the Vickrey auction and VCG"},
+            {"letter": "D", "text": "Mechanism design ignores incentive compatibility and focuses only on computational speed"},
+            {"letter": "E", "text": "Auctions are one important family of mechanisms for resource allocation and payment determination"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This combines the definition of mechanism design with its equilibrium-based objectives.", "section_ref": "Section 9.1: What is Mechanism Design?", "notes_quote": "design the game itself... so that certain objectives are achieved at equilibrium"},
+            {"letter": "B", "is_correct": true, "text": "The Revelation Principle is precisely what justifies focusing on direct truthful mechanisms.", "section_ref": "Section Exercises: Revelation Principle", "notes_quote": "we can focus on incentive-compatible direct mechanisms without loss of generality"},
+            {"letter": "C", "is_correct": true, "text": "The notes identify Vickrey as truthful and VCG as dominant-strategy truthful.", "section_ref": "Section 9.2: Vickrey Auction: Truthfulness", "notes_quote": "Such an auction is called truthful / strategyproof / incentive compatible in dominant strategies"},
+            {"letter": "D", "is_correct": false, "text": "Incentive compatibility is central to the week's material; the notes do not reduce mechanism design to computational speed alone.", "section_ref": "Section 9.1: What is Mechanism Design?", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This integrates the auction definition with the broader mechanism-design perspective.", "section_ref": "Section 9.1: What is an Auction?", "notes_quote": "any protocol that allows agents to indicate interest in resources and uses these indications to determine both an allocation and a set of payments"}
+          ]
+        },
+        {
+          "id": "q42",
+          "source_ref": "Learning Objective 2: model strategic environments using mechanisms",
+          "text": "Which of the following show how the notes model strategic environments using mechanisms? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Single-good auctions model private values, payments, and strategic bidding under incomplete information"},
+            {"letter": "B", "text": "Bayesian games model private types and beliefs through type spaces and a common prior"},
+            {"letter": "C", "text": "Combinatorial auctions model allocation over subsets of goods using valuation functions and feasible allocations"},
+            {"letter": "D", "text": "Double auctions model two-sided markets with buyers and sellers meeting at a supply-demand equilibrium price"},
+            {"letter": "E", "text": "The notes model all strategic environments as complete-information normal-form games only"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This summarises the single-good auction model in the notes.", "section_ref": "Section 9.2: Formal Model", "notes_quote": "Each buyer has a private valuation $\\theta_i$ ... Bidders maximise expected utility"},
+            {"letter": "B", "is_correct": true, "text": "This is the formal Bayesian-game framework introduced for auctions with private information.", "section_ref": "Section 9.2: Bayesian Games", "notes_quote": "A Bayesian game is a tuple $(N, (A_i, \\Theta_i, u_i)_{i \\in N}, Pr)$"},
+            {"letter": "C", "is_correct": true, "text": "This is the formal model of combinatorial auctions in the notes.", "section_ref": "Section 9.4: Combinatorial Auctions", "notes_quote": "Valuation function $v(S, \\theta_i)$ for subset $S \\subseteq G$ and type $\\theta_i$"},
+            {"letter": "D", "is_correct": true, "text": "This is the market model used for double auctions.", "section_ref": "Section 9.4: Double Auctions", "notes_quote": "Equilibrium price: where demand curve meets supply curve"},
+            {"letter": "E", "is_correct": false, "text": "The notes explicitly move beyond complete information by introducing Bayesian games and private valuations.", "section_ref": "Section 9.2: Bayesian Games", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q43",
+          "source_ref": "Learning Objective 3: analyse key mechanism design theorems",
+          "text": "Which of the following are correct consequences of the key theorems discussed this week? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The Vickrey truthfulness theorem implies bidding your true valuation is weakly dominant in a second-price auction"},
+            {"letter": "B", "text": "The Revenue Equivalence Theorem implies the four classic auctions have the same expected revenue under its assumptions"},
+            {"letter": "C", "text": "The Revelation Principle implies implementability can be studied through direct truthful mechanisms without loss of generality"},
+            {"letter": "D", "text": "The first-price BNE theorem implies equilibrium bids are shaded below true values"},
+            {"letter": "E", "text": "These theorems together imply collusion is impossible in all truthful mechanisms"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the theorem stated for second-price auctions.", "section_ref": "Section 9.2: Vickrey Auction: Truthfulness", "notes_quote": "bidding your true valuation $\\theta_i$ is a weakly dominant strategy"},
+            {"letter": "B", "is_correct": true, "text": "This is the explicit consequence drawn from revenue equivalence.", "section_ref": "Section 9.2: Revenue Equivalence Theorem", "notes_quote": "All four classic auctions ... are revenue equivalent"},
+            {"letter": "C", "is_correct": true, "text": "This is the significance statement of the Revelation Principle.", "section_ref": "Section Exercises: Revelation Principle", "notes_quote": "we can focus on incentive-compatible direct mechanisms without loss of generality"},
+            {"letter": "D", "is_correct": true, "text": "This is the interpretation of the first-price BNE formula.", "section_ref": "Section 9.2: First-Price Sealed-Bid: BNE (Continuous)", "notes_quote": "Bidders shade their bid below their true value"},
+            {"letter": "E", "is_correct": false, "text": "The notes explicitly discuss collusion in second-price and English auctions, so truthfulness does not eliminate collusion.", "section_ref": "Section 9.3: Collusion", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q44",
+          "source_ref": "Learning Objective 4: evaluate efficiency, fairness, and manipulation",
+          "text": "Which of the following correctly evaluate mechanisms in terms of efficiency, fairness, and manipulation risks? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The first-price equilibrium with monotone bidding is efficient because the highest-value bidder wins"},
+            {"letter": "B", "text": "VCG is efficient and individually rational according to the notes"},
+            {"letter": "C", "text": "Second-price and English auctions can still be vulnerable to collusion or auctioneer manipulation"},
+            {"letter": "D", "text": "Winner's curse shows that even an apparently successful outcome can imply negative expected surplus conditional on winning"},
+            {"letter": "E", "text": "The notes conclude that truthful mechanisms are always strongly budget-balanced and immune to every manipulation"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes explicitly connect monotonicity to efficient allocation in first-price auctions.", "section_ref": "Section 9.2: First-Price Sealed-Bid: BNE (Continuous)", "notes_quote": "highest-value bidder always wins $\\implies$ auction is efficient"},
+            {"letter": "B", "is_correct": true, "text": "Both properties are listed in the VCG properties table.", "section_ref": "Section 9.4: Properties of VCG", "notes_quote": "Efficient | Yes -- maximises total welfare"},
+            {"letter": "C", "is_correct": true, "text": "The notes discuss both collusion and auctioneer manipulation in these formats.", "section_ref": "Section 9.3: Collusion", "notes_quote": "agents ... can benefit by coordinating bids"},
+            {"letter": "D", "is_correct": true, "text": "This is the formal content of the winner's curse inequality.", "section_ref": "Section 9.3: Winner's Curse", "notes_quote": "$E[\\text{value of item} - \\text{price} \\mid \\text{winning}] < 0$"},
+            {"letter": "E", "is_correct": false, "text": "The notes say VCG is not strongly budget-balanced and also discuss manipulation risks in truthful auctions such as second-price auctions.", "section_ref": "Section 9.4: Properties of VCG", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q45",
+          "source_ref": "Learning Objective 5: construct mechanisms for truthful reporting or revenue goals",
+          "text": "Which of the following correctly connect design principles to objectives such as truthful reporting or revenue? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Second-price auctions achieve truthful reporting by making payment depend on the second-highest bid rather than the winner's own bid"},
+            {"letter": "B", "text": "VCG generalises this idea by charging each agent the externality they impose on others"},
+            {"letter": "C", "text": "Reserve prices can change expected revenue, and in the worked example a seller benefits only when $R \\geq \\frac{3}{2}$"},
+            {"letter": "D", "text": "Revenue equivalence says auction design never matters for revenue under any circumstances"},
+            {"letter": "E", "text": "First-price auctions achieve truthful reporting in dominant strategies because bidders pay the second-highest bid"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the core reason behind Vickrey truthfulness in the notes.", "section_ref": "Section 9.2: Vickrey Auction: Truthfulness", "notes_quote": "Payment = second-highest bid (does not depend on your bid)"},
+            {"letter": "B", "is_correct": true, "text": "This is exactly how the VCG transfer rule is interpreted.", "section_ref": "Section 9.4: The VCG Mechanism", "notes_quote": "Pay each agent the amount by which their presence affects other participants"},
+            {"letter": "C", "is_correct": true, "text": "This is the reserve-price conclusion from the exercise.", "section_ref": "Section Exercises: LGT Exercise 1: Second-Price Auction Expected Revenue", "notes_quote": "Reserve price is beneficial when ... $R \\geq \\frac{3}{2}$"},
+            {"letter": "D", "is_correct": false, "text": "Revenue equivalence holds only under specific assumptions; the notes do not say design never matters in general.", "section_ref": "Section 9.2: Revenue Equivalence Theorem", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "First-price auctions are not truthful in dominant strategies; bidders shade bids below value and pay their own bids.", "section_ref": "Section 9.2: First-Price Sealed-Bid: BNE (Continuous)", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q46",
+          "source_ref": "Learning Objective 6: assess real-world applications",
+          "text": "Which of the following real-world applications or domains are explicitly connected to mechanism design and auctions in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Internet consumer websites"},
+            {"letter": "B", "text": "Government sales of electromagnetic spectrum"},
+            {"letter": "C", "text": "Financial markets as double auctions"},
+            {"letter": "D", "text": "Computational allocation of bandwidth or processing power"},
+            {"letter": "E", "text": "The notes say mechanism design has no applications in computer science"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is listed under the practical importance of auctions.", "section_ref": "Section 9.1: Why Auctions Matter", "notes_quote": "Millions use auctions daily on internet consumer websites"},
+            {"letter": "B", "is_correct": true, "text": "This is one of the explicit government applications in the notes.", "section_ref": "Section 9.1: Why Auctions Matter", "notes_quote": "Governments use auctions to sell public resources (e.g., electromagnetic spectrum)"},
+            {"letter": "C", "is_correct": true, "text": "The notes explicitly identify financial markets as double auctions.", "section_ref": "Section 9.1: Why Auctions Matter", "notes_quote": "All financial markets are a type of auction (double auctions)"},
+            {"letter": "D", "is_correct": true, "text": "The notes mention computational resource allocation as an auction application.", "section_ref": "Section 9.1: Why Auctions Matter", "notes_quote": "Used in computational settings to allocate bandwidth/processing power"},
+            {"letter": "E", "is_correct": false, "text": "The notes explicitly mention computer-science applications such as computational settings, grid computing, and multi-agent environments.", "section_ref": "Section 9.1: Why Auctions Matter", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q47",
+          "source_ref": "Learning Objective 7: trade-offs between robustness, practicality, and optimality",
+          "text": "Which of the following trade-offs between robustness, practicality, and optimality are highlighted by the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Truthful auctions are attractive because they require fewer behavioural assumptions than mechanisms justified only by Bayes-Nash equilibrium"},
+            {"letter": "B", "text": "Second-price and English auctions are attractive for truthfulness but still face collusion and manipulation concerns"},
+            {"letter": "C", "text": "VCG achieves efficiency and truthfulness but may fail strong budget balance by generating surplus"},
+            {"letter": "D", "text": "Dutch auctions may be more robust to collusion even though they are strategically equivalent to first-price auctions"},
+            {"letter": "E", "text": "The notes conclude there are no meaningful trade-offs because one mechanism is best on every criterion"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the main robustness point from the revenue-equivalence discussion.", "section_ref": "Section Exercises: LGT Exercise 2: Revenue Equivalence Discussion", "notes_quote": "Dominant-strategy truthful auctions need fewer assumptions"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly combine truthfulness with vulnerability to collusion and auctioneer manipulation.", "section_ref": "Section 9.3: Collusion", "notes_quote": "agents have no individual incentive to misreport, but they can benefit by coordinating bids"},
+            {"letter": "C", "is_correct": true, "text": "The VCG properties table states efficiency and truthfulness, while denying strong budget balance.", "section_ref": "Section 9.4: Properties of VCG", "notes_quote": "Strongly budget-balanced | No -- may have surplus"},
+            {"letter": "D", "is_correct": true, "text": "The notes say Dutch auctions are robust to collusion while also being strategically equivalent to first-price sealed-bid auctions.", "section_ref": "Section 9.2: Strategic Equivalences", "notes_quote": "Dutch auction $\\equiv$ First-price sealed-bid"},
+            {"letter": "E", "is_correct": false, "text": "The week repeatedly highlights trade-offs among efficiency, revenue, incentive compatibility, collusion resistance, and budget balance.", "section_ref": "Section 9.2: Setting", "notes_quote": ""}
+          ]
+        }
+      ]
+    }
+  ]
+}

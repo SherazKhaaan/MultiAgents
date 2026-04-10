@@ -1,0 +1,2823 @@
+{
+  "module": "MultiAgents",
+  "week": 1,
+  "title": "Non-Cooperative Games (Part I)",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "1. Introduction: Multi-Agent Systems and Game Theory",
+      "questions": [
+        {
+          "id": "q1",
+          "source_ref": "Section 1.1: Algorithmic Game Theory",
+          "text": "Which of the following correctly describe Algorithmic Game Theory (AGT)? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "AGT studies algorithms in strategic environments where inputs come from self-interested agents"},
+            {"letter": "B", "text": "AGT focuses exclusively on mechanism design, ignoring equilibrium computation and MARL"},
+            {"letter": "C", "text": "AGT combines tools from theoretical computer science and economics"},
+            {"letter": "D", "text": "AGT application areas include resource allocation, mechanism design, equilibrium computation, and multiagent RL"},
+            {"letter": "E", "text": "AGT was developed to eliminate strategic behaviour from multi-agent systems"}
+          ],
+          "correct": ["A", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "This is the core definition of AGT given in the notes.",
+              "section_ref": "Section 1.1: Algorithmic Game Theory",
+              "notes_quote": "the study of algorithms in strategic environments where the inputs come from self-interested agents"
+            },
+            {
+              "letter": "B",
+              "is_correct": false,
+              "text": "AGT covers four areas: resource allocation, mechanism design, equilibrium computation, and MARL. It is not limited to mechanism design alone.",
+              "section_ref": "Section 1.1: Algorithmic Game Theory",
+              "notes_quote": ""
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "AGT explicitly integrates tools from both fields to analyse equilibria and design mechanisms.",
+              "section_ref": "Section 1.1: Algorithmic Game Theory",
+              "notes_quote": "It combines tools from theoretical computer science and economics"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "All four areas are listed as key AGT application areas in the notes.",
+              "section_ref": "Section 1.1: Algorithmic Game Theory",
+              "notes_quote": "Resource Allocation and Scheduling... Mechanism Design for Incentives... Equilibrium Computation in Networked Agents... Multiagent Reinforcement Learning"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "AGT analyses and designs algorithms in the PRESENCE of strategic behaviour — it studies it, not eliminates it.",
+              "section_ref": "Section 1.1: Algorithmic Game Theory",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "source_ref": "Section 1.2: Computational Social Choice (COMSOC)",
+          "text": "Which of the following correctly describe Computational Social Choice (COMSOC)? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "COMSOC studies collective decision-making and preference aggregation using tools from CS, economics, and social choice theory"},
+            {"letter": "B", "text": "COMSOC is a subfield of AGT concerned exclusively with two-player auction design"},
+            {"letter": "C", "text": "COMSOC application areas include fair division, ranking and recommendation, and participatory budgeting"},
+            {"letter": "D", "text": "COMSOC asks how individual preferences can be combined into a collective decision while accounting for computational issues"},
+            {"letter": "E", "text": "COMSOC is concerned only with competitive, self-interested agents and ignores collective welfare"}
+          ],
+          "correct": ["A", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "This matches the definition given in the notes.",
+              "section_ref": "Section 1.2: Computational Social Choice (COMSOC)",
+              "notes_quote": "an interdisciplinary field that studies collective decision-making and preference aggregation using tools from computer science, economics, and social choice theory"
+            },
+            {
+              "letter": "B",
+              "is_correct": false,
+              "text": "COMSOC is a separate interdisciplinary field, not a subfield of AGT, and covers far more than auction design: fair division, ranking, participatory budgeting, and collective decisions.",
+              "section_ref": "Section 1.2: Computational Social Choice (COMSOC)",
+              "notes_quote": ""
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "These three are among the four key COMSOC application areas listed in the notes.",
+              "section_ref": "Section 1.2: Computational Social Choice (COMSOC)",
+              "notes_quote": "Fair Division... Ranking and Recommendation... Participatory Budgeting and Resource Assignment"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "This is the central question of COMSOC, explicitly stated in the notes.",
+              "section_ref": "Section 1.2: Computational Social Choice (COMSOC)",
+              "notes_quote": "how a group's individual preferences over alternatives can be combined into a collective decision, while explicitly accounting for computational issues"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "COMSOC is focused on collective welfare and group decision-making — it is not limited to competitive settings.",
+              "section_ref": "Section 1.2: Computational Social Choice (COMSOC)",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "source_ref": "Section 1.3: Multi-Agent Systems (MAS)",
+          "text": "Which of the following correctly describe Multi-Agent Systems (MAS) and non-cooperative games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A MAS is composed of multiple interacting software components (agents) that may be cooperative or competitive"},
+            {"letter": "B", "text": "The competitive case in MAS is modelled as a cooperative game with binding contracts among players"},
+            {"letter": "C", "text": "In a non-cooperative game, players strategically optimise their own utility functions"},
+            {"letter": "D", "text": "MAS agents can only model artificial software — not humans, companies, or nations"},
+            {"letter": "E", "text": "Non-cooperative games assume no binding contracts among players"}
+          ],
+          "correct": ["A", "C", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "The notes define MAS as a system of multiple interacting agents which may be cooperative or competitive.",
+              "section_ref": "Section 1.3: Multi-Agent Systems (MAS)",
+              "notes_quote": "a system composed of multiple interacting software components (agents), which may be: Cooperative... Competitive (self-interested)"
+            },
+            {
+              "letter": "B",
+              "is_correct": false,
+              "text": "The competitive case is modelled as a NON-cooperative game — there are no binding contracts among players.",
+              "section_ref": "Section 1.3: Multi-Agent Systems (MAS)",
+              "notes_quote": ""
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "In the competitive MAS case, each agent optimises its own utility function.",
+              "section_ref": "Section 1.3: Multi-Agent Systems (MAS)",
+              "notes_quote": "agents strategically optimise their own utility functions"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "The notes state that a player is a general entity: individual, company, nation, protocol, animal, or artificial agent.",
+              "section_ref": "Section 2.1: Definition and Components",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "This is a defining property of non-cooperative games.",
+              "section_ref": "Section 1.3: Multi-Agent Systems (MAS)",
+              "notes_quote": "there are no binding contracts among the players"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "2. Normal Form Games",
+      "questions": [
+        {
+          "id": "q4",
+          "source_ref": "Section 2.1: Definition and Components",
+          "text": "Which of the following are correct properties of a game in normal (strategic) form? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A normal form game requires at least 2 players; a player is a general entity such as an individual, company, nation, or AI agent"},
+            {"letter": "B", "text": "Each player has a preference relation modelled as a utility (payoff) function over possible outcomes"},
+            {"letter": "C", "text": "An outcome is determined solely by the single player who moves first"},
+            {"letter": "D", "text": "Strategies are actions a player chooses to follow; an outcome is determined by the mutual choice of strategies"},
+            {"letter": "E", "text": "A normal form game requires exactly 2 players"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "The notes say 'at least 2 players' and list individual, company, nation, protocol, animal, artificial agent as examples.",
+              "section_ref": "Section 2.1: Definition and Components",
+              "notes_quote": "At least 2 PLAYERS — a player is a general entity: individual, company, nation, protocol, animal, artificial agent"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Each player's preferences are modelled via a utility/payoff function.",
+              "section_ref": "Section 2.1: Definition and Components",
+              "notes_quote": "A PREFERENCE RELATION for each player over possible outcomes — modeled as a utility (or payoff) function"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "An outcome is determined by the MUTUAL choice of strategies — all players contribute to the outcome.",
+              "section_ref": "Section 2.1: Definition and Components",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Strategies are actions players choose, and outcomes depend on the combined strategy profile.",
+              "section_ref": "Section 2.1: Definition and Components",
+              "notes_quote": "strategies are actions which a player chooses to follow, and an outcome is determined by mutual choice of strategies"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "The definition requires AT LEAST 2 players, not exactly 2. Games can have any finite number $n \\geq 2$.",
+              "section_ref": "Section 2.1: Definition and Components",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "source_ref": "Section 2.2: Formal Definition",
+          "text": "Given the formal game tuple $\\Gamma = (\\mathbf{N}, (S_i)_{i \\in \\mathbf{N}}, (U_i)_{i \\in \\mathbf{N}})$, which of the following are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$\\mathbf{N}$ is a finite set of players"},
+            {"letter": "B", "text": "$S_i$ is the set of strategies available to player $i \\in \\mathbf{N}$"},
+            {"letter": "C", "text": "$U_i : S \\to \\mathbb{R}$ maps strategy profiles to real-valued payoffs, where $S = \\times_{i \\in \\mathbf{N}} S_i$ is the Cartesian product of all strategy sets"},
+            {"letter": "D", "text": "The set of strategy profiles is $S = \\sum_{i \\in \\mathbf{N}} S_i$, the sum of all individual strategy sets"},
+            {"letter": "E", "text": "$S = \\times_{i \\in \\mathbf{N}} S_i$ represents all possible strategy combinations (profiles), one strategy per player"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "$\\mathbf{N}$ is explicitly defined as a finite set of players.",
+              "section_ref": "Section 2.2: Formal Definition",
+              "notes_quote": "$\\mathbf{N}$ is a (finite) set of players"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Each player $i$ has their own strategy set $S_i$.",
+              "section_ref": "Section 2.2: Formal Definition",
+              "notes_quote": "$S_i$ is a set of strategies for each player $i \\in \\mathbf{N}$"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "$U_i$ maps from the strategy profile space $S$ (the Cartesian product) to the reals.",
+              "section_ref": "Section 2.2: Formal Definition",
+              "notes_quote": "$U_i : S \\to \\mathbb{R}$ is a utility function of $i \\in \\mathbf{N}$, where $S = \\times_{i \\in \\mathbf{N}} S_i$ is the set of strategy combinations"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "$S$ is the CARTESIAN PRODUCT $\\times_{i \\in \\mathbf{N}} S_i$, not the arithmetic sum $\\sum$. The Cartesian product gives all combinations of strategies.",
+              "section_ref": "Section 2.2: Formal Definition",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "The Cartesian product captures all possible joint strategy choices — one strategy per player per profile.",
+              "section_ref": "Section 2.2: Formal Definition",
+              "notes_quote": "$S = \\times_{i \\in \\mathbf{N}} S_i$ is the set of strategy combinations (or profiles)"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "source_ref": "Section 2.3: Notation",
+          "text": "Which of the following correctly describe the notation used for strategy profiles and coalitions? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A strategy profile $s = (s_1, s_2, \\ldots, s_n)$ is a vector of strategies, one for each player"},
+            {"letter": "B", "text": "$s_{-i}$ denotes the vector of strategies of all players except player $i$"},
+            {"letter": "C", "text": "For a two-player game, $s_{-1}$ refers to Player 1's own strategy (their self-strategy)"},
+            {"letter": "D", "text": "$s_{-C}$ denotes the strategies of players IN coalition $C$"},
+            {"letter": "E", "text": "A full strategy profile can be written as $(s_C, s_{-C})$ for any coalition $C \\subseteq N$"}
+          ],
+          "correct": ["A", "B", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "A strategy profile specifies one strategy per player.",
+              "section_ref": "Section 2.3: Notation",
+              "notes_quote": "A strategy profile $s = (s_1, s_2, \\ldots, s_n)$ is a vector of strategies for all players"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "The $-i$ subscript means 'all players except $i$'.",
+              "section_ref": "Section 2.3: Notation",
+              "notes_quote": "$s_{-i}$ denotes the vector of all players' strategies except player $i$"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "$s_{-1}$ denotes strategies of ALL players EXCEPT Player 1 — i.e., Player 2's strategy in a two-player game.",
+              "section_ref": "Section 2.3: Notation",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "$s_{-C}$ denotes strategies of players NOT in coalition $C$ (the complement). $s_C$ denotes strategies of players IN $C$.",
+              "section_ref": "Section 2.3: Notation",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "The profile is split into coalition $C$'s strategies and its complement's strategies.",
+              "section_ref": "Section 2.3: Notation",
+              "notes_quote": "We write a profile as $(s_C, s_{-C})$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "3. Classical Games and Examples",
+      "questions": [
+        {
+          "id": "q7",
+          "source_ref": "Section 3.1: The Prisoner's Dilemma",
+          "text": "Given the Prisoner's Dilemma payoff matrix:\n\n|  | C | D |\n|---|---|---|\n| **C** | $-1, -1$ | $-10, 0$ |\n| **D** | $0, -10$ | $-5, -5$ |\n\nWhich of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Both players have a dominant strategy to Defect"},
+            {"letter": "B", "text": "The unique pure strategy Nash equilibrium is (C, C)"},
+            {"letter": "C", "text": "The equilibrium (D, D) with payoffs $(-5, -5)$ is Pareto-dominated by (C, C) with payoffs $(-1, -1)$"},
+            {"letter": "D", "text": "Individual rationality leads to a collectively suboptimal outcome"},
+            {"letter": "E", "text": "The Prisoner's Dilemma has two pure strategy Nash equilibria"}
+          ],
+          "correct": ["A", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "D is strictly dominant: $0 > -1$ when opponent plays C, and $-5 > -10$ when opponent plays D.",
+              "section_ref": "Section 3.1: The Prisoner's Dilemma",
+              "notes_quote": "The only stable outcome is (D, D) — each player is better off defecting no matter what the other does"
+            },
+            {
+              "letter": "B",
+              "is_correct": false,
+              "text": "The unique NE is (D, D), not (C, C). (C, C) is Pareto-superior but not an equilibrium — each player wants to deviate to D.",
+              "section_ref": "Section 3.1: The Prisoner's Dilemma",
+              "notes_quote": ""
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "(C, C) gives $(-1,-1)$ while (D, D) gives $(-5,-5)$. Both players are better off at (C, C), so (D, D) is Pareto-dominated.",
+              "section_ref": "Section 3.1: The Prisoner's Dilemma",
+              "notes_quote": "The equilibrium (D,D) with payoffs $(P,P)$ is Pareto-dominated by (C,C) with payoffs $(R,R)$"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "This is the central insight of the Prisoner's Dilemma.",
+              "section_ref": "Section 3.1: The Prisoner's Dilemma",
+              "notes_quote": "Individual rationality leads to a collectively suboptimal outcome"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "The PD has exactly ONE pure strategy NE: (D, D). Both players strictly prefer D regardless of the opponent.",
+              "section_ref": "Section 3.1: The Prisoner's Dilemma",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "source_ref": "Section 3.1: The Prisoner's Dilemma",
+          "text": "In the general form of the Prisoner's Dilemma with payoff ordering $T > R > P > S$, which of the following are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$T$ is the Temptation payoff: what you earn by defecting when your opponent cooperates"},
+            {"letter": "B", "text": "$R$ is the Reward for mutual cooperation"},
+            {"letter": "C", "text": "The condition $P > S$ means mutual cooperation gives a higher payoff than being the cooperating sucker"},
+            {"letter": "D", "text": "The equilibrium payoff pair $(P, P)$ is Pareto-dominated by the cooperative outcome $(R, R)$"},
+            {"letter": "E", "text": "The ordering $T > R > P > S$ is necessary to create the Prisoner's Dilemma structure"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "$T$ stands for Temptation — the payoff from defecting against a cooperating opponent.",
+              "section_ref": "Section 3.1: The Prisoner's Dilemma",
+              "notes_quote": "T > R > P > S (Temptation > Reward > Punishment > Sucker's payoff)"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "$R$ is the Reward for mutual cooperation.",
+              "section_ref": "Section 3.1: The Prisoner's Dilemma",
+              "notes_quote": "T > R > P > S (Temptation > Reward > Punishment > Sucker's payoff)"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "$P > S$ means mutual DEFECTION ($P$) gives more than being a sucker ($S$). The condition $R > P$ means mutual cooperation beats mutual defection.",
+              "section_ref": "Section 3.1: The Prisoner's Dilemma",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Since $R > P$, both players prefer (C,C) with payoffs $(R,R)$ over the NE (D,D) with payoffs $(P,P)$.",
+              "section_ref": "Section 3.1: The Prisoner's Dilemma",
+              "notes_quote": "The equilibrium (D,D) with payoffs $(P,P)$ is Pareto-dominated by (C,C) with payoffs $(R,R)$"
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "This ordering is the defining condition that creates the PD structure — temptation to defect combined with punishment for mutual defection.",
+              "section_ref": "Section 3.1: The Prisoner's Dilemma",
+              "notes_quote": "T > R > P > S (Temptation > Reward > Punishment > Sucker's payoff)"
+            }
+          ]
+        },
+        {
+          "id": "q9",
+          "source_ref": "Section 3.2: The Ice Cream Wars (Hotelling's Model)",
+          "text": "In Hotelling's Ice Cream Wars model, two vendors choose positions on $[0, 1]$ and customers go to the nearest vendor. Which statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The unique Nash equilibrium has both vendors at the centre: $s_1 = s_2 = \\frac{1}{2}$"},
+            {"letter": "B", "text": "When Ed is at $\\frac{1}{4}$ and Ted deviates to $\\frac{1}{2}$, Ted captures $\\frac{5}{8}$ and Ed retains $\\frac{3}{8}$ of the market"},
+            {"letter": "C", "text": "In this model, customers travel to the farthest vendor"},
+            {"letter": "D", "text": "The strategy set for each vendor is $S_i = [0, 1]$"},
+            {"letter": "E", "text": "At the Nash equilibrium, each vendor captures $\\frac{1}{4}$ of the market"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Both vendors moving to the centre is the unique NE — neither can gain by moving away.",
+              "section_ref": "Section 3.2: The Ice Cream Wars (Hotelling's Model)",
+              "notes_quote": "The unique Nash equilibrium is $s_1 = s_2 = 1/2$ (both vendors at the centre)"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Ted's deviation from $3/4$ to $1/2$ is profitable: he gains market share from $1/2$ to $5/8$.",
+              "section_ref": "Section 3.2: The Ice Cream Wars (Hotelling's Model)",
+              "notes_quote": "Ted deviates to $1/2$ → Ted gets $5/8$, Ed gets $3/8$"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "Customers go to the NEAREST vendor, not the farthest.",
+              "section_ref": "Section 3.2: The Ice Cream Wars (Hotelling's Model)",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Each player can position anywhere on the unit interval $[0,1]$.",
+              "section_ref": "Section 3.2: The Ice Cream Wars (Hotelling's Model)",
+              "notes_quote": "$N = \\{1,2\\}$ and $S_1 = S_2 = [0,1]$, where strategy $s_i \\in S_i$ represents setting up a cart at position $s_i$"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "At the NE ($s_1 = s_2 = 1/2$), each vendor captures $\\frac{1}{2}$ of the market (they split it equally).",
+              "section_ref": "Section 3.2: The Ice Cream Wars (Hotelling's Model)",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q10",
+          "source_ref": "Section 3.3: Working on a Joint Project",
+          "text": "In the joint project game:\n\n|  | Work hard | Goof off |\n|---|---|---|\n| **Work hard** | $2, 2$ | $0, 3$ |\n| **Goof off** | $3, 0$ | $1, 1$ |\n\nWhich statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "This game has the same structure as the Prisoner's Dilemma"},
+            {"letter": "B", "text": "The dominant strategy for each player is to Goof off"},
+            {"letter": "C", "text": "(Work hard, Work hard) is the Nash equilibrium of this game"},
+            {"letter": "D", "text": "(Goof off, Goof off) is the Nash equilibrium with payoffs $(1, 1)$"},
+            {"letter": "E", "text": "The (Goof off, Goof off) equilibrium is Pareto-dominated by (Work hard, Work hard)"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "The notes explicitly state this is another instance of the Prisoner's Dilemma structure.",
+              "section_ref": "Section 3.3: Working on a Joint Project",
+              "notes_quote": "This is another instance of the Prisoner's Dilemma structure"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Goof off gives 3 vs 2 (opponent works) and 1 vs 0 (opponent goofs) — strictly dominant.",
+              "section_ref": "Section 3.3: Working on a Joint Project",
+              "notes_quote": ""
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "(Work hard, Work hard) is NOT a NE — each player would deviate to Goof off (earning 3 instead of 2).",
+              "section_ref": "Section 3.3: Working on a Joint Project",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "(Goof off, Goof off) is the NE since Goof off is the dominant strategy.",
+              "section_ref": "Section 3.3: Working on a Joint Project",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "Both players prefer $(2,2)$ over $(1,1)$, so (Work hard, Work hard) Pareto-dominates the equilibrium.",
+              "section_ref": "Section 3.3: Working on a Joint Project",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q11",
+          "source_ref": "Section 3.4: Duopoly",
+          "text": "In the duopoly game where two firms choose High or Low pricing:\n\n|  | High | Low |\n|---|---|---|\n| **High** | $1000, 1000$ | $-200, 1200$ |\n| **Low** | $1200, -200$ | $600, 600$ |\n\nWhich statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "(Low, Low) is the Nash equilibrium with payoffs $(600, 600)$"},
+            {"letter": "B", "text": "(High, High) with payoffs $(1000, 1000)$ Pareto-dominates the equilibrium"},
+            {"letter": "C", "text": "This game has a different structure from the Prisoner's Dilemma"},
+            {"letter": "D", "text": "A firm choosing Low when the other chooses High earns $1200$"},
+            {"letter": "E", "text": "The equilibrium (Low, Low) maximises joint payoffs"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Low is a dominant strategy for each firm, leading to the (Low, Low) equilibrium.",
+              "section_ref": "Section 3.4: Duopoly",
+              "notes_quote": "Again, Prisoner's Dilemma structure: (Low, Low) is the equilibrium despite (High, High) being better for both"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Both firms earn 1000 at (High,High) vs 600 at (Low,Low) — (High,High) is Pareto-superior.",
+              "section_ref": "Section 3.4: Duopoly",
+              "notes_quote": ""
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "The notes explicitly say this is ANOTHER Prisoner's Dilemma: dominant strategy leads to Pareto-inferior outcome.",
+              "section_ref": "Section 3.4: Duopoly",
+              "notes_quote": "Again, Prisoner's Dilemma structure"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "From the payoff matrix, (Low, High) gives the Low firm $1200$.",
+              "section_ref": "Section 3.4: Duopoly",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "(High, High) maximises joint payoffs at $2000$, compared to $1200$ at (Low, Low). The equilibrium is the LOWEST joint payoff outcome.",
+              "section_ref": "Section 3.4: Duopoly",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q12",
+          "source_ref": "Section 3.5: The Professor's Dilemma",
+          "text": "In the Professor's Dilemma:\n\n|  | Listen | Sleep |\n|---|---|---|\n| **Make effort** | $(10^6, 10^6)$ | $(-10, 0)$ |\n| **Slack off** | $(0, -10)$ | $(0, 0)$ |\n\nWhich statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "This game has two pure strategy Nash equilibria: (Make effort, Listen) and (Slack off, Sleep)"},
+            {"letter": "B", "text": "Neither player has a dominant or dominated strategy"},
+            {"letter": "C", "text": "(Slack off, Sleep) is the unique Nash equilibrium in this game"},
+            {"letter": "D", "text": "(Make effort, Listen) gives payoffs $(10^6, 10^6)$"},
+            {"letter": "E", "text": "Each player's best strategy depends entirely on what the other player does"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Both (Make effort, Listen) and (Slack off, Sleep) are NE — no player wants to deviate at either profile.",
+              "section_ref": "Section 3.5: The Professor's Dilemma",
+              "notes_quote": "Two pure strategy Nash equilibria: (Make effort, Listen) and (Slack off, Sleep)"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Unlike the PD, neither player has a strategy that is best regardless of the opponent.",
+              "section_ref": "Section 3.5: The Professor's Dilemma",
+              "notes_quote": "No player has a dominant or dominated strategy"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "There are TWO Nash equilibria in this game, not one. (Slack off, Sleep) is a NE, but so is (Make effort, Listen).",
+              "section_ref": "Section 3.5: The Professor's Dilemma",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "From the payoff matrix, (Make effort, Listen) gives payoffs $(10^6, 10^6)$.",
+              "section_ref": "Section 3.5: The Professor's Dilemma",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "The best strategy depends on what the other player does — there is no dominant strategy.",
+              "section_ref": "Section 3.5: The Professor's Dilemma",
+              "notes_quote": "The best strategy depends on what the other player is doing"
+            }
+          ]
+        },
+        {
+          "id": "q13",
+          "source_ref": "Section 3.6: Tragedy of the Commons",
+          "text": "Which of the following correctly describe the Tragedy of the Commons? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "It describes situations where individual incentives to overconsume a shared resource lead to collective loss"},
+            {"letter": "B", "text": "The phrase originates from Garrett Hardin's 1968 essay in Science, drawing on Lloyd's description of overgrazing"},
+            {"letter": "C", "text": "In MAS and AI, it appears when many agents share a limited resource and optimise only their own reward"},
+            {"letter": "D", "text": "The Tragedy of the Commons has no relevance to artificial intelligence or multi-agent systems"},
+            {"letter": "E", "text": "Overfishing, air pollution, and overgrazing on shared pastureland are examples"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "This is the definition of the social dilemma known as the Tragedy of the Commons.",
+              "section_ref": "Section 3.6: Tragedy of the Commons",
+              "notes_quote": "individuals have an incentive to overconsume a common resource and act in their own self-interest at the expense of society"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "The historical origin is cited in the notes.",
+              "section_ref": "Section 3.6: Tragedy of the Commons",
+              "notes_quote": "comes from Garrett Hardin's 1968 essay in Science, drawing on 19th-century writer William Forster Lloyd's description of overgrazing on shared pastureland"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "The notes explicitly note the relevance to MAS and AI.",
+              "section_ref": "Section 3.6: Tragedy of the Commons",
+              "notes_quote": "Tragedy-of-the-commons situations appear whenever many learning or planning agents share a limited resource and optimise only their own reward"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "The notes explicitly discuss its relevance to MAS and AI (shared bandwidth, autonomous vehicles, open multiagent platforms).",
+              "section_ref": "Section 3.6: Tragedy of the Commons",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "The notes list these as examples: overfishing, overgrazing, air pollution, deforestation.",
+              "section_ref": "Section 3.6: Tragedy of the Commons",
+              "notes_quote": "Overfishing in international waters... Overgrazing on shared pastureland... Air pollution and greenhouse gas emissions"
+            }
+          ]
+        },
+        {
+          "id": "q14",
+          "source_ref": "Section 3.7: Coordination Game",
+          "text": "In the Coordination Game:\n\n|  | L | R |\n|---|---|---|\n| **U** | $1, 1$ | $0, 0$ |\n| **D** | $0, 0$ | $1, 1$ |\n\nWhich statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The game has two pure strategy Nash equilibria: (U, L) and (D, R)"},
+            {"letter": "B", "text": "Both PSNE are also strong equilibria"},
+            {"letter": "C", "text": "Player 1 has a dominant strategy to play U"},
+            {"letter": "D", "text": "Neither player has a dominant or dominated strategy"},
+            {"letter": "E", "text": "This game has the same structure as the Prisoner's Dilemma"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Both (U,L) and (D,R) are NE — neither player wants to deviate from either profile.",
+              "section_ref": "Section 3.7: Coordination Game",
+              "notes_quote": "Two pure strategy Nash equilibria: (U, L) and (D, R)"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Both PSNE are strong equilibria — no coalition has an improving deviation.",
+              "section_ref": "Section 3.7: Coordination Game",
+              "notes_quote": "Both are also strong equilibria"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "Player 1 has no dominant strategy — playing U is only best when Player 2 plays L; D is best when Player 2 plays R.",
+              "section_ref": "Section 3.7: Coordination Game",
+              "notes_quote": "No player has a dominant or dominated strategy"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "The notes explicitly state this.",
+              "section_ref": "Section 3.7: Coordination Game",
+              "notes_quote": "No player has a dominant or dominated strategy"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "The Coordination Game has two NE and no dominant strategies — the PD has one NE with dominant strategies. They have different structures.",
+              "section_ref": "Section 3.7: Coordination Game",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q15",
+          "source_ref": "Section 3.8: Battle of the Sexes",
+          "text": "In the Battle of the Sexes:\n\n|  | Theater | Football |\n|---|---|---|\n| **Theater** | $(2, 1)$ | $(0, 0)$ |\n| **Football** | $(0, 0)$ | $(1, 2)$ |\n\nWhich statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The game has two pure strategy Nash equilibria: (Theater, Theater) and (Football, Football)"},
+            {"letter": "B", "text": "BoS is a generalisation of a coordination game where players prefer coordinating but disagree on which outcome"},
+            {"letter": "C", "text": "The game has a unique Nash equilibrium (the MSNE only)"},
+            {"letter": "D", "text": "(Theater, Theater) gives payoffs $(2, 1)$, where the row player prefers Theater"},
+            {"letter": "E", "text": "In BoS, neither player benefits from coordinating on the same action"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Both (Theater,Theater) and (Football,Football) are PSNE.",
+              "section_ref": "Section 3.8: Battle of the Sexes",
+              "notes_quote": "Two pure strategy Nash equilibria: (Theater, Theater) and (Football, Football)"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "This is how the notes describe BoS.",
+              "section_ref": "Section 3.8: Battle of the Sexes",
+              "notes_quote": "A generalisation of a coordination game where both players want to choose the same action, but have different preferences over possible consistent outcomes"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "BoS has TWO PSNE plus one MSNE — three Nash equilibria in total, not one.",
+              "section_ref": "Section 3.8: Battle of the Sexes",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "From the payoff matrix, (Theater,Theater) gives $(2,1)$ — the row player gets 2, the column player gets 1.",
+              "section_ref": "Section 3.8: Battle of the Sexes",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "Both players DO benefit from coordination — each prefers a coordinated outcome over miscoordination (payoff 0).",
+              "section_ref": "Section 3.8: Battle of the Sexes",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q16",
+          "source_ref": "Section 3.9: Matching Pennies",
+          "text": "In the Matching Pennies game:\n\n|  | H | T |\n|---|---|---|\n| **H** | $1, -1$ | $-1, 1$ |\n| **T** | $-1, 1$ | $1, -1$ |\n\nWhich statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Matching Pennies has no pure strategy Nash equilibrium"},
+            {"letter": "B", "text": "Matching Pennies is a zero-sum game"},
+            {"letter": "C", "text": "Player 1 wins (payoff $+1$) when both players choose the same side (H,H or T,T)"},
+            {"letter": "D", "text": "There exists a unique mixed strategy Nash equilibrium where each player randomizes 50-50"},
+            {"letter": "E", "text": "Player 2 wins when both players show Heads"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "There is a cycle of profitable deviations — no pure profile is stable.",
+              "section_ref": "Section 3.9: Matching Pennies",
+              "notes_quote": "No pure strategy Nash equilibrium exists (cycle of profitable deviations)"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Payoffs always sum to 0: $1+(-1)=0$ and $(-1)+1=0$.",
+              "section_ref": "Section 3.9: Matching Pennies",
+              "notes_quote": "This is a zero-sum game"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "Player 1 is the 'matcher': they win when both show H or both show T (payoff +1).",
+              "section_ref": "Section 3.9: Matching Pennies",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "The MSNE of Matching Pennies is each player playing H with probability 1/2 (shown in Section 6.6).",
+              "section_ref": "Section 6.6: Worked Example: Matching Pennies",
+              "notes_quote": "MSNE: $(\\frac{1}{2}H + \\frac{1}{2}T, \\frac{1}{2}H + \\frac{1}{2}T)$ with expected utility 0 for each player"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "Player 1 wins when both show Heads (H,H gives Player 1 payoff $+1$ and Player 2 payoff $-1$). Player 2 wins when they MISMATCH.",
+              "section_ref": "Section 3.9: Matching Pennies",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q17",
+          "source_ref": "Section 3.10: Beauty Contest",
+          "text": "Which of the following correctly describe the Beauty Contest game? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Each participant chooses an integer from $\\{0, 1, \\ldots, 100\\}$"},
+            {"letter": "B", "text": "The winner is the player whose strategy is closest to $\\frac{2}{3}$ of the average of all strategies"},
+            {"letter": "C", "text": "Each player minimises $\\left| s_i - \\frac{2}{3} \\cdot \\frac{\\sum_{j \\in \\mathbf{N}} s_j}{N} \\right|$"},
+            {"letter": "D", "text": "The winning strategy is to always choose the maximum value of 100, since it anchors the average upwards"},
+            {"letter": "E", "text": "The Beauty Contest has no Nash equilibrium because the strategy set $\\{0,\\ldots,100\\}$ is finite"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "The strategy set is the integers 0 through 100.",
+              "section_ref": "Section 3.10: Beauty Contest",
+              "notes_quote": "each participant $i$ chooses an integer from $S_i = \\{0, 1, \\ldots, 100\\}$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "The winning condition is to be closest to 2/3 of the average.",
+              "section_ref": "Section 3.10: Beauty Contest",
+              "notes_quote": "Player $i$ whose strategy $s_i \\in S_i$ is closest to 2/3 of the average of all strategies wins the contest"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "This is the objective function each player minimises.",
+              "section_ref": "Section 3.10: Beauty Contest",
+              "notes_quote": "Each player's aim is to minimise: $\\left| s_i - \\frac{2}{3} \\cdot \\frac{\\sum_{j \\in \\mathbf{N}} s_j}{N} \\right|$"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "Choosing 100 is not a dominant winning strategy — a player's best choice depends on what others choose. Iterated reasoning drives choices toward 0.",
+              "section_ref": "Section 3.10: Beauty Contest",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "By Nash's Theorem, every finite game (finite players, finite strategy sets) has at least one NE in mixed strategies.",
+              "section_ref": "Section 6.4: Nash's Theorem",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q18",
+          "source_ref": "Section 3.11: Stag Hunt",
+          "text": "In the Stag Hunt:\n\n|  | Stag | Hare |\n|---|---|---|\n| **Stag** | $4, 4$ | $1, 3$ |\n| **Hare** | $3, 1$ | $3, 3$ |\n\nWhich statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "(Stag, Stag) and (Hare, Hare) are both pure strategy Nash equilibria"},
+            {"letter": "B", "text": "(Stag, Stag) with payoffs $(4, 4)$ is the payoff-dominant equilibrium"},
+            {"letter": "C", "text": "(Hare, Hare) with payoffs $(3, 3)$ is the risk-dominant equilibrium"},
+            {"letter": "D", "text": "Hunting Hare is a dominant strategy in the Stag Hunt"},
+            {"letter": "E", "text": "Hunting Stag is risky: if the other player hunts Hare, you only get 1, whereas Hare guarantees at least 3"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Both profiles are Nash equilibria — no player wants to deviate at either.",
+              "section_ref": "Section 3.11: Stag Hunt",
+              "notes_quote": "Two PSNE: (Stag, Stag) and (Hare, Hare)"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "(Stag, Stag) gives the higher payoff $(4,4)$ and is payoff-dominant.",
+              "section_ref": "Section 3.11: Stag Hunt",
+              "notes_quote": "(Stag, Stag) is payoff-dominant but risky"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "(Hare, Hare) is the safer, risk-dominant equilibrium.",
+              "section_ref": "Section 3.11: Stag Hunt",
+              "notes_quote": "(Hare, Hare) is risk-dominant"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "Hare is NOT a dominant strategy. Stag is better when the opponent hunts Stag (4 vs 3). There is no dominant strategy in the Stag Hunt.",
+              "section_ref": "Section 3.11: Stag Hunt",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "Stag gives 4 if the opponent hunts Stag but only 1 if they hunt Hare. Hare always gives 3 regardless — hence the risk.",
+              "section_ref": "Section 3.11: Stag Hunt",
+              "notes_quote": "(Stag, Stag) is payoff-dominant but risky"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "4. Dominance",
+      "questions": [
+        {
+          "id": "q19",
+          "source_ref": "Section 4.1: Strict Dominance",
+          "text": "Which of the following correctly describe strict dominance? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Strategy $s$ strictly dominates $t$ for player $i$ if $U_i(s, s_{-i}) > U_i(t, s_{-i})$ for ALL $s_{-i} \\in S_{-i}$"},
+            {"letter": "B", "text": "A player with a strictly dominant strategy should play it regardless of opponents' actions"},
+            {"letter": "C", "text": "Strict dominance requires that $s$ beats $t$ for at least one opponent strategy profile (not necessarily all)"},
+            {"letter": "D", "text": "In the Prisoner's Dilemma, Defect strictly dominates Cooperate"},
+            {"letter": "E", "text": "Strict dominance implies weak dominance"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Strict dominance requires $s$ to be strictly better than $t$ for EVERY possible opponent strategy.",
+              "section_ref": "Section 4.1: Strict Dominance",
+              "notes_quote": "Strategy $s$ strictly dominates strategy $t$ if for every possible combination of strategies for other players $s_{-i} \\in S_{-i}$: $U_i(s, s_{-i}) > U_i(t, s_{-i})$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "This is the key strength of dominant strategies — no assumptions about opponents are needed.",
+              "section_ref": "Section 4.3: Dominant vs Dominated Strategies",
+              "notes_quote": "A dominant strategy is a very strong solution concept — no assumptions needed about other players"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "Strict dominance requires $s$ to beat $t$ for ALL opponent strategies, not just some. That weaker condition is part of weak dominance.",
+              "section_ref": "Section 4.1: Strict Dominance",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "In the PD, D gives $0 > -1$ (vs C) and $-5 > -10$ (vs D) — strictly better in both cases.",
+              "section_ref": "Section 4.3: Dominant vs Dominated Strategies",
+              "notes_quote": "Dominant strategies do not often exist (they do in Prisoner's Dilemma)"
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "If $>$ holds for all $s_{-i}$, then $\\geq$ also holds for all $s_{-i}$ (and strictly for some), satisfying weak dominance.",
+              "section_ref": "Section 4.1: Strict Dominance",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q20",
+          "source_ref": "Section 4.2: Weak Dominance",
+          "text": "Which of the following correctly describe weak dominance? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Strategy $s$ weakly dominates $t$ if $U_i(s, s_{-i}) \\geq U_i(t, s_{-i})$ for all $s_{-i}$ AND $U_i(s, s'_{-i}) > U_i(t, s'_{-i})$ for at least one $s'_{-i}$"},
+            {"letter": "B", "text": "Weak dominance requires strict inequality for EVERY opponent strategy profile"},
+            {"letter": "C", "text": "Every strictly dominated strategy is also weakly dominated"},
+            {"letter": "D", "text": "A weakly dominated strategy can appear in a Nash equilibrium"},
+            {"letter": "E", "text": "Weak dominance implies strict dominance"}
+          ],
+          "correct": ["A", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "This is the exact definition from the notes: $\\geq$ for all, and $>$ for some.",
+              "section_ref": "Section 4.2: Weak Dominance",
+              "notes_quote": "For all $s_{-i} \\in S_{-i}$: $U_i(s, s_{-i}) \\geq U_i(t, s_{-i})$; There exists some $s'_{-i}$: $U_i(s, s'_{-i}) > U_i(t, s'_{-i})$"
+            },
+            {
+              "letter": "B",
+              "is_correct": false,
+              "text": "Strict inequality is required only for AT LEAST ONE opponent strategy profile. Everywhere strict is the definition of STRICT dominance.",
+              "section_ref": "Section 4.2: Weak Dominance",
+              "notes_quote": ""
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "If $s$ strictly dominates $t$ ($>$ everywhere), then trivially $\\geq$ everywhere and $>$ somewhere — so weak dominance holds.",
+              "section_ref": "Section 4.2: Weak Dominance",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Exercise 9.3b gives an example: A weakly dominates B, but (B, D) is still a Nash equilibrium.",
+              "section_ref": "Section 9.3: Exercise 3: Weak Dominance and IEDS Order",
+              "notes_quote": "A weakly dominates B, but (B, D) satisfies NE conditions (no player can profitably deviate)"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "It is the OPPOSITE: strict dominance implies weak dominance, not the other way around.",
+              "section_ref": "Section 4.2: Weak Dominance",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q21",
+          "source_ref": "Section 4.3: Dominant vs Dominated Strategies",
+          "text": "Which of the following correctly distinguish dominant from dominated strategies? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A strategy is dominant for player $i$ if it dominates ALL other strategies of player $i$"},
+            {"letter": "B", "text": "A strategy is dominated if there EXISTS some other strategy that dominates it"},
+            {"letter": "C", "text": "Dominant strategies exist in most strategic games"},
+            {"letter": "D", "text": "A rational player will never choose a strictly dominated strategy"},
+            {"letter": "E", "text": "If player $i$ has a dominant strategy, they must know opponents' strategies to use it effectively"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "A dominant strategy must beat ALL other strategies of the same player.",
+              "section_ref": "Section 4.3: Dominant vs Dominated Strategies",
+              "notes_quote": "Strategy $s$ is dominant for player $i$ if it dominates all other strategies $t$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "A dominated strategy only needs to be beaten by at least one other strategy.",
+              "section_ref": "Section 4.3: Dominant vs Dominated Strategies",
+              "notes_quote": "Strategy $t$ is dominated if there exists some strategy $s$ that dominates it"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "Dominant strategies do NOT often exist — the PD is a notable exception.",
+              "section_ref": "Section 4.3: Dominant vs Dominated Strategies",
+              "notes_quote": "Dominant strategies do not often exist (they do in Prisoner's Dilemma)"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Rational players never play strictly dominated strategies since there always exists a better option.",
+              "section_ref": "Section 4.3: Dominant vs Dominated Strategies",
+              "notes_quote": "Rational players will never choose strictly dominated strategies"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "A dominant strategy is best REGARDLESS of what others do — knowing opponents' strategies is unnecessary.",
+              "section_ref": "Section 4.3: Dominant vs Dominated Strategies",
+              "notes_quote": "A dominant strategy is a very strong solution concept — no assumptions needed about other players"
+            }
+          ]
+        },
+        {
+          "id": "q22",
+          "source_ref": "Section 4.4: Iterated Elimination of Dominated Strategies (IEDS)",
+          "text": "Which of the following correctly describe IEDS? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "For strict dominance, IEDS is path-independent: the order of elimination does not affect the outcome"},
+            {"letter": "B", "text": "For weak dominance, the outcome of IEDS may depend on the order of elimination"},
+            {"letter": "C", "text": "IEDS always produces a unique strategy per player, fully solving every game"},
+            {"letter": "D", "text": "A strategy that survives IEDS must be the dominant strategy for that player"},
+            {"letter": "E", "text": "Some games have no dominated strategies at all, and IEDS makes no progress"}
+          ],
+          "correct": ["A", "B", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Path-independence is a key property of IEDS with strict dominance.",
+              "section_ref": "Section 4.4: Iterated Elimination of Dominated Strategies (IEDS)",
+              "notes_quote": "For strict dominance: the outcome is path-independent (order of elimination doesn't matter)"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Weak IEDS can yield different surviving strategy sets depending on elimination order (see Exercise 9.3).",
+              "section_ref": "Section 4.4: Iterated Elimination of Dominated Strategies (IEDS)",
+              "notes_quote": "For weak dominance: the outcome may depend on the order of elimination"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "IEDS may leave more than one strategy per player, or make no progress at all.",
+              "section_ref": "Section 4.4: Iterated Elimination of Dominated Strategies (IEDS)",
+              "notes_quote": "We may end up with more than one strategy per player (game not fully solved)"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "The surviving strategy need not be dominant — it is simply not dominated by any remaining strategy.",
+              "section_ref": "Section 4.4: Iterated Elimination of Dominated Strategies (IEDS)",
+              "notes_quote": "The surviving strategy need not be dominant"
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "Some games have no dominated strategies and IEDS makes no eliminations.",
+              "section_ref": "Section 4.4: Iterated Elimination of Dominated Strategies (IEDS)",
+              "notes_quote": "Some games have no dominated strategies at all"
+            }
+          ]
+        },
+        {
+          "id": "q23",
+          "source_ref": "Section 4.5: Worked Example: IEDS",
+          "text": "In the IEDS worked example (Exercise 1 from LGT):\n\n|  | L | C | R |\n|---|---|---|---|\n| **T** | $73, 25$ | $57, 42$ | $66, 32$ |\n| **M** | $80, 26$ | $35, 12$ | $32, 54$ |\n| **B** | $28, 27$ | $63, 31$ | $54, 29$ |\n\nWhich statements about the IEDS process are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In Step 1, Player 2's strategy R strictly dominates L (since $32>25$, $54>26$, $29>27$), so L is eliminated"},
+            {"letter": "B", "text": "After eliminating L, both T and B dominate M for Player 1, so M is eliminated next"},
+            {"letter": "C", "text": "The IEDS solution is (T, C) with payoffs $(57, 42)$"},
+            {"letter": "D", "text": "After reaching the $2 \\times 2$ game $\\{T,B\\} \\times \\{C,R\\}$, Player 2's strategy C strictly dominates R"},
+            {"letter": "E", "text": "The final IEDS solution (B, C) is a Nash equilibrium"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "R gives Player 2 payoffs 32, 54, 29 vs L's 25, 26, 27 — strictly better in every row.",
+              "section_ref": "Section 4.5: Worked Example: IEDS",
+              "notes_quote": "For Player 2, R dominates L (compare column by column: 32>25, 54>26, 29>27). Eliminate L."
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "In the $3 \\times 2$ subgame, T gives Player 1 (57,66) vs M's (35,32) and B gives (63,54) vs M's (35,32) — both T and B beat M.",
+              "section_ref": "Section 4.5: Worked Example: IEDS",
+              "notes_quote": "For Player 1, T and B both dominate M. Eliminate M."
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "The IEDS solution is (B, C) with payoffs $(63, 31)$, not (T, C). B dominates T in the final $2 \\times 1$ column.",
+              "section_ref": "Section 4.5: Worked Example: IEDS",
+              "notes_quote": "Solution: (B, C) with payoffs $(63, 31)$"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "In the $2 \\times 2$ subgame, C gives Player 2 payoffs 42 and 31 vs R's 32 and 29 — strictly better in both rows.",
+              "section_ref": "Section 4.5: Worked Example: IEDS",
+              "notes_quote": "For Player 2, C dominates R (42>32 and 31>29). Eliminate R."
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "The IEDS solution (B, C) is also a Nash equilibrium — each player is playing their best response.",
+              "section_ref": "Section 4.5: Worked Example: IEDS",
+              "notes_quote": "(B, C) is a Nash equilibrium: each player is playing their best response to the other player's strategy"
+            }
+          ]
+        },
+        {
+          "id": "q24",
+          "source_ref": "Section 4.5: Worked Example: IEDS",
+          "text": "Which of the following statements about the IEDS result (B, C) from the worked example are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "At the solution (B, C), Player 1 earns $63$ and Player 2 earns $31$"},
+            {"letter": "B", "text": "Because strict IEDS is path-independent, eliminating strategies in a different valid order would yield the same result (B, C)"},
+            {"letter": "C", "text": "Player 2's strategy R is eliminated in Step 3 because C strictly dominates R in the reduced game"},
+            {"letter": "D", "text": "B is a dominant strategy for Player 1 in the original $3 \\times 3$ game"},
+            {"letter": "E", "text": "IEDS with strict dominance guarantees a path-independent result"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "From the payoff matrix, (B, C) gives payoffs $(63, 31)$.",
+              "section_ref": "Section 4.5: Worked Example: IEDS",
+              "notes_quote": "Solution: (B, C) with payoffs $(63, 31)$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Path-independence of strict IEDS guarantees the same result regardless of elimination order.",
+              "section_ref": "Section 4.4: Iterated Elimination of Dominated Strategies (IEDS)",
+              "notes_quote": "For strict dominance: the outcome is path-independent (order of elimination doesn't matter)"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "After eliminating L and M, Step 3 compares C and R for Player 2: C gives 42>32 and 31>29.",
+              "section_ref": "Section 4.5: Worked Example: IEDS",
+              "notes_quote": "For Player 2, C dominates R (42>32 and 31>29). Eliminate R."
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "B is NOT dominant in the original $3 \\times 3$ game — against L, T gives 73 > B's 28. B only dominates T in the reduced game after M and L are removed.",
+              "section_ref": "Section 4.5: Worked Example: IEDS",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "Path-independence is a key property of strict IEDS.",
+              "section_ref": "Section 4.4: Iterated Elimination of Dominated Strategies (IEDS)",
+              "notes_quote": "For strict dominance: the outcome is path-independent (order of elimination doesn't matter)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "5. Nash Equilibrium in Pure Strategies",
+      "questions": [
+        {
+          "id": "q25",
+          "source_ref": "Section 5.1: Unilateral Improving Deviation",
+          "text": "Which of the following correctly describe unilateral improving deviations? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Player $i$ has a unilateral improving deviation from profile $s$ if $\\exists s'_i \\in S_i$ with $U_i(s'_i, s_{-i}) > U_i(s_i, s_{-i})$"},
+            {"letter": "B", "text": "A unilateral deviation involves multiple players changing strategies simultaneously"},
+            {"letter": "C", "text": "A profile with no unilateral improving deviations for any player is a Nash equilibrium"},
+            {"letter": "D", "text": "Unilateral improving deviations always exist in finite strategic games"},
+            {"letter": "E", "text": "Unilateral improving deviations capture the core idea behind Nash equilibrium stability"}
+          ],
+          "correct": ["A", "C", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "This is the formal definition: player $i$ can do strictly better by switching to $s'_i$ while others stay fixed.",
+              "section_ref": "Section 5.1: Unilateral Improving Deviation",
+              "notes_quote": "player $i$ has a unilateral improving move (deviation) if there exists some $s'_i \\in S_i$ such that $U_i(s'_i, s_{-i}) > U_i(s_i, s_{-i})$"
+            },
+            {
+              "letter": "B",
+              "is_correct": false,
+              "text": "A UNILATERAL deviation involves ONLY ONE player changing strategy — all other players' strategies remain fixed.",
+              "section_ref": "Section 5.1: Unilateral Improving Deviation",
+              "notes_quote": ""
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "This is the definition of Nash equilibrium — no player has an incentive to deviate unilaterally.",
+              "section_ref": "Section 5.2: Pure Strategy Nash Equilibrium (PSNE)",
+              "notes_quote": "A pure strategy Nash equilibrium is a strategy profile $s^*$ where no player has a unilateral improving move"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "Nash equilibrium profiles have NO unilateral improving deviations by definition — they are stable precisely because no player can improve.",
+              "section_ref": "Section 5.1: Unilateral Improving Deviation",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "NE is defined as the absence of unilateral improving deviations — no player benefits from deviating alone.",
+              "section_ref": "Section 5.2: Pure Strategy Nash Equilibrium (PSNE)",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q26",
+          "source_ref": "Section 5.2: Pure Strategy Nash Equilibrium (PSNE)",
+          "text": "Which of the following correctly describe Pure Strategy Nash Equilibrium (PSNE)? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A PSNE $s^*$ satisfies $U_i(s^*_i, s^*_{-i}) \\geq U_i(s'_i, s^*_{-i})$ for all $s'_i \\in S_i$ and all $i \\in \\mathbf{N}$"},
+            {"letter": "B", "text": "In a PSNE, every player plays a best response to the strategies of all other players"},
+            {"letter": "C", "text": "A dominant strategy equilibrium is NOT a Nash equilibrium"},
+            {"letter": "D", "text": "A PSNE requires each player to have a uniquely optimal strategy — ties are not allowed"},
+            {"letter": "E", "text": "A PSNE is a profile from which no player has a unilateral improving move"}
+          ],
+          "correct": ["A", "B", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "This is the formal NE condition: each player's strategy achieves the maximum payoff given others' strategies.",
+              "section_ref": "Section 5.2: Pure Strategy Nash Equilibrium (PSNE)",
+              "notes_quote": "$U_i(s^*_i, s^*_{-i}) \\geq U_i(s'_i, s^*_{-i}) \\quad \\forall s'_i \\in S_i, \\forall i \\in \\mathbf{N}$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "NE means each player is best-responding to the others.",
+              "section_ref": "Section 5.2: Pure Strategy Nash Equilibrium (PSNE)",
+              "notes_quote": "every player plays their best response to the strategies of other players"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "Every dominant strategy equilibrium IS a Nash equilibrium — dominant strategies are a special case of best responses.",
+              "section_ref": "Section 5.3: Properties of PSNE",
+              "notes_quote": "Every dominant strategy equilibrium is a Nash equilibrium"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "The NE condition uses $\\geq$, not $>$. Ties are allowed — a player can be indifferent between strategies and still be in equilibrium.",
+              "section_ref": "Section 5.2: Pure Strategy Nash Equilibrium (PSNE)",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "This is an equivalent definition of NE.",
+              "section_ref": "Section 5.2: Pure Strategy Nash Equilibrium (PSNE)",
+              "notes_quote": "A pure strategy Nash equilibrium is a strategy profile $s^*$ where no player has a unilateral improving move"
+            }
+          ]
+        },
+        {
+          "id": "q27",
+          "source_ref": "Section 5.3: Properties of PSNE",
+          "text": "Which of the following correctly describe properties of PSNE? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A PSNE is not necessarily unique — games can have multiple pure strategy Nash equilibria"},
+            {"letter": "B", "text": "Every finite game has at least one PSNE"},
+            {"letter": "C", "text": "Every dominant strategy equilibrium is a Nash equilibrium"},
+            {"letter": "D", "text": "Nash equilibrium is a WEAKER solution concept than surviving IEDS"},
+            {"letter": "E", "text": "Some games have no PSNE at all (e.g., Matching Pennies)"}
+          ],
+          "correct": ["A", "C", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "For example, the Coordination Game and Professor's Dilemma each have two PSNE.",
+              "section_ref": "Section 5.3: Properties of PSNE",
+              "notes_quote": "Not necessarily unique: Coordination game has two PSNE"
+            },
+            {
+              "letter": "B",
+              "is_correct": false,
+              "text": "Matching Pennies has NO pure strategy Nash equilibrium — finite games are only guaranteed a MIXED strategy NE (by Nash's Theorem).",
+              "section_ref": "Section 5.3: Properties of PSNE",
+              "notes_quote": "May not exist: Matching Pennies has no PSNE"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "Dominant strategies are best responses to ALL opponent strategies, so certainly best responses to any specific opponent strategy.",
+              "section_ref": "Section 5.3: Properties of PSNE",
+              "notes_quote": "Every dominant strategy equilibrium is a Nash equilibrium"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "Nash equilibrium is a STRONGER requirement than surviving IEDS — every NE survives IEDS but not every IEDS survivor is a NE.",
+              "section_ref": "Section 5.3: Properties of PSNE",
+              "notes_quote": "Nash equilibrium is a stronger requirement than surviving IEDS"
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "Matching Pennies has a cycle of profitable deviations and no stable pure profile.",
+              "section_ref": "Section 5.3: Properties of PSNE",
+              "notes_quote": "May not exist: Matching Pennies has no PSNE"
+            }
+          ]
+        },
+        {
+          "id": "q28",
+          "source_ref": "Section 5.4: Worked Example: Finding Best Responses",
+          "text": "In the best response worked example (Exercise 2 from LGT):\n\n|  | L | C | R |\n|---|---|---|---|\n| **T** | $2, 2$ | $1, 3$ | $0, 1$ |\n| **M** | $3, 1$ | $0, 0$ | $0, 0$ |\n| **B** | $1, 0$ | $0, 0$ | $0, 0$ |\n\nWhich statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "This game has no pure strategy Nash equilibrium"},
+            {"letter": "B", "text": "Player 1's best response to L is M, yielding payoff $3$"},
+            {"letter": "C", "text": "Player 2's best response to T is L, yielding payoff $2$"},
+            {"letter": "D", "text": "Player 1's best response to C is T, yielding payoff $1$"},
+            {"letter": "E", "text": "If Player 2 plays R, Player 1 is indifferent among T, M, and B (all yield payoff $0$)"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "No cell has both entries starred — no profile is mutually a best response.",
+              "section_ref": "Section 5.4: Worked Example: Finding Best Responses",
+              "notes_quote": "No cell has both entries starred → No pure strategy Nash equilibrium in this game"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Against L: T gives 2, M gives 3, B gives 1 — Player 1's BR is M with payoff 3.",
+              "section_ref": "Section 5.4: Worked Example: Finding Best Responses",
+              "notes_quote": ""
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "Against T: Player 2 gets L→2, C→3, R→1. Player 2's BR to T is C (payoff 3), not L.",
+              "section_ref": "Section 5.4: Worked Example: Finding Best Responses",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Against C: T gives 1, M gives 0, B gives 0 — Player 1's BR is T with payoff 1.",
+              "section_ref": "Section 5.4: Worked Example: Finding Best Responses",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "Against R: T, M, and B all give Player 1 a payoff of 0 — they are all best responses.",
+              "section_ref": "Section 5.4: Worked Example: Finding Best Responses",
+              "notes_quote": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "6. Mixed Strategy Nash Equilibrium",
+      "questions": [
+        {
+          "id": "q29",
+          "source_ref": "Section 6.1: Mixed Strategies",
+          "text": "Which of the following correctly describe mixed strategies? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A mixed strategy is a probability distribution over the set of pure strategies"},
+            {"letter": "B", "text": "A pure strategy is a special case of a mixed strategy (probability 1 on one action, 0 on all others)"},
+            {"letter": "C", "text": "With $n$ pure strategies, there are exactly $n$ possible mixed strategies"},
+            {"letter": "D", "text": "$\\Delta_i$ denotes the set of all probability distributions (mixed strategies) for player $i$"},
+            {"letter": "E", "text": "Mixed strategies are only relevant in games where no pure strategy Nash equilibrium exists"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "This is the definition of a mixed strategy.",
+              "section_ref": "Section 6.1: Mixed Strategies",
+              "notes_quote": "A mixed strategy is a probability distribution over the set of pure strategies"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "A pure strategy assigns probability 1 to one action — it is a degenerate mixed strategy.",
+              "section_ref": "Section 6.1: Mixed Strategies",
+              "notes_quote": "A pure strategy is a special case of a mixed strategy (one action played with probability 1)"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "With $n$ pure strategies, there are INFINITELY MANY mixed strategies (any probability distribution over $n$ outcomes).",
+              "section_ref": "Section 6.1: Mixed Strategies",
+              "notes_quote": "Even with finite pure strategy sets, there are infinitely many mixed strategies"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "$\\Delta_i$ is the notation for the set of mixed strategies for player $i$.",
+              "section_ref": "Section 6.1: Mixed Strategies",
+              "notes_quote": "Let $\\Delta_i$ denote the set of probability distributions over $S_i$ (the set of mixed strategies for player $i$)"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "Mixed strategies are always defined, even in games with PSNE. PSNE are special cases of MSNE.",
+              "section_ref": "Section 6.1: Mixed Strategies",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q30",
+          "source_ref": "Section 6.2: Expected Utility under Mixed Strategies",
+          "text": "Which of the following correctly describe expected utility under a mixed strategy profile $\\tilde{s}$? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$U_i(\\tilde{s}) = \\sum_{s \\in S} \\left(\\prod_{j \\in \\mathbf{N}} \\tilde{s}_j(s_j)\\right) U_i(s)$"},
+            {"letter": "B", "text": "Players' mixed strategies are correlated when computing expected utility under a mixed profile"},
+            {"letter": "C", "text": "The expected utility sums over ALL pure strategy profiles $s \\in S$"},
+            {"letter": "D", "text": "$\\tilde{s}_j(s_j)$ is the probability that player $j$ plays pure strategy $s_j$ under their mixed strategy"},
+            {"letter": "E", "text": "Each pure strategy profile's contribution is weighted by the probability that all players simultaneously choose those strategies"}
+          ],
+          "correct": ["A", "C", "D", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "This is the exact formula for expected utility under a mixed strategy profile.",
+              "section_ref": "Section 6.2: Expected Utility under Mixed Strategies",
+              "notes_quote": "$U_i(\\tilde{s}) = \\sum_{s \\in S} \\left(\\prod_{j \\in \\mathbf{N}} \\tilde{s}_j(s_j)\\right) U_i(s)$"
+            },
+            {
+              "letter": "B",
+              "is_correct": false,
+              "text": "Players' strategies are INDEPENDENT — the formula uses the product $\\prod$ of individual probabilities, not a correlated distribution.",
+              "section_ref": "Section 6.2: Expected Utility under Mixed Strategies",
+              "notes_quote": ""
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "The outer sum is over the full space $S$ of all pure strategy profiles.",
+              "section_ref": "Section 6.2: Expected Utility under Mixed Strategies",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "$\\tilde{s}_j(s_j)$ is the probability player $j$ assigns to pure strategy $s_j$.",
+              "section_ref": "Section 6.2: Expected Utility under Mixed Strategies",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "The product $\\prod_j \\tilde{s}_j(s_j)$ is the probability of profile $s$ occurring when all players mix independently.",
+              "section_ref": "Section 6.2: Expected Utility under Mixed Strategies",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q31",
+          "source_ref": "Section 6.3: Mixed Strategy Nash Equilibrium (MSNE)",
+          "text": "Which of the following correctly describe Mixed Strategy Nash Equilibrium (MSNE)? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "An MSNE is a mixed strategy profile where each player's strategy is a best response to the others"},
+            {"letter": "B", "text": "An MSNE requires every player to randomize uniformly over all their pure strategies"},
+            {"letter": "C", "text": "Every PSNE is also an MSNE (as a degenerate mixed strategy)"},
+            {"letter": "D", "text": "The MSNE condition is $U_i(\\tilde{s}^*_i, \\tilde{s}^*_{-i}) \\geq U_i(\\tilde{s}'_i, \\tilde{s}^*_{-i})$ for all $\\tilde{s}'_i \\in \\Delta_i$"},
+            {"letter": "E", "text": "An MSNE can only exist when no PSNE is present in the game"}
+          ],
+          "correct": ["A", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "MSNE generalises the NE concept to mixed strategies — each player's mixed strategy is a best response.",
+              "section_ref": "Section 6.3: Mixed Strategy Nash Equilibrium (MSNE)",
+              "notes_quote": "a mixed strategy Nash equilibrium is a mixed strategy profile $\\tilde{s}^*$ where each player's mixed strategy is a best response to the others"
+            },
+            {
+              "letter": "B",
+              "is_correct": false,
+              "text": "An MSNE only requires that each player's strategy be a best response — not that randomization be uniform. Probabilities are determined by the indifference principle.",
+              "section_ref": "Section 6.3: Mixed Strategy Nash Equilibrium (MSNE)",
+              "notes_quote": ""
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "A pure strategy is a degenerate mixed strategy, so every PSNE satisfies the MSNE conditions.",
+              "section_ref": "Section 6.3: Mixed Strategy Nash Equilibrium (MSNE)",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "This is the formal definition of MSNE.",
+              "section_ref": "Section 6.3: Mixed Strategy Nash Equilibrium (MSNE)",
+              "notes_quote": "$U_i(\\tilde{s}^*_i, \\tilde{s}^*_{-i}) \\geq U_i(\\tilde{s}'_i, \\tilde{s}^*_{-i}) \\quad \\forall \\tilde{s}'_i \\in \\Delta_i, \\forall i \\in \\mathbf{N}$"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "MSNE exist in all finite games (Nash's Theorem). Games WITH PSNE also have MSNE representations.",
+              "section_ref": "Section 6.3: Mixed Strategy Nash Equilibrium (MSNE)",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q32",
+          "source_ref": "Section 6.4: Nash's Theorem",
+          "text": "Which of the following correctly describe Nash's Theorem? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Nash's Theorem guarantees that every finite game has at least one Nash equilibrium in mixed strategies"},
+            {"letter": "B", "text": "Nash's Theorem was proved by John Nash in 1950"},
+            {"letter": "C", "text": "Nash's Theorem applies only to two-player zero-sum games"},
+            {"letter": "D", "text": "Nash's Theorem guarantees the uniqueness of Nash equilibria in finite games"},
+            {"letter": "E", "text": "Nash's Theorem requires both the number of players and the action sets to be finite"}
+          ],
+          "correct": ["A", "B", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Nash's Theorem guarantees existence (not uniqueness) of at least one NE in mixed strategies.",
+              "section_ref": "Section 6.4: Nash's Theorem",
+              "notes_quote": "Every game with a finite set of players and finite sets of actions has at least one Nash equilibrium in mixed strategies"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "The theorem was proved by John Nash in his 1950 paper.",
+              "section_ref": "Section 6.4: Nash's Theorem",
+              "notes_quote": "Theorem (Nash, 1950)"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "Nash's Theorem applies to ANY finite game with any number of players — not just two-player zero-sum games.",
+              "section_ref": "Section 6.4: Nash's Theorem",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "Nash's Theorem only guarantees EXISTENCE of at least one NE, not uniqueness. Games can have multiple NE.",
+              "section_ref": "Section 6.4: Nash's Theorem",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "The theorem requires 'a finite set of players and finite sets of actions'.",
+              "section_ref": "Section 6.4: Nash's Theorem",
+              "notes_quote": "Every game with a finite set of players and finite sets of actions has at least one Nash equilibrium in mixed strategies"
+            }
+          ]
+        },
+        {
+          "id": "q33",
+          "source_ref": "Section 6.5: Computing Mixed Nash Equilibria: The Indifference Principle",
+          "text": "Which of the following correctly describe the Indifference Principle for computing MSNE? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A player randomizes between strategies if and only if they are indifferent between those strategies"},
+            {"letter": "B", "text": "Player $i$'s mixing probabilities are chosen to make the OTHER player(s) indifferent"},
+            {"letter": "C", "text": "If a player is indifferent between two strategies, they must mix over them with equal probability $\\frac{1}{2}$ each"},
+            {"letter": "D", "text": "In an MSNE, every pure strategy in a player's support yields the same expected utility"},
+            {"letter": "E", "text": "The indifference principle states that a player randomizes to maximise their OWN expected payoff"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "A player only randomizes when they are indifferent — otherwise they would play the better strategy with probability 1.",
+              "section_ref": "Section 6.5: Computing Mixed Nash Equilibria: The Indifference Principle",
+              "notes_quote": "A player will randomize between strategies if and only if they are indifferent between those strategies"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Player $i$'s mixing probabilities are set to make the OTHER player(s) indifferent — this is the key insight.",
+              "section_ref": "Section 6.5: Computing Mixed Nash Equilibria: The Indifference Principle",
+              "notes_quote": "Player $i$'s mixing probabilities are determined by making the other player indifferent"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "Indifference does not force equal probabilities. The specific mixing probabilities are determined by making the OTHER player(s) indifferent, not by equal-weighting.",
+              "section_ref": "Section 6.5: Computing Mixed Nash Equilibria: The Indifference Principle",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "All strategies in a player's support must yield equal expected utility — otherwise the player would shift probability to the better strategy.",
+              "section_ref": "Section 6.5: Computing Mixed Nash Equilibria: The Indifference Principle",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "A player randomizes to make the OTHER player indifferent (and thus willing to mix), not to directly maximise their own payoff.",
+              "section_ref": "Section 6.5: Computing Mixed Nash Equilibria: The Indifference Principle",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q34",
+          "source_ref": "Section 6.6: Worked Example: Matching Pennies",
+          "text": "In the MSNE computation for Matching Pennies (Player 1 plays H with prob $p$, Player 2 plays H with prob $q$), which statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The MSNE has each player playing H with probability $\\frac{1}{2}$"},
+            {"letter": "B", "text": "To find $p$, we set Player 2's expected utility from H equal to their expected utility from T"},
+            {"letter": "C", "text": "Setting Player 2 indifferent: $-p + (1-p) = p - (1-p)$ gives $p = \\frac{1}{2}$"},
+            {"letter": "D", "text": "The MSNE gives each player an expected payoff of $0$"},
+            {"letter": "E", "text": "Player 1 determines their mixing probability $p$ by solving for what makes THEMSELVES indifferent"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "By symmetry, both players mix 50-50 in the MSNE.",
+              "section_ref": "Section 6.6: Worked Example: Matching Pennies",
+              "notes_quote": "MSNE: $(\\frac{1}{2}H + \\frac{1}{2}T, \\frac{1}{2}H + \\frac{1}{2}T)$ with expected utility 0 for each player"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Player 1's probability $p$ makes Player 2 indifferent — we set $U_2(H) = U_2(T)$ to find $p$.",
+              "section_ref": "Section 6.6: Worked Example: Matching Pennies",
+              "notes_quote": "For Player 2 to be indifferent between H and T: $U_2(H) = U_2(T)$"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "This algebra is shown step by step in the notes and gives $p = 1/2$.",
+              "section_ref": "Section 6.6: Worked Example: Matching Pennies",
+              "notes_quote": "$-p + (1-p) = p - (1-p)$, $1 - 2p = 2p - 1$, $p = \\frac{1}{2}$"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "At the 50-50 MSNE, both players' expected payoffs are 0.",
+              "section_ref": "Section 6.6: Worked Example: Matching Pennies",
+              "notes_quote": "expected utility 0 for each player"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "Player 1's probability $p$ is determined by making PLAYER 2 indifferent, not Player 1. Player 2's probability $q$ makes Player 1 indifferent.",
+              "section_ref": "Section 6.6: Worked Example: Matching Pennies",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q35",
+          "source_ref": "Section 6.7: Worked Example: Stag Hunt",
+          "text": "In the Stag Hunt MSNE computation (Player 1 plays Stag with prob $p$, Player 2 with prob $q$), which statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The MSNE has each player playing Stag with probability $\\frac{2}{3}$"},
+            {"letter": "B", "text": "Setting Player 2 indifferent: $4p + (1-p) = 3p + 3(1-p)$ gives $p = \\frac{2}{3}$"},
+            {"letter": "C", "text": "If Player 2's payoff from (Stag, Hare) changes from $1$ to $2$, it is Player 2's mixing probability $q$ that changes"},
+            {"letter": "D", "text": "The Stag Hunt has exactly three Nash equilibria: (Stag, Stag), (Hare, Hare), and the MSNE"},
+            {"letter": "E", "text": "Player 1's mixing probability $p$ makes Player 1 indifferent between Stag and Hare"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Solving the indifference condition gives $p = q = 2/3$.",
+              "section_ref": "Section 6.7: Worked Example: Stag Hunt",
+              "notes_quote": "Each player plays Stag with probability $2/3$ and Hare with probability $1/3$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "This is the algebra for making Player 2 indifferent between Stag and Hare.",
+              "section_ref": "Section 6.7: Worked Example: Stag Hunt",
+              "notes_quote": "$4p + 1(1-p) = 3p + 3(1-p)$, $3p + 1 = 3$, $p = \\frac{2}{3}$"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "The notes explicitly state it affects PLAYER 1's mixing probability: changing Player 2's payoff at (Stag, Hare) changes what makes Player 2 indifferent, which changes $p$ (Player 1's probability), not $q$.",
+              "section_ref": "Section 6.7: Worked Example: Stag Hunt",
+              "notes_quote": "If Player 2's payoff from (Stag, Hare) changes from 1 to 2, it affects Player 1's mixing probability (changes to $p = 1/2$), not Player 2's"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "The two PSNE plus one MSNE give three total Nash equilibria.",
+              "section_ref": "Section 6.7: Worked Example: Stag Hunt",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "Player 1's probability $p$ makes PLAYER 2 indifferent. Player 2's probability $q$ makes Player 1 indifferent — this is the key insight of the indifference principle.",
+              "section_ref": "Section 6.5: Computing Mixed Nash Equilibria: The Indifference Principle",
+              "notes_quote": "Player $i$'s mixing probabilities are determined by making the other player indifferent"
+            }
+          ]
+        },
+        {
+          "id": "q36",
+          "source_ref": "Section 6.8: Worked Example: Battle of the Sexes",
+          "text": "In the Battle of the Sexes MSNE (Player 1 plays Theater with prob $p$, Player 2 with prob $q$), which statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In the original BoS, the MSNE has Player 1 playing Theater with probability $\\frac{2}{3}$"},
+            {"letter": "B", "text": "In the original BoS, the MSNE has Player 2 playing Theater with probability $\\frac{1}{3}$"},
+            {"letter": "C", "text": "To find $q$, we set Player 1 indifferent: $2q = 1 - q$, giving $q = \\frac{1}{3}$"},
+            {"letter": "D", "text": "Changing the Football payoff from $(1, 2)$ to $(1, 3)$ changes Player 1's mixing probability to $p = \\frac{3}{4}$"},
+            {"letter": "E", "text": "Changing the Football payoff from $(1, 2)$ to $(1, 3)$ also changes Player 2's mixing probability $q$"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Setting Player 2 indifferent: $p \\cdot 1 = (1-p) \\cdot 2$ gives $p = 2/3$.",
+              "section_ref": "Section 6.8: Worked Example: Battle of the Sexes",
+              "notes_quote": "$p \\cdot 1 = (1-p) \\cdot 2$, $3p = 2$, $p = \\frac{2}{3}$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Setting Player 1 indifferent: $2q = 1-q$ gives $q = 1/3$.",
+              "section_ref": "Section 6.8: Worked Example: Battle of the Sexes",
+              "notes_quote": "$2q = 1 - q$, $3q = 1$, $q = \\frac{1}{3}$"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "This is the correct equation to make Player 1 indifferent between Theater and Football.",
+              "section_ref": "Section 6.8: Worked Example: Battle of the Sexes",
+              "notes_quote": "$2q = 1 - q$, $3q = 1 \\implies q = \\frac{1}{3}$"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "In the modified game, Player 2 indifference gives $p = 3(1-p)$, so $4p = 3$, $p = 3/4$.",
+              "section_ref": "Section 6.8: Worked Example: Battle of the Sexes",
+              "notes_quote": "For Player 2 to be indifferent: $p = 3(1-p)$, so $4p = 3 \\implies p = \\frac{3}{4}$"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "$q$ depends on Player 1's indifference condition, which depends on Player 1's payoffs. Since Player 1's payoffs are unchanged in the modified game, $q = 1/3$ remains the same.",
+              "section_ref": "Section 6.8: Worked Example: Battle of the Sexes",
+              "notes_quote": "For Player 1 to be indifferent: $2q = 1-q$, so $3q = 1 \\implies q = \\frac{1}{3}$ (unchanged, since Player 1's payoffs didn't change)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "7. Maximin and Minimax Strategies",
+      "questions": [
+        {
+          "id": "q37",
+          "source_ref": "Section 7.1: Maximin (Safety Level) Strategy",
+          "text": "Which of the following correctly describe the maximin (safety level) strategy? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The maximin strategy maximises player $i$'s worst-case payoff"},
+            {"letter": "B", "text": "The maximin formula is $\\max_{s_i \\in S_i} \\min_{s_{-i} \\in S_{-i}} U_i(s_i, s_{-i})$"},
+            {"letter": "C", "text": "The maximin strategy assumes all other players will try to minimise player $i$'s payoff"},
+            {"letter": "D", "text": "The maximin strategy always coincides with the dominant strategy"},
+            {"letter": "E", "text": "The safety level value is the guaranteed minimum payoff from playing the maximin strategy"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Maximin maximises over own strategies the minimum payoff achievable against the worst-case opponent.",
+              "section_ref": "Section 7.1: Maximin (Safety Level) Strategy",
+              "notes_quote": "The maximin (or safety level) strategy for player $i$ maximises the worst-case payoff"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "This is the formal maximin formula.",
+              "section_ref": "Section 7.1: Maximin (Safety Level) Strategy",
+              "notes_quote": "$\\max_{s_i \\in S_i} \\min_{s_{-i} \\in S_{-i}} U_i(s_i, s_{-i})$"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "The maximin models a pessimistic adversarial scenario — opponents act to minimise your payoff.",
+              "section_ref": "Section 7.1: Maximin (Safety Level) Strategy",
+              "notes_quote": "assuming all other players play to cause the greatest harm to player $i$"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "The maximin strategy is a safety strategy, not necessarily a dominant one. They coincide in the PD but not in general.",
+              "section_ref": "Section 7.1: Maximin (Safety Level) Strategy",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "The safety level value is exactly the payoff guaranteed by playing the maximin strategy.",
+              "section_ref": "Section 7.1: Maximin (Safety Level) Strategy",
+              "notes_quote": "The maximin value (safety level value) is the guaranteed minimum payoff from playing this strategy"
+            }
+          ]
+        },
+        {
+          "id": "q38",
+          "source_ref": "Section 7.2: Minimax Strategy",
+          "text": "Which of the following correctly describe the minimax strategy? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The minimax strategy for player $i$ minimises the maximum payoff achievable by player $j$"},
+            {"letter": "B", "text": "The minimax formula (against player $j$) is $\\min_{s_i \\in S_i} \\max_{s_j \\in S_j} U_j(s_i, s_j)$"},
+            {"letter": "C", "text": "The minimax strategy is relevant for punishment in repeated games"},
+            {"letter": "D", "text": "In $n$-player games ($n > 2$), player $i$ alone can always minimise player $j$'s payoff"},
+            {"letter": "E", "text": "The minimax and maximin strategies are always identical for the same player in all games"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Minimax keeps the opponent's payoff at a minimum.",
+              "section_ref": "Section 7.2: Minimax Strategy",
+              "notes_quote": "The minimax strategy for player $i$ against player $j$ keeps the payoff of player $j$ at a minimum"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "This is the formal minimax formula.",
+              "section_ref": "Section 7.2: Minimax Strategy",
+              "notes_quote": "$\\min_{s_i \\in S_i} \\max_{s_j \\in S_j} U_j(s_i, s_j)$"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "Minimax is a punishment tool — how much can player $i$ hurt player $j$, disregarding own payoff.",
+              "section_ref": "Section 7.2: Minimax Strategy",
+              "notes_quote": "Useful for punishment — considering how much a player can punish another player without regard to their own payoff"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "In $n$-player games, player $i$ ALONE cannot usually minimise player $j$'s payoff — we assume ALL players other than $j$ coordinate to minimise $j$.",
+              "section_ref": "Section 7.2: Minimax Strategy",
+              "notes_quote": "we assume all players other than $j$ coordinate (\\\"gang up\\\") to minimise $j$'s payoff"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "They are equal only in two-player zero-sum games (by the Minimax Theorem). In general $n$-player games, maximin $\\leq$ minimax.",
+              "section_ref": "Section 7.3: Relationship Between Maximin and Minimax",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q39",
+          "source_ref": "Section 7.3: Relationship Between Maximin and Minimax",
+          "text": "Which of the following correctly describe the relationship between maximin and minimax values? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In two-player games (in mixed strategies), a player's maximin value equals their minimax value"},
+            {"letter": "B", "text": "In $n$-player games ($n > 2$), maximin value $\\geq$ minimax value"},
+            {"letter": "C", "text": "In $n$-player games ($n > 2$), maximin value $\\leq$ minimax value"},
+            {"letter": "D", "text": "Mixed strategies generally yield higher safety level values than pure strategies alone"},
+            {"letter": "E", "text": "The maximin and minimax values are equal in ALL games regardless of number of players"}
+          ],
+          "correct": ["A", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "In two-player games, the maximin and minimax values coincide.",
+              "section_ref": "Section 7.3: Relationship Between Maximin and Minimax",
+              "notes_quote": "Two-player games: A player's minimax value = maximin value (in mixed strategies)"
+            },
+            {
+              "letter": "B",
+              "is_correct": false,
+              "text": "The inequality goes the other way: in $n$-player games, maximin $\\leq$ minimax.",
+              "section_ref": "Section 7.3: Relationship Between Maximin and Minimax",
+              "notes_quote": ""
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "In $n$-player games with $n > 2$, the maximin value is at most the minimax value.",
+              "section_ref": "Section 7.3: Relationship Between Maximin and Minimax",
+              "notes_quote": "$n$-player games ($n > 2$): maximin value $\\leq$ minimax value"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Mixed strategies improve the safety level beyond what pure strategies guarantee.",
+              "section_ref": "Section 7.5: Worked Example: Battle of Sexes",
+              "notes_quote": "Mixed strategies are more effective than pure strategies for maximin/minimax — they generally yield higher safety level values"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "Equality holds only in two-player games (in mixed strategies). In $n$-player games ($n > 2$), maximin $\\leq$ minimax in general.",
+              "section_ref": "Section 7.3: Relationship Between Maximin and Minimax",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q40",
+          "source_ref": "Section 7.4: Worked Example: Prisoner's Dilemma (Pure Maximin/Minimax)",
+          "text": "In the Prisoner's Dilemma pure maximin analysis for the row player, which statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "If the row player commits to C, the opponent minimises by playing D, giving the row player a payoff of $-10$"},
+            {"letter": "B", "text": "If the row player commits to D, the opponent minimises by playing D, giving the row player a payoff of $-5$"},
+            {"letter": "C", "text": "The row player's maximin strategy is D, with a safety level value of $-5$"},
+            {"letter": "D", "text": "The row player's safety level value is $-10$ (the worst possible outcome)"},
+            {"letter": "E", "text": "The maximin strategy in the PD coincides with the dominant strategy (both are D)"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Committing to C gives the opponent incentive to defect, resulting in the worst payoff $-10$.",
+              "section_ref": "Section 7.4: Worked Example: Prisoner's Dilemma (Pure Maximin/Minimax)",
+              "notes_quote": "Commit to C → opponent minimises by playing D → payoff = $-10$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Committing to D: regardless of opponent's play, the worst case is D vs D giving $-5$.",
+              "section_ref": "Section 7.4: Worked Example: Prisoner's Dilemma (Pure Maximin/Minimax)",
+              "notes_quote": "Commit to D → opponent minimises by playing D → payoff = $-5$"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "maximin = max$\\{-10, -5\\} = -5$, achieved by playing D.",
+              "section_ref": "Section 7.4: Worked Example: Prisoner's Dilemma (Pure Maximin/Minimax)",
+              "notes_quote": "Maximin: max$\\{-10, -5\\} = -5$ → play D (safety level = $-5$)"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "The safety level is $-5$ (the MAXIMUM of the minimum payoffs), not $-10$.",
+              "section_ref": "Section 7.4: Worked Example: Prisoner's Dilemma (Pure Maximin/Minimax)",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "In the PD, D is both a dominant strategy and the maximin strategy.",
+              "section_ref": "Section 7.4: Worked Example: Prisoner's Dilemma (Pure Maximin/Minimax)",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q41",
+          "source_ref": "Section 7.5: Worked Example: Battle of Sexes (Mixed Maximin)",
+          "text": "In the mixed maximin worked example with the game $\\{(2,-2),(9,0);(0,0),(1,-1)\\}$ (rows = Player 1's strategies, Player 1 mixes with prob $p$), which statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Player 1's maximin mixing probability is $p = \\frac{1}{3}$"},
+            {"letter": "B", "text": "Player 1's safety level value is $\\frac{2}{3}$"},
+            {"letter": "C", "text": "For Player 2's minimax: setting $2q = 1-q$ gives $q = \\frac{1}{3}$"},
+            {"letter": "D", "text": "Mixed strategies improve on pure strategies here: Player 1's pure maximin gives 0, but the mixed maximin gives $\\frac{2}{3}$"},
+            {"letter": "E", "text": "Mixed strategies yield lower safety level values than pure strategies in all games"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "From $-2p = -(1-p)$: $-2p = -1+p$, so $1 = 3p$, giving $p = 1/3$.",
+              "section_ref": "Section 7.5: Worked Example: Battle of Sexes",
+              "notes_quote": "For P1 maximin: $-2p = -(1-p)$, so $-2p = -1+p$, giving $1 = 3p$, thus $p = 1/3$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Substituting $p = 1/3$ into the expected payoff formula gives $u_1 = 2/3$.",
+              "section_ref": "Section 7.5: Worked Example: Battle of Sexes",
+              "notes_quote": "Safety value $u_1 = 2/3$"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "For Player 2's minimax probability $q$: $2q = 1-q$, $3q = 1$, $q = 1/3$.",
+              "section_ref": "Section 7.5: Worked Example: Battle of Sexes",
+              "notes_quote": "For P2 minimax: $2q = 1-q$, so $3q = 1$, thus $q = 1/3$"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Pure strategy maximin gives a safety level of 0; mixing gives $2/3$ — mixed strategies are more effective.",
+              "section_ref": "Section 7.5: Worked Example: Battle of Sexes",
+              "notes_quote": "Mixed strategies are more effective than pure strategies for maximin/minimax — they generally yield higher safety level values"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "This is the opposite of what the notes say: mixed strategies generally yield HIGHER safety level values than pure strategies.",
+              "section_ref": "Section 7.5: Worked Example: Battle of Sexes",
+              "notes_quote": "Mixed strategies are more effective than pure strategies for maximin/minimax"
+            }
+          ]
+        },
+        {
+          "id": "q42",
+          "source_ref": "Section 7.6: Zero-Sum Games and the Minimax Theorem",
+          "text": "Which of the following correctly describe zero-sum games and the Minimax Theorem? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A zero-sum game satisfies $U_1(s) + U_2(s) = 0$ for all strategy profiles $s$"},
+            {"letter": "B", "text": "Von Neumann's Minimax Theorem: $\\max_{s_1} \\min_{s_2} U_1 = \\min_{s_2} \\max_{s_1} U_1$ for any finite two-player zero-sum game"},
+            {"letter": "C", "text": "In zero-sum games, the value of the game equals the maximin value for Player 1"},
+            {"letter": "D", "text": "In zero-sum games, different Nash equilibria may have different payoff vectors"},
+            {"letter": "E", "text": "In zero-sum games, any maximin/minimax strategy profile is a Nash equilibrium"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Zero-sum games are constant-sum games with constant $C = 0$.",
+              "section_ref": "Section 7.6: Zero-Sum Games and the Minimax Theorem",
+              "notes_quote": "A zero-sum game is a constant-sum game with $C = 0$: $U_2(s) = -U_1(s)$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "This is the Minimax Theorem, proved by von Neumann.",
+              "section_ref": "Section 7.6: Zero-Sum Games and the Minimax Theorem",
+              "notes_quote": "Minimax Theorem (von Neumann): For any finite two-player zero-sum game: $\\max_{s_1} \\min_{s_2} U_1(s_1, s_2) = \\min_{s_2} \\max_{s_1} U_1(s_1, s_2)$"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "The value of the game is defined as Player 1's guaranteed (maximin) payoff.",
+              "section_ref": "Section 7.6: Zero-Sum Games and the Minimax Theorem",
+              "notes_quote": "The value of the game = maximin value for Player 1"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "In zero-sum games, ALL Nash equilibria have the SAME payoff vector.",
+              "section_ref": "Section 7.6: Zero-Sum Games and the Minimax Theorem",
+              "notes_quote": "All Nash equilibria have the same payoff vector"
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "In zero-sum games, maximin/minimax strategy profiles are Nash equilibria.",
+              "section_ref": "Section 7.6: Zero-Sum Games and the Minimax Theorem",
+              "notes_quote": "Any maximin/minimax strategy profile is a Nash equilibrium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-8",
+      "title": "8. Other Solution Concepts",
+      "questions": [
+        {
+          "id": "q43",
+          "source_ref": "Section 8.1: Rationalizable Strategies",
+          "text": "Which of the following correctly describe rationalizable strategies? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A rationalizable strategy is a best response to some belief consistent with common knowledge of rationality"},
+            {"letter": "B", "text": "Every Nash equilibrium uses only rationalizable strategies"},
+            {"letter": "C", "text": "Every rationalizable strategy is part of some Nash equilibrium"},
+            {"letter": "D", "text": "The set of rationalizable strategies equals the strategies surviving IEDS when mixed strategy domination is allowed"},
+            {"letter": "E", "text": "The set of rationalizable strategies is always smaller than the set of strategies used in Nash equilibria"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Rationalizability is defined by best-response to beliefs consistent with common knowledge of rationality.",
+              "section_ref": "Section 8.1: Rationalizable Strategies",
+              "notes_quote": "a best response to some belief about opponents' strategies, where those beliefs are consistent with common knowledge of rationality"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "NE strategies are always rationalizable — every NE is consistent with common knowledge of rationality.",
+              "section_ref": "Section 8.1: Rationalizable Strategies",
+              "notes_quote": "Every Nash equilibrium uses only rationalizable strategies"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "Rationalizable strategies may NOT be part of any NE — they form a SUPERSET of NE strategies.",
+              "section_ref": "Section 8.1: Rationalizable Strategies",
+              "notes_quote": "rationalizable strategies may not be part of any NE"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Rationalizability is equivalent to IEDS with mixed strategy domination allowed.",
+              "section_ref": "Section 8.1: Rationalizable Strategies",
+              "notes_quote": "A strategy is rationalizable exactly when it survives iterated elimination of strategies that are never a best response (equivalently, IEDS allowing domination by mixed strategies)"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "Rationalizable strategies form a SUPERSET of NE strategies, not a smaller set.",
+              "section_ref": "Section 8.1: Rationalizable Strategies",
+              "notes_quote": "Every Nash equilibrium uses only rationalizable strategies, but rationalizable strategies may not be part of any NE"
+            }
+          ]
+        },
+        {
+          "id": "q44",
+          "source_ref": "Section 8.2: Correlated Equilibrium",
+          "text": "Which of the following correctly describe correlated equilibrium? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In a correlated equilibrium, players condition their actions on a shared random signal from a trusted mediator"},
+            {"letter": "B", "text": "Every mixed Nash equilibrium induces a correlated equilibrium via the product distribution"},
+            {"letter": "C", "text": "The set of correlated equilibria is a superset of the set of Nash equilibria"},
+            {"letter": "D", "text": "Correlated equilibria always exist and can be computed via linear programming"},
+            {"letter": "E", "text": "Every correlated equilibrium is a Nash equilibrium"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "A mediator draws an action profile and privately recommends each player their action.",
+              "section_ref": "Section 8.2: Correlated Equilibrium",
+              "notes_quote": "a trusted mediator who draws an action profile at random from a publicly known distribution and privately recommends to each player their component"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Independent mixing in a NE is a special case of correlated randomization.",
+              "section_ref": "Section 8.2: Correlated Equilibrium",
+              "notes_quote": "Every mixed NE induces a correlated equilibrium (via the product distribution)"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "Nash equilibria are a special case of correlated equilibria — CE is a strictly larger set.",
+              "section_ref": "Section 8.2: Correlated Equilibrium",
+              "notes_quote": "The set of correlated equilibria is a superset of Nash equilibria"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Existence follows from NE existence; LP characterization makes them easier to compute.",
+              "section_ref": "Section 8.2: Correlated Equilibrium",
+              "notes_quote": "Correlated equilibria always exist and can be computed via linear programming (easier than computing NE)"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "It is the REVERSE: every Nash equilibrium is a correlated equilibrium, but not every CE is a NE.",
+              "section_ref": "Section 8.2: Correlated Equilibrium",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q45",
+          "source_ref": "Section 8.3: epsilon-Nash Equilibrium",
+          "text": "Which of the following correctly describe $\\varepsilon$-Nash equilibrium? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "An $\\varepsilon$-Nash equilibrium is a profile where no player can gain more than $\\varepsilon > 0$ by unilaterally deviating"},
+            {"letter": "B", "text": "The standard Nash equilibrium is the special case $\\varepsilon = 0$"},
+            {"letter": "C", "text": "In an $\\varepsilon$-Nash equilibrium, players' strategies may not be exact best responses"},
+            {"letter": "D", "text": "Every Nash equilibrium is also an $\\varepsilon$-Nash equilibrium for all $\\varepsilon \\geq 0$"},
+            {"letter": "E", "text": "An $\\varepsilon$-Nash equilibrium is only valid when $\\varepsilon < 0.01$"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "This is the definition of $\\varepsilon$-NE: approximate best response within tolerance $\\varepsilon$.",
+              "section_ref": "Section 8.3: epsilon-Nash Equilibrium",
+              "notes_quote": "a strategy profile where no player can gain more than $\\varepsilon > 0$ by unilaterally deviating — every player's strategy is an approximately best response"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Standard NE requires zero gain from deviation, which is the case $\\varepsilon = 0$.",
+              "section_ref": "Section 8.3: epsilon-Nash Equilibrium",
+              "notes_quote": "Standard Nash equilibrium is the special case $\\varepsilon = 0$"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "Players need only be approximately best-responding — exact optimality is not required.",
+              "section_ref": "Section 8.3: epsilon-Nash Equilibrium",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "A NE has zero gain from deviation, which satisfies the $\\leq \\varepsilon$ condition for any $\\varepsilon \\geq 0$.",
+              "section_ref": "Section 8.3: epsilon-Nash Equilibrium",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "$\\varepsilon$ can be any positive value — there is no upper limit of 0.01 specified in the definition.",
+              "section_ref": "Section 8.3: epsilon-Nash Equilibrium",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q46",
+          "source_ref": "Section 8.4: Strong Equilibrium",
+          "text": "Which of the following correctly describe strong equilibrium? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A strong equilibrium is a profile where no coalition of players has a joint improving deviation"},
+            {"letter": "B", "text": "Every strong equilibrium is a Nash equilibrium"},
+            {"letter": "C", "text": "In the Prisoner's Dilemma, (D, D) is a strong equilibrium"},
+            {"letter": "D", "text": "In the Coordination Game, both PSNE (U, L) and (D, R) are strong equilibria"},
+            {"letter": "E", "text": "Games with strong equilibria are very common"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Strong equilibrium requires stability against ALL coalitional deviations.",
+              "section_ref": "Section 8.4: Strong Equilibrium",
+              "notes_quote": "a strategy profile where no coalition of players has an improving move — i.e., there is no subset $C \\subseteq N$ with a joint strategy $s'_C$ such that $U_i(s'_C, s_{-C}) > U_i(s) \\quad \\forall i \\in C$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Singleton coalitions correspond to individual deviations, so strong equilibrium implies Nash equilibrium.",
+              "section_ref": "Section 8.4: Strong Equilibrium",
+              "notes_quote": "Every strong equilibrium is a Nash equilibrium (singleton coalitions)"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "(D, D) is NOT a strong equilibrium — both players can jointly deviate to (C, C) and both improve.",
+              "section_ref": "Section 8.4: Strong Equilibrium",
+              "notes_quote": "Prisoner's Dilemma: (D,D) is not a strong equilibrium (both players can jointly deviate to (C,C)); no strong equilibrium exists"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Both PSNE of the Coordination Game are strong equilibria.",
+              "section_ref": "Section 8.4: Strong Equilibrium",
+              "notes_quote": "Coordination Game: Both PSNE are strong equilibria"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "Games with strong equilibria are SCARCE — most games do not have strong equilibria.",
+              "section_ref": "Section 8.4: Strong Equilibrium",
+              "notes_quote": "Games with strong equilibria are scarce"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-9",
+      "title": "9. Tutorial Problems and Solutions",
+      "questions": [
+        {
+          "id": "q47",
+          "source_ref": "Section 9.1: Exercise 1: Firms Alpha and Beta",
+          "text": "In the Firms Alpha and Beta pricing game, which statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Each firm's dominant strategy is to choose the Low price"},
+            {"letter": "B", "text": "The Nash equilibrium is (Low, Low) with each firm earning £27,000"},
+            {"letter": "C", "text": "At (High, High), each firm earns £40,000, which Pareto-dominates the equilibrium"},
+            {"letter": "D", "text": "This game is a Prisoner's Dilemma: dominant strategies lead to a Pareto-inferior outcome"},
+            {"letter": "E", "text": "The firm choosing Low when the other chooses High earns £16,000"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Low gives higher profit regardless of the opponent: £45,000 vs £40,000 (vs High), and £27,000 vs £16,000 (vs Low).",
+              "section_ref": "Section 9.1: Exercise 1: Firms Alpha and Beta",
+              "notes_quote": "Each player has a dominant strategy: Low price"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "At (Low, Low), each firm earns $9000 \\times (5-2) = £27,000$.",
+              "section_ref": "Section 9.1: Exercise 1: Firms Alpha and Beta",
+              "notes_quote": "Equilibrium is (Low, Low) with payoffs (£27,000, £27,000)"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "At (High, High), each firm earns $5000 \\times (10-2) = £40,000 > £27,000$.",
+              "section_ref": "Section 9.1: Exercise 1: Firms Alpha and Beta",
+              "notes_quote": "(High, High): $5000 \\times (10-2) = £40,000$ each"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "The dominant strategy leads to (Low, Low) at £27,000 each, Pareto-dominated by (High, High) at £40,000 — classic PD.",
+              "section_ref": "Section 9.1: Exercise 1: Firms Alpha and Beta",
+              "notes_quote": "Dominant strategy (Low) leads to equilibrium payoffs that are Pareto-dominated by (High, High) at (£40,000, £40,000)"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "The LOW-pricing firm earns £45,000 ($15000 \\times 3$), not £16,000. It is the HIGH-pricing firm that earns £16,000 ($2000 \\times 8$).",
+              "section_ref": "Section 9.1: Exercise 1: Firms Alpha and Beta",
+              "notes_quote": "Low firm: $15000 \\times 3 = £45,000$"
+            }
+          ]
+        },
+        {
+          "id": "q48",
+          "source_ref": "Section 9.2: Exercise 2: Three-Firm Oligopoly",
+          "text": "In the three-firm oligopoly game where each firm chooses $p_i = 2$ (cheap) or $p_i = 3$ (expensive), which statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The game has exactly two pure strategy Nash equilibria: $(2, 2, 2)$ and $(3, 3, 3)$"},
+            {"letter": "B", "text": "At the equilibrium $(2, 2, 2)$, each firm earns a profit of 8"},
+            {"letter": "C", "text": "At the equilibrium $(3, 3, 3)$, each firm earns a profit of 12"},
+            {"letter": "D", "text": "Each firm has a strictly dominant strategy to price at 2"},
+            {"letter": "E", "text": "$(3, 3, 3)$ Pareto-dominates $(2, 2, 2)$ since all firms earn more at the former"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "The notes identify exactly these two PSNE.",
+              "section_ref": "Section 9.2: Exercise 2: Three-Firm Oligopoly",
+              "notes_quote": "PSNE: (2, 2, 2) with payoffs (8, 8, 8) and (3, 3, 3) with payoffs (12, 12, 12)"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "At (2,2,2), each firm earns 8.",
+              "section_ref": "Section 9.2: Exercise 2: Three-Firm Oligopoly",
+              "notes_quote": "PSNE: (2, 2, 2) with payoffs (8, 8, 8)"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "At (3,3,3), each firm earns 12.",
+              "section_ref": "Section 9.2: Exercise 2: Three-Firm Oligopoly",
+              "notes_quote": "PSNE: (3, 3, 3) with payoffs (12, 12, 12)"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "No dominant strategy exists: if the other two firms price at 3, a firm earns 12 at price 3 vs 12 at price 2 — not strictly better to price at 2.",
+              "section_ref": "Section 9.2: Exercise 2: Three-Firm Oligopoly",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "All firms earn 12 at $(3,3,3)$ vs 8 at $(2,2,2)$, so $(3,3,3)$ Pareto-dominates $(2,2,2)$.",
+              "section_ref": "Section 9.2: Exercise 2: Three-Firm Oligopoly",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q49",
+          "source_ref": "Section 9.3: Exercise 3: Weak Dominance and IEDS Order",
+          "text": "Which of the following correctly describe weak dominance and IEDS order-dependence? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The order of weak-dominated strategy elimination can affect which Nash equilibria survive"},
+            {"letter": "B", "text": "In Exercise 3a, D weakly dominates C for Player 2, and A weakly dominates B for Player 1"},
+            {"letter": "C", "text": "In Exercise 3a, removing B first then C leads to (A, D) as the only surviving NE"},
+            {"letter": "D", "text": "In Exercise 3a, removing C first leads to both (A, D) and (B, D) surviving as NE"},
+            {"letter": "E", "text": "Path-independence holds for IEDS under both strict AND weak dominance"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "This is the key lesson of weak IEDS — order matters.",
+              "section_ref": "Section 9.3: Exercise 3: Weak Dominance and IEDS Order",
+              "notes_quote": ""
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Both dominance relationships are established in the exercise.",
+              "section_ref": "Section 9.3: Exercise 3: Weak Dominance and IEDS Order",
+              "notes_quote": "D weakly dominates C; A weakly dominates B"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "Removing B first leaves a $1 \\times 2$ game where C is strongly dominated by D, leaving only (A, D).",
+              "section_ref": "Section 9.3: Exercise 3: Weak Dominance and IEDS Order",
+              "notes_quote": "If we remove B first → C is strongly dominated → (A, D) is the only NE"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Removing C first leaves a $2 \\times 1$ game where both (A,D) and (B,D) are NE.",
+              "section_ref": "Section 9.3: Exercise 3: Weak Dominance and IEDS Order",
+              "notes_quote": "If we remove C first → both (A, D) and (B, D) are NE"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "Path-independence holds ONLY for strict dominance IEDS. Weak dominance IEDS can yield different results depending on order.",
+              "section_ref": "Section 4.4: Iterated Elimination of Dominated Strategies (IEDS)",
+              "notes_quote": "For weak dominance: the outcome may depend on the order of elimination"
+            }
+          ]
+        },
+        {
+          "id": "q50",
+          "source_ref": "Section 9.4: Exercise 4: Number Choice Game",
+          "text": "In the number choice game (strategies $\\{2, \\ldots, 100\\}$; same number each gets that amount; $s < t$ gives lower chooser $s+2$ and higher $s-2$), which statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The only Nash equilibrium is $(2, 2)$"},
+            {"letter": "B", "text": "For any $n > 2$, the best response to $n$ is $n - 1$ (undercut)"},
+            {"letter": "C", "text": "Iterated undercutting logic drives both players to the equilibrium $(2, 2)$"},
+            {"letter": "D", "text": "Any profile $(a, b)$ with $a, b \\geq 4$ makes both players weakly better off than at $(2, 2)$"},
+            {"letter": "E", "text": "$(2, 2)$ maximises joint payoffs"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "$(2,2)$ is the unique NE — any other profile has an undercut deviation.",
+              "section_ref": "Section 9.4: Exercise 4: Number Choice Game",
+              "notes_quote": "Only Nash equilibrium: $(2, 2)$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Choosing $n-1$ when the opponent chooses $n$ gives payoff $(n-1)+2 = n+1 > n-1$ — strictly better.",
+              "section_ref": "Section 9.4: Exercise 4: Number Choice Game",
+              "notes_quote": "If one player chooses $n > 2$, the other's best response is $n-1$ (undercut)"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "Starting from any profile, players iteratively undercut until reaching $(2,2)$.",
+              "section_ref": "Section 9.4: Exercise 4: Number Choice Game",
+              "notes_quote": "This continues until both settle at 2"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "Both players earn at least 4 at such profiles vs 2 at $(2,2)$ — Pareto-improvement.",
+              "section_ref": "Section 9.4: Exercise 4: Number Choice Game",
+              "notes_quote": "in any profile $(a, b)$ where $a, b \\geq 4$, both players are weakly better off than at (2,2)"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "$(2,2)$ gives joint payoff 4. Profiles like $(100,100)$ give joint payoff 200 — far higher. $(2,2)$ is actually the WORST joint payoff outcome.",
+              "section_ref": "Section 9.4: Exercise 4: Number Choice Game",
+              "notes_quote": ""
+            }
+          ]
+        },
+        {
+          "id": "q51",
+          "source_ref": "Section 9.5: Exercise 5: Support Lemma (Best Response Characterization)",
+          "text": "Which of the following correctly describe the Support Lemma? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$x_1 \\in B_1(x_2^*)$ if and only if every pure strategy in the support of $x_1$ is itself a best response to $x_2^*$"},
+            {"letter": "B", "text": "If some $s$ in the support of $x_1$ has $u_1(s, x_2^*) < \\alpha$ (the maximum achievable utility), then $x_1$ cannot be a best response"},
+            {"letter": "C", "text": "The Support Lemma implies mixed strategies are never best responses when a pure best response exists"},
+            {"letter": "D", "text": "If every pure strategy in the support yields the same maximum utility $\\alpha$, then any mixture over them also achieves $\\alpha$"},
+            {"letter": "E", "text": "The Support Lemma is irrelevant to the computation of mixed strategy Nash equilibria"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "This is the statement of the Support Lemma.",
+              "section_ref": "Section 9.5: Exercise 5: Support Lemma",
+              "notes_quote": "$x_1 \\in B_1(x_2^*)$ if and only if every pure strategy $s \\in S$ in the support of $x_1$ is itself in $B_1(x_2^*)$"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "If any support strategy yields less than $\\alpha$, the mixture's expected utility is less than $\\alpha$ — contradiction.",
+              "section_ref": "Section 9.5: Exercise 5: Support Lemma",
+              "notes_quote": "suppose for contradiction that some $s$ in the support has $u_1(s, x_2^*) < \\alpha$. Then $u_1(x_1, x_2^*) < \\alpha$ — Contradiction"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "The Support Lemma actually ALLOWS mixed best responses — any mixture over strategies all achieving $\\alpha$ is also a best response.",
+              "section_ref": "Section 9.5: Exercise 5: Support Lemma",
+              "notes_quote": ""
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "If all support strategies yield $\\alpha$, any convex combination also yields $\\alpha$.",
+              "section_ref": "Section 9.5: Exercise 5: Support Lemma",
+              "notes_quote": "If every pure strategy in the support yields $\\alpha$: $u_1(x_1, x_2^*) = \\sum_{s} x_1(s) \\alpha = \\alpha$. So $x_1 \\in B_1(x_2^*)$"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "The Support Lemma IS the theoretical foundation for the Indifference Principle, which is used to compute MSNE.",
+              "section_ref": "Section 9.5: Exercise 5: Support Lemma",
+              "notes_quote": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-10",
+      "title": "Key Definitions",
+      "questions": [
+        {
+          "id": "q52",
+          "source_ref": "Key Definitions",
+          "text": "Which of the following correctly match terms to their definitions from the Key Definitions table? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A **correlated equilibrium** can always be computed via linear programming — unlike Nash equilibria"},
+            {"letter": "B", "text": "A **strong equilibrium** requires that no coalition (not just no individual) has an improving joint deviation"},
+            {"letter": "C", "text": "The **safety level value** is the payoff guaranteed by playing the minimax strategy"},
+            {"letter": "D", "text": "**COMSOC** uses tools from computer science, economics, and social choice theory for collective decision-making"},
+            {"letter": "E", "text": "A **zero-sum game** satisfies $U_1(s) + U_2(s) = 0$ for all strategy profiles $s$"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "The notes explicitly state CE can be computed via LP (easier than NE computation).",
+              "section_ref": "Section 8.2: Correlated Equilibrium",
+              "notes_quote": "Correlated equilibria always exist and can be computed via linear programming (easier than computing NE)"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Strong equilibrium is coalition-proof, not just individually stable.",
+              "section_ref": "Key Definitions",
+              "notes_quote": "Profile where no coalition of players has a joint improving move"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "The safety level value is guaranteed by the MAXIMIN strategy, not the minimax strategy.",
+              "section_ref": "Key Definitions",
+              "notes_quote": "Safety level value: The guaranteed minimum payoff from playing a maximin strategy"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "This is the definition of COMSOC from the notes.",
+              "section_ref": "Key Definitions",
+              "notes_quote": "Study of collective decision-making and preference aggregation using computational tools"
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "A zero-sum game has $U_2(s) = -U_1(s)$, i.e., $U_1 + U_2 = 0$.",
+              "section_ref": "Key Definitions",
+              "notes_quote": "Two-player game where $U_1(s) + U_2(s) = 0$ for all $s$"
+            }
+          ]
+        },
+        {
+          "id": "q53",
+          "source_ref": "Key Definitions",
+          "text": "Which of the following correctly describe the relationships between solution concepts? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Every Nash equilibrium is a correlated equilibrium"},
+            {"letter": "B", "text": "Every strong equilibrium is a Nash equilibrium"},
+            {"letter": "C", "text": "Every Nash equilibrium is a strong equilibrium"},
+            {"letter": "D", "text": "An $\\varepsilon$-Nash equilibrium with $\\varepsilon = 0$ is equivalent to a standard Nash equilibrium"},
+            {"letter": "E", "text": "Rationalizable strategies form a superset of the strategies used in Nash equilibria"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Every NE induces a CE via the product distribution — NE is a special case of CE.",
+              "section_ref": "Section 8.2: Correlated Equilibrium",
+              "notes_quote": "Every mixed NE induces a correlated equilibrium (via the product distribution)"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Strong equilibrium is a stronger requirement than NE — it implies NE.",
+              "section_ref": "Section 8.4: Strong Equilibrium",
+              "notes_quote": "Every strong equilibrium is a Nash equilibrium (singleton coalitions)"
+            },
+            {
+              "letter": "C",
+              "is_correct": false,
+              "text": "NOT every NE is a strong equilibrium. Strong equilibrium is a STRICTLY STRONGER requirement. For example, the PD NE (D,D) is NOT a strong equilibrium.",
+              "section_ref": "Section 8.4: Strong Equilibrium",
+              "notes_quote": "Prisoner's Dilemma: (D,D) is not a strong equilibrium"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "With $\\varepsilon = 0$, the $\\varepsilon$-NE condition reduces exactly to the standard NE condition.",
+              "section_ref": "Section 8.3: epsilon-Nash Equilibrium",
+              "notes_quote": "Standard Nash equilibrium is the special case $\\varepsilon = 0$"
+            },
+            {
+              "letter": "E",
+              "is_correct": true,
+              "text": "Every NE strategy is rationalizable, but some rationalizable strategies are not in any NE — rationalizable strategies are a superset.",
+              "section_ref": "Section 8.1: Rationalizable Strategies",
+              "notes_quote": "Every Nash equilibrium uses only rationalizable strategies, but rationalizable strategies may not be part of any NE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-11",
+      "title": "Learning Objectives — Integrative Questions",
+      "questions": [
+        {
+          "id": "q54",
+          "source_ref": "Learning Objectives LO3, LO7",
+          "text": "Which of the following statements about strategy types and mathematical representation are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A mixed strategy is a probability distribution over pure strategies; pure strategies are a special case"},
+            {"letter": "B", "text": "The Indifference Principle states a player randomizes iff they are indifferent between strategies in their support"},
+            {"letter": "C", "text": "A dominant strategy is best for a player regardless of what opponents do — no assumptions needed"},
+            {"letter": "D", "text": "A best response $s_i^*$ satisfies $U_i(s_i^*, s_{-i}) \\geq U_i(s_i, s_{-i})$ for all $s_i \\in S_i$"},
+            {"letter": "E", "text": "Strictly dominated strategies should sometimes be played if they can yield a very high payoff in some scenarios"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Mixed strategies generalize pure strategies via probability distributions.",
+              "section_ref": "Section 6.1: Mixed Strategies",
+              "notes_quote": "A mixed strategy is a probability distribution over the set of pure strategies. A pure strategy is a special case of a mixed strategy (one action played with probability 1)"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "The Indifference Principle is the key tool for computing MSNE.",
+              "section_ref": "Section 6.5: Computing Mixed Nash Equilibria: The Indifference Principle",
+              "notes_quote": "A player will randomize between strategies if and only if they are indifferent between those strategies"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "Dominant strategies are best unconditionally — no knowledge of opponents needed.",
+              "section_ref": "Section 4.3: Dominant vs Dominated Strategies",
+              "notes_quote": "A dominant strategy is a very strong solution concept — no assumptions needed about other players"
+            },
+            {
+              "letter": "D",
+              "is_correct": true,
+              "text": "This is the formal definition of a best response strategy.",
+              "section_ref": "Key Definitions",
+              "notes_quote": "Strategy $s_i^*$ such that $U_i(s_i^*, s_{-i}) \\geq U_i(s_i, s_{-i})$ for all $s_i$"
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "Rational players NEVER choose strictly dominated strategies — there always exists a better option regardless of the scenario.",
+              "section_ref": "Section 4.3: Dominant vs Dominated Strategies",
+              "notes_quote": "Rational players will never choose strictly dominated strategies"
+            }
+          ]
+        },
+        {
+          "id": "q55",
+          "source_ref": "Learning Objectives LO4, LO6",
+          "text": "Which of the following correctly identify limitations of Nash equilibrium as a solution concept? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Nash equilibria are not necessarily unique — some games have multiple NE (e.g., the Coordination Game)"},
+            {"letter": "B", "text": "Pure strategy Nash equilibria may not exist in some games (e.g., Matching Pennies has no PSNE)"},
+            {"letter": "C", "text": "Nash equilibrium outcomes may be Pareto-inefficient — the PD NE is Pareto-dominated"},
+            {"letter": "D", "text": "Every finite game has a unique Nash equilibrium in mixed strategies"},
+            {"letter": "E", "text": "A unique Nash equilibrium is always Pareto-optimal"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {
+              "letter": "A",
+              "is_correct": true,
+              "text": "Multiplicity of NE is a key limitation — games often have many equilibria.",
+              "section_ref": "Section 5.3: Properties of PSNE",
+              "notes_quote": "Not necessarily unique: Coordination game has two PSNE"
+            },
+            {
+              "letter": "B",
+              "is_correct": true,
+              "text": "Non-existence of PSNE is another limitation — only MSNE existence is guaranteed for finite games.",
+              "section_ref": "Section 5.3: Properties of PSNE",
+              "notes_quote": "May not exist: Matching Pennies has no PSNE"
+            },
+            {
+              "letter": "C",
+              "is_correct": true,
+              "text": "The PD NE (D,D) is Pareto-dominated by (C,C) — NE does not guarantee efficiency.",
+              "section_ref": "Section 3.1: The Prisoner's Dilemma",
+              "notes_quote": "The equilibrium (D,D) with payoffs $(P,P)$ is Pareto-dominated by (C,C) with payoffs $(R,R)$"
+            },
+            {
+              "letter": "D",
+              "is_correct": false,
+              "text": "Nash's Theorem guarantees EXISTENCE of at least one NE, but NOT uniqueness. Battle of the Sexes has three NE.",
+              "section_ref": "Section 6.4: Nash's Theorem",
+              "notes_quote": ""
+            },
+            {
+              "letter": "E",
+              "is_correct": false,
+              "text": "The Prisoner's Dilemma has a UNIQUE NE (D,D) that is Pareto-suboptimal — uniqueness does not imply efficiency.",
+              "section_ref": "Section 3.1: The Prisoner's Dilemma",
+              "notes_quote": "Individual rationality leads to a collectively suboptimal outcome"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

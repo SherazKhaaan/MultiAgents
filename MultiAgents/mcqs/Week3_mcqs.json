@@ -1,0 +1,881 @@
+{
+  "module": "MultiAgents",
+  "week": 3,
+  "title": "Repeated and Extensive-Form Games",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "3.1 Extensive Form Games and Applications",
+      "questions": [
+        {
+          "id": "q1",
+          "source_ref": "Section 3.1: Motivation: From Normal Form to Extensive Form",
+          "text": "Which of the following correctly describe the motivation for using extensive-form games instead of only normal-form games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Every finite game has an induced normal form that preserves game-theoretic properties such as Nash equilibria"},
+            {"letter": "B", "text": "Extensive form always assumes that all players act simultaneously"},
+            {"letter": "C", "text": "An extensive-form representation is in general exponentially smaller than its induced normal form"},
+            {"letter": "D", "text": "Extensive form supports solution concepts that explicitly refer to the sequence in which players act"},
+            {"letter": "E", "text": "Normal form is unusable for finite games because it cannot represent payoffs"}
+          ],
+          "correct": ["A", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes state that every finite game has an induced normal form preserving game-theoretic properties such as Nash equilibria.", "section_ref": "Section 3.1: Motivation: From Normal Form to Extensive Form", "notes_quote": "every finite game has an induced normal form that preserves game-theoretic properties (e.g., Nash equilibria)"},
+            {"letter": "B", "is_correct": false, "text": "Extensive form is useful precisely because it does not always assume simultaneous action; it can model sequential play.", "section_ref": "Section 3.1: Motivation: From Normal Form to Extensive Form", "notes_quote": ""},
+            {"letter": "C", "is_correct": true, "text": "The notes explicitly compare the size of the two representations and say extensive form is generally exponentially smaller.", "section_ref": "Section 3.1: Motivation: From Normal Form to Extensive Form", "notes_quote": "is in general exponentially smaller than its induced normal form"},
+            {"letter": "D", "is_correct": true, "text": "This is one of the main reasons to use extensive form: it supports concepts like subgame-perfect equilibrium that depend on move order.", "section_ref": "Section 3.1: Motivation: From Normal Form to Extensive Form", "notes_quote": "Allows working with solution concepts (e.g., subgame-perfect equilibrium) that explicitly refer to the sequence in which players act"},
+            {"letter": "E", "is_correct": false, "text": "Normal form does represent payoffs; the issue is that it can be redundant and does not naturally encode temporal structure.", "section_ref": "Section 3.1: Motivation: From Normal Form to Extensive Form", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q2",
+          "source_ref": "Section 3.1: Applications in Artificial Intelligence and Multi-Agent Systems",
+          "text": "Which of the following are listed applications of extensive-form games in AI and multi-agent systems? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Game-tree search in adversarial domains such as chess and Go"},
+            {"letter": "B", "text": "Automated negotiation involving bluffing and information revelation"},
+            {"letter": "C", "text": "Sequential auctions that capture tactical bidding decisions"},
+            {"letter": "D", "text": "Security and defense settings such as patrolling and Stackelberg-style analysis"},
+            {"letter": "E", "text": "Only static one-shot voting problems with no sequential interaction"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes explicitly mention classic AI problems such as computer chess and Go as sequential decision-making applications.", "section_ref": "Section 3.1: Applications in Artificial Intelligence and Multi-Agent Systems", "notes_quote": "Foundation for algorithms in classic AI problems such as computer chess and Go"},
+            {"letter": "B", "is_correct": true, "text": "Negotiation protocols are described as extensive-form games to model multi-stage strategic interaction, including bluffing and information revelation.", "section_ref": "Section 3.1: Applications in Artificial Intelligence and Multi-Agent Systems", "notes_quote": "Automated Negotiation... including bluffing and information revelation"},
+            {"letter": "C", "is_correct": true, "text": "The notes list sequential auctions as a natural extensive-form application because bids are placed in turn.", "section_ref": "Section 3.1: Applications in Artificial Intelligence and Multi-Agent Systems", "notes_quote": "Sequential auctions where bids are placed in turn are naturally described as extensive form games"},
+            {"letter": "D", "is_correct": true, "text": "Security and defense are explicitly included, with examples such as robot patrolling, cyber-security, and Stackelberg games.", "section_ref": "Section 3.1: Applications in Artificial Intelligence and Multi-Agent Systems", "notes_quote": "Security and Defense... often analysed via extensive form representations such as Stackelberg games"},
+            {"letter": "E", "is_correct": false, "text": "The notes emphasize sequential, multi-stage, and partially observable settings rather than only static one-shot problems.", "section_ref": "Section 3.1: Applications in Artificial Intelligence and Multi-Agent Systems", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "3.2 Extensive Form Games with Perfect Information",
+      "questions": [
+        {
+          "id": "q3",
+          "source_ref": "Section 3.2: Informal Definition",
+          "text": "Which of the following correctly describe a perfect-information game in extensive form? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "It is represented as a tree in which nodes correspond to choices and edges correspond to actions"},
+            {"letter": "B", "text": "Leaves represent final outcomes over which players have utility functions"},
+            {"letter": "C", "text": "Players move sequentially and know the full history of previous actions when making decisions"},
+            {"letter": "D", "text": "It necessarily contains simultaneous moves and hidden information"},
+            {"letter": "E", "text": "There is no uncertainty about past moves in perfect-information games"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The informal definition describes the game as a tree with nodes for choices and edges for actions.", "section_ref": "Section 3.2: Informal Definition", "notes_quote": "a tree (in the sense of graph theory) in which: Each node represents the choice of one of the players; Each edge represents a possible action"},
+            {"letter": "B", "is_correct": true, "text": "Terminal leaves encode the final outcomes and utilities.", "section_ref": "Section 3.2: Informal Definition", "notes_quote": "The leaves (terminal nodes) represent final outcomes over which each player has a utility function"},
+            {"letter": "C", "is_correct": true, "text": "Perfect information means each player knows the full history when acting.", "section_ref": "Section 3.2: Informal Definition", "notes_quote": "Players move sequentially, and each player, when making a decision, knows the full history of previous actions"},
+            {"letter": "D", "is_correct": false, "text": "Perfect-information games exclude hidden information about past moves and do not require simultaneous moves.", "section_ref": "Section 3.2: Informal Definition", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The notes explicitly say there is no uncertainty about past moves.", "section_ref": "Section 3.2: Informal Definition", "notes_quote": "There is no uncertainty about past moves, no simultaneous moves, and no hidden information"}
+          ]
+        },
+        {
+          "id": "q4",
+          "source_ref": "Section 3.2: Formal Definition",
+          "text": "Given the tuple $$(N, A, H, Z, \\chi, \\rho, \\sigma, u)$$ for a finite perfect-information game, which of the following are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$H$ is the set of nonterminal choice nodes and $Z$ is the disjoint set of terminal nodes"},
+            {"letter": "B", "text": "$\\chi : H \\to 2^A$ assigns to each choice node the set of available actions"},
+            {"letter": "C", "text": "$\\rho : H \\to N$ assigns to each nonterminal node the player who acts there"},
+            {"letter": "D", "text": "$\\sigma : H \\times A \\to H \\cup Z$ maps a node-action pair to a successor node, and the injectivity condition ensures a tree structure"},
+            {"letter": "E", "text": "$u_i : H \\to \\mathbb{R}$ assigns utilities to every nonterminal node rather than to terminal nodes"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This matches the formal definition exactly.", "section_ref": "Section 3.2: Formal Definition", "notes_quote": "$H$ is a set of nonterminal choice nodes; $Z$ is a set of terminal nodes, disjoint from $H$"},
+            {"letter": "B", "is_correct": true, "text": "The action function maps each choice node to its available actions.", "section_ref": "Section 3.2: Formal Definition", "notes_quote": "$\\chi : H \\to 2^A$ is the action function, which assigns to each choice node a set of possible actions"},
+            {"letter": "C", "is_correct": true, "text": "The player function identifies who moves at each nonterminal node.", "section_ref": "Section 3.2: Formal Definition", "notes_quote": "$\\rho : H \\to N$ is the player function, which assigns to each nonterminal node a player"},
+            {"letter": "D", "is_correct": true, "text": "The successor function and its injectivity condition are what enforce the tree structure with no cycles.", "section_ref": "Section 3.2: Formal Definition", "notes_quote": "$\\sigma : H \\times A \\to H \\cup Z$ is the successor function... this ensures the graph is a tree with no cycles"},
+            {"letter": "E", "is_correct": false, "text": "Utilities are defined on terminal nodes $Z$, not on nonterminal nodes $H$.", "section_ref": "Section 3.2: Formal Definition", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q5",
+          "source_ref": "Section 3.2: History and Descendants",
+          "text": "Which of the following correctly describe histories and descendants in a perfect-information game tree? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A node can be identified with the sequence of choices leading from the root to that node"},
+            {"letter": "B", "text": "Descendants of a node are all choice and terminal nodes in the subtree rooted at that node"},
+            {"letter": "C", "text": "History is ambiguous because multiple distinct paths can lead to the same node in a tree"},
+            {"letter": "D", "text": "The tree structure makes the history of a node unambiguous"},
+            {"letter": "E", "text": "Descendants include only terminal nodes and exclude nonterminal choice nodes"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes define history as the sequence of choices from the root to the node.", "section_ref": "Section 3.2: History and Descendants", "notes_quote": "we can unambiguously identify a node with its history -- the sequence of choices leading from the root node to it"},
+            {"letter": "B", "is_correct": true, "text": "Descendants are defined as all nodes in the subtree rooted at the given node, including both choice and terminal nodes.", "section_ref": "Section 3.2: History and Descendants", "notes_quote": "the descendants of a node $h$ -- all the choice and terminal nodes in the subtree rooted at $h$"},
+            {"letter": "C", "is_correct": false, "text": "The notes say the opposite: because the structure is a tree, the history is unambiguous.", "section_ref": "Section 3.2: History and Descendants", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "This is the reason histories can identify nodes uniquely in the tree.", "section_ref": "Section 3.2: History and Descendants", "notes_quote": "Since choice nodes form a tree, we can unambiguously identify a node with its history"},
+            {"letter": "E", "is_correct": false, "text": "Descendants include both choice nodes and terminal nodes, not only leaves.", "section_ref": "Section 3.2: History and Descendants", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q6",
+          "source_ref": "Section 3.2: Example: The Sharing Game",
+          "text": "In the Sharing Game, which of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Player 1 proposes one of the splits $2\\text{-}0$, $1\\text{-}1$, or $0\\text{-}2$"},
+            {"letter": "B", "text": "After observing the proposal, Player 2 chooses whether to accept or reject"},
+            {"letter": "C", "text": "If Player 2 rejects, the payoff is $(0,0)$ regardless of the proposed split"},
+            {"letter": "D", "text": "If Player 2 accepts the split $0\\text{-}2$, the payoff is $(2,0)$"},
+            {"letter": "E", "text": "The root node belongs to Player 2, who chooses yes or no before any proposal is made"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These are exactly the three proposals available to the brother at the root.", "section_ref": "Section 3.2: Example: The Sharing Game", "notes_quote": "The brother (Player 1) suggests a split: one of three options: He keeps both (2-0); They each keep one (1-1); She keeps both (0-2)"},
+            {"letter": "B", "is_correct": true, "text": "The sister's move is to accept or reject after seeing the proposal.", "section_ref": "Section 3.2: Example: The Sharing Game", "notes_quote": "The sister (Player 2) chooses to accept or reject the proposal"},
+            {"letter": "C", "is_correct": true, "text": "Rejection always leads to neither sibling receiving any gift.", "section_ref": "Section 3.2: Example: The Sharing Game", "notes_quote": "If reject on any branch: $(0, 0)$"},
+            {"letter": "D", "is_correct": false, "text": "Accepting $0\\text{-}2$ gives the sister both presents, so the payoff is $(0,2)$, not $(2,0)$.", "section_ref": "Section 3.2: Example: The Sharing Game", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "The root node belongs to Player 1, who first proposes the split.", "section_ref": "Section 3.2: Example: The Sharing Game", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q7",
+          "source_ref": "Section 3.2: Pure Strategies in Perfect Information Games",
+          "text": "Which of the following correctly describe pure strategies in perfect-information games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A pure strategy is a complete specification of deterministic actions at every node belonging to the player"},
+            {"letter": "B", "text": "The set of pure strategies of player $i$ is $$S_i = \\prod_{h \\in H, \\rho(h) = i} \\chi(h)$$"},
+            {"letter": "C", "text": "A player only needs to specify actions at nodes that are guaranteed to be reached under equilibrium play"},
+            {"letter": "D", "text": "A strategy must specify actions even at nodes that may never be reached"},
+            {"letter": "E", "text": "Pure strategies in perfect-information games are defined over information sets rather than over the player's nodes"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes define a pure strategy as a complete deterministic plan for every node of that player.", "section_ref": "Section 3.2: Pure Strategies in Perfect Information Games", "notes_quote": "A pure strategy for a player in a perfect-information game is a complete specification of which deterministic action to take at every node belonging to that player"},
+            {"letter": "B", "is_correct": true, "text": "This is the formal definition given in the notes.", "section_ref": "Section 3.2: Pure Strategies in Perfect Information Games", "notes_quote": "$$S_i = \\prod_{h \\in H, \\rho(h) = i} \\chi(h)$$"},
+            {"letter": "C", "is_correct": false, "text": "The notes explicitly say the strategy must specify actions regardless of whether the node is actually reachable.", "section_ref": "Section 3.2: Pure Strategies in Perfect Information Games", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "This is the key point emphasized in the notes.", "section_ref": "Section 3.2: Pure Strategies in Perfect Information Games", "notes_quote": "strategy requires a decision at each of their choice nodes, regardless of whether or not it is possible to actually reach that node"},
+            {"letter": "E", "is_correct": false, "text": "Strategies over information sets are used for imperfect-information games; perfect-information strategies are specified at each node.", "section_ref": "Section 3.2: Pure Strategies in Perfect Information Games", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q8",
+          "source_ref": "Section 3.2: Sharing Game -- Strategies",
+          "text": "Which of the following correctly describe the strategy sets in the Sharing Game? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Player 1 has exactly 3 pure strategies: $2\\text{-}0$, $1\\text{-}1$, and $0\\text{-}2$"},
+            {"letter": "B", "text": "Player 2 has 3 choice nodes with 2 actions each, so Player 2 has $2^3 = 8$ pure strategies"},
+            {"letter": "C", "text": "$(\\text{yes,no,yes})$ is a valid pure strategy for Player 2"},
+            {"letter": "D", "text": "Player 2 has only 2 pure strategies because the only actions are yes and no"},
+            {"letter": "E", "text": "Player 1 has 6 pure strategies because each proposal can later be accepted or rejected"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Player 1 acts only once at the root and has three available actions.", "section_ref": "Section 3.2: Sharing Game -- Strategies", "notes_quote": "Player 1 has 1 choice node with 3 actions, so 3 strategies: $S_1 = \\{2\\text{-}0, \\; 1\\text{-}1, \\; 0\\text{-}2\\}$"},
+            {"letter": "B", "is_correct": true, "text": "Player 2 must specify yes/no at each of three nodes, giving eight combinations.", "section_ref": "Section 3.2: Sharing Game -- Strategies", "notes_quote": "Player 2 has 3 choice nodes, each with 2 actions, so $2^3 = 8$ strategies"},
+            {"letter": "C", "is_correct": true, "text": "This tuple appears in the listed strategy set for Player 2.", "section_ref": "Section 3.2: Sharing Game -- Strategies", "notes_quote": "$S_2 = \\{(\\text{yes,yes,yes}), (\\text{yes,yes,no}), (\\text{yes,no,yes})"},
+            {"letter": "D", "is_correct": false, "text": "Because Player 2 has three separate decision nodes, the number of pure strategies is $2^3$, not 2.", "section_ref": "Section 3.2: Sharing Game -- Strategies", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "Player 1 chooses only the proposal at the root; accept/reject choices belong to Player 2.", "section_ref": "Section 3.2: Sharing Game -- Strategies", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q9",
+          "source_ref": "Section 3.2: Worked Example: Two-Player Game with Two Choice Nodes Each",
+          "text": "In the worked example with strategy sets $$S_1 = \\{(A,G), (A,H), (B,G), (B,H)\\}$$ and $$S_2 = \\{(C,E), (C,F), (D,E), (D,F)\\},$$ which of the following are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The induced normal form has 16 strategy profiles because each player has 4 pure strategies"},
+            {"letter": "B", "text": "The extensive form has only 5 different outcomes even though the normal form has 16 entries"},
+            {"letter": "C", "text": "Some different strategy profiles in the normal form lead to the same terminal leaf"},
+            {"letter": "D", "text": "The induced normal form removes all redundancy present in the extensive form"},
+            {"letter": "E", "text": "The profile $((B,G),(C,F))$ yields payoff $(2,10)$ in the matrix"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "With 4 strategies for each player, the normal-form matrix has $4 \times 4 = 16$ entries.", "section_ref": "Section 3.2: Worked Example: Two-Player Game with Two Choice Nodes Each", "notes_quote": "the normal form has 16 strategy profile entries"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly contrast the 5 outcomes in the tree with the 16 matrix entries.", "section_ref": "Section 3.2: Worked Example: Two-Player Game with Two Choice Nodes Each", "notes_quote": "The extensive form has only 5 different outcomes, but the normal form has 16 strategy profile entries"},
+            {"letter": "C", "is_correct": true, "text": "This is the source of the redundancy in the induced normal form.", "section_ref": "Section 3.2: Worked Example: Two-Player Game with Two Choice Nodes Each", "notes_quote": "Some strategy combinations lead to the same leaf"},
+            {"letter": "D", "is_correct": false, "text": "The notes say the opposite: the normal form can contain substantial redundancy relative to the extensive form.", "section_ref": "Section 3.2: Worked Example: Two-Player Game with Two Choice Nodes Each", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Reading the matrix entry in row $(B,G)$ and column $(C,F)$ gives payoff $(2,10)$.", "section_ref": "Section 3.2: Worked Example: Two-Player Game with Two Choice Nodes Each", "notes_quote": "| $(B, G)$ | $5, 5$ | $2, 10$  | $5, 5$   | $2, 10$  |"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "3.3 Extensive vs. Normal Form",
+      "questions": [
+        {
+          "id": "q10",
+          "source_ref": "Section 3.3: Key Relationships",
+          "text": "Which of the following correctly describe the relationship between extensive form and normal form? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Every perfect-information game has a corresponding normal-form representation"},
+            {"letter": "B", "text": "Temporal structure in extensive form can create redundancy when converted into normal form"},
+            {"letter": "C", "text": "Every normal-form game can be transformed into a perfect-information extensive-form game"},
+            {"letter": "D", "text": "The Prisoner's Dilemma cannot be represented as a perfect-information extensive-form game"},
+            {"letter": "E", "text": "The reverse transformation always exists because simultaneous moves can always be encoded as perfect information"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first key relationship listed in the notes.", "section_ref": "Section 3.3: Key Relationships", "notes_quote": "Every perfect-information game has a corresponding normal form representation"},
+            {"letter": "B", "is_correct": true, "text": "The notes explain that temporal structure can make the induced normal form redundant.", "section_ref": "Section 3.3: Key Relationships", "notes_quote": "the temporal structure of the extensive form can result in redundancy in the normal form"},
+            {"letter": "C", "is_correct": false, "text": "The reverse transformation does not always exist for perfect-information games.", "section_ref": "Section 3.3: Key Relationships", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The notes use the Prisoner's Dilemma as the example showing why the reverse transformation can fail.", "section_ref": "Section 3.3: Key Relationships", "notes_quote": "The Prisoner's Dilemma cannot be represented as a perfect-information extensive form game"},
+            {"letter": "E", "is_correct": false, "text": "Simultaneous moves generally require imperfect information, so the reverse transformation to perfect information does not always exist.", "section_ref": "Section 3.3: Key Relationships", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q11",
+          "source_ref": "Section 3.3: Why Only Pure Strategies?",
+          "text": "Which of the following correctly describe the theorem about pure strategies in finite perfect-information games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Every finite perfect-information game in extensive form has a pure strategy Nash equilibrium"},
+            {"letter": "B", "text": "The proof idea relies on backward induction"},
+            {"letter": "C", "text": "The theorem also holds unchanged for imperfect-information games such as Matching Pennies"},
+            {"letter": "D", "text": "The intuition is that when players observe the full history, randomness is not needed to find an equilibrium"},
+            {"letter": "E", "text": "This helps show that perfect-information extensive-form games form a strictly smaller class than all normal-form games"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This theorem is stated explicitly in the notes.", "section_ref": "Section 3.3: Why Only Pure Strategies?", "notes_quote": "Every (finite) perfect-information game in extensive form has a pure strategy Nash equilibrium"},
+            {"letter": "B", "is_correct": true, "text": "Backward induction is given as the proof idea.", "section_ref": "Section 3.3: Why Only Pure Strategies?", "notes_quote": "Can be shown by backward induction"},
+            {"letter": "C", "is_correct": false, "text": "The notes explicitly say the theorem and intuition do not hold for more general imperfect-information games such as Matching Pennies.", "section_ref": "Section 3.3: Why Only Pure Strategies?", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "This is the intuition given for why pure strategies suffice in perfect-information games.", "section_ref": "Section 3.3: Why Only Pure Strategies?", "notes_quote": "it is never necessary to introduce randomness into the action selection in order to find an equilibrium"},
+            {"letter": "E", "is_correct": true, "text": "The notes draw this conclusion immediately after discussing the theorem.", "section_ref": "Section 3.3: Why Only Pure Strategies?", "notes_quote": "This also confirms that the set of perfect-information extensive form games is strictly smaller than the set of all normal form games"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "3.4 Subgame-Perfect Equilibrium",
+      "questions": [
+        {
+          "id": "q12",
+          "source_ref": "Section 3.4: Motivation: Non-Credible Threats",
+          "text": "Which of the following correctly describe subgame-perfect equilibrium (SPE)? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "SPE refines Nash equilibrium for dynamic games by requiring optimal behaviour after every possible history"},
+            {"letter": "B", "text": "SPE rules out non-credible threats and implausible off-path behaviour"},
+            {"letter": "C", "text": "SPE only checks rationality along the equilibrium path and ignores unreachable subgames"},
+            {"letter": "D", "text": "SPE is meaningful because extensive form records the sequence of moves"},
+            {"letter": "E", "text": "SPE is weaker than Nash equilibrium because it imposes fewer requirements"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the core motivation and definition-level intuition for SPE.", "section_ref": "Section 3.4: Motivation: Non-Credible Threats", "notes_quote": "requiring that player strategies prescribe optimal behaviour not only in the game as a whole, but after every possible history"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly say SPE rules out non-credible threats.", "section_ref": "Section 3.4: Motivation: Non-Credible Threats", "notes_quote": "It rules out non-credible threats and implausible off-path behaviour"},
+            {"letter": "C", "is_correct": false, "text": "SPE requires rationality in every subgame, including off-path subgames, not only along the realized path.", "section_ref": "Section 3.4: Motivation: Non-Credible Threats", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "Because SPE refers to histories and subgames, it depends on the sequential structure encoded by extensive form.", "section_ref": "Section 3.4: Motivation: Non-Credible Threats", "notes_quote": "after every possible history"},
+            {"letter": "E", "is_correct": false, "text": "SPE is stronger than Nash equilibrium because it imposes additional rationality requirements in every subgame.", "section_ref": "Section 3.4: Motivation: Non-Credible Threats", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q13",
+          "source_ref": "Section 3.4: Nash Equilibria of the Worked Example",
+          "text": "For the worked example with $$S_1 = \\{(A,G),(A,H),(B,G),(B,H)\\}$$ and $$S_2 = \\{(C,E),(C,F),(D,E),(D,F)\\},$$ which of the following are Nash equilibria listed in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$\\{(A,G), (C,F)\\}$"},
+            {"letter": "B", "text": "$\\{(A,H), (C,F)\\}$"},
+            {"letter": "C", "text": "$\\{(B,H), (C,E)\\}$"},
+            {"letter": "D", "text": "$\\{(B,G), (D,F)\\}$"},
+            {"letter": "E", "text": "Exactly three Nash equilibria are listed for this game"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first Nash equilibrium listed in the notes.", "section_ref": "Section 3.4: Nash Equilibria of the Worked Example", "notes_quote": "There are three Nash equilibria: 1. $\\{(A,G), (C,F)\\}$"},
+            {"letter": "B", "is_correct": true, "text": "This is the second Nash equilibrium listed in the notes.", "section_ref": "Section 3.4: Nash Equilibria of the Worked Example", "notes_quote": "2. $\\{(A,H), (C,F)\\}$"},
+            {"letter": "C", "is_correct": true, "text": "This is the third Nash equilibrium listed in the notes.", "section_ref": "Section 3.4: Nash Equilibria of the Worked Example", "notes_quote": "3. $\\{(B,H), (C,E)\\}$"},
+            {"letter": "D", "is_correct": false, "text": "This profile is not listed among the three Nash equilibria in the notes.", "section_ref": "Section 3.4: Nash Equilibria of the Worked Example", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The notes explicitly say there are three Nash equilibria.", "section_ref": "Section 3.4: Nash Equilibria of the Worked Example", "notes_quote": "There are three Nash equilibria"}
+          ]
+        },
+        {
+          "id": "q14",
+          "source_ref": "Section 3.4: Checking Rationality of NE $\\{(A,G), (C,F)\\}$",
+          "text": "Why is the equilibrium $\\{(A,G), (C,F)\\}$ subgame-perfect in the worked example? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "After $A$, Player 2 prefers $C$ to $D$ because $8 > 3$"},
+            {"letter": "B", "text": "If Player 2 plays $F$ after $B$, Player 1 prefers $G$ to $H$ because $2 > 1$"},
+            {"letter": "C", "text": "Given that continuation, Player 1 prefers $A$ to $B$ because $3 > 2$"},
+            {"letter": "D", "text": "Player 2 prefers $F$ to $E$ because $F$ leads to utility 10 while $E$ gives 5"},
+            {"letter": "E", "text": "It is subgame-perfect because some off-path actions are irrational but never reached"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes compare Player 2's payoffs after $A$ and conclude $C$ is rational.", "section_ref": "Section 3.4: Checking Rationality of NE $\\{(A,G), (C,F)\\}", "notes_quote": "Player 2 at first choice node (after $A$): $C$ gives utility 8 vs. $D$ gives utility 3"},
+            {"letter": "B", "is_correct": true, "text": "At Player 1's later node, $G$ strictly dominates $H$ in that subtree.", "section_ref": "Section 3.4: Checking Rationality of NE $\\{(A,G), (C,F)\\}", "notes_quote": "$G$ gives utility 2 vs. $H$ gives utility 1"},
+            {"letter": "C", "is_correct": true, "text": "Once the continuation under $B$ is evaluated, Player 1 prefers $A$ because it yields 3 instead of 2.", "section_ref": "Section 3.4: Checking Rationality of NE $\\{(A,G), (C,F)\\}", "notes_quote": "$A$ gives utility 3 vs. $B$ gives utility 2"},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly justify Player 2's choice of $F$ over $E$ using the continuation payoffs.", "section_ref": "Section 3.4: Checking Rationality of NE $\\{(A,G), (C,F)\\}", "notes_quote": "$E$ gives utility 5, $F$ leads to Player 1 choosing $G$ giving utility 10. So $F$ is rational"},
+            {"letter": "E", "is_correct": false, "text": "SPE requires rationality in every subtree; the notes say all actions are rational in every subtree for this equilibrium.", "section_ref": "Section 3.4: Checking Rationality of NE $\\{(A,G), (C,F)\\}", "notes_quote": "All actions are rational in every subtree -- this is a subgame-perfect equilibrium"}
+          ]
+        },
+        {
+          "id": "q15",
+          "source_ref": "Section 3.4: Checking NE $\\{(B,H), (C,E)\\}$ -- Non-Credible Threat",
+          "text": "Which of the following correctly explain why $\\{(B,H), (C,E)\\}$ is not subgame-perfect? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "At Player 1's second choice node, $H$ gives utility 1 while $G$ gives utility 2"},
+            {"letter": "B", "text": "The strategy specifies an action that is not rational in the relevant subgame"},
+            {"letter": "C", "text": "The profile relies on a non-credible threat because the irrational action occurs off the equilibrium path"},
+            {"letter": "D", "text": "The profile is not even a Nash equilibrium of the whole game"},
+            {"letter": "E", "text": "SPE excludes such profiles because it checks every subgame, not just the whole game"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes directly compare the two continuation payoffs and show $H$ is irrational there.", "section_ref": "Section 3.4: Checking NE $\\{(B,H), (C,E)\\}$ -- Non-Credible Threat", "notes_quote": "$H$ gives utility 1 while $G$ gives utility 2"},
+            {"letter": "B", "is_correct": true, "text": "That is exactly why the threat is non-credible: the prescribed action is not optimal in the subgame.", "section_ref": "Section 3.4: Checking NE $\\{(B,H), (C,E)\\}$ -- Non-Credible Threat", "notes_quote": "the choice of $H$ is not rational in the respective subgame"},
+            {"letter": "C", "is_correct": true, "text": "The notes explain that Player 1 knows this node will not be reached under the equilibrium path, so the threat is off-path and non-credible.", "section_ref": "Section 3.4: Checking NE $\\{(B,H), (C,E)\\}$ -- Non-Credible Threat", "notes_quote": "Player 1 is making a non-credible threat: they know Player 2 will choose $E$, so they will never reach this choice node"},
+            {"letter": "D", "is_correct": false, "text": "The notes list $\\{(B,H), (C,E)\\}$ as one of the Nash equilibria; the issue is that it is not subgame-perfect.", "section_ref": "Section 3.4: Nash Equilibria of the Worked Example", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the defining refinement from NE to SPE.", "section_ref": "Section 3.4: Formal Definition", "notes_quote": "for any subgame $G'$ of $G$, the restriction of $s$ to $G'$ is a Nash equilibrium of $G'$"}
+          ]
+        },
+        {
+          "id": "q16",
+          "source_ref": "Section 3.4: Formal Definition",
+          "text": "Which of the following correctly state the formal definition and properties of subgame-perfect equilibrium? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A subgame rooted at a nonterminal node $h$ is the restriction of the tree to the descendants of $h$"},
+            {"letter": "B", "text": "A strategy profile is an SPE if its restriction to every subgame is a Nash equilibrium of that subgame"},
+            {"letter": "C", "text": "Every SPE is also a Nash equilibrium because the whole game is itself a subgame"},
+            {"letter": "D", "text": "Every Nash equilibrium is automatically an SPE"},
+            {"letter": "E", "text": "Every perfect-information extensive-form game has at least one SPE"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition of a subgame given in the notes.", "section_ref": "Section 3.4: Formal Definition", "notes_quote": "The subgame of $G$ rooted at some nonterminal node $h$ is the restriction of the tree to the descendants of $h$"},
+            {"letter": "B", "is_correct": true, "text": "This is the formal definition of SPE.", "section_ref": "Section 3.4: Formal Definition", "notes_quote": "The subgame-perfect equilibria (SPE) of a game $G$ are all strategy profiles $s$ such that for any subgame $G'$ of $G$, the restriction of $s$ to $G'$ is a Nash equilibrium of $G'$"},
+            {"letter": "C", "is_correct": true, "text": "Because the whole game counts as a subgame, every SPE must also be a Nash equilibrium of the whole game.", "section_ref": "Section 3.4: Properties of SPE", "notes_quote": "Every SPE is also a Nash equilibrium (since the whole game is itself a subgame)"},
+            {"letter": "D", "is_correct": false, "text": "The notes explicitly say not every Nash equilibrium is an SPE because some involve non-credible threats.", "section_ref": "Section 3.4: Properties of SPE", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Existence of at least one SPE is listed as a property of perfect-information extensive-form games.", "section_ref": "Section 3.4: Properties of SPE", "notes_quote": "Every perfect-information extensive form game has at least one subgame-perfect equilibrium"}
+          ]
+        },
+        {
+          "id": "q17",
+          "source_ref": "Section 3.4: Computing SPE: Backward Induction",
+          "text": "Which of the following correctly describe backward induction for computing SPE? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "One starts by solving the bottom-most subgames"},
+            {"letter": "B", "text": "The equilibria of lower subgames are assumed when reasoning about larger subgames above them"},
+            {"letter": "C", "text": "The process repeats until the entire game tree is resolved"},
+            {"letter": "D", "text": "The notes state it can be implemented in time linear in the size of the game representation"},
+            {"letter": "E", "text": "Backward induction requires exponential time because every path must be recomputed from scratch"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first step in the procedure listed in the notes.", "section_ref": "Section 3.4: Computing SPE: Backward Induction", "notes_quote": "Identify the equilibria in the bottom-most subgame trees"},
+            {"letter": "B", "is_correct": true, "text": "The notes describe backing up through the tree while assuming lower equilibria will be played.", "section_ref": "Section 3.4: Computing SPE: Backward Induction", "notes_quote": "Assume those equilibria will be played as one backs up and considers increasingly larger trees"},
+            {"letter": "C", "is_correct": true, "text": "This is the final step of the procedure.", "section_ref": "Section 3.4: Computing SPE: Backward Induction", "notes_quote": "Repeat until the entire game tree is resolved"},
+            {"letter": "D", "is_correct": true, "text": "The computational complexity is explicitly stated in the notes.", "section_ref": "Section 3.4: Computing SPE: Backward Induction", "notes_quote": "requiring time linear in the size of the game representation"},
+            {"letter": "E", "is_correct": false, "text": "The notes say the algorithm is linear-time, not exponential-time.", "section_ref": "Section 3.4: Computing SPE: Backward Induction", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q18",
+          "source_ref": "Section 3.4: Example: The Centipede Game",
+          "text": "In the Centipede Game example, which of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Backward induction predicts that Player 1 goes Down immediately at the first node"},
+            {"letter": "B", "text": "The resulting payoff under SPE is $(1,0)$"},
+            {"letter": "C", "text": "At the last node, Player 1 chooses Aside because $3 > 4$"},
+            {"letter": "D", "text": "The example illustrates that SPE can predict inefficient outcomes even when higher cooperative payoffs are available"},
+            {"letter": "E", "text": "The notes compare this inefficiency to the Prisoner's Dilemma"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The backward-induction solution ends with immediate termination by Player 1.", "section_ref": "Section 3.4: Example: The Centipede Game", "notes_quote": "The SPE predicts that Player 1 goes Down immediately"},
+            {"letter": "B", "is_correct": true, "text": "The notes give $(1,0)$ as the resulting payoff.", "section_ref": "Section 3.4: Example: The Centipede Game", "notes_quote": "yielding payoff $(1, 0)$"},
+            {"letter": "C", "is_correct": false, "text": "At the last node, Player 1 chooses Down because 4 is greater than 3.", "section_ref": "Section 3.4: Example: The Centipede Game", "notes_quote": "Last node (Player 1): D gives 4 vs. A gives 3. Choose D"},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly emphasize the inefficiency of the SPE prediction in this game.", "section_ref": "Section 3.4: Example: The Centipede Game", "notes_quote": "even though both players could achieve much higher payoffs... by cooperating"},
+            {"letter": "E", "is_correct": true, "text": "The notes explicitly say this mirrors the inefficiency of the Prisoner's Dilemma.", "section_ref": "Section 3.4: Example: The Centipede Game", "notes_quote": "This mirrors the inefficiency of the Prisoner's Dilemma"}
+          ]
+        },
+        {
+          "id": "q19",
+          "source_ref": "Section 3.4: Worked Example: The Ultimatum Game (from LGT)",
+          "text": "In the Ultimatum Game with 100 gold coins, which of the following correctly describe the normal-form representation and one Nash equilibrium? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$S_1 = \\{0,1,\\ldots,100\\}$"},
+            {"letter": "B", "text": "$S_2 = \\{0,1\\}^{101}$ because Player 2 must specify accept/reject for each possible claim by Player 1"},
+            {"letter": "C", "text": "The strategy pair $(50, d_{50})$ is a Nash equilibrium with payoff $(50,50)$"},
+            {"letter": "D", "text": "In $d_{50}$, Player 2 accepts if and only if $i > 50$"},
+            {"letter": "E", "text": "The notes define $u_1(i,d) = i \\cdot d(i)$ and $u_2(i,d) = (100-i) \\cdot d(i)$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Player 1 can claim any integer number of coins from 0 to 100.", "section_ref": "Section 3.4: Worked Example: The Ultimatum Game (from LGT)", "notes_quote": "$S_1 = \\{0, 1, \\ldots, 100\\}$"},
+            {"letter": "B", "is_correct": true, "text": "Player 2 must specify a response for each of the 101 possible claims.", "section_ref": "Section 3.4: Worked Example: The Ultimatum Game (from LGT)", "notes_quote": "$S_2 = \\{0, 1\\}^{101}$ (Player 2 has $2^{101}$ pure strategies)"},
+            {"letter": "C", "is_correct": true, "text": "The notes explicitly identify $(50, d_{50})$ as a Nash equilibrium with payoff $(50,50)$.", "section_ref": "Section 3.4: Worked Example: The Ultimatum Game (from LGT)", "notes_quote": "Consider the strategy pair $(50, d_{50})$... This is a Nash equilibrium"},
+            {"letter": "D", "is_correct": false, "text": "The notes define $d_{50}$ the other way around: accept for $i \\le 50$ and reject for $i > 50$.", "section_ref": "Section 3.4: Worked Example: The Ultimatum Game (from LGT)", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "These payoff functions are given explicitly in the normal-form description.", "section_ref": "Section 3.4: Worked Example: The Ultimatum Game (from LGT)", "notes_quote": "Payoff functions: $u_1(i, d) = i \\cdot d(i)$ and $u_2(i, d) = (100 - i) \\cdot d(i)$"}
+          ]
+        },
+        {
+          "id": "q20",
+          "source_ref": "Section 3.4: Worked Example: The Ultimatum Game (from LGT)",
+          "text": "Which of the following correctly describe the subgame-perfect equilibria of the Ultimatum Game? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "If $i \\le 99$, Player 2 must accept because $100-i > 0$ is better than 0 from rejecting"},
+            {"letter": "B", "text": "If $i = 100$, both Accept and Reject are rational for Player 2 because both give payoff 0"},
+            {"letter": "C", "text": "The two SPE are $(99, d_{99})$ and $(100, d_{100})$"},
+            {"letter": "D", "text": "The equilibrium $(50, d_{50})$ is subgame-perfect because rejecting 51 is rational for Player 2"},
+            {"letter": "E", "text": "The payoff of $(99, d_{99})$ is $(99,1)$ and the payoff of $(100, d_{100})$ is $(100,0)$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the subgame-by-subgame reasoning given in the notes.", "section_ref": "Section 3.4: Worked Example: The Ultimatum Game (from LGT)", "notes_quote": "If $i \\le 99$: Player 2 gets $100 - i > 0$ from accepting vs. $0$ from rejecting. Player 2 must accept"},
+            {"letter": "B", "is_correct": true, "text": "At $i=100$, Player 2 gets 0 either way, so both actions are rational.", "section_ref": "Section 3.4: Worked Example: The Ultimatum Game (from LGT)", "notes_quote": "If $i = 100$: Player 2 gets $0$ either way, so both $A$ and $R$ are rational"},
+            {"letter": "C", "is_correct": true, "text": "The notes state that there are exactly two SPE and list these two profiles.", "section_ref": "Section 3.4: Worked Example: The Ultimatum Game (from LGT)", "notes_quote": "$(99, d_{99})$ and $(100, d_{100})$ are the two subgame-perfect equilibria"},
+            {"letter": "D", "is_correct": false, "text": "The notes say $(50,d_{50})$ is not necessarily an SPE because rejecting at $i=51$ is not rational when accepting would give 49.", "section_ref": "Section 3.4: Worked Example: The Ultimatum Game (from LGT)", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "These payoffs are explicitly listed in the notes.", "section_ref": "Section 3.4: Worked Example: The Ultimatum Game (from LGT)", "notes_quote": "$(99, d_{99})$: ... Payoff: $(99, 1)$. $(100, d_{100})$: ... Payoff: $(100, 0)$"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "3.5 Repeated Games",
+      "questions": [
+        {
+          "id": "q21",
+          "source_ref": "Section 3.5: Motivation",
+          "text": "Which of the following correctly describe the motivation for studying repeated games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In the Prisoner's Dilemma, defection is the equilibrium in dominant strategies, yet cooperation is often observed in practice"},
+            {"letter": "B", "text": "One explanation for practical cooperation is the expectation of future interaction"},
+            {"letter": "C", "text": "Repeated interaction can support strategies that reward cooperation and punish defection"},
+            {"letter": "D", "text": "Repeated games are irrelevant to cooperation because only one-shot incentives matter"},
+            {"letter": "E", "text": "Social preferences and norms of reciprocity are also mentioned as possible reasons for cooperation"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the starting puzzle motivating repeated games in the notes.", "section_ref": "Section 3.5: Motivation", "notes_quote": "In the Prisoner's Dilemma, defecting is the equilibrium in dominant strategies. Yet in practice, players frequently cooperate"},
+            {"letter": "B", "is_correct": true, "text": "Future interaction is explicitly listed as a reason cooperation may arise.", "section_ref": "Section 3.5: Motivation", "notes_quote": "Expectation of future interaction"},
+            {"letter": "C", "is_correct": true, "text": "The notes explain that repeated play allows reward-and-punishment strategies to change incentives.", "section_ref": "Section 3.5: Motivation", "notes_quote": "strategies that reward cooperation and punish defection can make mutual cooperation more attractive"},
+            {"letter": "D", "is_correct": false, "text": "The notes argue the opposite: repeated interaction can materially change strategic incentives.", "section_ref": "Section 3.5: Motivation", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "These are the other motivations listed before future interaction.", "section_ref": "Section 3.5: Motivation", "notes_quote": "Social preferences, norms of reciprocity"}
+          ]
+        },
+        {
+          "id": "q22",
+          "source_ref": "Section 3.5: Framework",
+          "text": "Which of the following correctly describe the framework of repeated games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The same stage game in normal form is played multiple times by the same set of players"},
+            {"letter": "B", "text": "A key question is whether agents observe and remember earlier play"},
+            {"letter": "C", "text": "Another key question is how utility from the entire repeated interaction is defined"},
+            {"letter": "D", "text": "Repeated games require a different set of players in every round"},
+            {"letter": "E", "text": "The notes frame repeated games as a formal analysis of history dependence and overall utility"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the basic definition of a repeated game in the notes.", "section_ref": "Section 3.5: Framework", "notes_quote": "the same stage game (in normal form) is played multiple times by the same set of players"},
+            {"letter": "B", "is_correct": true, "text": "Observation and memory of earlier actions are explicitly listed as key questions.", "section_ref": "Section 3.5: Framework", "notes_quote": "Do agents see what the other agents played earlier? Do they remember?"},
+            {"letter": "C", "is_correct": true, "text": "The notes explicitly ask how utility from the entire repeated game should be defined.", "section_ref": "Section 3.5: Framework", "notes_quote": "What is the utility of a player from the entire repeated game?"},
+            {"letter": "D", "is_correct": false, "text": "The same set of players repeats the stage game; changing players each round is not part of the definition given.", "section_ref": "Section 3.5: Framework", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This summarizes the two key formal questions highlighted in the notes.", "section_ref": "Section 3.5: Framework", "notes_quote": "Key questions for formal analysis"}
+          ]
+        },
+        {
+          "id": "q23",
+          "source_ref": "Section 3.5: Strategies in Repeated Games",
+          "text": "Which of the following correctly distinguish stationary strategies from general repeated-game strategies? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A stationary strategy is memoryless and adopts the same strategy in each stage game"},
+            {"letter": "B", "text": "In general, a player's action at a stage may depend on the history of play so far"},
+            {"letter": "C", "text": "History-dependent strategies are particularly important in infinitely repeated games"},
+            {"letter": "D", "text": "A stationary strategy must randomize differently in every round"},
+            {"letter": "E", "text": "Repeated-game strategies can never condition on past defections or cooperation"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition of a stationary strategy given in the notes.", "section_ref": "Section 3.5: Strategies in Repeated Games", "notes_quote": "A stationary strategy: adopt the same strategy in each stage game (memoryless)"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly say actions can depend on the history of play.", "section_ref": "Section 3.5: Strategies in Repeated Games", "notes_quote": "the action played at a stage can depend on the history of play so far"},
+            {"letter": "C", "is_correct": true, "text": "The notes single out infinitely repeated games as especially important for such history dependence.", "section_ref": "Section 3.5: Strategies in Repeated Games", "notes_quote": "This is particularly important in infinitely repeated games"},
+            {"letter": "D", "is_correct": false, "text": "A stationary strategy is memoryless, not one that changes randomly each round.", "section_ref": "Section 3.5: Strategies in Repeated Games", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "Repeated-game strategies often do condition on past cooperation or defection; that is central to the topic.", "section_ref": "Section 3.5: Strategies in Repeated Games", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "3.6 Extensive Form Games with Imperfect Information",
+      "questions": [
+        {
+          "id": "q24",
+          "source_ref": "Section 3.6: Information Sets",
+          "text": "Which of the following correctly describe information sets in imperfect-information games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "An imperfect-information game partitions each player's choice nodes into information sets"},
+            {"letter": "B", "text": "If two nodes are in the same information set, the player cannot distinguish between them"},
+            {"letter": "C", "text": "Nodes in the same information set may belong to different players as long as the available actions match"},
+            {"letter": "D", "text": "Nodes in the same information set must have the same available actions"},
+            {"letter": "E", "text": "Perfect-information games are the special case where every information set is a singleton"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the basic structural addition that turns a perfect-information game into an imperfect-information one.", "section_ref": "Section 3.6: Information Sets", "notes_quote": "each player's choice nodes are partitioned into information sets"},
+            {"letter": "B", "is_correct": true, "text": "This is the meaning of being in the same information set.", "section_ref": "Section 3.6: Information Sets", "notes_quote": "If two nodes are in the same information set, the agent cannot distinguish between them"},
+            {"letter": "C", "is_correct": false, "text": "Nodes in the same information set must belong to the same player; the formal definition requires $\\rho(h)=\\rho(h')$.", "section_ref": "Section 3.6: Formal Definition", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The formal definition requires equal action sets within an information set.", "section_ref": "Section 3.6: Formal Definition", "notes_quote": "nodes in the same information set must have the same available actions"},
+            {"letter": "E", "is_correct": true, "text": "The notes explicitly identify perfect-information games as the singleton-partition special case.", "section_ref": "Section 3.6: Pure Strategies in Imperfect Information Games", "notes_quote": "Perfect-information games are a special case where every element of each partition is a singleton"}
+          ]
+        },
+        {
+          "id": "q25",
+          "source_ref": "Section 3.6: Formal Definition",
+          "text": "Which of the following correctly describe the formal definition of a finite imperfect-information game? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "It extends a perfect-information game tuple by adding information partitions $I = (I_1, \\ldots, I_n)$"},
+            {"letter": "B", "text": "For each player $i$, $I_i$ is a partition of that player's choice nodes"},
+            {"letter": "C", "text": "If $h$ and $h'$ are in the same information set, then they must have the same acting player and the same available actions"},
+            {"letter": "D", "text": "The formal definition removes the successor function $\\sigma$ because histories are no longer meaningful"},
+            {"letter": "E", "text": "The tuple is written as $$(N, A, H, Z, \\chi, \\rho, \\sigma, u, I)$$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes define imperfect-information games by augmenting the perfect-information tuple with $I$.", "section_ref": "Section 3.6: Formal Definition", "notes_quote": "A (finite) imperfect-information game in extensive form is a tuple $(N, A, H, Z, \\chi, \\rho, \\sigma, u, I)$"},
+            {"letter": "B", "is_correct": true, "text": "Each player's information sets partition that player's decision nodes.", "section_ref": "Section 3.6: Formal Definition", "notes_quote": "$I_i = (I_{i,1}, \\ldots, I_{i,k_i})$ is a partition of $\\{h \\in H \\mid \\rho(h) = i\\}$"},
+            {"letter": "C", "is_correct": true, "text": "This is the consistency condition imposed on nodes within the same information set.", "section_ref": "Section 3.6: Formal Definition", "notes_quote": "nodes in the same information set must have the same available actions and the same player acting"},
+            {"letter": "D", "is_correct": false, "text": "The successor function remains part of the tuple; imperfect information augments rather than removes the underlying tree structure.", "section_ref": "Section 3.6: Formal Definition", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the exact tuple notation used in the notes.", "section_ref": "Section 3.6: Formal Definition", "notes_quote": "$(N, A, H, Z, \\chi, \\rho, \\sigma, u, I)$"}
+          ]
+        },
+        {
+          "id": "q26",
+          "source_ref": "Section 3.6: Pure Strategies in Imperfect Information Games",
+          "text": "Which of the following correctly describe pure strategies in imperfect-information games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A pure strategy chooses one action at each information set rather than at each node"},
+            {"letter": "B", "text": "The set of pure strategies of player $i$ is $$S_i = \\prod_{I_{i,j} \\in I_i} \\chi(I_{i,j})$$"},
+            {"letter": "C", "text": "If two nodes are in the same information set, a player may choose different actions at those nodes because the nodes are distinct"},
+            {"letter": "D", "text": "Perfect-information games are the special case where each information set contains exactly one node"},
+            {"letter": "E", "text": "In imperfect-information games, pure strategies are undefined because players lack full history information"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the key distinction from perfect-information games.", "section_ref": "Section 3.6: Pure Strategies in Imperfect Information Games", "notes_quote": "A pure strategy selects one of the available actions in each information set (not each node)"},
+            {"letter": "B", "is_correct": true, "text": "This is the formal strategy-set definition given in the notes.", "section_ref": "Section 3.6: Pure Strategies in Imperfect Information Games", "notes_quote": "$$S_i = \\prod_{I_{i,j} \\in I_i} \\chi(I_{i,j})$$"},
+            {"letter": "C", "is_correct": false, "text": "Because the player cannot distinguish nodes in the same information set, the strategy must prescribe the same action for that entire set.", "section_ref": "Section 3.6: Pure Strategies in Imperfect Information Games", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly identify singleton information sets as the perfect-information case.", "section_ref": "Section 3.6: Pure Strategies in Imperfect Information Games", "notes_quote": "Perfect-information games are a special case where every element of each partition is a singleton"},
+            {"letter": "E", "is_correct": false, "text": "Pure strategies are still well-defined; they are just specified over information sets rather than nodes.", "section_ref": "Section 3.6: Pure Strategies in Imperfect Information Games", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q27",
+          "source_ref": "Section 3.6: Key Facts",
+          "text": "Which of the following are key facts about imperfect-information games stated in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Perfect-information games are not expressive enough to capture the Prisoner's Dilemma and many simultaneous-move games"},
+            {"letter": "B", "text": "Any normal-form game can be trivially transformed into an equivalent imperfect-information game"},
+            {"letter": "C", "text": "Imperfect-information games may fail to admit a pure strategy Nash equilibrium"},
+            {"letter": "D", "text": "Every imperfect-information game has a pure strategy Nash equilibrium by the same theorem as perfect-information games"},
+            {"letter": "E", "text": "Imperfect-information games are strictly less expressive than normal-form games"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first key fact listed in the notes.", "section_ref": "Section 3.6: Key Facts", "notes_quote": "Perfect-information games were not expressive enough to capture the Prisoner's Dilemma and many other simultaneous-move games"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly say any normal-form game can be transformed into an equivalent imperfect-information game.", "section_ref": "Section 3.6: Key Facts", "notes_quote": "any normal-form game can be trivially transformed into an equivalent imperfect-information game"},
+            {"letter": "C", "is_correct": true, "text": "The notes warn that pure-strategy existence can fail in imperfect-information games.", "section_ref": "Section 3.6: Key Facts", "notes_quote": "Imperfect-information games may not always admit a pure strategy Nash equilibrium"},
+            {"letter": "D", "is_correct": false, "text": "The notes explicitly deny this by contrasting imperfect-information games with the perfect-information theorem.", "section_ref": "Section 3.6: Key Facts", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "The notes say any normal-form game can be represented as an imperfect-information game, so they are not less expressive in that sense.", "section_ref": "Section 3.6: Key Facts", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q28",
+          "source_ref": "Section 3.6: Example: Prisoner's Dilemma in Extensive Form",
+          "text": "In the extensive-form representation of the Prisoner's Dilemma with imperfect information, which of the following are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Player 1 chooses $C$ or $D$ first"},
+            {"letter": "B", "text": "Player 2's two decision nodes are in the same information set because Player 2 cannot observe Player 1's choice"},
+            {"letter": "C", "text": "The payoff $(D,d)$ is $(-3,-3)$ in the notes' payoff variant"},
+            {"letter": "D", "text": "The payoff $(C,d)$ is $(0,-4)$"},
+            {"letter": "E", "text": "This example shows how simultaneous-move structure can be represented using imperfect information"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes describe Player 1 as choosing $C$ or $D$ first.", "section_ref": "Section 3.6: Example: Prisoner's Dilemma in Extensive Form", "notes_quote": "Player 1 chooses $C$ or $D$"},
+            {"letter": "B", "is_correct": true, "text": "This is the defining information-set feature of the example.", "section_ref": "Section 3.6: Example: Prisoner's Dilemma in Extensive Form", "notes_quote": "Player 2's two choice nodes are in the same information set (they cannot see Player 1's choice)"},
+            {"letter": "C", "is_correct": true, "text": "The notes list $(D,d) \\to (-3,-3)$.", "section_ref": "Section 3.6: Example: Prisoner's Dilemma in Extensive Form", "notes_quote": "$(D, d) \\to (-3, -3)$"},
+            {"letter": "D", "is_correct": false, "text": "The notes give $(C,d) \\to (-4,0)$, not $(0,-4)$.", "section_ref": "Section 3.6: Example: Prisoner's Dilemma in Extensive Form", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The example is used to show how simultaneous-move games like the Prisoner's Dilemma require imperfect information in extensive form.", "section_ref": "Section 3.6: Example: Prisoner's Dilemma in Extensive Form", "notes_quote": "simultaneous-move games"}
+          ]
+        },
+        {
+          "id": "q29",
+          "source_ref": "Section 3.6: Finitely Repeated Prisoner's Dilemma",
+          "text": "Which of the following correctly describe the finitely repeated Prisoner's Dilemma in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Within each round, players do not know what the other is playing, so there is imperfect information inside a round"},
+            {"letter": "B", "text": "After each round, players observe the outcome"},
+            {"letter": "C", "text": "The overall payoff is additive across the stage games"},
+            {"letter": "D", "text": "Backward induction implies that the only equilibrium is to always cooperate"},
+            {"letter": "E", "text": "Backward induction implies that the only equilibrium of a finitely repeated Prisoner's Dilemma is to always defect"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes explicitly describe imperfect information within each stage.", "section_ref": "Section 3.6: Finitely Repeated Prisoner's Dilemma", "notes_quote": "At each iteration, players do not know what the other is playing (imperfect information within a round)"},
+            {"letter": "B", "is_correct": true, "text": "Observation occurs after the stage outcome is realized.", "section_ref": "Section 3.6: Finitely Repeated Prisoner's Dilemma", "notes_quote": "afterwards they observe the outcome"},
+            {"letter": "C", "is_correct": true, "text": "The notes define the repeated-game payoff as the sum of stage-game payoffs in this finite case.", "section_ref": "Section 3.6: Finitely Repeated Prisoner's Dilemma", "notes_quote": "The payoff function is additive: the sum of payoffs in the two stage games"},
+            {"letter": "D", "is_correct": false, "text": "The notes say backward induction leads to always defect, not always cooperate.", "section_ref": "Section 3.6: Finitely Repeated Prisoner's Dilemma", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the explicit conclusion drawn in the notes.", "section_ref": "Section 3.6: Finitely Repeated Prisoner's Dilemma", "notes_quote": "the only equilibrium of a finitely repeated Prisoner's Dilemma is to always defect"}
+          ]
+        },
+        {
+          "id": "q30",
+          "source_ref": "Section 3.6: Worked Example: SGT Exercise 1 -- SPE vs NE",
+          "text": "In SGT Exercise 1, where Player 1 chooses $U$ or $D$ and Player 2 then chooses $L$, $M$, or $R$ after $D$, which of the following are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The pure-strategy Nash equilibria are $(U,L)$, $(D,M)$, and $(D,R)$"},
+            {"letter": "B", "text": "$(U,L)$ is not subgame-perfect because $L$ is not a best response in the subgame after $D$"},
+            {"letter": "C", "text": "In the subgame after $D$, Player 2 should choose $M$ or $R$ because each gives payoff 1, which is better than 0 from $L$"},
+            {"letter": "D", "text": "$(D,M)$ and $(D,R)$ are ruled out as Nash equilibria because Player 1 prefers $U$ to $D$"},
+            {"letter": "E", "text": "The normal-form payoff matrix has row $U$ equal to $(3,3)$ against all three of Player 2's actions"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "These are exactly the pure-strategy Nash equilibria listed in the notes.", "section_ref": "Section 3.6: Worked Example: SGT Exercise 1 -- SPE vs NE", "notes_quote": "Pure strategy Nash equilibria: $(U, L)$, $(D, M)$, and $(D, R)$"},
+            {"letter": "B", "is_correct": true, "text": "The notes identify $(U,L)$ as the equilibrium that fails subgame perfection.", "section_ref": "Section 3.6: Worked Example: SGT Exercise 1 -- SPE vs NE", "notes_quote": "$(U, L)$ is not a subgame-perfect equilibrium, because playing $L$ is not a best response for Player 2 in the subgame"},
+            {"letter": "C", "is_correct": true, "text": "This is the explicit payoff comparison used in the notes.", "section_ref": "Section 3.6: Worked Example: SGT Exercise 1 -- SPE vs NE", "notes_quote": "Player 2 should choose $M$ or $R$ (both give payoff 1, which is better than 0 from $L$)"},
+            {"letter": "D", "is_correct": false, "text": "The notes list both $(D,M)$ and $(D,R)$ as Nash equilibria, so they are not ruled out on that basis.", "section_ref": "Section 3.6: Worked Example: SGT Exercise 1 -- SPE vs NE", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The matrix shown in the notes has $(3,3)$ in every entry of row $U$.", "section_ref": "Section 3.6: Worked Example: SGT Exercise 1 -- SPE vs NE", "notes_quote": "| $U$         | $3,3$ | $3,3$ | $3,3$ |"}
+          ]
+        },
+        {
+          "id": "q31",
+          "source_ref": "Section 3.6: Worked Example: SGT Exercise 2 -- Card Game with Imperfect Information",
+          "text": "In the card game with imperfect information, which of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Nature deals Player 1 a High or Low card with probability 0.5 each"},
+            {"letter": "B", "text": "If Player 1 sees rather than raises, Player 1 wins the pot when the card is High and Player 2 wins when the card is Low"},
+            {"letter": "C", "text": "If Player 1 raises and Player 2 folds, the payoff is $(1,-1)$"},
+            {"letter": "D", "text": "The information set $I = \\{v_3, v_4\\}$ means Player 2 must make the same choice after a raise whether the hidden card is High or Low"},
+            {"letter": "E", "text": "The root node is owned by Player 2 because Player 2 decides whether the card is High or Low"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes specify a fair chance move by nature.", "section_ref": "Section 3.6: Worked Example: SGT Exercise 2 -- Card Game with Imperfect Information", "notes_quote": "A card is dealt to $P_1$: High (H) with probability 0.5, Low (L) with probability 0.5"},
+            {"letter": "B", "is_correct": true, "text": "This is exactly how the 'see' action is described.", "section_ref": "Section 3.6: Worked Example: SGT Exercise 2 -- Card Game with Imperfect Information", "notes_quote": "If $P_1$ sees: $P_1$ gets pot if card is H, $P_2$ gets pot if card is L"},
+            {"letter": "C", "is_correct": true, "text": "The fold payoff after a raise is given explicitly.", "section_ref": "Section 3.6: Worked Example: SGT Exercise 2 -- Card Game with Imperfect Information", "notes_quote": "If $P_2$ folds: $P_1$ gets the pot. Payoff: $(1, -1)$"},
+            {"letter": "D", "is_correct": true, "text": "Because the two nodes are in the same information set, Player 2 must choose the same action at both.", "section_ref": "Section 3.6: Worked Example: SGT Exercise 2 -- Card Game with Imperfect Information", "notes_quote": "$P_2$ must make the same choice at both vertices in $I$"},
+            {"letter": "E", "is_correct": false, "text": "The root node is owned by nature, denoted $P_0$, not by Player 2.", "section_ref": "Section 3.6: Worked Example: SGT Exercise 2 -- Card Game with Imperfect Information", "notes_quote": "The root node $v_0$ is owned by nature (\"chance\"), $P_0$"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "3.7 Infinitely Repeated Games",
+      "questions": [
+        {
+          "id": "q32",
+          "source_ref": "Section 3.7: Why Infinite Repetition?",
+          "text": "Which of the following correctly explain why infinite repetition matters in repeated games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "With a known finite horizon, backward induction still leads to defection in every round of the Prisoner's Dilemma"},
+            {"letter": "B", "text": "If the game is repeated infinitely often, or for a finite but unknown number of rounds, cooperation can emerge"},
+            {"letter": "C", "text": "Infinite repetition removes the need to define payoffs over the whole repeated interaction"},
+            {"letter": "D", "text": "The notes contrast finite known horizons with infinite or uncertain horizons"},
+            {"letter": "E", "text": "Infinite repetition guarantees cooperation regardless of incentives or discounting"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the finite-horizon benchmark emphasized in the notes.", "section_ref": "Section 3.7: Why Infinite Repetition?", "notes_quote": "In finitely repeated games with a known number of rounds, backward induction still leads to defection in every round"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly say cooperation can emerge under infinite repetition or an unknown finite horizon.", "section_ref": "Section 3.7: Why Infinite Repetition?", "notes_quote": "when the game is repeated infinitely often (or a finite but unknown number of times), cooperation can emerge"},
+            {"letter": "C", "is_correct": false, "text": "Infinite repetition makes payoff definition more subtle, not less; the notes introduce average and discounted reward for this reason.", "section_ref": "Section 3.7: Payoff Definitions", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "This contrast is exactly how the section motivates infinite repetition.", "section_ref": "Section 3.7: Why Infinite Repetition?", "notes_quote": "finitely repeated games with a known number of rounds... But when the game is repeated infinitely often"},
+            {"letter": "E", "is_correct": false, "text": "The notes require sufficient patience or a sufficiently large continuation probability; cooperation is not automatic.", "section_ref": "Section 3.7: Equilibrium Result", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q33",
+          "source_ref": "Section 3.7: Payoff Definitions",
+          "text": "Which of the following correctly describe payoff definitions for infinitely repeated games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Average reward is defined as $$\\lim_{k \\to \\infty} \\frac{\\sum_{j=1}^{k} u_i^{(j)}}{k}$$"},
+            {"letter": "B", "text": "Future discounted reward is defined as $$\\sum_{j=1}^{\\infty} \\beta^j u_i^{(j)}$$ for $0 \\le \\beta \\le 1$"},
+            {"letter": "C", "text": "The discount factor $\\beta$ can be interpreted as the probability that the game continues to the next round"},
+            {"letter": "D", "text": "The discount factor $\\beta$ only has a single interpretation in the notes: pure impatience"},
+            {"letter": "E", "text": "The notes say future discounted reward gives higher weight to early payoffs than to later ones"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the exact formula given for average reward.", "section_ref": "Section 3.7: Payoff Definitions", "notes_quote": "$$\\lim_{k \\to \\infty} \\frac{\\sum_{j=1}^{k} u_i^{(j)}}{k}$$"},
+            {"letter": "B", "is_correct": true, "text": "This is the exact discounted-reward formula in the notes.", "section_ref": "Section 3.7: Payoff Definitions", "notes_quote": "$$\\sum_{j=1}^{\\infty} \\beta^j u_i^{(j)}$$"},
+            {"letter": "C", "is_correct": true, "text": "This is one of the two interpretations of the discount factor listed in the notes.", "section_ref": "Section 3.7: Payoff Definitions", "notes_quote": "with probability $(1 - \\beta)$ the game stops at any given round (and with probability $\\beta$ it continues)"},
+            {"letter": "D", "is_correct": false, "text": "The notes give two interpretations: time preference and continuation probability.", "section_ref": "Section 3.7: Payoff Definitions", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The notes explicitly describe discounted reward as weighting early payoffs more heavily.", "section_ref": "Section 3.7: Payoff Definitions", "notes_quote": "future rewards give higher weight to early payoffs than to later ones"}
+          ]
+        },
+        {
+          "id": "q34",
+          "source_ref": "Section 3.7: Strategies for Infinitely Repeated Prisoner's Dilemma",
+          "text": "Which of the following correctly distinguish Tit-for-Tat from Grim Trigger? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Tit-for-Tat starts by cooperating and then copies the opponent's previous action"},
+            {"letter": "B", "text": "Grim Trigger starts by cooperating and defects forever after any defection by the opponent"},
+            {"letter": "C", "text": "Tit-for-Tat has no forgiveness because one defection triggers permanent retaliation"},
+            {"letter": "D", "text": "If both players use either TFT or Grim Trigger and begin with cooperation, the notes say they cooperate forever"},
+            {"letter": "E", "text": "Both strategies are described as history-dependent rather than stationary"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition of Tit-for-Tat given in the notes.", "section_ref": "Section 3.7: Strategies for Infinitely Repeated Prisoner's Dilemma", "notes_quote": "starts by cooperating and thereafter chooses in round $j+1$ the very action that was chosen by their opponent in round $j$"},
+            {"letter": "B", "is_correct": true, "text": "This is the definition of Grim Trigger in the notes.", "section_ref": "Section 3.7: Strategies for Infinitely Repeated Prisoner's Dilemma", "notes_quote": "If ever the other player defects, the first player defects forever"},
+            {"letter": "C", "is_correct": false, "text": "Permanent retaliation is the property of Grim Trigger, not Tit-for-Tat.", "section_ref": "Section 3.7: Strategies for Infinitely Repeated Prisoner's Dilemma", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly say both TFT and Trigger lead to perpetual cooperation when both players start cooperating.", "section_ref": "Section 3.7: Strategies for Infinitely Repeated Prisoner's Dilemma", "notes_quote": "If both use TFT and start with cooperation, they cooperate forever"},
+            {"letter": "E", "is_correct": true, "text": "Both strategies depend on past play, so they are history-dependent rather than memoryless stationary strategies.", "section_ref": "Section 3.7: Strategies for Infinitely Repeated Prisoner's Dilemma", "notes_quote": "thereafter chooses... the action that was chosen by their opponent in round $j$"}
+          ]
+        },
+        {
+          "id": "q35",
+          "source_ref": "Section 3.7: Equilibrium Result",
+          "text": "Which of the following correctly describe the equilibrium result for infinitely repeated Prisoner's Dilemma? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Tit-for-Tat and Trigger strategy are Nash equilibria for sufficiently large discount factor"},
+            {"letter": "B", "text": "The notes say these strategies can form equilibrium not only with themselves but also with each other"},
+            {"letter": "C", "text": "This shows that cooperation can be sustained in each round of an infinitely repeated Prisoner's Dilemma"},
+            {"letter": "D", "text": "The result holds only for finite repeated games with a known horizon"},
+            {"letter": "E", "text": "The notes claim cooperation is impossible even with high continuation probability"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the main equilibrium statement in the notes.", "section_ref": "Section 3.7: Equilibrium Result", "notes_quote": "Both Tit-for-Tat and Trigger strategy are in Nash equilibrium for sufficiently large discount factor"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly add that they can be in equilibrium with each other as well.", "section_ref": "Section 3.7: Equilibrium Result", "notes_quote": "they form an equilibrium not just with themselves, but also with each other"},
+            {"letter": "C", "is_correct": true, "text": "This is the cooperative implication drawn from the equilibrium result.", "section_ref": "Section 3.7: Equilibrium Result", "notes_quote": "This way, cooperation can be achieved in each round of an infinitely repeated Prisoner's Dilemma"},
+            {"letter": "D", "is_correct": false, "text": "The result is about infinitely repeated games, not finite known-horizon games.", "section_ref": "Section 3.7: Equilibrium Result", "notes_quote": ""},
+            {"letter": "E", "is_correct": false, "text": "The notes say the opposite: sufficiently patient players can sustain cooperation.", "section_ref": "Section 3.7: Equilibrium Result", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q36",
+          "source_ref": "Section 3.7: Worked Example: Infinitely Repeated PD with Trigger Strategy (from LGT, payoffs variant 1)",
+          "text": "Given the stage game:\n\n|   | $C$ | $D$ |\n|---|-----|-----|\n| $C$ | $4, 4$ | $0, 5$ |\n| $D$ | $5, 0$ | $1, 1$ |\n\nand continuation probability $p$, which of the following are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "If both players cooperate forever, a player's expected total payoff is $$4 + 4p + 4p^2 + \\ldots = \\frac{4}{1-p}$$"},
+            {"letter": "B", "text": "If a player defects immediately against an opponent using trigger strategy, their expected total payoff is $$5 + p + p^2 + \\ldots = 5 + \\frac{p}{1-p}$$"},
+            {"letter": "C", "text": "The sustainability condition derived in the notes is $$4 + \\frac{4p}{1-p} \\ge 5 + \\frac{p}{1-p}$$"},
+            {"letter": "D", "text": "The threshold continuation probability is $$p^* = \\frac{1}{4}$$"},
+            {"letter": "E", "text": "The notes conclude cooperation is sustainable only when $$p < \\frac{1}{4}$$"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the geometric series for perpetual cooperation given in the notes.", "section_ref": "Section 3.7: Worked Example: Infinitely Repeated PD with Trigger Strategy (from LGT, payoffs variant 1)", "notes_quote": "$$4 + 4p + 4p^2 + \\ldots = \\frac{4}{1 - p}$$"},
+            {"letter": "B", "is_correct": true, "text": "This is the payoff stream from defecting once and then facing permanent defection.", "section_ref": "Section 3.7: Worked Example: Infinitely Repeated PD with Trigger Strategy (from LGT, payoffs variant 1)", "notes_quote": "$$5 + p + p^2 + \\ldots = 5 + \\frac{p}{1 - p}$$"},
+            {"letter": "C", "is_correct": true, "text": "The notes derive this inequality when comparing cooperation to deviation.", "section_ref": "Section 3.7: Worked Example: Infinitely Repeated PD with Trigger Strategy (from LGT, payoffs variant 1)", "notes_quote": "$$4 + \\frac{4p}{1 - p} \\ge 5 + \\frac{p}{1 - p}$$"},
+            {"letter": "D", "is_correct": true, "text": "Solving the inequality yields the threshold stated in the notes.", "section_ref": "Section 3.7: Worked Example: Infinitely Repeated PD with Trigger Strategy (from LGT, payoffs variant 1)", "notes_quote": "$$\\boxed{p^* = \\frac{1}{4}}$$"},
+            {"letter": "E", "is_correct": false, "text": "The notes conclude cooperation is sustainable when $p \\ge \\frac{1}{4}$, not when $p$ is smaller.", "section_ref": "Section 3.7: Worked Example: Infinitely Repeated PD with Trigger Strategy (from LGT, payoffs variant 1)", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q37",
+          "source_ref": "Section 3.7: Worked Example: SGT Exercise 3 -- Repeated Game with Alternating Behaviour",
+          "text": "In SGT Exercise 3 with stage game:\n\n|   | $C$ | $D$ |\n|---|-----|-----|\n| $C$ | $2, 2$ | $0, 5$ |\n| $D$ | $5, 0$ | $1, 1$ |\n\nwhich of the following are correct according to the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The expected payoff stream for alternating $(C,C)$ in odd rounds and $(D,D)$ in even rounds is $$2 + p + 2p^2 + p^3 + 2p^4 + p^5 + \\ldots$$"},
+            {"letter": "B", "text": "The continuation payoff from indefinite cooperation is $$2 + 2p + 2p^2 + \\ldots = \\frac{2}{1-p}$$"},
+            {"letter": "C", "text": "The deviation payoff used in the notes is $$5 + p + p^2 + \\ldots = 5 + \\frac{p}{1-p}$$"},
+            {"letter": "D", "text": "The threshold found in the notes is $$p^* = \\frac{3}{4}$$"},
+            {"letter": "E", "text": "The notes conclude the threshold is $$p^* = \\frac{1}{4}$$ for this exercise as well"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the alternating payoff stream written in the notes.", "section_ref": "Section 3.7: Worked Example: SGT Exercise 3 -- Repeated Game with Alternating Behaviour", "notes_quote": "$$2 + p + 2p^2 + p^3 + 2p^4 + p^5 + \\ldots$$"},
+            {"letter": "B", "is_correct": true, "text": "The notes compute the cooperation continuation value exactly this way.", "section_ref": "Section 3.7: Worked Example: SGT Exercise 3 -- Repeated Game with Alternating Behaviour", "notes_quote": "$$2 + 2p + 2p^2 + \\ldots = 2 + \\frac{2p}{1 - p} = \\frac{2}{1-p}$$"},
+            {"letter": "C", "is_correct": true, "text": "This is the deviation payoff stream used in the threshold comparison.", "section_ref": "Section 3.7: Worked Example: SGT Exercise 3 -- Repeated Game with Alternating Behaviour", "notes_quote": "$$5 + p + p^2 + \\ldots = 5 + \\frac{p}{1 - p}$$"},
+            {"letter": "D", "is_correct": true, "text": "Solving the inequality gives the threshold stated in the notes.", "section_ref": "Section 3.7: Worked Example: SGT Exercise 3 -- Repeated Game with Alternating Behaviour", "notes_quote": "$$\\boxed{p^* = \\frac{3}{4}}$$"},
+            {"letter": "E", "is_correct": false, "text": "The threshold $\\frac{1}{4}$ belongs to the earlier repeated-PD example, not this exercise.", "section_ref": "Section 3.7: Worked Example: SGT Exercise 3 -- Repeated Game with Alternating Behaviour", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-8",
+      "title": "Key Definitions",
+      "questions": [
+        {
+          "id": "q38",
+          "source_ref": "Section Key Definitions: Extensive-form and equilibrium terminology",
+          "text": "Which of the following correctly match key Week 3 terms with their definitions? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "An extensive form game is a finite tree-based representation that need not assume simultaneous action and is generally exponentially smaller than its induced normal form"},
+            {"letter": "B", "text": "A subgame is the restriction of a game tree to the descendants of a nonterminal node"},
+            {"letter": "C", "text": "A non-credible threat is an action in a strategy that is not rational in the relevant subgame"},
+            {"letter": "D", "text": "Backward induction is a procedure that solves subgames from the bottom upward and runs in linear time in the game-tree size"},
+            {"letter": "E", "text": "An induced normal form is the imperfect-information partition obtained by merging indistinguishable nodes"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This matches the key-definitions table entry for extensive form game.", "section_ref": "Section Key Definitions: Extensive-form and equilibrium terminology", "notes_quote": "A finite representation of a game (as a tree) that does not always assume players act simultaneously; in general exponentially smaller than its induced normal form"},
+            {"letter": "B", "is_correct": true, "text": "This matches the key-definitions table entry for subgame.", "section_ref": "Section Key Definitions: Extensive-form and equilibrium terminology", "notes_quote": "Subgame | The restriction of a game tree to the descendants of a nonterminal node $h$"},
+            {"letter": "C", "is_correct": true, "text": "This matches the key-definitions table entry for non-credible threat.", "section_ref": "Section Key Definitions: Extensive-form and equilibrium terminology", "notes_quote": "Non-credible threat | An action specified in a strategy that is not rational in the relevant subgame"},
+            {"letter": "D", "is_correct": true, "text": "This matches the key-definitions table entry for backward induction.", "section_ref": "Section Key Definitions: Extensive-form and equilibrium terminology", "notes_quote": "Backward induction | A procedure for computing SPE by solving subgames from the bottom of the tree upward; runs in time linear in the game tree size"},
+            {"letter": "E", "is_correct": false, "text": "Induced normal form is the normal-form payoff representation obtained by enumerating strategy profiles, not an information partition.", "section_ref": "Section Key Definitions: Extensive-form and equilibrium terminology", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q39",
+          "source_ref": "Section Key Definitions: Information and repeated-game terminology",
+          "text": "Which of the following correctly match repeated-game and information-related terms with their definitions? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "An information set is a partition element of a player's choice nodes whose members are indistinguishable to that player"},
+            {"letter": "B", "text": "A repeated game is one in which the same stage game is played multiple times by the same players"},
+            {"letter": "C", "text": "A stationary strategy is a memoryless strategy that plays the same action in every repetition of the stage game"},
+            {"letter": "D", "text": "Tit-for-Tat means defect forever after the opponent defects once"},
+            {"letter": "E", "text": "Future discounted reward is defined as $$\\sum_{j=1}^{\\infty} \\beta^j u_i^{(j)}$$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This matches the key-definitions table entry for information set.", "section_ref": "Section Key Definitions: Information and repeated-game terminology", "notes_quote": "Information set | A partition element of a player's choice nodes in an imperfect-information game; nodes in the same set are indistinguishable to the player"},
+            {"letter": "B", "is_correct": true, "text": "This matches the key-definitions table entry for repeated game.", "section_ref": "Section Key Definitions: Information and repeated-game terminology", "notes_quote": "Repeated game | A game where the same stage game is played multiple times by the same players"},
+            {"letter": "C", "is_correct": true, "text": "This matches the key-definitions table entry for stationary strategy.", "section_ref": "Section Key Definitions: Information and repeated-game terminology", "notes_quote": "Stationary strategy | A memoryless strategy that plays the same action in every repetition of the stage game"},
+            {"letter": "D", "is_correct": false, "text": "That is Grim Trigger, not Tit-for-Tat. Tit-for-Tat copies the opponent's previous action.", "section_ref": "Section Key Definitions: Information and repeated-game terminology", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This matches the key-definitions table entry for future discounted reward.", "section_ref": "Section Key Definitions: Information and repeated-game terminology", "notes_quote": "Future discounted reward | Payoff in an infinitely repeated game defined as $\\sum_{j=1}^{\\infty} \\beta^j u_i^{(j)}$"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-9",
+      "title": "Learning Objectives — Integrative Questions",
+      "questions": [
+        {
+          "id": "q40",
+          "source_ref": "Learning Objective 1: Define core concepts of non-cooperative game theory in extensive and repeated settings",
+          "text": "Which of the following statements integrate the core Week 3 concepts correctly? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Extensive-form games encode sequential structure explicitly, while induced normal forms enumerate complete strategy profiles"},
+            {"letter": "B", "text": "In perfect-information games, pure strategies specify actions at every player node, whereas in imperfect-information games they specify actions at every information set"},
+            {"letter": "C", "text": "Repeated games extend one-shot stage games by allowing strategies to depend on observed history and by defining utility over the entire interaction"},
+            {"letter": "D", "text": "Subgame-perfect equilibrium and backward induction are irrelevant once a game is represented as a tree"},
+            {"letter": "E", "text": "Infinite repetition can sustain cooperation under suitable continuation incentives even when one-shot play favors defection"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This combines the notes' discussion of extensive form, temporal structure, and induced normal form.", "section_ref": "Learning Objective 1: Define core concepts of non-cooperative game theory in extensive and repeated settings", "notes_quote": "Extensive form games represent strategic interactions as game trees... The induced normal form... derived from an extensive form game by enumerating all strategy profiles"},
+            {"letter": "B", "is_correct": true, "text": "This is the central distinction between pure strategies in perfect and imperfect information.", "section_ref": "Learning Objective 1: Define core concepts of non-cooperative game theory in extensive and repeated settings", "notes_quote": "Pure strategy (perfect info)... every choice node... Pure strategy (imperfect info)... every information set"},
+            {"letter": "C", "is_correct": true, "text": "This integrates the repeated-game framework and strategy discussion from the notes.", "section_ref": "Learning Objective 1: Define core concepts of non-cooperative game theory in extensive and repeated settings", "notes_quote": "the same stage game... is played multiple times... the action played at a stage can depend on the history of play so far"},
+            {"letter": "D", "is_correct": false, "text": "Tree representation is exactly what makes subgame-perfect equilibrium and backward induction meaningful and useful.", "section_ref": "Learning Objective 1: Define core concepts of non-cooperative game theory in extensive and repeated settings", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This integrates the infinitely repeated Prisoner's Dilemma results with the one-shot defection benchmark.", "section_ref": "Learning Objective 1: Define core concepts of non-cooperative game theory in extensive and repeated settings", "notes_quote": "With sufficient patience... strategies like Tit-for-Tat and Grim Trigger can sustain cooperation"}
+          ]
+        },
+        {
+          "id": "q41",
+          "source_ref": "Learning Objective 2: Formulate and analyse strategic scenarios using extensive-form and repeated-game reasoning",
+          "text": "Which of the following statements correctly integrate the worked examples from Week 3? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The Sharing Game shows how a sequential proposal-and-response protocol is naturally represented as a game tree"},
+            {"letter": "B", "text": "The Centipede Game shows that backward induction can produce an inefficient SPE outcome"},
+            {"letter": "C", "text": "The Ultimatum Game shows that a Nash equilibrium need not be subgame-perfect if it relies on irrational rejection in some subgame"},
+            {"letter": "D", "text": "The finitely repeated Prisoner's Dilemma shows that known finite horizons can sustain cooperation through backward induction"},
+            {"letter": "E", "text": "The infinitely repeated Prisoner's Dilemma examples show how continuation probability thresholds determine whether trigger-based cooperation is sustainable"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is exactly how the Sharing Game is introduced and analyzed.", "section_ref": "Learning Objective 2: Formulate and analyse strategic scenarios using extensive-form and repeated-game reasoning", "notes_quote": "Example: The Sharing Game... Protocol... Game Tree"},
+            {"letter": "B", "is_correct": true, "text": "The Centipede Game is used to illustrate inefficiency under SPE via backward induction.", "section_ref": "Learning Objective 2: Formulate and analyse strategic scenarios using extensive-form and repeated-game reasoning", "notes_quote": "The Centipede game demonstrates that SPE can predict inefficient outcomes"},
+            {"letter": "C", "is_correct": true, "text": "The notes explicitly use the Ultimatum Game to distinguish NE from SPE via non-rational rejection in a subgame.", "section_ref": "Learning Objective 2: Formulate and analyse strategic scenarios using extensive-form and repeated-game reasoning", "notes_quote": "Rejecting is not rational in that subgame"},
+            {"letter": "D", "is_correct": false, "text": "The notes say the opposite: finite known horizons lead backward induction to always defect.", "section_ref": "Learning Objective 2: Formulate and analyse strategic scenarios using extensive-form and repeated-game reasoning", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Both repeated-PD worked examples derive threshold values $p^*$ for sustaining cooperation.", "section_ref": "Learning Objective 2: Formulate and analyse strategic scenarios using extensive-form and repeated-game reasoning", "notes_quote": "The critical threshold $p^*$ is found by comparing the discounted payoff streams from cooperation vs. defection"}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1859 @@
+{
+  "module": "MultiAgents",
+  "week": 5,
+  "title": "Cooperative Games (Part II) - Hedonic Games, Stable Matchings, and House Allocation",
+  "sections": [
+    {
+      "section_id": "section-1",
+      "section_title": "Beyond Transferable Utility and Hedonic Games",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "conceptual",
+          "question": "Which statements correctly distinguish non-transferable utility from transferable utility in the Week 5 notes? (Select ALL that apply.)",
+          "options": [
+            "In NTU settings, benefits can attach directly to individuals and cannot necessarily be reassigned to others.",
+            "Transferable utility is especially appropriate when payoffs are purely monetary and can be shared arbitrarily.",
+            "In NTU settings, coalition members always receive the same payoff vector regardless of the coalition's action.",
+            "With NTU, analysis must consider coalitional actions and the vector of payoffs they generate.",
+            "NTU means coalitions are impossible; only singleton outcomes are allowed."
+          ],
+          "correct": [0, 1, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes say NTU arises when 'Payoffs accrue to individual coalition members and cannot be transferred' and benefits may be reputation, access, rights, or institutional rewards attached to individuals.",
+              "section_ref": "1",
+              "notes_quote": "Payoffs accrue to individual coalition members and cannot be transferred"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The notes explicitly contrast TU and NTU by saying TU is appropriate 'when payoffs are purely monetary' and can be shared arbitrarily.",
+              "section_ref": "1",
+              "notes_quote": "This is appropriate when payoffs are purely monetary."
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. The notes give different actions for the same coalition, such as action $a$ paying $(1,6)$ and action $b$ paying $(4,2)$, so the payoff vector need not be fixed.",
+              "section_ref": "1"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The notes state that without transfers 'we must reason about coalitional actions and the vector of payoffs they generate'.",
+              "section_ref": "1",
+              "notes_quote": "With no transfers, we must reason about coalitional actions and the vector of payoffs they generate"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. NTU does not eliminate coalitions. The academic collaboration example is explicitly about groups forming coalitions to co-author papers.",
+              "section_ref": "1.1"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "type": "application",
+          "question": "In the academic collaboration example, which features make the setting a natural example of non-transferable utility? (Select ALL that apply.)",
+          "options": [
+            "Researchers at different universities may receive institution-specific rewards such as promotion or parking spots.",
+            "A promotion awarded to one researcher can be reassigned to a collaborator at another university.",
+            "The composition of the group affects the quality or impact of the paper.",
+            "Each author's payoff comes from their own university rather than from a common transferable pot.",
+            "The example assumes all coalition members must value outcomes identically."
+          ],
+          "correct": [0, 2, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes list promotion, bonus, teaching load reduction, and parking spot as examples of university-specific rewards.",
+              "section_ref": "1.1",
+              "notes_quote": "Each author receives a payoff from their own university (promotion, bonus, teaching load reduction, parking spot)"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Incorrect. The notes use this example precisely because such rewards are non-transferable across collaborators at different universities.",
+              "section_ref": "1.1",
+              "notes_quote": "These payoffs are non-transferable — a promotion for one researcher cannot be given to a collaborator at another university"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes say 'The group's composition determines the quality/impact of the paper'.",
+              "section_ref": "1.1",
+              "notes_quote": "The group's composition determines the quality/impact of the paper"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The example emphasizes that each author receives payoff from their own university, not from a transferable coalition surplus.",
+              "section_ref": "1.1",
+              "notes_quote": "Each author receives a payoff from their own university"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. The notes do not assume identical valuations; they emphasize individual-specific payoffs.",
+              "section_ref": "1.1"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "type": "definition",
+          "question": "Which statements are part of the definition or interpretation of a hedonic game in the notes? (Select ALL that apply.)",
+          "options": [
+            "Each coalition has only one action available to it.",
+            "A player's payoff depends only on the coalition that player belongs to.",
+            "Players rank all coalitions they could possibly join, and ties may be possible.",
+            "After coalitions form, there is always a separate payoff-distribution phase.",
+            "An outcome is a partition of the player set into coalitions."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes describe hedonic games as a simplification where 'Each coalition has only one action available to it'.",
+              "section_ref": "2.1",
+              "notes_quote": "Each coalition has only one action available to it"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. This is the core hedonic assumption: player $i$'s payoff is determined solely by the coalition $i$ is in.",
+              "section_ref": "2.1",
+              "notes_quote": "Player i's payoff is determined solely by the coalition i is in"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes say each player ranks all coalitions she could possibly join, and ties are possible.",
+              "section_ref": "2.1",
+              "notes_quote": "Each player ranks all coalitions she could possibly join, from best to worst (ties are possible)"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. The formal definition explicitly notes the outcome is a partition and there is 'no payoff distribution phase'.",
+              "section_ref": "2.2",
+              "notes_quote": "Outcome: a coalition structure (partition) — note: no payoff distribution phase"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The formal outcome in a hedonic game is a coalition structure, i.e. a partition of $N$.",
+              "section_ref": "2.2",
+              "notes_quote": "Players want to split into coalitions forming a partition of N"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "type": "formal",
+          "question": "According to the formal definition in the notes, which objects are part of a hedonic game? (Select ALL that apply.)",
+          "options": [
+            "A player set $N = \\\\{1,2,\\\\ldots,n\\\\}$.",
+            "For each player $i$, a preference relation $\\\\succeq_i$ over coalitions containing $i$.",
+            "A mandatory transfer rule specifying how coalition surplus is redistributed after formation.",
+            "An outcome space consisting of partitions of $N$.",
+            "A requirement that all players use the same preference ordering over coalitions."
+          ],
+          "correct": [0, 1, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes define a hedonic game using a set of players $N = \\\\{1,2,\\\\ldots,n\\\\}$.",
+              "section_ref": "2.2",
+              "notes_quote": "A set of players N = \\\\{1, 2, \\\\ldots, n\\\\}"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. Each player has preferences over all coalitions she could belong to.",
+              "section_ref": "2.2",
+              "notes_quote": "Each player i has preferences \\\\succeq_i over \\\\{S \\\\subseteq N \\\\mid i \\\\in S\\\\}"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. The notes explicitly say there is no payoff distribution phase in the hedonic-game outcome.",
+              "section_ref": "2.2"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The outcome is a coalition structure, meaning a partition of the player set.",
+              "section_ref": "2.2",
+              "notes_quote": "Outcome: a coalition structure (partition)"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. Preferences are player-specific; the notes do not require a common ranking.",
+              "section_ref": "2.2"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "type": "formal",
+          "question": "What does the numerical encoding example in the notes show about hedonic-game preferences? (Select ALL that apply.)",
+          "options": [
+            "Preferences over coalitions can be represented numerically without loss of generality.",
+            "If two coalitions are tied in preference, they can be assigned the same numerical value.",
+            "The encoding forces singleton coalitions to have negative value.",
+            "The example encodes $\\\\{1,2\\\\} \\\\sim \\\\{1,3\\\\}$ by assigning both coalitions the value 2 for player 1.",
+            "Numerical encoding changes the underlying ranking and therefore is only approximate."
+          ],
+          "correct": [0, 1, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes state 'Without loss of generality, preferences can be encoded by numbers'.",
+              "section_ref": "2.2",
+              "notes_quote": "Without loss of generality, preferences can be encoded by numbers"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The example assigns equal value to tied coalitions, showing ties can be represented numerically.",
+              "section_ref": "2.2",
+              "notes_quote": "v_1(\\\\{1,2\\\\}) = v_1(\\\\{1,3\\\\}) = 2"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. In the example, the singleton coalition $\\\\{1\\\\}$ is assigned value 0, not necessarily a negative value.",
+              "section_ref": "2.2"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. This is exactly how the notes encode the tie between $\\\\{1,2\\\\}$ and $\\\\{1,3\\\\}$.",
+              "section_ref": "2.2",
+              "notes_quote": "v_1(\\\\{1,2\\\\}) = v_1(\\\\{1,3\\\\}) = 2"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. The point of the encoding is that it preserves the ranking structure rather than approximating it.",
+              "section_ref": "2.2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "section-2",
+      "section_title": "Compact Representations and Stability in Hedonic Games",
+      "questions": [
+        {
+          "id": "q6",
+          "type": "conceptual",
+          "question": "Why do the notes introduce compactly representable hedonic games, and which examples are given? (Select ALL that apply.)",
+          "options": [
+            "Because full representation of hedonic preferences can be exponential in the number of agents.",
+            "Anonymous games are one compact representation where preferences depend only on coalition sizes.",
+            "ASHGs are introduced as a representation where each coalition is valued only by its cardinality.",
+            "Fractional hedonic games aggregate pairwise values and divide by coalition size.",
+            "B-games and W-games focus respectively on the best-valued and worst-valued coalition member."
+          ],
+          "correct": [0, 1, 3, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes motivate compact representations by saying the full representation can be exponential in the number of agents.",
+              "section_ref": "3",
+              "notes_quote": "Full representation of hedonic preferences can be exponential in the number of agents"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. Anonymous games are defined by preferences depending on coalition sizes only.",
+              "section_ref": "3.1",
+              "notes_quote": "Preferences depend on coalition sizes only"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. ASHGs sum pairwise values $v_i(j)$ over other coalition members; they are not based only on coalition size.",
+              "section_ref": "3.2"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. Fractional hedonic games divide the sum of pairwise values by $|S|$.",
+              "section_ref": "3.2",
+              "notes_quote": "v_i(S) = \frac{\\\\sum_{j \\\\in S \\\\setminus \\\\{i\\\\}} v_i(j)}{|S|}"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. B-games use the maximum pairwise value, while W-games use the minimum pairwise value.",
+              "section_ref": "3.2",
+              "notes_quote": "B-games (Best response): v_i(S) = \\\\max ...; W-games (Worst response): v_i(S) = \\\\min ..."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "type": "formal",
+          "question": "Which formulas or interpretations match the compact hedonic-game representations in the notes? (Select ALL that apply.)",
+          "options": [
+            "In an ASHG, $v_i(S) = \\\\sum_{j \\\\in S \\\\setminus \\\\{i\\\\}} v_i(j)$.",
+            "In a fractional hedonic game, $v_i(S)$ is the average of pairwise values over the coalition size.",
+            "In a B-game, an agent cares only about the least-valued coalition member.",
+            "In a W-game, coalition quality is determined by the least-valued coalition member.",
+            "In anonymous games, preferences depend on the identities of all coalition members but not on coalition size."
+          ],
+          "correct": [0, 1, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is the defining formula for additively separable hedonic games in the notes.",
+              "section_ref": "3.2",
+              "notes_quote": "v_i(S) = \\\\sum_{j \\\\in S \\\\setminus \\\\{i\\\\}} v_i(j)"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The notes define fractional hedonic games by dividing the sum of pairwise values by coalition size.",
+              "section_ref": "3.2",
+              "notes_quote": "v_i(S) = \frac{\\\\sum_{j \\\\in S \\\\setminus \\\\{i\\\\}} v_i(j)}{|S|}"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. B-games use the best-valued coalition member, not the least-valued one.",
+              "section_ref": "3.2"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. W-games are defined by the minimum pairwise value, so the least-valued member determines coalition quality.",
+              "section_ref": "3.2",
+              "notes_quote": "W-games (Worst response): v_i(S) = \\\\min_{j \\\\in S \\\\setminus \\\\{i\\\\}} v_i(j)"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. Anonymous games depend on coalition sizes only, not on identities.",
+              "section_ref": "3.1"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "type": "comparison",
+          "question": "According to the comparison table in the notes, which statements correctly contrast induced subgraph games and ASHGs? (Select ALL that apply.)",
+          "options": [
+            "Induced subgraph games use undirected edges, while ASHGs may use directed edges.",
+            "In ASHGs, player $i$'s coalition value depends on the total weight of edges from $i$ to other coalition members.",
+            "The notes state that non-negative weights imply a non-empty core for ASHGs.",
+            "The notes say the core may be empty even for symmetric ASHGs.",
+            "Both models require all edge weights to be symmetric and non-negative."
+          ],
+          "correct": [0, 1, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The table contrasts undirected symmetric edges in induced subgraph games with directed potentially asymmetric edges in ASHGs.",
+              "section_ref": "3.3",
+              "notes_quote": "Edge type | Undirected (symmetric) | Directed (potentially asymmetric)"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The ASHG column says coalition value for $i$ is the total weight of edges from $i$ to other members of $T \\\\setminus \\\\{i\\\\}$.",
+              "section_ref": "3.3",
+              "notes_quote": "Total weight of edges from i to other members of T \\\\setminus \\\\{i\\\\}"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. The non-negative-weights core result is listed for induced subgraph games, not ASHGs.",
+              "section_ref": "3.3"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The table explicitly states that the core may be empty even for symmetric ASHGs.",
+              "section_ref": "3.3",
+              "notes_quote": "Core may be empty even for symmetric games"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. ASHGs may be asymmetric, and the notes do not require all weights to be non-negative.",
+              "section_ref": "3.3"
+            }
+          ]
+        },
+        {
+          "id": "q9",
+          "type": "definition",
+          "question": "Which statements about individual rationality and Nash stability in hedonic games are correct according to the notes? (Select ALL that apply.)",
+          "options": [
+            "Individual rationality requires that no player strictly prefers being alone to their current coalition.",
+            "Nash stability means no player can benefit by moving to another coalition or to being alone.",
+            "Nash stability is weaker than individual rationality.",
+            "The notes state that Nash stable outcomes are guaranteed to exist in all hedonic games.",
+            "The two-player counterexample shows that Nash stable partitions need not exist in general."
+          ],
+          "correct": [0, 1, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is exactly the definition of individual rationality given in the notes.",
+              "section_ref": "4.1",
+              "notes_quote": "A partition is individually rational (IR) if no player strictly prefers being on its own to its current coalition"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. Nash stability rules out profitable unilateral moves to another coalition or to being alone.",
+              "section_ref": "4.2",
+              "notes_quote": "A partition is Nash stable if no player can benefit from moving from its coalition S to another coalition T (or to being alone)"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. The notes say Nash stability implies individual rationality, so Nash stability is stronger, not weaker.",
+              "section_ref": "4.2"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. The notes explicitly say Nash stable outcomes are not guaranteed to exist in general.",
+              "section_ref": "4.2",
+              "notes_quote": "Nash stable outcomes are not guaranteed to exist in general"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The two-player example with one positive and one negative valuation is used to show non-existence of Nash stable partitions.",
+              "section_ref": "4.2",
+              "notes_quote": "No Nash stable partition exists"
+            }
+          ]
+        },
+        {
+          "id": "q10",
+          "type": "theorem",
+          "question": "Which claims about Nash stability in symmetric ASHGs are supported by the notes? (Select ALL that apply.)",
+          "options": [
+            "Every symmetric ASHG admits a Nash stable outcome.",
+            "The proof idea is that every NS-deviation increases social welfare and there are finitely many partitions.",
+            "The notes claim finding a Nash stable outcome in symmetric ASHGs is polynomial-time solvable by a simple greedy algorithm.",
+            "The notes cite a theorem that finding a Nash stable outcome in symmetric ASHGs is PLS-complete.",
+            "Symmetry means $v_i(j) = v_j(i)$ for all players $i,j$."
+          ],
+          "correct": [0, 1, 3, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes state this as an observation for symmetric ASHGs.",
+              "section_ref": "4.3",
+              "notes_quote": "Every symmetric ASHG admits a Nash stable outcome"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The proof idea is exactly that every NS-deviation increases the sum of utilities, so improvement dynamics must converge.",
+              "section_ref": "4.3",
+              "notes_quote": "Every NS-deviation increases the sum of utilities (social welfare)"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. The notes do not claim a simple polynomial-time greedy algorithm; instead they cite a PLS-completeness result.",
+              "section_ref": "4.3"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The theorem of Gairing and Savani (2010) is quoted as saying the problem is PLS-complete.",
+              "section_ref": "4.3",
+              "notes_quote": "Finding a Nash stable outcome in symmetric additively separable hedonic games is PLS-complete"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. This is the definition of symmetry used in the notes.",
+              "section_ref": "4.3",
+              "notes_quote": "Symmetric ASHGs: v_i(j) = v_j(i) for all i, j"
+            }
+          ]
+        },
+        {
+          "id": "q11",
+          "type": "definition",
+          "question": "Which conditions are required for an IS-deviation or a CIS-deviation in the notes? (Select ALL that apply.)",
+          "options": [
+            "For an IS-deviation, the deviating player must prefer the new coalition and all members of the receiving coalition must weakly approve.",
+            "For a CIS-deviation, the leaving coalition must also weakly prefer losing the deviator.",
+            "For an IS-deviation, the leaving coalition must strictly prefer the deviator to leave.",
+            "For a CIS-deviation, the receiving coalition must strictly prefer the deviator to join.",
+            "The notes state that every hedonic game has a CIS outcome."
+          ],
+          "correct": [0, 1, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. IS requires the deviator to prefer the move and all players in the receiving coalition to weakly prefer the enlarged coalition.",
+              "section_ref": "4.4",
+              "notes_quote": "All players in T weakly prefer T \\\\cup \\\\{i\\\\} to T"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. CIS adds the requirement that all players in the leaving coalition weakly prefer $S \\\\setminus \\\\{i\\\\}$ to $S$.",
+              "section_ref": "4.5",
+              "notes_quote": "All players in S weakly prefer S \\\\setminus \\\\{i\\\\} to S"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. That condition is not part of IS in the notes.",
+              "section_ref": "4.4"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. CIS requires only weak approval from the receiving coalition, not strict preference.",
+              "section_ref": "4.5"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The notes explicitly state the theorem that every hedonic game has a CIS outcome.",
+              "section_ref": "4.5",
+              "notes_quote": "Every hedonic game has a CIS outcome"
+            }
+          ]
+        },
+        {
+          "id": "q12",
+          "type": "proof",
+          "question": "Which steps belong to the proof idea that every hedonic game has a CIS outcome? (Select ALL that apply.)",
+          "options": [
+            "Assume each player assigns a numerical utility to each coalition.",
+            "Show that each CIS deviation increases the sum of utilities.",
+            "Conclude that any partition maximizing the sum of utilities is CIS.",
+            "Use the fact that every Nash stable partition is also core stable.",
+            "Rely on the all-singletons partition being the unique welfare maximizer."
+          ],
+          "correct": [0, 1, 2],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The proof begins by assuming numerical utilities for coalitions, which the notes say is equivalent to ordinal preferences.",
+              "section_ref": "4.5",
+              "notes_quote": "Assume each player assigns a numerical utility to each coalition"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The key monotonicity step is that each CIS deviation increases the sum of utilities.",
+              "section_ref": "4.5",
+              "notes_quote": "Each CIS deviation increases the sum of utilities"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes conclude that a partition maximizing total utility must be CIS.",
+              "section_ref": "4.5",
+              "notes_quote": "Therefore, a partition that maximizes the sum of utilities is CIS"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. That implication is not used in the CIS existence proof.",
+              "section_ref": "4.5"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. The proof does not rely on the all-singletons partition being unique or welfare-maximizing.",
+              "section_ref": "4.5"
+            }
+          ]
+        },
+        {
+          "id": "q13",
+          "type": "comparison",
+          "question": "Which statements about the hierarchy and existence of stability concepts in hedonic games are correct? (Select ALL that apply.)",
+          "options": [
+            "$\text{Core stable} \\\\implies \text{Nash stable} \\\\implies \text{Individually stable} \\\\implies \text{CIS} \\\\implies \text{IR}$ is the hierarchy given in the notes.",
+            "CIS always exists, according to the notes.",
+            "The notes say individually stable outcomes always exist in every hedonic game.",
+            "Core stable outcomes may fail to exist.",
+            "IR is described as the strongest stability concept in the hierarchy."
+          ],
+          "correct": [0, 1, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This implication chain is written explicitly in the notes.",
+              "section_ref": "4.6",
+              "notes_quote": "Core stable \\\\implies Nash stable \\\\implies Individually stable \\\\implies CIS \\\\implies IR"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The notes list CIS as always existing.",
+              "section_ref": "4.6",
+              "notes_quote": "CIS: always exists"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. The notes say individually stable outcomes may not exist.",
+              "section_ref": "4.6",
+              "notes_quote": "Individually stable: may not exist"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The notes explicitly say core stable outcomes may not exist.",
+              "section_ref": "4.6",
+              "notes_quote": "Core stable: may not exist"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. IR is the weakest concept in the displayed hierarchy, not the strongest.",
+              "section_ref": "4.6"
+            }
+          ]
+        },
+        {
+          "id": "q14",
+          "type": "application",
+          "question": "Why does the three-player example in the notes show that the core can be empty? (Select ALL that apply.)",
+          "options": [
+            "In the grand coalition, any singleton agent deviates because everyone ranks the grand coalition last.",
+            "In the all-singletons partition, any pair of agents can form a blocking pair.",
+            "In a partition with one pair and one singleton, the less preferred member of the pair can leave to form a preferred pair with the singleton.",
+            "The example proves that every partition is Nash stable but not core stable.",
+            "The blocking cycle described in the notes is $\\\\{1,2\\\\} \to \\\\{2,3\\\\} \to \\\\{3,1\\\\} \to \\\\{1,2\\\\}$."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes say the grand coalition is blocked because all players rank it last, so any singleton deviation is preferred.",
+              "section_ref": "4.7",
+              "notes_quote": "Grand coalition: any singleton agent deviates (all rank it last)"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The all-singletons partition is blocked because any pair can form a blocking coalition.",
+              "section_ref": "4.7",
+              "notes_quote": "All singletons: any pair of agents can form a blocking pair"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. This is exactly the argument for partitions consisting of one pair plus one singleton.",
+              "section_ref": "4.7",
+              "notes_quote": "the 'less preferred' member of the pair wants to leave and form a pair with the singleton"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. The example is about core emptiness, not a proof that every partition is Nash stable.",
+              "section_ref": "4.7"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The notes explicitly describe this cyclic blocking pattern.",
+              "section_ref": "4.7",
+              "notes_quote": "\\\\{1,2\\\\} \to ... \\\\{2,3\\\\} \to ... \\\\{3,1\\\\} \to ... \\\\{1,2\\\\}"
+            }
+          ]
+        },
+        {
+          "id": "q15",
+          "type": "application",
+          "question": "Which statements about empty cores in ASHGs and friends-and-enemies games are correct? (Select ALL that apply.)",
+          "options": [
+            "The notes give a five-agent cycle example showing the core can be empty even for symmetric ASHGs.",
+            "In that five-agent example, any coalition of size at least 3 is individually rational.",
+            "Friend appreciation games use $F = n$ and $E = -1$.",
+            "Enemy aversion games use $F = 1$ and $E = -n$.",
+            "The notes state that every friends-and-enemies game has a non-empty core, regardless of parameter values."
+          ],
+          "correct": [0, 2, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes explicitly say the core can be empty even for additively separable and symmetric ASHGs, and then give the five-agent cycle example.",
+              "section_ref": "4.8",
+              "notes_quote": "The core can be empty even for additively separable and symmetric ASHGs"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Incorrect. The notes say no coalition of size $\\\\geq 3$ is IR in that example because at least one agent gets negative utility from a $-10$ edge.",
+              "section_ref": "4.8"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. This is the definition of a friend appreciation game in the notes.",
+              "section_ref": "4.9",
+              "notes_quote": "Friend appreciation game: F = n, E = -1"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. This is the definition of an enemy aversion game in the notes.",
+              "section_ref": "4.9",
+              "notes_quote": "Enemy aversion game: F = 1, E = -n"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. The theorem only guarantees a non-empty core for friend appreciation games and enemy aversion games, not all friends-and-enemies games.",
+              "section_ref": "4.9"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "section-3",
+      "section_title": "Stable Matching and Stable Roommates",
+      "questions": [
+        {
+          "id": "q16",
+          "type": "definition",
+          "question": "Which statements are part of the stable matching problem definition in the notes? (Select ALL that apply.)",
+          "options": [
+            "There are two disjoint sets, such as women $X$ and men $Y$, with $|X| = |Y| = n$.",
+            "Each agent has a strict preference order over all agents on the opposite side.",
+            "Being unmatched is least preferred by every agent in the basic setup.",
+            "A stable matching instance requires transferable utility between matched partners.",
+            "The notes present stable matching as a foundational model that can be viewed as a hedonic game."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The setup begins with sets $X$ and $Y$ of equal size.",
+              "section_ref": "5.1",
+              "notes_quote": "Set X of women and set Y of men, |X| = |Y| = n"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. Each woman ranks all men and each man ranks all women strictly.",
+              "section_ref": "5.1",
+              "notes_quote": "Each x \\\\in X has a strict preference order ... Each y \\\\in Y has a strict preference order"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes explicitly state that being unmatched is least preferred by every agent.",
+              "section_ref": "5.1",
+              "notes_quote": "Being unmatched is least preferred by every agent"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. Transferable utility is not part of the stable matching definition here.",
+              "section_ref": "5.1"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The notes explicitly say the stable matching problem can be viewed as a hedonic game.",
+              "section_ref": "5.1",
+              "notes_quote": "The stable matching problem is a foundational model that can be viewed as a hedonic game"
+            }
+          ]
+        },
+        {
+          "id": "q17",
+          "type": "definition",
+          "question": "Which conditions define a matching, a perfect matching, and a blocking pair in the notes? (Select ALL that apply.)",
+          "options": [
+            "A matching is a set of woman-man pairs where each woman and each man appears in at most one pair.",
+            "A perfect matching has size $n$ when $|X| = |Y| = n$.",
+            "A blocking pair consists of a woman and a man who both prefer each other to their current partners.",
+            "A stable matching may contain blocking pairs as long as they are not unique.",
+            "The notes' example $M = \\\\{A-K, B-J, C-I\\\\}$ is stable because it is perfect."
+          ],
+          "correct": [0, 1, 2],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is the definition of a matching given in the notes.",
+              "section_ref": "5.2",
+              "notes_quote": "Each woman x \\\\in X appears in at most one pair; Each man y \\\\in Y appears in at most one pair"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. A perfect matching matches everyone, so $|M| = |X| = |Y| = n$.",
+              "section_ref": "5.2",
+              "notes_quote": "A matching is perfect if |M| = |X| = |Y| = n"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. This is exactly the definition of a blocking pair in the notes.",
+              "section_ref": "5.3",
+              "notes_quote": "x prefers y to her partner in M, and y prefers x to his partner in M"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. A stable matching is defined as a perfect matching with no blocking pairs.",
+              "section_ref": "5.3"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. The notes explicitly say $M = \\\\{A-K, B-J, C-I\\\\}$ is not stable because Bella and Isaac form a blocking pair.",
+              "section_ref": "5.3"
+            }
+          ]
+        },
+        {
+          "id": "q18",
+          "type": "application",
+          "question": "How do the notes connect stable matching to hedonic games? (Select ALL that apply.)",
+          "options": [
+            "Each man prefers being alone to any coalition that is not a pair with a woman.",
+            "Each pair $\\\\{x,y\\\\}$ is preferred to being alone.",
+            "Preferences over pairs follow preferences over the opposite group.",
+            "A stable matching corresponds to a Nash stable outcome in the associated hedonic game.",
+            "A stable matching corresponds to a core stable outcome in the associated hedonic game."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is one of the bullets in the notes' hedonic-game interpretation.",
+              "section_ref": "5.4",
+              "notes_quote": "Each man y prefers being alone to any coalition that is not a pair \\\\{x, y\\\\} with a woman"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The notes say each pair is preferred to being alone.",
+              "section_ref": "5.4",
+              "notes_quote": "Each pair \\\\{x, y\\\\} is preferred to being alone"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. Preferences over pairs inherit the opposite-side rankings.",
+              "section_ref": "5.4",
+              "notes_quote": "Preferences over pairs follow preferences over the opposite group"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. The notes specifically identify stable matchings with core stable outcomes in the induced hedonic game.",
+              "section_ref": "5.4"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. This is the exact conclusion stated in the notes.",
+              "section_ref": "5.4",
+              "notes_quote": "A stable matching corresponds to a core stable outcome in this hedonic game"
+            }
+          ]
+        },
+        {
+          "id": "q19",
+          "type": "comparison",
+          "question": "Which statements correctly describe the stable roommate problem as presented in the notes? (Select ALL that apply.)",
+          "options": [
+            "It uses one population of $2n$ people rather than two disjoint sides.",
+            "Each person ranks all others in the single population.",
+            "Stable roommate matchings are guaranteed to exist by the same argument as bipartite stable matchings.",
+            "The notes provide a four-agent counterexample showing that no stable outcome need exist.",
+            "The counterexample cycles through blocking pairs depending on whether Adam is matched with Dunn, Chris, or Bob."
+          ],
+          "correct": [0, 1, 3, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes contrast stable roommates with stable matching by saying there is one population of $2n$ people.",
+              "section_ref": "5.5",
+              "notes_quote": "one population of 2n people (not two disjoint sets)"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. Each person ranks all others in the single population.",
+              "section_ref": "5.5",
+              "notes_quote": "Each person ranks all others"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. The notes explicitly say stable roommate matchings need not exist.",
+              "section_ref": "5.5",
+              "notes_quote": "Stable roommate matchings need not exist"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The Adam-Bob-Chris-Dunn example is given as a counterexample to existence.",
+              "section_ref": "5.5",
+              "notes_quote": "No stable outcome exists"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The notes list the blocking consequences of Adam being matched with Dunn, Chris, or Bob.",
+              "section_ref": "5.5",
+              "notes_quote": "Adam-Dunn matched => Adam-Chris is blocking ... Adam-Bob matched => Bob-Chris is blocking"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "section-4",
+      "section_title": "Deferred Acceptance Algorithm",
+      "questions": [
+        {
+          "id": "q20",
+          "type": "algorithmic",
+          "question": "Which statements correctly describe the Gale-Shapley Deferred Acceptance algorithm in the notes? (Select ALL that apply.)",
+          "options": [
+            "In the men-proposing version, each man proposes to his most preferred woman not yet rejected by him.",
+            "Women tentatively keep their most preferred proposer among current and new proposals.",
+            "Once a woman is tentatively matched, she can later become unmatched if a better proposer appears.",
+            "Rejected men continue by proposing to their next most preferred woman.",
+            "All tentative acceptances become final when no new proposals are made."
+          ],
+          "correct": [0, 1, 3, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. Men propose in decreasing order of preference, moving down their lists after rejection.",
+              "section_ref": "6.1",
+              "notes_quote": "Each man y proposes to his most preferred woman"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. Women tentatively accept the best among their current tentative partner and new proposers.",
+              "section_ref": "6.1",
+              "notes_quote": "tentatively accepts the best among her current tentative partner and new proposers"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. The notes say women only trade up; once matched, they never become unmatched.",
+              "section_ref": "6.2",
+              "notes_quote": "once a woman is tentatively matched, she never becomes unmatched"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. This is step 3 of the algorithm.",
+              "section_ref": "6.1",
+              "notes_quote": "Each rejected man proposes to his next most preferred woman"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. This is the final step of the algorithm.",
+              "section_ref": "6.1",
+              "notes_quote": "All tentative acceptances become final"
+            }
+          ]
+        },
+        {
+          "id": "q21",
+          "type": "proof",
+          "question": "Which arguments are used in the notes to prove termination, perfect matching, and stability of Deferred Acceptance? (Select ALL that apply.)",
+          "options": [
+            "DA terminates after at most $n^2$ proposals because each man proposes to each woman at most once.",
+            "To prove perfect matching, the notes argue that if a man were unmatched then some woman would also be unmatched, contradicting the fact that women never become unmatched once matched.",
+            "To prove stability, the notes consider whether a man never proposed to a woman or proposed and was rejected by her.",
+            "The proof of stability relies on every woman receiving at least two proposals.",
+            "The notes summarize the result as a theorem that DA runs in $O(n^2)$ and finds a stable matching for any instance."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is the termination argument given in the notes.",
+              "section_ref": "6.3",
+              "notes_quote": "each man proposes to each woman at most once, and there are n \times n = n^2 possible proposals"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The contradiction proof for perfect matching uses exactly this reasoning.",
+              "section_ref": "6.4",
+              "notes_quote": "Since women never become unmatched once matched, x is matched — contradiction"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The stability proof splits into the two cases 'never proposed' and 'proposed but was rejected'.",
+              "section_ref": "6.5",
+              "notes_quote": "Two cases: Man y never proposed to woman x ... Man y proposed to x but was rejected"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. No such assumption is needed in the proof.",
+              "section_ref": "6.5"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The theorem is stated explicitly in the notes.",
+              "section_ref": "6.5",
+              "notes_quote": "The DA algorithm terminates after O(n^2) iterations and finds a stable matching for any problem instance"
+            }
+          ]
+        },
+        {
+          "id": "q22",
+          "type": "application",
+          "question": "In the worked examples of Deferred Acceptance, which outcomes are identified in the notes? (Select ALL that apply.)",
+          "options": [
+            "With men proposing, the final matching is $\\\\{A-I, B-J, C-K\\\\}$.",
+            "With women proposing, the final matching is $\\\\{B-I, A-J, C-K\\\\}$.",
+            "The men-proposing outcome is described as man-optimal.",
+            "The women-proposing outcome is described as woman-optimal.",
+            "Both worked examples end with the same final matching."
+          ],
+          "correct": [0, 1, 2, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is the final matching in the men-proposing example.",
+              "section_ref": "6.6",
+              "notes_quote": "Final matching: \\\\{A-I, B-J, C-K\\\\} (man-optimal)"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. This is the final matching in the women-proposing example.",
+              "section_ref": "6.7",
+              "notes_quote": "Final matching: \\\\{B-I, A-J, C-K\\\\} (woman-optimal)"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes explicitly label the men-proposing outcome as man-optimal.",
+              "section_ref": "6.6",
+              "notes_quote": "(man-optimal)"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The notes explicitly label the women-proposing outcome as woman-optimal.",
+              "section_ref": "6.7",
+              "notes_quote": "(woman-optimal)"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. The two worked examples end with different stable matchings.",
+              "section_ref": "6.6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "section-5",
+      "section_title": "Optimality, Pessimality, and Strategyproofness",
+      "questions": [
+        {
+          "id": "q23",
+          "type": "definition",
+          "question": "Which statements about valid partners and optimality in stable matchings are correct according to the notes? (Select ALL that apply.)",
+          "options": [
+            "A valid partner of agent $y$ is someone matched with $y$ in at least one stable matching.",
+            "A man-optimal matching gives each man his best valid partner.",
+            "The notes' example implies Clare is the only valid partner for Ken.",
+            "A women-pessimal matching gives each woman her best valid partner.",
+            "The men-proposing DA algorithm outputs the man-optimal matching."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is the definition of valid partner given in the notes.",
+              "section_ref": "7.1",
+              "notes_quote": "Woman x is a valid partner of man y if there exists a stable matching M with x - y \\\\in M"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. This is the definition of man-optimal matching in the notes.",
+              "section_ref": "7.2",
+              "notes_quote": "In a man-optimal matching, each man receives his best valid partner"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes explicitly say Clare is the only valid partner for Ken.",
+              "section_ref": "7.1",
+              "notes_quote": "Clare is the only valid partner for Ken"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. Women-pessimal means each woman gets her worst valid partner, not her best.",
+              "section_ref": "7.3"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The notes state this as a theorem.",
+              "section_ref": "7.2",
+              "notes_quote": "The DA algorithm (with men proposing) outputs the man-optimal matching"
+            }
+          ]
+        },
+        {
+          "id": "q24",
+          "type": "proof",
+          "question": "Which steps appear in the proof idea that men-proposing DA is man-optimal? (Select ALL that apply.)",
+          "options": [
+            "Assume some man is matched with someone who is not his best valid partner.",
+            "Consider the first time a man is rejected by a valid partner.",
+            "Let $A$ reject $I$ in favour of $J$, and compare this with a stable matching where $A$ is matched to $I$.",
+            "Conclude that $(A,J)$ would form a blocking pair in that stable matching, yielding a contradiction.",
+            "Use the fact that women never receive more than one proposal."
+          ],
+          "correct": [0, 1, 2, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The proof begins by assuming some man does not get his best valid partner.",
+              "section_ref": "7.2",
+              "notes_quote": "Suppose some man is matched with someone who is not his best valid partner"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The proof then focuses on the first rejection by a valid partner.",
+              "section_ref": "7.2",
+              "notes_quote": "consider the first time this happens"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes introduce $I$, $A$, $J$, and a stable matching $M$ with $A-I$ to derive the contradiction.",
+              "section_ref": "7.2",
+              "notes_quote": "Let I be the man rejected ... Let M be a stable matching with A - I \\\\in M"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The contradiction is that $(A,J)$ blocks $M$.",
+              "section_ref": "7.2",
+              "notes_quote": "Therefore (A, J) is a blocking pair in M"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. The proof does not rely on women receiving at most one proposal.",
+              "section_ref": "7.2"
+            }
+          ]
+        },
+        {
+          "id": "q25",
+          "type": "theorem",
+          "question": "Which statements about women-pessimality and strategyproofness are correct according to the notes? (Select ALL that apply.)",
+          "options": [
+            "With men proposing, DA outputs the women-pessimal stable matching.",
+            "GS is strategyproof for the proposing side because each proposer already gets their best valid partner.",
+            "The notes give a worked example where Anna benefits from misreporting her preferences under men-proposing GS.",
+            "The notes claim there exists an algorithm that is stable and fully strategyproof for both sides.",
+            "The notes state an impossibility result ruling out full strategyproofness for both sides while always outputting stable matchings."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is stated as a theorem in the notes.",
+              "section_ref": "7.3",
+              "notes_quote": "The DA algorithm (with men proposing) outputs the women-pessimal matching"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The strategyproofness proof for the proposing side follows directly from man-optimality.",
+              "section_ref": "8.2",
+              "notes_quote": "each man already gets his best valid partner, so no misreport can improve his outcome"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes show Anna can misreport to obtain Jacob, her true top choice.",
+              "section_ref": "8.3",
+              "notes_quote": "Anna gets Jacob (her true top choice) instead of Isaac (her true second choice)"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. The notes state the opposite: no such fully strategyproof stable algorithm exists for both sides.",
+              "section_ref": "8.4"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. This impossibility claim is stated explicitly.",
+              "section_ref": "8.4",
+              "notes_quote": "There is no algorithm that always outputs stable matchings such that no agent ... can benefit from misreporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "section-6",
+      "section_title": "Extensions and Applications of Stable Matching",
+      "questions": [
+        {
+          "id": "q26",
+          "type": "application",
+          "question": "Which extensions of stable matching are described in the notes? (Select ALL that apply.)",
+          "options": [
+            "Many-to-one matching with quotas, such as college admissions.",
+            "Settings with unacceptable partners and unequal numbers on the two sides.",
+            "Preferences with ties, leading to weak stability.",
+            "A requirement that all extensions preserve perfect matchings of equal-sized sides.",
+            "The notes say Deferred Acceptance still works for the unacceptable-partners setting."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. Many-to-one matching is introduced via institutions with quotas.",
+              "section_ref": "9.1",
+              "notes_quote": "Institutions (hospitals, schools) have quotas"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The notes explicitly allow unacceptable partners and unequal numbers of men and women.",
+              "section_ref": "9.2",
+              "notes_quote": "Some agents may find certain potential matches unacceptable. Numbers of men and women need not be equal"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. Ties and weak stability are discussed in Section 9.3.",
+              "section_ref": "9.3",
+              "notes_quote": "Preferences may have ties ... Weak stability"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. The extensions explicitly relax equal-size and perfect-matching assumptions.",
+              "section_ref": "9.2"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The notes say DA still works in the unacceptable-partners setting.",
+              "section_ref": "9.2",
+              "notes_quote": "DA still works for this setting"
+            }
+          ]
+        },
+        {
+          "id": "q27",
+          "type": "application",
+          "question": "Which real-world applications of stable matching are explicitly mentioned in the notes? (Select ALL that apply.)",
+          "options": [
+            "University admissions systems such as UCAS and UAC.",
+            "School choice systems in New York City and Boston.",
+            "Medical residency matching through the US NRMP.",
+            "Kidney exchange and organ allocation, including the UK NHS Living Kidney Sharing Scheme.",
+            "Proof-of-work blockchain mining pools as the central motivating application."
+          ],
+          "correct": [0, 1, 2, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. Both UCAS and UAC are listed under university admissions.",
+              "section_ref": "10.1",
+              "notes_quote": "UK UCAS ... UAC (New South Wales, Australia)"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. New York City and Boston are both discussed under school choice.",
+              "section_ref": "10.2",
+              "notes_quote": "New York City ... Boston"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The US NRMP is listed under medical residency.",
+              "section_ref": "10.3",
+              "notes_quote": "US NRMP: Matches ~30,000 medical graduates"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The notes mention the UK NHS scheme and kidney exchange clearinghouses.",
+              "section_ref": "10.4",
+              "notes_quote": "UK NHS: Living Kidney Sharing Scheme uses matching algorithms"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. Blockchain mining pools are not discussed in the notes.",
+              "section_ref": "10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "section-7",
+      "section_title": "House Allocation and Serial Dictatorship",
+      "questions": [
+        {
+          "id": "q28",
+          "type": "definition",
+          "question": "Which statements correctly describe the basic house allocation problem and Serial Dictatorship? (Select ALL that apply.)",
+          "options": [
+            "The basic house allocation problem has one-sided preferences: agents rank houses, while houses are indifferent.",
+            "Serial Dictatorship lets agents choose in a fixed order, each taking their most preferred available house.",
+            "Serial Dictatorship requires every agent to own a house initially.",
+            "The notes' example allocates houses by repeatedly letting the next agent choose from the remaining houses.",
+            "Serial Dictatorship is introduced as a many-to-many matching algorithm with quotas."
+          ],
+          "correct": [0, 1, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes explicitly call this a one-sided preference problem.",
+              "section_ref": "11.1",
+              "notes_quote": "This is a one-sided preference problem: only agents have preferences, houses are indifferent"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. This is the algorithmic definition of Serial Dictatorship.",
+              "section_ref": "11.2",
+              "notes_quote": "Each agent chooses her most preferred available house"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. Initial endowments are introduced later as a separate case; SD itself is first defined without endowments.",
+              "section_ref": "11.1"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The worked example follows exactly this sequential choice process.",
+              "section_ref": "11.2",
+              "notes_quote": "Agents come one by one (in a fixed order)"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. SD is a one-to-one house allocation mechanism, not a many-to-many quota system.",
+              "section_ref": "11.2"
+            }
+          ]
+        },
+        {
+          "id": "q29",
+          "type": "theorem",
+          "question": "Which properties of Serial Dictatorship are proved or claimed in the notes? (Select ALL that apply.)",
+          "options": [
+            "Serial Dictatorship is strategyproof.",
+            "Serial Dictatorship is core stable.",
+            "Serial Dictatorship is Pareto-optimal.",
+            "Serial Dictatorship is fair because all agents face the same choice set.",
+            "The notes suggest randomizing the order as a way to address fairness concerns."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes explicitly claim SD is strategyproof.",
+              "section_ref": "11.3",
+              "notes_quote": "Serial dictatorship is strategyproof"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The notes also claim and prove that SD is core stable.",
+              "section_ref": "11.3",
+              "notes_quote": "Serial dictatorship is core stable"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes claim and prove that the output of SD is Pareto-optimal.",
+              "section_ref": "11.3",
+              "notes_quote": "The output of SD is Pareto-optimal"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. The notes explicitly say SD is not fair because earlier agents get better choices.",
+              "section_ref": "11.3",
+              "notes_quote": "Serial dictatorship is NOT fair"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The notes propose Random Serial Dictatorship as a fairness fix.",
+              "section_ref": "11.3",
+              "notes_quote": "Fix: draw a random order of agents"
+            }
+          ]
+        },
+        {
+          "id": "q30",
+          "type": "definition",
+          "question": "Which statements about Pareto dominance and house allocation with endowments are correct? (Select ALL that apply.)",
+          "options": [
+            "Allocation $A$ is Pareto-dominated by $B$ if no agent is worse off in $B$ and some agent is strictly better off.",
+            "An allocation is Pareto-optimal if no other allocation Pareto-dominates it.",
+            "If each agent initially owns a house, evicting everyone and running SD may violate individual rationality.",
+            "The notes say pairwise exchanges are always sufficient for Pareto optimality and core stability.",
+            "Group exchanges are described as potentially expensive to implement."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is the definition of Pareto dominance given in the notes.",
+              "section_ref": "11.3",
+              "notes_quote": "Allocation A is Pareto-dominated by allocation B if no agent is worse off in B ... and some agent is strictly better"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. This is the definition of Pareto-optimality in the notes.",
+              "section_ref": "11.3",
+              "notes_quote": "An allocation is Pareto-optimal if it is not Pareto-dominated by any other allocation"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes explicitly warn that evicting everyone and running SD may fail individual rationality.",
+              "section_ref": "11.4",
+              "notes_quote": "May fail individual rationality — an agent may end up with a house she likes less than her original house"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. The notes say pairwise exchanges may fail Pareto optimality and core stability.",
+              "section_ref": "11.4"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The notes explicitly describe group exchanges as expensive to implement.",
+              "section_ref": "11.4",
+              "notes_quote": "Group exchanges: Expensive to implement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "section-8",
+      "section_title": "Top Trading Cycles and Kidney Exchange",
+      "questions": [
+        {
+          "id": "q31",
+          "type": "algorithmic",
+          "question": "Which steps are part of the Top Trading Cycle algorithm as described in the notes? (Select ALL that apply.)",
+          "options": [
+            "Each person points to her most preferred house.",
+            "Each house points to its owner.",
+            "At least one cycle must exist in the resulting directed graph.",
+            "All cycles are removed, assigning each person in a cycle to the house she points to.",
+            "The algorithm requires every cycle to have length exactly 2."
+          ],
+          "correct": [0, 1, 2, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is step 1 of TTC in the notes.",
+              "section_ref": "11.5",
+              "notes_quote": "Each person points to her most preferred house"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. This is step 2 of TTC.",
+              "section_ref": "11.5",
+              "notes_quote": "Each house points to its owner"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes explain that with $2n$ vertices and $2n$ edges, at least one cycle exists.",
+              "section_ref": "11.5",
+              "notes_quote": "This creates a directed graph with 2n vertices and 2n edges, so at least one cycle exists"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The algorithm removes all cycles and assigns people to the houses they point at.",
+              "section_ref": "11.5",
+              "notes_quote": "Remove all cycles, assigning people to the house they are pointing at"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. The notes explicitly allow cycles of different lengths and mention that a self-owned house can create a length-2 cycle with its owner.",
+              "section_ref": "11.5"
+            }
+          ]
+        },
+        {
+          "id": "q32",
+          "type": "proof",
+          "question": "Which statements about TTC termination and properties are supported by the notes? (Select ALL that apply.)",
+          "options": [
+            "TTC always terminates after at most $n$ iterations because each iteration removes at least one cycle.",
+            "TTC is individually rational because an agent would point to her original house if it were still available and preferred.",
+            "TTC outputs a Pareto-optimal allocation.",
+            "TTC outputs an allocation in the core.",
+            "The notes say TTC is not strategyproof because agents can benefit by pointing away from their favourite available house."
+          ],
+          "correct": [0, 1, 2, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes give this termination argument explicitly.",
+              "section_ref": "11.5",
+              "notes_quote": "Terminates after at most n iterations"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. This is the contradiction argument used to prove individual rationality.",
+              "section_ref": "11.6",
+              "notes_quote": "But then i cannot be pointing to h', since h is available and preferred"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes state and prove Pareto-optimality for TTC.",
+              "section_ref": "11.6",
+              "notes_quote": "TTC outputs a Pareto-optimal allocation"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The notes also state and prove that TTC outputs an allocation in the core.",
+              "section_ref": "11.6",
+              "notes_quote": "TTC outputs an allocation in the core"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. The notes state the opposite: TTC is strategyproof.",
+              "section_ref": "11.6",
+              "notes_quote": "TTC is strategyproof"
+            }
+          ]
+        },
+        {
+          "id": "q33",
+          "type": "proof",
+          "question": "Which ideas appear in the notes' proof sketch that TTC is strategyproof? (Select ALL that apply.)",
+          "options": [
+            "Think of an agent as choosing which house to point to in each round.",
+            "A deviation could only help if the agent could get a non-favourite house now to avoid losing a favourite later.",
+            "The notes define a choice set $H(k)$ and state the lemma $H(k) \\\\subseteq H(k+1)$.",
+            "Because the choice set can only grow, truth-telling is optimal.",
+            "The proof relies on every house having indegree exactly 1 in every round."
+          ],
+          "correct": [0, 1, 2, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The proof sketch begins by framing the agent as choosing where to point each round.",
+              "section_ref": "11.6",
+              "notes_quote": "Think of i as choosing which house to point to in each round"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. This is the only plausible way a non-truthful pointer could help, and the notes analyze exactly this concern.",
+              "section_ref": "11.6",
+              "notes_quote": "Only if she could get that house in the current round ... and worries that her favourite might disappear later"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The lemma $H(k) \\\\subseteq H(k+1)$ is stated explicitly.",
+              "section_ref": "11.6",
+              "notes_quote": "Lemma: H(k) \\\\subseteq H(k+1)"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. The proof sketch concludes that because the choice set can only grow, truth-telling is optimal.",
+              "section_ref": "11.6",
+              "notes_quote": "So the choice set can only grow, and truth-telling is optimal"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. The notes mention every vertex has outdegree 1, not indegree 1.",
+              "section_ref": "11.6"
+            }
+          ]
+        },
+        {
+          "id": "q34",
+          "type": "application",
+          "question": "How do the notes connect house allocation with endowments to kidney exchange? (Select ALL that apply.)",
+          "options": [
+            "Patient-donor pairs correspond to agents with endowed houses.",
+            "TTC can be used to efficiently assign kidneys.",
+            "The notes cite Roth, Sonmez, and Unver (2004) as establishing the first kidney exchange clearinghouse in New England.",
+            "The connection depends on transferable utility between donor-recipient pairs.",
+            "The notes describe kidney exchange as addressing the double coincidence of wants problem."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is the direct analogy given in the notes.",
+              "section_ref": "11.7",
+              "notes_quote": "Patient-donor pairs = agents with endowed houses"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The notes explicitly say TTC can be used to efficiently assign kidneys.",
+              "section_ref": "11.7",
+              "notes_quote": "TTC can be used to efficiently assign kidneys"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. The notes cite this historical application directly.",
+              "section_ref": "11.7",
+              "notes_quote": "Roth, Sonmez, and Unver (2004): Established the first kidney exchange clearinghouse for New England"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. The connection is structural, not based on transferable utility.",
+              "section_ref": "11.7"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The notes explicitly mention the double coincidence of wants problem.",
+              "section_ref": "10.4",
+              "notes_quote": "Kidney exchange programs address the double coincidence of wants problem"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "section-9",
+      "section_title": "Tutorial Problems, Key Definitions, and Learning Objectives",
+      "questions": [
+        {
+          "id": "q35",
+          "type": "calculation",
+          "question": "In Exercise 1 on the symmetric ASHG, which conclusions about the coalition structure $CS = \\\\{\\\\{a_1,a_2,a_3\\\\}, \\\\{a_4\\\\}\\\\}$ are correct? (Select ALL that apply.)",
+          "options": [
+            "The structure is individually rational iff $\\\\alpha \\\\geq 1$.",
+            "The structure is Nash stable for all $\\\\alpha \\\\geq 3$.",
+            "The structure is never Nash stable because the conditions $\\\\alpha \\\\leq 1$ and $\\\\alpha \\\\geq 3$ cannot both hold.",
+            "The structure is core stable iff $3 \\\\leq \\\\alpha \\\\leq 4$.",
+            "For $\\\\alpha < 3$, the coalition $\\\\{a_1,a_4\\\\}$ is a blocking coalition."
+          ],
+          "correct": [0, 2, 3, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes identify $a_1$'s utility constraint as binding, giving IR iff $\\\\alpha \\\\geq 1$.",
+              "section_ref": "12.1",
+              "notes_quote": "Binding constraint: \\\\alpha \\\\geq 1"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Incorrect. The notes conclude the structure is not Nash stable for any $\\\\alpha$.",
+              "section_ref": "12.1"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. This contradiction is exactly the reason given for non-existence of Nash stability here.",
+              "section_ref": "12.1",
+              "notes_quote": "Since \\\\alpha \\\\leq 1 and \\\\alpha \\\\geq 3 cannot both hold, CS is never Nash stable"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. This is the final conclusion of part (c).",
+              "section_ref": "12.1",
+              "notes_quote": "Core stable iff 3 \\\\leq \\\\alpha \\\\leq 4"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The notes use this coalition to show blocking when $\\\\alpha < 3$.",
+              "section_ref": "12.1",
+              "notes_quote": "For \\\\alpha < 3: \\\\{a_1, a_4\\\\} is a blocking coalition"
+            }
+          ]
+        },
+        {
+          "id": "q36",
+          "type": "algorithmic",
+          "question": "Which statements about the tutorial Gale-Shapley exercises are correct? (Select ALL that apply.)",
+          "options": [
+            "Exercise 2 constructs an instance where each man makes at least $n-1$ proposals.",
+            "In Exercise 2, the final matching is $m_1-w_n$ and $m_i-w_{i-1}$ for $i=2,\\\\ldots,n$.",
+            "Exercise 3 assumes all women rank men identically and concludes the matching is arbitrary.",
+            "In Exercise 3, if all men rank women as $w_1 \\\\succ \\\\cdots \\\\succ w_n$ and woman $i$ ranks man $i$ first, the resulting matching is $m_i-w_i$ for all $i$.",
+            "Exercise 2 is used to prove that DA may fail to terminate."
+          ],
+          "correct": [0, 1, 3],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is the stated goal of Exercise 2.",
+              "section_ref": "12.2",
+              "notes_quote": "Construct an instance where each man makes at least n - 1 proposals"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The notes give exactly this final matching for the worst-case proposal construction.",
+              "section_ref": "12.2",
+              "notes_quote": "The final matching is m_1 - w_n, m_i - w_{i-1} for i = 2, \\\\ldots, n"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. Exercise 3 assumes all men rank women identically, not all women rank men identically, and the resulting matching is not arbitrary.",
+              "section_ref": "12.3"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. This is the inductive conclusion of Exercise 3.",
+              "section_ref": "12.3",
+              "notes_quote": "the resulting matching is m_i - w_i for all i = 1, \\\\ldots, n"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Incorrect. Exercise 2 concerns worst-case proposal counts, not non-termination.",
+              "section_ref": "12.2"
+            }
+          ]
+        },
+        {
+          "id": "q37",
+          "type": "definition",
+          "question": "Which terms are defined correctly in the Key Definitions table? (Select ALL that apply.)",
+          "options": [
+            "A hedonic game is a coalition formation game where each player's utility depends only on which coalition she belongs to.",
+            "A blocking pair is a man-woman pair who both prefer each other to their current partners.",
+            "Deferred Acceptance is the Gale-Shapley algorithm in which men propose in decreasing preference order and women tentatively accept the best proposer.",
+            "Top Trading Cycle is defined as a mechanism where houses rank agents and agents are indifferent.",
+            "A valid partner is someone matched with an agent in some stable matching."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This is the Key Definitions entry for hedonic game.",
+              "section_ref": "Key Definitions",
+              "notes_quote": "Hedonic game | Coalition formation game where each player's utility depends only on which coalition she belongs to"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. This is the Key Definitions entry for blocking pair.",
+              "section_ref": "Key Definitions",
+              "notes_quote": "Blocking pair | A man-woman pair who both prefer each other to their current partners"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. This is the Key Definitions entry for Deferred Acceptance.",
+              "section_ref": "Key Definitions",
+              "notes_quote": "Deferred Acceptance (DA) | Gale-Shapley algorithm; men propose in decreasing preference order, women tentatively accept best proposer"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. TTC is defined via agents pointing to favourite houses and houses pointing to owners, not houses ranking agents.",
+              "section_ref": "Key Definitions"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. This is the Key Definitions entry for valid partner.",
+              "section_ref": "Key Definitions",
+              "notes_quote": "Valid partner | Person x is a valid partner of y if they are matched in some stable matching"
+            }
+          ]
+        },
+        {
+          "id": "q38",
+          "type": "learning_objective",
+          "question": "Which topics in the notes directly support the learning objective about evaluating fairness and efficiency trade-offs? (Select ALL that apply.)",
+          "options": [
+            "The result that men-proposing DA is man-optimal and women-pessimal.",
+            "The observation that Serial Dictatorship is Pareto-optimal but not fair.",
+            "The proof that TTC is Pareto-optimal and in the core.",
+            "The claim that stable roommate instances always have a unique stable matching.",
+            "The discussion of trade-offs between stability and other criteria in matching markets."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. Man-optimality and women-pessimality are central fairness trade-offs discussed in the notes.",
+              "section_ref": "7.2",
+              "notes_quote": "The proposing side gets the best possible outcome; the receiving side gets the worst possible outcome"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The notes explicitly contrast SD's efficiency with its lack of fairness.",
+              "section_ref": "11.3",
+              "notes_quote": "Serial dictatorship is NOT fair"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. TTC's Pareto-optimality and core stability are directly relevant to efficiency and stability evaluation.",
+              "section_ref": "11.6",
+              "notes_quote": "TTC outputs a Pareto-optimal allocation"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. The notes say stable roommate matchings need not exist, not that they are always unique.",
+              "section_ref": "5.5"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. This is explicitly part of the learning objectives list.",
+              "section_ref": "Learning Objectives",
+              "notes_quote": "Evaluate the fairness and efficiency of matchings, and understand trade-offs between stability and other criteria"
+            }
+          ]
+        },
+        {
+          "id": "q39",
+          "type": "learning_objective",
+          "question": "Which parts of the notes directly support the learning objective about strategic aspects and vulnerabilities in matching markets? (Select ALL that apply.)",
+          "options": [
+            "The theorem that GS is strategyproof for the proposing side.",
+            "The worked example where a woman benefits from misreporting under men-proposing GS.",
+            "The impossibility claim that no stable algorithm can be fully strategyproof for both sides.",
+            "The proof that every symmetric ASHG has a Nash stable outcome.",
+            "The strategyproofness results for Serial Dictatorship and TTC."
+          ],
+          "correct": [0, 1, 2, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. This theorem directly addresses incentives on the proposing side.",
+              "section_ref": "8.2",
+              "notes_quote": "GS is strategyproof for men"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. The Anna example is the main vulnerability example in the notes.",
+              "section_ref": "8.3",
+              "notes_quote": "women can benefit from misreporting their preferences"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Correct. This impossibility result is directly about strategic vulnerability.",
+              "section_ref": "8.4",
+              "notes_quote": "Full strategyproofness for both sides is impossible"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Incorrect. That result concerns existence of Nash stable outcomes in symmetric ASHGs, not strategic manipulation in matching markets.",
+              "section_ref": "4.3"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. The notes also prove strategyproofness for SD and TTC, extending the strategic analysis beyond GS.",
+              "section_ref": "11.3",
+              "notes_quote": "Serial dictatorship is strategyproof"
+            }
+          ]
+        },
+        {
+          "id": "q40",
+          "type": "learning_objective",
+          "question": "Which topics in the notes directly support the learning objective about applications and societal impact of stable matching theory? (Select ALL that apply.)",
+          "options": [
+            "The Nobel Prize recognition for Shapley and Roth.",
+            "The use of matching algorithms in NRMP, UCAS, school choice, and kidney exchange.",
+            "The claim that stable roommate problems always admit efficient market-clearing solutions.",
+            "The discussion of kidney exchange clearinghouses and organ allocation.",
+            "The mention of adoption, foster care, mentoring, and CDNs as additional applications."
+          ],
+          "correct": [0, 1, 3, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The notes explicitly mention the 2012 Nobel Prize in Economics for this line of work.",
+              "section_ref": "6.5",
+              "notes_quote": "This result won the 2012 Nobel Prize in Economics"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. These are the main real-world deployments listed in the applications section.",
+              "section_ref": "10",
+              "notes_quote": "University Admissions ... School Choice ... Medical Residency ... Organ Allocation and Kidney Exchange"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. The notes say stable roommate outcomes need not exist, so they do not make this claim.",
+              "section_ref": "5.5"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. Kidney exchange clearinghouses are highlighted as a major impact example.",
+              "section_ref": "10.4",
+              "notes_quote": "Established the first kidney exchange clearinghouse in New England"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. These are all listed under other applications.",
+              "section_ref": "10.5",
+              "notes_quote": "Adoption and foster care matching; Mentoring programs and professional partnerships; Content Delivery Networks (CDNs)"
+            }
+          ]
+        },
+        {
+          "id": "q41",
+          "type": "learning_objective",
+          "question": "Which statements accurately summarize the Week 5 learning objectives and summary section? (Select ALL that apply.)",
+          "options": [
+            "The week aims to develop both formal understanding of hedonic and matching models and the ability to solve computational exercises involving them.",
+            "The summary explicitly links LO3 to the DA algorithm and also mentions SD and TTC.",
+            "The summary says stable roommate matchings always exist, while bipartite stable matchings may fail to exist.",
+            "The learning objectives include modelling real-world matching problems such as college admissions, job markets, and school choice.",
+            "The summary links LO6 to strategic aspects including GS manipulation and strategyproofness of TTC and SD."
+          ],
+          "correct": [0, 1, 3, 4],
+          "explanations": [
+            {
+              "option_index": 0,
+              "explanation": "Correct. The learning objectives and summary cover both conceptual understanding and computational/theoretical exercises.",
+              "section_ref": "Learning Objectives",
+              "notes_quote": "Solve computational and theoretical exercises involving construction and analysis of stable matchings"
+            },
+            {
+              "option_index": 1,
+              "explanation": "Correct. LO3 in the summary explicitly mentions DA and also presents SD and TTC.",
+              "section_ref": "Summary",
+              "notes_quote": "Presented the DA algorithm ... Also presented Serial Dictatorship and Top Trading Cycle algorithms"
+            },
+            {
+              "option_index": 2,
+              "explanation": "Incorrect. The summary says the opposite: stable matchings always exist in bipartite settings, while stable roommate matchings may not exist.",
+              "section_ref": "Summary"
+            },
+            {
+              "option_index": 3,
+              "explanation": "Correct. This is explicitly listed in the learning objectives.",
+              "section_ref": "Learning Objectives",
+              "notes_quote": "Model real-world matching problems (e.g., college admissions, job markets, school choice)"
+            },
+            {
+              "option_index": 4,
+              "explanation": "Correct. LO6 in the summary covers GS strategyproofness asymmetry and the strategyproofness of TTC and SD.",
+              "section_ref": "Summary",
+              "notes_quote": "Proved GS is strategyproof for the proposing side but not for the receiving side ... Proved TTC and SD are strategyproof"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,659 @@
+{
+  "module": "MultiAgents",
+  "week": 2,
+  "title": "Non-Cooperative Games (Part II) â€” Congestion Games, Potential Games, and Price of Anarchy",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "1. Motivation and Congestion Game Foundations",
+      "questions": [
+        {
+          "id": "q1",
+          "source_ref": "Section 1: Motivation: Large Games and Concise Representations",
+          "text": "Which of the following correctly explain why the notes introduce congestion games as a structured class of large games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "An $n$-player game with $k$ actions per player generally needs $k^n$ numbers just to encode utilities"},
+            {"letter": "B", "text": "Congestion games are highlighted because they have concise descriptions despite potentially many players"},
+            {"letter": "C", "text": "The notes claim large games are easy to reason about once each player has the same number of actions"},
+            {"letter": "D", "text": "The motivation is to study games with more structure so rational analysis remains tractable"},
+            {"letter": "E", "text": "The notes argue that every large game can be reduced to a congestion game without loss"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes explicitly use $k^n$ as the representation burden for an $n$-player, $k$-action game.", "section_ref": "Section 1: Motivation: Large Games and Concise Representations", "notes_quote": "To represent an $n$-player game where each player has $k$ actions, we need $k^n$ numbers just to encode the utility functions."},
+            {"letter": "B", "is_correct": true, "text": "Congestion games are introduced as a prime example of large games with concise structure.", "section_ref": "Section 1: Motivation: Large Games and Concise Representations", "notes_quote": "Congestion games are a prime example."},
+            {"letter": "C", "is_correct": false, "text": "The notes do not say equal action counts make large games easy; they say naive representation becomes unmanageable and motivates more structured models.", "section_ref": "Section 1: Motivation: Large Games and Concise Representations", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The point of the section is that additional structure makes large games easier to reason about.", "section_ref": "Section 1: Motivation: Large Games and Concise Representations", "notes_quote": "we study games with substantially more structure despite being large â€” games with a concise description that makes them easy to reason about"},
+            {"letter": "E", "is_correct": false, "text": "The notes present congestion games as one important structured class, not as a universal reduction target for all large games.", "section_ref": "Section 1: Motivation: Large Games and Concise Representations", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q2",
+          "source_ref": "Section 2.1: Formal Definition",
+          "text": "Which components belong to the formal definition of a congestion game in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A set of players $N$"},
+            {"letter": "B", "text": "A set of facilities/resources $R$"},
+            {"letter": "C", "text": "For each player $i$, an action set $A_i$ whose actions are subsets of $R$"},
+            {"letter": "D", "text": "For each facility $j$, a delay function $d_j : \\\\{0, \\\\ldots, n\\\\} \to \\\\mathbb{R}_{\\\\geq 0}$"},
+            {"letter": "E", "text": "A transfer rule that redistributes total congestion cost equally among all players"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The player set is one of the four defining ingredients listed in the notes.", "section_ref": "Section 2.1: Formal Definition", "notes_quote": "A set of $n$ players $N$"},
+            {"letter": "B", "is_correct": true, "text": "Facilities/resources form the shared resource set of the congestion game.", "section_ref": "Section 2.1: Formal Definition", "notes_quote": "A set of $m$ facilities (or resources) $R$"},
+            {"letter": "C", "is_correct": true, "text": "Each player's actions are subsets of the resource set, not arbitrary labels.", "section_ref": "Section 2.1: Formal Definition", "notes_quote": "for each player $i$, a set of actions $A_i$ where each action $a_i \\\\in A_i$ represents a subset of the facilities: $a_i \\\\subseteq R$"},
+            {"letter": "D", "is_correct": true, "text": "Each resource has a congestion-dependent cost function over the number of users.", "section_ref": "Section 2.1: Formal Definition", "notes_quote": "For each facility $j \\\\in R$, a cost (or delay) function $d_j : \\\\{0, \\\\ldots, n\\\\} \to \\\\mathbb{R}_{\\\\geq 0}$"},
+            {"letter": "E", "is_correct": false, "text": "No equal redistribution rule appears in the definition; player cost is determined by the resources in their chosen action and the congestion on those resources.", "section_ref": "Section 2.1: Formal Definition", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q3",
+          "source_ref": "Section 2.2: Player Costs",
+          "text": "Which statements about player costs in congestion games are correct according to the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$n_j(a)$ counts how many players use facility $j$ under action profile $a$"},
+            {"letter": "B", "text": "Player $i$'s cost is $c_i(a) = \\\\sum_{j \\\\in a_i} d_j(n_j(a))$"},
+            {"letter": "C", "text": "A player's cost depends on the identities of the other users on each resource"},
+            {"letter": "D", "text": "The key dependence is on congestion levels, not who the other users are"},
+            {"letter": "E", "text": "A player pays for every resource in $R$, even if they do not choose it"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes define $n_j(a)$ exactly as the number of players using facility $j$.", "section_ref": "Section 2.2: Player Costs", "notes_quote": "define $n_j(a) = |\\\\{i : j \\\\in a_i\\\\}|$ to be the number of players using facility $j$"},
+            {"letter": "B", "is_correct": true, "text": "The player's total cost is the sum of delays on the facilities in their chosen action.", "section_ref": "Section 2.2: Player Costs", "notes_quote": "The cost of agent $i$ is: $$c_i(a) = \\\\sum_{j \\\\in a_i} d_j(n_j(a))$$"},
+            {"letter": "C", "is_correct": false, "text": "The notes explicitly say identities do not matter; only the number of users matters.", "section_ref": "Section 2.2: Player Costs", "notes_quote": "Each player's cost depends only on the congestion (number of users) on each resource they use, not on the identities of the other users."},
+            {"letter": "D", "is_correct": true, "text": "This is the key structural simplification of congestion games.", "section_ref": "Section 2.2: Player Costs", "notes_quote": "depends only on the congestion (number of users) on each resource they use, not on the identities of the other users"},
+            {"letter": "E", "is_correct": false, "text": "The sum is only over resources in $a_i$, so unused resources do not contribute to player $i$'s cost.", "section_ref": "Section 2.2: Player Costs", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q4",
+          "source_ref": "Section 2.3: Network Congestion (Routing) Games",
+          "text": "Which of the following correctly describe a network congestion game as presented in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "It is also called a routing game"},
+            {"letter": "B", "text": "The resource set corresponds to the graph's edges"},
+            {"letter": "C", "text": "Each player's action set is the set of paths from their source to their target"},
+            {"letter": "D", "text": "Each player's action set is the set of all spanning trees of the graph"},
+            {"letter": "E", "text": "Players may have distinct source-target pairs $(s_i, t_i)$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes explicitly identify network congestion games with routing games.", "section_ref": "Section 2.3: Network Congestion (Routing) Games", "notes_quote": "In a network congestion game (aka routing game)"},
+            {"letter": "B", "is_correct": true, "text": "Edges are the resources whose congestion determines costs.", "section_ref": "Section 2.3: Network Congestion (Routing) Games", "notes_quote": "The resource set $R$ corresponds to the set of edges $E$"},
+            {"letter": "C", "is_correct": true, "text": "A player's feasible actions are exactly the paths between their designated endpoints.", "section_ref": "Section 2.3: Network Congestion (Routing) Games", "notes_quote": "$A_i$ is the set of paths from $s_i$ to $t_i$"},
+            {"letter": "D", "is_correct": false, "text": "The notes define actions as source-target paths, not spanning trees.", "section_ref": "Section 2.3: Network Congestion (Routing) Games", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The formal definition allows each player to have their own source-target pair.", "section_ref": "Section 2.3: Network Congestion (Routing) Games", "notes_quote": "for each player $i \\\\in N$, there is a dedicated source-target pair $(s_i, t_i)$"}
+          ]
+        },
+        {
+          "id": "q5",
+          "source_ref": "Section 2.4: Worked Example: Three-Player Routing Game",
+          "text": "In the three-player routing example, which statements are true? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In State A, the social cost is 8"},
+            {"letter": "B", "text": "In State B, all three players incur cost 3"},
+            {"letter": "C", "text": "Player 1 prefers State A because 4 is less than 3"},
+            {"letter": "D", "text": "State B is the Nash equilibrium even though it has higher social cost than State A"},
+            {"letter": "E", "text": "State A is the social optimum"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes compute State A's social cost as $4 + 2 + 2 = 8$.", "section_ref": "Section 2.4: Worked Example: Three-Player Routing Game", "notes_quote": "Social cost: $4 + 2 + 2 = 8$"},
+            {"letter": "B", "is_correct": true, "text": "When all three use the shared edge in State B, each pays 3.", "section_ref": "Section 2.4: Worked Example: Three-Player Routing Game", "notes_quote": "All three players on $s_2 t_2$: cost 3 each"},
+            {"letter": "C", "is_correct": false, "text": "Player 1 prefers State B because their cost falls from 4 to 3, not the other way around.", "section_ref": "Section 2.4: Worked Example: Three-Player Routing Game", "notes_quote": "Player 1 prefers State B (cost 3 < 4)"},
+            {"letter": "D", "is_correct": true, "text": "The example is designed to show equilibrium inefficiency: the equilibrium has higher social cost.", "section_ref": "Section 2.4: Worked Example: Three-Player Routing Game", "notes_quote": "State B is the Nash equilibrium despite having higher social cost. State A is the social optimum."},
+            {"letter": "E", "is_correct": true, "text": "The notes explicitly identify State A as the socially optimal state.", "section_ref": "Section 2.4: Worked Example: Three-Player Routing Game", "notes_quote": "State A is the social optimum"}
+          ]
+        },
+        {
+          "id": "q6",
+          "source_ref": "Section 3: Applications of Congestion Games",
+          "text": "Which of the following are listed application areas of congestion games in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Traffic routing and transportation networks"},
+            {"letter": "B", "text": "Telecommunication and communication networks"},
+            {"letter": "C", "text": "Cloud and distributed computing"},
+            {"letter": "D", "text": "Multi-agent systems and robotics"},
+            {"letter": "E", "text": "Electricity grids and smart energy systems"},
+            {"letter": "F", "text": "Only zero-sum board games with perfect information"}
+          ],
+          "correct": ["A", "B", "C", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Traffic routing is the first application area listed.", "section_ref": "Section 3.1: Traffic Routing and Transportation Networks", "notes_quote": "Drivers/vehicles choose routes, each aiming to minimise travel time."},
+            {"letter": "B", "is_correct": true, "text": "Communication networks are explicitly named as a congestion-game application.", "section_ref": "Section 3.2: Telecommunication and Communication Networks", "notes_quote": "Data packets select routes or channels; performance (latency, bandwidth) decreases with congestion."},
+            {"letter": "C", "is_correct": true, "text": "The notes include cloud and distributed computing as a direct application domain.", "section_ref": "Section 3.3: Cloud and Distributed Computing", "notes_quote": "Tasks/jobs compete for computational resources (CPUs, memory, bandwidth)."},
+            {"letter": "D", "is_correct": true, "text": "Robotics and MAS are included because agents share infrastructure and bottlenecks.", "section_ref": "Section 3.4: Multi-Agent Systems and Robotics", "notes_quote": "Multiple robots/agents sharing physical infrastructure ... use congestion games to coordinate movement and avoid bottlenecks."},
+            {"letter": "E", "is_correct": true, "text": "Smart energy systems are listed because costs rise with collective demand.", "section_ref": "Section 3.5: Electricity Grids and Smart Energy Systems", "notes_quote": "Consumers/smart devices choose when to use electricity; costs rise with collective demand."},
+            {"letter": "F", "is_correct": false, "text": "The notes list many real-world resource-sharing domains, not only zero-sum perfect-information games.", "section_ref": "Section 3: Applications of Congestion Games", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "2. Braess's Paradox and Best Response Dynamics",
+      "questions": [
+        {
+          "id": "q7",
+          "source_ref": "Section 4.1: The Paradox",
+          "text": "Which statements correctly capture Braess's Paradox as described in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Adding a new road can increase equilibrium travel time"},
+            {"letter": "B", "text": "Closing roads can sometimes improve traffic flow"},
+            {"letter": "C", "text": "The paradox says every new road always improves equilibrium outcomes"},
+            {"letter": "D", "text": "The notes mention Seoul's Cheonggyecheon highway closure as a real-world example"},
+            {"letter": "E", "text": "Braess's Paradox only applies when all edge costs are constant"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the core statement of the paradox.", "section_ref": "Section 4.1: The Paradox", "notes_quote": "Adding a new road (resource) to a network can increase the total travel time at equilibrium."},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly state the reverse effect can also happen.", "section_ref": "Section 4.1: The Paradox", "notes_quote": "Closing roads can sometimes speed up traffic."},
+            {"letter": "C", "is_correct": false, "text": "Braess's Paradox is precisely the warning that extra capacity can worsen equilibrium, not always improve it.", "section_ref": "Section 4.1: The Paradox", "notes_quote": ""},
+            {"letter": "D", "is_correct": true, "text": "The Seoul example is used to illustrate the paradox in practice.", "section_ref": "Section 4.1: The Paradox", "notes_quote": "Seoul, South Korea closed a major highway along the Cheonggyecheon Stream. Counter-intuitively, traffic flow actually improved"},
+            {"letter": "E", "is_correct": false, "text": "The paradox is illustrated with both congestion-dependent and constant edges; it is not restricted to constant-cost networks.", "section_ref": "Section 4.1: The Paradox", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q8",
+          "source_ref": "Section 4.2: Worked Example",
+          "text": "In the Braess's Paradox worked example with 200 travelers, which statements are true? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Without the shortcut, the Nash equilibrium splits travelers 100 and 100 across the two routes"},
+            {"letter": "B", "text": "Without the shortcut, each traveler spends 30 minutes"},
+            {"letter": "C", "text": "With the free shortcut, all travelers taking $A \to B \to C \to D$ yields 40 minutes each"},
+            {"letter": "D", "text": "With the shortcut, a unilateral deviation strictly lowers travel time below 40 minutes"},
+            {"letter": "E", "text": "The shortcut increases equilibrium travel time from 30 to 40 minutes"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The no-shortcut equilibrium is an even split across the two routes.", "section_ref": "Section 4.2: Worked Example", "notes_quote": "Without shortcut (B-C road): Nash equilibrium: 100 travelers on each route"},
+            {"letter": "B", "is_correct": true, "text": "The notes compute $100/10 + 20 = 30$ minutes for each traveler.", "section_ref": "Section 4.2: Worked Example", "notes_quote": "Each traveler's time: $100/10 + 20 = 30$ min"},
+            {"letter": "C", "is_correct": true, "text": "With the free shortcut, the equilibrium routes everyone through the middle and each pays 40 minutes.", "section_ref": "Section 4.2: Worked Example", "notes_quote": "Nash equilibrium: ALL travelers take $A \to B \to C \to D$ ... Each traveler's time: $200/10 + 200/10 = 40$ min"},
+            {"letter": "D", "is_correct": false, "text": "The notes say alternative routes also give 40 minutes, so there is no profitable unilateral deviation.", "section_ref": "Section 4.2: Worked Example", "notes_quote": "This is a NE because any alternative ... also gives 40 min"},
+            {"letter": "E", "is_correct": true, "text": "This is the punchline of the example: the added road worsens equilibrium travel time.", "section_ref": "Section 4.2: Worked Example", "notes_quote": "Adding the free road increased everyone's travel time from 30 to 40 minutes"}
+          ]
+        },
+        {
+          "id": "q9",
+          "source_ref": "Section 5.1: The Algorithm",
+          "text": "Which statements about best response dynamics are correct according to the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "It repeatedly lets a player switch to a cost-minimizing action against the current profile"},
+            {"letter": "B", "text": "If it halts, the returned profile is a pure Nash equilibrium"},
+            {"letter": "C", "text": "The notes claim it always halts in every game"},
+            {"letter": "D", "text": "Matching Pennies is used as an example where best response dynamics can cycle"},
+            {"letter": "E", "text": "For congestion games, the notes say best response dynamics always halts"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The algorithm updates a player to an action in their current best-response set.", "section_ref": "Section 5.1: The Algorithm", "notes_quote": "Set $a_i = \\\\arg\\\\min_{a'\\\\in A_i} c_i(a, a_{-i})$"},
+            {"letter": "B", "is_correct": true, "text": "Halting means no player can improve, which is exactly the PSNE condition.", "section_ref": "Section 5.1: The Algorithm", "notes_quote": "If best response dynamics halts, it returns a pure Nash equilibrium"},
+            {"letter": "C", "is_correct": false, "text": "The notes explicitly say the answer is no in general, then single out congestion games as a positive case.", "section_ref": "Section 5.1: The Algorithm", "notes_quote": "Does it always halt? In general, no"},
+            {"letter": "D", "is_correct": true, "text": "Matching Pennies is the counterexample used for cycling and lack of PSNE.", "section_ref": "Section 5.1: The Algorithm", "notes_quote": "Matching Pennies has a cycle of profitable deviations and no PSNE"},
+            {"letter": "E", "is_correct": true, "text": "The notes contrast the general negative answer with the positive result for congestion games.", "section_ref": "Section 5.1: The Algorithm", "notes_quote": "But for congestion games, yes."}
+          ]
+        },
+        {
+          "id": "q10",
+          "source_ref": "Section 5.2: Rosenthal's Theorem (1973)",
+          "text": "Which of the following are consequences of Rosenthal's theorem in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Every sequence of improvement steps in a congestion game is finite"},
+            {"letter": "B", "text": "Congestion games have the Finite Improvement Property (FIP)"},
+            {"letter": "C", "text": "Every congestion game has at least one pure Nash equilibrium"},
+            {"letter": "D", "text": "FIP is weaker than mere existence of a PSNE"},
+            {"letter": "E", "text": "The theorem implies decentralized improvement can reach equilibrium from any starting profile"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the theorem statement itself.", "section_ref": "Section 5.2: Rosenthal's Theorem (1973)", "notes_quote": "For every congestion game, every sequence of improvement steps is finite."},
+            {"letter": "B", "is_correct": true, "text": "The notes name this property explicitly.", "section_ref": "Section 5.2: Rosenthal's Theorem (1973)", "notes_quote": "This is called the Finite Improvement Property (FIP)."},
+            {"letter": "C", "is_correct": true, "text": "The corollary in the notes states existence of a pure Nash equilibrium.", "section_ref": "Section 5.2: Rosenthal's Theorem (1973)", "notes_quote": "Corollary: Every congestion game has at least one pure Nash equilibrium."},
+            {"letter": "D", "is_correct": false, "text": "The notes say FIP is stronger than mere existence, because it guarantees convergence of natural dynamics from any start.", "section_ref": "Section 5.2: Rosenthal's Theorem (1973)", "notes_quote": "FIP is stronger than just existence of PSNE"},
+            {"letter": "E", "is_correct": true, "text": "This is exactly the stronger interpretation the notes emphasize.", "section_ref": "Section 5.2: Rosenthal's Theorem (1973)", "notes_quote": "it means agents can reach equilibrium through natural decentralized dynamics from any starting profile"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "3. Potential Games and Local Search",
+      "questions": [
+        {
+          "id": "q11",
+          "source_ref": "Section 6.1: Rosenthal's Potential Function",
+          "text": "Which statements about Rosenthal's potential function are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "It is defined by $\\\\Phi(a) = \\\\sum_{j=1}^{m} \\\\sum_{k=1}^{n_j(a)} d_j(k)$"},
+            {"letter": "B", "text": "When one player deviates, the change in $\\\\Phi$ exactly matches that player's change in cost"},
+            {"letter": "C", "text": "Every improvement step strictly increases $\\\\Phi$"},
+            {"letter": "D", "text": "Because $\\\\Phi$ takes finitely many values over finite profiles, repeated improvements must terminate"},
+            {"letter": "E", "text": "Rosenthal's potential is defined only for zero-sum games"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes give this exact cumulative-delay formula.", "section_ref": "Section 6.1: Rosenthal's Potential Function", "notes_quote": "$$\\\\Phi(a) = \\\\sum_{j=1}^{m} \\\\sum_{k=1}^{n_j(a)} d_j(k)$$"},
+            {"letter": "B", "is_correct": true, "text": "The defining proof property is exact equality between potential change and deviator cost change.", "section_ref": "Section 6.1: Rosenthal's Potential Function", "notes_quote": "the change in the potential function exactly equals the change in player $i$'s cost"},
+            {"letter": "C", "is_correct": false, "text": "Improvement steps decrease player cost, so they decrease $\\\\Phi$, not increase it.", "section_ref": "Section 6.1: Rosenthal's Potential Function", "notes_quote": "Since each improvement step decreases the player's cost, it also decreases $\\\\Phi$."},
+            {"letter": "D", "is_correct": true, "text": "Finite range plus strict decrease yields termination.", "section_ref": "Section 6.1: Rosenthal's Potential Function", "notes_quote": "Since $\\\\Phi$ takes finitely many values (finite strategy profiles), the process must terminate."},
+            {"letter": "E", "is_correct": false, "text": "Rosenthal's potential is introduced for congestion games, not only zero-sum games.", "section_ref": "Section 6.1: Rosenthal's Potential Function", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q12",
+          "source_ref": "Section 6.2: Exact Potential Games and Section 6.3: Weaker Notions of Potential",
+          "text": "Which statements correctly distinguish exact, ordinal, and generalized ordinal potential games? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In an exact potential game, unilateral cost changes equal potential changes"},
+            {"letter": "B", "text": "In an ordinal potential game, only the sign of improvement must match, not the magnitude"},
+            {"letter": "C", "text": "In a generalized ordinal potential game, every decrease in cost implies a decrease in potential"},
+            {"letter": "D", "text": "The notes state generalized ordinal potential is equivalent to FIP"},
+            {"letter": "E", "text": "The notes define ordinal potential by requiring exact equality of all deviations"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Exact potential requires equality of unilateral cost change and potential change.", "section_ref": "Section 6.2: Exact Potential Games", "notes_quote": "the change in $\\\\Phi$ equals the change in player $i$'s cost"},
+            {"letter": "B", "is_correct": true, "text": "Ordinal potential preserves direction of improvement but not magnitude.", "section_ref": "Section 6.3: Weaker Notions of Potential", "notes_quote": "Sign of change matches, but magnitudes need not be equal"},
+            {"letter": "C", "is_correct": true, "text": "Generalized ordinal potential only requires that every improving deviation improves the potential.", "section_ref": "Section 6.3: Weaker Notions of Potential", "notes_quote": "Every improvement in cost implies improvement in $\\\\Phi$, but not vice versa"},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly identify generalized ordinal potential with FIP.", "section_ref": "Section 6.3: Weaker Notions of Potential", "notes_quote": "Generalized ordinal potential \\\\equiv Finite Improvement Property (FIP)"},
+            {"letter": "E", "is_correct": false, "text": "Exact equality belongs to exact potential games, not ordinal potential games.", "section_ref": "Section 6.2: Exact Potential Games", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q13",
+          "source_ref": "Section 6.4: Identifying Potential Games",
+          "text": "Which of the following are correct about identifying potential games in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A potential function is not unique; adding a constant gives another valid one"},
+            {"letter": "B", "text": "The guess-and-check method seeds one profile with an arbitrary potential value and derives the rest"},
+            {"letter": "C", "text": "For the Prisoner's Dilemma example, the notes derive a consistent potential matrix and conclude it is a potential game"},
+            {"letter": "D", "text": "In the cycle approach, every 4-cycle in a potential game must have total deviator utility change summing to 0"},
+            {"letter": "E", "text": "If a game has a PSNE, the notes conclude it must be a potential game"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes explicitly warn that potential functions are never unique up to additive constants.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "The potential function is never unique â€” adding any constant to a potential function gives another valid potential function."},
+            {"letter": "B", "is_correct": true, "text": "This is the first step of the guess-and-check procedure.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "Seed the potential function at some profile with an arbitrary value"},
+            {"letter": "C", "is_correct": true, "text": "The Prisoner's Dilemma example yields a consistent matrix and is declared a potential game.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "Prisoner's Dilemma is a potential game."},
+            {"letter": "D", "is_correct": true, "text": "The cycle test requires the sum of deviator utility changes around a 4-cycle to be zero.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "If the game is a potential game, then $\\\\Delta_1 + \\\\Delta_2 + \\\\Delta_3 + \\\\Delta_4 = 0$ for any cycle of length 4."},
+            {"letter": "E", "is_correct": false, "text": "The notes explicitly say PSNE existence does not imply the game is a potential game.", "section_ref": "Section 6.5: Connection: PSNE and Potential Games", "notes_quote": "Having a PSNE does not imply the game is a potential game."}
+          ]
+        },
+        {
+          "id": "q14",
+          "source_ref": "Section 6.6: Computing PSNE of Congestion Games and Section 7: Maximum Cut Problem and Local Search",
+          "text": "Which statements correctly connect congestion games, local minima, and local search complexity? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Computing a PSNE of a congestion game is equivalent to finding a local minimum of Rosenthal's potential"},
+            {"letter": "B", "text": "The notes use maximum cut as a canonical local-search problem connected to potential-game reasoning"},
+            {"letter": "C", "text": "A local optimum of max-cut must also be a global optimum"},
+            {"letter": "D", "text": "For unit-weight graphs, max-cut local search terminates in at most $|E|$ iterations"},
+            {"letter": "E", "text": "The notes state that finding local maxima of max-cut instances is PLS-complete"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the exact computational connection drawn in the notes.", "section_ref": "Section 6.6: Computing PSNE of Congestion Games", "notes_quote": "Computing a PSNE of a congestion game is equivalent to computing a local minimum of Rosenthal's potential function."},
+            {"letter": "B", "is_correct": true, "text": "Max-cut is introduced as a canonical local-search problem for this discussion.", "section_ref": "Section 7.1: The Max-Cut Problem", "notes_quote": "A canonical problem for studying local search and its connection to potential games."},
+            {"letter": "C", "is_correct": false, "text": "The notes explicitly warn that a local optimum need not be a global optimum.", "section_ref": "Section 7.2: Local Search Algorithm", "notes_quote": "A local optimum need not be a global optimum."},
+            {"letter": "D", "is_correct": true, "text": "For unit weights, the objective can only increase through finitely many integer values up to $|E|$.", "section_ref": "Section 7.3: Convergence Properties", "notes_quote": "For unit weight graphs: objective takes values in $\\\\{0, 1, \\\\ldots, |E|\\\\}$, so local search terminates in at most $|E|$ iterations"},
+            {"letter": "E", "is_correct": true, "text": "The notes classify local max-cut as PLS-complete.", "section_ref": "Section 7.3: Convergence Properties", "notes_quote": "Finding local maxima of max-cut instances is PLS-complete"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "4. Price of Anarchy, Price of Stability, and Tutorial Integration",
+      "questions": [
+        {
+          "id": "q15",
+          "source_ref": "Section 8.1: Definitions",
+          "text": "Which statements about Price of Anarchy (PoA) and Price of Stability (PoS) are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "For minimization problems, $\text{PoA} = \frac{\text{value of worst Nash equilibrium}}{\text{value of optimal solution}}$"},
+            {"letter": "B", "text": "For minimization problems, $\text{PoS} = \frac{\text{value of best Nash equilibrium}}{\text{value of optimal solution}}$"},
+            {"letter": "C", "text": "For maximization problems, the notes keep the same fraction orientation without modification"},
+            {"letter": "D", "text": "The notes state $\text{PoS} \\\\leq \text{PoA}$ always"},
+            {"letter": "E", "text": "PoA measures the best equilibrium and PoS measures the worst equilibrium"}
+          ],
+          "correct": ["A", "B", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the minimization definition given for PoA.", "section_ref": "Section 8.1: Definitions", "notes_quote": "PoA = $\frac{\text{value of worst Nash equilibrium}}{\text{value of optimal solution}}$"},
+            {"letter": "B", "is_correct": true, "text": "This is the minimization definition given for PoS.", "section_ref": "Section 8.1: Definitions", "notes_quote": "PoS = $\frac{\text{value of best Nash equilibrium}}{\text{value of optimal solution}}$"},
+            {"letter": "C", "is_correct": false, "text": "For maximization, the notes say to invert the fractions so the values remain at least 1.", "section_ref": "Section 8.1: Definitions", "notes_quote": "For maximization, invert the fractions so that PoA, PoS $\\\\geq 1$."},
+            {"letter": "D", "is_correct": true, "text": "The best equilibrium cannot be worse than the worst equilibrium, so the notes record $\text{PoS} \\\\leq \text{PoA}$.", "section_ref": "Section 8.1: Definitions", "notes_quote": "Always: $\text{PoS} \\\\leq \text{PoA}$."},
+            {"letter": "E", "is_correct": false, "text": "These roles are reversed: PoA is worst-case equilibrium efficiency, PoS is best-case equilibrium efficiency.", "section_ref": "Section 8.1: Definitions", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q16",
+          "source_ref": "Section 8.2: Examples",
+          "text": "Which of the following example computations from the notes are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In the Prisoner's Dilemma example, PoA = PoS = 10"},
+            {"letter": "B", "text": "In Battle of the Sexes, PoS = 1 and PoA = $4/3$"},
+            {"letter": "C", "text": "In the routing game example, PoA = PoS = $9/8$"},
+            {"letter": "D", "text": "In Battle of the Sexes, the worst equilibrium has welfare 2"},
+            {"letter": "E", "text": "In the Prisoner's Dilemma example, the unique equilibrium is socially optimal"}
+          ],
+          "correct": ["A", "B", "C"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes compute welfare 20 for the optimum and 2 for the unique equilibrium, giving ratio 10.", "section_ref": "Section 8.2: Examples", "notes_quote": "PoA = PoS = 20/2 = 10"},
+            {"letter": "B", "is_correct": true, "text": "The best equilibrium is optimal and the worst equilibrium has welfare 3, so the ratios are 1 and $4/3$.", "section_ref": "Section 8.2: Examples", "notes_quote": "PoS = 4/4 = 1 ... PoA = 4/3 \\\\approx 1.33"},
+            {"letter": "C", "is_correct": true, "text": "The routing example compares equilibrium social cost 9 to optimum 8.", "section_ref": "Section 8.2: Examples", "notes_quote": "PoA = PoS = 9/8 = 1.125"},
+            {"letter": "D", "is_correct": false, "text": "The notes say the two equilibria have welfare 3 and 4, not 2.", "section_ref": "Section 8.2: Examples", "notes_quote": "Two NE: (Theater,Theater) with welfare 3, (Football,Football) with welfare 4"},
+            {"letter": "E", "is_correct": false, "text": "The Prisoner's Dilemma example is used precisely because the unique equilibrium is inefficient relative to the optimum.", "section_ref": "Section 8.2: Examples", "notes_quote": "Unique NE: (D,D) with social welfare = 2; Optimal: (C,C) with social welfare = 20"}
+          ]
+        },
+        {
+          "id": "q17",
+          "source_ref": "Section 8.3: Simple Two-Link Example and Section 8.4: Price of Anarchy for Linear Congestion Games",
+          "text": "Which statements about the two-link example and the linear-congestion PoA theorem are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "In the two-link example, the equilibrium puts all $n$ players on the upper link with social cost $n^2$"},
+            {"letter": "B", "text": "Splitting players evenly gives social cost $\frac{3n^2}{4}$ in the notes"},
+            {"letter": "C", "text": "For linear congestion games, the notes state PoA is at most $5/2$ and this bound is tight"},
+            {"letter": "D", "text": "The tight example in the notes has optimal total cost 10 and worst equilibrium total cost 4"},
+            {"letter": "E", "text": "The two-link example shows that the equilibrium can be worse than a more balanced allocation"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The identity-cost upper link attracts everyone at equilibrium, yielding total cost $n \\\\cdot n = n^2$.", "section_ref": "Section 8.3: Simple Two-Link Example", "notes_quote": "Equilibrium: All $n$ players take upper link â†’ social cost = $n \\\\cdot n = n^2$"},
+            {"letter": "B", "is_correct": true, "text": "The notes compute the balanced split cost as $\frac{3n^2}{4}$.", "section_ref": "Section 8.3: Simple Two-Link Example", "notes_quote": "social cost = $\frac{n}{2} \\\\cdot \frac{n}{2} + \frac{n}{2} \\\\cdot n = \frac{3n^2}{4}$"},
+            {"letter": "C", "is_correct": true, "text": "The theorem is stated exactly with tight bound $5/2$.", "section_ref": "Section 8.4: Price of Anarchy for Linear Congestion Games", "notes_quote": "the Price of Anarchy is at most 5/2 ... This bound is tight"},
+            {"letter": "D", "is_correct": false, "text": "The notes give optimal cost 4 and worst equilibrium cost 10, not the reverse.", "section_ref": "Section 8.4: Price of Anarchy for Linear Congestion Games", "notes_quote": "Optimal solution ... total cost = 4; Worst NE ... total cost = 10"},
+            {"letter": "E", "is_correct": true, "text": "That is the point of the example: selfish routing can overload the identity-cost link.", "section_ref": "Section 8.3: Simple Two-Link Example", "notes_quote": "Better split: $n/2$ on each"}
+          ]
+        },
+        {
+          "id": "q18",
+          "source_ref": "Section 8.5: Bounding PoS via Potential Function and Section 8.6: Price of Stability with Bounded Congestion",
+          "text": "Which of the following are consequences of the potential-based bounds in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "For linear congestion games, the notes prove $\frac{1}{2}\\\\mathrm{SC}(s) \\\\leq \\\\Phi(s) \\\\leq \\\\mathrm{SC}(s)$"},
+            {"letter": "B", "text": "The upper bound uses nondecreasing cost functions to compare cumulative costs with full congestion costs"},
+            {"letter": "C", "text": "If no resource is used by more than $\\\\lambda$ players, then PoS is at most $\\\\lambda$"},
+            {"letter": "D", "text": "The bounded-congestion proof starts from an arbitrary equilibrium and runs best response dynamics toward the optimum"},
+            {"letter": "E", "text": "The notes use the chain $\\\\mathrm{SC}(s) \\\\leq \\\\lambda \\\\Phi(s) \\\\leq \\\\lambda \\\\Phi(s^*) \\\\leq \\\\lambda \\\\mathrm{SC}(s^*)$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the theorem stated for linear congestion games.", "section_ref": "Section 8.5: Bounding PoS via Potential Function (for Linear Congestion Games)", "notes_quote": "For linear congestion games, $\frac{1}{2}\text{SC}(s) \\\\leq \\\\Phi(s) \\\\leq \text{SC}(s)$"},
+            {"letter": "B", "is_correct": true, "text": "The upper-bound proof uses monotonicity of the cost functions to replace cumulative terms by the maximum congestion term.", "section_ref": "Section 8.5: Bounding PoS via Potential Function (for Linear Congestion Games)", "notes_quote": "Since cost functions are nondecreasing: $\\\\Phi(s) ... \\\\leq ... = \text{SC}(s)$"},
+            {"letter": "C", "is_correct": true, "text": "This is the bounded-congestion PoS theorem.", "section_ref": "Section 8.6: Price of Stability with Bounded Congestion", "notes_quote": "the Price of Stability is at most $\\\\lambda$"},
+            {"letter": "D", "is_correct": false, "text": "The proof starts from the optimal profile $s^*$ and runs best response dynamics to an equilibrium, not the other way around.", "section_ref": "Section 8.6: Price of Stability with Bounded Congestion", "notes_quote": "Start from optimal profile $s^*$. If it's a NE, PoS = 1. Otherwise, apply best response dynamics to reach NE $s$."},
+            {"letter": "E", "is_correct": true, "text": "The notes present exactly this inequality chain in the proof.", "section_ref": "Section 8.6: Price of Stability with Bounded Congestion", "notes_quote": "$$\text{SC}(s) \\\\leq \\\\lambda \\\\Phi(s) \\\\leq \\\\lambda \\\\Phi(s^*) \\\\leq \\\\lambda \\\\cdot \text{SC}(s^*)$$"}
+          ]
+        },
+        {
+          "id": "q19",
+          "source_ref": "Section 9.1: Exercise 1: Network Congestion Game PSNE",
+          "text": "In the tutorial PSNE exercise, which of the following statements are true? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The initial state has all three players on route $s \to v_3 \to t$"},
+            {"letter": "B", "text": "One improvement step has Player 3 switch to $s \to v_1 \to t$"},
+            {"letter": "C", "text": "The final PSNE sends all three players through $s \to v_2 \to v_1 \to t$"},
+            {"letter": "D", "text": "All PSNE in the game send two players via $s \to v_1 \to t$ and one via $s \to v_2 \to v_1 \to t$"},
+            {"letter": "E", "text": "The exercise illustrates finding PSNE by best response dynamics"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The solution starts from the profile where all players use the same route through $v_3$.", "section_ref": "Section 9.1: Exercise 1: Network Congestion Game PSNE", "notes_quote": "Start with all players on route $s \to v_3 \to t$"},
+            {"letter": "B", "is_correct": true, "text": "This is one of the listed improvement steps in the sequence.", "section_ref": "Section 9.1: Exercise 1: Network Congestion Game PSNE", "notes_quote": "(c) Player 3 switches to $s \to v_1 \to t$"},
+            {"letter": "C", "is_correct": false, "text": "The final PSNE has one player on $s \to v_2 \to v_1 \to t$ and two on $s \to v_1 \to t$, not all three on the longer route.", "section_ref": "Section 9.1: Exercise 1: Network Congestion Game PSNE", "notes_quote": "All PSNE in this game send two players via $s \to v_1 \to t$ and one via $s \to v_2 \to v_1 \to t$."},
+            {"letter": "D", "is_correct": true, "text": "The notes summarize the full set of PSNE in exactly this way.", "section_ref": "Section 9.1: Exercise 1: Network Congestion Game PSNE", "notes_quote": "All PSNE in this game send two players via $s \to v_1 \to t$ and one via $s \to v_2 \to v_1 \to t$."},
+            {"letter": "E", "is_correct": true, "text": "The exercise is explicitly framed as finding PSNE by iterative best responses.", "section_ref": "Section 9.1: Exercise 1: Network Congestion Game PSNE", "notes_quote": "Find PSNE by best response dynamics."}
+          ]
+        },
+        {
+          "id": "q20",
+          "source_ref": "Learning Objectives and Sections 2, 5, 6, 8, 9",
+          "text": "Which of the following integrative conclusions are supported by the Week 2 notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Congestion games combine concise modeling with guaranteed convergence of improvement dynamics to a pure equilibrium"},
+            {"letter": "B", "text": "Potential functions help both prove equilibrium existence and connect congestion games to local-search complexity"},
+            {"letter": "C", "text": "Equilibrium existence alone guarantees socially optimal outcomes in congestion games"},
+            {"letter": "D", "text": "PoA and PoS quantify how far selfish equilibria can be from optimal social outcomes"},
+            {"letter": "E", "text": "Braess's Paradox shows that adding resources can worsen equilibrium performance"},
+            {"letter": "F", "text": "Every game with a PSNE must be an exact potential game"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This combines the concise-representation motivation with Rosenthal's finite-improvement result.", "section_ref": "Section 1: Motivation: Large Games and Concise Representations", "notes_quote": "games with a concise description that makes them easy to reason about"},
+            {"letter": "B", "is_correct": true, "text": "The notes use potential functions both for convergence proofs and to motivate local-search complexity questions.", "section_ref": "Section 6.6: Computing PSNE of Congestion Games", "notes_quote": "Computing a PSNE of a congestion game is equivalent to computing a local minimum of Rosenthal's potential function."},
+            {"letter": "C", "is_correct": false, "text": "The routing example and Braess's paradox both show equilibria can be inefficient relative to the social optimum.", "section_ref": "Section 2.4: Worked Example: Three-Player Routing Game", "notes_quote": "State B is the Nash equilibrium despite having higher social cost. State A is the social optimum."},
+            {"letter": "D", "is_correct": true, "text": "That is exactly the role of PoA and PoS in the notes.", "section_ref": "Section 8.1: Definitions", "notes_quote": "Given an optimization goal ... we define efficiency measures"},
+            {"letter": "E", "is_correct": true, "text": "Braess's paradox is the canonical example of extra resources worsening equilibrium outcomes.", "section_ref": "Section 4.1: The Paradox", "notes_quote": "Adding a new road (resource) to a network can increase the total travel time at equilibrium."},
+            {"letter": "F", "is_correct": false, "text": "The notes explicitly reject this implication: PSNE existence does not imply being a potential game.", "section_ref": "Section 6.5: Connection: PSNE and Potential Games", "notes_quote": "Having a PSNE does not imply the game is a potential game."}
+          ]
+        },
+        {
+          "id": "q21",
+          "source_ref": "Section 3.6: IoT and Sensor Networks and Section 3.7: Other Applications",
+          "text": "Which additional application areas are explicitly listed in the expanded Week 2 notes beyond the first five application domains? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "IoT and sensor networks"},
+            {"letter": "B", "text": "Crowdsourcing and shared economy platforms"},
+            {"letter": "C", "text": "Resource allocation in AI/ML"},
+            {"letter": "D", "text": "Cybersecurity"},
+            {"letter": "E", "text": "Urban planning and facility location"},
+            {"letter": "F", "text": "Only repeated auctions with no shared resources"}
+          ],
+          "correct": ["A", "B", "C", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "IoT and sensor networks are explicitly added as a separate application subsection.", "section_ref": "Section 3.6: IoT and Sensor Networks", "notes_quote": "Devices compete for transmission time, battery usage, or shared sensors."},
+            {"letter": "B", "is_correct": true, "text": "The notes list crowdsourcing and shared-economy platforms as congestion-style resource-allocation settings.", "section_ref": "Section 3.7: Other Applications", "notes_quote": "Crowdsourcing and Shared Economy: Platforms allocate resources across a city; too many users at one location reduces utility for all"},
+            {"letter": "C", "is_correct": true, "text": "AI/ML resource allocation is explicitly named in the expanded notes.", "section_ref": "Section 3.7: Other Applications", "notes_quote": "Resource Allocation in AI/ML: Competing AI agents select computing resources"},
+            {"letter": "D", "is_correct": true, "text": "Cybersecurity is included as a domain where attackers and defenders allocate resources.", "section_ref": "Section 3.7: Other Applications", "notes_quote": "Cybersecurity: Attackers and defenders allocate resources across network surfaces"},
+            {"letter": "E", "is_correct": true, "text": "Urban planning and facility location are listed because overuse of public resources degrades quality.", "section_ref": "Section 3.7: Other Applications", "notes_quote": "Urban Planning and Facility Location: Citizens choose between public resources; overuse degrades quality"},
+            {"letter": "F", "is_correct": false, "text": "The notes emphasize shared-resource congestion settings, not only repeated auctions without congestion effects.", "section_ref": "Section 3.7: Other Applications", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q22",
+          "source_ref": "Section 5.1: The Algorithm and Section 5.2: Rosenthal's Theorem (1973)",
+          "text": "Which statements correctly distinguish best responses, improvement steps, and the finite improvement property? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A best response is an action minimizing a player's cost against the current actions of others"},
+            {"letter": "B", "text": "An improvement step is any unilateral deviation that strictly lowers the deviating player's cost"},
+            {"letter": "C", "text": "FIP means every sequence of unilateral deviations, including non-improving ones, is finite"},
+            {"letter": "D", "text": "Rosenthal's theorem is about sequences of improvement steps, not arbitrary deviations"},
+            {"letter": "E", "text": "If a game has FIP, repeated improving deviations cannot cycle forever"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is exactly how the algorithm defines the update target.", "section_ref": "Section 5.1: The Algorithm", "notes_quote": "argmin_{a'\\in A_i} c_i(a', a_{-i})"},
+            {"letter": "B", "is_correct": true, "text": "Improvement steps are profitable unilateral deviations that reduce cost.", "section_ref": "Section 5.2: Rosenthal's Theorem (1973)", "notes_quote": "every sequence of improvement steps is finite"},
+            {"letter": "C", "is_correct": false, "text": "FIP concerns improving deviations only; arbitrary deviations need not satisfy the property.", "section_ref": "Section 5.2: Rosenthal's Theorem (1973)", "notes_quote": "every sequence of improvement steps is finite"},
+            {"letter": "D", "is_correct": true, "text": "The theorem is stated specifically for improvement paths.", "section_ref": "Section 5.2: Rosenthal's Theorem (1973)", "notes_quote": "For every congestion game, every sequence of improvement steps is finite."},
+            {"letter": "E", "is_correct": true, "text": "That is the operational meaning of FIP: no infinite improvement cycle exists.", "section_ref": "Section 5.2: Rosenthal's Theorem (1973)", "notes_quote": "This is called the Finite Improvement Property (FIP)."}
+          ]
+        },
+        {
+          "id": "q23",
+          "source_ref": "Section 6.4: Identifying Potential Games",
+          "text": "Which statements about the guess-and-check construction for potential games are correct according to the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "One may seed the potential at an arbitrary profile with an arbitrary value"},
+            {"letter": "B", "text": "Consistency of derived values across different derivation paths is essential"},
+            {"letter": "C", "text": "If inconsistency arises, the game cannot be an exact potential game under that deviation structure"},
+            {"letter": "D", "text": "The notes use Prisoner's Dilemma to show a game with no valid potential function"},
+            {"letter": "E", "text": "Adding a constant to every potential value preserves validity"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes explicitly start by assigning an arbitrary seed value.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "Seed the potential function at some profile with an arbitrary value"},
+            {"letter": "B", "is_correct": true, "text": "The whole method depends on deriving the same value regardless of the path used.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "If consistent values are obtained, the game is a potential game"},
+            {"letter": "C", "is_correct": true, "text": "An inconsistency is exactly the certificate that the potential equations cannot all hold simultaneously.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "If inconsistency arises, it is not a potential game"},
+            {"letter": "D", "is_correct": false, "text": "Prisoner's Dilemma is used as a positive example that does admit a potential function.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "Prisoner's Dilemma is a potential game."},
+            {"letter": "E", "is_correct": true, "text": "Potential functions are only defined up to an additive constant.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "adding any constant to a potential function gives another valid potential function"}
+          ]
+        },
+        {
+          "id": "q24",
+          "source_ref": "Section 6.4: Identifying Potential Games",
+          "text": "Which statements about the cycle-based test for potential games are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The test examines 4-cycles formed by alternating unilateral deviations of two players"},
+            {"letter": "B", "text": "For a potential game, the sum of deviator utility changes around such a cycle must be 0"},
+            {"letter": "C", "text": "The notes give an example with cycle sum 4, concluding the game is not a potential game"},
+            {"letter": "D", "text": "A nonzero cycle sum is compatible with exact potential games as long as the game has a PSNE"},
+            {"letter": "E", "text": "For 2-player 2-strategy games, checking all 4-cycles proves the result"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes write the cycle explicitly as alternating unilateral deviations by the two players.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "Consider cycles of action profiles of the form: $$(a_i, a_j, \\cdot) \\to (a'_i, a_j, \\cdot) \\to (a'_i, a'_j, \\cdot) \\to (a_i, a'_j, \\cdot) \\to (a_i, a_j, \\cdot)$$"},
+            {"letter": "B", "is_correct": true, "text": "This zero-sum-around-the-cycle condition is the core test.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "If the game is a potential game, then $\\Delta_1 + \\Delta_2 + \\Delta_3 + \\Delta_4 = 0$"},
+            {"letter": "C", "is_correct": true, "text": "The worked example has cycle sum 4 and is used as a negative example.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "Cycle: $(0-1) + (1-0) + (3-0) + (1-0) = 4 \\neq 0$"},
+            {"letter": "D", "is_correct": false, "text": "A nonzero cycle sum violates the potential condition regardless of PSNE existence.", "section_ref": "Section 6.5: Connection: PSNE and Potential Games", "notes_quote": "A game can have PSNE but fail the cycle test"},
+            {"letter": "E", "is_correct": true, "text": "The notes explicitly state this suffices in the 2x2 case.", "section_ref": "Section 6.4: Identifying Potential Games", "notes_quote": "Checking all cycles of length 4 proves the result (for 2-player games with 2 strategies each)."}
+          ]
+        },
+        {
+          "id": "q25",
+          "source_ref": "Section 7.1: The Max-Cut Problem and Section 7.2: Local Search Algorithm",
+          "text": "Which statements about the maximum cut problem and its local search formulation are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A feasible solution is a partition $(S, \\bar{S})$ of the vertices into two non-empty sets"},
+            {"letter": "B", "text": "The objective is to maximize the total weight of edges crossing the cut"},
+            {"letter": "C", "text": "A local move consists of moving one vertex to the other side while keeping both sides non-empty"},
+            {"letter": "D", "text": "The notes state maximum cut is polynomial-time solvable because local search always finds the global optimum"},
+            {"letter": "E", "text": "The change in objective when moving a vertex compares newly cut weight against newly uncut weight"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the exact feasible-solution definition in the notes.", "section_ref": "Section 7.1: The Max-Cut Problem", "notes_quote": "Cuts $(S, \\bar{S})$, where $(S, \\bar{S})$ is a partition of $V$ into two non-empty sets"},
+            {"letter": "B", "is_correct": true, "text": "The objective is the total weight of cut edges.", "section_ref": "Section 7.1: The Max-Cut Problem", "notes_quote": "Maximize the total weight of cut edges"},
+            {"letter": "C", "is_correct": true, "text": "The local neighborhood is defined by single-vertex moves.", "section_ref": "Section 7.2: Local Search Algorithm", "notes_quote": "A local move = moving a vertex $v$ from one side of the cut to the other"},
+            {"letter": "D", "is_correct": false, "text": "The notes say maximum cut is NP-hard and local optima need not be global optima.", "section_ref": "Section 7.1: The Max-Cut Problem", "notes_quote": "Unlike minimum cut, maximum cut is NP-hard."},
+            {"letter": "E", "is_correct": true, "text": "The formula explicitly subtracts newly uncut weight from newly cut weight.", "section_ref": "Section 7.2: Local Search Algorithm", "notes_quote": "$$\\sum_{u \\in S} w_{uv} - \\sum_{u \\in \\bar{S}} w_{uv}$$"}
+          ]
+        },
+        {
+          "id": "q26",
+          "source_ref": "Section 7.3: Convergence Properties and Section 7.4: PLS: Abstract Local Search Problems",
+          "text": "Which statements about local-search complexity are supported by the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "For unit-weight graphs, max-cut local search terminates in at most |E| iterations"},
+            {"letter": "B", "text": "For general weights, the notes state there is no known polynomial-time algorithm for computing local optima"},
+            {"letter": "C", "text": "PLS-complete is presented as the local-search analogue of NP-complete"},
+            {"letter": "D", "text": "An abstract local search problem is specified by exactly three polynomial-time algorithms"},
+            {"letter": "E", "text": "The notes rule out exponential lower bounds for local search"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This follows from the bounded integer range of the objective in unit-weight graphs.", "section_ref": "Section 7.3: Convergence Properties", "notes_quote": "local search terminates in at most $|E|$ iterations"},
+            {"letter": "B", "is_correct": true, "text": "The notes explicitly state the absence of a known polynomial-time algorithm in the general-weight case.", "section_ref": "Section 7.3: Convergence Properties", "notes_quote": "For general weights: no known polynomial-time algorithm for computing local optima"},
+            {"letter": "C", "is_correct": true, "text": "This analogy is stated directly in the notes.", "section_ref": "Section 7.4: PLS: Abstract Local Search Problems", "notes_quote": "PLS-completeness is the local search analogue of NP-completeness"},
+            {"letter": "D", "is_correct": true, "text": "The notes enumerate three poly-time procedures: initial solution, objective evaluation, and local-improvement check.", "section_ref": "Section 7.4: PLS: Abstract Local Search Problems", "notes_quote": "An abstract local search problem is specified by 3 poly-time algorithms"},
+            {"letter": "E", "is_correct": false, "text": "The notes say the opposite: exponential lower bounds do exist.", "section_ref": "Section 7.4: PLS: Abstract Local Search Problems", "notes_quote": "Exponential lower bounds exist on the number of iterations required by local search"}
+          ]
+        },
+        {
+          "id": "q27",
+          "source_ref": "Section 8.5: Bounding PoS via Potential Function (for Linear Congestion Games)",
+          "text": "Which statements about the proof ingredients for bounding potential versus social cost in linear congestion games are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The upper bound uses the fact that resource cost functions are nondecreasing"},
+            {"letter": "B", "text": "The lower bound uses the inequality $\\frac{n^{k+1}}{k+1} \\leq \\sum_{j=1}^{n} j^k$ for $k=0,1$"},
+            {"letter": "C", "text": "The lower bound also uses linearity of the form $c_r(x)=a_r x + b_r$"},
+            {"letter": "D", "text": "The theorem concludes $\\Phi(s) \\leq \\frac{1}{2}\\mathrm{SC}(s)$ for all linear congestion games"},
+            {"letter": "E", "text": "The notes state both $\\frac{1}{2}\\mathrm{SC}(s) \\leq \\Phi(s)$ and $\\Phi(s) \\leq \\mathrm{SC}(s)$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Monotonicity is the key step in the upper-bound argument.", "section_ref": "Section 8.5: Bounding PoS via Potential Function (for Linear Congestion Games)", "notes_quote": "Since cost functions are nondecreasing"},
+            {"letter": "B", "is_correct": true, "text": "The notes cite this inequality explicitly for the lower bound.", "section_ref": "Section 8.5: Bounding PoS via Potential Function (for Linear Congestion Games)", "notes_quote": "Uses the inequality $\\frac{n^{k+1}}{k+1} \\leq \\sum_{j=1}^{n} j^k$ for $k = 0, 1$"},
+            {"letter": "C", "is_correct": true, "text": "Linearity of the resource costs is another explicit proof ingredient.", "section_ref": "Section 8.5: Bounding PoS via Potential Function (for Linear Congestion Games)", "notes_quote": "and the linearity of cost functions $c_r(x) = a_r \\cdot x + b_r$"},
+            {"letter": "D", "is_correct": false, "text": "The inequality goes the other way: $\\frac{1}{2}\\mathrm{SC}(s) \\leq \\Phi(s)$.", "section_ref": "Section 8.5: Bounding PoS via Potential Function (for Linear Congestion Games)", "notes_quote": "For linear congestion games, $\\frac{1}{2}\\text{SC}(s) \\leq \\Phi(s) \\leq \\text{SC}(s)$"},
+            {"letter": "E", "is_correct": true, "text": "This is the theorem statement itself.", "section_ref": "Section 8.5: Bounding PoS via Potential Function (for Linear Congestion Games)", "notes_quote": "$\\frac{1}{2}\\text{SC}(s) \\leq \\Phi(s) \\leq \\text{SC}(s)$"}
+          ]
+        },
+        {
+          "id": "q28",
+          "source_ref": "Section 9.2: Exercise 2: Potential vs Social Cost in Linear Games and Section 9.3: Exercise 3: PoS with Bounded Congestion",
+          "text": "Which tutorial exercise conclusions are explicitly stated in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Exercise 2 concludes $\\frac{1}{2}\\mathrm{SC}(s) \\leq \\Phi(s) \\leq \\mathrm{SC}(s)$ for linear congestion games"},
+            {"letter": "B", "text": "Exercise 3 concludes that if no resource is used by more than $\\lambda$ players, then PoS \\leq \\lambda"},
+            {"letter": "C", "text": "Exercise 2 concludes PoA = 2 for all congestion games"},
+            {"letter": "D", "text": "Exercise 3 is about proving every congestion game is zero-sum"},
+            {"letter": "E", "text": "These exercises reinforce the theorem statements from Section 8 rather than introducing unrelated material"}
+          ],
+          "correct": ["A", "B", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "Exercise 2 restates the potential-versus-social-cost bound.", "section_ref": "Section 9.2: Exercise 2: Potential vs Social Cost in Linear Games", "notes_quote": "$\\frac{1}{2}\\text{SC}(s) \\leq \\Phi(s) \\leq \\text{SC}(s)$ for linear congestion games"},
+            {"letter": "B", "is_correct": true, "text": "Exercise 3 restates the bounded-congestion PoS theorem.", "section_ref": "Section 9.3: Exercise 3: PoS with Bounded Congestion", "notes_quote": "If no resource is used by more than $\\lambda$ players, PoS \\leq \\lambda"},
+            {"letter": "C", "is_correct": false, "text": "No such universal PoA = 2 statement appears for all congestion games.", "section_ref": "Section 9.2: Exercise 2: Potential vs Social Cost in Linear Games", "notes_quote": ""},
+            {"letter": "D", "is_correct": false, "text": "Exercise 3 concerns Price of Stability under bounded congestion, not zero-sum structure.", "section_ref": "Section 9.3: Exercise 3: PoS with Bounded Congestion", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Both exercises are direct tutorial reinforcements of the preceding theorem material.", "section_ref": "Section 8.6: Price of Stability with Bounded Congestion", "notes_quote": "*Addresses LO7, LO8*"}
+          ]
+        },
+        {
+          "id": "q29",
+          "source_ref": "Section 9.4: Exercise 4: Cut Games",
+          "text": "Which statements correctly describe cut games as introduced in the tutorial section? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Each player controls a vertex of an undirected graph"},
+            {"letter": "B", "text": "Each player's strategy is LEFT or RIGHT"},
+            {"letter": "C", "text": "Player $i$'s utility is the total weight of cut edges adjacent to their vertex"},
+            {"letter": "D", "text": "The game is defined on directed graphs only"},
+            {"letter": "E", "text": "The cut is the partition induced by the players' LEFT/RIGHT choices"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The notes assign one player to each vertex.", "section_ref": "Section 9.4: Exercise 4: Cut Games", "notes_quote": "Undirected graph $G = (V,E)$, each player $i$ controls vertex $v_i$"},
+            {"letter": "B", "is_correct": true, "text": "The strategy set is exactly the two sides of the cut.", "section_ref": "Section 9.4: Exercise 4: Cut Games", "notes_quote": "Strategy: LEFT or RIGHT"},
+            {"letter": "C", "is_correct": true, "text": "Utility is defined by the weight of adjacent edges that cross the cut.", "section_ref": "Section 9.4: Exercise 4: Cut Games", "notes_quote": "Player $i$'s utility = total weight of cut edges adjacent to $v_i$"},
+            {"letter": "D", "is_correct": false, "text": "The notes explicitly define cut games on undirected graphs.", "section_ref": "Section 9.4: Exercise 4: Cut Games", "notes_quote": "Undirected graph $G = (V,E)$"},
+            {"letter": "E", "is_correct": true, "text": "LEFT/RIGHT choices induce the partition and therefore the cut.", "section_ref": "Section 9.4: Exercise 4: Cut Games", "notes_quote": "Cut = partition into two sets"}
+          ]
+        },
+        {
+          "id": "q30",
+          "source_ref": "Section 9.4: Exercise 4: Cut Games",
+          "text": "Which statements about the cut-game Price of Anarchy example and proof are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The notes give a 4-vertex example with PoA = 2"},
+            {"letter": "B", "text": "In that example, the equilibrium cut has total payoff 4 and the optimal cut has total payoff 8"},
+            {"letter": "C", "text": "The notes prove PoA can exceed 2 by constructing a 6-vertex counterexample"},
+            {"letter": "D", "text": "The proof of PoA \\leq 2 uses the fact that in any PSNE each player's cut-edge weight is at least half the total weight of incident edges"},
+            {"letter": "E", "text": "The optimal total cut value cannot exceed twice the sum of edge weights counted once"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The tutorial explicitly labels part (a) as a PoA = 2 example.", "section_ref": "Section 9.4: Exercise 4: Cut Games", "notes_quote": "(a) PoA = 2 example"},
+            {"letter": "B", "is_correct": true, "text": "Those are the exact values used to compute the ratio 8/4 = 2.", "section_ref": "Section 9.4: Exercise 4: Cut Games", "notes_quote": "NE ... payoff 4. Optimal ... payoff 8. PoA = 8/4 = 2."},
+            {"letter": "C", "is_correct": false, "text": "The notes prove the opposite upper bound, namely PoA \\leq 2.", "section_ref": "Section 9.4: Exercise 4: Cut Games", "notes_quote": "(b) PoA \\leq 2 proof"},
+            {"letter": "D", "is_correct": true, "text": "This half-of-incident-weight argument is the key equilibrium inequality in the proof.", "section_ref": "Section 9.4: Exercise 4: Cut Games", "notes_quote": "In any PSNE, each player's cut edges are at least half the total weight of their adjacent edges"},
+            {"letter": "E", "is_correct": true, "text": "The proof bounds the optimum by counting each edge at most twice across players.", "section_ref": "Section 9.4: Exercise 4: Cut Games", "notes_quote": "The optimal can't exceed $2 \\sum_{e \\in E} w_e$ (each edge counted twice)"}
+          ]
+        },
+        {
+          "id": "q31",
+          "source_ref": "Learning Objectives and Sections 3, 7, 8, 9",
+          "text": "Which of the following broader exam-level takeaways are explicitly supported by the full Week 2 notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Congestion-style reasoning applies well beyond traffic, including AI/ML, IoT, and cybersecurity"},
+            {"letter": "B", "text": "Potential functions are useful not only for equilibrium existence proofs but also for analyzing local-search complexity"},
+            {"letter": "C", "text": "Local optima and Nash equilibria are always globally optimal in the settings studied this week"},
+            {"letter": "D", "text": "Efficiency analysis requires comparing equilibrium outcomes with social optima via PoA and PoS"},
+            {"letter": "E", "text": "Tutorial cut games extend the week's efficiency-analysis theme beyond standard routing examples"},
+            {"letter": "F", "text": "Braess's paradox shows that more resources always improve decentralized outcomes"}
+          ],
+          "correct": ["A", "B", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "The expanded applications section explicitly broadens the scope beyond transportation.", "section_ref": "Section 3.7: Other Applications", "notes_quote": "Resource Allocation in AI/ML ... Cybersecurity ... Urban Planning and Facility Location"},
+            {"letter": "B", "is_correct": true, "text": "This connection is made directly when PSNE computation is linked to local minima of the potential.", "section_ref": "Section 6.6: Computing PSNE of Congestion Games", "notes_quote": "complexity theory for local search problems is immediately relevant"},
+            {"letter": "C", "is_correct": false, "text": "The notes repeatedly stress that equilibria and local optima can be inefficient relative to global optima.", "section_ref": "Section 7.2: Local Search Algorithm", "notes_quote": "A local optimum need not be a global optimum."},
+            {"letter": "D", "is_correct": true, "text": "That is the explicit purpose of PoA and PoS.", "section_ref": "Section 8.1: Definitions", "notes_quote": "we define efficiency measures"},
+            {"letter": "E", "is_correct": true, "text": "The cut-game exercise applies the same equilibrium-versus-optimum lens in a different game family.", "section_ref": "Section 9.4: Exercise 4: Cut Games", "notes_quote": "PoA = 8/4 = 2"},
+            {"letter": "F", "is_correct": false, "text": "Braess's paradox says the opposite can happen: extra resources may worsen equilibrium outcomes.", "section_ref": "Section 4.1: The Paradox", "notes_quote": "Adding a new road (resource) to a network can increase the total travel time at equilibrium."}
+          ]
+        }
+      ]
+    }
+  ]
+}

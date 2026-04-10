@@ -1,0 +1,556 @@
+{
+  "module": "MultiAgents",
+  "week": 11,
+  "title": "Voting Theory (Part II) -- Multiwinner Elections",
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "11.1 Multiwinner Elections",
+      "questions": [
+        {
+          "id": "q1",
+          "source_ref": "Section 11.1: Three Types of Multiwinner Elections",
+          "text": "Which of the following correctly describe the three types of multiwinner elections introduced in the notes? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Excellence-based elections aim to select the $k$ best individuals independently"},
+            {"letter": "B", "text": "Diversity-based elections aim to cover different perspectives rather than simply pick the top $k$ similar candidates"},
+            {"letter": "C", "text": "Proportional representation aims to reflect voter groups proportionally"},
+            {"letter": "D", "text": "Excellence-based and diversity-based elections always produce the same committees when there are similar candidates"},
+            {"letter": "E", "text": "Parliamentary elections are given as an example of proportional representation"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition given for excellence-based multiwinner elections.", "section_ref": "Section 11.1: Three Types of Multiwinner Elections", "notes_quote": "Select the $k$ best individuals independently"},
+            {"letter": "B", "is_correct": true, "text": "The notes define diversity-based elections in terms of covering different perspectives.", "section_ref": "Section 11.1: Three Types of Multiwinner Elections", "notes_quote": "Select a diverse committee covering different perspectives"},
+            {"letter": "C", "is_correct": true, "text": "This is the goal stated for proportional representation.", "section_ref": "Section 11.1: Three Types of Multiwinner Elections", "notes_quote": "Reflect voter groups proportionally"},
+            {"letter": "D", "is_correct": false, "text": "The notes explicitly contrast these goals: two similar candidates may both be selected in excellence-based settings, but at most one may be selected in diversity-based settings.", "section_ref": "Section 11.1: Key Differences from Single-Winner", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Parliamentary elections are the example listed for proportional representation.", "section_ref": "Section 11.1: Three Types of Multiwinner Elections", "notes_quote": "Parliamentary elections"}
+          ]
+        },
+        {
+          "id": "q2",
+          "source_ref": "Section 11.1: Key Differences from Single-Winner; Section 11.1: Challenges",
+          "text": "Which of the following correctly describe key differences and challenges for multiwinner elections? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "For two similar candidates, an excellence-based rule may select both, whereas a diversity-based rule may select at most one"},
+            {"letter": "B", "text": "The notes say rules suitable for shortlisting can produce poor parliaments, and vice versa"},
+            {"letter": "C", "text": "A major challenge is that many interesting multiwinner rules are NP-hard"},
+            {"letter": "D", "text": "The notes claim multiwinner rules are computationally easier than single-winner rules in almost all cases"},
+            {"letter": "E", "text": "Another challenge is understanding axiomatic properties to predict whether a rule suits an application"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the explicit contrast drawn in the notes.", "section_ref": "Section 11.1: Key Differences from Single-Winner", "notes_quote": "Two similar candidates: in excellence-based, select both (or neither); in diversity-based, select at most one"},
+            {"letter": "B", "is_correct": true, "text": "The notes state this directly to motivate why different goals need different rules.", "section_ref": "Section 11.1: Key Differences from Single-Winner", "notes_quote": "Rules for shortlisting would produce poor parliaments and vice versa"},
+            {"letter": "C", "is_correct": true, "text": "Computational complexity is listed as one of the two main challenges.", "section_ref": "Section 11.1: Challenges", "notes_quote": "Many interesting multiwinner rules are NP-hard"},
+            {"letter": "D", "is_correct": false, "text": "The notes say the opposite: many interesting multiwinner rules are NP-hard, unlike most single-winner rules.", "section_ref": "Section 11.1: Challenges", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "Axiomatic analysis is the other main challenge listed in the notes.", "section_ref": "Section 11.1: Challenges", "notes_quote": "Axiomatic properties: How to predict if a rule suits a particular application?"}
+          ]
+        },
+        {
+          "id": "q3",
+          "source_ref": "Section 11.1: Formal Model; Section 11.1: Running Example",
+          "text": "Which of the following correctly describe the formal model and running example for multiwinner elections? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "An election is written as $(C, R)$ where $C$ is the candidate set and $R$ is the preference profile"},
+            {"letter": "B", "text": "In the approval model, each voter has an approval set $A_i \\\\subseteq C$"},
+            {"letter": "C", "text": "A multiwinner voting rule returns a nonempty family of size-$k$ subsets of $C$"},
+            {"letter": "D", "text": "In the running example, voter 6 approves $\\\\{b\\\\}$ only"},
+            {"letter": "E", "text": "The formal model requires $k > |C|$ so that ties can be broken by committee size"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the formal notation introduced in the notes.", "section_ref": "Section 11.1: Formal Model", "notes_quote": "Election: $(C, R)$ where $C$ = candidates, $R$ = preference profile"},
+            {"letter": "B", "is_correct": true, "text": "This is the approval-model definition in the notes.", "section_ref": "Section 11.1: Formal Model", "notes_quote": "Approval (dichotomous) model: each voter $i$ has an approval set $A_i \\\\subseteq C$"},
+            {"letter": "C", "is_correct": true, "text": "The notes define the output of a multiwinner rule exactly this way.", "section_ref": "Section 11.1: Formal Model", "notes_quote": "returns nonempty family of size-$k$ subsets of $C$ (winning committees)"},
+            {"letter": "D", "is_correct": true, "text": "This is the approval ballot shown for voter 6 in the running example.", "section_ref": "Section 11.1: Running Example", "notes_quote": "6 | $b \\\\succ c \\\\succ d \\\\succ e \\\\succ a$ | $\\\\{b\\\\}$"},
+            {"letter": "E", "is_correct": false, "text": "The notes require $1 \\\\leq k \\\\leq |C|$, not $k > |C|$.", "section_ref": "Section 11.1: Formal Model", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q4",
+          "source_ref": "Section 11.1: Single Transferable Vote (STV)",
+          "text": "Which of the following correctly describe STV? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "STV generalises single-winner IRV to committee selection"},
+            {"letter": "B", "text": "The quota is $q = \\\\lfloor n/(k+1) \rfloor + 1$"},
+            {"letter": "C", "text": "If a candidate is ranked first by at least $q$ voters, they are elected and $q$ of their supporters are removed"},
+            {"letter": "D", "text": "If no candidate meets quota, STV elects all tied candidates immediately"},
+            {"letter": "E", "text": "For $k=1$, the quota becomes $\\\\lfloor n/2 \rfloor + 1$, giving exactly IRV"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is how STV is introduced in the notes.", "section_ref": "Section 11.1: Single Transferable Vote (STV)", "notes_quote": "Generalises single-winner IRV to committee selection"},
+            {"letter": "B", "is_correct": true, "text": "This is the quota formula stated in the STV procedure.", "section_ref": "Section 11.1: Single Transferable Vote (STV)", "notes_quote": "Compute quota $q = \\\\lfloor n/(k+1) \rfloor + 1$"},
+            {"letter": "C", "is_correct": true, "text": "This is the election step in each STV round.", "section_ref": "Section 11.1: Single Transferable Vote (STV)", "notes_quote": "If a candidate is ranked first by $\\\\geq q$ voters: elect them, remove $q$ of their supporters"},
+            {"letter": "D", "is_correct": false, "text": "If no candidate meets quota, STV eliminates the candidate with the fewest first-place votes.", "section_ref": "Section 11.1: Single Transferable Vote (STV)", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The notes explicitly identify the $k=1$ case with IRV.", "section_ref": "Section 11.1: Single Transferable Vote (STV)", "notes_quote": "For $k=1$: $q = \\\\lfloor n/2 \rfloor + 1$ (majority) -- this is exactly IRV"}
+          ]
+        },
+        {
+          "id": "q5",
+          "source_ref": "Section 11.1: Single Transferable Vote (STV)",
+          "text": "Using the STV worked example with $k=2$ and $n=6$, which of the following statements are correct? (Select ALL that apply.)\n\n- Round 1: a=1, e=1, d=1, c=2, b=1\n- Round 2: b=2, c=2, e=1, d=1\n- Round 3: b=3 (voters 1,3,6)\n\nWhich statements are true? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The quota is $q = \\\\lfloor 6/3 \rfloor + 1 = 3$"},
+            {"letter": "B", "text": "Candidate $a$ is eliminated first by tie-break in round 1"},
+            {"letter": "C", "text": "Candidate $b$ is elected in round 3 after reaching 3 first-place votes"},
+            {"letter": "D", "text": "After removing voters 1, 3, and 6, candidate $e$ is eliminated and then $c$ reaches 3 votes"},
+            {"letter": "E", "text": "The winning committee is $\\\\{A, C\\\\}$"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the quota calculation shown in the example.", "section_ref": "Section 11.1: Single Transferable Vote (STV)", "notes_quote": "STV Example ($k=2$, $n=6$): $q = \\\\lfloor 6/3 \rfloor + 1 = 3$"},
+            {"letter": "B", "is_correct": true, "text": "The notes say $a$ is eliminated first in round 1.", "section_ref": "Section 11.1: Single Transferable Vote (STV)", "notes_quote": "Round 1: a=1, e=1, d=1, c=2, b=1. No quota met. Eliminate a (tie-break)."},
+            {"letter": "C", "is_correct": true, "text": "This is the round-3 election step in the example.", "section_ref": "Section 11.1: Single Transferable Vote (STV)", "notes_quote": "Round 3: b=3 (voters 1,3,6). B elected."},
+            {"letter": "D", "is_correct": true, "text": "This is exactly how the second seat is filled in the example.", "section_ref": "Section 11.1: Single Transferable Vote (STV)", "notes_quote": "Remaining: voter 2 (top: e), voters 4,5 (top: c). No quota. Eliminate e. C gets 3 votes (voters 2,4,5). C elected."},
+            {"letter": "E", "is_correct": false, "text": "The winning committee in the example is $\\\\{B, C\\\\}$, not $\\\\{A, C\\\\}$.", "section_ref": "Section 11.1: Single Transferable Vote (STV)", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "11.2 Committee Scoring Rules",
+      "questions": [
+        {
+          "id": "q6",
+          "source_ref": "Section 11.2: Committee Positions; Section 11.2: Committee Scoring Functions",
+          "text": "Which of the following correctly describe committee positions and committee scoring functions? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "For a size-$k$ committee $S$, $\text{pos}_\\\\succ(S)$ is the sorted list of positions of the committee members in ranking $\\\\succ$"},
+            {"letter": "B", "text": "$[m]_k$ is the set of all increasing sequences of length $k$ from $\\\\{1, \\\\ldots, m\\\\}$"},
+            {"letter": "C", "text": "Position $I$ dominates $J$ if $i_t \\\\leq j_t$ for every $t$"},
+            {"letter": "D", "text": "A committee scoring function must assign lower scores to dominating positions to reward diversity"},
+            {"letter": "E", "text": "A committee scoring rule sums $\\\\gamma_{|C|,k}(\text{pos}_{\\\\succ_i}(W))$ over all voters"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the definition of committee position in the notes.", "section_ref": "Section 11.2: Committee Positions", "notes_quote": "Position of $S$ in $\\\\succ$ = sorted list of positions of $S$'s members"},
+            {"letter": "B", "is_correct": true, "text": "This notation is defined explicitly in the notes.", "section_ref": "Section 11.2: Committee Positions", "notes_quote": "$[m]_k$ = set of all increasing sequences of length $k$ from $\\\\{1, \\\\ldots, m\\\\}$"},
+            {"letter": "C", "is_correct": true, "text": "This is the dominance relation on committee positions.", "section_ref": "Section 11.2: Committee Positions", "notes_quote": "Position $I$ dominates $J$ if $i_t \\\\leq j_t$ for every $t$"},
+            {"letter": "D", "is_correct": false, "text": "The monotonicity condition is the opposite: if $I$ dominates $J$, then $\\\\gamma_{m,k}(I) \\\\geq \\\\gamma_{m,k}(J)$.", "section_ref": "Section 11.2: Committee Scoring Functions", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the score formula for committee scoring rules.", "section_ref": "Section 11.2: Committee Scoring Functions", "notes_quote": "$$\text{score}(W, E) = \\\\sum_{i=1}^{n} \\\\gamma_{|C|,k}(\text{pos}_{\\\\succ_i}(W))$$"}
+          ]
+        },
+        {
+          "id": "q7",
+          "source_ref": "Section 11.2: Four Key Committee Scoring Rules",
+          "text": "Which of the following correctly match committee scoring rules to their scoring ideas? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "SNTV gives a point if the committee contains the voter's most preferred candidate"},
+            {"letter": "B", "text": "Bloc counts how many committee members appear in the voter's top-$k$ positions"},
+            {"letter": "C", "text": "$k$-Borda selects the $k$ candidates with highest individual Borda scores"},
+            {"letter": "D", "text": "Chamberlin-Courant uses the Borda score of the lowest-ranked committee member for each voter"},
+            {"letter": "E", "text": "Chamberlin-Courant cares only about the best representative for each voter"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the interpretation of SNTV in the notes.", "section_ref": "Section 11.2: Four Key Committee Scoring Rules", "notes_quote": "Committee gets a point from voter if it contains their most preferred candidate"},
+            {"letter": "B", "is_correct": true, "text": "This is the Bloc interpretation in the notes.", "section_ref": "Section 11.2: Four Key Committee Scoring Rules", "notes_quote": "Each voter names their $k$ favourite candidates; winning committee = those mentioned most"},
+            {"letter": "C", "is_correct": true, "text": "This is exactly how $k$-Borda is described.", "section_ref": "Section 11.2: Four Key Committee Scoring Rules", "notes_quote": "Select $k$ candidates with highest individual Borda scores"},
+            {"letter": "D", "is_correct": false, "text": "Chamberlin-Courant uses the highest-ranked committee member, not the lowest-ranked one.", "section_ref": "Section 11.2: Four Key Committee Scoring Rules", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the key intuition behind Chamberlin-Courant.", "section_ref": "Section 11.2: Four Key Committee Scoring Rules", "notes_quote": "Only best representative matters"}
+          ]
+        },
+        {
+          "id": "q8",
+          "source_ref": "Section 11.2: Four Key Committee Scoring Rules",
+          "text": "Which of the following correctly match the committee scoring formulas to the named rules? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "$\\\\gamma^{\text{SNTV}}_{m,k}(i_1, \\\\ldots, i_k) = \\\\alpha_1(i_1)$ corresponds to SNTV"},
+            {"letter": "B", "text": "$\\\\gamma^{\text{Bloc}}_{m,k}(i_1, \\\\ldots, i_k) = \\\\sum_{t=1}^{k} \\\\alpha_k(i_t)$ corresponds to Bloc"},
+            {"letter": "C", "text": "$\\\\gamma^{k\text{-Borda}}_{m,k}(i_1, \\\\ldots, i_k) = \\\\sum_{t=1}^{k} \beta_m(i_t)$ corresponds to $k$-Borda"},
+            {"letter": "D", "text": "$\\\\gamma^{\beta\text{-CC}}_{m,k}(i_1, \\\\ldots, i_k) = \beta_m(i_k)$ corresponds to Chamberlin-Courant"},
+            {"letter": "E", "text": "$\\\\gamma^{\beta\text{-CC}}_{m,k}(i_1, \\\\ldots, i_k) = \beta_m(i_1)$ corresponds to Chamberlin-Courant"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the SNTV formula in the notes.", "section_ref": "Section 11.2: Four Key Committee Scoring Rules", "notes_quote": "$$\\\\gamma^{\text{SNTV}}_{m,k}(i_1, \\\\ldots, i_k) = \\\\alpha_1(i_1)$$"},
+            {"letter": "B", "is_correct": true, "text": "This is the Bloc formula in the notes.", "section_ref": "Section 11.2: Four Key Committee Scoring Rules", "notes_quote": "$$\\\\gamma^{\text{Bloc}}_{m,k}(i_1, \\\\ldots, i_k) = \\\\sum_{t=1}^{k} \\\\alpha_k(i_t)$$"},
+            {"letter": "C", "is_correct": true, "text": "This is the $k$-Borda formula in the notes.", "section_ref": "Section 11.2: Four Key Committee Scoring Rules", "notes_quote": "$$\\\\gamma^{k\text{-Borda}}_{m,k}(i_1, \\\\ldots, i_k) = \\\\sum_{t=1}^{k} \beta_m(i_t)$$"},
+            {"letter": "D", "is_correct": false, "text": "Chamberlin-Courant uses $\beta_m(i_1)$ because only the best representative matters, not the worst-ranked committee member.", "section_ref": "Section 11.2: Four Key Committee Scoring Rules", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the Chamberlin-Courant formula in the notes.", "section_ref": "Section 11.2: Four Key Committee Scoring Rules", "notes_quote": "$$\\\\gamma^{\beta\text{-CC}}_{m,k}(i_1, \\\\ldots, i_k) = \beta_m(i_1)$$"}
+          ]
+        },
+        {
+          "id": "q9",
+          "source_ref": "Section 11.2: Worked Example (k=2)",
+          "text": "Using the worked example for committee scoring rules with $k=2$, which of the following statements are correct? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Under SNTV, candidate $C$ is ranked first by 2 voters, so every winning committee must contain $C$"},
+            {"letter": "B", "text": "Under Bloc, the top-2 appearance counts are $A=3$, $B=4$, $C=3$, $D=1$, $E=1$"},
+            {"letter": "C", "text": "Under Bloc, the winning committees are $\\\\{A,B\\\\}$ and $\\\\{B,C\\\\}$"},
+            {"letter": "D", "text": "Under $k$-Borda, the winner is $\\\\{A, C\\\\}$ because $A$ and $C$ have the two highest Borda scores"},
+            {"letter": "E", "text": "Under Chamberlin-Courant, $\\\\{A, C\\\\}$ beats $\\\\{B, C\\\\}$ because it scores 21 rather than 19"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the SNTV conclusion in the worked example.", "section_ref": "Section 11.2: Worked Example (k=2)", "notes_quote": "SNTV: C ranked first by 2 voters (most). Winning committee: $\\\\{C, x\\\\}$ where $x \\\\in \\\\{A, B, D, E\\\\}$"},
+            {"letter": "B", "is_correct": true, "text": "These are the Bloc counts listed in the notes.", "section_ref": "Section 11.2: Worked Example (k=2)", "notes_quote": "Bloc: Count appearances in top-2 positions: A=3, B=4, C=3, D=1, E=1"},
+            {"letter": "C", "is_correct": true, "text": "These are the winning committees under Bloc in the worked example.", "section_ref": "Section 11.2: Worked Example (k=2)", "notes_quote": "Winning committees: $\\\\{A,B\\\\}$ or $\\\\{B,C\\\\}$"},
+            {"letter": "D", "is_correct": false, "text": "Under $k$-Borda, the notes give Borda scores $A=11$, $B=17$, $C=14$, $D=10$, $E=8$, so the winner is $\\\\{B, C\\\\}$.", "section_ref": "Section 11.2: Worked Example (k=2)", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the Chamberlin-Courant comparison given in the notes.", "section_ref": "Section 11.2: Worked Example (k=2)", "notes_quote": "$\\\\{B,C\\\\}$ scores 19. But $\\\\{A,C\\\\}$ scores 21. Winner: $\\\\{A, C\\\\}$"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "11.3 Condorcet Committees and Stable Rules",
+      "questions": [
+        {
+          "id": "q10",
+          "source_ref": "Section 11.3: Condorcet Committee (Fishburn, 1981); Section 11.3: Weak Condorcet Set (Gehrlein 1985, Ratliff 2003)",
+          "text": "Which of the following correctly describe Condorcet committees, weak Condorcet sets, and stability? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A Condorcet committee beats every other committee of the same size by majority preference"},
+            {"letter": "B", "text": "A weak Condorcet set requires that for every member $c$ and every non-member $d$, more than half the voters prefer $c$ to $d$"},
+            {"letter": "C", "text": "A multiwinner rule is stable if it outputs a weak Condorcet set whenever one exists"},
+            {"letter": "D", "text": "A weak Condorcet set is defined by comparing committees only through total Borda score"},
+            {"letter": "E", "text": "The Condorcet committee notion requires preferences over committees"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the Fishburn definition in the notes.", "section_ref": "Section 11.3: Condorcet Committee (Fishburn, 1981)", "notes_quote": "Committee $C$ is a Condorcet committee if for every other committee $D$ of the same size, a majority of voters prefer $C$ to $D$"},
+            {"letter": "B", "is_correct": true, "text": "This is the definition of a weak Condorcet set in the notes.", "section_ref": "Section 11.3: Weak Condorcet Set (Gehrlein 1985, Ratliff 2003)", "notes_quote": "for every $c \\\\in S$ and every $d \\\\in C \\\\setminus S$: more than half the voters prefer $c$ to $d$"},
+            {"letter": "C", "is_correct": true, "text": "This is exactly how stability is defined.", "section_ref": "Section 11.3: Weak Condorcet Set (Gehrlein 1985, Ratliff 2003)", "notes_quote": "A multiwinner rule is stable if it outputs a weak Condorcet set whenever one exists"},
+            {"letter": "D", "is_correct": false, "text": "Weak Condorcet sets are defined by pairwise majority comparisons between members and non-members, not by total Borda score.", "section_ref": "Section 11.3: Weak Condorcet Set (Gehrlein 1985, Ratliff 2003)", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The notes explicitly mention this requirement.", "section_ref": "Section 11.3: Condorcet Committee (Fishburn, 1981)", "notes_quote": "(Requires preferences over committees.)"}
+          ]
+        },
+        {
+          "id": "q11",
+          "source_ref": "Section 11.3: Stable Multiwinner Rules",
+          "text": "Which of the following correctly describe NED and SEO? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Under NED, the score of a committee counts pairs $(c,d)$ with $c$ inside and $d$ outside the committee where at least half the voters prefer $c$ to $d$"},
+            {"letter": "B", "text": "Under SEO, the score is the minimum over $c \\\\in S$ and $d \\\\in C \\\\setminus S$ of the number of voters preferring $c$ to $d$"},
+            {"letter": "C", "text": "Both NED and SEO are presented as stable multiwinner rules"},
+            {"letter": "D", "text": "SEO maximises the average Borda score of committee members"},
+            {"letter": "E", "text": "For both NED and SEO, the highest score wins"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the NED scoring definition in the notes.", "section_ref": "Section 11.3: Stable Multiwinner Rules", "notes_quote": "Score of committee $S$ = number of pairs $(c, d)$ with $c \\\\in S$, $d \\\\in C \\\\setminus S$, where at least half the voters prefer $c$ to $d$"},
+            {"letter": "B", "is_correct": true, "text": "This is the SEO score formula in the notes.", "section_ref": "Section 11.3: Stable Multiwinner Rules", "notes_quote": "$$\text{score}(S) = \\\\min_{c \\\\in S, d \\\\in C \\\\setminus S} |\\\\{i \\\\in N : c \\\\succ_i d\\\\}|$$"},
+            {"letter": "C", "is_correct": true, "text": "NED and SEO are introduced under the heading 'Stable Multiwinner Rules'.", "section_ref": "Section 11.3: Stable Multiwinner Rules", "notes_quote": "Stable Multiwinner Rules"},
+            {"letter": "D", "is_correct": false, "text": "SEO is based on the weakest pairwise support of a committee member against a non-member, not on average Borda score.", "section_ref": "Section 11.3: Stable Multiwinner Rules", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "The notes state this for both rules.", "section_ref": "Section 11.3: Stable Multiwinner Rules", "notes_quote": "Highest score wins"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "11.4 Approval-Based Rules (Thiele Methods)",
+      "questions": [
+        {
+          "id": "q12",
+          "source_ref": "Section 11.4: Setting; Section 11.4: w-AV Rules (Thiele, 1895)",
+          "text": "Which of the following correctly describe the approval-based setting and general $w$-AV framework? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Each voter $i$ submits an approval ballot $A_i \\\\subseteq C$"},
+            {"letter": "B", "text": "The utility of voter $i$ for committee $W$ is $u_i(W) = |A_i \\\\cap W|$"},
+            {"letter": "C", "text": "Given weights $w^{(k)}$, the voter-specific score is $\\\\sum_{j=1}^{|S \\\\cap A_i|} w_j^{(k)}$"},
+            {"letter": "D", "text": "A $w$-AV rule maximises the sum of these voter-specific scores over all voters"},
+            {"letter": "E", "text": "The $w$-AV framework applies only to ordinal ballots and cannot be used with approval ballots"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the approval-based setting in the notes.", "section_ref": "Section 11.4: Setting", "notes_quote": "Each voter $i$ has approval ballot $A_i \\\\subseteq C$"},
+            {"letter": "B", "is_correct": true, "text": "This is the utility definition given in the notes.", "section_ref": "Section 11.4: Setting", "notes_quote": "Utility of voter $i$ for committee $W$: $u_i(W) = |A_i \\\\cap W|$"},
+            {"letter": "C", "is_correct": true, "text": "This is the general Thiele score formula.", "section_ref": "Section 11.4: w-AV Rules (Thiele, 1895)", "notes_quote": "$$\text{score}_i^{w^{(k)}}(S) = \\\\sum_{j=1}^{|S \\\\cap A_i|} w_j^{(k)}$$"},
+            {"letter": "D", "is_correct": true, "text": "This is how the winning committees are defined under $w$-AV.", "section_ref": "Section 11.4: w-AV Rules (Thiele, 1895)", "notes_quote": "The $w$-AV rule outputs committees maximising $\\\\sum_{i \\\\in N} \text{score}_i^{w^{(k)}}(S)$"},
+            {"letter": "E", "is_correct": false, "text": "The section is explicitly approval-based: it starts from approval ballots $A_i \\\\subseteq C$.", "section_ref": "Section 11.4: Setting", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q13",
+          "source_ref": "Section 11.4: Three Key Thiele Methods",
+          "text": "Which of the following correctly match the three key Thiele methods with their weight vectors and goals? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Approval Voting (AV) uses weights $(1,1,\\\\ldots,1)$ and aims at excellence / total approvals"},
+            {"letter": "B", "text": "Approval-based CC ($\\\\alpha$-CC) uses weights $(1,0,\\\\ldots,0)$ and aims at diversity / coverage"},
+            {"letter": "C", "text": "PAV uses weights $(1,1/2,1/3,\\\\ldots,1/k)$ and aims at proportional representation"},
+            {"letter": "D", "text": "AV uses harmonic weights and therefore captures diminishing returns"},
+            {"letter": "E", "text": "Under $\\\\alpha$-CC, only the first approved representative matters"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the AV row in the Thiele-methods table.", "section_ref": "Section 11.4: Three Key Thiele Methods", "notes_quote": "Approval Voting (AV) | $(1, 1, \\\\ldots, 1)$ | ... | Excellence/total approvals"},
+            {"letter": "B", "is_correct": true, "text": "This is the $\\\\alpha$-CC row in the table.", "section_ref": "Section 11.4: Three Key Thiele Methods", "notes_quote": "Approval-based CC ($\\\\alpha$-CC) | $(1, 0, \\\\ldots, 0)$ | ... | Diversity/coverage"},
+            {"letter": "C", "is_correct": true, "text": "This is the PAV row in the table.", "section_ref": "Section 11.4: Three Key Thiele Methods", "notes_quote": "Proportional Approval Voting (PAV) | $(1, 1/2, 1/3, \\\\ldots, 1/k)$ | ... | Proportional representation"},
+            {"letter": "D", "is_correct": false, "text": "Harmonic weights belong to PAV, not AV. AV gives equal marginal utility for each additional representative.", "section_ref": "Section 11.4: Intuition", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the coverage intuition behind $\\\\alpha$-CC.", "section_ref": "Section 11.4: Intuition", "notes_quote": "CC: only the first representative matters (coverage)"}
+          ]
+        },
+        {
+          "id": "q14",
+          "source_ref": "Section 11.4: Three Key Thiele Methods; Section 11.4: Intuition",
+          "text": "Which of the following correctly describe the score formulas and intuitions for AV, $\\\\alpha$-CC, and PAV? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "AV uses score $\\\\sum_{i \\\\in N} |A_i \\\\cap W|$"},
+            {"letter": "B", "text": "$\\\\alpha$-CC uses score $\\\\sum_{i \\\\in N} \\\\mathbb{1}_{A_i \\\\cap W \neq \\\\emptyset}$"},
+            {"letter": "C", "text": "PAV uses score $\\\\sum_{i \\\\in N} H(|A_i \\\\cap W|)$ where $H(x)$ is the $x$-th harmonic number"},
+            {"letter": "D", "text": "Under PAV, the first approved representative is worth 1, the second 1/2, the third 1/3, and so on"},
+            {"letter": "E", "text": "Under AV, only the first approved representative matters and all later ones contribute zero"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the AV score formula in the table.", "section_ref": "Section 11.4: Three Key Thiele Methods", "notes_quote": "$\\\\sum_{i \\\\in N} |A_i \\\\cap W|"},
+            {"letter": "B", "is_correct": true, "text": "This is the $\\\\alpha$-CC score formula in the table.", "section_ref": "Section 11.4: Three Key Thiele Methods", "notes_quote": "$\\\\sum_{i \\\\in N} \\\\mathbb{1}_{A_i \\\\cap W \neq \\\\emptyset}$"},
+            {"letter": "C", "is_correct": true, "text": "This is the PAV score formula in the table.", "section_ref": "Section 11.4: Three Key Thiele Methods", "notes_quote": "$\\\\sum_{i \\\\in N} H(|A_i \\\\cap W|)$"},
+            {"letter": "D", "is_correct": true, "text": "This is the diminishing-returns intuition for PAV.", "section_ref": "Section 11.4: Intuition", "notes_quote": "PAV: diminishing returns -- first representative worth 1, second worth 1/2, third 1/3, etc."},
+            {"letter": "E", "is_correct": false, "text": "That description matches $\\\\alpha$-CC, not AV. Under AV, each additional representative gives equal marginal utility.", "section_ref": "Section 11.4: Intuition", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "11.5 Proportional Representation",
+      "questions": [
+        {
+          "id": "q15",
+          "source_ref": "Section 11.5: What is Proportionality?; Section 11.5: Justified Representation (JR)",
+          "text": "Which of the following correctly describe proportionality and JR? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "A cohesive group of at least $\\\\ell \\\\cdot n/k$ voters agreeing on at least $\\\\ell$ candidates deserves at least $\\\\ell$ seats"},
+            {"letter": "B", "text": "JR requires that if some group of at least $n/k$ voters unanimously approves a common candidate, then at least one member of that group must have a representative in the committee"},
+            {"letter": "C", "text": "JR can be written using the condition $|S| \\\\geq n/k$ and $|\bigcap_{i \\\\in S} A_i| \\\\geq 1$"},
+            {"letter": "D", "text": "JR requires every voter in the qualifying group to have utility at least 2"},
+            {"letter": "E", "text": "The notes interpret JR as guaranteeing at least one represented member for such a group"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the proportionality principle stated at the start of the section.", "section_ref": "Section 11.5: What is Proportionality?", "notes_quote": "If a cohesive group of $\\\\geq \\\\ell \\\\cdot n/k$ voters agrees on $\\\\geq \\\\ell$ candidates, they deserve $\\\\geq \\\\ell$ seats"},
+            {"letter": "B", "is_correct": true, "text": "This is the meaning of JR given in the notes.", "section_ref": "Section 11.5: Justified Representation (JR)", "notes_quote": "If a group of $\\\\geq n/k$ voters unanimously approves at least one common candidate, at least one member of this group must have a representative in the committee"},
+            {"letter": "C", "is_correct": true, "text": "These are the formal JR conditions in the definition.", "section_ref": "Section 11.5: Justified Representation (JR)", "notes_quote": "whenever there exists $S \\\\subseteq N$ with $|S| \\\\geq n/k$ and $|\bigcap_{i \\\\in S} A_i| \\\\geq 1$"},
+            {"letter": "D", "is_correct": false, "text": "JR only requires that some member of the group has utility at least 1, not that every voter has utility at least 2.", "section_ref": "Section 11.5: Justified Representation (JR)", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the informal explanation given immediately after the formal definition.", "section_ref": "Section 11.5: Justified Representation (JR)", "notes_quote": "at least one member of this group must have a representative in the committee"}
+          ]
+        },
+        {
+          "id": "q16",
+          "source_ref": "Section 11.5: Extended Justified Representation (EJR)",
+          "text": "Which of the following correctly describe EJR? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "EJR quantifies over each $\\\\ell \\\\in [k]$"},
+            {"letter": "B", "text": "EJR requires that if a group of at least $\\\\ell \\\\cdot n/k$ voters shares at least $\\\\ell$ approved candidates, then some member of the group gets utility at least $\\\\ell$"},
+            {"letter": "C", "text": "EJR is strictly stronger than JR"},
+            {"letter": "D", "text": "JR is the special case of EJR with $\\\\ell = 1$"},
+            {"letter": "E", "text": "EJR is weaker than JR because it only applies when $\\\\ell > 1$"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is part of the formal EJR definition.", "section_ref": "Section 11.5: Extended Justified Representation (EJR)", "notes_quote": "for each $\\\\ell \\\\in [k]$"},
+            {"letter": "B", "is_correct": true, "text": "This is the core EJR requirement in the notes.", "section_ref": "Section 11.5: Extended Justified Representation (EJR)", "notes_quote": "whenever there exists $S \\\\subseteq N$ with $|S| \\\\geq \\\\ell \\\\cdot n/k$ and $|\bigcap_{i \\\\in S} A_i| \\\\geq \\\\ell$, then $\\\\exists i \\\\in S$ such that $u_i(W) \\\\geq \\\\ell$"},
+            {"letter": "C", "is_correct": true, "text": "The notes state this relationship explicitly.", "section_ref": "Section 11.5: Extended Justified Representation (EJR)", "notes_quote": "EJR is strictly stronger than JR"},
+            {"letter": "D", "is_correct": true, "text": "The notes identify JR as the $\\\\ell=1$ case of EJR.", "section_ref": "Section 11.5: Extended Justified Representation (EJR)", "notes_quote": "JR = EJR with $\\\\ell = 1$"},
+            {"letter": "E", "is_correct": false, "text": "The notes say the opposite: EJR is strictly stronger than JR.", "section_ref": "Section 11.5: Extended Justified Representation (EJR)", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q17",
+          "source_ref": "Section 11.5: Which Rules Satisfy JR/EJR?; Section 11.5: Theorem: CC satisfies JR.; Section 11.5: Theorem: PAV satisfies EJR.",
+          "text": "Which of the following correctly describe which rules satisfy JR and EJR, and why? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Approval Voting satisfies neither JR nor EJR"},
+            {"letter": "B", "text": "Chamberlin-Courant satisfies JR but not EJR"},
+            {"letter": "C", "text": "PAV satisfies both JR and EJR"},
+            {"letter": "D", "text": "The CC proof idea is to replace a weakly covering committee member with the group's common approved candidate to improve the score"},
+            {"letter": "E", "text": "The PAV proof sketch uses a pigeonhole-style argument after adding a common approved candidate $c^*$"}
+          ],
+          "correct": ["A", "B", "C", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the AV row in the JR/EJR table.", "section_ref": "Section 11.5: Which Rules Satisfy JR/EJR?", "notes_quote": "Approval Voting (AV) | No | No"},
+            {"letter": "B", "is_correct": true, "text": "This is the CC row in the JR/EJR table.", "section_ref": "Section 11.5: Which Rules Satisfy JR/EJR?", "notes_quote": "Chamberlin-Courant (CC) | Yes | No"},
+            {"letter": "C", "is_correct": true, "text": "This is the PAV row in the JR/EJR table.", "section_ref": "Section 11.5: Which Rules Satisfy JR/EJR?", "notes_quote": "Proportional Approval Voting (PAV) | Yes | Yes"},
+            {"letter": "D", "is_correct": true, "text": "This is the contradiction argument in the CC proof.", "section_ref": "Section 11.5: Theorem: CC satisfies JR.", "notes_quote": "Replace $c$ with the commonly approved candidate of $S$ -- this gives a higher CC score, contradicting optimality"},
+            {"letter": "E", "is_correct": true, "text": "This is the structure of the PAV proof sketch.", "section_ref": "Section 11.5: Theorem: PAV satisfies EJR.", "notes_quote": "By pigeonhole, some $c'$ can be removed with loss $< n/k$, giving $(W \\\\cup \\\\{c^*\\\\}) \\\\setminus \\\\{c'\\\\}$ a higher PAV score"}
+          ]
+        },
+        {
+          "id": "q18",
+          "source_ref": "Section 11.5: Party-List Example",
+          "text": "Which of the following correctly describe the party-list example under PAV? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "There are 4 parties with 12 candidates each, so $m=48$"},
+            {"letter": "B", "text": "There are $n=22$ voters and $k=11$ seats"},
+            {"letter": "C", "text": "The supporter counts are $P_1:6$, $P_2:4$, $P_3:10$, $P_4:2$"},
+            {"letter": "D", "text": "The final PAV seat allocation is $P_1:3$, $P_2:2$, $P_3:5$, $P_4:1$"},
+            {"letter": "E", "text": "The proportionality check in the notes says a party deserves $\\\\ell$ seats whenever it has at least $\\\\ell \\\\cdot k/n$ supporters"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the setup of the party-list example.", "section_ref": "Section 11.5: Party-List Example", "notes_quote": "4 parties ($P_1, P_2, P_3, P_4$) with 12 candidates each ($m=48$)"},
+            {"letter": "B", "is_correct": true, "text": "These are the voter and seat counts in the example.", "section_ref": "Section 11.5: Party-List Example", "notes_quote": "$n=22$ voters, $k=11$"},
+            {"letter": "C", "is_correct": true, "text": "These are the supporter counts listed in the notes.", "section_ref": "Section 11.5: Party-List Example", "notes_quote": "Supporters: $P_1$: 6, $P_2$: 4, $P_3$: 10, $P_4$: 2"},
+            {"letter": "D", "is_correct": true, "text": "This is the final allocation reported in the notes.", "section_ref": "Section 11.5: Party-List Example", "notes_quote": "Final allocation: $P_1$: 3 seats, $P_2$: 2, $P_3$: 5, $P_4$: 1"},
+            {"letter": "E", "is_correct": false, "text": "The notes use the threshold $x \\\\geq \\\\ell \\\\cdot n/k = 2\\\\ell$, not $\\\\ell \\\\cdot k/n$.", "section_ref": "Section 11.5: Party-List Example", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "Participatory Budgeting (from LGT)",
+      "questions": [
+        {
+          "id": "q19",
+          "source_ref": "Section Participatory Budgeting (from LGT): Model",
+          "text": "Which of the following correctly describe the participatory budgeting model? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "There is a set $C$ of projects, each with cost $\text{cost}(c) \\\\geq 0$"},
+            {"letter": "B", "text": "Each voter approves a subset $A_i \\\\subseteq C$ of projects"},
+            {"letter": "C", "text": "A feasible outcome $W$ must satisfy $\\\\sum_{c \\\\in W} \text{cost}(c) \\\\leq B$"},
+            {"letter": "D", "text": "If all costs equal 1 and $B$ is an integer, the model reduces to committee election"},
+            {"letter": "E", "text": "Participatory budgeting requires every approved project to be funded if it is approved by at least one voter"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first bullet in the participatory budgeting model.", "section_ref": "Section Participatory Budgeting (from LGT): Model", "notes_quote": "Set $C$ of projects, each with cost $\text{cost}(c) \\\\geq 0$"},
+            {"letter": "B", "is_correct": true, "text": "This is the voter model in the notes.", "section_ref": "Section Participatory Budgeting (from LGT): Model", "notes_quote": "Set $N$ of $n$ voters, each approving $A_i \\\\subseteq C$"},
+            {"letter": "C", "is_correct": true, "text": "This is the feasibility constraint on the funded set.", "section_ref": "Section Participatory Budgeting (from LGT): Model", "notes_quote": "Outcome: $W \\\\subseteq C$ with $\\\\sum_{c \\\\in W} \text{cost}(c) \\\\leq B$"},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly identify this special case with committee election.", "section_ref": "Section Participatory Budgeting (from LGT): Model", "notes_quote": "If all costs = 1 and $B$ is integer, this reduces to committee election"},
+            {"letter": "E", "is_correct": false, "text": "The budget constraint prevents funding every approved project in general; the model only requires feasibility under total budget $B$.", "section_ref": "Section Participatory Budgeting (from LGT): Model", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q20",
+          "source_ref": "Section Participatory Budgeting (from LGT): Greedy Method",
+          "text": "Which of the following correctly describe the greedy method for participatory budgeting? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The method repeatedly picks the remaining project with the largest approval count"},
+            {"letter": "B", "text": "A chosen project is added to $W$ only if it is affordable"},
+            {"letter": "C", "text": "After considering a project, it is removed from the remaining set $R$"},
+            {"letter": "D", "text": "The notes interpret the method as approximately solving a knapsack problem"},
+            {"letter": "E", "text": "The greedy method always returns the exact optimal solution to the knapsack problem"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the selection step in the greedy algorithm.", "section_ref": "Section Participatory Budgeting (from LGT): Greedy Method", "notes_quote": "Pick $c^* = \\\\arg\\\\max_{c \\\\in R} |\\\\{i \\\\in N : c \\\\in A_i\\\\}|$ (most-approved project)"},
+            {"letter": "B", "is_correct": true, "text": "Affordability is checked before adding the project to the funded set.", "section_ref": "Section Participatory Budgeting (from LGT): Greedy Method", "notes_quote": "If affordable: $W \\\\leftarrow W \\\\cup \\\\{c^*\\\\}$"},
+            {"letter": "C", "is_correct": true, "text": "This is the update step for the remaining projects.", "section_ref": "Section Participatory Budgeting (from LGT): Greedy Method", "notes_quote": "$R \\\\leftarrow R \\\\setminus \\\\{c^*\\\\}$"},
+            {"letter": "D", "is_correct": true, "text": "The notes explicitly connect the greedy method to an approximate knapsack solution.", "section_ref": "Section Participatory Budgeting (from LGT): Greedy Method", "notes_quote": "approximately solving a knapsack problem"},
+            {"letter": "E", "is_correct": false, "text": "The notes say the method approximately solves a knapsack problem; they do not claim exact optimality.", "section_ref": "Section Participatory Budgeting (from LGT): Greedy Method", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q21",
+          "source_ref": "Section Participatory Budgeting (from LGT): Greedy Method",
+          "text": "Which of the following correctly describe the utility interpretation and bang-per-buck discussion for participatory budgeting? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "The greedy method orders projects by vote count"},
+            {"letter": "B", "text": "The notes say vote count equals bang-per-buck because $v_c \\\\cdot \text{cost}(c) / \text{cost}(c) = v_c$"},
+            {"letter": "C", "text": "The implied utility model is cost utility: $u_i(W) = \text{cost}(A_i \\\\cap W)$"},
+            {"letter": "D", "text": "The notes interpret the greedy method as maximising egalitarian welfare rather than utilitarian welfare"},
+            {"letter": "E", "text": "The payoffs in the approximate knapsack view are $v_c \\\\cdot \text{cost}(c)$"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first interpretation given after the algorithm.", "section_ref": "Section Participatory Budgeting (from LGT): Greedy Method", "notes_quote": "The greedy method orders by vote count"},
+            {"letter": "B", "is_correct": true, "text": "This equality is written explicitly in the notes.", "section_ref": "Section Participatory Budgeting (from LGT): Greedy Method", "notes_quote": "vote count (= bang-per-buck since $v_c \\\\cdot \text{cost}(c) / \text{cost}(c) = v_c$)"},
+            {"letter": "C", "is_correct": true, "text": "This is the utility interpretation stated in the notes.", "section_ref": "Section Participatory Budgeting (from LGT): Greedy Method", "notes_quote": "This implies cities implicitly assume cost utilities: $u_i(W) = \text{cost}(A_i \\\\cap W)$"},
+            {"letter": "D", "is_correct": false, "text": "The notes connect the method to utilitarian cost-weighted welfare, not egalitarian welfare.", "section_ref": "Section Participatory Budgeting (from LGT): Greedy Method", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the payoff term used in the approximate knapsack interpretation.", "section_ref": "Section Participatory Budgeting (from LGT): Greedy Method", "notes_quote": "approximately solving a knapsack problem with payoffs $v_c \\\\cdot \text{cost}(c)$"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "Key Definitions",
+      "questions": [
+        {
+          "id": "q22",
+          "source_ref": "Section Key Definitions",
+          "text": "Which of the following correctly match multiwinner terms with their definitions from the key definitions table? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Multiwinner rule: maps an election and committee size $k$ to a set of size-$k$ committees"},
+            {"letter": "B", "text": "STV: iterative rule that elects candidates meeting quota $q = \\\\lfloor n/(k+1) \rfloor + 1$ and eliminates the weakest"},
+            {"letter": "C", "text": "SNTV: score equals the number of voters whose top choice is in the committee"},
+            {"letter": "D", "text": "Bloc: score equals the Borda score of the committee's worst-ranked member"},
+            {"letter": "E", "text": "Chamberlin-Courant: score is the sum of each voter's best representative's Borda score"}
+          ],
+          "correct": ["A", "B", "C", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the first entry in the key definitions table.", "section_ref": "Section Key Definitions", "notes_quote": "Multiwinner rule | Maps election + committee size $k$ to set of size-$k$ committees"},
+            {"letter": "B", "is_correct": true, "text": "This is the STV entry in the table.", "section_ref": "Section Key Definitions", "notes_quote": "STV | Iterative: elect candidates meeting quota $q = \\\\lfloor n/(k+1) \rfloor + 1$; eliminate weakest"},
+            {"letter": "C", "is_correct": true, "text": "This is the SNTV entry in the table.", "section_ref": "Section Key Definitions", "notes_quote": "SNTV | Score = voters whose top choice is in committee"},
+            {"letter": "D", "is_correct": false, "text": "Bloc is defined as total top-$k$ mentions, not as the Borda score of the worst-ranked member.", "section_ref": "Section Key Definitions", "notes_quote": ""},
+            {"letter": "E", "is_correct": true, "text": "This is the Chamberlin-Courant entry in the table.", "section_ref": "Section Key Definitions", "notes_quote": "Chamberlin-Courant | Score = sum of each voter's best representative's Borda score"}
+          ]
+        },
+        {
+          "id": "q23",
+          "source_ref": "Section Key Definitions",
+          "text": "Which of the following correctly match proportionality and budgeting terms with their definitions from the key definitions table? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Condorcet set: every member beats every non-member pairwise by majority"},
+            {"letter": "B", "text": "NED / SEO: Condorcet-consistent multiwinner rules"},
+            {"letter": "C", "text": "AV: Thiele weights $(1,1,\\\\ldots)$ and maximises total approvals"},
+            {"letter": "D", "text": "PAV: Thiele weights $(1, 1/2, 1/3, \\\\ldots)$ and targets proportional representation"},
+            {"letter": "E", "text": "EJR: any group of at least $n/k$ with one common candidate must have every member represented"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is the Condorcet set entry in the table.", "section_ref": "Section Key Definitions", "notes_quote": "Condorcet set | Every member beats every non-member pairwise by majority"},
+            {"letter": "B", "is_correct": true, "text": "This is the NED / SEO entry in the table.", "section_ref": "Section Key Definitions", "notes_quote": "NED / SEO | Condorcet-consistent multiwinner rules"},
+            {"letter": "C", "is_correct": true, "text": "This is the AV entry in the table.", "section_ref": "Section Key Definitions", "notes_quote": "AV | Thiele weights $(1,1,\\\\ldots)$; maximise total approvals"},
+            {"letter": "D", "is_correct": true, "text": "This is the PAV entry in the table.", "section_ref": "Section Key Definitions", "notes_quote": "PAV | Thiele weights $(1, 1/2, 1/3, \\\\ldots)$; proportional representation"},
+            {"letter": "E", "is_correct": false, "text": "That statement describes JR informally, not EJR. EJR requires an $\\\\ell$-cohesive group and guarantees some member utility at least $\\\\ell$.", "section_ref": "Section Key Definitions", "notes_quote": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-8",
+      "title": "Summary and Learning Objectives — Integrative Questions",
+      "questions": [
+        {
+          "id": "q24",
+          "source_ref": "Learning Objectives; Section 11.1 Multiwinner Elections; Section 11.2 Committee Scoring Rules; Section 11.4 Approval-Based Rules (Thiele Methods)",
+          "text": "Which of the following integrative statements correctly connect the main rule families and goals from Week 11? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "Different multiwinner goals such as excellence, diversity, and proportional representation call for different rules"},
+            {"letter": "B", "text": "$k$-Borda is presented as capturing excellence, while Chamberlin-Courant captures diversity"},
+            {"letter": "C", "text": "Among the Thiele methods, AV targets excellence, $\\\\alpha$-CC targets diversity, and PAV targets proportionality"},
+            {"letter": "D", "text": "STV is presented as a committee version of IRV rather than as a Thiele method"},
+            {"letter": "E", "text": "The notes claim one universal rule works equally well for shortlisting, parliaments, and diversity-based selection"}
+          ],
+          "correct": ["A", "B", "C", "D"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is one of the main messages of the week.", "section_ref": "Section Summary", "notes_quote": "Three goals: excellence, diversity, proportional representation -- different rules suit different goals"},
+            {"letter": "B", "is_correct": true, "text": "The summary explicitly contrasts these two committee scoring rules in this way.", "section_ref": "Section Summary", "notes_quote": "CC captures diversity, $k$-Borda captures excellence"},
+            {"letter": "C", "is_correct": true, "text": "This is the mapping given in the Thiele-methods table and summary.", "section_ref": "Section 11.4: Three Key Thiele Methods", "notes_quote": "AV (excellence), $\\\\alpha$-CC (diversity), PAV (proportionality)"},
+            {"letter": "D", "is_correct": true, "text": "STV is introduced separately as the generalisation of IRV to committee selection.", "section_ref": "Section 11.1: Single Transferable Vote (STV)", "notes_quote": "Generalises single-winner IRV to committee selection"},
+            {"letter": "E", "is_correct": false, "text": "The notes explicitly reject this idea by saying rules for shortlisting would produce poor parliaments and vice versa.", "section_ref": "Section 11.1: Key Differences from Single-Winner", "notes_quote": ""}
+          ]
+        },
+        {
+          "id": "q25",
+          "source_ref": "Learning Objectives; Section 11.5 Proportional Representation; Section Participatory Budgeting (from LGT); Section Summary",
+          "text": "Which of the following integrative statements correctly summarise proportionality, representation guarantees, and budgeting from Week 11? (Select ALL that apply.)",
+          "options": [
+            {"letter": "A", "text": "PAV is highlighted as satisfying EJR and using harmonic weights"},
+            {"letter": "B", "text": "CC satisfies JR but not EJR"},
+            {"letter": "C", "text": "AV fails both JR and EJR"},
+            {"letter": "D", "text": "Participatory budgeting generalises committee elections by allowing projects with costs under a budget constraint"},
+            {"letter": "E", "text": "The summary says PAV is the unique sequence achieving proportional representation"}
+          ],
+          "correct": ["A", "B", "C", "D", "E"],
+          "explanations": [
+            {"letter": "A", "is_correct": true, "text": "This is stated both in the proportionality section and the summary.", "section_ref": "Section Summary", "notes_quote": "PAV with harmonic weights $(1, 1/2, 1/3, \\\\ldots)$ is the unique sequence achieving proportional representation; it satisfies EJR"},
+            {"letter": "B", "is_correct": true, "text": "This is the relationship shown in the JR/EJR table.", "section_ref": "Section 11.5: Which Rules Satisfy JR/EJR?", "notes_quote": "Chamberlin-Courant (CC) | Yes | No"},
+            {"letter": "C", "is_correct": true, "text": "This is the AV row in the same table.", "section_ref": "Section 11.5: Which Rules Satisfy JR/EJR?", "notes_quote": "Approval Voting (AV) | No | No"},
+            {"letter": "D", "is_correct": true, "text": "This is the main modelling point of the participatory budgeting section.", "section_ref": "Section Participatory Budgeting (from LGT): Model", "notes_quote": "Participatory budgeting generalises committee elections to projects with costs"},
+            {"letter": "E", "is_correct": true, "text": "This is stated explicitly in the summary.", "section_ref": "Section Summary", "notes_quote": "PAV with harmonic weights $(1, 1/2, 1/3, \\\\ldots)$ is the unique sequence achieving proportional representation"}
+          ]
+        }
+      ]
+    }
+  ]
+}
+
