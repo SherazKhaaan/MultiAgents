@@ -1,0 +1,136 @@
+{
+  "module": "MultiAgents",
+  "week": 10,
+  "title": "Voting Theory (Part I)",
+  "charts": [
+    {
+      "id": "chart-1",
+      "type": "mindmap",
+      "title": "Week 10 Topic Map",
+      "description": "High-level overview of all major topics covered in Week 10: single-winner voting rules, Condorcet methods, and strategic manipulation.",
+      "nodes": [
+        { "id": "root",     "label": "Week 10\nVoting Theory I",      "note": "Voting theory studies how groups of agents aggregate individual preferences into a single collective decision. This week covers single-winner rules, Condorcet consistency, and the Gibbard-Satterthwaite impossibility theorem on strategic manipulation." },
+        { "id": "intro",    "label": "Introduction\nto Voting",        "note": "Computational social choice sits at the intersection of algorithms, game theory, and economics. It analyses how voting rules aggregate preferences and explores paradoxes and impossibility results that arise in collective decision making." },
+        { "id": "psrs",     "label": "Positional Scoring\nRules",      "note": "Positional scoring rules assign points to candidates based on their rank in each voter's ordering. The total score across all voters determines the winner. Examples include Plurality, Borda, Veto, and k-approval." },
+        { "id": "elim",     "label": "Elimination\nMethods",           "note": "Elimination-based methods iteratively remove candidates from contention. Instant-Runoff Voting (IRV) removes the candidate with fewest first-place votes each round until one candidate remains." },
+        { "id": "condorcet","label": "Condorcet\nPrinciple",           "note": "The Condorcet criterion requires electing a candidate who beats every other candidate in pairwise majority comparisons, if such a candidate exists. No positional scoring rule satisfies this for three or more candidates." },
+        { "id": "manip",    "label": "Strategic\nManipulation",        "note": "A voting rule is strategyproof if no voter can benefit by misreporting their true preferences. The Gibbard-Satterthwaite theorem shows that any non-dictatorial onto voting rule with three or more candidates is manipulable." },
+        { "id": "plurality","label": "Plurality",                      "note": "Plurality uses scoring vector (1, 0, ..., 0): each voter gives one point to their top-ranked candidate and zero to all others. Simple to compute but can elect candidates opposed by a majority." },
+        { "id": "borda",    "label": "Borda Count",                    "note": "Borda count uses scoring vector (m-1, m-2, ..., 0): a candidate ranked first gets m-1 points, second gets m-2, and so on. It rewards overall popularity across rankings." },
+        { "id": "irv",      "label": "IRV",                            "note": "Instant-Runoff Voting repeatedly eliminates the candidate with fewest first-place votes, redistributing those votes to each ballot's next preference. Used in Ireland, Australia, and US ranked-choice elections." },
+        { "id": "cwinner",  "label": "Condorcet Winner",               "note": "A Condorcet winner beats every other candidate in head-to-head majority comparisons. It may not exist (Condorcet paradox: preferences can cycle). When one exists, a Condorcet-consistent rule must elect it." },
+        { "id": "copeland", "label": "Copeland\nRule",                 "note": "Copeland scores each candidate by pairwise wins (+1) and ties (+0.5). The Condorcet winner, if it exists, scores m-1 and is always elected, making Copeland Condorcet-consistent." },
+        { "id": "maximin",  "label": "Maximin Rule",                   "note": "Maximin elects the candidate whose worst-case pairwise support is highest. The Condorcet winner's minimum pairwise support exceeds n/2, guaranteeing Condorcet consistency." },
+        { "id": "dodgson",  "label": "Dodgson Rule",                   "note": "Dodgson scores a candidate by the minimum number of adjacent swaps in voter rankings needed to make them a Condorcet winner. The Condorcet winner scores zero. Computing Dodgson scores is NP-hard." },
+        { "id": "gs",       "label": "Gibbard-\nSatterthwaite",        "note": "The Gibbard-Satterthwaite theorem states that for three or more candidates, any resolute voting rule that is onto (every candidate can win) and strategyproof must be a dictatorship. This means all reasonable rules are manipulable." },
+        { "id": "spref",    "label": "Single-Peaked\nPreferences",     "note": "Single-peaked preferences lie along a linear order: each voter has a peak, and their utility decreases monotonically in both directions away from that peak. Under single-peaked preferences, the median-voter rule is strategyproof." }
+      ],
+      "edges": [
+        { "from": "root",      "to": "intro" },
+        { "from": "root",      "to": "psrs" },
+        { "from": "root",      "to": "elim" },
+        { "from": "root",      "to": "condorcet" },
+        { "from": "root",      "to": "manip" },
+        { "from": "psrs",      "to": "plurality" },
+        { "from": "psrs",      "to": "borda" },
+        { "from": "elim",      "to": "irv" },
+        { "from": "condorcet", "to": "cwinner" },
+        { "from": "condorcet", "to": "copeland" },
+        { "from": "condorcet", "to": "maximin" },
+        { "from": "condorcet", "to": "dodgson" },
+        { "from": "manip",     "to": "gs" },
+        { "from": "manip",     "to": "spref" }
+      ]
+    },
+    {
+      "id": "chart-2",
+      "type": "flowchart",
+      "title": "Instant-Runoff Voting (IRV) Algorithm",
+      "description": "Step-by-step procedure for determining the winner under Instant-Runoff Voting (also known as STV with k=1).",
+      "nodes": [
+        { "id": "start",    "label": "Start: n voters,\nm candidates",          "shape": "terminal", "variant": "start",   "note": "We are given a set of voter rankings over m candidates and want to find the IRV winner." },
+        { "id": "init",     "label": "Initialise: all\ncandidates active",      "shape": "rect",                           "note": "Mark all m candidates as active. Each voter's current top preference is their highest-ranked candidate among active candidates." },
+        { "id": "count",    "label": "Count first-place\nvotes per candidate",  "shape": "rect",                           "note": "For each active candidate, count how many voters currently rank them first (among active candidates only)." },
+        { "id": "majority", "label": "Any candidate\nhas majority?",            "shape": "diamond",                        "note": "Check if any candidate has strictly more than n/2 first-place votes. A majority ensures a clear winner. For two remaining candidates, one always has a majority." },
+        { "id": "winner",   "label": "WINNER ELECTED",                          "shape": "terminal", "variant": "success", "note": "The candidate with a majority of first-place votes is elected as the IRV winner." },
+        { "id": "findmin",  "label": "Find candidate\nwith fewest votes",       "shape": "rect",                           "note": "Identify the active candidate with the fewest first-place votes. Use alphabetical or defined tie-breaking if multiple candidates are tied for last place." },
+        { "id": "elim",     "label": "Eliminate that\ncandidate",               "shape": "rect",                           "note": "Remove the weakest candidate from the election. All ballots that had this candidate ranked first now promote the next active candidate on their ballot." },
+        { "id": "remaining","label": "Only 1 candidate\nremains?",              "shape": "diamond",                        "note": "If only one candidate is still active, they win by default. In practice this case is covered by the majority check, but this guards against edge cases." },
+        { "id": "last",     "label": "LAST CANDIDATE\nWINS",                    "shape": "terminal", "variant": "success", "note": "The final remaining active candidate is elected as the IRV winner." }
+      ],
+      "edges": [
+        { "from": "start",    "to": "init" },
+        { "from": "init",     "to": "count" },
+        { "from": "count",    "to": "majority" },
+        { "from": "majority", "to": "winner",   "label": "Yes" },
+        { "from": "majority", "to": "findmin",  "label": "No" },
+        { "from": "findmin",  "to": "elim" },
+        { "from": "elim",     "to": "remaining" },
+        { "from": "remaining","to": "last",     "label": "Yes" },
+        { "from": "remaining","to": "count",    "label": "No" }
+      ]
+    },
+    {
+      "id": "chart-3",
+      "type": "flowchart",
+      "title": "Finding the Condorcet Winner",
+      "description": "Algorithm to determine whether a Condorcet winner exists in a given preference profile and identify it if so.",
+      "nodes": [
+        { "id": "start",   "label": "Start: preference\nprofile R, candidates C",  "shape": "terminal", "variant": "start",   "note": "We have a set of voter rankings over candidates and want to know if any candidate beats all others in pairwise majority comparisons." },
+        { "id": "pick",    "label": "Pick candidate c\nas Condorcet candidate",    "shape": "rect",                           "note": "Start with the first candidate as a potential Condorcet winner. We will test it against all others." },
+        { "id": "others",  "label": "Any untested\nopponent d remains?",           "shape": "diamond",                        "note": "Check whether there is still an opponent we have not compared c against in a head-to-head majority vote." },
+        { "id": "pairwise","label": "Count voters\npreferring c over d",           "shape": "rect",                           "note": "For each voter, check whether c is ranked above d. Count how many voters prefer c to d and how many prefer d to c." },
+        { "id": "beats",   "label": "Majority prefer\nc over d?",                  "shape": "diamond",                        "note": "If more than half the voters prefer c to d, then c wins the pairwise comparison. If not, c fails and cannot be the Condorcet winner." },
+        { "id": "next",    "label": "Mark d as tested,\ncontinue",                 "shape": "rect",                           "note": "c has beaten d. Move on to compare c against the next untested opponent." },
+        { "id": "fail",    "label": "c eliminated:\nnext candidate",               "shape": "rect",                           "note": "c has lost to d and cannot be the Condorcet winner. Move to the next untested candidate and start over." },
+        { "id": "more",    "label": "Untested candidates\nremain?",                "shape": "diamond",                        "note": "Check if there are any candidates we have not yet tried as a potential Condorcet winner." },
+        { "id": "found",   "label": "CONDORCET WINNER\nFOUND: c",                  "shape": "terminal", "variant": "success", "note": "Candidate c has beaten every other candidate in pairwise majority comparisons and is the unique Condorcet winner of this profile." },
+        { "id": "none",    "label": "NO CONDORCET\nWINNER EXISTS",                 "shape": "terminal", "variant": "failure", "note": "All candidates have been eliminated. There is no Condorcet winner — the profile likely contains a Condorcet cycle (majority preferences cycle: a beats b beats c beats a)." }
+      ],
+      "edges": [
+        { "from": "start",   "to": "pick" },
+        { "from": "pick",    "to": "others" },
+        { "from": "others",  "to": "pairwise", "label": "Yes" },
+        { "from": "pairwise","to": "beats" },
+        { "from": "beats",   "to": "next",     "label": "Yes" },
+        { "from": "beats",   "to": "fail",     "label": "No" },
+        { "from": "next",    "to": "others" },
+        { "from": "fail",    "to": "more" },
+        { "from": "others",  "to": "found",    "label": "No" },
+        { "from": "more",    "to": "pick",     "label": "Yes" },
+        { "from": "more",    "to": "none",     "label": "No" }
+      ]
+    },
+    {
+      "id": "chart-4",
+      "type": "flowchart",
+      "title": "Voting Rule Classification",
+      "description": "Taxonomy of single-winner voting rules by their type, properties, and Condorcet consistency.",
+      "nodes": [
+        { "id": "root",    "label": "Single-Winner\nVoting Rules",       "shape": "rect",     "note": "Single-winner voting rules take a preference profile and return one or more candidates as winners. They differ in what information they use and what axiomatic properties they satisfy." },
+        { "id": "psr",     "label": "Positional Scoring\nRules (PSR)",   "shape": "rect",     "note": "Positional scoring rules assign scores to candidates based solely on their position in each voter's ranking. They are defined by a scoring vector s = (s1, ..., sm) with s1 >= ... >= sm and s1 > sm." },
+        { "id": "elim2",   "label": "Elimination-Based\nMethods",        "shape": "rect",     "note": "Elimination-based methods iteratively remove candidates in rounds until a winner emerges. They use more of the preference information than PSRs but are computationally more complex." },
+        { "id": "cond",    "label": "Condorcet-Consistent\nMethods",     "shape": "rect",     "note": "Condorcet-consistent methods are defined to elect the Condorcet winner whenever one exists. They use pairwise majority information rather than positional scoring." },
+        { "id": "plur",    "label": "Plurality\n(1,0,...,0)",             "shape": "rect",     "note": "Plurality gives one point to each voter's top-ranked candidate. It is the simplest PSR but can elect candidates opposed by the majority when there are three or more candidates." },
+        { "id": "borda2",  "label": "Borda Count\n(m-1,...,1,0)",        "shape": "rect",     "note": "Borda count sums positional scores across all voters. It rewards broadly popular candidates but is susceptible to strategic manipulation by burying opponents." },
+        { "id": "veto",    "label": "Veto\n(1,...,1,0)",                  "shape": "rect",     "note": "Veto scoring gives each candidate one point from every voter except the one who ranked them last. Equivalent to penalising last-place rankings rather than rewarding top ones." },
+        { "id": "irv2",    "label": "IRV / STV",                          "shape": "rect",     "note": "Instant-Runoff Voting repeatedly eliminates the candidate with fewest first-place votes. Used in many real elections but can fail to elect the Condorcet winner." },
+        { "id": "cop",     "label": "Copeland Rule\n(pairwise wins)",     "shape": "rect",     "note": "Copeland scores candidates by the number of pairwise majority wins. It is Condorcet-consistent and easy to compute but can produce ties." },
+        { "id": "maximin2","label": "Maximin Rule\n(best worst-case)",   "shape": "rect",     "note": "Maximin elects the candidate whose worst pairwise support is highest. It is Condorcet-consistent and avoids candidates who are strongly disliked by some group." },
+        { "id": "dodg",    "label": "Dodgson Rule\n(min swaps)",          "shape": "rect",     "note": "Dodgson elects the candidate closest to being a Condorcet winner, measured by the minimum number of adjacent ballot swaps needed. Computing this is NP-hard." }
+      ],
+      "edges": [
+        { "from": "root",   "to": "psr" },
+        { "from": "root",   "to": "elim2" },
+        { "from": "root",   "to": "cond" },
+        { "from": "psr",    "to": "plur" },
+        { "from": "psr",    "to": "borda2" },
+        { "from": "psr",    "to": "veto" },
+        { "from": "elim2",  "to": "irv2" },
+        { "from": "cond",   "to": "cop" },
+        { "from": "cond",   "to": "maximin2" },
+        { "from": "cond",   "to": "dodg" }
+      ]
+    }
+  ]
+}

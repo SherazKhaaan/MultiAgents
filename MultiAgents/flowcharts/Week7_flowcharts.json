@@ -1,0 +1,135 @@
+{
+  "module": "MultiAgents",
+  "week": 7,
+  "title": "Fair Division — Divisible Goods and Cake Cutting",
+  "charts": [
+    {
+      "id": "chart-1",
+      "type": "mindmap",
+      "title": "Week 7 Topic Map",
+      "description": "High-level overview of all major topics in Week 7.",
+      "nodes": [
+        { "id": "root",    "label": "Week 7\nCake Cutting & Fair Division",  "note": "Week 7 introduces fair division for divisible goods (cake cutting). The cake is modelled as the unit interval with additive valuations. Core questions are which fairness criteria are achievable and what algorithms achieve them efficiently." },
+        { "id": "intro",   "label": "Intro to\nFair Division",               "note": "Fair division is a central MARA problem. Goods are classified by divisibility, temporal nature, sharability, and multiplicity. This week focuses on divisible, static, non-sharable goods in single units." },
+        { "id": "model",   "label": "Cake Cutting\nModel",                   "note": "The cake is the unit interval [0,1]. Each player has an additive, normalised valuation function over pieces, satisfying divisibility. Players can have different preferences over parts of the cake." },
+        { "id": "concepts","label": "Fairness\nCriteria",                    "note": "Four key criteria: proportionality (each agent gets at least 1/n value), envy-freeness (no agent prefers another's piece), equitability (all agents get equal value), Pareto-optimality (no Pareto improvement exists)." },
+        { "id": "relations","label": "Relationships\nBetween Criteria",      "note": "For 2 players, envy-freeness and proportionality are equivalent. For 3+ players, envy-freeness implies proportionality but not vice versa. Equitability and Pareto-optimality are independent of these." },
+        { "id": "rwmodel", "label": "Robertson-Webb\nQuery Model",           "note": "Complexity of cake-cutting is measured by Eval queries (how much does agent i value interval [x,y]?) and Cut queries (find y such that agent i values [x,y] at alpha). These are the atomic operations." },
+        { "id": "cc",      "label": "Cut-and-Choose\n(n=2)",                 "note": "Cut-and-Choose: player 1 cuts the cake in half (in their view); player 2 picks the preferred half. Achieves envy-freeness and proportionality with just 2 queries. Not equitable and not strategyproof." },
+        { "id": "ds",      "label": "Dubins-Spanier\nMoving Knife",          "note": "A referee moves a knife left to right; any player shouts Stop when the left piece is worth 1/n. They take it and exit. Guarantees proportionality in theta(n^2) queries. Not envy-free for n>2." },
+        { "id": "ep",      "label": "Even-Paz\nDivide & Conquer",            "note": "Each player marks where they see half the value; the median mark splits the players and cake. Recursed on each half. Achieves proportionality in optimal O(n log n) queries." },
+        { "id": "sc",      "label": "Selfridge-Conway\n(n=3, Envy-Free)",    "note": "Three-phase algorithm for exactly 3 players that guarantees envy-freeness. Much more complex than proportionality algorithms. Complexity is bounded constant." },
+        { "id": "nef",     "label": "Envy-Free for\nGeneral n",              "note": "Envy-free algorithms for n players exist (Aziz-Mackenzie 2016) but with astronomical complexity. The gap to the known lower bound of Omega(n^2) is unresolved." },
+        { "id": "sp",      "label": "Strategyproofness\nImpossibility",      "note": "No cake-cutting algorithm is simultaneously strategyproof, Pareto-optimal, and envy-free for 2+ agents. Cut-and-Choose, Dubins-Spanier, Even-Paz, and Selfridge-Conway are all not strategyproof." }
+      ],
+      "edges": [
+        { "from": "root",    "to": "intro" },
+        { "from": "root",    "to": "model" },
+        { "from": "root",    "to": "concepts" },
+        { "from": "root",    "to": "relations" },
+        { "from": "root",    "to": "rwmodel" },
+        { "from": "root",    "to": "cc" },
+        { "from": "root",    "to": "ds" },
+        { "from": "root",    "to": "ep" },
+        { "from": "root",    "to": "sc" },
+        { "from": "root",    "to": "nef" },
+        { "from": "root",    "to": "sp" }
+      ]
+    },
+    {
+      "id": "chart-2",
+      "type": "flowchart",
+      "title": "Cut-and-Choose Algorithm (2 Players)",
+      "description": "Simple 2-player cake cutting procedure achieving envy-freeness with 2 Robertson-Webb queries.",
+      "nodes": [
+        { "id": "start",  "label": "Start: 2 players,\ncake [0,1]",                          "shape": "terminal", "variant": "start",   "note": "We have two players each with additive normalised valuations over the cake. We want an envy-free, proportional allocation." },
+        { "id": "cut",    "label": "Player 1 makes a Cut query:\nfind point where v1 = 1/2", "shape": "rect",                           "note": "Player 1 issues a Cut query to find the point x such that they value [0,x] at exactly 1/2. This creates two pieces they consider equal." },
+        { "id": "eval",   "label": "Player 2 makes an Eval query:\ncompare v2([0,x]) vs v2([x,1])", "shape": "rect",                   "note": "Player 2 evaluates both pieces. They choose whichever piece they value more highly." },
+        { "id": "p2pref", "label": "Does Player 2\nprefer the left piece [0,x]?",            "shape": "diamond",                        "note": "Player 2 compares their valuation of the two pieces and selects the one they prefer. In case of a tie, either piece can be allocated." },
+        { "id": "p2left", "label": "Allocate [0,x] to Player 2,\n[x,1] to Player 1",        "shape": "terminal", "variant": "success", "note": "Player 2 gets their preferred piece. Player 1 gets the other. Since Player 1 valued both pieces equally, they do not envy Player 2 regardless of the choice." },
+        { "id": "p2right","label": "Allocate [x,1] to Player 2,\n[0,x] to Player 1",        "shape": "terminal", "variant": "success", "note": "Player 2 gets their preferred (right) piece. Player 1 gets the left piece. Both players are envy-free: Player 1 cut equally so doesn't envy; Player 2 got their top choice." }
+      ],
+      "edges": [
+        { "from": "start",  "to": "cut" },
+        { "from": "cut",    "to": "eval" },
+        { "from": "eval",   "to": "p2pref" },
+        { "from": "p2pref", "to": "p2left",  "label": "Yes" },
+        { "from": "p2pref", "to": "p2right", "label": "No" }
+      ]
+    },
+    {
+      "id": "chart-3",
+      "type": "flowchart",
+      "title": "Dubins-Spanier Moving Knife Algorithm",
+      "description": "Proportional cake-cutting for n players using a moving knife; theta(n^2) queries.",
+      "nodes": [
+        { "id": "start",  "label": "Start: n players,\nremainder [s,t]",                    "shape": "terminal", "variant": "start",   "note": "We have n players remaining and a cake interval [s,t] to divide proportionally. Initially s=0, t=1." },
+        { "id": "move",   "label": "Move knife from s\nrightward across [s,t]",             "shape": "rect",                           "note": "A referee moves a knife continuously from left to right across the remaining piece [s,t]. Each player watches the piece to the left of the knife." },
+        { "id": "stop",   "label": "Does any player shout\nStop! (left piece = 1/n)?",      "shape": "diamond",                        "note": "A player shouts Stop when the piece to the left of the knife is worth exactly 1/n to them (their proportional share). Ties are broken arbitrarily." },
+        { "id": "alloc",  "label": "Allocate left piece\nto shouting player; remove them",  "shape": "rect",                           "note": "The shouting player receives the piece to the left of the knife. They are satisfied (proportional share) and exit the game." },
+        { "id": "last",   "label": "Only one\nplayer left?",                                "shape": "diamond",                        "note": "Check if only one player remains. If so, they receive the rest of the cake. Their proportional share is at least 1/n by the argument that the knife would have stopped earlier otherwise." },
+        { "id": "remain", "label": "Remaining player\ngets [current s, t]",                 "shape": "terminal", "variant": "success", "note": "The last player gets the remaining piece. Since all previous pieces were worth at most 1/n to them (otherwise they would have shouted Stop earlier), the remainder is at least 1/n to them. Proportionality holds." }
+      ],
+      "edges": [
+        { "from": "start",  "to": "move" },
+        { "from": "move",   "to": "stop" },
+        { "from": "stop",   "to": "alloc",  "label": "Yes" },
+        { "from": "stop",   "to": "move",   "label": "No" },
+        { "from": "alloc",  "to": "last" },
+        { "from": "last",   "to": "remain", "label": "Yes" },
+        { "from": "last",   "to": "move",   "label": "No" }
+      ]
+    },
+    {
+      "id": "chart-4",
+      "type": "flowchart",
+      "title": "Even-Paz Divide-and-Conquer Algorithm",
+      "description": "Optimal proportional cake-cutting in O(n log n) Robertson-Webb queries using divide-and-conquer.",
+      "nodes": [
+        { "id": "start",    "label": "Start: n players,\ncake piece [s,t]",                  "shape": "terminal", "variant": "start",   "note": "We have n players and a cake interval [s,t] to divide proportionally. The algorithm splits both players and cake in half at each step, achieving O(n log n) total queries." },
+        { "id": "basecase", "label": "Is n = 1?",                                             "shape": "diamond",                        "note": "Base case: if only one player remains, they receive the entire current piece [s,t]. This is valid since they are guaranteed at least 1/n of the original cake by the induction argument." },
+        { "id": "allocall", "label": "Sole player\nreceives [s,t]",                          "shape": "terminal", "variant": "success", "note": "The single remaining player gets the whole remaining cake piece. Their proportional share is satisfied." },
+        { "id": "marks",    "label": "Each player makes a\nCut: find midpoint of their value", "shape": "rect",                          "note": "Each player issues a Cut query to find the point z_i such that they value [s, z_i] at exactly half of their total valuation of [s,t]. This uses n Cut queries." },
+        { "id": "median",   "label": "Find z*: the\nmedian mark (n/2-th from left)",         "shape": "rect",                           "note": "Sort the n marks and find the median z*. This is the (n/2)-th mark from the left." },
+        { "id": "split",    "label": "Left half n/2 players\nget [s,z*]; right get (z*,t]",  "shape": "rect",                           "note": "The n/2 players with marks at or left of z* are assigned to piece [s, z*]. The other n/2 go to (z*, t]. Each group values their assigned half at at least half the piece value." },
+        { "id": "recurse",  "label": "Recurse on each\nhalf independently",                  "shape": "rect",                           "note": "Apply Even-Paz recursively to each half. Each player is guaranteed at least 1/n of the original cake after log(n) levels of recursion." },
+        { "id": "done",     "label": "Proportional allocation\ncomplete in O(n log n)",      "shape": "terminal", "variant": "success", "note": "The recursion terminates with each player holding a piece worth at least 1/n. The total number of queries is O(n log n), which is optimal for proportional cake cutting." }
+      ],
+      "edges": [
+        { "from": "start",    "to": "basecase" },
+        { "from": "basecase", "to": "allocall", "label": "Yes" },
+        { "from": "basecase", "to": "marks",    "label": "No" },
+        { "from": "marks",    "to": "median" },
+        { "from": "median",   "to": "split" },
+        { "from": "split",    "to": "recurse" },
+        { "from": "recurse",  "to": "done" }
+      ]
+    },
+    {
+      "id": "chart-5",
+      "type": "flowchart",
+      "title": "Which Cake-Cutting Algorithm to Use?",
+      "description": "Decision guide for selecting the appropriate algorithm based on the number of players and desired guarantee.",
+      "nodes": [
+        { "id": "start",    "label": "How many\nplayers?",                                   "shape": "terminal", "variant": "start",   "note": "Choosing the right algorithm depends on the number of players, the desired fairness guarantee, and the acceptable computational cost." },
+        { "id": "two",      "label": "Exactly\n2 players?",                                  "shape": "diamond",                        "note": "Cut-and-Choose is optimal for 2 players: it achieves envy-freeness (hence proportionality) with only 2 Robertson-Webb queries." },
+        { "id": "three",    "label": "Exactly\n3 players?",                                  "shape": "diamond",                        "note": "For 3 players, if envy-freeness is required, Selfridge-Conway is the right choice. If proportionality suffices, Even-Paz is more efficient." },
+        { "id": "enfree",   "label": "Envy-freeness\nrequired?",                             "shape": "diamond",                        "note": "Envy-freeness is much harder to achieve than proportionality. For n>=4 players, only Aziz-Mackenzie guarantees envy-freeness, but at astronomically high complexity." },
+        { "id": "cc",       "label": "Use Cut-and-Choose:\n2 queries, EF + Proportional",   "shape": "terminal", "variant": "success", "note": "Cut-and-Choose uses 1 Cut + 1 Eval query and guarantees envy-freeness for 2 players." },
+        { "id": "selfridge","label": "Use Selfridge-Conway:\nconstant queries, EF for n=3",  "shape": "terminal", "variant": "success", "note": "Selfridge-Conway achieves envy-freeness for exactly 3 players in a bounded constant number of queries." },
+        { "id": "evenpaz",  "label": "Use Even-Paz:\nO(n log n), proportional, optimal",    "shape": "terminal", "variant": "success", "note": "Even-Paz achieves proportionality in O(n log n) queries, which is optimal. It does not guarantee envy-freeness for n>2." },
+        { "id": "azizmac",  "label": "Use Aziz-Mackenzie:\nenvy-free but huge complexity",   "shape": "terminal",                      "note": "Aziz-Mackenzie guarantees envy-freeness for any n but has extremely high complexity. Practical for small n only." }
+      ],
+      "edges": [
+        { "from": "start",  "to": "two" },
+        { "from": "two",    "to": "cc",        "label": "Yes" },
+        { "from": "two",    "to": "three",     "label": "No" },
+        { "from": "three",  "to": "selfridge", "label": "Yes, EF needed" },
+        { "from": "three",  "to": "evenpaz",   "label": "No, proportional ok" },
+        { "from": "three",  "to": "enfree",    "label": "n > 3" },
+        { "from": "enfree", "to": "azizmac",   "label": "Yes" },
+        { "from": "enfree", "to": "evenpaz",   "label": "No" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "module": "MultiAgents",
+  "week": 9,
+  "title": "Mechanism Design and Auctions",
+  "charts": [
+    {
+      "id": "chart-1",
+      "type": "mindmap",
+      "title": "Week 9 Topic Map",
+      "description": "High-level overview of all major topics in Week 9.",
+      "nodes": [
+        { "id": "root",    "label": "Week 9\nMechanism Design & Auctions",   "note": "Week 9 introduces mechanism design as reverse game theory: designing the rules so that equilibrium outcomes are socially desirable. Auctions are the central application, studied for efficiency, revenue, truthfulness, and robustness." },
+        { "id": "mechdes", "label": "Mechanism\nDesign",                     "note": "Mechanism design specifies action spaces, information flows, and payoff rules so that self-interested agents produce desired outcomes at equilibrium. It underpins auctions, voting systems, and resource allocation protocols." },
+        { "id": "single",  "label": "Single-Good\nAuctions",                 "note": "Four classic formats: English (ascending open-cry), Dutch (descending open-cry), first-price sealed-bid, and Vickrey (second-price sealed-bid). English is strategically equivalent to Vickrey; Dutch to first-price." },
+        { "id": "bayes",   "label": "Bayesian Games\n& BNE",                 "note": "Auctions are Bayesian games: each bidder has a private type (valuation) drawn from a common prior. A Bayes-Nash equilibrium is a strategy profile where each player maximises expected utility given beliefs about others' types." },
+        { "id": "vickrey", "label": "Vickrey Auction\n& Truthfulness",       "note": "In the second-price sealed-bid auction, bidding your true valuation is a weakly dominant strategy. The winner pays the second-highest bid, so overbidding and underbidding both weakly hurt. The auction is strategyproof." },
+        { "id": "revenue", "label": "Revenue\nEquivalence",                  "note": "Under i.i.d. continuous priors and risk neutrality, all four classic auction formats yield the same expected revenue to the seller. This theorem is a cornerstone of auction theory." },
+        { "id": "collude", "label": "Collusion &\nWinner's Curse",           "note": "Second-price/English auctions are vulnerable to bidder collusion (bidding rings). Dutch auctions resist collusion. Winner's curse: in common-value auctions, winning implies your estimate was the highest (probably an overestimate)." },
+        { "id": "vcg",     "label": "VCG Mechanism",                         "note": "VCG generalises Vickrey to multiple goods: allocate to maximise total welfare, then pay each agent the externality they impose on others. VCG is efficient, dominant-strategy truthful, individually rational, and weakly budget-balanced." },
+        { "id": "revprinc","label": "Revelation\nPrinciple",                 "note": "Any outcome implementable in BNE by some indirect mechanism can also be implemented by a direct, incentive-compatible mechanism where agents truthfully report their types. This justifies focusing on direct truthful mechanisms." },
+        { "id": "multiu",  "label": "Multi-Unit &\nCombinatorial Auctions",  "note": "Multi-unit auctions sell k identical goods; VCG reduces to the (k+1)-price auction. Combinatorial auctions sell multiple different goods and allow bidding on subsets, capturing complementarities between items." },
+        { "id": "double",  "label": "Double\nAuctions",                      "note": "Double auctions have both buyers and sellers. Equilibrium is where demand meets supply. Continuous double auctions underlie financial markets." }
+      ],
+      "edges": [
+        { "from": "root",    "to": "mechdes" },
+        { "from": "root",    "to": "single" },
+        { "from": "root",    "to": "bayes" },
+        { "from": "root",    "to": "vickrey" },
+        { "from": "root",    "to": "revenue" },
+        { "from": "root",    "to": "collude" },
+        { "from": "root",    "to": "vcg" },
+        { "from": "root",    "to": "revprinc" },
+        { "from": "root",    "to": "multiu" },
+        { "from": "root",    "to": "double" }
+      ]
+    },
+    {
+      "id": "chart-2",
+      "type": "flowchart",
+      "title": "Vickrey Auction: Why Truthful Bidding is Dominant",
+      "description": "Decision-based proof that bidding true valuation theta is weakly dominant in a second-price sealed-bid auction.",
+      "nodes": [
+        { "id": "start",   "label": "Bidder with valuation theta;\nconsider bidding b != theta", "shape": "terminal", "variant": "start",   "note": "In a second-price auction, the winner pays the second-highest bid (not their own). We show that deviating from truthful bidding b=theta can never strictly help." },
+        { "id": "truthwin","label": "Would bidding theta\ncause you to WIN?",                   "shape": "diamond",                        "note": "If your true value theta is above the second-highest bid, bidding truthfully wins. Consider whether deviating changes the outcome." },
+        { "id": "bidlower","label": "Bidding lower (b < theta):\ndoes it change who wins?",    "shape": "diamond",                        "note": "If you still win with b < theta (second price still below b), outcome unchanged. If you lose with b < theta (b falls below second price), you lose a positive-utility item. Bidding lower only hurts or is neutral." },
+        { "id": "bidhigher","label": "Bidding higher (b > theta):\nnow pay second price > theta?", "shape": "diamond",                   "note": "If you won with theta, bidding higher changes nothing (you still win, pay the same second price). If you lost with theta, bidding higher might make you win — but then you pay the second-highest bid, which exceeds your valuation theta. Negative utility." },
+        { "id": "neutral1","label": "No change:\ntruthful is weakly best",                     "shape": "terminal", "variant": "success", "note": "Deviating from theta when you would have won anyway makes no difference (you pay the same second price regardless of your bid, as long as you win)." },
+        { "id": "hurts1",  "label": "Deviation hurts:\nyou lose a positive-value item",        "shape": "terminal", "variant": "failure", "note": "By underbidding below the second price, you lose an item that would have given you positive utility (theta - second price > 0). Truthful bidding was better." },
+        { "id": "hurts2",  "label": "Deviation hurts:\nnegative utility if you win",           "shape": "terminal", "variant": "failure", "note": "By overbidding, you may win an item at a price above your valuation. You pay more than the item is worth to you. Truthful bidding was better." },
+        { "id": "concl",   "label": "Truthful bidding\nis weakly dominant",                    "shape": "terminal", "variant": "success", "note": "In all cases, bidding your true valuation theta is at least as good as any other bid. Truthful bidding is a weakly dominant strategy: no bid can strictly improve your expected utility." }
+      ],
+      "edges": [
+        { "from": "start",     "to": "truthwin" },
+        { "from": "truthwin",  "to": "bidlower",  "label": "Yes (you win)" },
+        { "from": "truthwin",  "to": "bidhigher", "label": "No (you lose)" },
+        { "from": "bidlower",  "to": "neutral1",  "label": "Still win" },
+        { "from": "bidlower",  "to": "hurts1",    "label": "Now lose" },
+        { "from": "bidhigher", "to": "concl",     "label": "Still lose" },
+        { "from": "bidhigher", "to": "hurts2",    "label": "Now win" },
+        { "from": "neutral1",  "to": "concl" },
+        { "from": "hurts1",    "to": "concl" },
+        { "from": "hurts2",    "to": "concl" }
+      ]
+    },
+    {
+      "id": "chart-3",
+      "type": "flowchart",
+      "title": "VCG Mechanism: Allocation and Transfers",
+      "description": "Step-by-step computation of allocations and payments in the VCG mechanism.",
+      "nodes": [
+        { "id": "start",   "label": "Start: n agents report\nvaluations theta-hat",            "shape": "terminal", "variant": "start",   "note": "Each agent i reports their valuation function theta-hat_i. Under dominant-strategy truthfulness, they report their true valuation. The mechanism uses these reports to compute allocation and payments." },
+        { "id": "alloc",   "label": "Compute efficient allocation:\nmaximise total reported welfare", "shape": "rect",                     "note": "Find the feasible allocation x* that maximises the sum of all agents' reported valuations. This is the allocation that would be chosen by a social planner who knew all valuations." },
+        { "id": "transfer","label": "For each agent i,\ncompute transfer t_i",                  "shape": "rect",                           "note": "The VCG transfer for agent i is the sum of other agents' welfare under x* minus the maximum total welfare of other agents without i. This equals the externality i imposes on others." },
+        { "id": "positive","label": "Is transfer t_i\npositive?",                               "shape": "diamond",                        "note": "The transfer can be positive (mechanism pays agent i) or negative (agent i pays the mechanism). In most auction settings, winners pay (negative transfer) and losers pay nothing." },
+        { "id": "agentpays","label": "Agent i pays |t_i|\nto the mechanism",                   "shape": "rect",                           "note": "A negative transfer means agent i pays the mechanism an amount equal to the harm their presence causes to other agents (e.g., displacing a higher-valued user)." },
+        { "id": "mechpays","label": "Mechanism pays t_i\nto agent i",                          "shape": "rect",                           "note": "A positive transfer is rare in standard auctions but can occur in settings where agent i's presence creates positive externalities for others." },
+        { "id": "utility", "label": "Agent i's utility:\nv(x_i, theta_i) + t_i",              "shape": "rect",                           "note": "Under quasi-linear utility, agent i's payoff is their value for the allocation plus their transfer. Truthful reporting maximises this under VCG regardless of others' reports." },
+        { "id": "done",    "label": "VCG outcome:\nefficient, truthful, IR",                   "shape": "terminal", "variant": "success", "note": "The VCG mechanism is efficient (maximises total welfare), dominant-strategy truthful (no agent benefits from misreporting), individually rational (all agents get non-negative utility), and weakly budget-balanced (never runs a deficit)." }
+      ],
+      "edges": [
+        { "from": "start",     "to": "alloc" },
+        { "from": "alloc",     "to": "transfer" },
+        { "from": "transfer",  "to": "positive" },
+        { "from": "positive",  "to": "mechpays", "label": "Yes" },
+        { "from": "positive",  "to": "agentpays","label": "No" },
+        { "from": "agentpays", "to": "utility" },
+        { "from": "mechpays",  "to": "utility" },
+        { "from": "utility",   "to": "done" }
+      ]
+    },
+    {
+      "id": "chart-4",
+      "type": "flowchart",
+      "title": "Auction Format Classification",
+      "description": "Taxonomy of auction formats by information revelation and payment rule.",
+      "nodes": [
+        { "id": "root",    "label": "Auction Formats\nClassification",                         "shape": "terminal", "variant": "start",  "note": "Auction formats differ in how bids are communicated (open or sealed) and how the winner pays (own bid or second-highest bid). Strategic equivalences exist between pairs of formats." },
+        { "id": "open",    "label": "Open-Cry\n(dynamic bidding)",                             "shape": "rect",                          "note": "Open-cry auctions reveal bids publicly in real time. Bidders can react to others' bids. Two types: ascending (English) and descending (Dutch)." },
+        { "id": "sealed",  "label": "Sealed-Bid\n(simultaneous)",                              "shape": "rect",                          "note": "Sealed-bid auctions collect all bids simultaneously without revealing them to others. Two types: first-price (pay own bid) and second-price (pay second-highest bid)." },
+        { "id": "english", "label": "English Auction:\nascending, winner pays own bid",         "shape": "rect",                          "note": "Price rises until only one bidder remains. Strategically equivalent to Vickrey: dominant strategy is to stay until price equals your valuation. Both give same equilibrium outcome." },
+        { "id": "dutch",   "label": "Dutch Auction:\ndescending, winner pays current price",   "shape": "rect",                          "note": "Price falls until a bidder accepts. Strategically equivalent to first-price sealed-bid: bidders face the same trade-off between winning probability and payment. Resistant to collusion." },
+        { "id": "firstpr", "label": "First-Price Sealed-Bid:\npay own bid, shade below value", "shape": "rect",                          "note": "Bidders submit sealed bids; highest wins and pays their own bid. BNE strategy is to shade bid to (n-1)/n times true value (for n bidders, uniform priors). Strategically equivalent to Dutch." },
+        { "id": "vickrey", "label": "Vickrey (Second-Price):\npay second-highest bid",         "shape": "terminal", "variant": "success","note": "Highest bidder wins but pays the second-highest bid. Truthful bidding is dominant. Strategically equivalent to English auction. Revenue equivalent to Dutch and first-price under standard assumptions." }
+      ],
+      "edges": [
+        { "from": "root",    "to": "open" },
+        { "from": "root",    "to": "sealed" },
+        { "from": "open",    "to": "english" },
+        { "from": "open",    "to": "dutch" },
+        { "from": "sealed",  "to": "firstpr" },
+        { "from": "sealed",  "to": "vickrey" },
+        { "from": "english", "to": "vickrey", "label": "equiv" },
+        { "from": "dutch",   "to": "firstpr", "label": "equiv" }
+      ]
+    }
+  ]
+}

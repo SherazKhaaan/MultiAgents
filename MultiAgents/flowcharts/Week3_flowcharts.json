@@ -1,0 +1,122 @@
+{
+  "module": "MultiAgents",
+  "week": 3,
+  "title": "Repeated and Extensive-Form Games",
+  "charts": [
+    {
+      "id": "chart-1",
+      "type": "mindmap",
+      "title": "Week 3 Topic Map",
+      "description": "High-level overview of all major topics in Week 3.",
+      "nodes": [
+        { "id": "root",     "label": "Week 3\nExtensive & Repeated Games",  "note": "Week 3 moves beyond simultaneous normal form games to sequential games (extensive form) and repeated interaction. Key new concepts are subgame-perfect equilibrium (ruling out non-credible threats) and the Folk Theorem intuition for repeated games." },
+        { "id": "efapps",   "label": "Extensive Form\nApplications",         "note": "Extensive form games model sequential, tree-structured interactions. They underpin AI game-tree search (minimax, alpha-beta), automated negotiation, reinforcement learning, and sequential auctions." },
+        { "id": "perfinfo", "label": "Perfect Information\nGames",            "note": "In perfect information games, every player knows the full history of moves when making a decision. The game is represented as a tree with nodes, edges, and terminal payoffs." },
+        { "id": "normalvs", "label": "Extensive vs\nNormal Form",             "note": "Any perfect-information extensive form game has an equivalent normal form (induced by enumerating pure strategies), but the normal form can be exponentially larger. Simultaneous games like Prisoner's Dilemma cannot be represented in perfect-information extensive form." },
+        { "id": "spe",      "label": "Subgame-Perfect\nEquilibrium",          "note": "SPE refines Nash equilibrium by requiring rational play in every subgame, not just on the equilibrium path. It rules out non-credible threats: a threat is non-credible if the threatening player would not actually carry it out when the time came." },
+        { "id": "repgames", "label": "Repeated\nGames",                       "note": "Repeated games model long-term interaction where the same stage game is played multiple times. Strategies can now depend on history, enabling cooperation to be sustained through reward-punishment schemes." },
+        { "id": "imperf",   "label": "Imperfect Information\nGames",          "note": "Imperfect information games allow players to be uncertain about which node they are at, captured by information sets. Any normal form game can be represented this way, and simultaneous games require it." },
+        { "id": "infrepeat","label": "Infinitely Repeated\nGames",            "note": "When a game is repeated infinitely (or with unknown end), backward induction no longer forces defection. Strategies like Tit-for-Tat and Grim Trigger can sustain cooperation as a Nash equilibrium when the discount factor is sufficiently large." },
+        { "id": "formaldef","label": "Formal Definition\n& Strategies",      "note": "An extensive form game is a tuple (N, A, H, Z, chi, rho, sigma, u). A pure strategy specifies an action at every node belonging to a player, even unreachable ones." },
+        { "id": "backinduct","label": "Backward\nInduction",                  "note": "Backward induction solves extensive form games by working from leaves to the root, choosing the optimal action at each node given downstream play. It runs in linear time in the tree size and always finds an SPE." },
+        { "id": "noncred",  "label": "Non-Credible\nThreats",                 "note": "A Nash equilibrium can involve a player threatening an off-path action they would never rationally take. SPE eliminates these by requiring optimality in every subgame." },
+        { "id": "infosets", "label": "Information\nSets",                     "note": "An information set groups nodes a player cannot distinguish. Strategies in imperfect information games specify one action per information set, not per node." },
+        { "id": "tft",      "label": "Tit-for-Tat &\nTrigger Strategy",      "note": "Tit-for-Tat mirrors the opponent's last move. Grim Trigger cooperates until the opponent defects, then defects forever. Both can sustain cooperation in infinitely repeated Prisoner's Dilemma for sufficiently high discount factors." },
+        { "id": "discounting","label": "Discount Factor\n& Payoffs",          "note": "In infinitely repeated games, payoffs are summed with a discount factor beta (0 to 1). Beta captures both time preference and the probability the game continues. Higher beta makes future payoffs matter more, supporting cooperation." }
+      ],
+      "edges": [
+        { "from": "root",     "to": "efapps" },
+        { "from": "root",     "to": "perfinfo" },
+        { "from": "root",     "to": "normalvs" },
+        { "from": "root",     "to": "spe" },
+        { "from": "root",     "to": "repgames" },
+        { "from": "root",     "to": "imperf" },
+        { "from": "root",     "to": "infrepeat" },
+        { "from": "perfinfo", "to": "formaldef" },
+        { "from": "spe",      "to": "backinduct" },
+        { "from": "spe",      "to": "noncred" },
+        { "from": "imperf",   "to": "infosets" },
+        { "from": "infrepeat","to": "tft" },
+        { "from": "infrepeat","to": "discounting" }
+      ]
+    },
+    {
+      "id": "chart-2",
+      "type": "flowchart",
+      "title": "Backward Induction: Computing SPE",
+      "description": "Algorithm for finding subgame-perfect equilibria by working backwards from terminal nodes.",
+      "nodes": [
+        { "id": "start",   "label": "Start: perfect-info\nextensive form game",         "shape": "terminal", "variant": "start",   "note": "We have a finite game tree with terminal payoffs. We want to find all subgame-perfect equilibria using backward induction." },
+        { "id": "leaves",  "label": "Identify all\nterminal nodes (leaves)",           "shape": "rect",                           "note": "Locate all leaf nodes of the game tree. These have known payoff vectors and require no decisions." },
+        { "id": "parent",  "label": "Find deepest\nunresolved choice node",            "shape": "rect",                           "note": "Select the lowest-level non-terminal node (closest to the leaves) whose children are all terminal or already resolved." },
+        { "id": "whose",   "label": "Determine which\nplayer chooses here",            "shape": "rect",                           "note": "Identify the player who moves at this node using the player function rho. This determines whose utility we maximise." },
+        { "id": "bestact", "label": "Select action\nmaximising player's payoff",       "shape": "rect",                           "note": "Among all actions available at this node, choose the one leading to the subtree with the highest payoff for the player who moves here. Record this as that player's SPE strategy at this node." },
+        { "id": "resolve", "label": "Replace node with\nchosen terminal payoff",       "shape": "rect",                           "note": "Treat this node as resolved by replacing it with the payoff vector of the chosen action. This simplifies the tree for further backward induction." },
+        { "id": "done",    "label": "Only root remains?",                              "shape": "diamond",                        "note": "Check if the entire game tree has been resolved. If only the root remains (or the root itself has been resolved), backward induction is complete." },
+        { "id": "speout",  "label": "SPE found:\nstrategy profile complete",           "shape": "terminal", "variant": "success", "note": "The collected action choices at every node form the unique subgame-perfect equilibrium strategy profile. Every NE involving non-credible threats has been ruled out." }
+      ],
+      "edges": [
+        { "from": "start",   "to": "leaves" },
+        { "from": "leaves",  "to": "parent" },
+        { "from": "parent",  "to": "whose" },
+        { "from": "whose",   "to": "bestact" },
+        { "from": "bestact", "to": "resolve" },
+        { "from": "resolve", "to": "done" },
+        { "from": "done",    "to": "parent", "label": "No" },
+        { "from": "done",    "to": "speout", "label": "Yes" }
+      ]
+    },
+    {
+      "id": "chart-3",
+      "type": "flowchart",
+      "title": "Is a Nash Equilibrium Subgame-Perfect?",
+      "description": "Decision procedure for checking whether a given NE involves non-credible threats and is therefore not an SPE.",
+      "nodes": [
+        { "id": "start",   "label": "Start: Nash equilibrium\nstrategy profile s",     "shape": "terminal", "variant": "start",   "note": "We have a candidate Nash equilibrium for an extensive form game and want to determine whether it is also a subgame-perfect equilibrium." },
+        { "id": "subgames","label": "Enumerate all\nsubgames of the game",             "shape": "rect",                           "note": "A subgame is the restriction of the game tree to the descendants of some non-terminal node. For perfect information games, every non-terminal node defines a subgame." },
+        { "id": "nextsg",  "label": "Select next\nunverified subgame G'",              "shape": "rect",                           "note": "Pick any subgame that has not yet been checked. The whole game is also a subgame." },
+        { "id": "restrict","label": "Restrict s to G':\nget strategy profile s'",     "shape": "rect",                           "note": "Extract the part of the strategy profile s that applies to nodes within subgame G'. This gives a strategy profile s' for the subgame." },
+        { "id": "isne",    "label": "Is s' a Nash\nequilibrium of G'?",               "shape": "diamond",                        "note": "Check whether s' is a Nash equilibrium within G': no player in G' can benefit by deviating unilaterally given the others' strategies in G'. If not, s involves a non-credible threat in G'." },
+        { "id": "more",    "label": "More subgames\nto check?",                        "shape": "diamond",                        "note": "If s' was a NE of G', move to the next subgame. Once all subgames have been verified, s is an SPE." },
+        { "id": "isspe",   "label": "s IS an SPE",                                    "shape": "terminal", "variant": "success", "note": "The strategy profile is rational in every subgame. It is a subgame-perfect equilibrium, free from non-credible threats." },
+        { "id": "notspe",  "label": "s is NOT an SPE\nNon-credible threat in G'",     "shape": "terminal", "variant": "failure", "note": "At least one subgame has a player who would deviate, meaning the strategy involves a non-credible threat. The equilibrium relies on a promise the player would not keep." }
+      ],
+      "edges": [
+        { "from": "start",   "to": "subgames" },
+        { "from": "subgames","to": "nextsg" },
+        { "from": "nextsg",  "to": "restrict" },
+        { "from": "restrict","to": "isne" },
+        { "from": "isne",    "to": "more",   "label": "Yes" },
+        { "from": "isne",    "to": "notspe", "label": "No" },
+        { "from": "more",    "to": "nextsg", "label": "Yes" },
+        { "from": "more",    "to": "isspe",  "label": "No" }
+      ]
+    },
+    {
+      "id": "chart-4",
+      "type": "flowchart",
+      "title": "Cooperation via Grim Trigger in Infinitely Repeated Game",
+      "description": "Decision procedure for determining whether mutual cooperation is sustainable as an SPE in an infinitely repeated Prisoner's Dilemma using the grim trigger strategy.",
+      "nodes": [
+        { "id": "start",   "label": "Start: stage game payoffs\nand continuation prob p",   "shape": "terminal", "variant": "start",   "note": "We have an infinitely repeated Prisoner's Dilemma. The stage game has payoffs: mutual cooperation gives R each, mutual defection gives P each, defecting against a cooperator gives T (temptation), cooperating against a defector gives S. The game continues after each round with probability p." },
+        { "id": "coop",    "label": "Compute payoff:\nalways cooperate vs trigger",         "shape": "rect",                           "note": "If both players use the trigger strategy and cooperate, the expected total payoff is R / (1-p) (geometric series). This is the cooperation payoff." },
+        { "id": "defect",  "label": "Compute payoff:\ndefect once then punished",           "shape": "rect",                           "note": "If a player defects once, they get T in round 1 (exploiting cooperator), then both defect forever giving P per round. Total payoff: T + p * P / (1-p)." },
+        { "id": "compare", "label": "Cooperation payoff\ngreater or equal\nto defection payoff?",    "shape": "diamond",                        "note": "Compare the cooperation payoff R/(1-p) against the deviation payoff T + p*P/(1-p). Cooperation is sustainable if and only if the cooperation payoff is at least as large." },
+        { "id": "solvep",  "label": "Solve for threshold\np* from the inequality",          "shape": "rect",                           "note": "Rearrange the inequality to isolate p. The result gives a critical probability p* such that cooperation is sustainable when p is at least p*." },
+        { "id": "check",   "label": "Is actual p\nabove threshold p*?",                     "shape": "diamond",                        "note": "Compare the given continuation probability p to the threshold p*. If p is at or above p*, the future payoff from sustained cooperation is worth more than one-time defection." },
+        { "id": "cansust", "label": "Cooperation IS\nsustainable as SPE",                   "shape": "terminal", "variant": "success", "note": "The grim trigger strategy constitutes a subgame-perfect equilibrium. Both players cooperate in every round, and neither has an incentive to deviate given the threat of permanent punishment." },
+        { "id": "cantsust","label": "Cooperation NOT\nsustainable; always defect",          "shape": "terminal", "variant": "failure", "note": "The continuation probability is too low for future punishment to deter defection. The unique SPE has both players defecting in every round, as in the one-shot game." }
+      ],
+      "edges": [
+        { "from": "start",   "to": "coop" },
+        { "from": "coop",    "to": "defect" },
+        { "from": "defect",  "to": "compare" },
+        { "from": "compare", "to": "solvep",  "label": "Solve" },
+        { "from": "solvep",  "to": "check" },
+        { "from": "check",   "to": "cansust", "label": "Yes" },
+        { "from": "check",   "to": "cantsust","label": "No" },
+        { "from": "compare", "to": "cansust", "label": "Always" }
+      ]
+    }
+  ]
+}

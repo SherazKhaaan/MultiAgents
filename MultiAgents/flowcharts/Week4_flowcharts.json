@@ -1,0 +1,124 @@
+{
+  "module": "MultiAgents",
+  "week": 4,
+  "title": "Cooperative Game Theory",
+  "charts": [
+    {
+      "id": "chart-1",
+      "type": "mindmap",
+      "title": "Week 4 Topic Map",
+      "description": "High-level overview of all major topics in Week 4.",
+      "nodes": [
+        { "id": "root",    "label": "Week 4\nCooperative Game Theory",   "note": "Week 4 shifts from non-cooperative to cooperative game theory. Players can form binding agreements and split jointly generated value. Key questions are which coalitions form, what value they generate, and how payoffs should be divided fairly and stably." },
+        { "id": "intro",   "label": "Cooperative vs\nNon-Cooperative",   "note": "Cooperative game theory assumes binding agreements are enforceable, eliminating the defection problem. The focus moves from individual strategies to coalition formation and payoff division." },
+        { "id": "tuvsNTU", "label": "TU vs NTU\nGames",                  "note": "Transferable utility (TU) games allow free redistribution of value via side payments. Non-transferable utility (NTU) games fix payoffs to individuals based on coalition actions. Most classical cooperative theory assumes TU." },
+        { "id": "formal",  "label": "TU Games:\nFormal Definition",      "note": "A TU game is a pair (N, v) where N is the player set and v is the characteristic function mapping every coalition to its maximum achievable value. An outcome is a coalition structure and payoff vector." },
+        { "id": "examples","label": "Game Examples",                     "note": "Canonical TU games include weighted voting games (win/lose coalitions), network flow games (max flow through coalition's edges), and graph-induced games (internal edge weights)." },
+        { "id": "classes", "label": "Special Game\nClasses",             "note": "Important classes: simple games (0-1 values), superadditive games (merging never hurts, incentivising grand coalition), and convex games (supermodular: adding a player to a bigger coalition is more valuable)." },
+        { "id": "core",    "label": "The Core",                          "note": "The core is the set of allocations no coalition can block by deviating and doing better on their own. Core outcomes are always efficient (maximise social welfare), but the core may be empty." },
+        { "id": "shapley", "label": "Shapley Value",                     "note": "The Shapley value assigns each player their average marginal contribution over all orderings of players. It is the unique allocation satisfying efficiency, null player, symmetry, and additivity." },
+        { "id": "banzhaf", "label": "Banzhaf Index",                     "note": "The Banzhaf index averages marginal contributions over all coalitions (not orderings). It satisfies null player, symmetry, and additivity, but not efficiency. Used as a power index in simple games." },
+        { "id": "imputation","label": "Imputations &\nIndividual Rationality", "note": "An imputation is an outcome satisfying individual rationality: every player receives at least what they could get alone. It is the minimum acceptability condition for any allocation." },
+        { "id": "supmod",  "label": "Superadditive &\nConvex Games",     "note": "Superadditive games ensure the grand coalition is optimal (merging coalitions never loses value). Convex games further ensure that a player's marginal contribution increases as they join a larger coalition." },
+        { "id": "emptycore","label": "Empty Core &\nStability Limits",   "note": "Some games, like the three-player majority game, have empty cores. No allocation is immune to deviation by some coalition. In these cases, other stability concepts or fairness criteria must be used." }
+      ],
+      "edges": [
+        { "from": "root",    "to": "intro" },
+        { "from": "root",    "to": "tuvsNTU" },
+        { "from": "root",    "to": "formal" },
+        { "from": "root",    "to": "examples" },
+        { "from": "root",    "to": "classes" },
+        { "from": "root",    "to": "core" },
+        { "from": "root",    "to": "shapley" },
+        { "from": "root",    "to": "banzhaf" },
+        { "from": "formal",  "to": "imputation" },
+        { "from": "classes", "to": "supmod" },
+        { "from": "core",    "to": "emptycore" }
+      ]
+    },
+    {
+      "id": "chart-2",
+      "type": "flowchart",
+      "title": "Checking if an Allocation is in the Core",
+      "description": "Procedure for verifying whether a given payoff vector is in the core of a TU game.",
+      "nodes": [
+        { "id": "start",   "label": "Start: TU game (N, v)\nand payoff vector x",           "shape": "terminal", "variant": "start",   "note": "We have a TU game with characteristic function v and a proposed allocation x. We want to check if x is in the core: no coalition should prefer to deviate." },
+        { "id": "effic",   "label": "Check efficiency:\nsum of x equals v(N)?",             "shape": "diamond",                        "note": "The allocation must distribute exactly v(N), the value of the grand coalition. If the sum is less than v(N), the grand coalition can deviate and do better collectively." },
+        { "id": "ircall",  "label": "Check individual rationality:\nx_i >= v({i}) for all i?","shape": "diamond",                       "note": "Every player must receive at least what they could achieve as a singleton coalition. If any player gets less than v({i}), they would prefer to go alone." },
+        { "id": "enum",    "label": "Enumerate all\ncoalitions C in 2^N",                  "shape": "rect",                           "note": "For the core check, every subset of players must be verified. There are 2^n coalitions in total. For small n this is feasible; for large n it becomes exponentially hard." },
+        { "id": "nextcol", "label": "Take next\nunverified coalition C",                   "shape": "rect",                           "note": "Consider the next coalition C that has not yet been checked for a blocking deviation." },
+        { "id": "blocks",  "label": "Does C block?\nsum x_i(C) < v(C)?",                  "shape": "diamond",                        "note": "Coalition C blocks if the total payoff its members receive under x is strictly less than v(C), meaning C can generate more value itself than it is allocated." },
+        { "id": "more",    "label": "More coalitions\nto check?",                          "shape": "diamond",                        "note": "If C did not block, check the remaining coalitions. If all have been verified, the allocation is in the core." },
+        { "id": "incore",  "label": "Allocation IS\nin the core",                          "shape": "terminal", "variant": "success", "note": "Every coalition receives at least its characteristic function value under x. The allocation is stable: no group of players has an incentive to deviate." },
+        { "id": "notcore", "label": "Allocation NOT in core\nCoalition C blocks",          "shape": "terminal", "variant": "failure", "note": "Coalition C can do better by itself than what it receives under x. The allocation is not in the core and is therefore unstable." }
+      ],
+      "edges": [
+        { "from": "start",   "to": "effic" },
+        { "from": "effic",   "to": "ircall",  "label": "Yes" },
+        { "from": "effic",   "to": "notcore", "label": "No" },
+        { "from": "ircall",  "to": "enum",    "label": "Yes" },
+        { "from": "ircall",  "to": "notcore", "label": "No" },
+        { "from": "enum",    "to": "nextcol" },
+        { "from": "nextcol", "to": "blocks" },
+        { "from": "blocks",  "to": "notcore", "label": "Yes" },
+        { "from": "blocks",  "to": "more",    "label": "No" },
+        { "from": "more",    "to": "nextcol", "label": "Yes" },
+        { "from": "more",    "to": "incore",  "label": "No" }
+      ]
+    },
+    {
+      "id": "chart-3",
+      "type": "flowchart",
+      "title": "Computing the Shapley Value",
+      "description": "Step-by-step procedure for computing each player's Shapley value in a TU game.",
+      "nodes": [
+        { "id": "start",   "label": "Start: TU game (N, v)\nn players",                    "shape": "terminal", "variant": "start",   "note": "We want to compute the Shapley value for each player, which gives a unique fair allocation based on average marginal contributions." },
+        { "id": "player",  "label": "Select next\nplayer i in N",                          "shape": "rect",                           "note": "Compute the Shapley value for player i. Repeat for all players." },
+        { "id": "perms",   "label": "Enumerate all\nn! permutations of N",                 "shape": "rect",                           "note": "List all n! orderings of the player set N. For each permutation, player i will join the coalition of all players who appear before i in that ordering." },
+        { "id": "nextperm","label": "Take next\npermutation pi",                           "shape": "rect",                           "note": "For this permutation pi, identify S(pi, i): the set of players appearing before player i in the ordering." },
+        { "id": "margcon", "label": "Compute marginal\ncontribution: v(S+i) - v(S)",      "shape": "rect",                           "note": "The marginal contribution of player i in permutation pi is v(S union {i}) - v(S), where S is the set of i's predecessors. This captures how much value i adds to the coalition already formed." },
+        { "id": "moreperm","label": "More permutations\nto process?",                      "shape": "diamond",                        "note": "Continue processing permutations until all n! orderings have been considered for player i." },
+        { "id": "average", "label": "Average marginal\ncontributions: divide by n!",       "shape": "rect",                           "note": "Sum all marginal contributions for player i and divide by n!. This expected marginal contribution is the Shapley value phi_i." },
+        { "id": "moreplyr","label": "More players\nto process?",                           "shape": "diamond",                        "note": "Repeat the procedure for all remaining players until the complete Shapley value vector has been computed." },
+        { "id": "done",    "label": "Shapley value\nvector complete",                      "shape": "terminal", "variant": "success", "note": "The Shapley value vector (phi_1, ..., phi_n) satisfies efficiency (sum = v(N)), null player, symmetry, and additivity. It is the unique fair allocation satisfying all four axioms." }
+      ],
+      "edges": [
+        { "from": "start",   "to": "player" },
+        { "from": "player",  "to": "perms" },
+        { "from": "perms",   "to": "nextperm" },
+        { "from": "nextperm","to": "margcon" },
+        { "from": "margcon", "to": "moreperm" },
+        { "from": "moreperm","to": "nextperm","label": "Yes" },
+        { "from": "moreperm","to": "average", "label": "No" },
+        { "from": "average", "to": "moreplyr" },
+        { "from": "moreplyr","to": "player",  "label": "Yes" },
+        { "from": "moreplyr","to": "done",    "label": "No" }
+      ]
+    },
+    {
+      "id": "chart-4",
+      "type": "flowchart",
+      "title": "TU Game Classification: Superadditive and Convex",
+      "description": "How to classify a TU game as simple, superadditive, or convex using formal checks.",
+      "nodes": [
+        { "id": "start",   "label": "Start: TU game\n(N, v)",                              "shape": "terminal", "variant": "start",   "note": "We want to classify the game according to structural properties that determine whether the grand coalition is incentivised and whether marginal contributions are increasing." },
+        { "id": "simple",  "label": "Is v(C) in {0,1}\nfor all coalitions C?",             "shape": "diamond",                        "note": "A simple game has binary outcomes: each coalition is either winning (value 1) or losing (value 0). Weighted voting games are the canonical example." },
+        { "id": "superadd","label": "Check superadditivity:\nv(S union T) >= v(S) + v(T)\nfor all disjoint S, T?", "shape": "diamond", "note": "Superadditivity means merging coalitions never destroys value. This incentivises players to form the grand coalition, so we can assume the grand coalition forms." },
+        { "id": "convex",  "label": "Check convexity:\nv(A union B) + v(A intersect B)\n>= v(A) + v(B) for all A, B?", "shape": "diamond", "note": "Convexity (supermodularity) means a player's marginal contribution is non-decreasing as they join a larger coalition. Convexity implies superadditivity but not vice versa." },
+        { "id": "issimple","label": "SIMPLE game:\nbinary values, monotone",               "shape": "terminal",                       "note": "The game has 0-1 payoffs. The Shapley value becomes the Shapley-Shubik power index measuring the probability a player is a swing voter." },
+        { "id": "issuper", "label": "SUPERADDITIVE:\ngrand coalition optimal",             "shape": "terminal",                       "note": "Merging coalitions never hurts. Players are incentivised to form the grand coalition. Payoff analysis can focus on allocations of v(N) among all players." },
+        { "id": "isconvex","label": "CONVEX:\nincreasing marginal returns",                "shape": "terminal", "variant": "success", "note": "The game is convex: joining a larger coalition is always at least as valuable. The core is non-empty, and the Shapley value always lies in the core for convex games." },
+        { "id": "general", "label": "GENERAL game:\nno special structure",                 "shape": "terminal",                       "note": "The game has no special structure. The core may be empty, and computing the Shapley value requires enumerating all n! permutations." }
+      ],
+      "edges": [
+        { "from": "start",   "to": "simple" },
+        { "from": "simple",  "to": "issimple",  "label": "Yes" },
+        { "from": "simple",  "to": "superadd",  "label": "No" },
+        { "from": "superadd","to": "convex",    "label": "Yes" },
+        { "from": "superadd","to": "general",   "label": "No" },
+        { "from": "convex",  "to": "isconvex",  "label": "Yes" },
+        { "from": "convex",  "to": "issuper",   "label": "No" }
+      ]
+    }
+  ]
+}

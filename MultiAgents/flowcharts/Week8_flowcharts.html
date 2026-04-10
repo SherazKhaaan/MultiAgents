@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MultiAgents — Week 8: Fair Division — Indivisible Goods</title>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dagre@0.8.5/dist/dagre.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  display: flex;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+  overflow: hidden;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+#sidebar {
+  width: 268px;
+  min-width: 268px;
+  background: #161b22;
+  border-right: 1px solid #30363d;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#sidebar-header {
+  padding: 20px 16px 14px;
+  border-bottom: 1px solid #30363d;
+  flex-shrink: 0;
+}
+.sb-module {
+  font-size: 0.67rem;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.sb-week  { font-size: 0.76rem; color: #8b949e; margin-bottom: 2px; }
+.sb-title { font-size: 0.96rem; font-weight: 700; color: #f0f6fc; line-height: 1.35; }
+.sb-count {
+  display: inline-block;
+  background: #21262d;
+  color: #8b949e;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 8px;
+  border: 1px solid #30363d;
+}
+
+#chart-list { padding: 8px 6px; flex: 1; overflow-y: auto; }
+#chart-list::-webkit-scrollbar { width: 3px; }
+#chart-list::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+
+.chart-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 2px;
+  transition: background 0.1s;
+  color: #8b949e;
+  user-select: none;
+  border: 1px solid transparent;
+}
+.chart-item:hover { background: #21262d; color: #c9d1d9; }
+.chart-item.active {
+  background: #1f3a6e;
+  color: #f0f6fc;
+  border-color: #388bfd;
+}
+.chart-item.active .ci-type { color: #79c0ff; opacity: 1; }
+.ci-icon  { font-size: 0.95rem; flex-shrink: 0; margin-top: 2px; }
+.ci-title { font-size: 0.83rem; font-weight: 600; line-height: 1.3; }
+.ci-type  { font-size: 0.66rem; opacity: 0.6; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.07em; }
+
+/* ── Main ────────────────────────────────────────────────────────────────── */
+#main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+#chart-header {
+  padding: 13px 22px 11px;
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  flex-shrink: 0;
+}
+#chart-title-el { font-size: 1rem; font-weight: 700; color: #79c0ff; margin-bottom: 2px; }
+#chart-desc-el  { font-size: 0.81rem; color: #8b949e; font-style: italic; }
+
+#diagram-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #0d1117;
+  background-image:
+    radial-gradient(circle at 1px 1px, #21262d 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+#diagram-svg { width: 100%; height: 100%; display: block; cursor: grab; }
+#diagram-svg:active { cursor: grabbing; }
+
+/* ── Zoom controls ───────────────────────────────────────────────────────── */
+#zoom-controls {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 10;
+}
+.zoom-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #30363d;
+  background: #161b22;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  transition: all 0.1s;
+  color: #8b949e;
+}
+.zoom-btn:hover { background: #21262d; color: #79c0ff; border-color: #388bfd; }
+
+/* ── Hint bar ────────────────────────────────────────────────────────────── */
+#hint {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: #484f58;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+#hint.hidden { opacity: 0; }
+
+.state-msg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #484f58;
+  font-size: 0.9rem;
+  text-align: center;
+  pointer-events: none;
+}
+.state-msg.err { color: #f85149; }
+
+/* ── Info panel (slides in from the left of the diagram area) ──────────── */
+#info-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 440px;
+  max-width: 50vw;
+  background: #161b22;
+  border-right: 1px solid #30363d;
+  z-index: 30;
+  transform: translateX(-100%);
+  transition: transform 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 12px 0 32px rgba(0, 0, 0, 0.45);
+}
+#info-panel.visible { transform: translateX(0); }
+
+#info-panel-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #21262d;
+  flex-shrink: 0;
+  position: relative;
+}
+#info-panel-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+#info-node-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 11px;
+  border-radius: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+  display: inline-block;
+}
+#info-node-label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f0f6fc;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.badge-decision { background: #2d2209; color: #e3b341; border: 1px solid #d29922; }
+.badge-step     { background: #0d1f38; color: #79c0ff; border: 1px solid #388bfd; }
+.badge-start    { background: #0d1f38; color: #79c0ff; border: 1px solid #388bfd; }
+.badge-success  { background: #0d1f12; color: #56d364; border: 1px solid #3fb950; }
+.badge-failure  { background: #1c0f0e; color: #ff7b72; border: 1px solid #f85149; }
+.badge-topic    { background: #1a1036; color: #c084fc; border: 1px solid #a371f7; }
+.badge-subtopic { background: #0d2020; color: #2dd4bf; border: 1px solid #14b8a6; }
+
+#info-close {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #8b949e;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.1s;
+}
+#info-close:hover { background: #21262d; color: #f0f6fc; border-color: #8b949e; }
+
+#info-panel-body {
+  padding: 20px 24px 24px;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: #30363d transparent;
+}
+#info-panel-body::-webkit-scrollbar { width: 6px; }
+#info-panel-body::-webkit-scrollbar-track { background: transparent; }
+#info-panel-body::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+#info-panel-body::-webkit-scrollbar-thumb:hover { background: #484f58; }
+
+#info-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #6e7681;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+#info-note-text {
+  font-size: 1rem;
+  color: #c9d1d9;
+  line-height: 1.75;
+}
+#info-note-text.empty {
+  color: #484f58;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div id="sidebar-header">
+    <div class="sb-module" id="sb-module"></div>
+    <div class="sb-week"   id="sb-week"></div>
+    <div class="sb-title"  id="sb-title"></div>
+    <div class="sb-count"  id="sb-count"></div>
+  </div>
+  <div id="chart-list"></div>
+</div>
+
+<div id="main">
+  <div id="chart-header">
+    <div id="chart-title-el">Select a chart</div>
+    <div id="chart-desc-el"></div>
+  </div>
+  <div id="diagram-area">
+    <svg id="diagram-svg"></svg>
+    <div id="zoom-controls">
+      <button class="zoom-btn" id="btn-zi" title="Zoom in">+</button>
+      <button class="zoom-btn" id="btn-zo" title="Zoom out">−</button>
+      <button class="zoom-btn" id="btn-zr" title="Fit to view">⊙</button>
+    </div>
+    <div id="hint">Scroll to zoom · Drag to pan · Click a node for details</div>
+    <div id="info-panel">
+      <div id="info-panel-header">
+        <div id="info-panel-header-top">
+          <span id="info-node-badge"></span>
+          <button id="info-close" title="Close (Esc)">✕</button>
+        </div>
+        <div id="info-node-label"></div>
+      </div>
+      <div id="info-panel-body">
+        <div id="info-section-label">Explanation</div>
+        <div id="info-note-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═════════════════════════════════════════════════════════════════════════════
+// DATA
+// ═════════════════════════════════════════════════════════════════════════════
+const DATA = {"module": "MultiAgents", "week": 8, "title": "Fair Division — Indivisible Goods", "charts": [{"id": "chart-1", "type": "mindmap", "title": "Week 8 Topic Map", "description": "High-level overview of all major topics in Week 8.", "nodes": [{"id": "root", "label": "Week 8\nFair Division: Indivisible Goods", "note": "Week 8 covers fair division when goods cannot be split. Exact fairness (envy-freeness, proportionality) is generally infeasible, so relaxed notions EF1 and PROP1 are studied. Round-Robin and Envy-Cycle Elimination both achieve EF1."}, {"id": "model", "label": "Indivisible Goods\nModel", "note": "An allocation problem has m indivisible goods and n agents with valuation functions. Additive valuations satisfy v(S) = sum of individual good values. The goal is a complete allocation (partition of goods) satisfying fairness criteria."}, {"id": "exact", "label": "Exact Fairness:\nEF and Proportionality", "note": "Envy-freeness (no agent prefers another's bundle) and proportionality (each gets 1/n of total value) are generally infeasible for indivisible goods. Example: 2 agents, 1 item — one agent must get nothing."}, {"id": "relax", "label": "Relaxed Fairness:\nEF1 and PROP1", "note": "EF1 (envy-free up to 1 good): removing some item from the envied bundle eliminates envy. PROP1 (proportional up to 1 good): adding one item reaches proportional share. For additive valuations, EF1 implies PROP1."}, {"id": "rr", "label": "Round-Robin\nAlgorithm", "note": "Agents take turns picking their favourite remaining item in a fixed order. Round-Robin achieves EF1 (and hence PROP1) for additive valuations in polynomial time. Not Pareto-optimal and not strategyproof."}, {"id": "ece", "label": "Envy-Cycle Elimination\n(ECE)", "note": "ECE works for monotone valuations (not just additive). It iteratively allocates items to agents with no incoming envy edges, using cycle reallocation (RAC) to eliminate cycles. Achieves EF1 in O(m*n^2) time."}, {"id": "welfare", "label": "Welfare\nConcepts", "note": "Three welfare measures: utilitarian (sum), egalitarian (minimum), Nash (product). Maximising utilitarian or Nash welfare yields Pareto-optimal allocations. Nash welfare maximiser additionally achieves EF1 for additive valuations."}, {"id": "efx", "label": "EFX: Envy-Free\nUp to Any Good", "note": "EFX strengthens EF1: removing ANY item from the envied bundle eliminates envy. EFX always exists for 2 or 3 agents with additive valuations. For 4+ agents it is an open problem — one of the most important unsolved questions in fair division."}, {"id": "mms", "label": "Maximin Share\n(MMS) Guarantee", "note": "The MMS of agent i is the best value i can guarantee if they cut the goods into n piles knowing they get the worst pile. MMS allocations always exist for n=2 but may not for n>=3. However, 3/4 of MMS can always be guaranteed."}, {"id": "envygraph", "label": "Envy Graph\n& RAC", "note": "The envy graph has an edge from i to j if i envies j. Reallocation along a cycle (RAC) rotates bundles around a cycle in the envy graph; the set of bundles doesn't change but all agents on the cycle improve."}, {"id": "nashwel", "label": "Nash Welfare:\nPO + EF1", "note": "The allocation maximising the product of utilities (Nash welfare) is always Pareto-optimal and EF1 for additive valuations. This makes it a particularly attractive objective combining fairness and efficiency."}], "edges": [{"from": "root", "to": "model"}, {"from": "root", "to": "exact"}, {"from": "root", "to": "relax"}, {"from": "root", "to": "rr"}, {"from": "root", "to": "ece"}, {"from": "root", "to": "welfare"}, {"from": "root", "to": "efx"}, {"from": "root", "to": "mms"}, {"from": "ece", "to": "envygraph"}, {"from": "welfare", "to": "nashwel"}]}, {"id": "chart-2", "type": "flowchart", "title": "Round-Robin Algorithm", "description": "Agents take turns picking favourite items; guarantees EF1 and PROP1 for additive valuations.", "nodes": [{"id": "start", "label": "Start: n agents, m goods,\nadditive valuations", "shape": "terminal", "variant": "start", "note": "We have n agents with additive valuations and m indivisible goods to allocate. We will use Round-Robin to guarantee EF1."}, {"id": "init", "label": "Fix ordering of agents;\nall goods unallocated", "shape": "rect", "note": "Choose a fixed picking order (e.g., 1, 2, ..., n, 1, 2, ...). This order is repeated until all goods are allocated."}, {"id": "goods", "label": "Any goods\nremaining?", "shape": "diamond", "note": "Check if there are still unallocated goods. If yes, the next agent in the picking order takes their turn. If no goods remain, the allocation is complete."}, {"id": "pick", "label": "Next agent picks\ntheir favourite remaining good", "shape": "rect", "note": "The current agent selects the unallocated good with the highest value to them (their most preferred remaining item) and adds it to their bundle."}, {"id": "done", "label": "EF1 allocation\ncomplete", "shape": "terminal", "variant": "success", "note": "Round-Robin has produced an EF1 (and PROP1 for additive valuations) complete allocation. Any earlier picker does not envy later pickers; any later picker does not envy the earlier picker after removing the earlier picker's first item."}], "edges": [{"from": "start", "to": "init"}, {"from": "init", "to": "goods"}, {"from": "goods", "to": "pick", "label": "Yes"}, {"from": "goods", "to": "done", "label": "No"}, {"from": "pick", "to": "goods"}]}, {"id": "chart-3", "type": "flowchart", "title": "Envy-Cycle Elimination (ECE) Algorithm", "description": "Achieves EF1 for monotone valuations by iteratively allocating to unenvied agents and eliminating envy cycles.", "nodes": [{"id": "start", "label": "Start: n agents,\nmonotone valuations, empty bundles", "shape": "terminal", "variant": "start", "note": "Initialise with empty bundles. An empty allocation is trivially EF1. We will maintain EF1 as we allocate items one by one."}, {"id": "items", "label": "Any items\nunallocated?", "shape": "diamond", "note": "If all items have been allocated, the algorithm terminates with an EF1 allocation. Otherwise, we need to allocate the next item while maintaining EF1."}, {"id": "cycle", "label": "Does the envy graph\ncontain a cycle?", "shape": "diamond", "note": "The envy graph has an edge from i to j if agent i envies agent j. In any finite graph where every node has at most one outgoing edge, there is either a cycle or a source (unenvied node)."}, {"id": "rac", "label": "Perform RAC:\nrotate bundles around cycle", "shape": "rect", "note": "Reallocation along the cycle gives each agent on the cycle the bundle of the next agent. Bundle sets don't change, so EF1 is preserved. The cycle is eliminated (at least one envy edge removed)."}, {"id": "unenvied", "label": "Find agent with\nno incoming envy edges", "shape": "rect", "note": "After cycle elimination, there must be a source node (agent no one envies) in the envy graph. Giving this agent an item cannot make others envy them (by monotonicity)."}, {"id": "alloc", "label": "Give unenvied agent\none unallocated item", "shape": "rect", "note": "Allocate any unallocated item to the unenvied agent. By monotonicity, adding an item to their bundle can only increase their value, preserving EF1 for all pairs."}, {"id": "done", "label": "EF1 allocation\ncomplete", "shape": "terminal", "variant": "success", "note": "All items allocated. The result is EF1 for monotone valuations. Total runtime is O(m * n^2): at most m item allocations, with up to n(n-1) RAC steps between each."}], "edges": [{"from": "start", "to": "items"}, {"from": "items", "to": "cycle", "label": "Yes"}, {"from": "items", "to": "done", "label": "No"}, {"from": "cycle", "to": "rac", "label": "Yes"}, {"from": "cycle", "to": "unenvied", "label": "No"}, {"from": "rac", "to": "cycle"}, {"from": "unenvied", "to": "alloc"}, {"from": "alloc", "to": "items"}]}, {"id": "chart-4", "type": "flowchart", "title": "Fairness Concepts: Strength Hierarchy", "description": "Classification of fairness concepts from strongest to weakest for indivisible goods.", "nodes": [{"id": "root", "label": "Fairness Concepts\nfor Indivisible Goods", "shape": "terminal", "variant": "start", "note": "Multiple fairness concepts exist for indivisible goods, ranging from the ideal (exact envy-freeness) to always-achievable relaxations. Stronger concepts give better guarantees but are harder or impossible to achieve."}, {"id": "ef", "label": "EF: Envy-Free\n(exact, rarely achievable)", "shape": "rect", "note": "No agent prefers any other agent's bundle. Generally infeasible for indivisible goods: with 2 agents and 1 item, at least one agent is envious. The gold standard but rarely achievable."}, {"id": "efx", "label": "EFX: EF up to any\ngood (open problem for n>=4)", "shape": "rect", "note": "Removing any single item from the envied bundle eliminates envy. Stronger than EF1. Exists for n=2 (monotone) and n=3 (additive). Whether it exists for n>=4 with additive valuations is unsolved."}, {"id": "ef1", "label": "EF1: EF up to\none good (always achievable)", "shape": "rect", "note": "There exists some item in the envied bundle whose removal eliminates envy. Always achievable for additive (Round-Robin) and monotone (ECE) valuations in polynomial time."}, {"id": "prop", "label": "PROP: Proportional\n(rarely achievable)", "shape": "rect", "note": "Each agent values their bundle at at least 1/n of the total. Generally infeasible for indivisible goods, just like exact envy-freeness."}, {"id": "prop1", "label": "PROP1: Proportional\nup to 1 good", "shape": "rect", "note": "Adding one item to an agent's bundle reaches their proportional share. For additive valuations, EF1 plus completeness implies PROP1."}, {"id": "mms", "label": "MMS: Maximin Share\n(not always achievable for n>=3)", "shape": "terminal", "variant": "success", "note": "Each agent values their bundle at least as much as the value they would guarantee if they cut the goods into n piles and got the worst pile. Always achievable for n=2; counterexamples exist for n>=3 but 3/4 of MMS is always achievable."}], "edges": [{"from": "root", "to": "ef", "label": "strongest"}, {"from": "ef", "to": "efx", "label": "implies"}, {"from": "efx", "to": "ef1", "label": "implies"}, {"from": "ef", "to": "prop", "label": "implies (additive)"}, {"from": "prop", "to": "prop1", "label": "implies"}, {"from": "ef1", "to": "prop1", "label": "implies (additive + complete)"}, {"from": "prop1", "to": "mms", "label": "weakest"}]}]};
+
+// ═════════════════════════════════════════════════════════════════════════════
+// COLOUR PALETTE
+// ═════════════════════════════════════════════════════════════════════════════
+const C = {
+  // Flowchart node fill / stroke / text by role
+  node: {
+    default:  { fill: '#1c2333', stroke: '#388bfd', text: '#79c0ff' },
+    decision: { fill: '#1c1f2b', stroke: '#d29922', text: '#e3b341' },
+    success:  { fill: '#0d1f12', stroke: '#3fb950', text: '#56d364' },
+    failure:  { fill: '#1c0f0e', stroke: '#f85149', text: '#ff7b72' },
+    start:    { fill: '#0d1f38', stroke: '#388bfd', text: '#79c0ff' },
+  },
+  // Mindmap level colours
+  levels: ['#388bfd','#3fb950','#d29922','#a371f7','#f78166','#56d364','#79c0ff'],
+  edge:      '#30363d',
+  edgeHover: '#58a6ff',
+  edgeLabel: '#8b949e',
+  arrow:     '#484f58',
+  bg:        '#0d1117',
+  surface:   '#161b22',
+};
+
+// ═════════════════════════════════════════════════════════════════════════════
+// TEXT MEASUREMENT
+// ═════════════════════════════════════════════════════════════════════════════
+const _c = document.createElement('canvas').getContext('2d');
+function measure(text, fs = 13, fw = '500') {
+  _c.font = `${fw} ${fs}px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif`;
+  const lines = String(text).split('\n');
+  return {
+    w: Math.max(...lines.map(l => _c.measureText(l).width)),
+    h: lines.length * (fs * 1.45),
+    lines,
+  };
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SVG + ZOOM
+// ═════════════════════════════════════════════════════════════════════════════
+const svg   = d3.select('#diagram-svg');
+const root  = svg.append('g').attr('id', 'root-layer');
+
+const zoom = d3.zoom()
+  .scaleExtent([0.04, 12])
+  .on('zoom', ev => root.attr('transform', ev.transform));
+
+svg.call(zoom)
+   .on('dblclick.zoom', () => fitAll());
+
+function fitAll() {
+  const svgEl = svg.node();
+  const W = svgEl.clientWidth  || 900;
+  const H = svgEl.clientHeight || 600;
+  const bb = root.node().getBBox();
+  if (!bb.width || !bb.height) return;
+  const scale = Math.min(0.88 * W / bb.width, 0.88 * H / bb.height, 4);
+  const tx = W / 2 - (bb.x + bb.width  / 2) * scale;
+  const ty = H / 2 - (bb.y + bb.height / 2) * scale;
+  svg.transition().duration(380)
+     .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+}
+
+document.getElementById('btn-zi').addEventListener('click', () =>
+  svg.transition().duration(220).call(zoom.scaleBy, 1.45));
+document.getElementById('btn-zo').addEventListener('click', () =>
+  svg.transition().duration(220).call(zoom.scaleBy, 0.69));
+document.getElementById('btn-zr').addEventListener('click', fitAll);
+
+// ═════════════════════════════════════════════════════════════════════════════
+// INFO PANEL
+// ═════════════════════════════════════════════════════════════════════════════
+const infoPanel = document.getElementById('info-panel');
+const infoLabel = document.getElementById('info-node-label');
+const infoBadge = document.getElementById('info-node-badge');
+const infoNote  = document.getElementById('info-note-text');
+const hintEl    = document.getElementById('hint');
+
+function badgeFor(node, depth) {
+  if (depth !== undefined) {
+    // Mindmap node
+    if (depth === 0) return { text: 'Root',      cls: 'badge-start' };
+    if (depth === 1) return { text: 'Main Topic', cls: 'badge-topic' };
+    return               { text: 'Sub-topic',   cls: 'badge-subtopic' };
+  }
+  if (node.shape === 'diamond')                    return { text: 'Decision',    cls: 'badge-decision' };
+  if (node.shape === 'terminal' && node.variant === 'success') return { text: 'Success',    cls: 'badge-success'  };
+  if (node.shape === 'terminal' && node.variant === 'failure') return { text: 'Failure',    cls: 'badge-failure'  };
+  if (node.shape === 'terminal')                   return { text: 'Start / End', cls: 'badge-start'    };
+  return                                                   { text: 'Step',       cls: 'badge-step'     };
+}
+
+function showInfo(node, depth) {
+  const label = (node.label || '').replace(/\n/g, ' ');
+  infoLabel.textContent = label;
+
+  const b = badgeFor(node, depth);
+  infoBadge.textContent  = b.text;
+  infoBadge.className    = 'badge-class ' + b.cls; // reset then set
+
+  if (node.note) {
+    infoNote.textContent = node.note;
+    infoNote.className   = '';
+  } else {
+    infoNote.textContent = 'No description available for this node.';
+    infoNote.className   = 'empty';
+  }
+
+  infoPanel.classList.add('visible');
+  hintEl.classList.add('hidden');
+}
+
+function hideInfo() {
+  infoPanel.classList.remove('visible');
+  hintEl.classList.remove('hidden');
+}
+
+document.getElementById('info-close').addEventListener('click', hideInfo);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') hideInfo(); });
+
+// Click on SVG background closes panel
+svg.on('click', (event) => {
+  if (event.target === svg.node() || event.target.id === 'root-layer') hideInfo();
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SIDEBAR
+// ═════════════════════════════════════════════════════════════════════════════
+document.getElementById('sb-module').textContent = DATA.module;
+document.getElementById('sb-week'  ).textContent = 'Week ' + DATA.week;
+document.getElementById('sb-title' ).textContent = DATA.title;
+document.getElementById('sb-count' ).textContent =
+  DATA.charts.length + ' chart' + (DATA.charts.length !== 1 ? 's' : '');
+
+const ICONS = { mindmap: '🧠', flowchart: '📊', graph: '🔗' };
+const listEl = document.getElementById('chart-list');
+let firstSel = null;
+
+DATA.charts.forEach((chart, i) => {
+  const el = document.createElement('div');
+  el.className = 'chart-item';
+  el.innerHTML =
+    `<span class="ci-icon">${ICONS[chart.type] || '📋'}</span>
+     <div>
+       <div class="ci-title">${chart.title}</div>
+       <div class="ci-type">${chart.type}</div>
+     </div>`;
+  el.addEventListener('click', () => selectChart(chart, el));
+  listEl.appendChild(el);
+  if (i === 0) firstSel = { chart, el };
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SELECTION
+// ═════════════════════════════════════════════════════════════════════════════
+function selectChart(chart, itemEl) {
+  document.querySelectorAll('.chart-item').forEach(e => e.classList.remove('active'));
+  itemEl.classList.add('active');
+  document.getElementById('chart-title-el').textContent = chart.title;
+  document.getElementById('chart-desc-el' ).textContent = chart.description || '';
+
+  root.selectAll('*').remove();
+
+  if (chart.type === 'mindmap') renderMindmap(chart);
+  else                          renderFlowchart(chart);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// MINDMAP  (D3 radial tree)
+// ═════════════════════════════════════════════════════════════════════════════
+function renderMindmap(chart) {
+  const svgW = svg.node().clientWidth  || 900;
+  const svgH = svg.node().clientHeight || 600;
+  const R    = Math.min(svgW, svgH) * 0.40;
+
+  // Build parent-child map
+  const byId  = Object.fromEntries(chart.nodes.map(n => [n.id, { ...n, _children: [] }]));
+  const hasParent = new Set(chart.edges.map(e => e.to));
+  chart.edges.forEach(e => { if (byId[e.from] && byId[e.to]) byId[e.from]._children.push(byId[e.to]); });
+  const rootNode = chart.nodes.find(n => !hasParent.has(n.id)) || chart.nodes[0];
+
+  // D3 hierarchy + radial tree
+  const hier = d3.hierarchy(byId[rootNode.id], d => d._children.length ? d._children : null);
+  d3.tree()
+    .size([2 * Math.PI, R])
+    .separation((a, b) => (a.parent === b.parent ? 1.2 : 2.4) / a.depth)
+    (hier);
+
+  // ── Defs: drop shadow ──────────────────────────────────────────────────────
+  const defs = root.append('defs');
+  const filt = defs.append('filter').attr('id', 'mm-shadow').attr('x', '-20%').attr('y', '-20%').attr('width', '140%').attr('height', '140%');
+  filt.append('feDropShadow').attr('dx', 0).attr('dy', 2).attr('stdDeviation', 4).attr('flood-color', '#000').attr('flood-opacity', 0.5);
+
+  // ── Group centered ─────────────────────────────────────────────────────────
+  const grp = root.append('g').attr('transform', `translate(${svgW / 2},${svgH / 2})`);
+
+  // ── Links ──────────────────────────────────────────────────────────────────
+  const linkRadial = d3.linkRadial().angle(d => d.x).radius(d => d.y);
+
+  grp.append('g').selectAll('path')
+    .data(hier.links())
+    .join('path')
+    .attr('d', linkRadial)
+    .attr('fill', 'none')
+    .attr('stroke', d => C.levels[Math.min(d.target.depth - 1, C.levels.length - 1)])
+    .attr('stroke-width', d => Math.max(1, 3 - d.target.depth * 0.8))
+    .attr('opacity', 0.4)
+    .attr('stroke-linecap', 'round');
+
+  // ── Nodes ──────────────────────────────────────────────────────────────────
+  const nodeG = grp.append('g').selectAll('g')
+    .data(hier.descendants())
+    .join('g')
+    .attr('transform', d => {
+      const a = d.x - Math.PI / 2;
+      return `translate(${d.y * Math.cos(a)},${d.y * Math.sin(a)})`;
+    })
+    .style('cursor', 'default');
+
+  nodeG.each(function(d) {
+    const g      = d3.select(this);
+    const depth  = d.depth;
+    const label  = d.data.label || '';
+    const color  = depth === 0 ? C.levels[0] : C.levels[Math.min(depth - 1, C.levels.length - 1)];
+    const fs     = depth === 0 ? 15 : depth === 1 ? 12.5 : 11;
+    const fw     = depth <= 1 ? '700' : '500';
+    const m      = measure(label, fs, fw);
+    const px     = depth === 0 ? 18 : 12;
+    const py     = depth === 0 ? 12 : 8;
+    const rw     = m.w + px * 2;
+    const rh     = m.h + py * 2;
+
+    if (depth === 0) {
+      // Root: filled pill with glow
+      g.append('rect')
+        .attr('x', -rw / 2).attr('y', -rh / 2)
+        .attr('width', rw).attr('height', rh)
+        .attr('rx', rh / 2)
+        .attr('fill', color)
+        .attr('filter', 'url(#mm-shadow)');
+    } else {
+      // Child: bordered pill
+      g.append('rect')
+        .attr('x', -rw / 2).attr('y', -rh / 2)
+        .attr('width', rw).attr('height', rh)
+        .attr('rx', Math.min(rh / 2, 10))
+        .attr('fill', color + '18')
+        .attr('stroke', color)
+        .attr('stroke-width', 1.5);
+    }
+
+    // Text
+    m.lines.forEach((line, i) => {
+      const yOff = (i - (m.lines.length - 1) / 2) * (fs * 1.45);
+      g.append('text')
+        .text(line)
+        .attr('y', yOff)
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'middle')
+        .attr('font-size', fs + 'px')
+        .attr('font-weight', fw)
+        .attr('fill', depth === 0 ? '#fff' : color)
+        .attr('font-family', "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif");
+    });
+
+    // Hover + click
+    const shapeEl = g.select(depth === 0 ? 'rect' : 'rect');
+    g.style('cursor', 'pointer')
+     .on('mouseenter', function() {
+        shapeEl.transition().duration(120)
+          .attr('fill', depth === 0 ? d3.color(color).brighter(0.3) : color + '32');
+      })
+     .on('mouseleave', function() {
+        shapeEl.transition().duration(120)
+          .attr('fill', depth === 0 ? color : color + '18');
+      })
+     .on('click', function(event) {
+        event.stopPropagation();
+        showInfo(d.data, depth);
+      });
+  });
+
+  setTimeout(fitAll, 60);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// FLOWCHART  (Dagre layout + custom D3 SVG)
+// ═════════════════════════════════════════════════════════════════════════════
+function renderFlowchart(chart) {
+  const FS    = 13;
+  const PX    = 22;
+  const PY    = 13;
+  const DPAD  = 1.5; // diamond size multiplier
+
+  // ── Compute node sizes ────────────────────────────────────────────────────
+  const info = {};
+  chart.nodes.forEach(n => {
+    const m  = measure(n.label || '', FS);
+    let w    = Math.max(m.w + PX * 2, 90);
+    let h    = Math.max(m.h + PY * 2, 38);
+    if (n.shape === 'diamond') { w = (w + 20) * DPAD; h = (h + 10) * DPAD; }
+    info[n.id] = { ...m, w, h };
+  });
+
+  // ── Dagre graph ───────────────────────────────────────────────────────────
+  const gd = new dagre.graphlib.Graph({ multigraph: true });
+  gd.setGraph({ rankdir: 'TB', nodesep: 55, ranksep: 75, marginx: 50, marginy: 50, edgesep: 20 });
+  gd.setDefaultEdgeLabel(() => ({}));
+
+  chart.nodes.forEach(n  => gd.setNode(n.id, { width: info[n.id].w, height: info[n.id].h }));
+  chart.edges.forEach((e, i) => gd.setEdge(e.from, e.to, { label: e.label || '' }, 'e' + i));
+
+  dagre.layout(gd);
+
+  // ── Defs ──────────────────────────────────────────────────────────────────
+  const defs  = root.append('defs');
+
+  // Arrowhead
+  defs.append('marker')
+    .attr('id', 'arr').attr('viewBox', '0 -5 10 10')
+    .attr('refX', 8).attr('refY', 0)
+    .attr('markerWidth', 6).attr('markerHeight', 6)
+    .attr('orient', 'auto')
+    .append('path').attr('d', 'M0,-5L10,0L0,5').attr('fill', C.arrow);
+
+  // Glow filter for highlighted nodes
+  const glow = defs.append('filter').attr('id', 'glow').attr('x', '-30%').attr('y', '-30%').attr('width', '160%').attr('height', '160%');
+  glow.append('feGaussianBlur').attr('in', 'SourceGraphic').attr('stdDeviation', '3').attr('result', 'blur');
+  glow.append('feComposite').attr('in', 'SourceGraphic').attr('in2', 'blur').attr('operator', 'over');
+
+  // ── Edges ─────────────────────────────────────────────────────────────────
+  const edgeG = root.append('g').attr('class', 'edges');
+  const lineGen = d3.line().curve(d3.curveCatmullRom.alpha(0.5))
+    .x(d => d.x).y(d => d.y);
+
+  gd.edges().forEach(e => {
+    const ed  = gd.edge(e);
+    if (!ed || !ed.points || ed.points.length < 2) return;
+    const pts = ed.points;
+
+    edgeG.append('path')
+      .attr('d', lineGen(pts))
+      .attr('fill', 'none')
+      .attr('stroke', C.edge)
+      .attr('stroke-width', 1.5)
+      .attr('stroke-linecap', 'round')
+      .attr('marker-end', 'url(#arr)');
+
+    if (ed.label) {
+      const mid = pts[Math.floor(pts.length / 2)];
+      edgeG.append('text')
+        .text(ed.label)
+        .attr('x', mid.x + 6).attr('y', mid.y - 5)
+        .attr('font-size', '11px')
+        .attr('font-weight', '600')
+        .attr('fill', C.edgeLabel)
+        .attr('font-family', "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif");
+    }
+  });
+
+  // ── Nodes ─────────────────────────────────────────────────────────────────
+  const nodeG = root.append('g').attr('class', 'nodes');
+
+  chart.nodes.forEach(n => {
+    const pos    = gd.node(n.id);
+    if (!pos) return;
+    const ninfo  = info[n.id];
+    const w      = pos.width;
+    const h      = pos.height;
+    const cx     = pos.x;
+    const cy     = pos.y;
+
+    // Pick colours
+    let pal;
+    if (n.shape === 'diamond')       pal = C.node.decision;
+    else if (n.variant === 'success') pal = C.node.success;
+    else if (n.variant === 'failure') pal = C.node.failure;
+    else if (n.variant === 'start')   pal = C.node.start;
+    else                              pal = C.node.default;
+
+    const g = nodeG.append('g')
+      .attr('transform', `translate(${cx - w/2},${cy - h/2})`)
+      .style('cursor', 'default');
+
+    // ── Shape ──────────────────────────────────────────────────────────────
+    if (n.shape === 'diamond') {
+      const hx = w / 2, hy = h / 2;
+      g.append('polygon')
+        .attr('points', `${hx},1 ${w-1},${hy} ${hx},${h-1} 1,${hy}`)
+        .attr('fill', pal.fill)
+        .attr('stroke', pal.stroke)
+        .attr('stroke-width', 1.5);
+    } else if (n.shape === 'terminal') {
+      g.append('rect')
+        .attr('x', 0).attr('y', 0)
+        .attr('width', w).attr('height', h)
+        .attr('rx', h / 2)
+        .attr('fill', pal.fill)
+        .attr('stroke', pal.stroke)
+        .attr('stroke-width', 1.5);
+    } else {
+      g.append('rect')
+        .attr('x', 0).attr('y', 0)
+        .attr('width', w).attr('height', h)
+        .attr('rx', 8)
+        .attr('fill', pal.fill)
+        .attr('stroke', pal.stroke)
+        .attr('stroke-width', 1.5);
+    }
+
+    // ── Label ──────────────────────────────────────────────────────────────
+    const textG = g.append('g').attr('transform', `translate(${w/2},${h/2})`);
+    ninfo.lines.forEach((line, li) => {
+      textG.append('text')
+        .text(line)
+        .attr('y', (li - (ninfo.lines.length - 1) / 2) * (FS * 1.45))
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'middle')
+        .attr('font-size', FS + 'px')
+        .attr('font-weight', n.shape === 'terminal' ? '700' : '500')
+        .attr('fill', pal.text)
+        .attr('font-family', "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif");
+    });
+
+    // ── Hover glow + click ─────────────────────────────────────────────────
+    const shape = g.select(n.shape === 'diamond' ? 'polygon' : 'rect');
+    g.style('cursor', 'pointer')
+     .on('mouseenter', () => shape.attr('filter', 'url(#glow)').attr('stroke-width', 2.2))
+     .on('mouseleave', () => shape.attr('filter', null).attr('stroke-width', 1.5))
+     .on('click', function(event) {
+        event.stopPropagation();
+        showInfo(n);
+      });
+  });
+
+  setTimeout(fitAll, 60);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// INIT
+// ═════════════════════════════════════════════════════════════════════════════
+if (firstSel) setTimeout(() => selectChart(firstSel.chart, firstSel.el), 120);
+</script>
+</body>
+</html>

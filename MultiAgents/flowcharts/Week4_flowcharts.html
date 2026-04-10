@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MultiAgents — Week 4: Cooperative Game Theory</title>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dagre@0.8.5/dist/dagre.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  display: flex;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+  overflow: hidden;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+#sidebar {
+  width: 268px;
+  min-width: 268px;
+  background: #161b22;
+  border-right: 1px solid #30363d;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#sidebar-header {
+  padding: 20px 16px 14px;
+  border-bottom: 1px solid #30363d;
+  flex-shrink: 0;
+}
+.sb-module {
+  font-size: 0.67rem;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.sb-week  { font-size: 0.76rem; color: #8b949e; margin-bottom: 2px; }
+.sb-title { font-size: 0.96rem; font-weight: 700; color: #f0f6fc; line-height: 1.35; }
+.sb-count {
+  display: inline-block;
+  background: #21262d;
+  color: #8b949e;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 8px;
+  border: 1px solid #30363d;
+}
+
+#chart-list { padding: 8px 6px; flex: 1; overflow-y: auto; }
+#chart-list::-webkit-scrollbar { width: 3px; }
+#chart-list::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+
+.chart-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 2px;
+  transition: background 0.1s;
+  color: #8b949e;
+  user-select: none;
+  border: 1px solid transparent;
+}
+.chart-item:hover { background: #21262d; color: #c9d1d9; }
+.chart-item.active {
+  background: #1f3a6e;
+  color: #f0f6fc;
+  border-color: #388bfd;
+}
+.chart-item.active .ci-type { color: #79c0ff; opacity: 1; }
+.ci-icon  { font-size: 0.95rem; flex-shrink: 0; margin-top: 2px; }
+.ci-title { font-size: 0.83rem; font-weight: 600; line-height: 1.3; }
+.ci-type  { font-size: 0.66rem; opacity: 0.6; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.07em; }
+
+/* ── Main ────────────────────────────────────────────────────────────────── */
+#main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+#chart-header {
+  padding: 13px 22px 11px;
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  flex-shrink: 0;
+}
+#chart-title-el { font-size: 1rem; font-weight: 700; color: #79c0ff; margin-bottom: 2px; }
+#chart-desc-el  { font-size: 0.81rem; color: #8b949e; font-style: italic; }
+
+#diagram-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #0d1117;
+  background-image:
+    radial-gradient(circle at 1px 1px, #21262d 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+#diagram-svg { width: 100%; height: 100%; display: block; cursor: grab; }
+#diagram-svg:active { cursor: grabbing; }
+
+/* ── Zoom controls ───────────────────────────────────────────────────────── */
+#zoom-controls {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 10;
+}
+.zoom-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #30363d;
+  background: #161b22;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  transition: all 0.1s;
+  color: #8b949e;
+}
+.zoom-btn:hover { background: #21262d; color: #79c0ff; border-color: #388bfd; }
+
+/* ── Hint bar ────────────────────────────────────────────────────────────── */
+#hint {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: #484f58;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+#hint.hidden { opacity: 0; }
+
+.state-msg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #484f58;
+  font-size: 0.9rem;
+  text-align: center;
+  pointer-events: none;
+}
+.state-msg.err { color: #f85149; }
+
+/* ── Info panel (slides in from the left of the diagram area) ──────────── */
+#info-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 440px;
+  max-width: 50vw;
+  background: #161b22;
+  border-right: 1px solid #30363d;
+  z-index: 30;
+  transform: translateX(-100%);
+  transition: transform 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 12px 0 32px rgba(0, 0, 0, 0.45);
+}
+#info-panel.visible { transform: translateX(0); }
+
+#info-panel-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #21262d;
+  flex-shrink: 0;
+  position: relative;
+}
+#info-panel-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+#info-node-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 11px;
+  border-radius: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+  display: inline-block;
+}
+#info-node-label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f0f6fc;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.badge-decision { background: #2d2209; color: #e3b341; border: 1px solid #d29922; }
+.badge-step     { background: #0d1f38; color: #79c0ff; border: 1px solid #388bfd; }
+.badge-start    { background: #0d1f38; color: #79c0ff; border: 1px solid #388bfd; }
+.badge-success  { background: #0d1f12; color: #56d364; border: 1px solid #3fb950; }
+.badge-failure  { background: #1c0f0e; color: #ff7b72; border: 1px solid #f85149; }
+.badge-topic    { background: #1a1036; color: #c084fc; border: 1px solid #a371f7; }
+.badge-subtopic { background: #0d2020; color: #2dd4bf; border: 1px solid #14b8a6; }
+
+#info-close {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #8b949e;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.1s;
+}
+#info-close:hover { background: #21262d; color: #f0f6fc; border-color: #8b949e; }
+
+#info-panel-body {
+  padding: 20px 24px 24px;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: #30363d transparent;
+}
+#info-panel-body::-webkit-scrollbar { width: 6px; }
+#info-panel-body::-webkit-scrollbar-track { background: transparent; }
+#info-panel-body::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+#info-panel-body::-webkit-scrollbar-thumb:hover { background: #484f58; }
+
+#info-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #6e7681;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+#info-note-text {
+  font-size: 1rem;
+  color: #c9d1d9;
+  line-height: 1.75;
+}
+#info-note-text.empty {
+  color: #484f58;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div id="sidebar-header">
+    <div class="sb-module" id="sb-module"></div>
+    <div class="sb-week"   id="sb-week"></div>
+    <div class="sb-title"  id="sb-title"></div>
+    <div class="sb-count"  id="sb-count"></div>
+  </div>
+  <div id="chart-list"></div>
+</div>
+
+<div id="main">
+  <div id="chart-header">
+    <div id="chart-title-el">Select a chart</div>
+    <div id="chart-desc-el"></div>
+  </div>
+  <div id="diagram-area">
+    <svg id="diagram-svg"></svg>
+    <div id="zoom-controls">
+      <button class="zoom-btn" id="btn-zi" title="Zoom in">+</button>
+      <button class="zoom-btn" id="btn-zo" title="Zoom out">−</button>
+      <button class="zoom-btn" id="btn-zr" title="Fit to view">⊙</button>
+    </div>
+    <div id="hint">Scroll to zoom · Drag to pan · Click a node for details</div>
+    <div id="info-panel">
+      <div id="info-panel-header">
+        <div id="info-panel-header-top">
+          <span id="info-node-badge"></span>
+          <button id="info-close" title="Close (Esc)">✕</button>
+        </div>
+        <div id="info-node-label"></div>
+      </div>
+      <div id="info-panel-body">
+        <div id="info-section-label">Explanation</div>
+        <div id="info-note-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═════════════════════════════════════════════════════════════════════════════
+// DATA
+// ═════════════════════════════════════════════════════════════════════════════
+const DATA = {"module": "MultiAgents", "week": 4, "title": "Cooperative Game Theory", "charts": [{"id": "chart-1", "type": "mindmap", "title": "Week 4 Topic Map", "description": "High-level overview of all major topics in Week 4.", "nodes": [{"id": "root", "label": "Week 4\nCooperative Game Theory", "note": "Week 4 shifts from non-cooperative to cooperative game theory. Players can form binding agreements and split jointly generated value. Key questions are which coalitions form, what value they generate, and how payoffs should be divided fairly and stably."}, {"id": "intro", "label": "Cooperative vs\nNon-Cooperative", "note": "Cooperative game theory assumes binding agreements are enforceable, eliminating the defection problem. The focus moves from individual strategies to coalition formation and payoff division."}, {"id": "tuvsNTU", "label": "TU vs NTU\nGames", "note": "Transferable utility (TU) games allow free redistribution of value via side payments. Non-transferable utility (NTU) games fix payoffs to individuals based on coalition actions. Most classical cooperative theory assumes TU."}, {"id": "formal", "label": "TU Games:\nFormal Definition", "note": "A TU game is a pair (N, v) where N is the player set and v is the characteristic function mapping every coalition to its maximum achievable value. An outcome is a coalition structure and payoff vector."}, {"id": "examples", "label": "Game Examples", "note": "Canonical TU games include weighted voting games (win/lose coalitions), network flow games (max flow through coalition's edges), and graph-induced games (internal edge weights)."}, {"id": "classes", "label": "Special Game\nClasses", "note": "Important classes: simple games (0-1 values), superadditive games (merging never hurts, incentivising grand coalition), and convex games (supermodular: adding a player to a bigger coalition is more valuable)."}, {"id": "core", "label": "The Core", "note": "The core is the set of allocations no coalition can block by deviating and doing better on their own. Core outcomes are always efficient (maximise social welfare), but the core may be empty."}, {"id": "shapley", "label": "Shapley Value", "note": "The Shapley value assigns each player their average marginal contribution over all orderings of players. It is the unique allocation satisfying efficiency, null player, symmetry, and additivity."}, {"id": "banzhaf", "label": "Banzhaf Index", "note": "The Banzhaf index averages marginal contributions over all coalitions (not orderings). It satisfies null player, symmetry, and additivity, but not efficiency. Used as a power index in simple games."}, {"id": "imputation", "label": "Imputations &\nIndividual Rationality", "note": "An imputation is an outcome satisfying individual rationality: every player receives at least what they could get alone. It is the minimum acceptability condition for any allocation."}, {"id": "supmod", "label": "Superadditive &\nConvex Games", "note": "Superadditive games ensure the grand coalition is optimal (merging coalitions never loses value). Convex games further ensure that a player's marginal contribution increases as they join a larger coalition."}, {"id": "emptycore", "label": "Empty Core &\nStability Limits", "note": "Some games, like the three-player majority game, have empty cores. No allocation is immune to deviation by some coalition. In these cases, other stability concepts or fairness criteria must be used."}], "edges": [{"from": "root", "to": "intro"}, {"from": "root", "to": "tuvsNTU"}, {"from": "root", "to": "formal"}, {"from": "root", "to": "examples"}, {"from": "root", "to": "classes"}, {"from": "root", "to": "core"}, {"from": "root", "to": "shapley"}, {"from": "root", "to": "banzhaf"}, {"from": "formal", "to": "imputation"}, {"from": "classes", "to": "supmod"}, {"from": "core", "to": "emptycore"}]}, {"id": "chart-2", "type": "flowchart", "title": "Checking if an Allocation is in the Core", "description": "Procedure for verifying whether a given payoff vector is in the core of a TU game.", "nodes": [{"id": "start", "label": "Start: TU game (N, v)\nand payoff vector x", "shape": "terminal", "variant": "start", "note": "We have a TU game with characteristic function v and a proposed allocation x. We want to check if x is in the core: no coalition should prefer to deviate."}, {"id": "effic", "label": "Check efficiency:\nsum of x equals v(N)?", "shape": "diamond", "note": "The allocation must distribute exactly v(N), the value of the grand coalition. If the sum is less than v(N), the grand coalition can deviate and do better collectively."}, {"id": "ircall", "label": "Check individual rationality:\nx_i >= v({i}) for all i?", "shape": "diamond", "note": "Every player must receive at least what they could achieve as a singleton coalition. If any player gets less than v({i}), they would prefer to go alone."}, {"id": "enum", "label": "Enumerate all\ncoalitions C in 2^N", "shape": "rect", "note": "For the core check, every subset of players must be verified. There are 2^n coalitions in total. For small n this is feasible; for large n it becomes exponentially hard."}, {"id": "nextcol", "label": "Take next\nunverified coalition C", "shape": "rect", "note": "Consider the next coalition C that has not yet been checked for a blocking deviation."}, {"id": "blocks", "label": "Does C block?\nsum x_i(C) < v(C)?", "shape": "diamond", "note": "Coalition C blocks if the total payoff its members receive under x is strictly less than v(C), meaning C can generate more value itself than it is allocated."}, {"id": "more", "label": "More coalitions\nto check?", "shape": "diamond", "note": "If C did not block, check the remaining coalitions. If all have been verified, the allocation is in the core."}, {"id": "incore", "label": "Allocation IS\nin the core", "shape": "terminal", "variant": "success", "note": "Every coalition receives at least its characteristic function value under x. The allocation is stable: no group of players has an incentive to deviate."}, {"id": "notcore", "label": "Allocation NOT in core\nCoalition C blocks", "shape": "terminal", "variant": "failure", "note": "Coalition C can do better by itself than what it receives under x. The allocation is not in the core and is therefore unstable."}], "edges": [{"from": "start", "to": "effic"}, {"from": "effic", "to": "ircall", "label": "Yes"}, {"from": "effic", "to": "notcore", "label": "No"}, {"from": "ircall", "to": "enum", "label": "Yes"}, {"from": "ircall", "to": "notcore", "label": "No"}, {"from": "enum", "to": "nextcol"}, {"from": "nextcol", "to": "blocks"}, {"from": "blocks", "to": "notcore", "label": "Yes"}, {"from": "blocks", "to": "more", "label": "No"}, {"from": "more", "to": "nextcol", "label": "Yes"}, {"from": "more", "to": "incore", "label": "No"}]}, {"id": "chart-3", "type": "flowchart", "title": "Computing the Shapley Value", "description": "Step-by-step procedure for computing each player's Shapley value in a TU game.", "nodes": [{"id": "start", "label": "Start: TU game (N, v)\nn players", "shape": "terminal", "variant": "start", "note": "We want to compute the Shapley value for each player, which gives a unique fair allocation based on average marginal contributions."}, {"id": "player", "label": "Select next\nplayer i in N", "shape": "rect", "note": "Compute the Shapley value for player i. Repeat for all players."}, {"id": "perms", "label": "Enumerate all\nn! permutations of N", "shape": "rect", "note": "List all n! orderings of the player set N. For each permutation, player i will join the coalition of all players who appear before i in that ordering."}, {"id": "nextperm", "label": "Take next\npermutation pi", "shape": "rect", "note": "For this permutation pi, identify S(pi, i): the set of players appearing before player i in the ordering."}, {"id": "margcon", "label": "Compute marginal\ncontribution: v(S+i) - v(S)", "shape": "rect", "note": "The marginal contribution of player i in permutation pi is v(S union {i}) - v(S), where S is the set of i's predecessors. This captures how much value i adds to the coalition already formed."}, {"id": "moreperm", "label": "More permutations\nto process?", "shape": "diamond", "note": "Continue processing permutations until all n! orderings have been considered for player i."}, {"id": "average", "label": "Average marginal\ncontributions: divide by n!", "shape": "rect", "note": "Sum all marginal contributions for player i and divide by n!. This expected marginal contribution is the Shapley value phi_i."}, {"id": "moreplyr", "label": "More players\nto process?", "shape": "diamond", "note": "Repeat the procedure for all remaining players until the complete Shapley value vector has been computed."}, {"id": "done", "label": "Shapley value\nvector complete", "shape": "terminal", "variant": "success", "note": "The Shapley value vector (phi_1, ..., phi_n) satisfies efficiency (sum = v(N)), null player, symmetry, and additivity. It is the unique fair allocation satisfying all four axioms."}], "edges": [{"from": "start", "to": "player"}, {"from": "player", "to": "perms"}, {"from": "perms", "to": "nextperm"}, {"from": "nextperm", "to": "margcon"}, {"from": "margcon", "to": "moreperm"}, {"from": "moreperm", "to": "nextperm", "label": "Yes"}, {"from": "moreperm", "to": "average", "label": "No"}, {"from": "average", "to": "moreplyr"}, {"from": "moreplyr", "to": "player", "label": "Yes"}, {"from": "moreplyr", "to": "done", "label": "No"}]}, {"id": "chart-4", "type": "flowchart", "title": "TU Game Classification: Superadditive and Convex", "description": "How to classify a TU game as simple, superadditive, or convex using formal checks.", "nodes": [{"id": "start", "label": "Start: TU game\n(N, v)", "shape": "terminal", "variant": "start", "note": "We want to classify the game according to structural properties that determine whether the grand coalition is incentivised and whether marginal contributions are increasing."}, {"id": "simple", "label": "Is v(C) in {0,1}\nfor all coalitions C?", "shape": "diamond", "note": "A simple game has binary outcomes: each coalition is either winning (value 1) or losing (value 0). Weighted voting games are the canonical example."}, {"id": "superadd", "label": "Check superadditivity:\nv(S union T) >= v(S) + v(T)\nfor all disjoint S, T?", "shape": "diamond", "note": "Superadditivity means merging coalitions never destroys value. This incentivises players to form the grand coalition, so we can assume the grand coalition forms."}, {"id": "convex", "label": "Check convexity:\nv(A union B) + v(A intersect B)\n>= v(A) + v(B) for all A, B?", "shape": "diamond", "note": "Convexity (supermodularity) means a player's marginal contribution is non-decreasing as they join a larger coalition. Convexity implies superadditivity but not vice versa."}, {"id": "issimple", "label": "SIMPLE game:\nbinary values, monotone", "shape": "terminal", "note": "The game has 0-1 payoffs. The Shapley value becomes the Shapley-Shubik power index measuring the probability a player is a swing voter."}, {"id": "issuper", "label": "SUPERADDITIVE:\ngrand coalition optimal", "shape": "terminal", "note": "Merging coalitions never hurts. Players are incentivised to form the grand coalition. Payoff analysis can focus on allocations of v(N) among all players."}, {"id": "isconvex", "label": "CONVEX:\nincreasing marginal returns", "shape": "terminal", "variant": "success", "note": "The game is convex: joining a larger coalition is always at least as valuable. The core is non-empty, and the Shapley value always lies in the core for convex games."}, {"id": "general", "label": "GENERAL game:\nno special structure", "shape": "terminal", "note": "The game has no special structure. The core may be empty, and computing the Shapley value requires enumerating all n! permutations."}], "edges": [{"from": "start", "to": "simple"}, {"from": "simple", "to": "issimple", "label": "Yes"}, {"from": "simple", "to": "superadd", "label": "No"}, {"from": "superadd", "to": "convex", "label": "Yes"}, {"from": "superadd", "to": "general", "label": "No"}, {"from": "convex", "to": "isconvex", "label": "Yes"}, {"from": "convex", "to": "issuper", "label": "No"}]}]};
+
+// ═════════════════════════════════════════════════════════════════════════════
+// COLOUR PALETTE
+// ═════════════════════════════════════════════════════════════════════════════
+const C = {
+  // Flowchart node fill / stroke / text by role
+  node: {
+    default:  { fill: '#1c2333', stroke: '#388bfd', text: '#79c0ff' },
+    decision: { fill: '#1c1f2b', stroke: '#d29922', text: '#e3b341' },
+    success:  { fill: '#0d1f12', stroke: '#3fb950', text: '#56d364' },
+    failure:  { fill: '#1c0f0e', stroke: '#f85149', text: '#ff7b72' },
+    start:    { fill: '#0d1f38', stroke: '#388bfd', text: '#79c0ff' },
+  },
+  // Mindmap level colours
+  levels: ['#388bfd','#3fb950','#d29922','#a371f7','#f78166','#56d364','#79c0ff'],
+  edge:      '#30363d',
+  edgeHover: '#58a6ff',
+  edgeLabel: '#8b949e',
+  arrow:     '#484f58',
+  bg:        '#0d1117',
+  surface:   '#161b22',
+};
+
+// ═════════════════════════════════════════════════════════════════════════════
+// TEXT MEASUREMENT
+// ═════════════════════════════════════════════════════════════════════════════
+const _c = document.createElement('canvas').getContext('2d');
+function measure(text, fs = 13, fw = '500') {
+  _c.font = `${fw} ${fs}px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif`;
+  const lines = String(text).split('\n');
+  return {
+    w: Math.max(...lines.map(l => _c.measureText(l).width)),
+    h: lines.length * (fs * 1.45),
+    lines,
+  };
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SVG + ZOOM
+// ═════════════════════════════════════════════════════════════════════════════
+const svg   = d3.select('#diagram-svg');
+const root  = svg.append('g').attr('id', 'root-layer');
+
+const zoom = d3.zoom()
+  .scaleExtent([0.04, 12])
+  .on('zoom', ev => root.attr('transform', ev.transform));
+
+svg.call(zoom)
+   .on('dblclick.zoom', () => fitAll());
+
+function fitAll() {
+  const svgEl = svg.node();
+  const W = svgEl.clientWidth  || 900;
+  const H = svgEl.clientHeight || 600;
+  const bb = root.node().getBBox();
+  if (!bb.width || !bb.height) return;
+  const scale = Math.min(0.88 * W / bb.width, 0.88 * H / bb.height, 4);
+  const tx = W / 2 - (bb.x + bb.width  / 2) * scale;
+  const ty = H / 2 - (bb.y + bb.height / 2) * scale;
+  svg.transition().duration(380)
+     .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+}
+
+document.getElementById('btn-zi').addEventListener('click', () =>
+  svg.transition().duration(220).call(zoom.scaleBy, 1.45));
+document.getElementById('btn-zo').addEventListener('click', () =>
+  svg.transition().duration(220).call(zoom.scaleBy, 0.69));
+document.getElementById('btn-zr').addEventListener('click', fitAll);
+
+// ═════════════════════════════════════════════════════════════════════════════
+// INFO PANEL
+// ═════════════════════════════════════════════════════════════════════════════
+const infoPanel = document.getElementById('info-panel');
+const infoLabel = document.getElementById('info-node-label');
+const infoBadge = document.getElementById('info-node-badge');
+const infoNote  = document.getElementById('info-note-text');
+const hintEl    = document.getElementById('hint');
+
+function badgeFor(node, depth) {
+  if (depth !== undefined) {
+    // Mindmap node
+    if (depth === 0) return { text: 'Root',      cls: 'badge-start' };
+    if (depth === 1) return { text: 'Main Topic', cls: 'badge-topic' };
+    return               { text: 'Sub-topic',   cls: 'badge-subtopic' };
+  }
+  if (node.shape === 'diamond')                    return { text: 'Decision',    cls: 'badge-decision' };
+  if (node.shape === 'terminal' && node.variant === 'success') return { text: 'Success',    cls: 'badge-success'  };
+  if (node.shape === 'terminal' && node.variant === 'failure') return { text: 'Failure',    cls: 'badge-failure'  };
+  if (node.shape === 'terminal')                   return { text: 'Start / End', cls: 'badge-start'    };
+  return                                                   { text: 'Step',       cls: 'badge-step'     };
+}
+
+function showInfo(node, depth) {
+  const label = (node.label || '').replace(/\n/g, ' ');
+  infoLabel.textContent = label;
+
+  const b = badgeFor(node, depth);
+  infoBadge.textContent  = b.text;
+  infoBadge.className    = 'badge-class ' + b.cls; // reset then set
+
+  if (node.note) {
+    infoNote.textContent = node.note;
+    infoNote.className   = '';
+  } else {
+    infoNote.textContent = 'No description available for this node.';
+    infoNote.className   = 'empty';
+  }
+
+  infoPanel.classList.add('visible');
+  hintEl.classList.add('hidden');
+}
+
+function hideInfo() {
+  infoPanel.classList.remove('visible');
+  hintEl.classList.remove('hidden');
+}
+
+document.getElementById('info-close').addEventListener('click', hideInfo);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') hideInfo(); });
+
+// Click on SVG background closes panel
+svg.on('click', (event) => {
+  if (event.target === svg.node() || event.target.id === 'root-layer') hideInfo();
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SIDEBAR
+// ═════════════════════════════════════════════════════════════════════════════
+document.getElementById('sb-module').textContent = DATA.module;
+document.getElementById('sb-week'  ).textContent = 'Week ' + DATA.week;
+document.getElementById('sb-title' ).textContent = DATA.title;
+document.getElementById('sb-count' ).textContent =
+  DATA.charts.length + ' chart' + (DATA.charts.length !== 1 ? 's' : '');
+
+const ICONS = { mindmap: '🧠', flowchart: '📊', graph: '🔗' };
+const listEl = document.getElementById('chart-list');
+let firstSel = null;
+
+DATA.charts.forEach((chart, i) => {
+  const el = document.createElement('div');
+  el.className = 'chart-item';
+  el.innerHTML =
+    `<span class="ci-icon">${ICONS[chart.type] || '📋'}</span>
+     <div>
+       <div class="ci-title">${chart.title}</div>
+       <div class="ci-type">${chart.type}</div>
+     </div>`;
+  el.addEventListener('click', () => selectChart(chart, el));
+  listEl.appendChild(el);
+  if (i === 0) firstSel = { chart, el };
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SELECTION
+// ═════════════════════════════════════════════════════════════════════════════
+function selectChart(chart, itemEl) {
+  document.querySelectorAll('.chart-item').forEach(e => e.classList.remove('active'));
+  itemEl.classList.add('active');
+  document.getElementById('chart-title-el').textContent = chart.title;
+  document.getElementById('chart-desc-el' ).textContent = chart.description || '';
+
+  root.selectAll('*').remove();
+
+  if (chart.type === 'mindmap') renderMindmap(chart);
+  else                          renderFlowchart(chart);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// MINDMAP  (D3 radial tree)
+// ═════════════════════════════════════════════════════════════════════════════
+function renderMindmap(chart) {
+  const svgW = svg.node().clientWidth  || 900;
+  const svgH = svg.node().clientHeight || 600;
+  const R    = Math.min(svgW, svgH) * 0.40;
+
+  // Build parent-child map
+  const byId  = Object.fromEntries(chart.nodes.map(n => [n.id, { ...n, _children: [] }]));
+  const hasParent = new Set(chart.edges.map(e => e.to));
+  chart.edges.forEach(e => { if (byId[e.from] && byId[e.to]) byId[e.from]._children.push(byId[e.to]); });
+  const rootNode = chart.nodes.find(n => !hasParent.has(n.id)) || chart.nodes[0];
+
+  // D3 hierarchy + radial tree
+  const hier = d3.hierarchy(byId[rootNode.id], d => d._children.length ? d._children : null);
+  d3.tree()
+    .size([2 * Math.PI, R])
+    .separation((a, b) => (a.parent === b.parent ? 1.2 : 2.4) / a.depth)
+    (hier);
+
+  // ── Defs: drop shadow ──────────────────────────────────────────────────────
+  const defs = root.append('defs');
+  const filt = defs.append('filter').attr('id', 'mm-shadow').attr('x', '-20%').attr('y', '-20%').attr('width', '140%').attr('height', '140%');
+  filt.append('feDropShadow').attr('dx', 0).attr('dy', 2).attr('stdDeviation', 4).attr('flood-color', '#000').attr('flood-opacity', 0.5);
+
+  // ── Group centered ─────────────────────────────────────────────────────────
+  const grp = root.append('g').attr('transform', `translate(${svgW / 2},${svgH / 2})`);
+
+  // ── Links ──────────────────────────────────────────────────────────────────
+  const linkRadial = d3.linkRadial().angle(d => d.x).radius(d => d.y);
+
+  grp.append('g').selectAll('path')
+    .data(hier.links())
+    .join('path')
+    .attr('d', linkRadial)
+    .attr('fill', 'none')
+    .attr('stroke', d => C.levels[Math.min(d.target.depth - 1, C.levels.length - 1)])
+    .attr('stroke-width', d => Math.max(1, 3 - d.target.depth * 0.8))
+    .attr('opacity', 0.4)
+    .attr('stroke-linecap', 'round');
+
+  // ── Nodes ──────────────────────────────────────────────────────────────────
+  const nodeG = grp.append('g').selectAll('g')
+    .data(hier.descendants())
+    .join('g')
+    .attr('transform', d => {
+      const a = d.x - Math.PI / 2;
+      return `translate(${d.y * Math.cos(a)},${d.y * Math.sin(a)})`;
+    })
+    .style('cursor', 'default');
+
+  nodeG.each(function(d) {
+    const g      = d3.select(this);
+    const depth  = d.depth;
+    const label  = d.data.label || '';
+    const color  = depth === 0 ? C.levels[0] : C.levels[Math.min(depth - 1, C.levels.length - 1)];
+    const fs     = depth === 0 ? 15 : depth === 1 ? 12.5 : 11;
+    const fw     = depth <= 1 ? '700' : '500';
+    const m      = measure(label, fs, fw);
+    const px     = depth === 0 ? 18 : 12;
+    const py     = depth === 0 ? 12 : 8;
+    const rw     = m.w + px * 2;
+    const rh     = m.h + py * 2;
+
+    if (depth === 0) {
+      // Root: filled pill with glow
+      g.append('rect')
+        .attr('x', -rw / 2).attr('y', -rh / 2)
+        .attr('width', rw).attr('height', rh)
+        .attr('rx', rh / 2)
+        .attr('fill', color)
+        .attr('filter', 'url(#mm-shadow)');
+    } else {
+      // Child: bordered pill
+      g.append('rect')
+        .attr('x', -rw / 2).attr('y', -rh / 2)
+        .attr('width', rw).attr('height', rh)
+        .attr('rx', Math.min(rh / 2, 10))
+        .attr('fill', color + '18')
+        .attr('stroke', color)
+        .attr('stroke-width', 1.5);
+    }
+
+    // Text
+    m.lines.forEach((line, i) => {
+      const yOff = (i - (m.lines.length - 1) / 2) * (fs * 1.45);
+      g.append('text')
+        .text(line)
+        .attr('y', yOff)
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'middle')
+        .attr('font-size', fs + 'px')
+        .attr('font-weight', fw)
+        .attr('fill', depth === 0 ? '#fff' : color)
+        .attr('font-family', "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif");
+    });
+
+    // Hover + click
+    const shapeEl = g.select(depth === 0 ? 'rect' : 'rect');
+    g.style('cursor', 'pointer')
+     .on('mouseenter', function() {
+        shapeEl.transition().duration(120)
+          .attr('fill', depth === 0 ? d3.color(color).brighter(0.3) : color + '32');
+      })
+     .on('mouseleave', function() {
+        shapeEl.transition().duration(120)
+          .attr('fill', depth === 0 ? color : color + '18');
+      })
+     .on('click', function(event) {
+        event.stopPropagation();
+        showInfo(d.data, depth);
+      });
+  });
+
+  setTimeout(fitAll, 60);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// FLOWCHART  (Dagre layout + custom D3 SVG)
+// ═════════════════════════════════════════════════════════════════════════════
+function renderFlowchart(chart) {
+  const FS    = 13;
+  const PX    = 22;
+  const PY    = 13;
+  const DPAD  = 1.5; // diamond size multiplier
+
+  // ── Compute node sizes ────────────────────────────────────────────────────
+  const info = {};
+  chart.nodes.forEach(n => {
+    const m  = measure(n.label || '', FS);
+    let w    = Math.max(m.w + PX * 2, 90);
+    let h    = Math.max(m.h + PY * 2, 38);
+    if (n.shape === 'diamond') { w = (w + 20) * DPAD; h = (h + 10) * DPAD; }
+    info[n.id] = { ...m, w, h };
+  });
+
+  // ── Dagre graph ───────────────────────────────────────────────────────────
+  const gd = new dagre.graphlib.Graph({ multigraph: true });
+  gd.setGraph({ rankdir: 'TB', nodesep: 55, ranksep: 75, marginx: 50, marginy: 50, edgesep: 20 });
+  gd.setDefaultEdgeLabel(() => ({}));
+
+  chart.nodes.forEach(n  => gd.setNode(n.id, { width: info[n.id].w, height: info[n.id].h }));
+  chart.edges.forEach((e, i) => gd.setEdge(e.from, e.to, { label: e.label || '' }, 'e' + i));
+
+  dagre.layout(gd);
+
+  // ── Defs ──────────────────────────────────────────────────────────────────
+  const defs  = root.append('defs');
+
+  // Arrowhead
+  defs.append('marker')
+    .attr('id', 'arr').attr('viewBox', '0 -5 10 10')
+    .attr('refX', 8).attr('refY', 0)
+    .attr('markerWidth', 6).attr('markerHeight', 6)
+    .attr('orient', 'auto')
+    .append('path').attr('d', 'M0,-5L10,0L0,5').attr('fill', C.arrow);
+
+  // Glow filter for highlighted nodes
+  const glow = defs.append('filter').attr('id', 'glow').attr('x', '-30%').attr('y', '-30%').attr('width', '160%').attr('height', '160%');
+  glow.append('feGaussianBlur').attr('in', 'SourceGraphic').attr('stdDeviation', '3').attr('result', 'blur');
+  glow.append('feComposite').attr('in', 'SourceGraphic').attr('in2', 'blur').attr('operator', 'over');
+
+  // ── Edges ─────────────────────────────────────────────────────────────────
+  const edgeG = root.append('g').attr('class', 'edges');
+  const lineGen = d3.line().curve(d3.curveCatmullRom.alpha(0.5))
+    .x(d => d.x).y(d => d.y);
+
+  gd.edges().forEach(e => {
+    const ed  = gd.edge(e);
+    if (!ed || !ed.points || ed.points.length < 2) return;
+    const pts = ed.points;
+
+    edgeG.append('path')
+      .attr('d', lineGen(pts))
+      .attr('fill', 'none')
+      .attr('stroke', C.edge)
+      .attr('stroke-width', 1.5)
+      .attr('stroke-linecap', 'round')
+      .attr('marker-end', 'url(#arr)');
+
+    if (ed.label) {
+      const mid = pts[Math.floor(pts.length / 2)];
+      edgeG.append('text')
+        .text(ed.label)
+        .attr('x', mid.x + 6).attr('y', mid.y - 5)
+        .attr('font-size', '11px')
+        .attr('font-weight', '600')
+        .attr('fill', C.edgeLabel)
+        .attr('font-family', "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif");
+    }
+  });
+
+  // ── Nodes ─────────────────────────────────────────────────────────────────
+  const nodeG = root.append('g').attr('class', 'nodes');
+
+  chart.nodes.forEach(n => {
+    const pos    = gd.node(n.id);
+    if (!pos) return;
+    const ninfo  = info[n.id];
+    const w      = pos.width;
+    const h      = pos.height;
+    const cx     = pos.x;
+    const cy     = pos.y;
+
+    // Pick colours
+    let pal;
+    if (n.shape === 'diamond')       pal = C.node.decision;
+    else if (n.variant === 'success') pal = C.node.success;
+    else if (n.variant === 'failure') pal = C.node.failure;
+    else if (n.variant === 'start')   pal = C.node.start;
+    else                              pal = C.node.default;
+
+    const g = nodeG.append('g')
+      .attr('transform', `translate(${cx - w/2},${cy - h/2})`)
+      .style('cursor', 'default');
+
+    // ── Shape ──────────────────────────────────────────────────────────────
+    if (n.shape === 'diamond') {
+      const hx = w / 2, hy = h / 2;
+      g.append('polygon')
+        .attr('points', `${hx},1 ${w-1},${hy} ${hx},${h-1} 1,${hy}`)
+        .attr('fill', pal.fill)
+        .attr('stroke', pal.stroke)
+        .attr('stroke-width', 1.5);
+    } else if (n.shape === 'terminal') {
+      g.append('rect')
+        .attr('x', 0).attr('y', 0)
+        .attr('width', w).attr('height', h)
+        .attr('rx', h / 2)
+        .attr('fill', pal.fill)
+        .attr('stroke', pal.stroke)
+        .attr('stroke-width', 1.5);
+    } else {
+      g.append('rect')
+        .attr('x', 0).attr('y', 0)
+        .attr('width', w).attr('height', h)
+        .attr('rx', 8)
+        .attr('fill', pal.fill)
+        .attr('stroke', pal.stroke)
+        .attr('stroke-width', 1.5);
+    }
+
+    // ── Label ──────────────────────────────────────────────────────────────
+    const textG = g.append('g').attr('transform', `translate(${w/2},${h/2})`);
+    ninfo.lines.forEach((line, li) => {
+      textG.append('text')
+        .text(line)
+        .attr('y', (li - (ninfo.lines.length - 1) / 2) * (FS * 1.45))
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'middle')
+        .attr('font-size', FS + 'px')
+        .attr('font-weight', n.shape === 'terminal' ? '700' : '500')
+        .attr('fill', pal.text)
+        .attr('font-family', "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif");
+    });
+
+    // ── Hover glow + click ─────────────────────────────────────────────────
+    const shape = g.select(n.shape === 'diamond' ? 'polygon' : 'rect');
+    g.style('cursor', 'pointer')
+     .on('mouseenter', () => shape.attr('filter', 'url(#glow)').attr('stroke-width', 2.2))
+     .on('mouseleave', () => shape.attr('filter', null).attr('stroke-width', 1.5))
+     .on('click', function(event) {
+        event.stopPropagation();
+        showInfo(n);
+      });
+  });
+
+  setTimeout(fitAll, 60);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// INIT
+// ═════════════════════════════════════════════════════════════════════════════
+if (firstSel) setTimeout(() => selectChart(firstSel.chart, firstSel.el), 120);
+</script>
+</body>
+</html>

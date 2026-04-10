@@ -1,0 +1,176 @@
+{
+  "module": "MultiAgents",
+  "week": 2,
+  "title": "Congestion Games, Potential Games, and Price of Anarchy",
+  "charts": [
+    {
+      "id": "chart-1",
+      "type": "mindmap",
+      "title": "Week 2 Topic Map",
+      "description": "High-level overview of all major topics in Week 2.",
+      "nodes": [
+        { "id": "root",    "label": "Week 2\nCongestion & Potential Games", "note": "Week 2 extends game theory to large structured games. Congestion games model shared-resource conflicts, potential games guarantee equilibrium existence via a potential function, and Price of Anarchy quantifies the efficiency loss from selfish behaviour." },
+        { "id": "motiv",   "label": "Motivation:\nConcise Games",            "note": "Representing a general n-player game with k actions per player requires k^n payoff entries. Congestion games avoid this by defining costs through a small set of resource cost functions, enabling scalable reasoning." },
+        { "id": "cong",    "label": "Congestion\nGames",                     "note": "A congestion game is defined by players, facilities with congestion-dependent cost functions, and player actions that are subsets of facilities. Each player's cost depends only on how many others use the same resources." },
+        { "id": "apps",    "label": "Applications",                          "note": "Congestion games model a wide range of real-world systems including traffic routing, communication networks, cloud computing, multi-robot coordination, energy grids, and IoT sensor networks." },
+        { "id": "braess",  "label": "Braess's\nParadox",                     "note": "Adding a new resource (road) to a network can paradoxically increase the equilibrium travel time for all players. This shows that equilibrium outcomes need not improve when the strategy space expands." },
+        { "id": "brd",     "label": "Best Response\nDynamics",               "note": "Best response dynamics is an iterative algorithm where players repeatedly switch to their best response. For congestion games, Rosenthal's theorem guarantees this always terminates at a pure Nash equilibrium." },
+        { "id": "pot",     "label": "Potential\nGames",                      "note": "A potential game has a single potential function whose changes exactly track the deviating player's cost change. Congestion games are exact potential games, which guarantees the Finite Improvement Property and PSNE existence." },
+        { "id": "maxcut",  "label": "Max-Cut &\nLocal Search",               "note": "The maximum cut problem is NP-hard but solvable to a local optimum via simple local search. Computing local optima of max-cut is PLS-complete, connecting to the hardness of finding PSNE in general potential games." },
+        { "id": "poa",     "label": "Price of Anarchy\n& Stability",         "note": "The Price of Anarchy (PoA) and Price of Stability (PoS) measure the efficiency gap between the worst (or best) Nash equilibrium and the social optimum. For linear congestion games, PoA is at most 5/2." },
+        { "id": "formal",  "label": "Formal Definition\n& Network Games",   "note": "A congestion game is a tuple of players, resources, actions (subsets of resources per player), and cost functions d_j(k) giving the cost of resource j when k players use it." },
+        { "id": "rosgame", "label": "Rosenthal's\nTheorem",                  "note": "Rosenthal (1973) proved the Finite Improvement Property for congestion games: every sequence of improvement steps is finite. This directly implies that every congestion game has at least one pure Nash equilibrium." },
+        { "id": "rospot",  "label": "Rosenthal's\nPotential Function",       "note": "The potential function Phi(a) sums cumulative resource costs across all resources. When a player deviates, the change in Phi equals the change in that player's cost, making it an exact potential function." },
+        { "id": "pottype", "label": "Potential\nGame Variants",              "note": "There are three notions of potential: exact (delta cost = delta Phi), ordinal (signs match), and generalised ordinal (improvement implies Phi decreases). Generalised ordinal potential is equivalent to the Finite Improvement Property." },
+        { "id": "identify","label": "Identifying\nPotential Games",          "note": "A game can be tested for the potential property by the guess-and-check method (seed Phi at one profile and derive all others) or by verifying that all unilateral deviation cycles of length 4 sum to zero." },
+        { "id": "poadef",  "label": "PoA & PoS\nDefinitions",                "note": "PoA is the ratio of the worst Nash equilibrium cost to the optimal cost. PoS is the ratio of the best Nash equilibrium cost to the optimal. Both are at least 1; PoS is always at most PoA." },
+        { "id": "linear",  "label": "Linear Games\nPoA Bound 5/2",          "note": "For congestion games with linear cost functions, the Price of Anarchy is at most 5/2 and this bound is tight. The proof uses the sandwich inequality: half the social cost is at most Phi, which is at most the social cost." }
+      ],
+      "edges": [
+        { "from": "root",   "to": "motiv" },
+        { "from": "root",   "to": "cong" },
+        { "from": "root",   "to": "apps" },
+        { "from": "root",   "to": "braess" },
+        { "from": "root",   "to": "brd" },
+        { "from": "root",   "to": "pot" },
+        { "from": "root",   "to": "maxcut" },
+        { "from": "root",   "to": "poa" },
+        { "from": "cong",   "to": "formal" },
+        { "from": "brd",    "to": "rosgame" },
+        { "from": "pot",    "to": "rospot" },
+        { "from": "pot",    "to": "pottype" },
+        { "from": "pot",    "to": "identify" },
+        { "from": "poa",    "to": "poadef" },
+        { "from": "poa",    "to": "linear" }
+      ]
+    },
+    {
+      "id": "chart-2",
+      "type": "flowchart",
+      "title": "Best Response Dynamics Algorithm",
+      "description": "Iterative algorithm where players switch to best responses; guaranteed to terminate in congestion games.",
+      "nodes": [
+        { "id": "start",   "label": "Start: arbitrary\naction profile a",          "shape": "terminal", "variant": "start",   "note": "Initialise with any feasible action profile. In a congestion game, every player is assigned some action (subset of resources) to begin." },
+        { "id": "check",   "label": "Any player i not\nplaying best response?",    "shape": "diamond",                        "note": "Check whether any player i can reduce their cost by switching to a different action, given everyone else's current choices. If yes, that player is not at a best response." },
+        { "id": "pick",    "label": "Select such\nplayer i",                        "shape": "rect",                           "note": "Choose any player who is not currently at a best response. The order of selection can vary; the algorithm is correct regardless of which player moves next." },
+        { "id": "update",  "label": "Set a_i = best response\nto current a_{-i}",  "shape": "rect",                           "note": "Player i switches to the action that minimises their cost given all other players' current actions. This is a strict improvement in cost for player i." },
+        { "id": "phi",     "label": "Phi strictly\ndecreases",                     "shape": "rect",                           "note": "Because the deviation is an improvement and the game is a congestion game, Rosenthal's potential function Phi decreases by the same amount as player i's cost reduction. Since Phi has finitely many values, this ensures termination." },
+        { "id": "halt",    "label": "All players at\nbest response?",              "shape": "diamond",                        "note": "After the update, re-check whether any player still has an improving deviation. If all players are at their best response simultaneously, the current profile is a pure Nash equilibrium." },
+        { "id": "psne",    "label": "PSNE reached\nReturn a",                      "shape": "terminal", "variant": "success", "note": "The algorithm has terminated at a profile where no player can unilaterally reduce their cost. By definition, this is a pure strategy Nash equilibrium of the congestion game." }
+      ],
+      "edges": [
+        { "from": "start",  "to": "check" },
+        { "from": "check",  "to": "pick",  "label": "Yes" },
+        { "from": "pick",   "to": "update" },
+        { "from": "update", "to": "phi" },
+        { "from": "phi",    "to": "halt" },
+        { "from": "halt",   "to": "pick",  "label": "No" },
+        { "from": "halt",   "to": "psne",  "label": "Yes" },
+        { "from": "check",  "to": "psne",  "label": "No" }
+      ]
+    },
+    {
+      "id": "chart-3",
+      "type": "flowchart",
+      "title": "Identifying Potential Games",
+      "description": "Two methods to test whether a game is a potential game: guess-and-check and cycle inspection.",
+      "nodes": [
+        { "id": "start",   "label": "Start: normal form game",                "shape": "terminal", "variant": "start",   "note": "We want to determine whether the game has a potential function. We have two approaches: guess-and-check (build Phi explicitly) or cycle inspection (algebraic test on unilateral deviation cycles)." },
+        { "id": "method",  "label": "Choose approach:\nGuess-Check or Cycle?", "shape": "diamond",                        "note": "The guess-and-check method explicitly constructs the potential function. The cycle method algebraically verifies whether a potential can exist without constructing it. Both are equivalent in power." },
+        { "id": "seed",    "label": "Seed: set Phi at\none profile to 0",      "shape": "rect",                           "note": "Assign Phi an arbitrary value (e.g. 0) at any chosen profile. This is valid because potential functions are unique only up to a constant." },
+        { "id": "derive",  "label": "Derive Phi values\nvia deviation equations","shape": "rect",                          "note": "For each unilateral deviation from a known profile, set delta Phi equal to the deviating player's cost change. Propagate these values to all other profiles reachable by single deviations." },
+        { "id": "consist", "label": "All derived values\nconsistent?",          "shape": "diamond",                        "note": "Check if every profile has a unique, well-defined Phi value regardless of the path of deviations taken to reach it. Inconsistency means different derivation paths give different values for the same profile." },
+        { "id": "cycles",  "label": "Form all unilateral\ndeviation cycles",    "shape": "rect",                           "note": "For a 2-player game, enumerate all cycles of length 4: (a_i, a_j) -> (a'_i, a_j) -> (a'_i, a'_j) -> (a_i, a'_j) -> (a_i, a_j). For each transition, record the deviating player's cost change." },
+        { "id": "cycsum",  "label": "All cycle sums\nequal zero?",              "shape": "diamond",                        "note": "A game is a potential game if and only if the sum of cost changes around every unilateral deviation cycle equals zero. A non-zero cycle sum proves no potential function can exist." },
+        { "id": "ispot",   "label": "Game IS a\npotential game",               "shape": "terminal", "variant": "success", "note": "The game has a valid potential function. Best response dynamics will always terminate, and at least one pure Nash equilibrium is guaranteed to exist." },
+        { "id": "notpot",  "label": "Game is NOT a\npotential game",           "shape": "terminal", "variant": "failure", "note": "No potential function exists for this game. Best response dynamics may cycle and PSNE existence is not guaranteed by this criterion alone." }
+      ],
+      "edges": [
+        { "from": "start",  "to": "method" },
+        { "from": "method", "to": "seed",   "label": "Guess-Check" },
+        { "from": "method", "to": "cycles", "label": "Cycle" },
+        { "from": "seed",   "to": "derive" },
+        { "from": "derive", "to": "consist" },
+        { "from": "consist","to": "ispot",  "label": "Yes" },
+        { "from": "consist","to": "notpot", "label": "No" },
+        { "from": "cycles", "to": "cycsum" },
+        { "from": "cycsum", "to": "ispot",  "label": "Yes" },
+        { "from": "cycsum", "to": "notpot", "label": "No" }
+      ]
+    },
+    {
+      "id": "chart-4",
+      "type": "flowchart",
+      "title": "Computing Price of Anarchy and Price of Stability",
+      "description": "Step-by-step procedure for computing PoA and PoS for a given game.",
+      "nodes": [
+        { "id": "start",  "label": "Start: game and\noptimisation goal",             "shape": "terminal", "variant": "start",   "note": "Specify whether the objective is minimisation (e.g. social cost) or maximisation (e.g. social welfare). The PoA and PoS formulas differ between the two." },
+        { "id": "opt",    "label": "Find optimal\nstrategy profile s*",              "shape": "rect",                           "note": "Compute or enumerate all strategy profiles and find the one with the best social objective (minimum social cost or maximum social welfare). This is the benchmark." },
+        { "id": "allne",  "label": "Find all pure\nNash equilibria",                 "shape": "rect",                           "note": "Enumerate or compute all strategy profiles where no player has an incentive to deviate. For congestion and potential games, at least one PSNE is guaranteed by Rosenthal's theorem." },
+        { "id": "hasne",  "label": "Any Nash equilibrium\nfound?",                   "shape": "diamond",                        "note": "If no Nash equilibrium exists (possible in general games without mixed strategies), PoA and PoS are undefined. In congestion games, a PSNE always exists." },
+        { "id": "scne",   "label": "Compute social objective\nfor each NE",          "shape": "rect",                           "note": "For each identified Nash equilibrium, calculate the social cost (sum of costs) or social welfare (sum of utilities) to determine how efficient each equilibrium is." },
+        { "id": "poa",    "label": "PoA = worst NE value\ndivided by opt value",     "shape": "rect",                           "note": "For minimisation: PoA is the maximum social cost over all NE divided by the optimal social cost. For maximisation: PoA is the optimal welfare divided by the minimum welfare over all NE. Always at least 1." },
+        { "id": "pos",    "label": "PoS = best NE value\ndivided by opt value",      "shape": "rect",                           "note": "For minimisation: PoS is the minimum social cost over all NE divided by the optimal social cost. PoS measures whether a good equilibrium exists. Always between 1 and PoA." },
+        { "id": "done",   "label": "PoA and PoS computed",                           "shape": "terminal", "variant": "success", "note": "PoA and PoS quantify equilibrium inefficiency. PoA = 1 means all equilibria are optimal; PoS = 1 means at least one equilibrium is optimal." },
+        { "id": "undef",  "label": "PoA/PoS undefined\nfor this game",              "shape": "terminal", "variant": "failure", "note": "Without any Nash equilibrium, the efficiency measures cannot be defined. Consider mixed strategy equilibria or a different solution concept." }
+      ],
+      "edges": [
+        { "from": "start", "to": "opt" },
+        { "from": "opt",   "to": "allne" },
+        { "from": "allne", "to": "hasne" },
+        { "from": "hasne", "to": "scne",  "label": "Yes" },
+        { "from": "hasne", "to": "undef", "label": "No" },
+        { "from": "scne",  "to": "poa" },
+        { "from": "poa",   "to": "pos" },
+        { "from": "pos",   "to": "done" }
+      ]
+    },
+    {
+      "id": "chart-5",
+      "type": "flowchart",
+      "title": "Potential Game Types Hierarchy",
+      "description": "Classification of potential game variants from strongest to weakest, with their properties.",
+      "nodes": [
+        { "id": "root",   "label": "Potential Game\nTypes",                        "shape": "terminal", "variant": "start", "note": "Potential games are classified by how closely the potential function tracks individual cost changes. Stronger notions give stronger guarantees about convergence and equilibrium." },
+        { "id": "exact",  "label": "Exact Potential Game\ndelta cost = delta Phi", "shape": "rect",                         "note": "The change in the potential function equals exactly the change in the deviating player's cost for every unilateral deviation. Congestion games are always exact potential games. Implies FIP and PSNE existence." },
+        { "id": "ord",    "label": "Ordinal Potential Game\nsigns of changes match","shape": "rect",                        "note": "The sign of the potential change matches the sign of the cost change: a cost improvement implies a Phi decrease and vice versa. Weaker than exact, but still implies FIP and PSNE existence." },
+        { "id": "genord", "label": "Generalised Ordinal\ncost down implies Phi down","shape": "rect",                       "note": "Every cost improvement implies a Phi decrease, but a Phi decrease need not imply a cost improvement. This is the weakest potential notion and is equivalent to the Finite Improvement Property." },
+        { "id": "fip",    "label": "Finite Improvement\nProperty (FIP)",           "shape": "rect",                         "note": "Every sequence of improvement steps is finite. This is equivalent to having a generalised ordinal potential function. FIP directly implies that best response dynamics always terminates." },
+        { "id": "psne",   "label": "PSNE Existence\nguaranteed",                   "shape": "terminal", "variant": "success","note": "All games with FIP (and hence all potential games) have at least one pure strategy Nash equilibrium. The terminal state of best response dynamics is always a PSNE." }
+      ],
+      "edges": [
+        { "from": "root",   "to": "exact" },
+        { "from": "exact",  "to": "ord",    "label": "implies" },
+        { "from": "ord",    "to": "genord", "label": "implies" },
+        { "from": "genord", "to": "fip",    "label": "equivalent" },
+        { "from": "fip",    "to": "psne",   "label": "implies" }
+      ]
+    },
+    {
+      "id": "chart-6",
+      "type": "flowchart",
+      "title": "Braess's Paradox: Adding a Road Hurts",
+      "description": "How adding a zero-cost shortcut between two roads can increase equilibrium travel time for all players.",
+      "nodes": [
+        { "id": "start",   "label": "Start: network with\ntwo parallel routes",      "shape": "terminal", "variant": "start",   "note": "200 travelers go from A to D. Route 1: A to B (cost K/10) then B to D (cost 20). Route 2: A to C (cost 20) then C to D (cost K/10). K is the number of users on that edge." },
+        { "id": "ne1",     "label": "Find NE without\nshortcut B-C",                  "shape": "rect",                           "note": "With only two routes and no shortcut, the unique Nash equilibrium has 100 travelers on each route. Each traveler's time is 100/10 + 20 = 30 minutes." },
+        { "id": "addroad", "label": "Add free shortcut\nB to C (cost 0)",             "shape": "rect",                           "note": "Introduce a zero-cost road directly from B to C. This creates a new strategy: travel A to B to C to D, using only the two congestion-dependent edges." },
+        { "id": "deviate", "label": "Does any traveler\nbenefit by deviating?",       "shape": "diamond",                        "note": "With 100 on each original route, a traveler switching to A-B-C-D would pay 101/10 + 0 + 100/10 = 20.1 minutes, which is less than 30. So yes, deviation is profitable." },
+        { "id": "cascade", "label": "All travelers shift\nto A-B-C-D route",          "shape": "rect",                           "note": "Each traveler individually finds A-B-C-D attractive, causing a cascade of switches. At the new equilibrium, all 200 take A-B-C-D." },
+        { "id": "newne",   "label": "New NE: all 200\non A-B-C-D route",              "shape": "rect",                           "note": "All 200 travelers use A to B to C to D. The cost is 200/10 + 0 + 200/10 = 40 minutes each. No traveler can improve by switching: all alternatives also cost 40 minutes." },
+        { "id": "paradox", "label": "Travel time INCREASED\n30 min to 40 min",        "shape": "terminal", "variant": "failure", "note": "The free shortcut worsened the equilibrium for everyone: travel time rose from 30 to 40 minutes. This illustrates that selfish routing at equilibrium can be made worse by expanding the strategy space." },
+        { "id": "stable",  "label": "Original NE is stable\n30 min per traveler",     "shape": "terminal", "variant": "success", "note": "Without the shortcut, the 100/100 split is a stable Nash equilibrium at 30 minutes. It is both the NE and the social optimum in this network." }
+      ],
+      "edges": [
+        { "from": "start",   "to": "ne1" },
+        { "from": "ne1",     "to": "stable" },
+        { "from": "ne1",     "to": "addroad" },
+        { "from": "addroad", "to": "deviate" },
+        { "from": "deviate", "to": "cascade", "label": "Yes" },
+        { "from": "deviate", "to": "stable",  "label": "No" },
+        { "from": "cascade", "to": "newne" },
+        { "from": "newne",   "to": "paradox" }
+      ]
+    }
+  ]
+}

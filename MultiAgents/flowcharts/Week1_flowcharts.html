@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MultiAgents — Week 1: Non-Cooperative Games (Part I)</title>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dagre@0.8.5/dist/dagre.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  display: flex;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+  overflow: hidden;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+#sidebar {
+  width: 268px;
+  min-width: 268px;
+  background: #161b22;
+  border-right: 1px solid #30363d;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+#sidebar-header {
+  padding: 20px 16px 14px;
+  border-bottom: 1px solid #30363d;
+  flex-shrink: 0;
+}
+.sb-module {
+  font-size: 0.67rem;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.sb-week  { font-size: 0.76rem; color: #8b949e; margin-bottom: 2px; }
+.sb-title { font-size: 0.96rem; font-weight: 700; color: #f0f6fc; line-height: 1.35; }
+.sb-count {
+  display: inline-block;
+  background: #21262d;
+  color: #8b949e;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 8px;
+  border: 1px solid #30363d;
+}
+
+#chart-list { padding: 8px 6px; flex: 1; overflow-y: auto; }
+#chart-list::-webkit-scrollbar { width: 3px; }
+#chart-list::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+
+.chart-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 2px;
+  transition: background 0.1s;
+  color: #8b949e;
+  user-select: none;
+  border: 1px solid transparent;
+}
+.chart-item:hover { background: #21262d; color: #c9d1d9; }
+.chart-item.active {
+  background: #1f3a6e;
+  color: #f0f6fc;
+  border-color: #388bfd;
+}
+.chart-item.active .ci-type { color: #79c0ff; opacity: 1; }
+.ci-icon  { font-size: 0.95rem; flex-shrink: 0; margin-top: 2px; }
+.ci-title { font-size: 0.83rem; font-weight: 600; line-height: 1.3; }
+.ci-type  { font-size: 0.66rem; opacity: 0.6; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.07em; }
+
+/* ── Main ────────────────────────────────────────────────────────────────── */
+#main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+#chart-header {
+  padding: 13px 22px 11px;
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  flex-shrink: 0;
+}
+#chart-title-el { font-size: 1rem; font-weight: 700; color: #79c0ff; margin-bottom: 2px; }
+#chart-desc-el  { font-size: 0.81rem; color: #8b949e; font-style: italic; }
+
+#diagram-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #0d1117;
+  background-image:
+    radial-gradient(circle at 1px 1px, #21262d 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+#diagram-svg { width: 100%; height: 100%; display: block; cursor: grab; }
+#diagram-svg:active { cursor: grabbing; }
+
+/* ── Zoom controls ───────────────────────────────────────────────────────── */
+#zoom-controls {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 10;
+}
+.zoom-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #30363d;
+  background: #161b22;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  transition: all 0.1s;
+  color: #8b949e;
+}
+.zoom-btn:hover { background: #21262d; color: #79c0ff; border-color: #388bfd; }
+
+/* ── Hint bar ────────────────────────────────────────────────────────────── */
+#hint {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: #484f58;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+#hint.hidden { opacity: 0; }
+
+.state-msg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #484f58;
+  font-size: 0.9rem;
+  text-align: center;
+  pointer-events: none;
+}
+.state-msg.err { color: #f85149; }
+
+/* ── Info panel ──────────────────────────────────────────────────────────── */
+#info-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #161b22;
+  border-top: 1px solid #30363d;
+  z-index: 30;
+  transform: translateY(100%);
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 38vh;
+  display: flex;
+  flex-direction: column;
+}
+#info-panel.visible { transform: translateY(0); }
+
+#info-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 18px 9px;
+  border-bottom: 1px solid #21262d;
+  flex-shrink: 0;
+}
+#info-node-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #f0f6fc;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#info-node-badge {
+  font-size: 0.66rem;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  flex-shrink: 0;
+}
+.badge-decision { background: #2d2209; color: #e3b341; border: 1px solid #d29922; }
+.badge-step     { background: #0d1f38; color: #79c0ff; border: 1px solid #388bfd; }
+.badge-start    { background: #0d1f38; color: #79c0ff; border: 1px solid #388bfd; }
+.badge-success  { background: #0d1f12; color: #56d364; border: 1px solid #3fb950; }
+.badge-failure  { background: #1c0f0e; color: #ff7b72; border: 1px solid #f85149; }
+.badge-topic    { background: #1a1036; color: #c084fc; border: 1px solid #a371f7; }
+.badge-subtopic { background: #0d2020; color: #2dd4bf; border: 1px solid #14b8a6; }
+
+#info-close {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #30363d;
+  background: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #8b949e;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.1s;
+}
+#info-close:hover { background: #21262d; color: #f0f6fc; border-color: #8b949e; }
+
+#info-panel-body {
+  padding: 12px 18px 14px;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: #30363d transparent;
+}
+#info-panel-body::-webkit-scrollbar { width: 3px; }
+#info-panel-body::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+
+#info-note-text {
+  font-size: 0.875rem;
+  color: #c9d1d9;
+  line-height: 1.65;
+}
+#info-note-text.empty {
+  color: #484f58;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div id="sidebar-header">
+    <div class="sb-module" id="sb-module"></div>
+    <div class="sb-week"   id="sb-week"></div>
+    <div class="sb-title"  id="sb-title"></div>
+    <div class="sb-count"  id="sb-count"></div>
+  </div>
+  <div id="chart-list"></div>
+</div>
+
+<div id="main">
+  <div id="chart-header">
+    <div id="chart-title-el">Select a chart</div>
+    <div id="chart-desc-el"></div>
+  </div>
+  <div id="diagram-area">
+    <svg id="diagram-svg"></svg>
+    <div id="zoom-controls">
+      <button class="zoom-btn" id="btn-zi" title="Zoom in">+</button>
+      <button class="zoom-btn" id="btn-zo" title="Zoom out">−</button>
+      <button class="zoom-btn" id="btn-zr" title="Fit to view">⊙</button>
+    </div>
+    <div id="hint">Scroll to zoom · Drag to pan · Click a node for details</div>
+    <div id="info-panel">
+      <div id="info-panel-header">
+        <span id="info-node-label"></span>
+        <span id="info-node-badge"></span>
+        <button id="info-close" title="Close (Esc)">✕</button>
+      </div>
+      <div id="info-panel-body">
+        <div id="info-note-text"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═════════════════════════════════════════════════════════════════════════════
+// DATA
+// ═════════════════════════════════════════════════════════════════════════════
+const DATA = {"module": "MultiAgents", "week": 1, "title": "Non-Cooperative Games (Part I)", "charts": [{"id": "chart-1", "type": "mindmap", "title": "Week 1 Topic Map", "description": "High-level overview of all major topics covered in Week 1: Non-Cooperative Games.", "nodes": [{"id": "root", "label": "Week 1\nNon-Cooperative Games", "note": "Week 1 introduces game theory as a framework for modelling strategic interactions between rational, self-interested agents. Core topics span normal form games, Nash equilibria, dominance reasoning, and mixed strategies."}, {"id": "intro", "label": "Intro: MAS\n& Game Theory", "note": "Multi-agent systems can be cooperative or competitive. The competitive case is modelled as a non-cooperative game, studied through Algorithmic Game Theory and Computational Social Choice."}, {"id": "nfg", "label": "Normal\nForm Games", "note": "A normal (strategic) form game is defined by a tuple of players, strategy sets, and utility functions. It is the canonical representation for simultaneous-move games."}, {"id": "games", "label": "Classical\nGames", "note": "Classical examples such as the Prisoner's Dilemma, Matching Pennies, and Battle of the Sexes illustrate key game-theoretic phenomena including social dilemmas, zero-sum conflict, and coordination problems."}, {"id": "dom", "label": "Dominance", "note": "A strategy is dominant if it is always at least as good as any alternative, regardless of opponents' play. Iterated elimination of dominated strategies (IEDS) can reduce or solve games without computing equilibria directly."}, {"id": "psne", "label": "Pure Strategy\nNash Equilibrium", "note": "A Pure Strategy Nash Equilibrium is a strategy profile where no player can improve their payoff by unilaterally switching strategies. It formalises the idea of a stable, self-enforcing outcome."}, {"id": "msne", "label": "Mixed Strategy\nNash Equilibrium", "note": "A Mixed Strategy NE extends Nash equilibrium to probability distributions over pure strategies. Nash (1950) proved every finite game has at least one NE in mixed strategies."}, {"id": "maximin", "label": "Maximin &\nMinimax", "note": "Maximin strategies maximise a player's worst-case payoff, providing a safety guarantee. In two-player zero-sum games the minimax theorem guarantees maximin equals minimax, and every maximin strategy is a Nash equilibrium."}, {"id": "other", "label": "Other Solution\nConcepts", "note": "Beyond Nash equilibrium, solution concepts include rationalizable strategies (consistent with common knowledge of rationality), correlated equilibrium (coordination via a mediator), and strong equilibrium (coalition-proof stability)."}, {"id": "agt", "label": "Algorithmic\nGame Theory", "note": "AGT combines theoretical CS and economics to study equilibrium computation, mechanism design, and the algorithmic tractability of game-theoretic problems."}, {"id": "comsoc", "label": "Computational\nSocial Choice", "note": "COMSOC studies collective decision-making and fair division, asking how group preferences can be aggregated efficiently and fairly using computational methods."}, {"id": "mas", "label": "Multi-Agent\nSystems", "note": "A MAS consists of multiple interacting agents. Competitive agents optimise individual utility with no binding contracts, making non-cooperative game theory the natural model."}, {"id": "def", "label": "Definition &\nComponents", "note": "A game is a tuple (N, S_i, U_i): a set of players N, a strategy set S_i per player, and a utility function U_i mapping strategy profiles to real-valued payoffs."}, {"id": "notation", "label": "Strategy Profiles\n& Notation", "note": "A strategy profile s = (s_1, ..., s_n) specifies every player's choice. The shorthand s_{-i} denotes all strategies except player i's, allowing compact statements of best-response conditions."}, {"id": "pd", "label": "Prisoner's\nDilemma", "note": "The Prisoner's Dilemma is the canonical social dilemma: individual rationality (Defect is dominant) leads both players to (D,D), a Pareto-inferior outcome compared to mutual cooperation (C,C)."}, {"id": "coord", "label": "Coordination\n& Battle of Sexes", "note": "Coordination games have multiple pure Nash equilibria. Battle of the Sexes additionally introduces conflicting preferences: both players want to coordinate but prefer different joint outcomes."}, {"id": "zero", "label": "Zero-Sum\nGames", "note": "In zero-sum games, one player's gain is exactly the other's loss. The minimax theorem guarantees that both players' maximin values equal the game's unique value, and any maximin strategy pair is a Nash equilibrium."}, {"id": "strict", "label": "Strict\nDominance", "note": "Strategy s strictly dominates t if s gives strictly higher payoff than t for every opponent strategy profile. Rational players never play strictly dominated strategies."}, {"id": "weak", "label": "Weak\nDominance", "note": "Strategy s weakly dominates t if s is at least as good as t in all cases and strictly better in at least one. Eliminating weakly dominated strategies may depend on the order of elimination."}, {"id": "ieds", "label": "IEDS", "note": "Iterated Elimination of Dominated Strategies repeatedly removes dominated strategies. For strict dominance the result is order-independent; for weak dominance the order can matter."}, {"id": "br", "label": "Best Response", "note": "A best response for player i is a strategy that maximises i's payoff given the strategies of all other players. A Nash equilibrium is precisely a profile where every player plays a best response."}, {"id": "props", "label": "Properties", "note": "PSNE need not be unique (coordination game has two) and may not exist (Matching Pennies has none). Every dominant strategy equilibrium is a Nash equilibrium but not vice versa."}, {"id": "mixed", "label": "Mixed Strategies\n& Expected Utility", "note": "A mixed strategy is a probability distribution over pure strategies. Expected utility under a mixed profile is the probability-weighted average of pure-strategy payoffs."}, {"id": "indiff", "label": "Indifference\nPrinciple", "note": "In an MSNE, each player randomises only over strategies that give equal expected utility. Crucially, player i's mixing probabilities are determined by making the other player indifferent, not by maximising i's own expected payoff."}, {"id": "nash50", "label": "Nash's\nTheorem 1950", "note": "Nash proved in 1950 that every finite game (finitely many players and actions) has at least one Nash equilibrium in mixed strategies, guaranteeing equilibrium existence even when no pure NE exists."}, {"id": "mmstrat", "label": "Maximin\nStrategy", "note": "The maximin strategy maximises the minimum payoff a player can guarantee, assuming opponents play adversarially. Mixed strategies generally yield higher safety-level values than pure strategies."}, {"id": "minimax", "label": "Minimax\nStrategy", "note": "The minimax strategy for player i against j is the strategy that minimises j's best possible payoff, useful for punishment in repeated games and for computing the minimax value."}, {"id": "zerosum", "label": "Minimax\nTheorem", "note": "Von Neumann's minimax theorem states that in any finite two-player zero-sum game, the maximin value equals the minimax value. All Nash equilibria share the same payoff vector and every maximin/minimax strategy pair is a NE."}, {"id": "rational", "label": "Rationalizable\nStrategies", "note": "A strategy is rationalizable if it is a best response to some belief about opponents that is itself consistent with common knowledge of rationality. All Nash equilibrium strategies are rationalizable, but not all rationalizable strategies are Nash."}, {"id": "corr", "label": "Correlated\nEquilibrium", "note": "A correlated equilibrium allows players to condition actions on a shared random signal from a mediator. The set of correlated equilibria is a superset of Nash equilibria and can always be computed via linear programming."}, {"id": "strong", "label": "Strong\nEquilibrium", "note": "A strong equilibrium (Aumann) requires no coalition of any size to have a jointly improving deviation. It is strictly stronger than Nash equilibrium and rarely exists; the Prisoner's Dilemma has no strong equilibrium."}], "edges": [{"from": "root", "to": "intro"}, {"from": "root", "to": "nfg"}, {"from": "root", "to": "games"}, {"from": "root", "to": "dom"}, {"from": "root", "to": "psne"}, {"from": "root", "to": "msne"}, {"from": "root", "to": "maximin"}, {"from": "root", "to": "other"}, {"from": "intro", "to": "agt"}, {"from": "intro", "to": "comsoc"}, {"from": "intro", "to": "mas"}, {"from": "nfg", "to": "def"}, {"from": "nfg", "to": "notation"}, {"from": "games", "to": "pd"}, {"from": "games", "to": "coord"}, {"from": "games", "to": "zero"}, {"from": "dom", "to": "strict"}, {"from": "dom", "to": "weak"}, {"from": "dom", "to": "ieds"}, {"from": "psne", "to": "br"}, {"from": "psne", "to": "props"}, {"from": "msne", "to": "mixed"}, {"from": "msne", "to": "indiff"}, {"from": "msne", "to": "nash50"}, {"from": "maximin", "to": "mmstrat"}, {"from": "maximin", "to": "minimax"}, {"from": "maximin", "to": "zerosum"}, {"from": "other", "to": "rational"}, {"from": "other", "to": "corr"}, {"from": "other", "to": "strong"}]}, {"id": "chart-2", "type": "flowchart", "title": "Iterated Elimination of Dominated Strategies", "description": "Step-by-step procedure for solving a game via IEDS.", "nodes": [{"id": "start", "label": "Start: normal form game", "shape": "terminal", "variant": "start", "note": "We begin with a game in normal form — a payoff matrix listing every player's utility for each combination of strategies."}, {"id": "find", "label": "Find strictly dominated\nstrategy for any player", "shape": "rect", "note": "For each player, check whether any strategy is strictly worse than some other strategy (or mixture) for every opponent strategy combination."}, {"id": "exists", "label": "Dominated strategy\nfound?", "shape": "diamond", "note": "If a strictly dominated strategy exists for any player, it can be safely removed — a rational player would never choose it. If none remain, the process halts."}, {"id": "elim", "label": "Eliminate strategy\nfrom game", "shape": "rect", "note": "Remove the dominated strategy from the matrix, producing a smaller game. For strict dominance, the order of elimination does not affect the final result."}, {"id": "single", "label": "Single strategy\nper player?", "shape": "diamond", "note": "If only one strategy remains for each player, IEDS has fully solved the game and identified a unique Nash equilibrium. Otherwise, the surviving strategies form a restricted game."}, {"id": "solved", "label": "SOLVED\nUnique Nash equilibrium", "shape": "terminal", "variant": "success", "note": "IEDS has eliminated all but one strategy per player. The surviving profile is the unique Nash equilibrium of the game."}, {"id": "partial", "label": "Partial solution\nSurviving strategies remain", "shape": "terminal", "note": "No further dominated strategies exist but multiple strategies survive. The game is only partially solved — further analysis (e.g. best-response enumeration) is needed to find Nash equilibria."}], "edges": [{"from": "start", "to": "find"}, {"from": "find", "to": "exists"}, {"from": "exists", "to": "elim", "label": "Yes"}, {"from": "elim", "to": "find"}, {"from": "exists", "to": "single", "label": "No"}, {"from": "single", "to": "solved", "label": "Yes"}, {"from": "single", "to": "partial", "label": "No"}]}, {"id": "chart-3", "type": "flowchart", "title": "Finding Pure Strategy Nash Equilibria", "description": "Best response method for identifying all pure strategy Nash equilibria in a normal form game.", "nodes": [{"id": "start", "label": "Start: payoff matrix", "shape": "terminal", "variant": "start", "note": "Begin with a normal form game payoff matrix. We will find all pure strategy Nash equilibria by marking each player's best responses."}, {"id": "row", "label": "For each column, mark\nrow player best response", "shape": "rect", "note": "Fix each column (opponent's strategy) in turn and identify which row gives the row player the highest payoff. Mark these cells."}, {"id": "col", "label": "For each row, mark\ncol player best response", "shape": "rect", "note": "Fix each row (opponent's strategy) in turn and identify which column gives the column player the highest payoff. Mark these cells."}, {"id": "both", "label": "Cell where BOTH\nare best responses?", "shape": "diamond", "note": "A cell is a PSNE if and only if both players have marked it as a best response. Check each cell: does it carry marks for both players simultaneously?"}, {"id": "ne", "label": "That cell is a PSNE", "shape": "rect", "note": "Record this strategy profile as a Pure Strategy Nash Equilibrium. A game can have multiple PSNEs (e.g. coordination games) or none at all (e.g. Matching Pennies)."}, {"id": "more", "label": "More cells\nto check?", "shape": "diamond", "note": "Continue scanning remaining cells in the matrix to ensure all PSNEs are found, not just the first one encountered."}, {"id": "done", "label": "All PSNE found", "shape": "terminal", "variant": "success", "note": "All cells have been checked. The list of marked cells where both players are best-responding gives the complete set of PSNEs."}, {"id": "nopsne", "label": "No PSNE exists\nSeek MSNE", "shape": "terminal", "variant": "failure", "note": "No cell carries marks for both players. The game has no pure strategy Nash equilibrium. By Nash's theorem, at least one mixed strategy NE must exist."}], "edges": [{"from": "start", "to": "row"}, {"from": "row", "to": "col"}, {"from": "col", "to": "both"}, {"from": "both", "to": "ne", "label": "Yes"}, {"from": "ne", "to": "more"}, {"from": "both", "to": "more", "label": "No"}, {"from": "more", "to": "both", "label": "Yes"}, {"from": "more", "to": "done", "label": "No, NE found"}, {"from": "more", "to": "nopsne", "label": "No, none found"}]}, {"id": "chart-4", "type": "flowchart", "title": "Computing Mixed Strategy Nash Equilibrium", "description": "Indifference principle method for computing MSNE in a 2-player game.", "nodes": [{"id": "start", "label": "Start: 2-player game\nwith no or multiple PSNE", "shape": "terminal", "variant": "start", "note": "We apply the indifference principle to find a mixed strategy Nash equilibrium. This is appropriate when a game has no PSNE, or when we want to find additional NE beyond the pure ones."}, {"id": "p1mix", "label": "Parameterise P1 mix:\nprob p on action A", "shape": "rect", "note": "Let Player 1 play action A with probability p and action B with probability 1-p. We use p as an unknown to be determined by making Player 2 indifferent."}, {"id": "indiff2", "label": "Make P2 indifferent:\nset EU2(X) = EU2(Y), solve p", "shape": "rect", "note": "Player 2 will only mix if they are indifferent between their actions. Set Player 2's expected utility from action X equal to their expected utility from action Y, then solve for p."}, {"id": "p2mix", "label": "Parameterise P2 mix:\nprob q on action X", "shape": "rect", "note": "Let Player 2 play action X with probability q and action Y with probability 1-q. We use q as an unknown to be determined by making Player 1 indifferent."}, {"id": "indiff1", "label": "Make P1 indifferent:\nset EU1(A) = EU1(B), solve q", "shape": "rect", "note": "Player 1 will only mix if they are indifferent between their actions. Set Player 1's expected utility from action A equal to action B, then solve for q."}, {"id": "valid", "label": "Both p and q\nin range [0,1]?", "shape": "diamond", "note": "The values p and q must be valid probabilities. If both lie in [0,1] the solution is a genuine mixed NE. If either is outside [0,1], no fully mixed NE exists and we must reconsider the support."}, {"id": "msne", "label": "MSNE found:\n(p,1-p) for P1, (q,1-q) for P2", "shape": "terminal", "variant": "success", "note": "The mixed strategy Nash equilibrium has Player 1 mixing with probabilities (p, 1-p) and Player 2 mixing with probabilities (q, 1-q). Both players are indifferent between their actions and have no incentive to deviate."}, {"id": "recheck", "label": "Adjust support\nor check boundary", "shape": "terminal", "variant": "failure", "note": "The computed probabilities are not valid. Check whether a pure strategy NE on the boundary was missed, or consider a different support (subset of actions that each player mixes over)."}], "edges": [{"from": "start", "to": "p1mix"}, {"from": "p1mix", "to": "indiff2"}, {"from": "indiff2", "to": "p2mix"}, {"from": "p2mix", "to": "indiff1"}, {"from": "indiff1", "to": "valid"}, {"from": "valid", "to": "msne", "label": "Yes"}, {"from": "valid", "to": "recheck", "label": "No"}]}, {"id": "chart-5", "type": "flowchart", "title": "Maximin Strategy Procedure", "description": "How to compute the maximin safety-level strategy for a player.", "nodes": [{"id": "start", "label": "Start: player i's\nutility matrix", "shape": "terminal", "variant": "start", "note": "We want to find player i's maximin strategy — the strategy that maximises the worst-case payoff, assuming opponents play adversarially to minimise i's utility."}, {"id": "pure", "label": "For each pure strategy,\nfind minimum payoff", "shape": "rect", "note": "For each of player i's pure strategies, compute the minimum payoff across all opponent strategy combinations. This is the worst case if player i commits to that strategy."}, {"id": "puremax", "label": "Select strategy with\nhighest minimum payoff", "shape": "rect", "note": "The pure maximin strategy is the one whose minimum payoff is highest. This is player i's best guarantee using only pure strategies."}, {"id": "better", "label": "Can mixing improve\nworst-case payoff?", "shape": "diamond", "note": "Mixed strategies can sometimes guarantee a higher minimum payoff than any pure strategy alone. This occurs when mixing makes it harder for opponents to exploit a particular action. Check by setting worst-case payoffs equal across actions."}, {"id": "mixvar", "label": "Parameterise mix:\nprob p on each action", "shape": "rect", "note": "Let player i mix over their actions with probability p on one action and (1-p) on another. The worst-case payoff under this mix depends on which opponent action minimises i's expected utility."}, {"id": "setequal", "label": "Equate worst-case payoffs\nacross actions, solve for p", "shape": "rect", "note": "The optimal mixing probability equalises the minimum payoffs from each pure action. Set the expressions for worst-case utility under each pure opponent action equal to each other and solve for p."}, {"id": "mmval", "label": "Mixed maximin\nstrategy found", "shape": "terminal", "variant": "success", "note": "The value of p that equalises worst-case payoffs gives player i a higher safety level than any pure strategy. This is the maximin strategy and the maximin value is the guaranteed expected payoff."}, {"id": "puredone", "label": "Pure maximin\nstrategy is optimal", "shape": "terminal", "variant": "success", "note": "No mixed strategy can improve on the best pure strategy's worst-case payoff. The pure maximin strategy is optimal and the safety level equals the best pure minimum payoff."}], "edges": [{"from": "start", "to": "pure"}, {"from": "pure", "to": "puremax"}, {"from": "puremax", "to": "better"}, {"from": "better", "to": "mixvar", "label": "Yes"}, {"from": "mixvar", "to": "setequal"}, {"from": "setequal", "to": "mmval"}, {"from": "better", "to": "puredone", "label": "No"}]}, {"id": "chart-6", "type": "flowchart", "title": "Solution Concepts: Strength and Containment", "description": "Hierarchy of solution concepts showing containment and implication relationships.", "nodes": [{"id": "root", "label": "Normal Form Game\nSolution Concepts", "shape": "terminal", "variant": "start", "note": "Multiple solution concepts exist for normal form games, varying in their strength (how much rationality they assume) and existence guarantees."}, {"id": "dom", "label": "Dominant Strategy\nEquilibrium", "shape": "rect", "note": "The strongest solution concept. A dominant strategy is always optimal regardless of opponents' play. Requires no beliefs about others. Rare: exists in Prisoner's Dilemma but not most games."}, {"id": "strong", "label": "Strong\nEquilibrium", "shape": "rect", "note": "No coalition of players (of any size) can jointly deviate to improve all coalition members' payoffs. Strictly stronger than Nash. Rarely exists."}, {"id": "psne", "label": "Pure Strategy\nNash Equilibrium", "shape": "rect", "note": "No individual player can unilaterally improve. May not exist (Matching Pennies) or may not be unique (Coordination Game). Every dominant strategy equilibrium is a PSNE."}, {"id": "msne", "label": "Mixed Strategy\nNash Equilibrium", "shape": "rect", "note": "Nash's 1950 theorem guarantees existence in every finite game. Every PSNE is a special case. Players randomise to keep opponents indifferent."}, {"id": "corr", "label": "Correlated\nEquilibrium", "shape": "rect", "note": "A superset of Nash equilibria, allowing coordination via a shared random signal. Always exists and can be computed in polynomial time via linear programming."}, {"id": "rat", "label": "Rationalizable\nStrategies", "shape": "rect", "note": "Survives iterated elimination of strategies that are never a best response. Every NE strategy is rationalizable, but rationalizable strategies may not be part of any NE."}, {"id": "eps", "label": "epsilon-Nash\nEquilibrium", "shape": "rect", "note": "A relaxation of Nash equilibrium where no player can gain more than epsilon by deviating. Standard Nash is the special case where epsilon equals zero."}], "edges": [{"from": "root", "to": "dom", "label": "strongest"}, {"from": "root", "to": "strong"}, {"from": "root", "to": "psne"}, {"from": "root", "to": "msne", "label": "always exists"}, {"from": "root", "to": "corr", "label": "superset of NE"}, {"from": "root", "to": "rat"}, {"from": "root", "to": "eps", "label": "weakest"}, {"from": "dom", "to": "psne", "label": "implies"}, {"from": "strong", "to": "psne", "label": "implies"}, {"from": "psne", "to": "msne", "label": "special case"}, {"from": "msne", "to": "corr", "label": "induces"}]}]};
+
+// ═════════════════════════════════════════════════════════════════════════════
+// COLOUR PALETTE
+// ═════════════════════════════════════════════════════════════════════════════
+const C = {
+  // Flowchart node fill / stroke / text by role
+  node: {
+    default:  { fill: '#1c2333', stroke: '#388bfd', text: '#79c0ff' },
+    decision: { fill: '#1c1f2b', stroke: '#d29922', text: '#e3b341' },
+    success:  { fill: '#0d1f12', stroke: '#3fb950', text: '#56d364' },
+    failure:  { fill: '#1c0f0e', stroke: '#f85149', text: '#ff7b72' },
+    start:    { fill: '#0d1f38', stroke: '#388bfd', text: '#79c0ff' },
+  },
+  // Mindmap level colours
+  levels: ['#388bfd','#3fb950','#d29922','#a371f7','#f78166','#56d364','#79c0ff'],
+  edge:      '#30363d',
+  edgeHover: '#58a6ff',
+  edgeLabel: '#8b949e',
+  arrow:     '#484f58',
+  bg:        '#0d1117',
+  surface:   '#161b22',
+};
+
+// ═════════════════════════════════════════════════════════════════════════════
+// TEXT MEASUREMENT
+// ═════════════════════════════════════════════════════════════════════════════
+const _c = document.createElement('canvas').getContext('2d');
+function measure(text, fs = 13, fw = '500') {
+  _c.font = `${fw} ${fs}px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif`;
+  const lines = String(text).split('\n');
+  return {
+    w: Math.max(...lines.map(l => _c.measureText(l).width)),
+    h: lines.length * (fs * 1.45),
+    lines,
+  };
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SVG + ZOOM
+// ═════════════════════════════════════════════════════════════════════════════
+const svg   = d3.select('#diagram-svg');
+const root  = svg.append('g').attr('id', 'root-layer');
+
+const zoom = d3.zoom()
+  .scaleExtent([0.04, 12])
+  .on('zoom', ev => root.attr('transform', ev.transform));
+
+svg.call(zoom)
+   .on('dblclick.zoom', () => fitAll());
+
+function fitAll() {
+  const svgEl = svg.node();
+  const W = svgEl.clientWidth  || 900;
+  const H = svgEl.clientHeight || 600;
+  const bb = root.node().getBBox();
+  if (!bb.width || !bb.height) return;
+  const scale = Math.min(0.88 * W / bb.width, 0.88 * H / bb.height, 4);
+  const tx = W / 2 - (bb.x + bb.width  / 2) * scale;
+  const ty = H / 2 - (bb.y + bb.height / 2) * scale;
+  svg.transition().duration(380)
+     .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+}
+
+document.getElementById('btn-zi').addEventListener('click', () =>
+  svg.transition().duration(220).call(zoom.scaleBy, 1.45));
+document.getElementById('btn-zo').addEventListener('click', () =>
+  svg.transition().duration(220).call(zoom.scaleBy, 0.69));
+document.getElementById('btn-zr').addEventListener('click', fitAll);
+
+// ═════════════════════════════════════════════════════════════════════════════
+// INFO PANEL
+// ═════════════════════════════════════════════════════════════════════════════
+const infoPanel = document.getElementById('info-panel');
+const infoLabel = document.getElementById('info-node-label');
+const infoBadge = document.getElementById('info-node-badge');
+const infoNote  = document.getElementById('info-note-text');
+const hintEl    = document.getElementById('hint');
+
+function badgeFor(node, depth) {
+  if (depth !== undefined) {
+    // Mindmap node
+    if (depth === 0) return { text: 'Root',      cls: 'badge-start' };
+    if (depth === 1) return { text: 'Main Topic', cls: 'badge-topic' };
+    return               { text: 'Sub-topic',   cls: 'badge-subtopic' };
+  }
+  if (node.shape === 'diamond')                    return { text: 'Decision',    cls: 'badge-decision' };
+  if (node.shape === 'terminal' && node.variant === 'success') return { text: 'Success',    cls: 'badge-success'  };
+  if (node.shape === 'terminal' && node.variant === 'failure') return { text: 'Failure',    cls: 'badge-failure'  };
+  if (node.shape === 'terminal')                   return { text: 'Start / End', cls: 'badge-start'    };
+  return                                                   { text: 'Step',       cls: 'badge-step'     };
+}
+
+function showInfo(node, depth) {
+  const label = (node.label || '').replace(/\n/g, ' ');
+  infoLabel.textContent = label;
+
+  const b = badgeFor(node, depth);
+  infoBadge.textContent  = b.text;
+  infoBadge.className    = 'badge-class ' + b.cls; // reset then set
+
+  if (node.note) {
+    infoNote.textContent = node.note;
+    infoNote.className   = '';
+  } else {
+    infoNote.textContent = 'No description available for this node.';
+    infoNote.className   = 'empty';
+  }
+
+  infoPanel.classList.add('visible');
+  hintEl.classList.add('hidden');
+}
+
+function hideInfo() {
+  infoPanel.classList.remove('visible');
+  hintEl.classList.remove('hidden');
+}
+
+document.getElementById('info-close').addEventListener('click', hideInfo);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') hideInfo(); });
+
+// Click on SVG background closes panel
+svg.on('click', (event) => {
+  if (event.target === svg.node() || event.target.id === 'root-layer') hideInfo();
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SIDEBAR
+// ═════════════════════════════════════════════════════════════════════════════
+document.getElementById('sb-module').textContent = DATA.module;
+document.getElementById('sb-week'  ).textContent = 'Week ' + DATA.week;
+document.getElementById('sb-title' ).textContent = DATA.title;
+document.getElementById('sb-count' ).textContent =
+  DATA.charts.length + ' chart' + (DATA.charts.length !== 1 ? 's' : '');
+
+const ICONS = { mindmap: '🧠', flowchart: '📊', graph: '🔗' };
+const listEl = document.getElementById('chart-list');
+let firstSel = null;
+
+DATA.charts.forEach((chart, i) => {
+  const el = document.createElement('div');
+  el.className = 'chart-item';
+  el.innerHTML =
+    `<span class="ci-icon">${ICONS[chart.type] || '📋'}</span>
+     <div>
+       <div class="ci-title">${chart.title}</div>
+       <div class="ci-type">${chart.type}</div>
+     </div>`;
+  el.addEventListener('click', () => selectChart(chart, el));
+  listEl.appendChild(el);
+  if (i === 0) firstSel = { chart, el };
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SELECTION
+// ═════════════════════════════════════════════════════════════════════════════
+function selectChart(chart, itemEl) {
+  document.querySelectorAll('.chart-item').forEach(e => e.classList.remove('active'));
+  itemEl.classList.add('active');
+  document.getElementById('chart-title-el').textContent = chart.title;
+  document.getElementById('chart-desc-el' ).textContent = chart.description || '';
+
+  root.selectAll('*').remove();
+
+  if (chart.type === 'mindmap') renderMindmap(chart);
+  else                          renderFlowchart(chart);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// MINDMAP  (D3 radial tree)
+// ═════════════════════════════════════════════════════════════════════════════
+function renderMindmap(chart) {
+  const svgW = svg.node().clientWidth  || 900;
+  const svgH = svg.node().clientHeight || 600;
+  const R    = Math.min(svgW, svgH) * 0.40;
+
+  // Build parent-child map
+  const byId  = Object.fromEntries(chart.nodes.map(n => [n.id, { ...n, _children: [] }]));
+  const hasParent = new Set(chart.edges.map(e => e.to));
+  chart.edges.forEach(e => { if (byId[e.from] && byId[e.to]) byId[e.from]._children.push(byId[e.to]); });
+  const rootNode = chart.nodes.find(n => !hasParent.has(n.id)) || chart.nodes[0];
+
+  // D3 hierarchy + radial tree
+  const hier = d3.hierarchy(byId[rootNode.id], d => d._children.length ? d._children : null);
+  d3.tree()
+    .size([2 * Math.PI, R])
+    .separation((a, b) => (a.parent === b.parent ? 1.2 : 2.4) / a.depth)
+    (hier);
+
+  // ── Defs: drop shadow ──────────────────────────────────────────────────────
+  const defs = root.append('defs');
+  const filt = defs.append('filter').attr('id', 'mm-shadow').attr('x', '-20%').attr('y', '-20%').attr('width', '140%').attr('height', '140%');
+  filt.append('feDropShadow').attr('dx', 0).attr('dy', 2).attr('stdDeviation', 4).attr('flood-color', '#000').attr('flood-opacity', 0.5);
+
+  // ── Group centered ─────────────────────────────────────────────────────────
+  const grp = root.append('g').attr('transform', `translate(${svgW / 2},${svgH / 2})`);
+
+  // ── Links ──────────────────────────────────────────────────────────────────
+  const linkRadial = d3.linkRadial().angle(d => d.x).radius(d => d.y);
+
+  grp.append('g').selectAll('path')
+    .data(hier.links())
+    .join('path')
+    .attr('d', linkRadial)
+    .attr('fill', 'none')
+    .attr('stroke', d => C.levels[Math.min(d.target.depth - 1, C.levels.length - 1)])
+    .attr('stroke-width', d => Math.max(1, 3 - d.target.depth * 0.8))
+    .attr('opacity', 0.4)
+    .attr('stroke-linecap', 'round');
+
+  // ── Nodes ──────────────────────────────────────────────────────────────────
+  const nodeG = grp.append('g').selectAll('g')
+    .data(hier.descendants())
+    .join('g')
+    .attr('transform', d => {
+      const a = d.x - Math.PI / 2;
+      return `translate(${d.y * Math.cos(a)},${d.y * Math.sin(a)})`;
+    })
+    .style('cursor', 'default');
+
+  nodeG.each(function(d) {
+    const g      = d3.select(this);
+    const depth  = d.depth;
+    const label  = d.data.label || '';
+    const color  = depth === 0 ? C.levels[0] : C.levels[Math.min(depth - 1, C.levels.length - 1)];
+    const fs     = depth === 0 ? 15 : depth === 1 ? 12.5 : 11;
+    const fw     = depth <= 1 ? '700' : '500';
+    const m      = measure(label, fs, fw);
+    const px     = depth === 0 ? 18 : 12;
+    const py     = depth === 0 ? 12 : 8;
+    const rw     = m.w + px * 2;
+    const rh     = m.h + py * 2;
+
+    if (depth === 0) {
+      // Root: filled pill with glow
+      g.append('rect')
+        .attr('x', -rw / 2).attr('y', -rh / 2)
+        .attr('width', rw).attr('height', rh)
+        .attr('rx', rh / 2)
+        .attr('fill', color)
+        .attr('filter', 'url(#mm-shadow)');
+    } else {
+      // Child: bordered pill
+      g.append('rect')
+        .attr('x', -rw / 2).attr('y', -rh / 2)
+        .attr('width', rw).attr('height', rh)
+        .attr('rx', Math.min(rh / 2, 10))
+        .attr('fill', color + '18')
+        .attr('stroke', color)
+        .attr('stroke-width', 1.5);
+    }
+
+    // Text
+    m.lines.forEach((line, i) => {
+      const yOff = (i - (m.lines.length - 1) / 2) * (fs * 1.45);
+      g.append('text')
+        .text(line)
+        .attr('y', yOff)
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'middle')
+        .attr('font-size', fs + 'px')
+        .attr('font-weight', fw)
+        .attr('fill', depth === 0 ? '#fff' : color)
+        .attr('font-family', "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif");
+    });
+
+    // Hover + click
+    const shapeEl = g.select(depth === 0 ? 'rect' : 'rect');
+    g.style('cursor', 'pointer')
+     .on('mouseenter', function() {
+        shapeEl.transition().duration(120)
+          .attr('fill', depth === 0 ? d3.color(color).brighter(0.3) : color + '32');
+      })
+     .on('mouseleave', function() {
+        shapeEl.transition().duration(120)
+          .attr('fill', depth === 0 ? color : color + '18');
+      })
+     .on('click', function(event) {
+        event.stopPropagation();
+        showInfo(d.data, depth);
+      });
+  });
+
+  setTimeout(fitAll, 60);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// FLOWCHART  (Dagre layout + custom D3 SVG)
+// ═════════════════════════════════════════════════════════════════════════════
+function renderFlowchart(chart) {
+  const FS    = 13;
+  const PX    = 22;
+  const PY    = 13;
+  const DPAD  = 1.5; // diamond size multiplier
+
+  // ── Compute node sizes ────────────────────────────────────────────────────
+  const info = {};
+  chart.nodes.forEach(n => {
+    const m  = measure(n.label || '', FS);
+    let w    = Math.max(m.w + PX * 2, 90);
+    let h    = Math.max(m.h + PY * 2, 38);
+    if (n.shape === 'diamond') { w = (w + 20) * DPAD; h = (h + 10) * DPAD; }
+    info[n.id] = { ...m, w, h };
+  });
+
+  // ── Dagre graph ───────────────────────────────────────────────────────────
+  const gd = new dagre.graphlib.Graph({ multigraph: true });
+  gd.setGraph({ rankdir: 'TB', nodesep: 55, ranksep: 75, marginx: 50, marginy: 50, edgesep: 20 });
+  gd.setDefaultEdgeLabel(() => ({}));
+
+  chart.nodes.forEach(n  => gd.setNode(n.id, { width: info[n.id].w, height: info[n.id].h }));
+  chart.edges.forEach((e, i) => gd.setEdge(e.from, e.to, { label: e.label || '' }, 'e' + i));
+
+  dagre.layout(gd);
+
+  // ── Defs ──────────────────────────────────────────────────────────────────
+  const defs  = root.append('defs');
+
+  // Arrowhead
+  defs.append('marker')
+    .attr('id', 'arr').attr('viewBox', '0 -5 10 10')
+    .attr('refX', 8).attr('refY', 0)
+    .attr('markerWidth', 6).attr('markerHeight', 6)
+    .attr('orient', 'auto')
+    .append('path').attr('d', 'M0,-5L10,0L0,5').attr('fill', C.arrow);
+
+  // Glow filter for highlighted nodes
+  const glow = defs.append('filter').attr('id', 'glow').attr('x', '-30%').attr('y', '-30%').attr('width', '160%').attr('height', '160%');
+  glow.append('feGaussianBlur').attr('in', 'SourceGraphic').attr('stdDeviation', '3').attr('result', 'blur');
+  glow.append('feComposite').attr('in', 'SourceGraphic').attr('in2', 'blur').attr('operator', 'over');
+
+  // ── Edges ─────────────────────────────────────────────────────────────────
+  const edgeG = root.append('g').attr('class', 'edges');
+  const lineGen = d3.line().curve(d3.curveCatmullRom.alpha(0.5))
+    .x(d => d.x).y(d => d.y);
+
+  gd.edges().forEach(e => {
+    const ed  = gd.edge(e);
+    if (!ed || !ed.points || ed.points.length < 2) return;
+    const pts = ed.points;
+
+    edgeG.append('path')
+      .attr('d', lineGen(pts))
+      .attr('fill', 'none')
+      .attr('stroke', C.edge)
+      .attr('stroke-width', 1.5)
+      .attr('stroke-linecap', 'round')
+      .attr('marker-end', 'url(#arr)');
+
+    if (ed.label) {
+      const mid = pts[Math.floor(pts.length / 2)];
+      edgeG.append('text')
+        .text(ed.label)
+        .attr('x', mid.x + 6).attr('y', mid.y - 5)
+        .attr('font-size', '11px')
+        .attr('font-weight', '600')
+        .attr('fill', C.edgeLabel)
+        .attr('font-family', "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif");
+    }
+  });
+
+  // ── Nodes ─────────────────────────────────────────────────────────────────
+  const nodeG = root.append('g').attr('class', 'nodes');
+
+  chart.nodes.forEach(n => {
+    const pos    = gd.node(n.id);
+    if (!pos) return;
+    const ninfo  = info[n.id];
+    const w      = pos.width;
+    const h      = pos.height;
+    const cx     = pos.x;
+    const cy     = pos.y;
+
+    // Pick colours
+    let pal;
+    if (n.shape === 'diamond')       pal = C.node.decision;
+    else if (n.variant === 'success') pal = C.node.success;
+    else if (n.variant === 'failure') pal = C.node.failure;
+    else if (n.variant === 'start')   pal = C.node.start;
+    else                              pal = C.node.default;
+
+    const g = nodeG.append('g')
+      .attr('transform', `translate(${cx - w/2},${cy - h/2})`)
+      .style('cursor', 'default');
+
+    // ── Shape ──────────────────────────────────────────────────────────────
+    if (n.shape === 'diamond') {
+      const hx = w / 2, hy = h / 2;
+      g.append('polygon')
+        .attr('points', `${hx},1 ${w-1},${hy} ${hx},${h-1} 1,${hy}`)
+        .attr('fill', pal.fill)
+        .attr('stroke', pal.stroke)
+        .attr('stroke-width', 1.5);
+    } else if (n.shape === 'terminal') {
+      g.append('rect')
+        .attr('x', 0).attr('y', 0)
+        .attr('width', w).attr('height', h)
+        .attr('rx', h / 2)
+        .attr('fill', pal.fill)
+        .attr('stroke', pal.stroke)
+        .attr('stroke-width', 1.5);
+    } else {
+      g.append('rect')
+        .attr('x', 0).attr('y', 0)
+        .attr('width', w).attr('height', h)
+        .attr('rx', 8)
+        .attr('fill', pal.fill)
+        .attr('stroke', pal.stroke)
+        .attr('stroke-width', 1.5);
+    }
+
+    // ── Label ──────────────────────────────────────────────────────────────
+    const textG = g.append('g').attr('transform', `translate(${w/2},${h/2})`);
+    ninfo.lines.forEach((line, li) => {
+      textG.append('text')
+        .text(line)
+        .attr('y', (li - (ninfo.lines.length - 1) / 2) * (FS * 1.45))
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'middle')
+        .attr('font-size', FS + 'px')
+        .attr('font-weight', n.shape === 'terminal' ? '700' : '500')
+        .attr('fill', pal.text)
+        .attr('font-family', "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif");
+    });
+
+    // ── Hover glow + click ─────────────────────────────────────────────────
+    const shape = g.select(n.shape === 'diamond' ? 'polygon' : 'rect');
+    g.style('cursor', 'pointer')
+     .on('mouseenter', () => shape.attr('filter', 'url(#glow)').attr('stroke-width', 2.2))
+     .on('mouseleave', () => shape.attr('filter', null).attr('stroke-width', 1.5))
+     .on('click', function(event) {
+        event.stopPropagation();
+        showInfo(n);
+      });
+  });
+
+  setTimeout(fitAll, 60);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// INIT
+// ═════════════════════════════════════════════════════════════════════════════
+if (firstSel) setTimeout(() => selectChart(firstSel.chart, firstSel.el), 120);
+</script>
+</body>
+</html>
