@@ -1,0 +1,286 @@
+00:00:00,950 --> 00:00:04,630
+An example of a hedonic
+game is the famous stable
+00:00:04,630 --> 00:00:08,270
+matching problem which is
+a foundational model in
+00:00:08,270 --> 00:00:11,630
+computational social choice
+and algorithmic game theory
+00:00:11,630 --> 00:00:16,250
+that captures a fundamental
+coordination challenge. How
+00:00:16,250 --> 00:00:19,910
+can we match members of
+two disjoint populations
+00:00:19,910 --> 00:00:24,070
+according to their stated
+preferences such that no pair
+00:00:24,070 --> 00:00:27,070
+would prefer to leave the
+arrangement for each other?
+00:00:27,070 --> 00:00:31,070
+As an example of such
+two disjoint populations,
+00:00:31,070 --> 00:00:36,850
+we can take men and women,
+students and universities,
+00:00:37,570 --> 00:00:39,790
+patients and hospitals, workers
+00:00:39,790 --> 00:00:41,590
+and employers and so on.
+00:00:41,910 --> 00:00:42,910
+Formally,
+00:00:43,030 --> 00:00:48,570
+we have two equal-sized
+populations, X, say, of
+00:00:48,570 --> 00:00:53,650
+women, and Y of men, with
+the size of the set X equal
+00:00:53,650 --> 00:00:59,710
+to the size of the set
+Y, composed of N agents.
+00:00:59,710 --> 00:01:03,810
+Each agent holds a complete
+strict preference order
+00:01:03,810 --> 00:01:07,170
+over all potential partners
+in the opposite group.
+00:01:07,370 --> 00:01:08,490
+Importantly,
+00:01:08,610 --> 00:01:12,290
+being unmatched is
+considered least preferred
+00:01:12,290 --> 00:01:15,210
+by every agent. We
+assume that isolation
+00:01:15,210 --> 00:01:18,030
+is worse than any
+actual partnership,
+00:01:18,030 --> 00:01:21,730
+ensuring that outcomes
+motivate participation.
+00:01:21,830 --> 00:01:26,890
+Now, a matching M is a
+bijection that pairs the
+00:01:26,890 --> 00:01:32,150
+agents, where M of X denotes
+woman X's partner in M
+00:01:32,150 --> 00:01:37,010
+or a star if X is unmatched.
+And similarly for men.
+00:01:37,470 --> 00:01:41,530
+For example, consider
+the set of three women,
+00:01:41,530 --> 00:01:44,550
+Anna, Bella and Claire,
+and three men, Isaac,
+00:01:44,550 --> 00:01:49,130
+Jacob and Ken, and each
+group has preferences
+00:01:49,130 --> 00:01:51,950
+over the members of
+the opposite group.
+00:01:52,150 --> 00:01:56,710
+Now a matching is a set
+M of ordered pairs X,
+00:01:56,710 --> 00:01:59,690
+Y, with X belonging
+to the set of women, Y
+00:01:59,690 --> 00:02:02,850
+belonging to the set of
+men, such that each woman
+00:02:02,850 --> 00:02:07,230
+X appears in at most
+one pair of M, and also
+00:02:07,230 --> 00:02:11,810
+each man Y appears in
+at most one pair of M.
+00:02:11,810 --> 00:02:15,770
+We would say that a matching
+is perfect if we match all
+00:02:15,770 --> 00:02:20,130
+men and women, so we form
+exactly N pairs. And in our
+00:02:20,130 --> 00:02:25,130
+example, we can match Anna
+with Ken, Bella with Jacob
+00:02:25,130 --> 00:02:29,590
+and Claire with Isaac to
+receive a perfect matching.
+00:02:29,590 --> 00:02:32,750
+However, a perfect
+matching is not enough.
+00:02:32,750 --> 00:02:35,430
+We are interested in
+matchings which are
+00:02:35,430 --> 00:02:39,330
+stable, where no man
+and woman would deviate.
+00:02:39,420 --> 00:02:42,170
+Formally, we would say that
+given a perfect matching
+00:02:42,170 --> 00:02:47,530
+M, woman X and man Y would
+form a blocking pair.
+00:02:47,530 --> 00:02:52,570
+if X prefers Y to her partner
+in M and also Y prefers
+00:02:52,570 --> 00:02:57,070
+X to his partner in M. So
+the idea is that a blocking
+00:02:57,070 --> 00:03:02,410
+pair can jointly improve.
+And in the perfect
+00:03:02,410 --> 00:03:06,590
+matching that we formed in
+our example, we matched, for
+00:03:06,590 --> 00:03:10,350
+instance, Bella with Jacob
+and Claire with Isaac.
+00:03:10,350 --> 00:03:13,310
+However, Bella and Isaac form a
+00:03:13,310 --> 00:03:15,770
+blocking pair because, indeed,
+00:03:15,930 --> 00:03:21,150
+Bella prefers Isaac over her
+current partner Jacob and
+00:03:21,150 --> 00:03:25,890
+Isaac prefers Bella over
+his current partner Claire.
+00:03:27,390 --> 00:03:30,870
+Now, a stable matching
+is a perfect matching
+00:03:30,870 --> 00:03:34,130
+with no blocking
+pairs. And we formulate
+00:03:34,130 --> 00:03:36,970
+the stable matching
+problem as follows. Given
+00:03:36,970 --> 00:03:40,690
+the preference lists
+of N men and N women,
+00:03:40,930 --> 00:03:44,250
+find a stable matching
+if one exists.
+00:03:44,250 --> 00:03:47,950
+In our example, we can
+consider the following
+00:03:47,950 --> 00:03:50,510
+matching. We can
+match Anna with Isaac,
+00:03:50,650 --> 00:03:54,790
+Bella with Jacob, and
+Claire with Ken. And it is
+00:03:54,790 --> 00:03:58,130
+easy to check that this
+indeed a stable matching
+00:03:58,130 --> 00:04:01,830
+because Isaac is matched
+to his top choice, Anna.
+00:04:01,970 --> 00:04:05,810
+Jacob is matched to
+his top choice, Bella.
+00:04:06,070 --> 00:04:08,030
+Ken, however, is not matched to
+00:04:08,030 --> 00:04:10,410
+his either top
+or second choice.
+00:04:10,410 --> 00:04:13,290
+He is matched to Claire,
+which is his least
+00:04:13,290 --> 00:04:18,810
+preferred choice in the
+opposite group. But Ken is
+00:04:18,810 --> 00:04:23,490
+not preferred any better
+than the current partners
+00:04:23,490 --> 00:04:26,950
+of Anna or Bella, so
+there is no blocking pair.
+00:04:28,330 --> 00:04:33,350
+To see that an instance of
+stable matching can be viewed
+00:04:33,350 --> 00:04:37,290
+as a hedonic game, let's
+define the preferences as
+00:04:37,290 --> 00:04:41,430
+follow each man y would
+prefer being alone to any
+00:04:41,430 --> 00:04:47,750
+coalition which is not a pair
+x y where x is a woman then
+00:04:47,930 --> 00:04:53,490
+every coalition of the form
+which is a pair x y where x
+00:04:53,490 --> 00:04:58,110
+is a woman a man y would
+prefer to be in alone and his
+00:04:58,110 --> 00:05:01,810
+preferences over coalitions
+of the form would be
+00:05:01,810 --> 00:05:06,750
+determined by his preferences
+over the set X of women. And
+00:05:06,750 --> 00:05:09,870
+it is easy to see then that
+a stable matching, by the
+00:05:09,870 --> 00:05:14,160
+way as we defined it with
+blocking pairs, would correspond
+00:05:14,350 --> 00:05:18,370
+to the outcome in the
+core of this ketonic gain.
+00:05:18,570 --> 00:05:23,770
+A related example is the
+so-called stable roommate
+00:05:23,770 --> 00:05:26,930
+problem, which differs
+from the stable matching
+00:05:26,930 --> 00:05:32,530
+problem by that we have
+not two disjoined set of
+00:05:32,530 --> 00:05:38,350
+populations but one
+population of 2n people where
+00:05:38,350 --> 00:05:44,270
+each person ranks all the
+others from 1 to 2n-1. And
+00:05:44,270 --> 00:05:48,070
+we assign roommate pairs
+so that there are no
+00:05:48,070 --> 00:05:51,950
+blocking pairs by the
+definition that we had before.
+00:05:52,110 --> 00:05:54,710
+Unfortunately, though,
+there are examples
+00:05:54,710 --> 00:05:57,190
+where no perfect
+matching is stable.
+00:05:57,210 --> 00:05:59,010
+Consider, for instance,
+00:05:59,310 --> 00:06:01,750
+four agents, Adam,
+Bob, Chris, and
+00:06:01,750 --> 00:06:03,650
+Dunn, with the
+following preferences.
+00:06:03,650 --> 00:06:10,810
+And here, if we form a
+structure where Adam is matched
+00:06:10,810 --> 00:06:16,090
+to Dunn, then Adam and
+Chris form a blocking pair.
+00:06:16,550 --> 00:06:19,730
+If Adam and Chris
+are matched together,
+00:06:19,890 --> 00:06:24,430
+then Adam and Bob form a
+blocking pair, and if Adam
+00:06:24,430 --> 00:06:27,510
+and Bob are matched together,
+then Bob and Chris form
+00:06:27,510 --> 00:06:31,710
+a blocking pair, so there
+is no stable outcome here.

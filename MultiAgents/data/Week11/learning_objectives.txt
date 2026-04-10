@@ -1,0 +1,49 @@
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Explain the principles and objectives of multi-winner voting systems, such as committee selection and proportional representation.
+
+Describe and distinguish key multi-winner voting rules (e.g., Bloc, Chamberlin–Courant, Proportional Approval Voting).
+
+Model group selection and resource allocation problems where more than one winner or outcome is needed, using formal voting frameworks.
+
+Analyse the fairness, proportionality, and strategic properties of various multi-winner voting rules.
+
+Apply algorithms to determine committee or allocation outcomes under different multi-winner rules.
+
+Evaluate multi-winner systems using criteria like justified representation and its variants.
+
+Solve theoretical and computational problems related to committee selection, participatory budgeting, or group assignments.
+
+Discuss real-world applications of multi-winner voting in AI and multi-agent systems.
+
+ 
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.
+
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Explain the principles and objectives of multi-winner voting systems, such as committee selection and proportional representation.
+
+Describe and distinguish key multi-winner voting rules (e.g., Bloc, Chamberlin–Courant, Proportional Approval Voting).
+
+Model group selection and resource allocation problems where more than one winner or outcome is needed, using formal voting frameworks.
+
+Analyse the fairness, proportionality, and strategic properties of various multi-winner voting rules.
+
+Apply algorithms to determine committee or allocation outcomes under different multi-winner rules.
+
+Evaluate multi-winner systems using criteria like justified representation and its variants.
+
+Solve theoretical and computational problems related to committee selection, participatory budgeting, or group assignments.
+
+Discuss real-world applications of multi-winner voting in AI and multi-agent systems.
+
+ 
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.

@@ -1,0 +1,182 @@
+00:00:01,240 --> 00:00:03,780
+Another solution concept
+which is motivated by
+00:00:03,780 --> 00:00:07,380
+fairness considerations
+is the Banzoff index.
+00:00:07,460 --> 00:00:10,180
+Just like the Shapley
+value, it measures
+00:00:10,180 --> 00:00:12,900
+agents' expected
+marginal contributions.
+00:00:12,900 --> 00:00:13,900
+However,
+00:00:14,040 --> 00:00:17,260
+instead of averaging
+overall permutations of
+00:00:17,260 --> 00:00:21,720
+players, it averages overall
+coalitions in the game.
+00:00:21,720 --> 00:00:24,940
+So formally, given a
+characteristic function game
+00:00:24,940 --> 00:00:29,500
+G with n players, the
+Banzoff index of a player i
+00:00:29,500 --> 00:00:33,920
+would be given by the sum
+of marginal contributions
+00:00:33,920 --> 00:00:37,040
+of player i to any coalition
+that doesn't contain
+00:00:37,040 --> 00:00:41,140
+it, divided by the number
+of such coalitions will be
+00:00:41,140 --> 00:00:46,640
+the 2 in the power n-1,
+right? We are taking summation
+00:00:46,640 --> 00:00:50,660
+over coalitions that do
+not contain player i.
+00:00:52,120 --> 00:00:55,920
+Now, Banzov index
+satisfies three of
+00:00:55,920 --> 00:00:58,120
+the properties that
+we have seen for the
+00:00:58,120 --> 00:01:00,860
+Shapley value, we
+can go back to that.
+00:01:01,000 --> 00:01:04,860
+So they satisfy the
+null or dummy player
+00:01:04,860 --> 00:01:08,360
+property, who will get
+zero in the game if
+00:01:08,360 --> 00:01:11,400
+they contribute nothing
+to any coalition.
+00:01:11,880 --> 00:01:16,540
+Symmetry, if two players
+contribute symmetrically or
+00:01:16,540 --> 00:01:19,020
+identically to the coalitions,
+then their Shapley value
+00:01:19,020 --> 00:01:22,140
+are the same. And additivity,
+if we have a game which
+00:01:22,140 --> 00:01:24,920
+is a sum of two games,
+then the Sharple value of a
+00:01:24,920 --> 00:01:27,380
+player would be the sum
+of Sharple values in the
+00:01:27,380 --> 00:01:32,620
+corresponding games. So these
+properties are satisfied by
+00:01:32,620 --> 00:01:36,820
+the Banzoff index as well.
+However, the efficiency
+00:01:36,820 --> 00:01:41,280
+property is not satisfied.
+So Banzoff index does not
+00:01:41,710 --> 00:01:46,520
+redistribute the value of
+the grand coalition among the
+00:01:46,520 --> 00:01:50,600
+players. Let's have an
+example. So, consider again the
+00:01:50,600 --> 00:01:55,980
+game with N players where the
+value of the grand coalition
+00:01:55,980 --> 00:02:00,940
+is 1 and the value of
+each other coalition is 0.
+00:02:00,940 --> 00:02:04,220
+Now, let's fix some player I,
+00:02:04,580 --> 00:02:09,040
+right? And we have the
+following. So, if our
+00:02:09,040 --> 00:02:12,700
+coalition C is the
+grand coalition without
+00:02:12,700 --> 00:02:16,340
+player I, then the marginal
+contribution of player
+00:02:16,340 --> 00:02:20,300
+I will be 1. And for
+any other coalition,
+00:02:20,300 --> 00:02:25,240
+which is a proper subset
+of N minus agent I,
+00:02:25,240 --> 00:02:29,060
+right, the contribution
+of player I will be 0.
+00:02:29,240 --> 00:02:33,540
+Now, if we compute the bands
+of index, then of player
+00:02:33,540 --> 00:02:39,480
+I, it will be 1 divided to
+the number of coalitions
+00:02:39,480 --> 00:02:44,520
+C, which is 2 in the power
+of N minus 1. So if we take
+00:02:44,520 --> 00:02:50,060
+a sum of these for all
+the agents, it will not be
+00:02:50,060 --> 00:02:53,260
+one. It will not be the
+value of the grand coalition.
+00:02:54,240 --> 00:02:57,200
+To avoid this propel
+and ensure efficiency,
+00:02:57,200 --> 00:03:00,500
+we can normalize the
+bands of index in the
+00:03:00,500 --> 00:03:05,860
+following way. We can
+modify this value by taking
+00:03:05,860 --> 00:03:09,180
+the bands of index
+and dividing it by the
+00:03:09,180 --> 00:03:13,140
+sum of bands of indices
+over all the agents.
+00:03:13,140 --> 00:03:17,080
+However, this way
+we will fix the
+00:03:17,080 --> 00:03:20,440
+efficiency but
+break additivity.
+00:03:21,740 --> 00:03:25,660
+In simple games where the
+value of each coalition
+00:03:25,660 --> 00:03:29,380
+is either 1 or 0, Shapley
+value in bands of index
+00:03:29,380 --> 00:03:31,720
+have a particularly
+attractive interpretation.
+00:03:32,060 --> 00:03:35,780
+They measure the
+power of a player,
+00:03:36,400 --> 00:03:39,340
+measured as a probability
+that the player
+00:03:39,340 --> 00:03:42,280
+can influence the
+outcome of the game.
+00:03:42,280 --> 00:03:45,120
+And because of that,
+the Shapley value
+00:03:45,120 --> 00:03:47,680
+is often referred
+to as the Shapley
+00:03:47,680 --> 00:03:50,760
+-Schubick power
+index in this case.
+00:03:51,810 --> 00:03:53,920
+This is the end of this topic.
+00:03:53,920 --> 00:03:55,860
+Thank you and see you in class.

@@ -1,0 +1,47 @@
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Explain the fundamental concepts of cooperative game theory, including coalitions, transferable utility, and the difference from non-cooperative settings.
+
+Model real-world scenarios as cooperative games, identifying possible coalitions and collective payoff structures.
+
+Analyse solution concepts such as the core, Shapley value, and bargaining set, including their properties and interpretation.
+
+Determine when stable and fair coalition structures exist, and evaluate conditions for allocations to be in the core.
+
+Apply cooperative game theory to problems in resource sharing, joint ventures, collaborative projects, and fair division.
+
+Calculate the Shapley value and other cooperative solution concepts using mathematical reasoning or algorithmic methods.
+
+Assess the fairness, efficiency, and stability of division outcomes in cooperative environments.
+
+Communicate insights about coalition formation, payoff allocation, and strategic collaboration in team-based or group settings.
+
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.
+
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Explain the fundamental concepts of cooperative game theory, including coalitions, transferable utility, and the difference from non-cooperative settings.
+
+Model real-world scenarios as cooperative games, identifying possible coalitions and collective payoff structures.
+
+Analyse solution concepts such as the core, Shapley value, and bargaining set, including their properties and interpretation.
+
+Determine when stable and fair coalition structures exist, and evaluate conditions for allocations to be in the core.
+
+Apply cooperative game theory to problems in resource sharing, joint ventures, collaborative projects, and fair division.
+
+Calculate the Shapley value and other cooperative solution concepts using mathematical reasoning or algorithmic methods.
+
+Assess the fairness, efficiency, and stability of division outcomes in cooperative environments.
+
+Communicate insights about coalition formation, payoff allocation, and strategic collaboration in team-based or group settings.
+
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.

@@ -1,0 +1,337 @@
+00:00:00,990 --> 00:00:04,690
+Let us consider some
+special classes of TU games.
+00:00:05,110 --> 00:00:08,850
+We say that a game
+is simple if the
+00:00:08,850 --> 00:00:12,110
+value of each coalition
+is either 0 or 1.
+00:00:13,150 --> 00:00:15,650
+And the characteristic function
+00:00:15,650 --> 00:00:17,380
+of the game is monotone.
+00:00:18,110 --> 00:00:21,090
+A coalition in a simple
+game is said to be
+00:00:21,090 --> 00:00:25,430
+winning if its value is
+1 and losing if its value
+00:00:25,430 --> 00:00:28,310
+is 0. We have seen an
+example of such a game
+00:00:28,310 --> 00:00:31,450
+as a weighted voting
+game with non-negative
+00:00:31,450 --> 00:00:35,490
+weights, but not general
+weighted voting games.
+00:00:36,210 --> 00:00:40,075
+In simple games, due
+to the assumption of
+00:00:40,075 --> 00:00:42,280
+monotonicity of the
+characteristic function,
+00:00:42,590 --> 00:00:45,570
+unless we specify
+otherwise, we assume
+00:00:45,570 --> 00:00:47,510
+that players form
+the grand coalition.
+00:00:47,970 --> 00:00:51,990
+In a simple game, we
+say that a player i is a
+00:00:51,990 --> 00:00:55,710
+null player if adding
+player i to any coalition
+00:00:55,710 --> 00:00:59,010
+c does not change the
+value of the coalition.
+00:00:59,310 --> 00:01:03,520
+And we say that a player
+i is a veto player
+00:01:03,520 --> 00:01:08,570
+if the value of a
+coalition is zero whenever
+00:01:08,570 --> 00:01:12,410
+this player is not a
+member of that coalition.
+00:01:14,590 --> 00:01:17,750
+Equivalently, we can
+say that a value of
+00:01:17,750 --> 00:01:19,770
+grand coalition if
+we take away player
+00:01:19,770 --> 00:01:22,530
+i, who is a veto
+player, will be zero.
+00:01:23,480 --> 00:01:25,930
+Let's get back to our
+example of weighted
+00:01:25,930 --> 00:01:29,690
+voting games with the
+general elections of 2010.
+00:01:29,710 --> 00:01:34,870
+We had 650 seats in the
+parliament and the quarter
+00:01:34,870 --> 00:01:42,890
+is 326. Conservative were
+306, Labour 258, Libero
+00:01:42,890 --> 00:01:46,010
+-Democrates 57, Scottish
+National Party 6, Democratic
+00:01:46,010 --> 00:01:49,930
+Unionist Party 8 and
+small parties together 15
+00:01:49,930 --> 00:01:53,490
+seats. In this game, you
+can check that no player
+00:01:53,490 --> 00:01:56,930
+is a null player and no
+player is a veto player.
+00:01:57,390 --> 00:01:59,070
+In 2017,
+00:01:59,550 --> 00:02:06,510
+the Conservative Party
+had even more seats, 317,
+00:02:06,750 --> 00:02:10,430
+and you can see that the
+value of the Conservative
+00:02:10,430 --> 00:02:14,130
+Party loan was zero, so
+it was a losing coalition,
+00:02:14,130 --> 00:02:17,930
+but in a pair with any
+other coalition, it was one.
+00:02:20,270 --> 00:02:23,690
+that the Conservative
+Party was a veto player
+00:02:23,690 --> 00:02:26,850
+here. However, the
+value of a coalition of
+00:02:26,850 --> 00:02:30,070
+everyone else but the
+Conservative Party is
+00:02:30,070 --> 00:02:34,710
+1, not 0. So this is
+not a veto player yet.
+00:02:35,430 --> 00:02:41,210
+In 2019, though,
+Conservatives had 365 seats.
+00:02:41,210 --> 00:02:45,350
+So this party alone was
+a winning coalition.
+00:02:45,350 --> 00:02:48,930
+And so this is a
+veto player while all
+00:02:48,930 --> 00:02:51,310
+other players are null
+players. in this game.
+00:02:51,910 --> 00:02:56,590
+We say that a game is super
+additive if two coalitions
+00:02:56,590 --> 00:03:01,110
+can always merge without
+losing money. So we
+00:03:01,110 --> 00:03:03,850
+can assume that players
+always will form a grand
+00:03:03,850 --> 00:03:08,990
+coalition. Formally, that
+means that the value of
+00:03:08,990 --> 00:03:13,610
+the union of two coalitions
+S and T is greater or
+00:03:13,610 --> 00:03:17,230
+equal than the sum of values
+of coalitions S and T.
+00:03:17,230 --> 00:03:21,070
+The example of such a game
+is network flow games.
+00:03:22,250 --> 00:03:26,790
+Now in super additive
+games we assume that the
+00:03:27,900 --> 00:03:31,230
+players will form a
+grand coalition and so we
+00:03:31,230 --> 00:03:34,090
+can identify the outcomes
+with just the payoff
+00:03:34,090 --> 00:03:38,130
+vector for the grand
+coalition and no there is
+00:03:38,130 --> 00:03:41,070
+no need to specify the
+coalition structure. Some
+00:03:41,070 --> 00:03:43,790
+literature, however,
+defines outcomes in this
+00:03:43,790 --> 00:03:47,650
+way, even if the grime
+is not super additive.
+00:03:47,650 --> 00:03:49,790
+So, you should be
+cautious about that.
+00:03:50,750 --> 00:03:55,270
+Now, a function f from a
+set of subsets of some set
+00:03:55,270 --> 00:04:01,210
+n to real numbers is called
+supermodular if the value
+00:04:01,210 --> 00:04:04,780
+of the function from the
+empty set is zero, And
+00:04:04,780 --> 00:04:11,110
+for any sets A and B
+subsets of N, which are not
+00:04:11,110 --> 00:04:15,150
+necessarily disjoint, we have
+that the sum of the value
+00:04:15,150 --> 00:04:18,650
+of the function from the
+union of these sets and the
+00:04:18,650 --> 00:04:22,790
+intersection of the sets
+is greater or equal than
+00:04:22,790 --> 00:04:27,810
+the sum of the values of
+the function from A and B.
+00:04:27,990 --> 00:04:32,070
+So any supermodular
+function would be
+00:04:32,070 --> 00:04:35,390
+superadditive. You can
+check it quite easily,
+00:04:35,390 --> 00:04:38,810
+but the converse is
+not necessarily true.
+00:04:39,330 --> 00:04:43,650
+Now, transferable utility
+game G would be called
+00:04:43,650 --> 00:04:47,690
+convex if its characteristic
+function is supermodular.
+00:04:48,510 --> 00:04:52,830
+Now, in convex games,
+a player would be more
+00:04:52,830 --> 00:04:55,610
+useful when they join
+a bigger coalition.
+00:04:56,210 --> 00:04:59,810
+Formally, so if we have
+a characteristic function
+00:04:59,810 --> 00:05:03,510
+which is supermodular and
+we have two coalitions, T
+00:05:03,510 --> 00:05:08,350
+is a subset of coalition
+S, then the marginal
+00:05:08,350 --> 00:05:12,570
+contribution of player I who
+joins coalition T is smaller
+00:05:12,570 --> 00:05:15,710
+or equal than the marginal
+contribution of this
+00:05:15,710 --> 00:05:19,370
+player joining coalition
+F. And it's easy to prove.
+00:05:19,370 --> 00:05:27,030
+So let A equal S and B
+equal T and I. then the
+00:05:27,030 --> 00:05:32,650
+value of a and b together
+would be s and i together,
+00:05:32,650 --> 00:05:38,430
+and a intersection with b
+would be t, and you have
+00:05:38,430 --> 00:05:41,430
+the definition of the
+supermodularity of a function.
+00:05:41,670 --> 00:05:44,450
+And now we can check the
+properties of the games
+00:05:44,450 --> 00:05:47,970
+that we have seen already.
+So the ice cream game is
+00:05:47,970 --> 00:05:50,830
+clearly superadditive,
+however, it is not convex.
+00:05:51,050 --> 00:05:55,010
+The graphing used game
+would be both super
+00:05:55,010 --> 00:05:58,430
+additive and convex
+or if and only if
+00:05:58,430 --> 00:06:01,130
+the weight of each
+edge is non-negative.
+00:06:01,330 --> 00:06:04,810
+The weighted voting games
+will be super additive
+00:06:04,810 --> 00:06:08,530
+only if the quarter is
+greater than the total
+00:06:08,530 --> 00:06:11,610
+weight of the grand
+coalition divided by two.
+00:06:11,690 --> 00:06:15,210
+Otherwise it is not super
+additive. We can have
+00:06:15,210 --> 00:06:17,130
+the following example.
+Assume that we have
+00:06:17,130 --> 00:06:21,050
+two players, one and two,
+and the weights of both
+00:06:21,050 --> 00:06:24,190
+players alone is one
+and the quarter is one.
+00:06:24,190 --> 00:06:26,570
+Then each of the players alone
+00:06:26,570 --> 00:06:28,370
+will form a grand coalition,
+00:06:28,370 --> 00:06:31,150
+sorry, will be a
+winning coalition,
+00:06:31,190 --> 00:06:33,710
+but the grand coalition,
+its value also
+00:06:33,710 --> 00:06:36,390
+will be just one because
+it's a simple game.
+00:06:37,310 --> 00:06:40,530
+And the weighted voting
+game is not convex
+00:06:40,530 --> 00:06:42,930
+even when the quarter
+is greater than the
+00:06:42,930 --> 00:06:45,290
+total value of the
+agents divided by two.
+00:06:45,310 --> 00:06:47,910
+Take the following
+example. We have three
+00:06:47,910 --> 00:06:50,770
+agents, 1, 2, 3, and
+the weight of each
+00:06:50,770 --> 00:06:53,830
+of the agents is 1.
+The quarter is 2.
+00:06:53,830 --> 00:06:58,750
+Now let's have two
+sets, 1, 2, and 2, 3.
+00:06:58,750 --> 00:07:02,030
+The union of these sets
+is 1, 2, 3, and the
+00:07:02,030 --> 00:07:06,070
+intersection is 2. So
+the value here is 1.
+00:07:08,030 --> 00:07:13,090
+Sorry, the value here is
+0. The value here is 1.
+00:07:13,090 --> 00:07:17,950
+and here the value of each
+pair is one so we have
+00:07:17,950 --> 00:07:21,190
+two greater than one so
+this is not a convex scheme

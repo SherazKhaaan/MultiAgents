@@ -1,0 +1,201 @@
+00:00:00,950 --> 00:00:05,030
+Now, since dominant or
+dominated strategies are not
+00:00:05,030 --> 00:00:09,670
+always available, we need
+some other way to solve games.
+00:00:09,670 --> 00:00:14,050
+And one of the central
+concepts in non-cooperative
+00:00:14,050 --> 00:00:19,190
+game theory is the solution
+called Nash Equilibrio,
+00:00:19,190 --> 00:00:23,950
+which was introduced by John
+Nash, the protagonist of,
+00:00:24,350 --> 00:00:28,670
+in the film, A Beautiful
+Mind played by Russell Crowe.
+00:00:28,770 --> 00:00:34,030
+And this is how John
+Nash really looked like.
+00:00:34,910 --> 00:00:39,910
+And he got a Nobel Prize
+in economics in 1994
+00:00:40,170 --> 00:00:44,290
+for his contributions
+to game theory in
+00:00:44,290 --> 00:00:46,990
+particular, for his theorem
+about Nash equilibrium.
+00:00:47,710 --> 00:00:50,990
+Now, the concept
+of Nash equilibrium
+00:00:50,990 --> 00:00:53,690
+postulates the
+principle of stability.
+00:00:54,190 --> 00:00:58,030
+Intuitively, it is a
+solution, a strategy profile,
+00:00:58,030 --> 00:01:03,190
+where no player wants to
+deviate from their strategy
+00:01:03,190 --> 00:01:06,730
+if the other players are
+sticking to their choices.
+00:01:06,870 --> 00:01:12,170
+Formally, we say that
+for a strategy profile S,
+00:01:12,390 --> 00:01:19,230
+a player I has a unilateral
+improving move, a
+00:01:19,230 --> 00:01:22,770
+unilateral improving
+deviation if there is
+00:01:22,770 --> 00:01:29,030
+some other strategy S'I
+in their strategy set so
+00:01:29,030 --> 00:01:32,250
+that the utility of
+player I from playing this
+00:01:32,250 --> 00:01:36,250
+new strategy is strictly
+greater than the
+00:01:36,250 --> 00:01:41,330
+utility of player I from
+playing strategy S'I.
+00:01:41,790 --> 00:01:47,470
+Now, a Pew strategy and
+Nash equilibrium in Pew
+00:01:47,470 --> 00:01:52,630
+strategies would be a strategy
+profile that has no such
+00:01:52,630 --> 00:01:57,670
+unilateral improving moves.
+So every player is happy
+00:01:57,670 --> 00:02:01,590
+with playing what they're
+playing right now, given
+00:02:01,590 --> 00:02:04,830
+that the other players are
+sticking to their choices.
+00:02:05,350 --> 00:02:08,190
+Equivalently, we would
+say that in an equilibrium
+00:02:08,190 --> 00:02:12,010
+profile, every player
+plays their best
+00:02:12,010 --> 00:02:16,510
+response to the strategies
+of other players. So
+00:02:16,510 --> 00:02:21,300
+the utility of player
+I from playing strategy
+00:02:22,130 --> 00:02:26,570
+S'I is greater or equal
+than the utility of the
+00:02:26,570 --> 00:02:30,510
+player from playing
+any other strategy S'I.
+00:02:32,810 --> 00:02:36,570
+Let's see what this
+means in the prisoner's
+00:02:36,570 --> 00:02:40,430
+dilemma. So we have
+seen that every player
+00:02:40,430 --> 00:02:44,270
+is strictly better
+from playing defect no
+00:02:44,270 --> 00:02:46,630
+matter what the other
+player does, right?
+00:02:46,890 --> 00:02:54,650
+So we said that defect-defect
+is then the only stable
+00:02:54,650 --> 00:02:58,330
+strategy because every
+agent would deviate to
+00:02:58,330 --> 00:03:02,290
+this strategy given what
+the other player is doing.
+00:03:02,510 --> 00:03:06,790
+And indeed, we can check
+that each player is
+00:03:06,790 --> 00:03:10,230
+playing their best
+response in this strategy.
+00:03:10,230 --> 00:03:16,010
+So minus 5 is greater
+than minus 10 for the raw
+00:03:16,010 --> 00:03:21,330
+player, and minus 5 is
+greater than minus 10 for the
+00:03:21,330 --> 00:03:25,990
+column player. And we can
+see that any other profile
+00:03:25,990 --> 00:03:29,370
+in this game is not in
+Nash equilibrium. For
+00:03:29,370 --> 00:03:33,450
+instance, from cooperate,
+cooperate, we have a deviation
+00:03:33,450 --> 00:03:37,210
+of each player to defect
+because 0 is greater
+00:03:37,210 --> 00:03:40,870
+than minus 1, so this is
+not stable. This strategy
+00:03:40,870 --> 00:03:45,350
+is not stable because the
+cooperating player has a
+00:03:45,350 --> 00:03:49,410
+profitable deviation to
+defect. Minus 10 is less
+00:03:49,410 --> 00:03:54,450
+than minus 5, and same over
+here for the raw player.
+00:03:57,050 --> 00:04:02,070
+In the coordination game,
+we have two pure strationess
+00:04:02,070 --> 00:04:05,010
+equilibria, left, up,
+and right down. Let's see
+00:04:05,010 --> 00:04:09,890
+for that. So here, the raw
+player has a higher utility
+00:04:09,890 --> 00:04:12,690
+than in the other strategy,
+and the column player
+00:04:12,690 --> 00:04:16,090
+also has a higher utility
+than in the other strategy.
+00:04:16,130 --> 00:04:19,550
+Same for this
+profile, right down.
+00:04:19,770 --> 00:04:24,310
+The raw player has a higher
+utility than in up, and
+00:04:24,310 --> 00:04:27,570
+the column player has a
+higher utility than in left.
+00:04:27,930 --> 00:04:34,130
+The uncoordinated strategies
+are not Nash Equilibria
+00:04:34,130 --> 00:04:38,150
+for the opposite reason,
+right? Zero is less than one,
+00:04:38,150 --> 00:04:43,850
+so the raw player would
+deviate to up from down,
+00:04:43,850 --> 00:04:51,150
+and the column player will
+deviate to right from left.
+00:04:51,250 --> 00:04:56,230
+And same here in
+up right, the row
+00:04:56,230 --> 00:04:58,390
+player would deviate
+to down and the
+00:04:58,390 --> 00:04:59,990
+column player would
+deviate to left.

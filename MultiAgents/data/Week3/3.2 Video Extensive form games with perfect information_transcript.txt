@@ -1,0 +1,399 @@
+00:00:01,240 --> 00:00:04,380
+We shall begin by modeling
+strategic situations in
+00:00:04,380 --> 00:00:07,080
+a simpler framework of
+extensive form games with
+00:00:07,080 --> 00:00:10,940
+perfect information before
+we generalize to more complex
+00:00:10,940 --> 00:00:14,020
+settings with imperfect
+or incomplete information.
+00:00:14,160 --> 00:00:17,180
+Extensive form games
+with perfect information
+00:00:17,180 --> 00:00:21,080
+model situations in which
+players move sequentially
+00:00:21,240 --> 00:00:25,400
+and each player, when
+making a decision, knows
+00:00:25,400 --> 00:00:28,240
+the full history of
+previous actions. In
+00:00:28,240 --> 00:00:31,240
+these games, there is no
+uncertainty about past
+00:00:31,240 --> 00:00:34,320
+moves or the structure
+of the game tree and
+00:00:34,320 --> 00:00:37,100
+no simultaneous moves
+or hidden information.
+00:00:37,340 --> 00:00:38,900
+Informally speaking,
+00:00:39,180 --> 00:00:42,280
+a perfect information game
+in extensive form or simply
+00:00:42,280 --> 00:00:45,980
+a perfect information game
+is a tree in the sense of
+00:00:45,980 --> 00:00:49,600
+graph theory where each
+node represents the choice
+00:00:49,600 --> 00:00:53,900
+of one of the players, each
+edge represents a possible
+00:00:53,900 --> 00:00:57,900
+action, and the leaves of
+the tree represent final
+00:00:57,900 --> 00:01:01,780
+outcomes over which each
+player has a utility function.
+00:01:03,140 --> 00:01:07,100
+Formally, a finite perfect
+information game in
+00:01:07,100 --> 00:01:10,580
+extensive form is
+represented by an eight
+00:01:10,580 --> 00:01:16,620
+-dimensional tuple that
+has four sets, n, a, h, z,
+00:01:16,780 --> 00:01:21,300
+and four functions,
+xi, rho, sigma, and u.
+00:01:21,410 --> 00:01:24,800
+Here, n is a set of n players,
+00:01:24,960 --> 00:01:28,280
+A is a set of actions.
+We take a single set
+00:01:28,280 --> 00:01:30,480
+of actions for all the
+players, so all the
+00:01:30,480 --> 00:01:33,180
+players will be taking
+actions from this set.
+00:01:33,440 --> 00:01:36,980
+H is a set of choice
+nodes, so these are non
+00:01:36,980 --> 00:01:40,980
+-terminal nodes at which some
+of the players will take
+00:01:40,980 --> 00:01:44,660
+an action. And Z is the
+set of terminal nodes, the
+00:01:44,660 --> 00:01:48,260
+final outcomes of the
+game, where each agent will
+00:01:48,260 --> 00:01:51,200
+have specified their
+utility from playing in the
+00:01:51,200 --> 00:01:55,340
+game, and this set is
+disjoined from the set H.
+00:01:56,030 --> 00:01:58,880
+Now, we have the
+following four functions.
+00:01:58,880 --> 00:02:02,760
+XI is the action
+function that assigns to
+00:02:02,760 --> 00:02:08,540
+each choice node from
+H a set of possible
+00:02:08,540 --> 00:02:13,020
+actions that a player
+can take from that node.
+00:02:13,060 --> 00:02:16,960
+RAW is the player function
+that assigns to each
+00:02:16,960 --> 00:02:21,460
+non-terminal again choice
+node from the set H, a
+00:02:21,460 --> 00:02:26,020
+player I, who will choose
+an action at that node.
+00:02:26,060 --> 00:02:29,440
+The next function is
+the successor function
+00:02:29,440 --> 00:02:34,040
+sigma, which maps a
+choice node and an action
+00:02:34,220 --> 00:02:39,400
+to a new choice node or
+a terminal node. And we
+00:02:39,400 --> 00:02:46,980
+have the condition that for
+two nodes H1 and H2, which
+00:02:46,980 --> 00:02:50,680
+are non-terminal, and
+two possible actions, if
+00:02:50,680 --> 00:02:58,540
+we have the same successor
+to H1A1 as to H2A2, then
+00:02:58,540 --> 00:03:03,020
+it would mean that H1 and
+H2 was actually the same
+00:03:03,020 --> 00:03:07,540
+choice node and we also
+took the same action A1
+00:03:07,540 --> 00:03:11,560
+equal A2 from that node.
+That means that the graph
+00:03:11,560 --> 00:03:16,060
+will not have cycles. We
+will have a tree indeed.
+00:03:16,060 --> 00:03:20,940
+And we always, at every
+node, we can figure out back
+00:03:20,940 --> 00:03:24,180
+in the tree what was the
+history that brought us
+00:03:24,180 --> 00:03:28,360
+to that node. And finally,
+we have the utility function
+00:03:28,360 --> 00:03:33,500
+for all terminal nodes.
+For all finite outcomes,
+00:03:33,500 --> 00:03:38,640
+we have a real value
+utility that represents how
+00:03:38,640 --> 00:03:43,040
+much each one of the agents
+enjoys the outcome of
+00:03:43,040 --> 00:03:45,940
+the game, which is represented
+by a terminal node Z.
+00:03:47,560 --> 00:03:51,120
+As we already mentioned,
+since the choice nodes
+00:03:51,120 --> 00:03:55,400
+form a tree, we can identify
+a node with its history,
+00:03:55,400 --> 00:03:58,400
+which is the sequence
+of choices that led from
+00:03:58,400 --> 00:04:03,040
+the root node to our
+choice node. We can also
+00:04:03,040 --> 00:04:07,260
+define the descendants of
+a node H, all the choices
+00:04:07,260 --> 00:04:10,720
+and terminal nodes in the
+subtree which is rooted
+00:04:10,720 --> 00:04:14,540
+at H. Let's look at the
+following example. It's
+00:04:14,540 --> 00:04:18,620
+called a sharing game. We
+have a brother and sister
+00:04:18,620 --> 00:04:22,580
+that have to share
+two in indivisible and
+00:04:22,580 --> 00:04:25,820
+identical presents that
+they got from their parents.
+00:04:26,300 --> 00:04:30,280
+Now, both siblings value
+the two presents equally
+00:04:30,280 --> 00:04:34,320
+and additively. That
+means that if I get two
+00:04:34,320 --> 00:04:37,440
+presents, then the value
+for the two presents would
+00:04:37,440 --> 00:04:40,140
+be the value for the first
+present plus the value
+00:04:40,140 --> 00:04:43,140
+for the second present.
+And they use the following
+00:04:43,140 --> 00:04:47,440
+protocol to divide this
+presence between them.
+00:04:48,260 --> 00:04:51,560
+First, the brother
+suggests a split of the
+00:04:51,560 --> 00:04:55,260
+presence, and it can
+be one of the following
+00:04:55,260 --> 00:04:58,080
+three. So, the brother
+can keep both presence,
+00:04:58,120 --> 00:05:01,120
+the sister can
+keep both presence,
+00:05:01,120 --> 00:05:04,260
+or they can each
+keep one present.
+00:05:04,480 --> 00:05:08,520
+After that, the sister
+chooses whether to accept
+00:05:08,520 --> 00:05:12,600
+or reject the proposition
+from her brother. Now if
+00:05:12,600 --> 00:05:16,440
+she accepts then they
+each get their allocated
+00:05:16,440 --> 00:05:20,700
+presents as by the brother's
+suggestion and otherwise
+00:05:20,700 --> 00:05:25,960
+neither gets any gift at
+all. We can represent it
+00:05:25,960 --> 00:05:30,660
+in the following game
+tree. So here we have the
+00:05:30,660 --> 00:05:35,610
+root note where the first
+agent, the brother, takes
+00:05:35,820 --> 00:05:38,740
+an action and there are
+three actions available
+00:05:38,740 --> 00:05:42,080
+which correspond to the
+three proposals that the
+00:05:42,080 --> 00:05:45,740
+brother can make. I keep both
+presents, you get nothing.
+00:05:45,740 --> 00:05:51,620
+We each keep one of
+the presents or I take
+00:05:51,620 --> 00:05:55,120
+nothing and all the presents
+are going to you, right?
+00:05:55,520 --> 00:05:59,420
+Now, in the second stage
+of the game, after all of
+00:05:59,420 --> 00:06:02,800
+these proposals, there
+will be a decision note for
+00:06:02,800 --> 00:06:05,980
+the second player, for
+sister, to decide what to do.
+00:06:05,980 --> 00:06:09,640
+And at each of these
+decision notes, choice notes,
+00:06:09,640 --> 00:06:14,320
+she has two actions to
+take from, either to accept
+00:06:14,320 --> 00:06:19,720
+the proposal or to reject
+If she rejects in each
+00:06:19,720 --> 00:06:23,500
+of these three nodes, then
+the outcome of the game is
+00:06:23,500 --> 00:06:28,460
+0-0. None of the players
+get any of the presents.
+00:06:29,200 --> 00:06:33,320
+If she accepts, then
+the utility will
+00:06:33,320 --> 00:06:36,160
+correspond to the
+split of the gifts.
+00:06:36,160 --> 00:06:39,860
+So 2 to the first
+agent, 0 to the second
+00:06:39,860 --> 00:06:42,580
+agent, 1 to the
+first agent, 1 to the
+00:06:42,580 --> 00:06:45,540
+second agent, and zero
+to the first agent,
+00:06:45,660 --> 00:06:48,100
+two to the second agent.
+00:06:49,100 --> 00:06:52,760
+Now, a pure strategy
+for a player in a
+00:06:52,760 --> 00:06:55,540
+perfect information
+game is a complete
+00:06:55,540 --> 00:06:59,040
+specification of which
+deterministic action to
+00:06:59,040 --> 00:07:03,040
+take at every node
+belonging to the player.
+00:07:03,040 --> 00:07:07,820
+So formally, if we have our
+perfect information game,
+00:07:07,820 --> 00:07:13,040
+then the set of pure
+strategies of player I is
+00:07:13,040 --> 00:07:16,400
+given by the product
+where we go through all
+00:07:16,400 --> 00:07:20,760
+choice nodes where the
+player that takes an
+00:07:20,760 --> 00:07:24,290
+action is our player I.
+So the player function
+00:07:24,290 --> 00:07:29,720
+raw from H gives us I,
+right? And we take the
+00:07:29,720 --> 00:07:33,060
+product of all possible
+actions at that node.
+00:07:33,480 --> 00:07:37,540
+Now notice that an agent
+strategy requires a
+00:07:37,540 --> 00:07:41,400
+decision at each choice
+nodes, regardless of
+00:07:41,400 --> 00:07:43,300
+whether or not it is
+possible to actually
+00:07:43,300 --> 00:07:46,940
+reach that node given
+the other choice nodes.
+00:07:48,740 --> 00:07:52,560
+Back to our example of
+the sharing game, we have
+00:07:52,560 --> 00:07:56,120
+seen that the first
+player had three possible
+00:07:56,120 --> 00:07:59,560
+strategies, so there was
+just one choice node with
+00:07:59,560 --> 00:08:03,200
+three strategies that can
+be played there so the
+00:08:03,200 --> 00:08:08,340
+strategy set of player one
+of the brother is two zero
+00:08:08,340 --> 00:08:13,020
+one one and zero two and
+the strategies for the
+00:08:13,020 --> 00:08:17,600
+second player so she has
+three choice nodes right
+00:08:17,600 --> 00:08:22,620
+and she has two choices
+at each of these choice
+00:08:22,620 --> 00:08:27,640
+nodes now she has to
+specify her decision at each
+00:08:27,640 --> 00:08:32,080
+choice node, once again,
+irrespectively of whether
+00:08:32,080 --> 00:08:35,980
+or not she reaches this
+choice node in the game.
+00:08:36,700 --> 00:08:40,890
+So we will have all
+possible combinations of two
+00:08:40,890 --> 00:08:44,220
+actions played at each of
+the three nodes. So there
+00:08:44,220 --> 00:08:47,500
+are eight possible strategies.
+Either the choice is
+00:08:47,500 --> 00:08:51,840
+yes on all three nodes,
+yes, yes, no, yes, no, yes,
+00:08:51,840 --> 00:08:55,980
+and so on. We take all
+eight possible combinations.

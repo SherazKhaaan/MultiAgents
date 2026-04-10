@@ -1,0 +1,301 @@
+00:00:01,210 --> 00:00:03,730
+Hello, and welcome
+to Cooperation,
+00:00:03,730 --> 00:00:06,170
+Coordination, and
+Multi-Agent Systems.
+00:00:06,390 --> 00:00:10,250
+A multi-agent system consists
+of multiple autonomous
+00:00:10,250 --> 00:00:13,630
+entities that possess
+distributed information,
+00:00:13,770 --> 00:00:16,470
+computational capabilities,
+and potentially
+00:00:16,470 --> 00:00:19,970
+conflicting objectives.
+These systems can be
+00:00:19,970 --> 00:00:23,610
+cooperative, such as
+sensor networks or teams of
+00:00:23,610 --> 00:00:26,510
+mobile robots operating
+in a warehouse, or
+00:00:26,510 --> 00:00:29,270
+competitive, like
+electronic marketplaces or
+00:00:29,270 --> 00:00:32,230
+scenarios involving resource
+and task allocation.
+00:00:32,550 --> 00:00:35,990
+Some systems fall in
+between, blending cooperation
+00:00:35,990 --> 00:00:39,150
+and competition, for
+instance, collaborative
+00:00:39,150 --> 00:00:42,390
+platforms like Wikipedia
+or Stack Overflow.
+00:00:42,910 --> 00:00:47,050
+The agents in these systems
+may be entirely artificial,
+00:00:47,090 --> 00:00:50,690
+entirely human or a
+mix of both with humans
+00:00:50,690 --> 00:00:54,650
+often participating at
+least on the periphery. This
+00:00:54,650 --> 00:00:58,050
+module focuses on discussing
+both foundational and
+00:00:58,050 --> 00:01:00,690
+recent research on various
+aspects of multi-agent
+00:01:00,690 --> 00:01:04,390
+systems. The module places
+particular emphasis on
+00:01:04,390 --> 00:01:07,550
+coordination strategies
+and fostering cooperative
+00:01:07,550 --> 00:01:10,930
+behavior with a special
+focus on networks and the
+00:01:10,930 --> 00:01:14,890
+Internet economy. It is based
+on two multidisciplinary
+00:01:14,890 --> 00:01:18,270
+areas called Algorithmic
+Game Theory, abbreviated
+00:01:18,270 --> 00:01:23,130
+as AGT, and Computational
+Social Choice, COMSOC.
+00:01:26,910 --> 00:01:30,690
+Algorithmic Game Theory is
+the study of algorithms in
+00:01:30,690 --> 00:01:33,830
+strategic environments
+where the inputs come from
+00:01:33,830 --> 00:01:37,690
+self-interested agents who
+may manipulate the system
+00:01:37,690 --> 00:01:41,710
+to improve their own outcomes.
+It combines tools from
+00:01:41,710 --> 00:01:44,870
+theoretical computer science
+and economics to both
+00:01:44,870 --> 00:01:48,710
+analyze equilibrium behavior
+and design mechanisms that
+00:01:48,710 --> 00:01:52,210
+are efficient, fair and
+computationally tractable.
+00:01:53,050 --> 00:01:57,030
+It finds applications in
+resource allocation and
+00:01:57,030 --> 00:02:00,750
+scheduling to efficiently
+allocate shared resources
+00:02:00,750 --> 00:02:04,830
+such as memory, bandwidth,
+tasks among competing
+00:02:04,830 --> 00:02:07,750
+agents using protocols
+that account for strategic
+00:02:07,750 --> 00:02:10,790
+behavior, such as, for
+example, auctions or congestion
+00:02:10,790 --> 00:02:14,090
+games. We shall study
+these models in the module.
+00:02:14,330 --> 00:02:17,270
+Examples are cloud
+computer location,
+00:02:17,490 --> 00:02:20,990
+energy market bidding by
+smart devices, and so on.
+00:02:21,310 --> 00:02:25,370
+It is also used in mechanism
+design for incentives
+00:02:25,370 --> 00:02:28,470
+to design auction or
+payment mechanisms that
+00:02:28,470 --> 00:02:31,790
+incentivize truthful
+behavior and maximize social
+00:02:31,790 --> 00:02:35,950
+efficiency, for example, in
+online advertising bidding,
+00:02:36,090 --> 00:02:39,410
+spectrum auctions for
+wireless networks, etc.
+00:02:40,170 --> 00:02:44,170
+We use AGT to compute
+equilibria of network
+00:02:44,170 --> 00:02:46,870
+agents to predict or
+guide their behavior
+00:02:46,870 --> 00:02:49,950
+in competition or
+cooperation in domains
+00:02:49,950 --> 00:02:52,690
+such as routing and
+communication networks,
+00:02:52,850 --> 00:02:56,910
+multi-agent negotiation
+or security games. It is
+00:02:56,910 --> 00:02:59,990
+also used in multi-agent
+reinforcement learning
+00:02:59,990 --> 00:03:03,010
+where we formulate learning
+in interactive multi
+00:03:03,010 --> 00:03:06,750
+-agent environments as a
+game and analyze convergence
+00:03:06,750 --> 00:03:09,830
+and performance using
+equilibrium concepts. For
+00:03:09,830 --> 00:03:13,910
+example, we may have AI
+agents learning to cooperate
+00:03:13,910 --> 00:03:17,430
+or compete in simulated
+or real-world games.
+00:03:18,450 --> 00:03:22,330
+Computational social choice
+is an interdisciplinary
+00:03:22,330 --> 00:03:26,170
+field that studies collective
+decision-making and
+00:03:26,170 --> 00:03:28,990
+preference aggregation
+using tools from computer
+00:03:28,990 --> 00:03:32,910
+science, economics, and
+social choice theory. It asks
+00:03:32,910 --> 00:03:36,590
+how a group's individual
+preferences over alternatives,
+00:03:36,590 --> 00:03:41,230
+candidates, allocations,
+outcomes, can be combined
+00:03:41,230 --> 00:03:44,610
+into a collective
+decision while explicitly
+00:03:44,610 --> 00:03:48,450
+accounting for computational
+issues. It examines both
+00:03:48,450 --> 00:03:52,570
+how to design such aggregation
+rules and how hard it
+00:03:52,570 --> 00:03:55,830
+is to compute their outcomes
+in realistic settings.
+00:03:56,810 --> 00:03:59,630
+COMSOC is used in
+collective decision-making
+00:03:59,630 --> 00:04:02,570
+to aggregate preferences
+and votes of multiple
+00:04:02,570 --> 00:04:06,290
+agents, either human
+or artificial, for
+00:04:06,290 --> 00:04:08,550
+joint decision-making,
+for example, for
+00:04:08,550 --> 00:04:12,010
+selecting actions, committee
+members or leaders.
+00:04:12,630 --> 00:04:16,630
+We can think of group
+planning for robot teams,
+00:04:16,910 --> 00:04:20,190
+committee selection in
+organizations, and so on.
+00:04:20,350 --> 00:04:23,750
+It is also used in fair
+division to design and
+00:04:23,750 --> 00:04:26,790
+implement algorithms for fair
+division of resources among
+00:04:26,790 --> 00:04:29,870
+multiple agents that
+would guarantee properties
+00:04:29,870 --> 00:04:33,810
+like envy-freeness and
+proportionality, for example,
+00:04:33,810 --> 00:04:36,590
+in allocation of workspace,
+in office automation,
+00:04:36,890 --> 00:04:39,610
+fair inheritance division, etc.
+00:04:40,410 --> 00:04:44,110
+It is also applied in
+ranking and recommendation
+00:04:44,110 --> 00:04:47,690
+systems to use rank
+aggregation or voting
+00:04:47,690 --> 00:04:50,930
+rules to combine agent
+or user preferences
+00:04:50,930 --> 00:04:53,510
+into a group-level
+ranking or recommendation.
+00:04:53,510 --> 00:04:54,790
+For example,
+00:04:55,150 --> 00:04:58,630
+AI-based recommender systems,
+group-based collaborative
+00:04:58,630 --> 00:05:04,810
+filtering, and so on.
+Another domain where KAMSOC
+00:05:04,810 --> 00:05:08,830
+finds wide application is
+participatory budgeting
+00:05:08,830 --> 00:05:12,870
+and resource assignment
+Agents or humans select among
+00:05:12,870 --> 00:05:16,930
+projects, tasks, resources
+and KAMSOC principles
+00:05:16,930 --> 00:05:20,410
+ensure fairness, proportionality
+and representativeness
+00:05:20,410 --> 00:05:23,690
+For example, autonomous
+vehicles choosing charging
+00:05:23,690 --> 00:05:27,490
+station, distributed sensor
+deployment, etc. etc.
+00:05:28,590 --> 00:05:32,030
+Algorithmic game theory
+and computational social
+00:05:32,030 --> 00:05:36,590
+choice are interrelated fields
+and find common applications,
+00:05:36,590 --> 00:05:39,190
+for example, in automated
+negotiation bargaining,
+00:05:39,190 --> 00:05:42,470
+where mechanism design
+blends with social choice
+00:05:42,470 --> 00:05:45,010
+for consensus among
+competitive or cooperative
+00:05:45,010 --> 00:05:50,170
+agents. Also in AI ethic
+governance to aggregate stealth
+00:05:50,170 --> 00:05:53,190
+holder preferences for
+value alignment and ethical
+00:05:53,190 --> 00:05:56,070
+decision-making, or in
+distributed consensus
+00:05:56,070 --> 00:05:59,650
+coordination for joint protocols
+for teams of autonomous
+00:05:59,650 --> 00:06:03,330
+agents that use game-theoretic
+reasoning and voting.

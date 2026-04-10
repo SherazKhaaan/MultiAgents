@@ -1,0 +1,647 @@
+00:00:01,590 --> 00:00:04,330
+When we divide perfectly
+divisible goods among
+00:00:04,330 --> 00:00:07,310
+agents, it is natural
+to model the situation
+00:00:07,310 --> 00:00:10,130
+as a cake-cutting
+problem, where a cake
+00:00:10,130 --> 00:00:13,830
+represents a continuous
+recess to be split fairly.
+00:00:13,850 --> 00:00:18,390
+We model the cake as the
+unit interval from 0 to 1 and
+00:00:18,390 --> 00:00:22,770
+define the following. A
+finite set n of n players
+00:00:22,770 --> 00:00:29,290
+and pieces of cake x1 to xm,
+each of which is a finite
+00:00:29,290 --> 00:00:33,750
+union of disjoint subintervals.
+The pieces are themselves
+00:00:33,750 --> 00:00:37,190
+disjoint, and their union
+gives the whole cake.
+00:00:37,690 --> 00:00:41,490
+Each player I has a non
+-negative, absolutely
+00:00:41,490 --> 00:00:45,470
+continuous valuation
+function VI over pieces of
+00:00:45,470 --> 00:00:48,490
+cake, which satisfies
+the following properties.
+00:00:48,490 --> 00:00:52,510
+First is additivity.
+If we have two disjoint
+00:00:52,510 --> 00:00:58,160
+pieces, x and y, then the
+valuation of their union
+00:00:58,160 --> 00:01:03,130
+is the sum of valuations
+for each of the pieces.
+00:01:03,540 --> 00:01:05,950
+Normalization.
+The whole cake is
+00:01:05,950 --> 00:01:09,210
+worth exactly one
+for all the agents.
+00:01:09,630 --> 00:01:12,390
+And finally,
+divisibility. Given an
+00:01:12,390 --> 00:01:14,930
+interval i and some
+parameter lambda,
+00:01:15,050 --> 00:01:20,890
+there exists a sub-interval
+i' of i such that the
+00:01:20,890 --> 00:01:25,390
+value of i' is lambda
+multiplied by the value of i.
+00:01:25,850 --> 00:01:29,190
+Now, different
+players might value
+00:01:29,190 --> 00:01:31,550
+different parts of
+the cake differently.
+00:01:31,550 --> 00:01:33,770
+For instance, we
+can imagine a cake
+00:01:33,770 --> 00:01:36,530
+which is chocolate
+for the interval
+00:01:36,530 --> 00:01:41,010
+from 0 to 1 and
+vanilla from 1 to 1.
+00:01:41,050 --> 00:01:43,530
+And two players,
+one who values the
+00:01:43,530 --> 00:01:46,710
+chocolate part much
+more highly and one
+00:01:46,710 --> 00:01:49,170
+who values the vanilla
+much more highly.
+00:01:49,890 --> 00:01:52,950
+We aim to cut the
+cake into pieces
+00:01:52,950 --> 00:01:56,070
+and allocate pieces
+to players fairly.
+00:01:56,110 --> 00:02:02,250
+We define a location A1,
+A2, and so all till A,
+00:02:02,250 --> 00:02:05,950
+N, where player I receives
+the set of pieces A,
+00:02:05,950 --> 00:02:10,750
+I. Now, pieces should be
+disjoint, and the allocation
+00:02:10,750 --> 00:02:14,970
+that we are after is
+usually complete. So,
+00:02:14,970 --> 00:02:19,030
+we want to allocate the
+whole cake to our agents.
+00:02:19,610 --> 00:02:23,390
+Consider the following
+example. We have a cake,
+00:02:23,390 --> 00:02:27,010
+one-fourth of which is
+chocolate, and the rest
+00:02:27,010 --> 00:02:30,830
+is sponge. And we have
+two agents, agent 1
+00:02:30,830 --> 00:02:37,030
+and agent 2, which value
+the cake as following.
+00:02:37,030 --> 00:02:43,810
+The first agent, agent 1,
+likes only the chocolate
+00:02:43,810 --> 00:02:48,410
+part. So it gives the
+value of 1 to the chocolate
+00:02:48,410 --> 00:02:55,410
+part. So, from 0 to 1
+fourth, we have the value of
+00:02:55,410 --> 00:02:59,950
+the cake as 4 multiplied
+by the size of the cake.
+00:02:59,950 --> 00:03:05,770
+So, for the whole piece,
+we have value of 1, right?
+00:03:05,950 --> 00:03:10,630
+And for the rest of
+the cake, the value of
+00:03:10,630 --> 00:03:13,470
+this agent is 0. So,
+they're not interested
+00:03:13,470 --> 00:03:16,270
+in getting any piece
+of sponge at all.
+00:03:16,570 --> 00:03:21,490
+The second player
+linearly values any
+00:03:21,490 --> 00:03:24,570
+piece of the cake
+in an equal way.
+00:03:24,870 --> 00:03:27,910
+And we can consider
+different allocations to the
+00:03:27,910 --> 00:03:31,470
+agent. So the first allocation
+gives half of the cake
+00:03:31,470 --> 00:03:35,710
+to the first agent and the
+second half of the cake to
+00:03:35,710 --> 00:03:41,150
+the second agent. And then
+we can notice that the
+00:03:43,030 --> 00:03:47,050
+one-fourth of the cake is
+actually wasted because the
+00:03:47,050 --> 00:03:50,170
+first agent doesn't give
+any value to it. So, we
+00:03:50,170 --> 00:03:53,930
+can reallocate this part to
+the second agent. So, give
+00:03:53,930 --> 00:03:56,610
+just the fourth, the
+chocolate part to the first
+00:03:56,610 --> 00:04:01,470
+agent and three-fourths of
+the cake, the whole sponge
+00:04:01,470 --> 00:04:04,790
+piece to the second agent.
+so the second agent will
+00:04:04,790 --> 00:04:09,420
+increase their utility from
+getting this part while
+00:04:09,420 --> 00:04:13,370
+the first agent will have
+the same utility, right?
+00:04:13,370 --> 00:04:17,630
+Or we can even consider
+the following allocation.
+00:04:17,630 --> 00:04:22,830
+We can give one-fifth of
+the chocolate part to the
+00:04:22,830 --> 00:04:25,270
+first agent and the rest
+of the cake to the second
+00:04:25,270 --> 00:04:29,050
+agent, And then the
+utility for the first agent
+00:04:29,050 --> 00:04:34,790
+will be for fifth and the
+same for the second agent.
+00:04:34,790 --> 00:04:38,510
+So we can give them equal
+utility by doing so.
+00:04:38,510 --> 00:04:42,950
+And this brings us to the
+question of what is actually
+00:04:42,950 --> 00:04:46,950
+a good solution in fair
+division, in cake cutting
+00:04:46,950 --> 00:04:50,750
+specifically. So we are
+talking about divisible items.
+00:04:50,750 --> 00:04:55,890
+So, the first solution
+concept that we will consider
+00:04:55,890 --> 00:04:59,230
+is proportionality. We
+say that an allocation is
+00:04:59,230 --> 00:05:03,870
+proportional if each agent
+values their share as at
+00:05:03,870 --> 00:05:12,550
+least 1 nth. So, you can
+hope that the cake is divided
+00:05:12,550 --> 00:05:18,810
+so that 1 nth of the
+allocation is guaranteed to
+00:05:18,810 --> 00:05:22,690
+you. And in the allocation
+that we earlier proposed,
+00:05:23,130 --> 00:05:27,950
+so agent 1's utility
+here is 1, so this is
+00:05:27,950 --> 00:05:32,250
+greater than 1 over 2,
+1 over n, because we
+00:05:32,250 --> 00:05:35,510
+have two players here.
+For the second agent, the
+00:05:35,510 --> 00:05:40,410
+utility is 1 over 2,
+so also proportional.
+00:05:40,410 --> 00:05:44,190
+In the second allocation,
+the first agent again has
+00:05:44,190 --> 00:05:47,990
+utility 1. The second
+agent has utility 3 fourth.
+00:05:47,990 --> 00:05:49,950
+Both are greater than half.
+00:05:49,950 --> 00:05:55,130
+And in the last example,
+both agents have utility
+00:05:55,130 --> 00:05:58,550
+4 fifth, which is also
+greater than half. So
+00:05:58,550 --> 00:06:02,230
+all these three allocations
+are proportional.
+00:06:02,550 --> 00:06:07,110
+However, if instead we
+will give the first agent
+00:06:07,110 --> 00:06:11,190
+the piece from 0 to 2 thirds
+and only the last third
+00:06:11,190 --> 00:06:14,990
+to the second agent, then
+the second agent will not
+00:06:14,990 --> 00:06:17,870
+be satisfied. They will
+have the utility 1 third
+00:06:17,870 --> 00:06:21,590
+for their piece of cake
+and this is smaller than 1
+00:06:21,590 --> 00:06:25,910
+half, so this allocation
+will not be proportional.
+00:06:26,670 --> 00:06:31,310
+Another solution concept is
+envy-freeness. we say that
+00:06:31,310 --> 00:06:35,730
+an allocation is envy-free
+if no agent envies another
+00:06:35,730 --> 00:06:40,310
+one. How do we formally
+define it? We want for
+00:06:40,310 --> 00:06:45,550
+every pair of agents I and
+J to satisfy the following.
+00:06:45,550 --> 00:06:50,990
+The value of agent I for
+their piece of cake AI in the
+00:06:50,990 --> 00:06:54,590
+allocation should be at
+least as much that the value
+00:06:54,590 --> 00:06:58,570
+of the same agent i for the
+piece that another agent
+00:06:58,570 --> 00:07:04,490
+received, right? So i does
+not envy agent j and we
+00:07:04,490 --> 00:07:08,570
+want this to be satisfied
+for any pair of agents. And
+00:07:08,570 --> 00:07:13,030
+for example, if we give the
+first half of the cake to
+00:07:13,030 --> 00:07:16,450
+the first agent and the
+second half of the cake to
+00:07:16,450 --> 00:07:20,350
+the second agent, then this
+allocation will be envy
+00:07:20,350 --> 00:07:26,370
+free because the first agent
+has value one from their
+00:07:26,370 --> 00:07:30,950
+location and have value zero
+for the allocation of the
+00:07:30,950 --> 00:07:35,570
+second agent and second
+agent has the same value of
+00:07:35,570 --> 00:07:40,250
+one half for both pieces
+right so there is no envy in
+00:07:40,250 --> 00:07:45,190
+this case however if we
+swap these pieces between
+00:07:45,190 --> 00:07:50,860
+the agents. Then the first
+agent become envious because
+00:07:50,930 --> 00:07:55,510
+right now they have the
+second half of the cake or
+00:07:55,510 --> 00:07:59,970
+sponge for which they have
+value zero. So they envy
+00:07:59,970 --> 00:08:05,230
+agent two right now who have
+their favorite chocolate.
+00:08:05,990 --> 00:08:10,570
+The next concept is
+equitability. And we say that an
+00:08:10,570 --> 00:08:14,290
+allocation is equitable if
+all agents have the same
+00:08:14,290 --> 00:08:17,350
+value for the piece that
+they allocated. So for
+00:08:17,350 --> 00:08:21,570
+each pair of agents i and
+j, the value of agent i for
+00:08:21,570 --> 00:08:28,430
+their piece ai is at least
+as the value of agent j
+00:08:28,810 --> 00:08:30,790
+for their piece aj.
+00:08:31,970 --> 00:08:35,110
+And we need the inequality
+to be satisfied also in
+00:08:35,110 --> 00:08:37,470
+the other direction, so we
+actually have an equality.
+00:08:37,690 --> 00:08:42,390
+Now in the original
+locations that we considered,
+00:08:42,950 --> 00:08:46,050
+the first one, so
+the first agent gets
+00:08:46,050 --> 00:08:47,970
+utility one, the
+second agent gets
+00:08:47,970 --> 00:08:50,070
+utility half, so
+this is not equal.
+00:08:50,210 --> 00:08:53,570
+Here the first agent gets
+utility one, the second
+00:08:53,570 --> 00:08:56,570
+agent gets utility three
+fourth, once again this
+00:08:56,570 --> 00:09:00,230
+is not equal, while the
+third allocation where
+00:09:00,230 --> 00:09:03,730
+we give one fifth to the
+first agent gives them
+00:09:03,730 --> 00:09:07,550
+utility four-fifths, and
+four-fifths of the cake
+00:09:07,550 --> 00:09:11,290
+goes to the second agent
+that values that are at
+00:09:11,290 --> 00:09:15,250
+four-fifths, so this is
+an equitable allocation.
+00:09:15,770 --> 00:09:19,310
+And the last solution
+that we shall consider is
+00:09:19,310 --> 00:09:22,510
+Pareto-optimal. We say
+that an allocation is
+00:09:22,510 --> 00:09:25,930
+Pareto-optimal if there
+is no other allocation,
+00:09:25,930 --> 00:09:30,630
+let's call it be 1 to be
+N, such that the value
+00:09:30,630 --> 00:09:34,070
+of piece BI is greater
+or equal than the value
+00:09:34,070 --> 00:09:39,390
+of the allocated piece
+AI for each agent I, and
+00:09:39,390 --> 00:09:44,890
+for some agents I, this
+inequality is strict.
+00:09:45,590 --> 00:09:51,010
+In the first allocation
+that we had, when half of
+00:09:51,010 --> 00:09:54,270
+the cake goes to the first
+agent and another half
+00:09:54,270 --> 00:09:57,130
+goes to the second agent.
+This was not a Pareto
+00:09:57,130 --> 00:10:01,950
+optimal allocation because
+we had another way to
+00:10:01,950 --> 00:10:06,310
+split the cake where only
+the chocolate part goes
+00:10:06,310 --> 00:10:10,690
+to the first agent and
+the whole sponge part goes
+00:10:10,690 --> 00:10:15,230
+to the second agent. In
+this way, the first agent
+00:10:15,230 --> 00:10:18,830
+has the same utility,
+so it didn't drop, while
+00:10:18,830 --> 00:10:23,010
+the second agent strictly
+increased his utility.
+00:10:23,010 --> 00:10:26,990
+And this allocation is
+Pareto-optimal. We cannot
+00:10:26,990 --> 00:10:31,470
+go further and increase
+the utility of agent 2
+00:10:31,470 --> 00:10:35,910
+without decreasing the
+utility of agent 1, because
+00:10:35,910 --> 00:10:38,990
+we will need to take
+some chocolate from them.
+00:10:40,050 --> 00:10:43,150
+Now, proportionality
+and envy-freeness are
+00:10:43,150 --> 00:10:45,990
+related to each other.
+In particular, when we
+00:10:45,990 --> 00:10:49,290
+have only two players,
+an allocation would be
+00:10:49,290 --> 00:10:53,270
+proportional if and
+only if it is envy-free.
+00:10:53,310 --> 00:10:57,370
+So it goes in both
+directions. Let's prove this.
+00:10:57,690 --> 00:11:00,410
+Let's first show that envy
+00:11:00,410 --> 00:11:03,010
+-freeness implies
+proportionality.
+00:11:03,010 --> 00:11:05,610
+Without loss of
+generality, we can assume
+00:11:05,610 --> 00:11:10,770
+that if player 1 does
+not envy player 2, that
+00:11:10,770 --> 00:11:14,050
+means that the value
+of player 1 for their
+00:11:14,050 --> 00:11:18,050
+location A1 is at least
+as much as their value
+00:11:18,050 --> 00:11:20,810
+for the allocation of
+the second agent A2.
+00:11:22,570 --> 00:11:27,070
+But we also know that
+the whole cake is worth 1
+00:11:27,070 --> 00:11:31,290
+for every agent, including,
+of course, agent 1.
+00:11:31,290 --> 00:11:34,710
+And we only have the cake
+divided into two parts,
+00:11:34,710 --> 00:11:38,130
+so the value of agent 1
+for A1 and the value of
+00:11:38,130 --> 00:11:42,350
+agent 1 for A2 equals
+exactly one. So that implies
+00:11:42,350 --> 00:11:46,290
+that the value of agent
+one for their piece is
+00:11:46,290 --> 00:11:52,650
+at least one half, which
+implies proportionality.
+00:11:52,940 --> 00:11:55,410
+Let's now see the
+opposite direction that
+00:11:55,410 --> 00:11:58,030
+proportionality implies
+envy freemius. So
+00:11:58,030 --> 00:12:00,410
+if the allocation is
+proportional, then we
+00:12:00,410 --> 00:12:04,310
+know that each agent,
+including agent one,
+00:12:04,630 --> 00:12:08,470
+value their piece
+at least as a half.
+00:12:08,470 --> 00:12:11,870
+And now, once again,
+since we divide the cake
+00:12:11,870 --> 00:12:15,190
+into two pieces, then the
+sum of valuations of agent
+00:12:15,190 --> 00:12:19,110
+I for both pieces is
+exactly 1, which implies
+00:12:19,110 --> 00:12:25,550
+that the value of A1 is
+at least as much as the
+00:12:25,550 --> 00:12:29,610
+value of A2, so player 1
+does not envy player 2,
+00:12:29,610 --> 00:12:32,950
+and the same way we can
+also show that for the
+00:12:32,950 --> 00:12:37,050
+other player, so we have
+envy-freeness. For three
+00:12:37,050 --> 00:12:40,250
+or more players, envy
+-freeness does imply
+00:12:40,250 --> 00:12:44,110
+proportionality, but the
+converse is not true anymore.
+00:12:44,130 --> 00:12:47,330
+Let's show that if
+we have an envy-free
+00:12:47,330 --> 00:12:50,910
+allocation, that then
+it is also proportional.
+00:12:51,130 --> 00:12:56,570
+First, let AI be what
+player I values most
+00:12:56,570 --> 00:13:02,350
+among all allocations A1,
+A2, and so on, AN. and
+00:13:02,350 --> 00:13:05,830
+then since the sum of
+all valuations of agent
+00:13:05,830 --> 00:13:10,410
+i for all these pieces
+is exactly 1, it must
+00:13:10,410 --> 00:13:13,590
+be the case that the
+piece that they value
+00:13:13,590 --> 00:13:16,930
+the most, that is the
+piece that we called ai,
+00:13:17,410 --> 00:13:21,610
+is at least 1 over n,
+because otherwise we will
+00:13:21,610 --> 00:13:26,750
+not have the sum of n pieces
+equal to 1. Now, since
+00:13:26,750 --> 00:13:29,410
+this allocation is envy
+-free, then player i
+00:13:29,410 --> 00:13:33,530
+must receive this piece
+a, because otherwise they
+00:13:33,530 --> 00:13:36,650
+would envy some other
+agent that get it. So it
+00:13:36,650 --> 00:13:40,470
+has to go to agent i,
+and so the allocation is
+00:13:40,470 --> 00:13:44,130
+proportional because we
+have this inequality shown.
+00:13:44,750 --> 00:13:48,030
+Now, to show that the
+opposite direction doesn't
+00:13:48,030 --> 00:13:50,870
+work, we give the
+following counter-example.
+00:13:50,870 --> 00:13:55,490
+We have three players,
+and let for player
+00:13:55,490 --> 00:14:00,390
+one, their allocation be
+A1, so that they value
+00:14:00,390 --> 00:14:04,490
+their allocated piece
+at one-third exactly.
+00:14:04,730 --> 00:14:08,410
+And for the piece allocated
+to the second agent,
+00:14:08,410 --> 00:14:11,810
+they have one-third plus
+some positive epsilon.
+00:14:11,870 --> 00:14:14,670
+And for the allocation
+of the third agent,
+00:14:14,670 --> 00:14:17,190
+they have one valuation
+one-third minus
+00:14:17,190 --> 00:14:20,090
+this epsilon. So, in
+total, they have value
+00:14:20,090 --> 00:14:24,130
+one for the whole
+piece of cake, right?
+00:14:24,690 --> 00:14:25,810
+However,
+00:14:25,970 --> 00:14:29,490
+the allocation, and the
+allocation is proportional
+00:14:29,490 --> 00:14:34,950
+because their own piece
+they value for at least one
+00:14:34,950 --> 00:14:39,950
+third. However, they envy
+the second agent for whose
+00:14:39,950 --> 00:14:44,170
+piece they have a higher
+value than for their own.

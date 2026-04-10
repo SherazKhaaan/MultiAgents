@@ -1,0 +1,260 @@
+00:00:00,730 --> 00:00:02,480
+Let's have a look
+at another example.
+00:00:02,630 --> 00:00:06,650
+We have two players here,
+player one and player two,
+00:00:06,650 --> 00:00:10,590
+and each one of the players
+has two choice nodes in
+00:00:10,590 --> 00:00:15,980
+the game. We start with
+agent one taking either
+00:00:16,070 --> 00:00:24,010
+action A or action B, and
+then agent two has a choice
+00:00:24,010 --> 00:00:28,010
+between actions C or D in
+this choice node or between
+00:00:28,010 --> 00:00:32,370
+actions E or F in this
+choice node. If action F is
+00:00:32,370 --> 00:00:37,470
+taken, then agent 1 has
+again a choice to make
+00:00:37,470 --> 00:00:43,770
+between actions G or H,
+and then we have our final
+00:00:43,770 --> 00:00:47,810
+terminal nodes with their
+respective utility functions.
+00:00:48,070 --> 00:00:52,270
+Now, what are the
+strategies for our players?
+00:00:52,270 --> 00:00:55,070
+What are the strategy
+sets? We said that a
+00:00:55,070 --> 00:00:59,010
+strategy for a player has
+to indicate what action
+00:00:59,010 --> 00:01:03,750
+the player takes at each
+of their choice nodes,
+00:01:03,750 --> 00:01:08,290
+regardless whether the
+agent actually will be
+00:01:08,290 --> 00:01:12,250
+in that node over the
+game interaction or not.
+00:01:12,790 --> 00:01:18,470
+so each agent has two choice
+nodes here and in each
+00:01:18,470 --> 00:01:23,810
+choice node they have two
+actions to choose from so there
+00:01:23,810 --> 00:01:27,050
+will be four strategies
+for each of the players and
+00:01:27,050 --> 00:01:30,870
+each strategy will be a
+two dimensional vector that
+00:01:30,870 --> 00:01:35,970
+indicates what choice the
+agent makes in the first choice
+00:01:35,970 --> 00:01:38,890
+node and what choice they
+make in the second choice
+00:01:38,890 --> 00:01:42,830
+node. So for the first
+player, we have actions A, B
+00:01:42,830 --> 00:01:46,090
+in the first choice node and
+actions G, H in the second
+00:01:46,090 --> 00:01:50,070
+choice node. So the respective
+strategies for agent
+00:01:50,070 --> 00:01:57,390
+one would be A, G, A, H,
+B, G, and B, H. And in a
+00:01:57,390 --> 00:02:01,670
+similar way, we find the
+strategies for the second player.
+00:02:01,670 --> 00:02:05,730
+So we have two choice nodes
+with the choices C and D
+00:02:05,730 --> 00:02:10,290
+in the first node and E and
+F in the second node. So
+00:02:10,290 --> 00:02:15,750
+the strategies will be the
+vectors CE, CF, DE and DF.
+00:02:16,710 --> 00:02:21,570
+Now, having specified
+the strategy sets for the
+00:02:21,570 --> 00:02:26,710
+agents, we can write down
+the payoff matrix for the
+00:02:26,710 --> 00:02:30,230
+game. We can induce the
+normal form representation
+00:02:30,230 --> 00:02:34,070
+for our extensive form
+game. So in the rows here we
+00:02:34,070 --> 00:02:37,250
+have the strategy for
+player one, in the columns
+00:02:37,250 --> 00:02:41,170
+we have the strategies
+for player two, and inside
+00:02:41,170 --> 00:02:45,130
+the matrix we have the
+corresponding payoffs which
+00:02:45,130 --> 00:02:49,610
+we took from the respective
+leaves from the terminal
+00:02:49,610 --> 00:02:54,130
+nodes now see that some
+combination of strategies
+00:02:54,130 --> 00:02:59,830
+lead to the same leaf in
+the tree so for instance
+00:02:59,830 --> 00:03:03,510
+these four give us the
+same pairs of utilities for
+00:03:03,510 --> 00:03:08,970
+the players as well as
+these four these four these
+00:03:09,450 --> 00:03:15,730
+two and these two now
+every perfect information
+00:03:15,730 --> 00:03:19,530
+game has a corresponding
+normal form representation.
+00:03:19,750 --> 00:03:24,290
+However, as we have seen
+also with our example,
+00:03:24,410 --> 00:03:28,750
+the temporal structure of
+the extensive form game
+00:03:28,750 --> 00:03:32,450
+can result in a certain
+redundancy within the
+00:03:32,450 --> 00:03:35,930
+normal form. So in our
+example, we have seen that
+00:03:35,930 --> 00:03:40,030
+there were only five
+different outcomes in the
+00:03:40,030 --> 00:03:43,370
+extensive form, but in the
+normal form representation,
+00:03:43,450 --> 00:03:47,150
+some of these outcomes
+have been repeated, and
+00:03:47,150 --> 00:03:51,930
+we had 16 different
+combinations of strategies.
+00:03:53,750 --> 00:03:54,810
+Now,
+00:03:55,350 --> 00:03:59,490
+every perfect information
+game can be represented in
+00:03:59,490 --> 00:04:02,610
+a normal form. How about
+in the opposite direction?
+00:04:02,610 --> 00:04:05,690
+Can we have an extensive
+perfect information extensive
+00:04:05,690 --> 00:04:09,510
+form representation for
+every normal form game? The
+00:04:09,510 --> 00:04:13,370
+answer is no. So the reverse
+transformation from the
+00:04:13,370 --> 00:04:15,890
+normal form to the perfect
+information extensive form
+00:04:15,890 --> 00:04:20,270
+does not always exist. And
+you can try with prisoner's
+00:04:20,270 --> 00:04:24,490
+dilemma to see that this
+is not always possible.
+00:04:24,490 --> 00:04:29,510
+We shall see how to represent
+the prisoner's dilemma
+00:04:29,510 --> 00:04:33,250
+game as an imperfect
+information extensive form game
+00:04:33,250 --> 00:04:36,830
+but with perfect information
+it is not always possible
+00:04:36,830 --> 00:04:40,690
+which means that the set
+of perfect information
+00:04:40,690 --> 00:04:46,030
+extensive form games is
+smaller strictly smaller than
+00:04:46,030 --> 00:04:50,470
+the set of all normal form
+games and we can conclude
+00:04:50,470 --> 00:04:56,170
+that also from the following
+fact. Every finite perfect
+00:04:56,170 --> 00:04:59,710
+information game in
+extensive form has a pure
+00:04:59,710 --> 00:05:03,590
+stratogenesh equilibrium and
+we know that not every normal
+00:05:03,590 --> 00:05:07,150
+form game has a pure
+stratogenesh equilibrium with
+00:05:07,150 --> 00:05:11,590
+matching pennies being a
+classic example of the game
+00:05:11,590 --> 00:05:15,070
+without pure stratogenesh
+equilibrium. Now why is it
+00:05:15,070 --> 00:05:18,910
+true that every perfect
+information game has a pure
+00:05:18,910 --> 00:05:21,490
+stratogenesh equilibrium?
+The idea of the The proof is
+00:05:21,490 --> 00:05:26,270
+very simple. So since our
+players take turns and
+00:05:26,270 --> 00:05:31,550
+everyone gets to see everything
+that happened before they
+00:05:31,550 --> 00:05:35,090
+make a move, it is never
+necessary to introduce
+00:05:35,090 --> 00:05:38,690
+randomness into the action
+selection in order to find
+00:05:38,690 --> 00:05:42,370
+an equilibrium, because we
+can show that by backward
+00:05:42,370 --> 00:05:46,510
+induction, which combination
+of strategies is stable.
+00:05:47,630 --> 00:05:50,490
+However, for the backward
+induction to work,
+00:05:50,490 --> 00:05:54,650
+we need indeed to see
+all the history back
+00:05:54,810 --> 00:05:58,730
+to the root of the tree
+to be able to use this
+00:05:58,730 --> 00:06:02,390
+argument. So this intuition
+and the theorem itself do
+00:06:02,390 --> 00:06:06,270
+not hold for the more
+general class of extensive
+00:06:06,270 --> 00:06:10,190
+form games such as games
+with imperfect information.

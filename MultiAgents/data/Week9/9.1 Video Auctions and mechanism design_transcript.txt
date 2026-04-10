@@ -1,0 +1,303 @@
+00:00:01,270 --> 00:00:03,590
+Hello, and welcome
+to Cooperation,
+00:00:03,590 --> 00:00:05,990
+Coordination, and
+Multi-Agent Systems.
+00:00:06,530 --> 00:00:11,010
+In Multi-Agent Systems, game
+theory provides a powerful
+00:00:11,010 --> 00:00:14,510
+analytical framework for
+understanding and shaping
+00:00:14,510 --> 00:00:18,050
+strategic interactions
+among autonomous agents.
+00:00:18,150 --> 00:00:20,370
+For the agents themselves,
+00:00:20,670 --> 00:00:22,650
+game theoretic
+reasoning reveals
+00:00:22,650 --> 00:00:25,650
+which strategies
+are best responses,
+00:00:25,770 --> 00:00:29,090
+equilibrium choices,
+or robust against worst
+00:00:29,090 --> 00:00:33,130
+-case opening behavior,
+enabling rational decision
+00:00:33,130 --> 00:00:36,510
+-making in competitive
+or cooperative settings.
+00:00:36,790 --> 00:00:39,150
+For the system administrator,
+00:00:39,410 --> 00:00:42,970
+game theory offers predictive
+tools to anticipate
+00:00:42,970 --> 00:00:46,110
+emergent outcomes,
+such as equilibria,
+00:00:46,190 --> 00:00:49,490
+coalitional structures
+or convergence dynamics,
+00:00:49,490 --> 00:00:54,210
+and to intervene via
+incentives, coordination
+00:00:54,210 --> 00:00:58,290
+mechanisms or information
+design to steer the
+00:00:58,290 --> 00:01:02,630
+system towards stable,
+efficient or fair states.
+00:01:02,770 --> 00:01:05,910
+Finally, for the
+system designer,
+00:01:06,070 --> 00:01:10,070
+game theory guides the
+design of rules, protocols
+00:01:10,070 --> 00:01:14,570
+and institutions or mechanisms
+that align individual
+00:01:14,570 --> 00:01:19,210
+incentives with collective
+objectives, ensuring that
+00:01:19,210 --> 00:01:23,370
+desirable global properties
+like social welfare,
+00:01:23,390 --> 00:01:26,610
+fairness or
+truthfulness emerge from
+00:01:26,610 --> 00:01:29,150
+decentralized
+agent interactions.
+00:01:29,510 --> 00:01:34,710
+The area of mechanism design
+addresses a fundamental
+00:01:34,710 --> 00:01:38,350
+challenge in multi-agent
+systems. How to engineer
+00:01:38,350 --> 00:01:42,310
+the rules of interaction so
+that individually rational
+00:01:42,310 --> 00:01:46,050
+agents, each pursuing
+their own self-interest,
+00:01:46,050 --> 00:01:49,710
+collectively produce
+socially desirable outcomes.
+00:01:49,710 --> 00:01:53,450
+Classic games like the
+prisoner's dilemma and the
+00:01:53,450 --> 00:01:57,630
+centipede game illustrate
+the problem. Rational play
+00:01:57,630 --> 00:02:01,810
+leads to inefficient or
+uncooperative equilibria that
+00:02:01,810 --> 00:02:05,290
+leave everyone worse off
+than alternative outcomes.
+00:02:05,610 --> 00:02:08,530
+Mechanism design
+flips this problem
+00:02:08,530 --> 00:02:11,290
+on its head. Rather
+than analyzing a
+00:02:11,290 --> 00:02:14,410
+given game, we design
+the game itself,
+00:02:14,410 --> 00:02:18,230
+specifying action spaces,
+information flows,
+00:02:18,250 --> 00:02:21,830
+and payoff rules to
+ensure that certain
+00:02:21,830 --> 00:02:24,790
+objectives, such as
+efficiency, fairness,
+00:02:24,850 --> 00:02:27,770
+revenue maximization,
+or truthfulness, are
+00:02:27,770 --> 00:02:31,810
+achieved at equilibrium
+when each agent maximizes
+00:02:31,810 --> 00:02:36,170
+their own expected
+utility. This framework
+00:02:36,170 --> 00:02:40,050
+underpins auction
+theory, voting systems,
+00:02:40,250 --> 00:02:43,890
+resource allocation protocols
+and many other domains
+00:02:43,890 --> 00:02:48,190
+where a planner or designer
+shapes strategic environments
+00:02:48,190 --> 00:02:51,770
+to align individual
+incentives with collective
+00:02:51,770 --> 00:02:55,870
+goals. For example, in
+elections, we want to design
+00:02:55,870 --> 00:02:59,870
+voting protocols such that
+a particular candidate wins
+00:02:59,870 --> 00:03:03,290
+or has a highest chance
+of winning, or the number
+00:03:03,290 --> 00:03:07,930
+of unsatisfied voters is
+minimized. In marketplaces,
+00:03:07,930 --> 00:03:11,850
+we may like to design
+auctions or other trading
+00:03:11,850 --> 00:03:16,850
+mechanisms such that the
+outcome is efficient, that is,
+00:03:16,850 --> 00:03:21,190
+maximizes the sum of the
+agent utilities, or we may
+00:03:21,190 --> 00:03:25,370
+be interested in maximizing
+or minimizing the seller's
+00:03:25,370 --> 00:03:30,010
+profit. Auctions represent
+one of the most prominent
+00:03:30,010 --> 00:03:33,150
+and well-studied applications
+of mechanism design,
+00:03:33,150 --> 00:03:35,970
+serving as protocols
+for multi-agent resource
+00:03:35,970 --> 00:03:40,210
+allocation in environments
+with strategic self-interested
+00:03:40,210 --> 00:03:45,950
+agents. An auction is
+a structured mechanism
+00:03:45,950 --> 00:03:50,210
+through which usually discrete
+resources or goods are
+00:03:50,210 --> 00:03:54,450
+allocated among competing
+bidders, agents, with
+00:03:54,450 --> 00:03:57,990
+payments determined by the
+bidding process itself.
+00:03:58,160 --> 00:04:02,750
+Unlike a fair division
+that we studied in the
+00:04:02,750 --> 00:04:06,610
+previous two weeks, which
+typically assumes a social
+00:04:06,610 --> 00:04:09,970
+planner that distributes
+resources to achieve
+00:04:09,970 --> 00:04:13,890
+fairness criteria, such as envy
+-freeness or proportionality,
+00:04:13,890 --> 00:04:17,110
+without necessarily
+extracting payments,
+00:04:17,130 --> 00:04:21,110
+auctions explicitly
+incorporate monetary transfers
+00:04:21,110 --> 00:04:25,210
+and focus on objectives
+like revenue maximization,
+00:04:25,370 --> 00:04:27,970
+efficiency, that is,
+allocating goods to those
+00:04:27,970 --> 00:04:32,850
+who value them most, and
+incentive compatibility,
+00:04:33,270 --> 00:04:34,430
+truthfulness.
+00:04:34,810 --> 00:04:37,390
+The auction setting
+is important for
+00:04:37,390 --> 00:04:39,570
+two reasons. The
+first is practical.
+00:04:39,570 --> 00:04:43,470
+Auctions are widely used
+in real life. Millions of
+00:04:43,470 --> 00:04:48,210
+people use auctions daily on
+internet consumer websites
+00:04:48,210 --> 00:04:51,610
+to trade goods. Auctions
+have also been used by
+00:04:51,610 --> 00:04:55,530
+governments around the world
+to sell important public
+00:04:55,530 --> 00:05:00,650
+resources such as access to
+electromagnetic spectrum. All
+00:05:00,650 --> 00:05:04,610
+financial markets constitute
+some type of an auction,
+00:05:04,970 --> 00:05:07,320
+one of the family
+of so-called double
+00:05:07,590 --> 00:05:10,490
+auctions. We shall
+look at them as well.
+00:05:11,210 --> 00:05:15,850
+And auctions are also
+often used in computational
+00:05:15,850 --> 00:05:20,450
+settings where to efficiently
+allocate bandwidth
+00:05:20,450 --> 00:05:24,910
+or process and power to
+applications and users.
+00:05:25,030 --> 00:05:27,770
+The second and probably
+more fundamental
+00:05:27,770 --> 00:05:31,590
+reason to care about
+auctions is that they
+00:05:31,590 --> 00:05:35,490
+provide a general
+theoretical framework for
+00:05:35,490 --> 00:05:39,070
+understanding resource
+allocation problems among
+00:05:39,070 --> 00:05:42,230
+self-interested agents.
+Formally speaking,
+00:05:42,430 --> 00:05:46,690
+an auction is any protocol
+that allows agents to
+00:05:46,690 --> 00:05:51,070
+indicate their interest
+in one or more resources
+00:05:51,070 --> 00:05:55,490
+and that uses these
+indications of interest
+00:05:55,490 --> 00:05:58,910
+to determine both an
+allocation of resources to
+00:05:58,910 --> 00:06:02,690
+the agents and a set of
+payments by the agents.
+00:06:03,410 --> 00:06:07,170
+Auctions are important
+also for many computational
+00:06:07,170 --> 00:06:14,690
+settings, where they would
+not normally be thought of as
+00:06:14,690 --> 00:06:18,250
+auctions and that might
+not even use money as the
+00:06:18,250 --> 00:06:21,790
+basis of payment, such as,
+for example, the sharing of
+00:06:21,790 --> 00:06:25,090
+computational power in a
+grid computer, where the
+00:06:25,090 --> 00:06:31,190
+payments can be expressed in
+computational power itself.

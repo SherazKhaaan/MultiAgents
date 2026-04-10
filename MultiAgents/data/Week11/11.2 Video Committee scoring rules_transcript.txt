@@ -1,0 +1,778 @@
+00:00:00,950 --> 00:00:04,410
+Let us consider a
+setting with a set C
+00:00:04,410 --> 00:00:07,810
+of M candidates and
+with ordinal ballots.
+00:00:07,920 --> 00:00:11,690
+For a given preference order of
+00:00:11,690 --> 00:00:15,770
+the candidates
+and a candidate C,
+00:00:15,770 --> 00:00:20,350
+we denote in this way
+the position of candidate
+00:00:20,350 --> 00:00:26,070
+C in this given preference
+order. So the candidate
+00:00:26,070 --> 00:00:30,340
+which is ranked first
+has position 1, the
+00:00:30,510 --> 00:00:33,630
+candidate that is ranked
+second has position 2, and
+00:00:33,630 --> 00:00:37,910
+so on, the candidate
+ranked last has position m.
+00:00:38,130 --> 00:00:44,230
+And also for a positive
+integer t, we will
+00:00:44,230 --> 00:00:48,890
+write t in squared
+parentheses to denote the set
+00:00:48,890 --> 00:00:53,670
+of natural numbers or
+integers from 1 to t.
+00:00:55,400 --> 00:00:58,950
+Now recall single-winner
+positional scoring
+00:00:58,950 --> 00:01:02,530
+rules. These rules
+are defined by so
+00:01:02,530 --> 00:01:07,030
+-called score vectors
+or scoring functions.
+00:01:07,360 --> 00:01:13,110
+We'll call them gamma m
+indexed with m the number of
+00:01:13,110 --> 00:01:20,090
+candidates which for any
+position of a candidate gives
+00:01:20,090 --> 00:01:29,510
+it a number of points that
+a vote that ranks this
+00:01:29,510 --> 00:01:34,650
+candidate in the current
+position gives to the candidate
+00:01:34,650 --> 00:01:38,830
+in the election. So this is
+a function that associates
+00:01:38,890 --> 00:01:42,630
+each position in a vote
+with a number of points,
+00:01:42,630 --> 00:01:48,470
+And this is done in a way
+that for higher position i,
+00:01:48,470 --> 00:01:57,210
+we give at least as many
+points than for a lower
+00:01:57,210 --> 00:02:02,910
+position j. And we also
+assume that the first position
+00:02:02,910 --> 00:02:07,750
+gives strictly more points
+than the last position, just
+00:02:07,750 --> 00:02:11,490
+to indicate that our
+scoring vector or scoring
+00:02:11,490 --> 00:02:15,550
+function is not indifferent
+between different positions.
+00:02:15,910 --> 00:02:21,990
+For instance, we considered
+the border count, which is
+00:02:21,990 --> 00:02:27,970
+defined by a function that
+we shall call beta m, that
+00:02:27,970 --> 00:02:33,870
+for an ith position in a
+vote gives m minus i points,
+00:02:33,870 --> 00:02:38,230
+where once again m is the
+number of candidates in the
+00:02:38,230 --> 00:02:42,370
+election. And we also looked
+at t-approval, we called
+00:02:42,370 --> 00:02:46,670
+it k-approval, but now we
+use k to indicate the target
+00:02:46,670 --> 00:02:50,850
+size of our committee, so
+let's replace it with t.
+00:02:50,850 --> 00:02:55,150
+And this rule is
+defined by a scoring
+00:02:55,150 --> 00:02:59,290
+function that gives
+one point for all the
+00:02:59,290 --> 00:03:05,210
+positions up to t and
+zero points for lower
+00:03:05,210 --> 00:03:09,930
+positions. So we call
+it function alpha t.
+00:03:11,010 --> 00:03:16,390
+And for example, we have
+seen plurality, which is
+00:03:16,390 --> 00:03:20,450
+given by alpha 1 function
+that gives one point
+00:03:20,450 --> 00:03:23,530
+only to the first position
+and zero for all other
+00:03:23,530 --> 00:03:27,410
+positions, or the Vita
+rule that is defined by
+00:03:27,410 --> 00:03:33,090
+alpha m-1 function that
+gives one point to all the
+00:03:33,090 --> 00:03:38,470
+positions up to m-1 and
+0 to the last position.
+00:03:39,550 --> 00:03:43,470
+Now, a family gamma
+of such functions,
+00:03:43,470 --> 00:03:48,730
+one for each number
+of candidates m,
+00:03:50,170 --> 00:03:56,230
+defines a voting rule,
+right? So we're still talking
+00:03:56,230 --> 00:04:00,430
+about single-winner voting
+rules. And this is done
+00:04:00,430 --> 00:04:04,650
+in the following way. So for
+an election with a set of
+00:04:04,650 --> 00:04:10,030
+candidates C and the profile
+R, which is a profile
+00:04:10,030 --> 00:04:14,750
+of ordinal ballots, the
+score of a candidate would be
+00:04:14,750 --> 00:04:19,050
+the sum of points points
+given to this candidate by
+00:04:19,050 --> 00:04:26,470
+all of the voters, when the
+number of points is defined
+00:04:26,470 --> 00:04:31,570
+by the respective scoring
+function that takes the
+00:04:31,570 --> 00:04:37,130
+position of candidate C
+and gives us the number of
+00:04:37,130 --> 00:04:43,570
+points which is given by
+the function gamma of this
+00:04:43,570 --> 00:04:48,550
+position. And the rule will
+select the candidate with
+00:04:48,550 --> 00:04:53,610
+the highest score, and for
+example, the border rule
+00:04:53,610 --> 00:04:59,990
+is defined by the function
+beta m that we considered
+00:04:59,990 --> 00:05:05,430
+here, and the t-approval
+rule uses the alpha t scoring
+00:05:05,430 --> 00:05:10,790
+function. Now, committee
+scoring rules are defined
+00:05:10,790 --> 00:05:17,910
+analogously, but for an
+extended notion of position.
+00:05:18,270 --> 00:05:22,830
+So let us see what we
+mean by a position in the
+00:05:22,830 --> 00:05:26,310
+committee election. So here
+we talk about a position
+00:05:26,310 --> 00:05:30,270
+of the committee rather
+than a single candidate.
+00:05:30,870 --> 00:05:36,610
+So let S be a size K
+committee, and we have
+00:05:36,610 --> 00:05:39,410
+a preference order.
+Once again, this is a
+00:05:39,410 --> 00:05:42,970
+preference order of
+the candidates, right?
+00:05:44,190 --> 00:05:48,220
+And we will talk about
+the position of the
+00:05:48,220 --> 00:05:51,230
+committee in this order. We
+will define it in a similar
+00:05:51,230 --> 00:05:56,290
+way. So this is position
+of S indexed by the
+00:05:56,290 --> 00:06:00,270
+respective preference
+order. So this will be the
+00:06:00,270 --> 00:06:05,250
+list of the positions
+of the members of our
+00:06:05,250 --> 00:06:10,530
+committee S, which is
+sorted in increasing order.
+00:06:10,530 --> 00:06:15,130
+So let M in square
+parenthesis with the
+00:06:15,130 --> 00:06:19,650
+index K denote the
+set of all increasing
+00:06:19,650 --> 00:06:23,850
+sequences of length K
+of indices choosing from
+00:06:23,850 --> 00:06:27,850
+this set of indices
+from 1 to M. All right.
+00:06:29,110 --> 00:06:35,030
+and position of a committee
+will be given by a
+00:06:35,030 --> 00:06:39,930
+sequence which is taken
+from this set. So we will
+00:06:39,930 --> 00:06:45,910
+give the indices, the
+positions of the k members of
+00:06:45,910 --> 00:06:49,230
+our committee as the
+position of the committee.
+00:06:49,550 --> 00:06:57,750
+So, for instance, if I
+have A, B, C, D, E as my
+00:06:57,750 --> 00:07:03,070
+preference list, and I want
+to include candidates A and
+00:07:03,070 --> 00:07:09,590
+E in a set that contains
+two candidates, then this
+00:07:09,960 --> 00:07:14,510
+committee, this subset of
+candidates will be given
+00:07:14,510 --> 00:07:19,590
+by the position 1 and 5
+because it includes candidates
+00:07:19,590 --> 00:07:23,410
+which are ranked in position
+1 and in position 5.
+00:07:24,290 --> 00:07:28,190
+And we shall say the
+following thing. So we need
+00:07:28,190 --> 00:07:36,930
+to compare the committee
+positions in some way.
+00:07:36,930 --> 00:07:43,350
+So we shall say that two
+positions i and j in mk
+00:07:43,350 --> 00:07:53,370
+will say that i dominates
+j if the position for
+00:07:53,370 --> 00:07:58,730
+each index t, if the
+position in the sequence i is
+00:07:58,730 --> 00:08:02,670
+higher than the position
+in the index j. So
+00:08:02,670 --> 00:08:08,650
+intuitively, I dominates
+J when every member of the
+00:08:08,650 --> 00:08:14,910
+committee is ranked at
+least as high in I as in J,
+00:08:15,130 --> 00:08:19,130
+right? For example, once
+again, if I have a committee
+00:08:19,130 --> 00:08:24,330
+that I said earlier, A
+and E, which is given by
+00:08:24,330 --> 00:08:28,610
+the position, the committee
+position 1-5, And I
+00:08:28,610 --> 00:08:32,290
+consider another one given
+by candidates A and B,
+00:08:32,290 --> 00:08:36,310
+which are ranked first
+and second, so I have the
+00:08:36,310 --> 00:08:43,190
+sequence 1, 2 for A, B,
+and sequence 1, 5 for A, E,
+00:08:43,190 --> 00:08:48,290
+right? So, the sequence
+that indicates the position
+00:08:48,290 --> 00:08:57,410
+of AB committee dominates
+the vector of positions
+00:08:57,410 --> 00:09:04,510
+for the AE committee,
+because for each t, for each
+00:09:04,510 --> 00:09:09,430
+index in this vector, the
+position position of the
+00:09:09,430 --> 00:09:15,090
+respective candidate is
+higher for AB than for AE.
+00:09:17,090 --> 00:09:22,310
+And now with this extended
+notion of apposition to
+00:09:22,310 --> 00:09:27,530
+the multi-winner case,
+we shall define committee
+00:09:28,090 --> 00:09:32,590
+scoring rules, multi
+-winner scoring rules, also
+00:09:32,590 --> 00:09:37,350
+with the help of scoring
+functions, which Once
+00:09:37,350 --> 00:09:41,750
+again, we shall extend
+to the multi-winner case.
+00:09:42,250 --> 00:09:49,890
+So committee scoring function,
+which we denote by gamma
+00:09:49,890 --> 00:09:53,650
+with two indices, m and k.
+m is the total number of
+00:09:53,650 --> 00:09:59,710
+candidates. k is the targeted
+committee size. So this
+00:09:59,710 --> 00:10:04,110
+is a function that takes
+a committee position. So
+00:10:04,110 --> 00:10:11,090
+that's an element in mk and
+gives it a number of points.
+00:10:11,090 --> 00:10:14,310
+So for m candidates
+and committee size k,
+00:10:14,310 --> 00:10:17,930
+this is a function that
+associates each committee
+00:10:17,930 --> 00:10:22,410
+position with a score.
+And this is done
+00:10:22,410 --> 00:10:28,150
+in such a way that if
+we have two committee
+00:10:28,150 --> 00:10:34,910
+positions i and j, such
+that i dominates j,
+00:10:35,390 --> 00:10:40,510
+then the number of points
+that our scoring function
+00:10:40,510 --> 00:10:45,350
+gives to i should be at
+least as much as the number
+00:10:45,350 --> 00:10:49,010
+of points that this function
+gives to committee j.
+00:10:51,370 --> 00:10:57,050
+And now for a family of
+committee scoring functions,
+00:10:57,050 --> 00:11:03,530
+so we look at all such
+functions that work for k less
+00:11:03,810 --> 00:11:08,970
+or equal than m. So for
+each number m of candidates
+00:11:08,970 --> 00:11:12,950
+and for each committee size
+k we have such a function.
+00:11:12,950 --> 00:11:18,210
+A committee scoring
+rule of gamma
+00:11:18,210 --> 00:11:20,310
+would be a multi-winner rule.
+00:11:20,470 --> 00:11:23,410
+That for a given
+election with a set of
+00:11:23,410 --> 00:11:29,270
+candidate C and
+preference profile R,
+00:11:29,270 --> 00:11:35,090
+and also we need to indicate
+the committee size K,
+00:11:35,410 --> 00:11:41,650
+right? It would output those
+committees that maximize
+00:11:41,650 --> 00:11:47,210
+the following score. And
+the score is given in a
+00:11:47,210 --> 00:11:53,070
+way similar to single-winner
+elections. So once again,
+00:11:53,140 --> 00:11:56,650
+but now not for each
+candidate, but for each
+00:11:56,650 --> 00:12:00,470
+committee we compute the score.
+And it will be the number
+00:12:00,470 --> 00:12:05,950
+of points, the sum of
+points given by each voter.
+00:12:06,890 --> 00:12:13,150
+And for each voter and their
+preference order, we see
+00:12:13,150 --> 00:12:18,010
+what's the position of now
+a committee, so a committee
+00:12:18,010 --> 00:12:23,910
+position of our committee
+W in this order, and with
+00:12:23,910 --> 00:12:28,290
+the scoring function we give
+this position a corresponding
+00:12:28,290 --> 00:12:31,590
+number of points, and
+then once again we sum up
+00:12:31,590 --> 00:12:35,730
+these points overall with
+the candidates. So the rule
+00:12:35,730 --> 00:12:43,490
+will output the committee,
+which maximizes this score.
+00:12:44,470 --> 00:12:48,310
+And there are many
+multi-winner rules
+00:12:48,310 --> 00:12:51,070
+that follow this
+framework, that
+00:12:51,070 --> 00:12:53,250
+can be defined within
+this framework.
+00:12:53,370 --> 00:12:55,890
+We shall consider four of them.
+00:12:56,170 --> 00:13:02,210
+The first one is single non
+-transferable vote, SNTV.
+00:13:02,210 --> 00:13:09,170
+And under this rule, a
+committee receives a point from
+00:13:09,170 --> 00:13:14,650
+a voter if this committee
+contains the voter's most
+00:13:14,650 --> 00:13:22,590
+preferred candidate. So
+this rule uses the scoring
+00:13:22,590 --> 00:13:30,370
+function that for a
+committee position takes the
+00:13:30,370 --> 00:13:36,090
+function alpha one, so it
+gives a point only to the first
+00:13:36,090 --> 00:13:42,010
+position, right? it, and it
+is only interested in the
+00:13:42,010 --> 00:13:47,310
+highest position of a
+candidate in this committee.
+00:13:49,250 --> 00:13:51,550
+Another rule is block.
+00:13:51,750 --> 00:13:57,310
+Under this rule, each voter
+names their K-favorite
+00:13:57,310 --> 00:14:01,770
+candidates, and the winning
+committee would consist of
+00:14:01,770 --> 00:14:08,690
+those which are mentioned
+most frequently. So, the
+00:14:08,690 --> 00:14:15,090
+scoring function that this
+rule uses is then alpha k
+00:14:15,090 --> 00:14:23,070
+of i t. So, we look at all the
+positions of the candidates
+00:14:23,070 --> 00:14:27,870
+in our committee position,
+right? And for this
+00:14:27,870 --> 00:14:35,350
+one here, we use the
+function alpha k that gives a
+00:14:35,350 --> 00:14:45,530
+point to each position that
+is higher or equal than k.
+00:14:45,530 --> 00:14:51,050
+So something which is in
+the top k positions in the
+00:14:51,050 --> 00:14:57,130
+preference order of the
+voter. The next rule is k
+00:14:57,130 --> 00:15:01,170
+-border, and this is a
+generalization of the border count,
+00:15:01,170 --> 00:15:06,790
+and this rule outputs
+committees that consist of k
+00:15:06,790 --> 00:15:11,470
+candidates with the highest
+individual border scores.
+00:15:11,470 --> 00:15:17,590
+So this rule uses the
+following scoring function that
+00:15:17,590 --> 00:15:25,330
+takes the border scoring
+function for all the
+00:15:25,330 --> 00:15:31,930
+positions of our candidates
+in the given committee. So we
+00:15:31,930 --> 00:15:37,130
+go through all these positions
+and we compute the sum
+00:15:37,270 --> 00:15:41,070
+of the individual border
+scores of the candidates.
+00:15:41,270 --> 00:15:47,770
+The next rule is also based
+on the board account, but
+00:15:47,770 --> 00:15:52,770
+it is interested only in
+the board account of the
+00:15:52,770 --> 00:15:59,250
+top ranked candidate in
+the position. So, this rule
+00:15:59,250 --> 00:16:04,610
+was proposed by Chamberlain
+and Courant, and the
+00:16:04,610 --> 00:16:09,210
+scoring function is the
+border count, but only for the
+00:16:09,210 --> 00:16:12,550
+first position in the
+committee position. So this
+00:16:12,550 --> 00:16:16,270
+means that the score that
+a committee receives from a
+00:16:16,270 --> 00:16:20,230
+voter is the border score
+of the committee member that
+00:16:20,230 --> 00:16:24,930
+the voter ranks highest
+among all the members of
+00:16:24,930 --> 00:16:29,110
+the committee. Let us
+again consider the ordinal
+00:16:29,110 --> 00:16:33,330
+election from our early
+example and let's again assume
+00:16:33,330 --> 00:16:38,610
+the targeting size of a
+committee of two candidates.
+00:16:38,810 --> 00:16:44,270
+Under the single non
+-transferable vote, we want to
+00:16:44,270 --> 00:16:50,930
+include the candidates which
+are ranked first by the
+00:16:50,930 --> 00:16:56,330
+largest number of the voters.
+So we have candidate C,
+00:16:56,330 --> 00:17:00,050
+which is ranked first by
+two voters, and all other
+00:17:00,050 --> 00:17:04,250
+candidates are ranked first
+only once. So our winning
+00:17:04,250 --> 00:17:09,190
+committee, every winning
+committee, in fact, will need
+00:17:09,190 --> 00:17:15,210
+to contain this candidate
+C and one other candidate,
+00:17:15,210 --> 00:17:20,210
+which we indeed are indifferent
+between A, E, D or B.
+00:17:21,390 --> 00:17:25,130
+Under the block rule,
+we want to include the
+00:17:25,130 --> 00:17:29,890
+candidates which are
+ranked in the first two
+00:17:29,890 --> 00:17:32,710
+positions by the largest
+number of voters.
+00:17:32,710 --> 00:17:36,610
+So we only need to
+look at these two
+00:17:36,610 --> 00:17:40,370
+positions, so we
+have the following.
+00:17:40,370 --> 00:17:43,810
+For candidate A, it
+is included in the
+00:17:43,810 --> 00:17:46,470
+first two positions
+three times. Candidate
+00:17:46,470 --> 00:17:49,850
+B, one, two, three,
+four. Four times.
+00:17:50,290 --> 00:17:51,530
+Candidate E,
+00:17:51,650 --> 00:17:55,690
+just once. Candidate D,
+once again, just once.
+00:17:55,690 --> 00:18:00,790
+And candidate three,
+C times. So every
+00:18:00,790 --> 00:18:03,910
+winning committee should
+include candidate B
+00:18:03,910 --> 00:18:07,450
+and either candidate A
+or candidate C. So we
+00:18:07,450 --> 00:18:11,670
+have two winning
+committees, A, B, and B, C.
+00:18:13,090 --> 00:18:18,850
+Under K border, we take the
+K candidates with maximum
+00:18:18,850 --> 00:18:24,970
+individual border scores
+and the border scores for
+00:18:24,970 --> 00:18:29,550
+our candidates are as
+follows. You can compute it so
+00:18:29,550 --> 00:18:34,090
+for A we have four points
+from the first candidate,
+00:18:34,410 --> 00:18:37,210
+three points from
+the first voter,
+00:18:37,210 --> 00:18:40,630
+three points from
+voters 2 and 3,
+00:18:40,970 --> 00:18:45,850
+zero points from 4, one
+point from 5 and again
+00:18:45,850 --> 00:18:49,550
+zero points from 6,
+so in total 11 points.
+00:18:49,790 --> 00:18:57,270
+For B their border score
+will be 17, for C 14, and for
+00:18:57,270 --> 00:19:04,010
+D and E 10 and 8 respectively.
+So, the candidates with
+00:19:04,010 --> 00:19:09,590
+the maximal border score
+are B with 17 and C with 14,
+00:19:09,590 --> 00:19:15,210
+so the winning committee
+under the K-border rule will
+00:19:15,210 --> 00:19:19,830
+be a committee consisting
+of the candidates B and C.
+00:19:22,050 --> 00:19:25,970
+Now, under the
+Chamberlain Courant rule,
+00:19:25,970 --> 00:19:30,970
+each voter gives a
+border score of only
+00:19:30,970 --> 00:19:33,990
+their favorite candidate
+in the committee.
+00:19:34,350 --> 00:19:39,370
+And so if, for instance,
+we compute what will be
+00:19:39,370 --> 00:19:42,750
+the score under this
+rule for the K border
+00:19:42,750 --> 00:19:46,210
+-winning committee BC, it
+will be the following. So
+00:19:47,650 --> 00:19:51,820
+So among BC, B is the
+favorite candidate for the
+00:19:51,820 --> 00:19:56,170
+first voter, and it is
+in the second position.
+00:19:56,170 --> 00:20:01,070
+So voter 1 gives this
+committee three points.
+00:20:01,230 --> 00:20:02,830
+Second voter,
+00:20:03,310 --> 00:20:06,610
+the favorite candidate
+is B again, is in the
+00:20:06,610 --> 00:20:11,150
+third position. So it
+results in two points
+00:20:11,150 --> 00:20:17,350
+from voter 2. Same way
+from voter 3, 2 points.
+00:20:17,830 --> 00:20:22,030
+From voter 4 and
+5, we have C in the
+00:20:22,030 --> 00:20:26,270
+first position, so
+they have 4 points.
+00:20:26,490 --> 00:20:28,110
+And 6,
+00:20:28,430 --> 00:20:33,130
+voter also gives 4
+points for the favorite
+00:20:33,130 --> 00:20:36,490
+candidate in this committee,
+which is B, and it's
+00:20:36,490 --> 00:20:38,470
+again in the first
+position. So in total, we
+00:20:38,470 --> 00:20:44,330
+have 19 points for the
+committee consisting
+00:20:44,330 --> 00:20:50,850
+of B and C, but apparently
+here we can do better.
+00:20:50,850 --> 00:20:55,510
+So if we consider two
+candidates A and C,
+00:20:55,910 --> 00:20:56,510
+right,
+00:20:57,020 --> 00:21:00,230
+let us see what will be the
+score for this committee.
+00:21:00,230 --> 00:21:04,910
+So from the first voter,
+we have four points because
+00:21:05,120 --> 00:21:09,290
+their favorite candidate
+is in the first position.
+00:21:09,290 --> 00:21:14,390
+For candidates two and
+three, we get three
+00:21:14,390 --> 00:21:16,850
+points from each of
+them because their
+00:21:16,850 --> 00:21:19,190
+favorite candidate is
+in the second position.
+00:21:19,350 --> 00:21:24,210
+Four and five give us four
+points each because their
+00:21:24,210 --> 00:21:28,010
+favorite candidate is in the
+first position. and voter
+00:21:28,010 --> 00:21:34,010
+6 gives us 3 points because
+their favorite candidate
+00:21:34,010 --> 00:21:38,120
+is in the second position.
+So in total, we have 21
+00:21:38,190 --> 00:21:42,570
+points, which is greater
+than 19 that we had for BC.
+00:21:42,890 --> 00:21:49,070
+So EC is a winning committee.
+You can compute also
+00:21:49,070 --> 00:21:53,760
+for other pairs of
+candidates that do not exceed
+00:21:53,970 --> 00:21:58,430
+this score. So AC is
+indeed a women committee.

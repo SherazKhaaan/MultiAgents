@@ -1,0 +1,492 @@
+00:00:00,540 --> 00:00:01,620
+Traditionally,
+00:00:01,900 --> 00:00:05,340
+in hedonic games, the focus
+has been on the existence
+00:00:05,340 --> 00:00:08,840
+of several solution
+concepts based either on
+00:00:08,840 --> 00:00:12,660
+individual or group
+deviations. Stability concepts
+00:00:12,660 --> 00:00:16,400
+based on single-agent
+deviations include individual
+00:00:16,400 --> 00:00:20,700
+rationality, where no agent
+benefits by moving from
+00:00:20,700 --> 00:00:24,160
+her current coalition to
+forming a new coalition by
+00:00:24,160 --> 00:00:27,580
+herself, which is a minimum
+stability requirement.
+00:00:27,580 --> 00:00:32,080
+And Nash Stability, where
+no agent benefits by
+00:00:32,080 --> 00:00:35,180
+either moving from her current
+coalition to an already
+00:00:35,180 --> 00:00:39,020
+formed one or forming a
+new coalition by herself.
+00:00:39,020 --> 00:00:42,360
+Notice that Nash Stability
+implies individual
+00:00:42,360 --> 00:00:47,160
+rationality. Formally, we
+say that player i has a
+00:00:47,160 --> 00:00:50,680
+Nash-stable deviation
+from a partition p if
+00:00:50,680 --> 00:00:55,760
+there is a coalition t in
+the coalition structure
+00:00:55,760 --> 00:01:00,820
+p, including the empty
+set, such that player i
+00:01:00,820 --> 00:01:04,340
+prefers joining coalition
+t to their current
+00:01:04,340 --> 00:01:07,940
+coalition. And we say that
+a partition is Nash-stable
+00:01:07,940 --> 00:01:11,900
+if no player has such
+Nash-stable deviation.
+00:01:12,360 --> 00:01:13,480
+Unfortunately,
+00:01:13,840 --> 00:01:17,220
+Nash stability is not
+guaranteed to exist in any
+00:01:17,220 --> 00:01:22,560
+game. For example, we have
+a two-player game here where
+00:01:22,560 --> 00:01:27,180
+the red player has a
+positive value to the yellow
+00:01:27,180 --> 00:01:30,760
+player, and the yellow
+player has a negative value
+00:01:30,760 --> 00:01:34,460
+to be in a coalition with
+the red player. So the
+00:01:34,460 --> 00:01:38,540
+coalition where these two
+agents are separate will
+00:01:38,540 --> 00:01:41,400
+not be stable for the red
+agent, who will prefer to
+00:01:41,400 --> 00:01:45,140
+join the yellow agent and
+the coalition where they're
+00:01:45,140 --> 00:01:47,360
+together will not be
+stable because the yellow
+00:01:47,360 --> 00:01:51,360
+agent would prefer to run
+away from the red player.
+00:01:51,540 --> 00:01:54,540
+For special classes of
+hedonic games, snatch
+00:01:54,540 --> 00:01:56,500
+stability, however,
+can be guaranteed.
+00:01:56,500 --> 00:01:57,740
+For instance,
+00:01:58,020 --> 00:02:00,880
+in additively separable
+hedonic games which are
+00:02:00,880 --> 00:02:04,780
+symmetric, so for any pair
+of agents I and J, the
+00:02:04,780 --> 00:02:09,120
+value of I to J is equal
+to the value of J to I,
+00:02:09,400 --> 00:02:13,220
+Every such game admits a
+Nash-stable outcome and
+00:02:13,220 --> 00:02:18,500
+moreover every Nash-stable
+deviation increases the sum
+00:02:18,500 --> 00:02:22,400
+of utilities, the social
+welfare of all the agents.
+00:02:23,020 --> 00:02:27,700
+And finding such a Nash
+-stable outcome in symmetric
+00:02:27,700 --> 00:02:32,240
+additively separable hedonic
+games would be PLS complete
+00:02:32,240 --> 00:02:36,080
+because we can use the
+local search procedures to
+00:02:36,080 --> 00:02:40,720
+find it. Another concept
+is individual stability. We
+00:02:40,720 --> 00:02:44,060
+would say that player I
+has an individually stable
+00:02:44,060 --> 00:02:48,580
+deviation from a partition P
+if there is a coalition T in
+00:02:48,580 --> 00:02:54,780
+P or the empty set, such
+that player I prefers joining
+00:02:54,780 --> 00:02:58,780
+coalition T to their
+current coalition, and also
+00:02:58,780 --> 00:03:02,640
+all the players in T weakly
+prefer to be together with
+00:03:02,640 --> 00:03:07,280
+player I to be without them.
+And we say that a partition
+00:03:07,280 --> 00:03:10,940
+is individually stable
+if no player has such
+00:03:10,940 --> 00:03:15,120
+individually stable deviation.
+The next notion is contractual
+00:03:15,120 --> 00:03:18,860
+individual stability that
+says that if player I
+00:03:18,860 --> 00:03:23,300
+has contractual individual
+deviations from partition
+00:03:23,300 --> 00:03:29,200
+P, if there is a coalition T
+such that I prefers joining
+00:03:29,200 --> 00:03:33,560
+T to their current coalition
+S, all the players in
+00:03:33,560 --> 00:03:37,740
+T weakly prefer to accept
+I than being without them
+00:03:37,740 --> 00:03:44,480
+and also all the players in
+S weakly prefer to get rid
+00:03:44,480 --> 00:03:47,560
+of player I than to be
+together with them. So the
+00:03:47,560 --> 00:03:51,380
+partition is contractually
+individually stable if no
+00:03:51,380 --> 00:03:56,660
+player has such a deviation
+which is preferable to them
+00:03:56,660 --> 00:04:00,320
+and also approved by all
+the members in the coalition
+00:04:00,320 --> 00:04:04,420
+that they join and in the
+coalition that they leave.
+00:04:04,420 --> 00:04:08,420
+Now, the good news is that
+every hedonic game has
+00:04:08,420 --> 00:04:11,860
+a contractually individually
+stable outcome. The
+00:04:11,860 --> 00:04:15,560
+proof takes the following
+steps. First, we assume
+00:04:15,560 --> 00:04:18,720
+that each player assigns
+a numerical utility
+00:04:18,720 --> 00:04:21,360
+to each coalition. We have
+seen that this is possible
+00:04:21,360 --> 00:04:24,500
+given the original
+preference of the agents.
+00:04:24,580 --> 00:04:28,460
+Then, we use the observation
+that contractually
+00:04:28,460 --> 00:04:33,400
+individually stable deviation
+increases the social welfare,
+00:04:33,400 --> 00:04:36,840
+the sum of utilities for
+all the agents. And finally,
+00:04:36,840 --> 00:04:40,400
+we take a partition that
+maximizes the sum of utility
+00:04:40,400 --> 00:04:44,300
+and it must be contractually
+individually stable.
+00:04:44,480 --> 00:04:47,200
+A stability concept
+based on group
+00:04:47,200 --> 00:04:49,480
+deviations is the
+core stability.
+00:04:50,070 --> 00:04:52,680
+We say that a
+group of players C
+00:04:52,680 --> 00:04:56,560
+blocks a partition
+P if each player in
+00:04:56,560 --> 00:05:00,800
+C prefers C to their
+coalition in P.
+00:05:00,800 --> 00:05:06,560
+And a partition is core
+-stable if no group blocks it.
+00:05:06,600 --> 00:05:10,280
+However, as in
+the case of games
+00:05:10,280 --> 00:05:12,200
+with transferable utilities,
+00:05:12,500 --> 00:05:15,920
+in hedonic games the
+core may be empty.
+00:05:15,960 --> 00:05:19,120
+Consider, for instance,
+the following example with
+00:05:19,120 --> 00:05:22,760
+three agents, where the
+preferences of agents are
+00:05:22,760 --> 00:05:26,860
+as follows. All the players
+prefer being in the grant
+00:05:26,860 --> 00:05:31,180
+coalition the least,
+after that they would like
+00:05:31,180 --> 00:05:36,100
+to be alone and best for
+them is to be in a pair with
+00:05:36,100 --> 00:05:40,380
+another agent where they
+also differentiate between
+00:05:40,920 --> 00:05:45,820
+the partners that they
+can be with. Now, the
+00:05:45,820 --> 00:05:50,280
+grand coalition is not stable
+because any single agent
+00:05:50,280 --> 00:05:53,600
+would have an incentive
+to deviate. The coalition
+00:05:53,600 --> 00:05:56,540
+composed of three singletons
+will not be stable
+00:05:56,540 --> 00:06:00,760
+because two of the agent
+would prefer to make a pair.
+00:06:00,760 --> 00:06:04,440
+And the coalitional structure
+composed of a pair of
+00:06:04,440 --> 00:06:07,180
+agents and a singleton
+agent will not be stable
+00:06:07,180 --> 00:06:12,240
+because one of the agents
+in the pair would prefer to
+00:06:12,240 --> 00:06:15,620
+split from this coalition
+and form a coalition with
+00:06:15,620 --> 00:06:20,160
+a single agent. For example,
+if we have a pair 1-2,
+00:06:20,460 --> 00:06:24,440
+then agent 2 would prefer
+to split from agent
+00:06:24,440 --> 00:06:29,960
+1 and form a coalition
+with agent 3. Now, this
+00:06:29,960 --> 00:06:33,180
+coalition is not stable
+because agent three
+00:06:33,180 --> 00:06:35,900
+would prefer to split
+and form a coalition
+00:06:35,900 --> 00:06:39,140
+with agent one instead
+of being with agent two.
+00:06:39,340 --> 00:06:43,180
+And one three is not stable
+because agent one would
+00:06:43,180 --> 00:06:47,060
+prefer to split and form a
+coalition with agent two.
+00:06:48,240 --> 00:06:52,360
+Now the core may be empty
+not only for a general
+00:06:52,360 --> 00:06:54,940
+hedonic game but also
+for additively separable
+00:06:54,940 --> 00:06:58,060
+hedonic games and even
+for symmetric additively
+00:06:58,060 --> 00:07:01,180
+separable hedonic games
+for which we have seen
+00:07:01,180 --> 00:07:04,680
+that, for instance, Nash
+stability is guaranteed.
+00:07:04,910 --> 00:07:07,400
+Consider the following
+example. We have
+00:07:07,400 --> 00:07:12,580
+five agents and the
+edge weights represent
+00:07:12,580 --> 00:07:15,400
+the individual
+values of the agents.
+00:07:15,620 --> 00:07:19,740
+First, observe that no
+coalition of size greater
+00:07:19,740 --> 00:07:24,120
+or equal than 3 is course
+table because the utility
+00:07:24,120 --> 00:07:27,920
+of at least one agent,
+say agent I, is negative,
+00:07:27,920 --> 00:07:31,480
+and therefore the singleton
+coalition of agent
+00:07:31,480 --> 00:07:34,240
+I is a blocking coalition.
+So player I would
+00:07:34,240 --> 00:07:37,640
+prefer to be alone rather
+than to be in a coalition
+00:07:37,640 --> 00:07:41,640
+with agents where they
+have a negative utility.
+00:07:42,280 --> 00:07:46,060
+Second, the coalition
+structure where two
+00:07:46,060 --> 00:07:49,860
+consecutive nodes are
+in a singleton, for
+00:07:49,860 --> 00:07:54,900
+example, i and j is not
+stable because i and
+00:07:54,900 --> 00:07:58,040
+j together would form
+a blocking coalition.
+00:07:58,820 --> 00:08:04,000
+Hence, the only possible
+stable outcome would be made
+00:08:04,000 --> 00:08:07,760
+by a singleton and two
+pairs of consecutive nodes.
+00:08:08,680 --> 00:08:12,200
+For example, without loss
+of generality, we can
+00:08:12,200 --> 00:08:15,220
+assume that the red
+agent forms a singleton
+00:08:15,220 --> 00:08:19,260
+coalition, and then purple
+and yellow form a pair,
+00:08:19,420 --> 00:08:23,200
+and this red one and a
+green form another pair.
+00:08:23,200 --> 00:08:24,240
+However,
+00:08:24,560 --> 00:08:28,300
+the red and the purple
+agent form a blocking
+00:08:28,300 --> 00:08:32,140
+coalition here, so once
+again this partition is not
+00:08:32,140 --> 00:08:37,160
+stable. And in conclusion,
+we haven't found any core
+00:08:37,160 --> 00:08:39,800
+stable partition that
+would exist in this case.
+00:08:40,500 --> 00:08:44,820
+However, this counter
+example relies heavily on the
+00:08:44,820 --> 00:08:49,740
+fact that we can use negative
+weights, negative utilities
+00:08:49,740 --> 00:08:54,560
+for the agents. If all
+the weights are positive,
+00:08:54,560 --> 00:08:57,980
+then a cost table outcome
+would always exist
+00:08:57,980 --> 00:09:02,120
+for additively
+separable hedonic games.
+00:09:02,640 --> 00:09:06,640
+And this is easy to
+see, because in such
+00:09:06,640 --> 00:09:10,320
+a case, the grand
+coalition would be
+00:09:10,360 --> 00:09:13,400
+maximizing the utility
+for every agent, so
+00:09:13,400 --> 00:09:15,620
+the grand coalition
+will be course-stable.
+00:09:16,160 --> 00:09:20,140
+In a special subclass
+of additively separable
+00:09:20,140 --> 00:09:23,780
+hedonic games called
+friends and enemies games,
+00:09:23,960 --> 00:09:29,100
+every agent I partitions
+the other agents into a set
+00:09:29,100 --> 00:09:34,490
+of friends, FI, and a set
+of enemies, EI. And they
+00:09:34,490 --> 00:09:39,760
+have some positive utility
+F for all the friends
+00:09:39,760 --> 00:09:43,860
+and some negative utility
+E for all the enemies. Now,
+00:09:43,860 --> 00:09:47,760
+the relationship, friends
+or enemies, need not be
+00:09:47,760 --> 00:09:50,740
+symmetric in the game.
+So, I can consider someone
+00:09:50,740 --> 00:09:55,460
+to be my friend and they
+may see me as their enemy.
+00:09:55,520 --> 00:10:00,260
+There are two particular
+examples of such games where
+00:10:00,260 --> 00:10:04,820
+we can prove that every
+such game has a non-empty
+00:10:04,820 --> 00:10:08,140
+core. These are called
+friend appreciation game,
+00:10:08,140 --> 00:10:12,740
+where the utility for being
+a friend is high, is N.
+00:10:12,820 --> 00:10:15,680
+And the utility to
+the enemies is minus
+00:10:15,680 --> 00:10:20,440
+one, not very big
+negative utility.
+00:10:20,440 --> 00:10:24,060
+And the other game
+is the opposite of
+00:10:24,060 --> 00:10:26,260
+that. It's called
+enemy aversion game.
+00:10:26,260 --> 00:10:29,860
+This is giving a
+highly negative utility
+00:10:29,860 --> 00:10:33,260
+to the enemies and
+slightly positive utility
+00:10:33,260 --> 00:10:36,300
+to the friends. So,
+in either friend
+00:10:36,300 --> 00:10:40,060
+-appreciation game or
+the enemy-aversion game,
+00:10:40,200 --> 00:10:44,080
+the core is not empty.

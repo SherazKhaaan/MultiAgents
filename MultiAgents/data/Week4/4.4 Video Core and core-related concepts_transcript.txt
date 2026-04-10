@@ -1,0 +1,500 @@
+00:00:01,020 --> 00:00:04,320
+Any partition of agents
+into coalitions and any
+00:00:04,320 --> 00:00:07,340
+payoff vector that respects
+this partition correspond
+00:00:07,340 --> 00:00:10,220
+to an outcome of a
+characteristic function game.
+00:00:10,220 --> 00:00:14,120
+However, not all outcomes
+are equally desirable or
+00:00:14,120 --> 00:00:17,580
+equally likely to occur.
+For instance, if all the
+00:00:17,580 --> 00:00:20,580
+agents contribute equally
+to the value of a coalition,
+00:00:20,580 --> 00:00:24,120
+a payoff vector that
+allocates the entire payoff to
+00:00:24,120 --> 00:00:27,100
+just one of the agents is
+less appealing than the
+00:00:27,100 --> 00:00:30,660
+one that shares the profits
+equally among all agents.
+00:00:30,860 --> 00:00:34,180
+Similarly, an outcome
+that incentivizes all
+00:00:34,180 --> 00:00:37,980
+agents to work together is
+preferable to an outcome
+00:00:37,980 --> 00:00:40,800
+that some of the agents
+want to deviate from.
+00:00:40,800 --> 00:00:43,500
+More broadly, one
+can evaluate the
+00:00:43,500 --> 00:00:46,140
+outcomes according to
+two sets of criteria.
+00:00:46,200 --> 00:00:49,600
+Fairness, that is how
+well each agent's payoff
+00:00:49,600 --> 00:00:52,760
+reflects their contribution
+to a coalition, and
+00:00:52,760 --> 00:00:56,020
+stability, that is what
+are the incentives for
+00:00:56,020 --> 00:00:58,720
+the agents to stay in
+the coalition structure.
+00:00:58,960 --> 00:01:01,580
+These two sets of
+criteria give rise to
+00:01:01,580 --> 00:01:04,040
+two families of solution
+concepts, and we
+00:01:04,040 --> 00:01:06,340
+shall now discuss
+each of them in turn.
+00:01:06,420 --> 00:01:10,500
+Consider again the ice cream
+game with Charlie, Marcy,
+00:01:10,500 --> 00:01:14,660
+and Petty. We have the
+values of the empty coalition
+00:01:14,660 --> 00:01:17,780
+as well as singleton
+coalitions at zero. We have the
+00:01:17,780 --> 00:01:21,940
+value of the pair Charlie
+-Petty or Marcy-Petty at 500.
+00:01:22,180 --> 00:01:25,310
+The pair Charlie and Marcy
+can get together 750.
+00:01:25,740 --> 00:01:30,180
+and the value of the
+grand coalition is 1000.
+00:01:30,560 --> 00:01:34,580
+This is a super-additive
+game, so the agents have
+00:01:34,580 --> 00:01:37,400
+incentives to merge
+coalitions and we can
+00:01:37,400 --> 00:01:41,740
+identify the outcomes with
+just payoff vectors that
+00:01:42,300 --> 00:01:44,980
+redistribute the value
+of the grand coalition.
+00:01:44,980 --> 00:01:49,180
+How should the players
+share the ice cream? If
+00:01:49,180 --> 00:01:54,140
+they share it as 350 to
+Charlie, 350 to Marcy and
+00:01:54,140 --> 00:01:58,360
+300 to Patty, then Charlie
+and Marcy can get more
+00:01:58,360 --> 00:02:02,540
+ice cream by buying a
+750 gram tub on their own
+00:02:02,540 --> 00:02:06,040
+and splitting it equally.
+So this outcome is not
+00:02:06,040 --> 00:02:09,800
+stable because the pair of
+the coalition of Charlie
+00:02:09,800 --> 00:02:12,900
+and Marcy can abandon
+the current coalition
+00:02:12,900 --> 00:02:16,820
+structure, the grand coalition,
+and act on their own.
+00:02:17,540 --> 00:02:21,780
+The set of stable outcomes,
+that is outcomes where
+00:02:21,780 --> 00:02:24,780
+no subset of players,
+no coalition of players,
+00:02:24,780 --> 00:02:28,840
+has an incentive to
+deviate is called the core.
+00:02:28,840 --> 00:02:29,980
+Formally,
+00:02:30,100 --> 00:02:34,560
+the core C of G of a
+characteristic function game G
+00:02:34,560 --> 00:02:37,320
+with the set of players N and
+the characteristic function
+00:02:37,320 --> 00:02:42,480
+V is the set of all outcomes
+in general case, not
+00:02:42,480 --> 00:02:45,620
+necessarily of a super
+additive game, but general
+00:02:45,620 --> 00:02:49,680
+characteristic function game
+is a coalition structure CS and
+00:02:49,680 --> 00:02:53,340
+the pair of vector X. So
+this is the set of all such
+00:02:53,340 --> 00:02:58,060
+outcomes that for each
+coalition of players C, we have
+00:02:58,060 --> 00:03:02,860
+that the payoff to the agents
+of that coalition is at
+00:03:02,860 --> 00:03:06,700
+least as much as the value
+of that coalition. And that
+00:03:06,700 --> 00:03:10,300
+would guarantee that no
+coalition of players C will
+00:03:10,300 --> 00:03:15,660
+be able to deviate and gain
+more than they're currently
+00:03:15,660 --> 00:03:18,740
+getting from the coalition
+structure. So each coalition
+00:03:18,740 --> 00:03:23,260
+earns at least as much as
+it can make on its own.
+00:03:24,220 --> 00:03:28,200
+Coming back to our ice cream
+example, for any outcome
+00:03:28,200 --> 00:03:31,120
+in the core, it will have
+to be that the coalition
+00:03:31,120 --> 00:03:35,280
+structure is the grand coalition.
+This is because the value
+00:03:35,280 --> 00:03:38,680
+of the grand coalition is
+strictly greater than the
+00:03:38,680 --> 00:03:42,920
+social welfare, that is the
+sum of the values of any
+00:03:42,920 --> 00:03:46,980
+other coalition structure.
+So, it has to be that the
+00:03:46,980 --> 00:03:50,160
+coalition structure that
+forms in the core is the grand
+00:03:50,160 --> 00:03:53,080
+coalition, because otherwise
+we would have that the
+00:03:53,080 --> 00:03:58,200
+payoff to all the players
+would be the sum of the values
+00:03:58,200 --> 00:04:02,200
+over the coalition structure,
+which is not the grand
+00:04:02,200 --> 00:04:07,080
+coalition, would be strictly
+smaller than the value of
+00:04:07,080 --> 00:04:10,160
+the grand coalition. And
+that would violate the core
+00:04:10,160 --> 00:04:14,320
+constraint for the coalition,
+for the grand coalition N.
+00:04:15,060 --> 00:04:18,960
+Furthermore, the values
+of the payoffs for each
+00:04:18,960 --> 00:04:21,420
+of the players have to
+satisfy the following
+00:04:21,420 --> 00:04:24,740
+constraints. So for each
+coalition, we need to have
+00:04:24,740 --> 00:04:28,220
+the payoff to that
+coalition to be at least as
+00:04:28,220 --> 00:04:32,580
+much as the payoff, sorry,
+as the value of that
+00:04:32,580 --> 00:04:35,940
+coalition. So we have the
+payoff to Charlie should
+00:04:35,940 --> 00:04:38,480
+be at least zero, the
+payoff to Marcy and the
+00:04:38,480 --> 00:04:41,820
+payoff to Petty as well
+should be at least zero.
+00:04:41,840 --> 00:04:48,020
+The payoff for all three
+players has to be equal
+00:04:48,020 --> 00:04:50,720
+to the value of the
+grand coalition, 1,000.
+00:04:50,720 --> 00:04:53,920
+And for each pair, we
+have the constraint that
+00:04:53,920 --> 00:04:58,340
+the sum of the payoffs
+to two agents has to be
+00:04:58,340 --> 00:05:02,600
+at least as much as they
+can earn on their own.
+00:05:02,600 --> 00:05:06,520
+so for Charlie and
+Marcy it is 750 and for
+00:05:06,520 --> 00:05:09,740
+Charlie and Petty or Marcy
+and Petty this is 500.
+00:05:09,760 --> 00:05:13,360
+Now this system has
+several solutions for
+00:05:13,360 --> 00:05:17,360
+instance 400, 400, 200
+produces an outcome
+00:05:17,360 --> 00:05:22,240
+in the core and so
+do 500, 400, 100 and
+00:05:22,240 --> 00:05:26,560
+500, 500, 0 and there
+are also some others.
+00:05:27,290 --> 00:05:30,420
+The outcomes in the
+core are stable in the
+00:05:30,420 --> 00:05:33,480
+sense that no coalition
+has incentives to deviate
+00:05:33,480 --> 00:05:37,020
+as it cannot do better
+on its own. Therefore,
+00:05:37,040 --> 00:05:40,060
+such outcomes are more
+likely to arise when
+00:05:40,060 --> 00:05:42,760
+a coalitional game is
+played. Furthermore,
+00:05:43,020 --> 00:05:46,360
+the argument given in our
+ice cream example shows
+00:05:46,360 --> 00:05:50,760
+that stability implies
+efficiency. Any outcome in
+00:05:50,760 --> 00:05:54,260
+the core maximizes the
+social welfare, the total
+00:05:54,260 --> 00:05:57,680
+payoff to all the players.
+Let's show this formally.
+00:05:57,680 --> 00:06:00,980
+We are going to prove the
+following theorem. If an
+00:06:00,980 --> 00:06:04,520
+outcome coalition structure
+payoff vector is in the
+00:06:04,520 --> 00:06:07,720
+core of the coalition of
+the characteristic function
+00:06:07,720 --> 00:06:12,340
+game g, then the value of
+this coalition structure
+00:06:12,340 --> 00:06:15,740
+is at least as much as
+the value as any other
+00:06:15,740 --> 00:06:21,960
+coalition structure CS'
+over the set of players N.
+00:06:23,060 --> 00:06:27,400
+To prove it, we assume on
+the contrary that the value
+00:06:27,400 --> 00:06:30,860
+of our coalition structure
+in the core is strictly
+00:06:30,860 --> 00:06:33,720
+smaller than the value
+of some other coalition
+00:06:33,720 --> 00:06:39,020
+structure CS' over the set
+of players N. Then we have
+00:06:39,020 --> 00:06:45,240
+the following. So the
+payoff to any coalition C
+00:06:45,240 --> 00:06:50,220
+prime in the coalition
+structure CS is X of C prime.
+00:06:50,220 --> 00:06:54,200
+And we take the
+sum of payoffs over
+00:06:54,200 --> 00:06:56,640
+the coalition
+structure CS prime.
+00:06:56,680 --> 00:07:00,240
+This is the sum of
+payoffs to all the agents,
+00:07:00,240 --> 00:07:03,300
+right? So on the other
+hand, it would be as the
+00:07:03,300 --> 00:07:06,390
+value of our coalition
+structure CS in the core.
+00:07:06,390 --> 00:07:10,440
+And by our contrary
+assumption, this is strictly
+00:07:10,440 --> 00:07:13,000
+smaller than the value of
+the coalition structure
+00:07:13,000 --> 00:07:17,320
+CS prime, which is the
+sum of values over the
+00:07:17,320 --> 00:07:20,400
+coalitions in the coalition
+structure CS prime.
+00:07:20,540 --> 00:07:25,780
+On the other hand, since
+our payoff vector x
+00:07:25,780 --> 00:07:28,800
+and our coalition structure
+CS is in the core,
+00:07:28,800 --> 00:07:32,140
+we have that the value,
+sorry, the payoff to
+00:07:32,140 --> 00:07:35,560
+every coalition, including
+coalition C prime in
+00:07:35,560 --> 00:07:39,340
+the coalition structure
+CS prime has to be at
+00:07:39,340 --> 00:07:41,900
+least as much as the
+value of that coalition.
+00:07:41,900 --> 00:07:46,160
+So for any coalition C
+prime in the coalition
+00:07:46,160 --> 00:07:48,900
+structure CS prime, we
+have that the sum of
+00:07:48,900 --> 00:07:52,300
+payoffs over coalitions
+in that coalition
+00:07:52,300 --> 00:07:55,900
+structure should be
+greater or equal than the
+00:07:56,440 --> 00:07:59,000
+sum of values for this
+coalition. And this is
+00:07:59,000 --> 00:08:02,380
+a contradiction for the
+previous inequality.
+00:08:02,900 --> 00:08:08,540
+Now, we said that the outcomes
+in the core are stable
+00:08:08,540 --> 00:08:11,220
+in the sense that no
+coalition has incentives to
+00:08:11,220 --> 00:08:14,800
+deviate, and therefore such
+outcomes are more likely
+00:08:14,800 --> 00:08:18,400
+to arise when a coalitional
+game is played. However,
+00:08:18,680 --> 00:08:23,260
+unfortunately, some
+games have empty cores.
+00:08:23,740 --> 00:08:27,220
+Recall for example the majority
+game with three players,
+00:08:27,220 --> 00:08:30,120
+so this is the weighted
+vote games with quarter
+00:08:30,120 --> 00:08:35,500
+2 and the weights for each
+agents being 1. Now the
+00:08:35,500 --> 00:08:41,260
+winning coalition has value
+1 when the size of the
+00:08:41,260 --> 00:08:45,320
+coalition increases the
+quarter, increases 2, and the
+00:08:45,320 --> 00:08:49,800
+coalition is losing with the
+value 0 if its size is less
+00:08:49,800 --> 00:08:53,900
+or equal than 1. We now
+show that for any arbitrary
+00:08:53,900 --> 00:08:58,700
+outcome coalition structure
+CS and payoff vector X,
+00:08:58,700 --> 00:09:03,250
+it is not in the core. Indeed,
+if the coalition structure
+00:09:03,250 --> 00:09:07,960
+is composed of three
+singletons, then the grand
+00:09:07,960 --> 00:09:11,520
+coalition can deviate
+because singletons are losing
+00:09:11,520 --> 00:09:15,040
+coalition, so the payoff
+for each agent must be zero,
+00:09:15,040 --> 00:09:21,340
+and together the agents can
+win and have some positive
+00:09:21,340 --> 00:09:24,980
+payoffs for all of them.
+If the coalition structure
+00:09:24,980 --> 00:09:29,800
+is a pair of two agents,
+one and two, and the third
+00:09:29,800 --> 00:09:35,000
+player is a singleton, then
+either player one or player
+00:09:35,000 --> 00:09:41,660
+two can get a payoff
+strictly better than what
+00:09:41,660 --> 00:09:45,180
+they're having now, because
+one of them has to have a
+00:09:45,180 --> 00:09:48,420
+payoff which is less than
+one, so they can deviate
+00:09:48,420 --> 00:09:52,780
+together with player three
+and form a winning coalition,
+00:09:52,900 --> 00:09:57,900
+give some positive payoff
+to agent three, and get
+00:09:57,900 --> 00:10:01,440
+themselves better payoff that
+they're having right now.
+00:10:01,440 --> 00:10:05,640
+Same argument holds for any
+other coalition structure
+00:10:05,640 --> 00:10:09,740
+where we have a pair of
+agents and a singleton
+00:10:09,740 --> 00:10:13,980
+coalition. And finally, if
+we have a grand coalition,
+00:10:13,980 --> 00:10:19,150
+right then for some agent
+i we have a positive
+00:10:19,150 --> 00:10:22,480
+payoff right because this is
+a winning coalition together
+00:10:22,480 --> 00:10:26,940
+they have a value of one
+and so the payoff to the
+00:10:26,940 --> 00:10:31,040
+coalition of everyone
+but this player i is less
+00:10:31,040 --> 00:10:35,840
+than one so this coalition
+can deviate now and get one
+00:10:35,840 --> 00:10:39,170
+of their own and abandon
+the current coalition
+00:10:39,170 --> 00:10:41,240
+structure of the grand
+coalition So, let's take a look.

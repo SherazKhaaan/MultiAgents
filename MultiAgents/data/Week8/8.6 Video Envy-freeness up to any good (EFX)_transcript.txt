@@ -1,0 +1,117 @@
+00:00:00,760 --> 00:00:03,880
+Building on envy-freeness
+up to one good, we
+00:00:03,880 --> 00:00:07,560
+now introduce a stronger
+fairness notion of envy
+00:00:07,560 --> 00:00:12,400
+-freeness up to any good,
+as we abbreviate EFX,
+00:00:12,600 --> 00:00:16,880
+which demands that envy
+toward any other agent
+00:00:16,880 --> 00:00:20,980
+can be eliminated by
+removing any single item
+00:00:20,980 --> 00:00:24,060
+from their bundle, not
+just some conveniently
+00:00:24,060 --> 00:00:28,640
+chosen one. While EF1 only
+requires the existence
+00:00:28,640 --> 00:00:32,620
+of at least one such
+item per envied bundle,
+00:00:32,620 --> 00:00:37,340
+EFX insists that this holds
+for every possible item
+00:00:37,340 --> 00:00:41,080
+removal, making it strictly
+more demanding than EF1,
+00:00:41,080 --> 00:00:47,020
+but still weaker than perfect
+envy-freeness, where no
+00:00:47,020 --> 00:00:52,480
+envy exists at all. So this,
+up to any good property,
+00:00:52,480 --> 00:00:57,640
+captures a more robust form
+of fairness as it prevents
+00:00:57,640 --> 00:01:01,980
+any single item in an
+envied bundle from being the
+00:01:01,980 --> 00:01:06,400
+sole envy eliminator and
+has become a focal point in
+00:01:06,400 --> 00:01:11,100
+recent fair division research
+for indivisible goods.
+00:01:13,720 --> 00:01:19,420
+indeed EFX is currently
+one of the most intriguing
+00:01:19,420 --> 00:01:26,260
+open problems in fair division
+we only know that an EFX
+00:01:26,260 --> 00:01:30,120
+allocation exists for
+two players with monotone
+00:01:30,120 --> 00:01:37,000
+valuations for three players
+we can find an EFX allocation
+00:01:37,000 --> 00:01:42,340
+for only additive valuations
+And for four or more
+00:01:42,340 --> 00:01:48,650
+agents, we do not know if an
+EFX allocation exists even
+00:01:48,940 --> 00:01:53,540
+for additive valuations,
+so this is an open problem.
+00:01:54,700 --> 00:01:58,680
+Nonetheless, for the special
+case where all agents
+00:01:58,680 --> 00:02:02,940
+share the same additive
+valuations, we can present
+00:02:02,940 --> 00:02:05,880
+a beautiful and constructive
+existence result for
+00:02:05,880 --> 00:02:10,140
+EFX. So in this case,
+EFX allocations not only
+00:02:10,140 --> 00:02:15,440
+exist, but also can be
+computed in polynomial time.
+00:02:15,540 --> 00:02:20,460
+An algorithm is strikingly
+simple. We sort the
+00:02:20,460 --> 00:02:26,100
+items by decreasing
+value and assign each one
+00:02:26,100 --> 00:02:30,560
+in turn to currently
+least satisfied agent.
+00:02:32,140 --> 00:02:37,560
+Now, suppose that at the
+end of the procedure, Agent
+00:02:37,560 --> 00:02:41,940
+I end with Agent J, and
+consider J smallest,
+00:02:41,940 --> 00:02:46,320
+that is, last received item
+G. At the moment that J
+00:02:46,320 --> 00:02:51,040
+received this item G,
+Agent I was at least as
+00:02:51,040 --> 00:02:57,040
+satisfied as Agent J, and
+so the I's bundle must still
+00:02:57,040 --> 00:03:01,640
+dominate the J's bundle
+even without this item J.
+00:03:02,860 --> 00:03:06,220
+This is the end of this
+week's topic. Thank
+00:03:06,220 --> 00:03:08,940
+you for your attention
+and see you in class.

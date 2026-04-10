@@ -1,0 +1,566 @@
+00:00:00,700 --> 00:00:03,180
+Hello and welcome
+to Cooperation,
+00:00:03,180 --> 00:00:05,520
+Coordination and
+Multi-Agent Systems.
+00:00:05,940 --> 00:00:08,980
+Up to this point,
+we have worked under
+00:00:08,980 --> 00:00:11,060
+the transferable
+utility assumption.
+00:00:11,060 --> 00:00:14,180
+Once a coalition generates
+some total payoff,
+00:00:14,180 --> 00:00:16,720
+that payoff belongs to
+the group and can be
+00:00:16,720 --> 00:00:19,440
+split among its members
+in any way they like.
+00:00:19,700 --> 00:00:22,100
+This is appropriate
+in contexts where
+00:00:22,100 --> 00:00:24,480
+side payments are
+easy, for example,
+00:00:24,480 --> 00:00:26,960
+when the payoff is
+purely monetary.
+00:00:27,080 --> 00:00:27,840
+However,
+00:00:28,180 --> 00:00:31,360
+many real-world situations
+do not fit this pattern.
+00:00:31,360 --> 00:00:36,100
+Sometimes, what a coalition
+earns takes the form
+00:00:36,100 --> 00:00:39,460
+of non-fungible benefits,
+reputation, access,
+00:00:39,460 --> 00:00:42,880
+rights or institutional
+rewards that attach directly
+00:00:42,880 --> 00:00:46,120
+to individuals and cannot
+simply be traded away.
+00:00:46,140 --> 00:00:49,660
+In such environments, we
+cannot reduce a coalition to
+00:00:49,660 --> 00:00:52,960
+a single number. We must
+instead model the actions
+00:00:52,960 --> 00:00:56,480
+available to each coalition
+and the vector of payoffs
+00:00:56,480 --> 00:01:00,600
+those actions generate for
+its members. For instance, the
+00:01:00,600 --> 00:01:04,200
+coalition XY might be able
+to choose action A, which
+00:01:04,200 --> 00:01:07,200
+would yield utilities 1
+and 6 to the members of the
+00:01:07,200 --> 00:01:11,440
+coalition, or action B,
+yielding the utilities 4 and 2.
+00:01:11,760 --> 00:01:15,740
+The key questions then
+become, which action will
+00:01:15,740 --> 00:01:18,900
+the coalition pick, given
+that members have different
+00:01:18,900 --> 00:01:22,360
+preferences over these
+payoff splits, and how
+00:01:22,360 --> 00:01:25,880
+does this interact with
+the possibility that some
+00:01:25,880 --> 00:01:29,880
+subset of players might form
+an alternative coalition,
+00:01:29,880 --> 00:01:32,940
+offering them a more
+attractive payoff vector.
+00:01:33,860 --> 00:01:36,900
+Consider again the academic
+collaboration setting,
+00:01:36,900 --> 00:01:39,740
+which is a canonical example
+of a non-transferable
+00:01:39,740 --> 00:01:44,020
+utility game. We have N
+researchers, each based at a
+00:01:44,020 --> 00:01:47,760
+different university, who
+can decide to form groups in
+00:01:47,760 --> 00:01:51,180
+order to co-author papers.
+The scientific quality
+00:01:51,180 --> 00:01:55,280
+and impact of any resulting
+paper depends strongly on
+00:01:55,280 --> 00:01:58,140
+the group's composition.
+Different combinations of
+00:01:58,140 --> 00:02:01,780
+expertise and reputations
+lead to different outcomes.
+00:02:01,780 --> 00:02:06,080
+Once a paper is produced,
+however, the rewards are not
+00:02:06,080 --> 00:02:10,240
+pooled and split. Instead,
+each co-author is evaluated
+00:02:10,240 --> 00:02:13,380
+and rewarded individually
+by their home institution.
+00:02:13,420 --> 00:02:16,880
+One university might
+offer a promotion or
+00:02:16,880 --> 00:02:20,080
+tenure credit. another
+might give a one-off
+00:02:20,080 --> 00:02:23,040
+bonus, reduce
+teaching load, or even
+00:02:23,040 --> 00:02:26,180
+something as mundane as
+a better parking spot.
+00:02:26,280 --> 00:02:27,320
+Crucially,
+00:02:27,480 --> 00:02:30,240
+these payoffs are
+non-transferable. A
+00:02:30,240 --> 00:02:32,340
+promotion or teaching
+reduction for one
+00:02:32,340 --> 00:02:35,080
+researcher cannot be
+meaningfully transferred
+00:02:35,080 --> 00:02:37,400
+to a collaborator at
+another university.
+00:02:37,460 --> 00:02:41,880
+This means we cannot summarize
+a coalition's outcome
+00:02:41,880 --> 00:02:45,560
+by a single divisible
+surplus. We must keep track
+00:02:45,560 --> 00:02:48,600
+of the full payoff vector,
+and coalition formation
+00:02:48,600 --> 00:02:52,480
+has to be analyzed in terms
+of whether each individual
+00:02:52,480 --> 00:02:56,300
+finds their personal
+institutional reward attractive
+00:02:56,300 --> 00:02:59,980
+enough to join or stay
+in a given collaboration.
+00:03:00,720 --> 00:03:04,560
+Hedonic games are a
+significant simplification
+00:03:04,560 --> 00:03:07,620
+of the general non
+-transferable utility setting.
+00:03:07,780 --> 00:03:12,140
+Each coalition has no
+strategic choice of action.
+00:03:12,140 --> 00:03:15,960
+Instead, the payoff structure
+is purely determined by
+00:03:15,960 --> 00:03:19,660
+the coalition's membership
+itself. In other words,
+00:03:19,840 --> 00:03:22,960
+player I's utility
+depends only on
+00:03:22,960 --> 00:03:25,840
+which set of players
+she belongs to, not
+00:03:25,840 --> 00:03:28,640
+on what the set
+then decides to do.
+00:03:28,690 --> 00:03:31,580
+This is the case, for
+example, when academic
+00:03:31,580 --> 00:03:35,140
+collaboration partners are
+automatically assigned roles,
+00:03:35,140 --> 00:03:37,720
+such as for instance
+lead author, co-author or
+00:03:37,720 --> 00:03:42,300
+advisor, based purely on
+team size and composition and
+00:03:42,300 --> 00:03:45,820
+each role carries a fixed
+reward from the home
+00:03:45,820 --> 00:03:50,060
+institution. Under this
+simplification we can represent
+00:03:50,060 --> 00:03:53,980
+the game very compactly.
+Each player simply ranks
+00:03:53,980 --> 00:03:58,200
+all possible coalitions
+she might join from best to
+00:03:58,200 --> 00:04:02,820
+worst. In this example
+player one prefers being in
+00:04:02,820 --> 00:04:06,240
+a pair with either player
+two or player three, which
+00:04:06,240 --> 00:04:09,720
+are tied for him, then a
+three-person coalition,
+00:04:09,720 --> 00:04:13,560
+and dislikes being alone.
+Player two, by contrast,
+00:04:13,860 --> 00:04:17,820
+most prefers to work alone,
+but if she must collaborate,
+00:04:17,820 --> 00:04:21,160
+she prefers the full three
+-person group to just a
+00:04:21,160 --> 00:04:24,880
+pair with another player.
+Player three would ideally
+00:04:24,880 --> 00:04:28,700
+like all three to work
+together, but if forced into a
+00:04:28,700 --> 00:04:32,620
+smaller coalition, prefers
+the singleton over a pair.
+00:04:32,860 --> 00:04:36,200
+These preference
+rankings encode all the
+00:04:36,200 --> 00:04:38,540
+information needed to
+analyze stability and
+00:04:38,540 --> 00:04:41,720
+predict which partitions
+are likely to form.
+00:04:41,720 --> 00:04:45,400
+Coalitions are stable if
+no subset of players would
+00:04:45,400 --> 00:04:49,140
+prefer to break away to form
+an alternative coalition.
+00:04:49,460 --> 00:04:54,440
+Hedonic games thus bridge
+the gap between full NTU
+00:04:54,440 --> 00:04:58,020
+complexity and the simplicity
+of transferable utility
+00:04:58,020 --> 00:05:01,760
+models, making them tractable
+while still capturing
+00:05:01,760 --> 00:05:05,280
+rich preference structures
+over group membership.
+00:05:05,780 --> 00:05:09,860
+A hedonic game is formally
+defined as follows.
+00:05:09,970 --> 00:05:13,940
+We have a finite set
+of players N, who must
+00:05:13,940 --> 00:05:16,960
+partition themselves
+into disjoint coalition
+00:05:16,990 --> 00:05:21,440
+that collectively cover
+N. Each player I has a
+00:05:21,440 --> 00:05:25,200
+preference relation over the
+set of all coalitions she
+00:05:25,200 --> 00:05:29,280
+could possibly join. A
+preference relation captures
+00:05:29,280 --> 00:05:32,520
+the ranking of coalition
+from best to worst,
+00:05:33,610 --> 00:05:38,440
+possibly with ties. The
+outcome of a hedonic game is a
+00:05:38,440 --> 00:05:42,680
+partition or coalition
+structure of N, meaning a
+00:05:42,680 --> 00:05:46,460
+collection of disjoint
+coalitions whose union is N.
+00:05:46,580 --> 00:05:49,540
+Importantly, Once a
+partition is formed,
+00:05:49,540 --> 00:05:52,680
+there is no payoff
+distribution phase.
+00:05:52,680 --> 00:05:55,920
+The partition itself
+is the sole outcome.
+00:05:56,020 --> 00:05:59,140
+Each player i simply
+receives a payoff
+00:05:59,140 --> 00:06:02,180
+equal to her utility
+for the coalition
+00:06:02,180 --> 00:06:04,500
+she belongs to in
+that partition.
+00:06:04,500 --> 00:06:07,900
+For computational purposes,
+it is convenient to
+00:06:07,900 --> 00:06:11,340
+represent each player's
+preferences numerically. We can
+00:06:11,340 --> 00:06:15,240
+encode player 1's preferences
+relation as a utility
+00:06:15,240 --> 00:06:20,540
+function where the value of
+coalition S is greater than
+00:06:20,540 --> 00:06:24,260
+the value of coalition S
+prime if and only if player
+00:06:24,260 --> 00:06:28,120
+1 prefers coalition S to
+coalition S prime. For
+00:06:28,120 --> 00:06:33,000
+instance, if player 1's
+ranking is the pair 1-2 tied
+00:06:33,000 --> 00:06:37,760
+with the pair 1-3 preferred
+over the grand coalition
+00:06:37,760 --> 00:06:41,060
+1-2-3, which is preferred
+over the singleton just
+00:06:41,060 --> 00:06:45,620
+player 1, We can assign the
+numbers, the value of coalition
+00:06:45,620 --> 00:06:49,220
+1, 2 to player 1 would
+be equal to the value of
+00:06:49,220 --> 00:06:54,320
+coalition 1, 3 to player
+1 and be, for instance, 2.
+00:06:54,320 --> 00:06:57,280
+The value of the grand
+coalition would be 1
+00:06:57,280 --> 00:07:01,240
+and the value of the
+singleton would be 0.
+00:07:01,240 --> 00:07:04,160
+This numerical
+representation makes analysis
+00:07:04,160 --> 00:07:06,580
+and computation
+straightforward while
+00:07:06,580 --> 00:07:10,020
+preserving the ordinal
+preference structure.
+00:07:10,660 --> 00:07:14,240
+Hedonic games provide
+a natural model for
+00:07:14,240 --> 00:07:16,940
+coalition formation and
+multi-agent systems,
+00:07:16,940 --> 00:07:20,300
+where each agent's utility
+depends only on the
+00:07:20,300 --> 00:07:23,400
+identity of agents in
+their own coalition.
+00:07:23,420 --> 00:07:26,540
+However, the full
+representation of hedonic
+00:07:26,540 --> 00:07:30,260
+preferences can be exponential
+in the number of agents,
+00:07:30,260 --> 00:07:33,120
+making computational
+analysis intractable for
+00:07:33,120 --> 00:07:36,620
+large populations. To
+address these limitations,
+00:07:36,620 --> 00:07:40,340
+several classes of compactly
+representable hedonic
+00:07:40,340 --> 00:07:43,960
+games have been introduced
+that capture agents'
+00:07:43,960 --> 00:07:46,880
+preferences through
+simple, structured rules.
+00:07:46,970 --> 00:07:50,800
+For instance, in anonymous
+games, preferences
+00:07:50,800 --> 00:07:54,800
+depend on coalition
+sizes only. Another
+00:07:54,800 --> 00:07:57,940
+simplification is when,
+rather than expressing
+00:07:57,940 --> 00:08:00,680
+preferences over
+specific coalitions,
+00:08:00,680 --> 00:08:04,760
+each agent assigns cardinal
+utilities to individual
+00:08:04,760 --> 00:08:08,050
+other agents. This
+fundamental perspective,
+00:08:08,050 --> 00:08:12,350
+where the value to player
+i of player j represents
+00:08:12,350 --> 00:08:18,020
+agent i's pairwise
+assessment of agent j, serves
+00:08:18,020 --> 00:08:21,780
+as the basis for all
+subsequent classes. The
+00:08:21,780 --> 00:08:25,420
+first one is additively
+separable hedonic games,
+00:08:25,420 --> 00:08:29,240
+which aggregate these
+pairwise utilities linearly.
+00:08:29,260 --> 00:08:33,400
+An agent's utility from
+joining coalition S equals
+00:08:33,400 --> 00:08:37,260
+the sum of their valuations
+for all other members.
+00:08:37,380 --> 00:08:40,920
+Fractional hedonic
+games refine these by
+00:08:40,920 --> 00:08:44,240
+normalizing by the
+coalition size. And finally,
+00:08:44,360 --> 00:08:47,840
+best response games, or B
+games, and worst response
+00:08:47,840 --> 00:08:51,680
+games, or W games, introduce
+different aggregation
+00:08:51,680 --> 00:08:56,700
+principles. In B games, an
+agent cares only about their
+00:08:56,700 --> 00:09:00,760
+most valued coalition
+member, capturing scenarios
+00:09:00,760 --> 00:09:04,800
+where excellence in one
+collaborator outweighs others.
+00:09:05,060 --> 00:09:09,520
+Conversely, W games
+model constraint setting
+00:09:09,520 --> 00:09:12,340
+where a coalition
+is only as good as
+00:09:12,340 --> 00:09:15,600
+its least-valued member,
+common in reliability
+00:09:15,600 --> 00:09:18,920
+-critical or consensus
+-based contexts.
+00:09:19,280 --> 00:09:24,400
+Both additively separable
+hedonic games and induced
+00:09:24,400 --> 00:09:28,160
+sub-rub games that we have
+seen earlier leverage a
+00:09:28,160 --> 00:09:31,780
+graph-based representation
+where regions correspond to
+00:09:31,780 --> 00:09:35,900
+vertices and weighted edges
+encode agent's preferences.
+00:09:35,900 --> 00:09:39,120
+Despite this common
+graphical foundation, though,
+00:09:39,120 --> 00:09:41,860
+the two models differ
+fundamentally in their
+00:09:41,860 --> 00:09:44,700
+structure and semantics,
+differences that
+00:09:44,700 --> 00:09:47,040
+have substantial
+implications for stability
+00:09:47,040 --> 00:09:49,860
+properties and
+computational complexity.
+00:09:49,880 --> 00:09:53,480
+Induced sub-rath
+games employ an eye
+00:09:53,480 --> 00:09:55,880
+-directed symmetric
+representation.
+00:09:55,940 --> 00:10:00,400
+Each edge between agent
+I and J carries a weight
+00:10:00,400 --> 00:10:03,320
+representing their mutual
+benefit from collaboration.
+00:10:03,320 --> 00:10:07,760
+When a coalition T forms,
+an agent's utility is
+00:10:07,760 --> 00:10:11,200
+determined by the total
+weight of edges internal to
+00:10:11,200 --> 00:10:15,540
+T, that is, the value of
+the induced subgraph on T.
+00:10:15,540 --> 00:10:17,700
+This symmetry captures
+00:10:17,700 --> 00:10:19,700
+scenarios of mutual attraction.
+00:10:19,700 --> 00:10:25,320
+If agent I values agent
+J, then J equally values
+00:10:25,320 --> 00:10:28,600
+agent I. A fundamental
+result in this class
+00:10:28,600 --> 00:10:32,620
+is that when all edge
+weights are non-negative,
+00:10:32,620 --> 00:10:35,780
+the core is guaranteed
+to be non-empty, so
+00:10:35,780 --> 00:10:40,420
+cooperation cannot deteriorate
+society's prospects.
+00:10:40,460 --> 00:10:43,900
+Additively separable
+hedonic games by contracts
+00:10:43,900 --> 00:10:49,300
+use directed edges to
+represent agents' individual
+00:10:49,300 --> 00:10:53,180
+potential asymmetric
+preferences. Each agent
+00:10:53,180 --> 00:10:59,960
+I assigns a directed value
+VI of J to every other
+00:10:59,960 --> 00:11:04,620
+agent J, independent
+of how J views I. When
+00:11:04,620 --> 00:11:08,460
+agent I joins coalition
+T, their utility equals
+00:11:08,460 --> 00:11:12,260
+the sum of valuations for
+all coalition members.
+00:11:13,100 --> 00:11:18,120
+Notably, Agent I's evaluation
+of T depends only on
+00:11:18,120 --> 00:11:21,660
+their outgoing edges
+to members of T, not on
+00:11:21,660 --> 00:11:25,200
+incoming edges or the
+coalition's internal structure.

@@ -1,0 +1,477 @@
+00:00:01,310 --> 00:00:05,090
+when we leave the
+additive world and with
+00:00:05,090 --> 00:00:08,170
+freeness up to one good
+becomes subtler and our
+00:00:08,170 --> 00:00:11,430
+basic algorithms need
+rethinking. In particular,
+00:00:11,610 --> 00:00:14,970
+round robin relies
+on evaluating each
+00:00:14,970 --> 00:00:19,010
+individual item and
+so it is not even well
+00:00:19,010 --> 00:00:21,430
+defined for non
+-additive preferences.
+00:00:21,430 --> 00:00:25,130
+And this raises the
+question, can we still hope
+00:00:25,130 --> 00:00:29,910
+to guarantee EF1 under
+general valuations, or
+00:00:29,910 --> 00:00:33,470
+general monotone
+valuations at least. We say
+00:00:33,470 --> 00:00:38,650
+that valuations are
+monotone if for all subsets,
+00:00:38,930 --> 00:00:43,670
+S subset of T subset of
+the set of all items G, and
+00:00:43,670 --> 00:00:48,110
+every agent I, the value
+for the smaller set S is
+00:00:48,110 --> 00:00:51,810
+at least as much as the
+value for the bigger set T.
+00:00:53,770 --> 00:00:58,910
+Let's try and set up this
+question by considering how
+00:00:58,910 --> 00:01:04,150
+to extend a partial allocation
+that is already EF1 to
+00:01:04,150 --> 00:01:10,210
+a bigger allocation while
+preserving the EF1 property.
+00:01:10,210 --> 00:01:14,910
+If there is an agent whom
+nobody envies, we can
+00:01:14,910 --> 00:01:17,990
+safely give that agent
+an initial unallocated
+00:01:17,990 --> 00:01:21,490
+item and preserve EF1
+thanks to monotonicity.
+00:01:21,830 --> 00:01:26,630
+However, the real
+difficulty is, and also the
+00:01:26,630 --> 00:01:30,570
+focus for the next
+discussion, arises when every
+00:01:30,570 --> 00:01:34,590
+agent is envied by someone.
+So we can no longer
+00:01:34,590 --> 00:01:38,370
+extend the allocation in
+this straightforward way.
+00:01:39,430 --> 00:01:42,870
+Assume we have a partial
+allocation A of the
+00:01:42,870 --> 00:01:46,710
+goods, which is where only
+a subset of the goods has
+00:01:46,710 --> 00:01:50,450
+been allocated. From
+this allocation A, we can
+00:01:50,450 --> 00:01:54,950
+construct a so-called
+Envy graph, where we draw
+00:01:54,950 --> 00:02:00,130
+directed edges from
+agent I to agent J, if I
+00:02:00,130 --> 00:02:04,890
+envies J. So the vertices
+of the graph are agents,
+00:02:04,890 --> 00:02:09,500
+and there is an arc from
+I to J, if I envies J.
+00:02:09,590 --> 00:02:12,250
+And consider the
+following example
+00:02:12,250 --> 00:02:14,770
+with the initial
+allocation A, where
+00:02:14,770 --> 00:02:19,950
+we give items g1
+and g5 to agent a1,
+00:02:20,130 --> 00:02:28,170
+a2 gates items g2 and g3,
+and agent a3 gets item g4.
+00:02:28,170 --> 00:02:39,750
+Okay, now we see that agent
+A1 envies A2 because they
+00:02:39,750 --> 00:02:47,970
+have this item G2 that
+agent A1 values very highly,
+00:02:48,150 --> 00:02:55,110
+right? Agent A2 envies
+agent A3 because this
+00:02:55,110 --> 00:02:59,710
+agent has the item that
+A2 values very highly
+00:02:59,710 --> 00:03:02,710
+as well, more than
+their current bundle.
+00:03:03,010 --> 00:03:11,450
+And agent A3 envies agent
+A1 because they have a
+00:03:11,450 --> 00:03:16,310
+bundle that agent A3 values
+very highly more than
+00:03:16,310 --> 00:03:22,350
+their bundle. So we have,
+however, this allocation
+00:03:22,350 --> 00:03:27,090
+is EF1 because if we
+remove one item from each
+00:03:27,090 --> 00:03:30,990
+agent's bundle, then the
+envy will be eliminated.
+00:03:31,030 --> 00:03:35,670
+So the given allocation A
+is EF1, but there is an envy
+00:03:35,670 --> 00:03:42,250
+cycle A1, envy is A2, envy
+is A3, which in turn envy
+00:03:42,250 --> 00:03:48,450
+is A1. We will show now that
+an EF1 partial allocation
+00:03:48,450 --> 00:03:54,510
+A can be transformed in
+polynomial time into an EF1
+00:03:54,510 --> 00:03:58,930
+partial allocation B of the
+same goods with an acyclic
+00:03:58,930 --> 00:04:04,670
+ENV graph. So we can remove
+the ENV cycle from the
+00:04:04,670 --> 00:04:10,470
+graph while preserving the
+ENV freeness up to one good.
+00:04:10,950 --> 00:04:15,170
+The proof works by showing
+that we can eliminate cycles
+00:04:15,170 --> 00:04:20,450
+in the NV-graph while
+maintaining the E1 property.
+00:04:20,530 --> 00:04:24,690
+In the NV-graph, if the
+NV-graph has a cycle
+00:04:24,690 --> 00:04:29,050
+C, we shift allocations
+along the cycle C to
+00:04:29,050 --> 00:04:32,850
+obtain a new allocation A
+prime. prime. Specifically,
+00:04:32,850 --> 00:04:36,830
+if there is a cycle
+i and this j and this
+00:04:36,830 --> 00:04:42,570
+k and so on to t and t
+and this one in turn,
+00:04:42,710 --> 00:04:44,810
+where each player envies
+the next player in the
+00:04:44,810 --> 00:04:48,610
+cycle, we can reassign
+bundles so that player
+00:04:48,610 --> 00:04:53,910
+i gets the bundle of
+player j, player j gets
+00:04:53,910 --> 00:04:57,910
+the bundle of player k,
+and so on, and agent t
+00:04:57,910 --> 00:05:02,670
+gets the bundle of
+previously held by player i.
+00:05:02,710 --> 00:05:06,830
+This shifting process
+clearly maintains the if1
+00:05:06,830 --> 00:05:10,490
+property because we're just
+performing a permutation of
+00:05:10,490 --> 00:05:13,830
+the bundles among a subset
+of players, and the value
+00:05:13,830 --> 00:05:17,310
+players have for their own
+bundles can only increase.
+00:05:17,310 --> 00:05:22,430
+The key insight is that
+the number of edges in the
+00:05:22,430 --> 00:05:27,510
+envy graph of the new
+allocation A' will decrease.
+00:05:27,630 --> 00:05:30,030
+So first of all, let's
+consider the edges
+00:05:30,030 --> 00:05:32,710
+between players which
+are not in the cycle.
+00:05:32,710 --> 00:05:35,710
+These edges remain
+the same. This is
+00:05:35,710 --> 00:05:38,510
+because players
+outside the cycle keep
+00:05:38,510 --> 00:05:40,690
+their bundles and
+valuations unchanged,
+00:05:40,690 --> 00:05:43,470
+and so their envy
+relationships with
+00:05:43,470 --> 00:05:46,250
+each other do not
+change either.
+00:05:46,510 --> 00:05:50,420
+Now edges from outside
+the cycle to the cycle
+00:05:50,420 --> 00:05:54,770
+shift but their count
+stays the same. This is
+00:05:54,770 --> 00:05:57,780
+because outside players
+still envy the same
+00:05:57,780 --> 00:06:01,130
+bundles, but those bundles
+now belong to different
+00:06:01,130 --> 00:06:05,030
+players. So the envy
+follows the bundles and
+00:06:05,030 --> 00:06:08,470
+the total number of these
+edges stays constant.
+00:06:08,730 --> 00:06:12,870
+Edges from the cycle to
+outside the cycle can
+00:06:12,870 --> 00:06:16,070
+only decrease because
+players in the cycle now have
+00:06:16,070 --> 00:06:19,670
+bundles that they value
+more than before so
+00:06:19,670 --> 00:06:22,970
+this is because cycle
+players get better bundles
+00:06:22,970 --> 00:06:27,550
+after the permutation so
+they may envy fewer also
+00:06:27,550 --> 00:06:30,890
+outside players now but
+this is not guaranteed
+00:06:30,890 --> 00:06:34,750
+right what we can
+guarantee is their envy
+00:06:34,750 --> 00:06:39,650
+cannot increase so the
+increased satisfaction of
+00:06:39,650 --> 00:06:42,250
+the players on the cycle
+means that they will
+00:06:42,250 --> 00:06:45,970
+not develop new envy
+toward outside players.
+00:06:46,010 --> 00:06:51,090
+And most importantly the
+edges inside the cycle must
+00:06:51,090 --> 00:06:54,830
+decrease by at least one
+because every player in
+00:06:54,830 --> 00:06:59,170
+the cycle receives a strictly
+more preferred bundle.
+00:06:59,170 --> 00:07:02,810
+So because the cycle
+was structured in a way
+00:07:02,810 --> 00:07:06,730
+based on cyclical envy
+where each player ended the
+00:07:06,730 --> 00:07:10,290
+bundle of the next player.
+And now So by iteratively
+00:07:10,290 --> 00:07:14,990
+removing cycles this way,
+we can arrive at an acyclic
+00:07:14,990 --> 00:07:20,070
+ENVY graph while maintaining
+the IF1 property.
+00:07:20,550 --> 00:07:23,970
+To analyze the runtime
+of the ENVY cycle
+00:07:23,970 --> 00:07:27,050
+elimination procedure,
+we need a progress
+00:07:27,050 --> 00:07:30,790
+measure that strictly
+increases with every such
+00:07:30,790 --> 00:07:34,710
+reallocation along a
+cycle, the RAC step.
+00:07:35,090 --> 00:07:39,210
+We introduce such a potential
+function based on how
+00:07:39,210 --> 00:07:44,070
+agents rank the current
+bundles. Each agent will
+00:07:44,070 --> 00:07:47,750
+assign a score to every
+bundle according to their
+00:07:47,750 --> 00:07:51,630
+ranking, so the score of
+each agent for a bundle
+00:07:51,630 --> 00:07:56,210
+will be the number of agent
+minus the rank for the
+00:07:56,210 --> 00:08:00,810
+bundle, and the score of
+location would be the sum
+00:08:00,810 --> 00:08:05,210
+of the scores each agent
+gets for her own bundle.
+00:08:05,370 --> 00:08:11,130
+The key observation here is
+that an RAC step strictly
+00:08:11,130 --> 00:08:14,850
+improves the bundle for
+every agent on the cycle,
+00:08:14,850 --> 00:08:18,110
+while leaving all other
+agents' bundles unchanged.
+00:08:18,390 --> 00:08:19,330
+And therefore,
+00:08:19,550 --> 00:08:22,670
+the total score
+strictly increases with
+00:08:22,670 --> 00:08:26,110
+every step. And since
+scores are bounded
+00:08:26,110 --> 00:08:31,110
+between 0 and n
+multiplied by n minus 1,
+00:08:31,110 --> 00:08:34,730
+this potential function
+immediately yields a worst
+00:08:34,730 --> 00:08:40,820
+-case bound of n multiplied
+by n minus 1 consecutive
+00:08:40,820 --> 00:08:45,110
+RAC steps before the
+procedure must terminate.
+00:08:45,570 --> 00:08:48,970
+We now summarize the envy cycle
+00:08:48,970 --> 00:08:52,010
+elimination, the ECE algorithm,
+00:08:52,010 --> 00:08:54,810
+and show how the ideas
+from the previous
+00:08:54,810 --> 00:08:58,030
+slides fit together into
+a complete procedure.
+00:08:58,030 --> 00:09:02,210
+We use an incremental approach.
+Starting from the empty
+00:09:02,210 --> 00:09:06,750
+allocation, we iteratively
+assign items while
+00:09:06,750 --> 00:09:11,710
+maintaining EF1 for general
+monotone valuations. At each
+00:09:11,710 --> 00:09:17,910
+step, if there exists an
+unenvied agent, we can safely
+00:09:17,910 --> 00:09:21,570
+give them an unallocated
+item without breaking EF1.
+00:09:21,770 --> 00:09:26,890
+If, however, every agent
+is envied by someone, then
+00:09:26,890 --> 00:09:31,170
+the envy graph must contain
+a cycle, and then we can
+00:09:31,170 --> 00:09:35,270
+perform a reallocation along
+a cycle step to strictly
+00:09:35,270 --> 00:09:39,110
+improve the situation
+while preserving EF1. The
+00:09:39,110 --> 00:09:42,950
+correctness argument hinges
+on the dichotomy, either
+00:09:42,950 --> 00:09:47,690
+a cycle exists or there is
+an unenviated agent, while
+00:09:47,690 --> 00:09:52,410
+the runtime bound follows
+from having at most m item
+00:09:52,410 --> 00:09:56,150
+allocation steps and a
+quadratic bound on the number
+00:09:56,150 --> 00:10:01,250
+of RAC steps between
+allocations. So this ensures
+00:10:01,250 --> 00:10:05,270
+that the overall algorithm
+runs in polynomial time.
+00:10:06,270 --> 00:10:12,190
+So the NV cycle elimination
+algorithm is more general
+00:10:12,190 --> 00:10:15,410
+than round-robin because
+it works not only for
+00:10:15,410 --> 00:10:18,730
+additive valuations, but
+for all monotone valuations.
+00:10:19,190 --> 00:10:23,250
+However, despite its
+fairness guarantee, it
+00:10:23,250 --> 00:10:26,270
+also gives us EF1 for
+more general valuations.
+00:10:28,010 --> 00:10:32,470
+Envy cycle elimination
+procedure does not, as well
+00:10:32,470 --> 00:10:36,690
+as round robin, in general,
+produce perito-optimal
+00:10:36,690 --> 00:10:42,570
+locations, and that even
+with additive valuations. In
+00:10:42,570 --> 00:10:46,450
+the instance in our example
+here, we have two agents
+00:10:46,450 --> 00:10:53,030
+and four items, and the
+algorithm will allocate each
+00:10:53,030 --> 00:10:59,690
+agent their 100 value item
+and then split the remaining
+00:10:59,690 --> 00:11:04,730
+two items in a way that
+leaves a mutually beneficial
+00:11:04,730 --> 00:11:10,510
+trade on the table. we
+will be able to swap
+00:11:10,510 --> 00:11:16,510
+items 3 and 4 in a way that
+strictly improves the utility
+00:11:16,510 --> 00:11:20,510
+for both agents. So
+this means that the ECE
+00:11:20,510 --> 00:11:25,530
+procedure, ECE outcome is
+parrita dominated by another
+00:11:25,530 --> 00:11:30,510
+allocation and the procedure
+is not parrita efficient.
+00:11:30,870 --> 00:11:36,010
+And this is a key limitation
+of NV free up to one good
+00:11:36,010 --> 00:11:40,190
+procedures. Even if one for
+monotony or even additive
+00:11:40,190 --> 00:11:46,010
+valuations does not by
+itself guarantee efficiency.

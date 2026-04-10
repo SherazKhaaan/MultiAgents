@@ -1,0 +1,301 @@
+00:00:00,570 --> 00:00:03,970
+Besides Nash Equilibrium
+or Maximin and Minimax
+00:00:03,970 --> 00:00:06,510
+strategies, there are
+other solution concepts
+00:00:06,510 --> 00:00:09,230
+for normal form games,
+such as, for example,
+00:00:09,410 --> 00:00:11,250
+rationalizable strategies.
+00:00:11,250 --> 00:00:16,270
+A pure or mixed strategy of
+a player is rationalizable
+00:00:16,270 --> 00:00:19,950
+if it is a best response
+to some belief that the
+00:00:19,950 --> 00:00:22,970
+player could have about the
+opening strategies, where
+00:00:22,970 --> 00:00:26,310
+those beliefs themselves
+are consistent with everyone
+00:00:26,310 --> 00:00:28,890
+being rational and
+knowing that others are
+00:00:28,890 --> 00:00:32,810
+rational. So there is a common
+knowledge of rationality.
+00:00:32,930 --> 00:00:37,210
+Informally, a strategy
+is rationalizable if a
+00:00:37,210 --> 00:00:40,290
+perfectly rational player
+can justify playing
+00:00:40,290 --> 00:00:42,670
+it against perfectly
+rational opponents,
+00:00:42,670 --> 00:00:46,570
+giving some possibly wrong
+but internally consistent
+00:00:46,570 --> 00:00:49,290
+beliefs about what
+the others might do.
+00:00:49,350 --> 00:00:52,310
+Strategies that are never
+optimal against any such
+00:00:52,310 --> 00:00:55,310
+beliefs, for example, strictly
+dominated strategies, are
+00:00:55,310 --> 00:00:59,170
+not rationalizable. In
+finite games, a strategy is
+00:00:59,170 --> 00:01:02,050
+rationalizable exactly
+when it survives iterated
+00:01:02,050 --> 00:01:04,910
+elimination of strategies that
+are never a best response.
+00:01:04,930 --> 00:01:07,770
+Equivalently, iterated
+elimination of
+00:01:07,770 --> 00:01:10,290
+strictly dominated
+strategies, allowing
+00:01:10,290 --> 00:01:13,070
+domination by mixed
+strategies as well.
+00:01:13,070 --> 00:01:15,990
+The set of rationalizable
+strategies is therefore
+00:01:15,990 --> 00:01:19,130
+the largest set of
+strategies that is consistent
+00:01:19,130 --> 00:01:22,290
+with common knowledge of
+rationality. Every Nash
+00:01:22,290 --> 00:01:25,650
+equilibrium uses only
+rationalizable strategies,
+00:01:25,650 --> 00:01:29,330
+but there can be also other
+rationalizable strategies
+00:01:29,330 --> 00:01:31,770
+which are not part of
+any Nash equilibrium.
+00:01:32,670 --> 00:01:35,990
+Another useful solution
+concept, especially for
+00:01:35,990 --> 00:01:39,570
+computational reasons, as we
+shall see later, is correlated
+00:01:39,570 --> 00:01:42,830
+equilibrium. In a correlated
+equilibrium, players
+00:01:42,830 --> 00:01:46,250
+may condition their actions
+on the realization of a
+00:01:46,250 --> 00:01:50,030
+shared random signal, and
+no player wants to deviate
+00:01:50,030 --> 00:01:52,650
+from the recommended action
+given that the signal
+00:01:52,650 --> 00:01:56,710
+tells them and what they
+infer about others' actions.
+00:01:56,750 --> 00:02:00,830
+Intuitively, imagine a
+trusted mediator who draws an
+00:02:00,830 --> 00:02:03,270
+action profile at random
+from some publicly known
+00:02:03,270 --> 00:02:07,050
+distribution and privately
+recommends to each player their
+00:02:07,050 --> 00:02:10,190
+component of that profile.
+The distribution is a
+00:02:10,190 --> 00:02:14,230
+correlated equilibrium if for
+every player and every possible
+00:02:14,230 --> 00:02:17,330
+recommendation following
+the recommendation gives
+00:02:17,330 --> 00:02:20,990
+at least as much expected
+payoff as deviating, given
+00:02:20,990 --> 00:02:24,350
+the player's posterior about
+others' recommendations.
+00:02:24,490 --> 00:02:28,290
+Every mixed strategy
+Nash equilibrium induces
+00:02:28,290 --> 00:02:31,250
+a correlated equilibrium
+just by taking the
+00:02:31,250 --> 00:02:34,030
+product distribution.
+So the set of correlated
+00:02:34,030 --> 00:02:37,530
+equilibria is a superset
+of Nash equilibria.
+00:02:37,530 --> 00:02:41,490
+Correlated equilibria
+always exist in finite games
+00:02:41,490 --> 00:02:44,150
+and can be computed
+via linear programming,
+00:02:44,150 --> 00:02:46,310
+which is typically easier than
+00:02:46,310 --> 00:02:48,570
+computing Nash
+equilibria in general.
+00:02:49,190 --> 00:02:52,520
+An epsilon Nash equilibrium
+or epsilon equilibrium
+00:02:52,520 --> 00:02:56,030
+is a strategy profile
+in which no player can
+00:02:56,030 --> 00:03:00,890
+gain more than some
+positive epsilon in expected
+00:03:00,890 --> 00:03:04,350
+payoff by unilaterally
+deviating from their
+00:03:04,350 --> 00:03:07,570
+strategy. In other words,
+every player's strategy
+00:03:07,570 --> 00:03:10,710
+is an approximately best
+response. Any deviation
+00:03:10,710 --> 00:03:13,490
+improves their payoff
+by, at most, epsilon.
+00:03:13,530 --> 00:03:16,710
+A standard Nash equilibrium
+is just the special case
+00:03:16,710 --> 00:03:20,030
+of the epsilon Nash
+equilibrium for epsilon equals
+00:03:20,030 --> 00:03:24,490
+zero, where no player can
+gain any payoff by deviating.
+00:03:26,550 --> 00:03:30,010
+Finally, let us introduce
+another important solution
+00:03:30,010 --> 00:03:33,490
+concept called strong
+equilibrium. We have
+00:03:33,490 --> 00:03:36,770
+seen that Nash equilibrium
+postulates stability
+00:03:36,770 --> 00:03:40,730
+against unilateral deviation
+by individual players.
+00:03:40,730 --> 00:03:44,570
+So Nash equilibrium is
+vulnerable to deviations
+00:03:44,570 --> 00:03:47,870
+by coalitions of players.
+This issue is addressed
+00:03:47,870 --> 00:03:49,930
+in the solution
+concept known as strong
+00:03:49,930 --> 00:03:53,330
+equilibrium that was introduced
+by Robert Aumann, who
+00:03:53,330 --> 00:03:57,620
+was awarded a Nobel Prize
+for economics in 2005.
+00:03:58,110 --> 00:04:02,270
+Here is the definition.
+For strategy profile S,
+00:04:02,450 --> 00:04:06,230
+a coalition of players C is
+said to have an improving
+00:04:06,230 --> 00:04:10,910
+move if there is a joint
+strategy S'c for this
+00:04:10,910 --> 00:04:14,730
+coalition such that for every
+player in the coalition,
+00:04:14,730 --> 00:04:20,490
+their utility UI from
+playing the new coalitional
+00:04:20,490 --> 00:04:24,450
+strategy is greater than
+the previous utility. A
+00:04:24,450 --> 00:04:27,850
+strong equilibrium, then,
+is a profile that has no
+00:04:27,850 --> 00:04:30,750
+such improving moves for
+any coalition of players.
+00:04:31,090 --> 00:04:34,650
+Obviously, every strong
+equilibrium is also a Nash
+00:04:34,650 --> 00:04:39,310
+equilibrium because we
+accommodate singleton coalitions.
+00:04:40,570 --> 00:04:43,070
+Of course, strong
+equilibrium is a very
+00:04:43,070 --> 00:04:45,390
+desirable solution
+to a game. However,
+00:04:45,770 --> 00:04:49,990
+games that possess such
+equilibria are even more scarce
+00:04:49,990 --> 00:04:52,210
+than games with pure
+structure in Nash equilibrium.
+00:04:52,210 --> 00:04:56,610
+For example, in our
+familiar prisoner's dilemma,
+00:04:56,610 --> 00:05:00,130
+the unique pure strategy Nash
+equilibrium defect defect
+00:05:00,130 --> 00:05:03,910
+is not a strong equilibrium,
+and you can check that
+00:05:03,910 --> 00:05:07,050
+there are no strong equilibria
+in this game at all,
+00:05:07,050 --> 00:05:10,850
+because the coalition of
+players can always deviate
+00:05:10,850 --> 00:05:16,690
+effectively. So from the
+Nash equilibrium, both
+00:05:16,690 --> 00:05:20,210
+players together can deviate
+to cooperate to cooperate,
+00:05:20,270 --> 00:05:22,960
+which we know is not a
+Nash equilibrium because
+00:05:22,960 --> 00:05:26,330
+singleton coalitions,
+individual players can
+00:05:26,330 --> 00:05:31,030
+deviate either the row
+player or the column player.
+00:05:32,370 --> 00:05:35,910
+Unlike prisoner's dilemma
+in coordination game,
+00:05:35,910 --> 00:05:38,650
+both pure strategy and
+Nash equilibria are also
+00:05:38,650 --> 00:05:45,510
+strong because they optimize
+the payoffs for individual
+00:05:45,510 --> 00:05:49,750
+players and for pairs
+of players in this game.
+00:05:51,040 --> 00:05:53,650
+This is the end of
+this week's topic.
+00:05:53,650 --> 00:05:56,110
+Thank you for your attention
+and see you in class.

@@ -1,0 +1,704 @@
+00:00:01,590 --> 00:00:05,290
+We have seen that in
+the second prize seal
+00:00:05,290 --> 00:00:09,170
+bid and in English
+auction, individually
+00:00:09,170 --> 00:00:11,950
+the agents do not
+have incentive to
+00:00:11,950 --> 00:00:14,730
+misreport their valuations
+to the mechanism.
+00:00:14,790 --> 00:00:19,250
+However, these auctions
+are susceptible to another
+00:00:19,250 --> 00:00:22,530
+type of strategic behavior,
+which is called collusion.
+00:00:22,530 --> 00:00:27,590
+That is, the agent can
+benefit by coordinating
+00:00:27,590 --> 00:00:32,190
+their bids. In an English
+auction, a group of bidders
+00:00:32,190 --> 00:00:37,370
+can form a so-called
+bidding ring and agree not
+00:00:37,370 --> 00:00:41,350
+to bid against one another.
+And by doing so, they
+00:00:41,350 --> 00:00:45,250
+can get the item at an
+artificially low price and
+00:00:45,250 --> 00:00:48,610
+then decide how to allocate
+it amongst themselves.
+00:00:48,610 --> 00:00:52,790
+They can even sell it on
+eBay and divide the money.
+00:00:53,210 --> 00:00:56,740
+Individuals within the
+bidding ring have no incentive
+00:00:56,740 --> 00:01:01,250
+to break the agreement
+because such defection is
+00:01:01,250 --> 00:01:05,330
+visible to the other bidders
+and the bidder with the
+00:01:05,330 --> 00:01:10,150
+highest valuation can
+always respond by outbidding
+00:01:10,150 --> 00:01:13,790
+the defector and keeping
+the item for themselves.
+00:01:14,150 --> 00:01:20,230
+The Dutch auction, in
+contrast, In such an
+00:01:20,230 --> 00:01:23,450
+auction there is nothing
+to stop one member
+00:01:23,450 --> 00:01:26,190
+from breaking the
+agreement and winning the
+00:01:26,190 --> 00:01:29,910
+item because the other
+bidders will not have
+00:01:29,910 --> 00:01:34,430
+any opportunity to
+respond to this defection.
+00:01:35,070 --> 00:01:38,770
+So the Dutch
+auction is robust or
+00:01:38,770 --> 00:01:42,370
+resistant to collusion
+while English
+00:01:42,370 --> 00:01:45,750
+auction is susceptible
+to the collusion.
+00:01:45,930 --> 00:01:49,110
+Let's consider
+collusion between two
+00:01:49,110 --> 00:01:53,890
+bidders, 1 and 2, in a
+second price auction.
+00:01:54,270 --> 00:01:59,310
+Assume that they share
+their true values, θ1 and
+00:01:59,310 --> 00:02:02,910
+θ2, and without loss of
+generality, we can assume
+00:02:02,910 --> 00:02:08,150
+that θ1 is greater than
+θ2. Well, both types are
+00:02:08,150 --> 00:02:14,110
+between 0 and 1. Now, the
+goal of our agents is to
+00:02:14,110 --> 00:02:20,050
+set their bids so that to
+maximize the sum of their
+00:02:20,050 --> 00:02:25,290
+expected utilities, and
+if one of them wins, each
+00:02:25,290 --> 00:02:29,850
+player will get what they
+would have received had
+00:02:29,850 --> 00:02:37,530
+they bid honestly, plus
+any surplus that they get
+00:02:37,530 --> 00:02:41,430
+by misreporting will be
+split evenly among them.
+00:02:41,450 --> 00:02:45,030
+So what is this
+additional surplus that
+00:02:45,030 --> 00:02:48,310
+the colluders can
+obtain and what
+00:02:48,310 --> 00:02:52,610
+are their optimal
+bids if they collude?
+00:02:53,250 --> 00:02:57,150
+Suppose we have the simplest
+case where these two
+00:02:57,150 --> 00:03:00,410
+players are the only two
+bidders in the game. There is
+00:03:00,410 --> 00:03:04,710
+no one else in their way,
+and in the second price
+00:03:04,710 --> 00:03:09,390
+auction, the winner, let's
+call them W, is the highest
+00:03:09,390 --> 00:03:16,790
+bidder who receives the
+payoff BW minus P, where
+00:03:16,790 --> 00:03:20,190
+P is the price, and this
+is the second highest bid.
+00:03:21,090 --> 00:03:25,810
+Now all the other bidders
+receive a payoff of zero.
+00:03:25,810 --> 00:03:32,030
+For our problem, if one
+player bids nothing, then
+00:03:32,030 --> 00:03:36,130
+the other player, no matter
+what their bid is, will
+00:03:36,130 --> 00:03:40,910
+win the item for free.
+Now, since the value of the
+00:03:40,910 --> 00:03:44,690
+first agent is greater than
+the value of the second
+00:03:44,690 --> 00:03:48,470
+agent, it is obviously optimal
+for the second agent to
+00:03:48,470 --> 00:03:52,510
+bid nothing at all, and
+for the first agent to bid
+00:03:52,510 --> 00:04:01,830
+any positive value B1,
+because the price that they're
+00:04:01,830 --> 00:04:05,650
+going to pay will be zero,
+the bid of the second
+00:04:05,650 --> 00:04:10,430
+agent. Now the sum of the
+payoffs of the two agents
+00:04:10,430 --> 00:04:15,150
+will be θ1, because the
+utility of the first agent is
+00:04:15,150 --> 00:04:20,390
+θ1-0, so θ1, the utility
+of the second agent is 0,
+00:04:20,390 --> 00:04:27,270
+so the total sum of utility
+is θ1. and if they had
+00:04:27,270 --> 00:04:31,690
+been honestly then player
+one would still have won
+00:04:31,690 --> 00:04:35,270
+the item right but the price
+that they would have paid
+00:04:35,270 --> 00:04:39,270
+would be theta two so
+the total payoff would be
+00:04:39,270 --> 00:04:42,790
+theta one minus theta two
+plus zero for the second agent
+00:04:42,790 --> 00:04:47,970
+so the extra surplus
+that the agents gain by
+00:04:47,970 --> 00:04:58,450
+colluding is theta1 minus
+theta1 plus theta2 is theta2,
+00:04:58,470 --> 00:05:01,490
+and so each agent gets half of
+00:05:01,490 --> 00:05:03,730
+it, which is theta2
+divided by 2.
+00:05:04,440 --> 00:05:08,270
+Now assume that there is
+a third player who is not
+00:05:08,270 --> 00:05:12,250
+part of the collusion in
+the game, and they draw
+00:05:12,250 --> 00:05:14,870
+their value independently
+from the uniform
+00:05:14,870 --> 00:05:19,950
+distribution on the interval
+from 0 to 1. Now if we
+00:05:19,950 --> 00:05:25,990
+set the bid for the second
+player greater than zero
+00:05:26,040 --> 00:05:30,420
+then there would be a
+positive chance that the
+00:05:30,850 --> 00:05:35,630
+value of the third agent
+is smaller than that and
+00:05:35,730 --> 00:05:41,390
+then as a result the first
+player who has a valuation
+00:05:41,390 --> 00:05:45,110
+which is higher than and
+that of the agent 2, would
+00:05:45,110 --> 00:05:52,690
+have utility θ1-b2, the
+bit of the second agent.
+00:05:52,690 --> 00:05:55,790
+But if the value of the third
+00:05:55,790 --> 00:05:58,270
+agent is greater than b2,
+00:05:58,370 --> 00:06:04,550
+then either the third
+agent wins the item, or
+00:06:04,550 --> 00:06:07,290
+player 1 still wins
+the item, but pays the
+00:06:07,290 --> 00:06:10,970
+price of θ3, which does
+not depend on this value
+00:06:10,970 --> 00:06:15,810
+b2. So setting B2 at 0
+is always the best or
+00:06:15,810 --> 00:06:18,610
+tied for the best option
+for the second agent.
+00:06:19,730 --> 00:06:22,650
+Now what the first
+agent should bid?
+00:06:23,370 --> 00:06:27,050
+Essentially we are now
+playing a two-player
+00:06:27,050 --> 00:06:31,770
+second prize auction
+against player 3,
+00:06:31,770 --> 00:06:34,050
+where they will bid
+honestly because they
+00:06:34,050 --> 00:06:36,490
+are not part of the
+collusion. So we know
+00:06:36,490 --> 00:06:39,570
+that in such a case,
+our best strategy
+00:06:39,570 --> 00:06:43,450
+for our player 1 is
+also to bid honestly.
+00:06:43,450 --> 00:06:47,230
+So the bid of the first
+player should be theta 1.
+00:06:47,310 --> 00:06:51,610
+Now to get the surplus
+due to collusion, we need
+00:06:51,610 --> 00:06:55,510
+to know the expected payoff
+for the players 1 and 2
+00:06:55,880 --> 00:06:58,890
+when they collude and
+when they bid honestly.
+00:06:58,890 --> 00:07:02,410
+When they bid honestly,
+we have the following
+00:07:02,410 --> 00:07:06,170
+expression. So since the
+value of the first agent
+00:07:06,170 --> 00:07:10,130
+is greater than the
+second agent, the payoff
+00:07:10,130 --> 00:07:13,230
+for the second agent will
+always be zero, whether
+00:07:13,230 --> 00:07:19,790
+they're honest or not.
+So they will have,
+00:07:19,790 --> 00:07:23,990
+because they will always
+be outbid by player one.
+00:07:24,010 --> 00:07:27,790
+And for the player one,
+the expected payoff
+00:07:27,790 --> 00:07:31,670
+will be the following.
+So, that would
+00:07:31,670 --> 00:07:35,950
+depend on the value
+θ3 of the third agent.
+00:07:35,950 --> 00:07:39,750
+If the value of
+the third agent is
+00:07:39,750 --> 00:07:43,650
+below the value of
+the second agent,
+00:07:43,650 --> 00:07:49,590
+then the first agent
+gets the item and
+00:07:49,590 --> 00:07:54,970
+they pay the highest
+second value, which is
+00:07:54,970 --> 00:08:00,010
+the θ2. so their
+utility is θ1 minus θ2.
+00:08:00,750 --> 00:08:06,190
+If agent 3 has value
+which is greater than the
+00:08:06,190 --> 00:08:09,210
+value of the second agent,
+but lower still than the
+00:08:09,210 --> 00:08:12,710
+value of the first agent,
+then again the first agent
+00:08:12,710 --> 00:08:15,950
+has the highest bid, they
+win the item, but the
+00:08:15,950 --> 00:08:18,810
+price that they pay will
+be the second highest
+00:08:18,810 --> 00:08:23,950
+bid, which is θ3 in this
+case. And finally, if the
+00:08:23,950 --> 00:08:28,370
+value of θ3 is above the
+value of the first agent,
+00:08:28,370 --> 00:08:33,210
+then the third agent
+will get the item and the
+00:08:33,210 --> 00:08:36,570
+payment, the utility of the
+first agent will be zero.
+00:08:36,570 --> 00:08:42,490
+So in total, we get the
+sum of these two intervals,
+00:08:42,490 --> 00:08:47,250
+and this is θ1 squared minus
+θ2 squared divided by 2.
+00:08:48,110 --> 00:08:53,070
+Now using the optimal
+collusion bids, player 1 will
+00:08:53,070 --> 00:08:59,210
+win whenever their bid
+is greater than the value
+00:08:59,210 --> 00:09:03,970
+of the third agent We
+remember that the first agent
+00:09:03,970 --> 00:09:07,330
+submits their true
+valuation, the second agent
+00:09:07,330 --> 00:09:12,090
+submits 0 So, whenever the
+value of the third agent
+00:09:12,090 --> 00:09:19,870
+is below the value of q1,
+the first agent gets the
+00:09:19,870 --> 00:09:27,250
+item and pays price θ3,
+and so the total expected
+00:09:27,250 --> 00:09:31,110
+payoff will be the integral
+from 0 to θ1. this is
+00:09:31,110 --> 00:09:37,930
+when θ3 is below θ1, so
+this is θ1 squared divided
+00:09:37,930 --> 00:09:43,170
+by 2. And so the extra
+surplus that we have is θ2
+00:09:43,170 --> 00:09:47,410
+squared divided by 2, and
+so each colluder, player
+00:09:47,410 --> 00:09:52,910
+1 and player 2, get θ2
+squared divided by 4 each.
+00:09:53,330 --> 00:09:58,110
+Collusion is not the only
+issue with the auctions,
+00:09:58,290 --> 00:10:01,750
+So, some auction protocols
+are also susceptible
+00:10:01,750 --> 00:10:05,610
+to manipulation on the
+part of the auctioneer.
+00:10:06,270 --> 00:10:12,830
+For example, in the second
+price auction, a dishonest
+00:10:12,830 --> 00:10:16,170
+auctioneer can exploit the
+protocol by lying about
+00:10:16,170 --> 00:10:19,190
+the second highest bid.
+No one knows what it is.
+00:10:20,030 --> 00:10:23,010
+Shields also can be
+introduced to inflate
+00:10:23,010 --> 00:10:27,110
+bidding prices in English
+auction. so the auctioneer
+00:10:27,110 --> 00:10:31,810
+can bid within their
+own auction to increase
+00:10:31,810 --> 00:10:34,430
+the price for which
+the item will be sold.
+00:10:34,490 --> 00:10:38,090
+Another problem has
+received a name of
+00:10:38,090 --> 00:10:42,610
+winner's curse, and it
+may occur in auctions with
+00:10:42,610 --> 00:10:45,930
+common value and
+incomplete information.
+00:10:45,930 --> 00:10:49,090
+So we assume that there
+is some single ground
+00:10:49,090 --> 00:10:53,010
+truth valuation for
+the item. However, this
+00:10:53,010 --> 00:10:56,210
+valuation, the true
+valuation for the item is
+00:10:56,210 --> 00:11:00,630
+not known. So the bidders
+have uncertainty, some
+00:11:00,630 --> 00:11:04,070
+uncertain estimation
+of this valuation only.
+00:11:04,070 --> 00:11:07,910
+And since most auctions
+involve at least
+00:11:07,910 --> 00:11:10,870
+some amount of common
+value and some degree
+00:11:10,870 --> 00:11:13,250
+of uncertainty about
+that common value,
+00:11:13,250 --> 00:11:16,550
+the winner's course is
+indeed a very important
+00:11:16,550 --> 00:11:20,910
+phenomenon. So the issue
+is that the winner may
+00:11:20,910 --> 00:11:25,390
+overpay or be cursed
+in one of the two ways.
+00:11:25,390 --> 00:11:30,730
+The winning bid may
+exceed the value of the
+00:11:30,730 --> 00:11:34,570
+auction good such that
+the winner is actually
+00:11:34,570 --> 00:11:38,110
+worse off in absolute
+terms. or the value
+00:11:38,110 --> 00:11:40,850
+of the good is less than
+the bidder expected,
+00:11:41,350 --> 00:11:45,030
+so they may still
+have a net gain, but
+00:11:45,030 --> 00:11:48,090
+it will be worse off
+than anticipated.
+00:11:48,470 --> 00:11:52,950
+For example, back in
+the 50s, there was
+00:11:52,950 --> 00:11:55,510
+no accurate method
+to estimate the
+00:11:55,510 --> 00:11:59,210
+potential value of an
+offshore oil field.
+00:11:59,470 --> 00:12:03,870
+And, for instance,
+an oil field had
+00:12:03,870 --> 00:12:06,470
+an actual intrinsic
+value of 10.
+00:12:06,690 --> 00:12:08,590
+million dollars,
+00:12:09,630 --> 00:12:13,810
+but all companies would
+guess this value to be
+00:12:13,810 --> 00:12:18,930
+anywhere from 5 million to 20
+million. And now the company
+00:12:18,930 --> 00:12:25,210
+that wrongly estimated it
+at 20 million and placed
+00:12:25,210 --> 00:12:29,670
+that bid would win the
+auction and later find
+00:12:29,670 --> 00:12:36,950
+that it was not worth as much.
+And this was the situation
+00:12:36,950 --> 00:12:43,070
+that actually gave this
+term winner's course
+00:12:43,070 --> 00:12:47,570
+life. So it was coined in
+the article competitive
+00:12:47,570 --> 00:12:52,810
+bidding in high risk situations
+that was published in
+00:12:52,810 --> 00:13:00,010
+1971, and it was discussing
+this specific scenario.
+00:13:00,170 --> 00:13:05,650
+Winner's course also occurs
+in other auctions, for
+00:13:05,650 --> 00:13:09,250
+instance in spectrum
+auctions, where companies bid
+00:13:09,250 --> 00:13:12,610
+on licenses to use portions
+of the electromagnetic
+00:13:12,610 --> 00:13:16,950
+spectrum. The uncertainty
+comes from estimating
+00:13:16,950 --> 00:13:21,510
+the value of the cell phone
+market in a given area,
+00:13:22,930 --> 00:13:27,950
+IPOs, the initial public
+offering for stocks in
+00:13:27,950 --> 00:13:31,010
+which bidders need to
+estimate what the market
+00:13:31,010 --> 00:13:33,990
+value of a company stock
+will be in the future,
+00:13:34,440 --> 00:13:37,590
+or, for instance, pay
+-per-click advertising
+00:13:37,590 --> 00:13:40,890
+online, where
+advertisers gain higher
+00:13:40,890 --> 00:13:44,310
+ranking if they bid
+higher amounts per click,
+00:13:44,330 --> 00:13:47,750
+from a search agent
+user, but they don't know
+00:13:47,750 --> 00:13:50,010
+how many clicks they
+will get in the end.
+00:13:50,450 --> 00:13:54,050
+And the point is that in
+a common value auction,
+00:13:54,050 --> 00:13:58,550
+the auctioned item is of
+roughly equal value to
+00:13:58,550 --> 00:14:02,550
+all bidders, but the bidders
+don't know the item's
+00:14:02,550 --> 00:14:05,610
+market value when they
+bid, and each player
+00:14:05,610 --> 00:14:10,150
+independently estimates
+the value of the item. And
+00:14:10,150 --> 00:14:15,030
+that's why the winner of
+an auction is going to
+00:14:15,050 --> 00:14:18,310
+overpay for this item.
+Indeed, the winner of the
+00:14:18,310 --> 00:14:20,950
+auction is the bidder who
+submits the highest bid.
+00:14:20,950 --> 00:14:25,990
+And since the auction item
+is worth roughly the same
+00:14:25,990 --> 00:14:28,850
+to all the bidders, they
+are distinguished only
+00:14:28,850 --> 00:14:32,430
+by their respective estimates
+of the market value.
+00:14:32,510 --> 00:14:36,050
+And the winner is then
+the bidder who makes
+00:14:36,050 --> 00:14:39,890
+the highest estimate.
+And if we assume that
+00:14:40,260 --> 00:14:43,410
+more or less the
+average bid is accurate,
+00:14:43,410 --> 00:14:47,670
+then the highest bidder
+definitely overestimates
+00:14:47,670 --> 00:14:53,050
+the item's value and so
+they're likely to overpay.
+00:14:53,190 --> 00:14:57,290
+Formally, this means that
+the conditional expected
+00:14:57,290 --> 00:15:00,270
+value of a bidder from
+the auction, so the
+00:15:00,270 --> 00:15:03,630
+expected value of the
+item minus the expected
+00:15:03,630 --> 00:15:06,430
+price, which is conditioned
+on the assumption
+00:15:06,430 --> 00:15:09,450
+that the bidder wins the
+auction, is negative.
+00:15:09,930 --> 00:15:13,810
+The winner's course is
+more severe when the number
+00:15:13,810 --> 00:15:17,590
+of bidders is higher, and
+this is because the more
+00:15:17,590 --> 00:15:21,650
+bidders we have, the more
+likely it is that some of
+00:15:21,650 --> 00:15:26,230
+them have overestimated
+the auctioned item's value.
+00:15:26,230 --> 00:15:29,250
+In technical terms,
+the winner's expected
+00:15:29,250 --> 00:15:33,630
+estimate is the value of
+the nth order statistic,
+00:15:34,110 --> 00:15:39,890
+which increases as the number
+of bidders N increases.
+00:15:39,910 --> 00:15:41,930
+And so the more
+bidders we have,
+00:15:41,930 --> 00:15:44,130
+the higher is the
+winner's curse.
+00:15:44,210 --> 00:15:47,990
+However, an actual overpayment
+will generally occur
+00:15:47,990 --> 00:15:51,730
+only if the winner
+fails to account for the
+00:15:51,730 --> 00:15:54,890
+winner's curse when bidding.
+And this is an outcome
+00:15:54,890 --> 00:15:58,170
+that, according to the
+revenue equivalence theorem,
+00:15:58,230 --> 00:16:03,270
+need never occur. A cautious
+bidder would avoid the
+00:16:03,270 --> 00:16:08,290
+winner's curse by bid
+shading or placing a bid that
+00:16:08,290 --> 00:16:12,730
+is below their ex ante
+estimation of the value of
+00:16:12,730 --> 00:16:17,410
+the item for sale, but equal
+to their exposed belief
+00:16:17,410 --> 00:16:21,710
+about the value of the item
+given that they win the
+00:16:21,710 --> 00:16:25,170
+auction. The key point here
+is that winning the auction
+00:16:25,170 --> 00:16:28,030
+is bad news about the
+value of the item for the
+00:16:28,030 --> 00:16:31,790
+winner. It means that they
+were the most optimistic
+00:16:31,790 --> 00:16:35,110
+and if bidders are correct
+in their estimations on
+00:16:35,110 --> 00:16:40,750
+average, then they pay too
+much. That's why the cautious
+00:16:40,750 --> 00:16:45,110
+bidders would revise
+their X-ante-estimations
+00:16:45,110 --> 00:16:50,210
+downwards so that they take
+this effect into account.

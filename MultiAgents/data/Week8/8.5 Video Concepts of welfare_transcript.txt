@@ -1,0 +1,288 @@
+00:00:01,180 --> 00:00:04,440
+Let's summarise the core
+trade-offs between fairness
+00:00:04,440 --> 00:00:07,780
+and efficiency in fair
+division of indivisible goods.
+00:00:08,400 --> 00:00:12,020
+We have seen that envy
+-freeness, which is a gold
+00:00:12,020 --> 00:00:16,920
+standard fairness notion,
+does not always exist for
+00:00:16,920 --> 00:00:20,060
+indivisible goods, even
+for additive valuations.
+00:00:20,120 --> 00:00:25,940
+Fortunately, the weaker EF1
+guarantee of envy-freeness
+00:00:25,940 --> 00:00:29,880
+up to one good does
+always exist and can be
+00:00:29,880 --> 00:00:33,600
+achieved efficiently via a
+round-robin algorithm for
+00:00:33,600 --> 00:00:37,500
+additive valuations or
+the more general NV cycle
+00:00:37,500 --> 00:00:41,380
+elimination algorithm for
+monotone valuations. However,
+00:00:41,600 --> 00:00:45,160
+there is an impossibility
+logging here. No algorithm
+00:00:45,160 --> 00:00:50,380
+can guarantee both NV
+freeness up to one good and
+00:00:50,380 --> 00:00:54,460
+Pareto optimality simultaneously
+in the general case,
+00:00:54,460 --> 00:00:57,380
+highlighting the fundamental
+tension between fairness
+00:00:57,380 --> 00:01:00,900
+and efficiency that
+researchers continue to explore
+00:01:00,900 --> 00:01:05,780
+through approximation and
+hybrid objectives. So far,
+00:01:05,780 --> 00:01:08,660
+we have explored fairness
+-focused algorithms like
+00:01:08,660 --> 00:01:12,260
+round-dropping and bicycle
+elimination, which guarantee
+00:01:12,260 --> 00:01:15,940
+EF1 but often fail to
+deliver operator efficiency.
+00:01:15,940 --> 00:01:20,820
+Now, let us reverse
+perspective. What happens if we
+00:01:20,820 --> 00:01:25,490
+prioritize efficiency by
+maximizing objectives like
+00:01:25,490 --> 00:01:30,440
+utilitarian welfare which
+is the sum of utilities so
+00:01:30,440 --> 00:01:35,440
+for all the agents in our
+set of agents n we take
+00:01:35,440 --> 00:01:41,260
+the sum of their values
+for their allocation or the
+00:01:41,260 --> 00:01:45,840
+egalitarian welfare which
+maximizes the minimal utility
+00:01:45,840 --> 00:01:50,180
+so if we take the minimal
+value for the allocated
+00:01:50,180 --> 00:01:54,200
+bundle of all the agent, we
+want to maximize that, so
+00:01:54,200 --> 00:01:59,860
+we kind of want to make
+the least happy agent the
+00:01:59,860 --> 00:02:05,100
+most happiest possible,
+or the Nash social welfare
+00:02:05,100 --> 00:02:08,480
+where we maximize the
+product of utilities. This is
+00:02:08,480 --> 00:02:12,760
+somewhere in between the
+utilitarian and egalitarian
+00:02:13,210 --> 00:02:16,540
+welfare, so we take the
+product of values for all the
+00:02:16,540 --> 00:02:19,880
+agents for their allocations.
+In the example here,
+00:02:19,880 --> 00:02:24,720
+we have five items and
+three agents, and the agents
+00:02:24,720 --> 00:02:28,930
+give equal values for all
+the items, where agent i
+00:02:28,930 --> 00:02:33,700
+values all the items at 10,
+agent 2 values all the items
+00:02:33,700 --> 00:02:40,240
+at 1, and agent 3 values
+all the items at 3. So the
+00:02:40,240 --> 00:02:44,180
+utilitarian welfare
+maximizer would give all the
+00:02:44,180 --> 00:02:49,540
+items to agent I and achieve
+the sum of utilities 50,
+00:02:50,380 --> 00:02:54,700
+right? A egalitarian
+welfare maximizer would try
+00:02:54,700 --> 00:02:59,360
+to give something to every
+agent, in particular for
+00:03:00,030 --> 00:03:05,880
+agent two, it will give
+three items, and to agent
+00:03:05,880 --> 00:03:10,640
+one and three, it will
+give one item each. So the
+00:03:10,640 --> 00:03:15,580
+egalitarian welfare will
+be three in this case.
+00:03:16,000 --> 00:03:20,260
+And the Nash welfare
+maximizing the product of
+00:03:20,260 --> 00:03:25,060
+utilities solution here.
+There will be a few solutions,
+00:03:25,060 --> 00:03:28,500
+but each of them would
+give two items to two
+00:03:28,500 --> 00:03:33,980
+agents and one item to one
+agent. And you can check
+00:03:33,980 --> 00:03:37,680
+that it doesn't matter which
+agents in this particular
+00:03:37,810 --> 00:03:41,760
+example get two items
+and which agent gets one
+00:03:41,760 --> 00:03:46,020
+item, the value of the
+Nash Welfare will be 120.
+00:03:48,280 --> 00:03:52,300
+It is easy to see that
+the utilitarian welfare
+00:03:52,300 --> 00:03:57,160
+maximizer is Pareto efficient.
+Indeed, any Pareto improvement
+00:03:57,160 --> 00:04:00,500
+would increase the sum
+of values, and since we
+00:04:00,500 --> 00:04:04,120
+maximise this sum, no Pareto
+improvement can exist.
+00:04:04,120 --> 00:04:07,740
+However, such allocation
+may be highly unfair
+00:04:07,740 --> 00:04:10,980
+as it may assign all
+items to one player
+00:04:10,980 --> 00:04:13,720
+with marginally higher
+valuations, as it has
+00:04:13,720 --> 00:04:16,020
+done in our example
+in the previous slide
+00:04:16,020 --> 00:04:20,020
+where all items were
+allocated to agent A1.
+00:04:20,460 --> 00:04:23,840
+Such an unfair allocation
+would not be possible under
+00:04:23,840 --> 00:04:26,960
+the egalitarian welfare
+maximizer that would not
+00:04:26,960 --> 00:04:30,600
+leave any agent with empty
+allocation as long as
+00:04:30,600 --> 00:04:34,060
+there are enough goods for
+all the agent, of course.
+00:04:34,060 --> 00:04:37,960
+However, this solution
+is not guaranteed to be
+00:04:37,960 --> 00:04:43,560
+envy-free or even EF1. In
+our example, we allocated
+00:04:43,560 --> 00:04:48,840
+one item to agent A1
+and three items to agent
+00:04:48,840 --> 00:04:54,740
+A2 and A1 will still
+stay envious of agent
+00:04:54,740 --> 00:04:59,140
+A2, even if we remove one
+item from A2's bundle.
+00:05:00,380 --> 00:05:03,500
+Egalitarian welfare
+maximizer is also
+00:05:03,500 --> 00:05:06,620
+not necessarily
+parity-efficient.
+00:05:06,660 --> 00:05:09,840
+To see this, we can
+consider a simple instance
+00:05:09,840 --> 00:05:13,840
+with two agents 1 and
+2 and three items ABC,
+00:05:13,840 --> 00:05:18,980
+where agent 1 has
+positive value x for items
+00:05:18,980 --> 00:05:22,260
+a and b and value 0
+for item c, and agent
+00:05:22,260 --> 00:05:27,400
+2 values items a and c
+at x and item b at 0.
+00:05:27,400 --> 00:05:32,900
+Now if we allocate item 1
+to agent 1 and items bc to
+00:05:32,900 --> 00:05:36,980
+agent 2, this will maximize
+the egalitarian welfare,
+00:05:36,980 --> 00:05:42,320
+it will be x. However, if we
+now reallocate item C from
+00:05:42,320 --> 00:05:46,240
+agent 2 to agent 1, agent
+1 will strictly improve
+00:05:46,240 --> 00:05:50,520
+its utility without reducing
+the utility of agent 2. So
+00:05:50,520 --> 00:05:54,260
+the egalitarian welfare
+will stay the same, but we
+00:05:54,260 --> 00:06:01,020
+can improve the utility of
+each agent so we can have a
+00:06:01,020 --> 00:06:05,420
+Parita-dominated solution
+here. Now, can we have the
+00:06:05,420 --> 00:06:10,800
+best of both worlds? Can we
+have both Pareto optimality
+00:06:10,800 --> 00:06:15,980
+and envy-freeness up to
+one good? Yes, we can, and
+00:06:15,980 --> 00:06:20,720
+this is if we use the maximum
+Nash welfare objective.
+00:06:20,720 --> 00:06:23,580
+To show Pareto optimality,
+once again, this
+00:06:23,580 --> 00:06:26,960
+is easy. Any Pareto
+improvement would increase
+00:06:26,960 --> 00:06:30,160
+the product of values,
+so since we maximize
+00:06:30,160 --> 00:06:32,980
+this product, no Pareto
+improvement can exist.
+00:06:33,520 --> 00:06:38,200
+showing envy-freeness up
+to one good requires quite
+00:06:38,200 --> 00:06:41,960
+some work, so we shall leave
+it out of the scope of this
+00:06:41,960 --> 00:06:46,820
+course. But you can check
+that in the example that
+00:06:46,820 --> 00:06:52,760
+we have given earlier, the
+solution for maximizing Nash
+00:06:52,760 --> 00:06:57,000
+welfare is indeed EF1 in
+the corresponding instance.

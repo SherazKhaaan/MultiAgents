@@ -1,0 +1,485 @@
+00:00:00,730 --> 00:00:03,270
+Hello, and welcome
+to Cooperation,
+00:00:03,270 --> 00:00:05,330
+Coordination, and
+Multi-Agent Systems.
+00:00:05,950 --> 00:00:09,690
+In the standard game of
+Prisoner's Dilemma, mutual
+00:00:09,690 --> 00:00:13,250
+cooperation would make both
+players better off, yet
+00:00:13,250 --> 00:00:17,570
+it fails to arise because
+each player can unilaterally
+00:00:17,570 --> 00:00:20,930
+deviate and there is no
+way to enforce promises.
+00:00:21,310 --> 00:00:24,450
+The key missing ingredient
+is the ability to
+00:00:24,450 --> 00:00:27,270
+commit credibly to a
+joint course of action.
+00:00:27,630 --> 00:00:31,990
+However, if players could
+write and enforce contracts
+00:00:32,130 --> 00:00:36,190
+specifying what each of
+them will do and how payoffs
+00:00:36,190 --> 00:00:39,630
+are shared, they could rule
+out the non-cooperative
+00:00:39,630 --> 00:00:43,090
+outcome and implement mutually
+beneficial agreements.
+00:00:43,250 --> 00:00:47,110
+Cooperative game theory
+is precisely the framework
+00:00:47,110 --> 00:00:50,030
+that obstructs away from
+the strategic details
+00:00:50,030 --> 00:00:54,050
+of how such agreements are
+reached and instead asks
+00:00:54,050 --> 00:00:58,110
+which coalitions can form,
+what total value they
+00:00:58,110 --> 00:01:01,690
+can generate, and how this
+value should be divided
+00:01:01,690 --> 00:01:04,430
+among the participants
+under various fairness
+00:01:04,430 --> 00:01:08,330
+and stability concepts,
+such as, as we shall see,
+00:01:08,330 --> 00:01:10,610
+the core or the sharply value.
+00:01:11,590 --> 00:01:15,190
+Cooperative or coalitional
+game theory shifts
+00:01:15,190 --> 00:01:17,810
+focus from the strategic
+interactions between
+00:01:17,810 --> 00:01:21,130
+individual agents to the
+collective actions and
+00:01:21,130 --> 00:01:24,170
+agreements that groups
+of agents can undertake.
+00:01:24,290 --> 00:01:28,330
+The central premise is
+that agents often have
+00:01:28,330 --> 00:01:32,030
+incentives to pool their
+efforts and resources. A
+00:01:32,030 --> 00:01:36,270
+merger may reduce costs,
+a joint venture may unlock
+00:01:36,270 --> 00:01:39,170
+new market opportunities,
+or a coalition in
+00:01:39,170 --> 00:01:42,870
+a voting body may secure
+a legislative majority.
+00:01:42,870 --> 00:01:43,910
+Crucially,
+00:01:44,050 --> 00:01:46,590
+because binding
+agreements are feasible,
+00:01:46,710 --> 00:01:49,610
+coalitions can commit
+to a coordinated plan
+00:01:49,610 --> 00:01:52,330
+and enforce it,
+eliminating the worry of
+00:01:52,330 --> 00:01:55,210
+individual defection that
+plagues non-corporative
+00:01:55,210 --> 00:01:58,730
+settings. The fundamental
+question becomes
+00:01:58,730 --> 00:02:02,450
+not what will each
+agent do independently,
+00:02:02,470 --> 00:02:06,870
+but rather which coalitions
+will form, what value or
+00:02:06,870 --> 00:02:10,230
+payoff they can collectively
+achieve, and how should the
+00:02:10,230 --> 00:02:14,570
+payoff be divided fairly
+among the members. This shift
+00:02:14,570 --> 00:02:17,930
+in perspective from individual
+players to groups of
+00:02:17,930 --> 00:02:21,590
+players and from unilateral
+action to coordinated
+00:02:21,590 --> 00:02:26,290
+commitment opens up a rich
+theory of coalition formation,
+00:02:26,530 --> 00:02:29,610
+value generation and
+fair distribution.
+00:02:30,630 --> 00:02:34,010
+The distinction between
+transferable utility
+00:02:34,010 --> 00:02:38,790
+TU and non-transferable
+utility NTU games
+00:02:38,790 --> 00:02:42,310
+reflects different
+assumptions about how value
+00:02:42,310 --> 00:02:45,550
+created by a coalition
+can be distributed.
+00:02:45,550 --> 00:02:49,250
+In TU games, the coalition
+first generates a
+00:02:49,250 --> 00:02:53,050
+total pot of payoff,
+say a joint profit or
+00:02:53,050 --> 00:02:56,730
+collective surplus, and
+then its members negotiate
+00:02:56,730 --> 00:03:00,370
+and agree on how to divide
+it among themselves.
+00:03:00,390 --> 00:03:04,190
+This divisibility assumption
+is natural in monetary
+00:03:04,190 --> 00:03:08,210
+contexts where side payments
+are feasible. A firm may
+00:03:08,210 --> 00:03:12,190
+share dividends, partners
+can split revenue, or a
+00:03:12,190 --> 00:03:15,710
+coalition can redistribute
+gains via cash transfers.
+00:03:15,710 --> 00:03:17,010
+In contrast,
+00:03:17,230 --> 00:03:21,190
+NTU games, model scenarios
+where individual payoffs
+00:03:21,190 --> 00:03:25,030
+are determined directly
+by the coalition's actions
+00:03:25,030 --> 00:03:28,990
+and cannot be freely
+redistributed. redistributed.
+00:03:28,990 --> 00:03:33,070
+For example, if a group
+of workers forms a union,
+00:03:33,070 --> 00:03:36,790
+the utility each member receives
+from working conditions,
+00:03:36,870 --> 00:03:40,830
+job security or wage
+schedules cannot always
+00:03:40,830 --> 00:03:44,050
+be perfectly transferred
+to another member. Or in a
+00:03:44,050 --> 00:03:47,570
+marriage, the emotional
+personal utility of one spouse
+00:03:47,570 --> 00:03:50,870
+cannot be converted
+into the other spouse's
+00:03:50,870 --> 00:03:54,910
+utility. The choice between
+TU and NTU fundamentally
+00:03:54,910 --> 00:03:58,910
+shapes which solution
+concepts such as core sharply
+00:03:58,910 --> 00:04:03,190
+value stable matchings
+apply and how fairness is
+00:04:03,190 --> 00:04:07,370
+interpreted. In TU games one
+typically asks how should
+00:04:07,370 --> 00:04:11,590
+soplers be split while in
+NTU games one asks what
+00:04:11,590 --> 00:04:15,430
+individual outcomes emerge
+from coalition formation.
+00:04:16,530 --> 00:04:20,330
+Coalitional games unfold
+in distinct phases.
+00:04:20,390 --> 00:04:24,150
+First, agents decide
+which coalitions to
+00:04:24,150 --> 00:04:27,350
+form. This is the
+coalition formation stage,
+00:04:27,610 --> 00:04:31,870
+where the partition of the
+player set into groups is
+00:04:31,870 --> 00:04:35,970
+determined. Once coalitions
+are in place, each coalition
+00:04:35,970 --> 00:04:39,250
+independently chooses an
+action or strategy. This is
+00:04:39,250 --> 00:04:42,830
+the action stage. The
+consequences of these choices
+00:04:42,830 --> 00:04:48,030
+differ sharply between TU and
+NTU settings. In NTU games,
+00:04:48,030 --> 00:04:51,970
+the actions taken by all
+coalitions jointly determine
+00:04:51,970 --> 00:04:55,610
+each individual's player's
+payoff directly. There is
+00:04:55,610 --> 00:04:59,190
+no further redistribution,
+so a player's utility is
+00:04:59,190 --> 00:05:02,410
+simply the outcome of the
+action their coalition took.
+00:05:02,510 --> 00:05:05,270
+In TU games, by contrast,
+00:05:05,450 --> 00:05:09,150
+the actions determine
+the total payoff or value
+00:05:09,150 --> 00:05:12,450
+that each coalition
+generates. This is sometimes
+00:05:12,450 --> 00:05:15,630
+called the coalition's
+characteristic function value.
+00:05:15,630 --> 00:05:19,530
+But generating value and
+receiving utility are
+00:05:19,530 --> 00:05:23,150
+two different things.
+Once a coalition knows its
+00:05:23,150 --> 00:05:26,810
+total payoff, its members
+must then negotiate and
+00:05:26,810 --> 00:05:30,290
+agree on a payoff division,
+the division stage.
+00:05:30,290 --> 00:05:34,210
+This third phase is where
+questions of fairness,
+00:05:34,210 --> 00:05:37,850
+stability and individual
+incentives become acute.
+00:05:37,850 --> 00:05:41,630
+A fair division rule, such
+as the Shapley value or
+00:05:41,630 --> 00:05:45,710
+the core, specifies which
+allocations of the joint
+00:05:45,710 --> 00:05:48,350
+payoff among coalition
+members are acceptable.
+00:05:48,370 --> 00:05:51,490
+Thus, the full dynamics
+involve coalition
+00:05:51,490 --> 00:05:54,910
+formation, collective
+action by coalitions,
+00:05:55,190 --> 00:05:59,130
+value generation in TU
+games, and finally payoff
+00:05:59,130 --> 00:06:02,570
+division, a multistage
+process that cooperative game
+00:06:02,570 --> 00:06:06,230
+theory seeks to analyze and
+prescribe solutions for.
+00:06:06,540 --> 00:06:09,530
+Consider a network of
+researchers spread across
+00:06:09,530 --> 00:06:12,970
+different universities who
+can form collaboration groups
+00:06:12,970 --> 00:06:16,670
+to write papers together.
+The quality and impact of
+00:06:16,670 --> 00:06:19,470
+the resulting paper
+depends critically on the
+00:06:19,470 --> 00:06:22,730
+composition of the team. A group
+of specialists in different
+00:06:22,730 --> 00:06:26,530
+subfields may produce
+groundbreaking work, while
+00:06:26,530 --> 00:06:29,370
+a less complementary group
+may produce incremental
+00:06:29,370 --> 00:06:33,750
+contributions. Once the paper
+is published, each author
+00:06:33,750 --> 00:06:36,650
+is rewarded by their
+home institution based on
+00:06:36,650 --> 00:06:40,370
+the paper's quality and
+their perceived contribution.
+00:06:40,370 --> 00:06:43,250
+These rewards take many forms.
+00:06:43,250 --> 00:06:45,590
+Promotion, salary bonuses,
+00:06:45,890 --> 00:06:48,730
+teaching load reductions,
+or even tangible
+00:06:48,730 --> 00:06:52,090
+perks like reserved
+parking spots.
+00:06:52,090 --> 00:06:56,930
+And they are institution
+-specific and non-transferable.
+00:06:56,930 --> 00:06:59,610
+A researcher cannot
+convert their university's
+00:06:59,610 --> 00:07:02,690
+offer of promotion into a
+cash payment to a collaborator
+00:07:02,690 --> 00:07:07,630
+or at another institution,
+nor can they trade
+00:07:07,630 --> 00:07:10,730
+their reduced teaching load
+for a colleague's bonus.
+00:07:10,870 --> 00:07:15,030
+Each author's payoff is
+thus determined by their own
+00:07:15,030 --> 00:07:18,610
+institution's reward
+policy applied to their own
+00:07:18,610 --> 00:07:23,850
+achievement, not by some
+negotiated division of a shared
+00:07:23,850 --> 00:07:28,270
+pool. This is the essence
+of NTU. The structure of the
+00:07:28,270 --> 00:07:32,090
+collaboration, who works
+with whom, and the quality it
+00:07:32,090 --> 00:07:36,390
+produces directly determine
+individual outcomes, with
+00:07:36,390 --> 00:07:39,990
+no opportunity for site payments
+or utility redistribution
+00:07:39,990 --> 00:07:43,350
+among team members. The
+core question in such
+00:07:43,350 --> 00:07:47,210
+settings is which coalitions
+will form, given that each
+00:07:47,210 --> 00:07:50,870
+member knows exactly what
+their individual payoff will
+00:07:50,870 --> 00:07:55,730
+be, and which collaboration
+structures are stable in
+00:07:55,730 --> 00:07:59,690
+the sense that no subgroup
+would prefer to break away.
+00:08:00,990 --> 00:08:04,630
+Consider a group of farmers
+who can form cooperatives
+00:08:04,630 --> 00:08:07,890
+to collectively grow and
+sell fruit. A coalition
+00:08:07,890 --> 00:08:12,450
+of K farmers can choose to
+grow apples or oranges and
+00:08:12,450 --> 00:08:15,930
+the total yield depends
+on coalition size. They
+00:08:15,930 --> 00:08:20,730
+produce F of K tons of apple
+or G of K tons of oranges.
+00:08:20,850 --> 00:08:23,850
+Once the fruit is harvested
+and brought to market,
+00:08:23,850 --> 00:08:27,090
+prices are determined by
+market supply and demand.
+00:08:27,090 --> 00:08:31,110
+If there are X total
+tons of apples across all
+00:08:31,110 --> 00:08:35,270
+coalitions, the price per
+ton is P of x and similarly
+00:08:35,270 --> 00:08:40,910
+q of y for oranges when
+y tone are supplied. The
+00:08:40,910 --> 00:08:43,430
+profit of any given
+coalition is then determined
+00:08:43,430 --> 00:08:46,990
+by its production choice,
+the resulting quantity,
+00:08:46,990 --> 00:08:51,090
+and the market clearing
+prices. So a coalition might
+00:08:51,090 --> 00:08:56,230
+earn revenue p of x
+multiplied by f of k if it
+00:08:56,230 --> 00:09:02,130
+grows apples or q of y
+multiply by g of k if it grows
+00:09:02,130 --> 00:09:07,150
+oranges, minus any
+production costs. Crucially,
+00:09:07,290 --> 00:09:10,730
+this total payoff is a
+single number, a monetary
+00:09:10,730 --> 00:09:13,650
+payoff that the coalition
+has generated collectively
+00:09:13,650 --> 00:09:17,830
+and now must distribute
+among its members. Unlike the
+00:09:17,830 --> 00:09:21,330
+academic example, here
+the value is transferable.
+00:09:21,330 --> 00:09:24,950
+The coalition can negotiate
+how to split the profits
+00:09:24,950 --> 00:09:28,470
+using side payments,
+bonuses, or share agreements.
+00:09:29,130 --> 00:09:32,830
+One coalition might
+decide to split
+00:09:32,830 --> 00:09:36,290
+profits equally,
+another might reward the
+00:09:36,290 --> 00:09:38,750
+most productive farmers
+more generously,
+00:09:38,870 --> 00:09:41,390
+and a third might
+allocate shares
+00:09:41,390 --> 00:09:43,590
+based on initial investment.
+00:09:43,710 --> 00:09:47,990
+The core cooperative game
+question is which coalitions
+00:09:47,990 --> 00:09:50,750
+will actually form,
+given that members can
+00:09:50,750 --> 00:09:54,850
+freely negotiate pay-off
+divisions and which divisions
+00:09:54,850 --> 00:09:58,530
+are stable in the sense
+that no subgroup would
+00:09:58,530 --> 00:10:02,090
+choose to break away and
+form its own coalition.

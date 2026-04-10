@@ -1,0 +1,47 @@
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Describe the core concepts of stable matchings, including preference profiles, stability, and blocking pairs.
+
+Model real-world matching problems (e.g., college admissions, job markets, school choice) using formal mathematical frameworks.
+
+Apply algorithms such as Gale-Shapley to find stable matchings in bipartite settings.
+
+Analyse existence, uniqueness, and properties of stable matching solutions under different assumptions and settings.
+
+Evaluate the fairness and efficiency of matchings, and understand trade-offs between stability and other criteria.
+
+Identify strategic aspects and vulnerabilities in matching markets, such as incentives to misreport preferences.
+
+Solve computational and theoretical exercises involving construction and analysis of stable matchings.
+
+Interpret the applications and impact of stable matching theory in economics, computer science, and societal allocation problems.
+
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.
+
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Describe the core concepts of stable matchings, including preference profiles, stability, and blocking pairs.
+
+Model real-world matching problems (e.g., college admissions, job markets, school choice) using formal mathematical frameworks.
+
+Apply algorithms such as Gale-Shapley to find stable matchings in bipartite settings.
+
+Analyse existence, uniqueness, and properties of stable matching solutions under different assumptions and settings.
+
+Evaluate the fairness and efficiency of matchings, and understand trade-offs between stability and other criteria.
+
+Identify strategic aspects and vulnerabilities in matching markets, such as incentives to misreport preferences.
+
+Solve computational and theoretical exercises involving construction and analysis of stable matchings.
+
+Interpret the applications and impact of stable matching theory in economics, computer science, and societal allocation problems.
+
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.

@@ -1,0 +1,207 @@
+00:00:01,020 --> 00:00:03,620
+Hello and welcome
+to Cooperation,
+00:00:03,620 --> 00:00:05,860
+Coordination and
+Multi-Agent Systems.
+00:00:06,510 --> 00:00:09,780
+So far, we assumed that
+a game is represented
+00:00:09,780 --> 00:00:13,080
+in normal form,
+effectively as a big table.
+00:00:13,080 --> 00:00:15,680
+Such representation
+is conceptually
+00:00:15,680 --> 00:00:17,880
+straightforward and universal.
+00:00:17,880 --> 00:00:21,040
+While many other representations
+exist to describe
+00:00:21,040 --> 00:00:25,520
+finite games, each of them
+has an induced normal form,
+00:00:25,520 --> 00:00:28,360
+a corresponding normal
+form representation that
+00:00:28,360 --> 00:00:32,040
+preserves game-theoretic
+properties of the game, such as
+00:00:32,040 --> 00:00:36,220
+Nash Equilibria. This week
+we introduce an alternative
+00:00:36,220 --> 00:00:40,500
+finite representation called
+extensive form that does
+00:00:40,500 --> 00:00:43,760
+not always assume that
+players act simultaneously.
+00:00:43,940 --> 00:00:46,980
+This representation is
+in general exponentially
+00:00:46,980 --> 00:00:51,160
+smaller than its induced
+normal form and furthermore
+00:00:51,160 --> 00:00:54,960
+can be much more natural
+to reason about. While the
+00:00:54,960 --> 00:00:57,720
+Nash Equilibria of an
+extensive form game can be
+00:00:57,720 --> 00:01:01,320
+found through its induced
+normal form, there could
+00:01:01,320 --> 00:01:04,860
+be some computational
+benefits if we work with the
+00:01:04,860 --> 00:01:08,740
+extensive form directly.
+Moreover, there are other
+00:01:08,740 --> 00:01:11,400
+solution concepts which
+explicitly refer to the
+00:01:11,400 --> 00:01:14,380
+sequence in which players
+act and which are therefore
+00:01:14,380 --> 00:01:17,440
+not meaningful when applied
+to normal form games.
+00:01:17,880 --> 00:01:21,080
+Extensive form games are
+widely used in artificial
+00:01:21,080 --> 00:01:25,280
+intelligence in multi-agent
+systems to model situations
+00:01:25,280 --> 00:01:28,120
+which involve sequential
+decision-making,
+00:01:28,120 --> 00:01:31,660
+strategic interaction over
+time, and the handling of
+00:01:31,660 --> 00:01:35,680
+imperfect or incomplete
+information in the game. These
+00:01:35,680 --> 00:01:39,220
+representations, often
+visualized as game trees,
+00:01:39,360 --> 00:01:44,840
+are especially important
+where agent choices, the order
+00:01:44,840 --> 00:01:48,380
+of moves, observations, and
+payoffs unfold dynamically
+00:01:48,380 --> 00:01:52,380
+during interaction. In
+sequential decision-making,
+00:01:52,720 --> 00:01:56,040
+extensive form games serve
+as the foundation for
+00:01:56,040 --> 00:01:59,720
+algorithms used in classic
+AI problems such as computer
+00:01:59,720 --> 00:02:03,360
+chess and Go, where the
+sequential nature of moves
+00:02:03,360 --> 00:02:05,960
+and branching possibilities
+are modeled explicitly.
+00:02:05,960 --> 00:02:09,820
+In planning and search,
+AI uses game-tree search
+00:02:09,820 --> 00:02:13,160
+algorithms such as minimax
+and alphabeta pruning, which
+00:02:13,160 --> 00:02:15,840
+are derived from extensive
+form representations to
+00:02:15,840 --> 00:02:20,160
+optimize policy selection
+in adversarial domains. In
+00:02:20,160 --> 00:02:23,780
+learning and strategy optimization,
+techniques like extensive
+00:02:23,780 --> 00:02:27,980
+form fictitious self-play
+and reinforcement learning
+00:02:27,980 --> 00:02:31,560
+leverage game trees to
+learn optimal strategies,
+00:02:31,560 --> 00:02:33,340
+especially in environments with
+00:02:33,340 --> 00:02:35,560
+imperfect information,
+such as poker.
+00:02:35,680 --> 00:02:37,840
+In automated negotiation,
+00:02:38,040 --> 00:02:40,860
+modular negotiation
+protocols as extensive form
+00:02:40,860 --> 00:02:44,720
+games helps AI design
+agents that engage in
+00:02:44,720 --> 00:02:47,580
+multi-stage strategic
+interaction with partners,
+00:02:47,580 --> 00:02:50,000
+which include bluffing
+and information
+00:02:50,000 --> 00:02:53,940
+revelation. In multi-agent
+reinforcement learning,
+00:02:54,120 --> 00:02:57,020
+extensive form games
+model how multiple agents
+00:02:57,020 --> 00:03:00,240
+interact over time, where
+each makes decisions
+00:03:00,240 --> 00:03:03,120
+based on their private
+and shared histories.
+00:03:03,120 --> 00:03:06,680
+This enables truthful
+modeling of sequential stage
+00:03:06,680 --> 00:03:10,560
+-dependent strategies and
+coordination problems. In
+00:03:10,560 --> 00:03:13,860
+allocation of resources
+and auctions, sequential
+00:03:13,860 --> 00:03:18,240
+auctions where bids are
+placed in turn are naturally
+00:03:18,240 --> 00:03:21,400
+described as extensive
+form games to capture each
+00:03:21,400 --> 00:03:25,180
+agent's information and
+tactical decisions. In
+00:03:25,180 --> 00:03:28,700
+security and defense, in
+patrolling and adversarial
+00:03:28,700 --> 00:03:32,200
+scenarios such as robot
+patrolling or cyber security,
+00:03:32,360 --> 00:03:35,860
+agents decide on sequential
+actions to maximize
+00:03:35,860 --> 00:03:39,460
+system utility, which is
+often analyzed through
+00:03:39,460 --> 00:03:42,860
+extensive form representations,
+such as, for example,
+00:03:42,860 --> 00:03:45,720
+Steckelberg games. In
+imperfect information
+00:03:45,720 --> 00:03:50,820
+games, many multi-agent
+robotic or AI systems feature
+00:03:50,820 --> 00:03:53,680
+partial observability,
+which is modeled as
+00:03:53,680 --> 00:03:57,380
+extensive form games with
+information sets representing
+00:03:57,380 --> 00:04:00,940
+agents' uncertainty at
+each decision point.

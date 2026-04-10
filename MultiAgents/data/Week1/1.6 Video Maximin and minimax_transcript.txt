@@ -1,0 +1,531 @@
+00:00:01,660 --> 00:00:05,420
+The concept of Nash
+Equilibrium assumes that each
+00:00:05,420 --> 00:00:08,960
+agent cares about their
+own utility function
+00:00:08,960 --> 00:00:12,580
+and optimizes against
+the play of other agents.
+00:00:12,780 --> 00:00:17,540
+There are other solution
+concepts that assume
+00:00:17,540 --> 00:00:23,200
+that agents may want to
+punish each other in the
+00:00:23,200 --> 00:00:26,220
+game and forget about
+their own utility functions
+00:00:26,220 --> 00:00:28,980
+and only want to keep
+at minimum the payoff
+00:00:28,980 --> 00:00:32,920
+for the other player. And
+as a reaction to that,
+00:00:32,920 --> 00:00:37,220
+that player may be
+pessimistic and expect such
+00:00:37,220 --> 00:00:41,140
+behavior and optimize
+their payoff against the
+00:00:41,140 --> 00:00:45,880
+worst case possible
+behavior of the other agent.
+00:00:46,440 --> 00:00:49,320
+So this gives rise
+to solution concepts
+00:00:49,320 --> 00:00:53,660
+called Maximin and
+Minimax strategies,
+00:00:53,660 --> 00:00:56,800
+which we are going
+to introduce now.
+00:00:57,660 --> 00:01:02,280
+The maximine, or in other
+words, safety level strategy
+00:01:02,280 --> 00:01:05,580
+for player I in a normal
+form game would be a
+00:01:05,580 --> 00:01:10,540
+strategy that maximizes the
+worst case payoff for player
+00:01:10,540 --> 00:01:13,820
+I in the situation where
+all the other players
+00:01:13,820 --> 00:01:17,820
+happen to play the strategies
+that cause the greatest
+00:01:17,820 --> 00:01:21,640
+harm to player I. So we look
+at the utility of player
+00:01:21,640 --> 00:01:26,240
+I from playing strategy
+SI against the strategy S
+00:01:26,240 --> 00:01:32,340
+-I, where S-I is chosen by
+the opponents of ISO as to
+00:01:32,340 --> 00:01:37,920
+minimize their payoff, and
+then we choose our strategy
+00:01:37,920 --> 00:01:44,040
+SI so that to maximize
+this minimum. The maximin
+00:01:44,040 --> 00:01:47,060
+or safety level value of
+the game for player I would
+00:01:47,060 --> 00:01:51,300
+be that minimum amount of
+payoff that player I can
+00:01:51,300 --> 00:01:55,280
+guarantee themselves by
+playing a maximin strategy.
+00:01:55,780 --> 00:01:59,540
+And such a strategy is
+not necessarily unique in
+00:01:59,540 --> 00:02:02,640
+the game. There may be a
+few of them, and we can
+00:02:02,640 --> 00:02:08,160
+define safety level in
+pure strategies, but in
+00:02:08,160 --> 00:02:12,220
+general we shall look at
+mixed strategies here.
+00:02:12,220 --> 00:02:16,780
+The intuition behind maxi
+-mean is the following, so
+00:02:16,780 --> 00:02:21,520
+we assume that player i
+must commit to a possibly
+00:02:21,520 --> 00:02:25,900
+mixed strategy and then the
+remaining agents minus i
+00:02:25,900 --> 00:02:28,660
+would observe this strategy
+and choose their own
+00:02:28,660 --> 00:02:33,580
+strategies to minimize the
+expected payoff to player i.
+00:02:33,580 --> 00:02:37,240
+And the maxi-mean strategy
+for player i would be the
+00:02:37,240 --> 00:02:41,520
+best choice that they can
+make in such a situation.
+00:02:41,640 --> 00:02:46,770
+Let's look again at the
+prisoner's dilemma and focus
+00:02:46,770 --> 00:02:52,200
+on pure strategies for
+simplicity right now. So if we
+00:02:52,200 --> 00:02:56,300
+are a raw player and we
+commit to playing cooperate,
+00:02:57,000 --> 00:03:00,520
+then being pessimistic,
+we assume that the other
+00:03:00,520 --> 00:03:05,060
+player would choose a
+strategy so that our payoff
+00:03:05,060 --> 00:03:08,580
+is minimized. So they
+look at our utility, it's
+00:03:08,580 --> 00:03:12,320
+minus 10 if they defect, and
+minus 1 if they cooperate,
+00:03:12,320 --> 00:03:16,400
+so they choose defect
+to minimize our payoff.
+00:03:16,400 --> 00:03:20,400
+If we commit to defect,
+then again they will choose
+00:03:20,400 --> 00:03:24,720
+their strategy, so to
+minimize our payoff, so
+00:03:24,720 --> 00:03:28,160
+they will choose defect
+once again, because we
+00:03:28,160 --> 00:03:33,120
+will get minus 5 against
+0 if they play cooperate.
+00:03:33,380 --> 00:03:37,180
+So now we want to choose
+our strategy that will
+00:03:37,180 --> 00:03:40,240
+maximize this minimum
+payoff. So we compare
+00:03:40,240 --> 00:03:45,240
+minus 5 to minus 10.
+Minus 5 is greater than
+00:03:45,240 --> 00:03:49,480
+minus 10, so we choose
+defect as our safety level.
+00:03:49,480 --> 00:03:52,560
+And the game is
+symmetric, so defect would
+00:03:52,560 --> 00:03:54,860
+be also a safety level
+for the column player.
+00:03:55,380 --> 00:04:00,620
+The minimax strategy and
+minimax value play a dual role
+00:04:00,620 --> 00:04:04,520
+to the maximin in the game.
+In two players' games,
+00:04:04,520 --> 00:04:10,100
+the minimax strategy for player
+i against the other player
+00:04:10,100 --> 00:04:15,420
+minus i would be a strategy
+that keeps the payoff
+00:04:15,420 --> 00:04:20,900
+of player minus i at a minimum.
+So we look at the utility
+00:04:20,900 --> 00:04:25,980
+of player minus i here. So
+we assume that that player
+00:04:25,980 --> 00:04:29,460
+would maximize the utility
+by choosing strategy s
+00:04:29,460 --> 00:04:32,780
+minus i. And we want to punish
+them. And we want to keep
+00:04:32,780 --> 00:04:37,620
+their utility at minimum
+by playing our strategy SI.
+00:04:37,620 --> 00:04:41,760
+So this is indeed useful
+when we want to consider
+00:04:41,760 --> 00:04:45,320
+the amount that a
+player can punish the
+00:04:45,320 --> 00:04:49,420
+other player without
+regard to their own payoff
+00:04:49,420 --> 00:04:52,140
+in the game. And such
+punishment can arise in
+00:04:52,140 --> 00:04:58,040
+repeated games where
+reputation matters. We shall
+00:04:58,040 --> 00:05:00,220
+look at these games in
+the following weeks.
+00:05:04,140 --> 00:05:08,460
+In n-player games, where
+n the number of players
+00:05:08,460 --> 00:05:13,220
+is greater than 2, defining
+the minimax strategy
+00:05:13,220 --> 00:05:16,480
+of player i is a little
+bit more complicated.
+00:05:16,640 --> 00:05:21,680
+This is because player i
+will not usually be able to
+00:05:21,680 --> 00:05:25,500
+guarantee that the other
+player j achieves their
+00:05:25,500 --> 00:05:29,420
+minimum payoff by acting
+unilaterally, by acting alone.
+00:05:30,140 --> 00:05:33,660
+However, we can assume
+that all the players,
+00:05:33,660 --> 00:05:37,400
+other than player j,
+choose to gang up on j,
+00:05:37,400 --> 00:05:41,160
+and then we can define
+the minimax strategies
+00:05:41,160 --> 00:05:44,620
+for the end player case.
+Of course, we would
+00:05:45,280 --> 00:05:50,240
+need to assume that
+players minus j are able
+00:05:50,240 --> 00:05:54,700
+to coordinate
+appropriately when there is
+00:05:54,700 --> 00:05:57,040
+more than one strategy
+profile that would
+00:05:57,040 --> 00:06:01,240
+yield the same minimal
+payoff for player j.
+00:06:02,500 --> 00:06:07,660
+So in an n-player game,
+the minimax strategy
+00:06:07,660 --> 00:06:11,320
+for player i against
+another player j
+00:06:11,520 --> 00:06:17,280
+would be the ice component
+in the mixed strategy
+00:06:17,280 --> 00:06:20,000
+profile s minus j
+in the following
+00:06:20,000 --> 00:06:24,820
+expression. So we look at
+the utility of player J,
+00:06:25,240 --> 00:06:25,920
+right?
+00:06:25,920 --> 00:06:28,900
+We assume that player
+J would maximize
+00:06:28,900 --> 00:06:32,620
+their utility by
+choosing strategy S-J,
+00:06:32,620 --> 00:06:37,860
+and we choose our strategy
+S-J, the joint strategy
+00:06:37,860 --> 00:06:43,400
+for all the players but
+player J, to minimize their
+00:06:43,880 --> 00:06:49,060
+utility U-J. And then the
+strategy for each player I
+00:06:49,060 --> 00:06:52,900
+would be the I's component
+in this joint strategy.
+00:06:53,180 --> 00:06:58,460
+And the minimax value
+would be for player J is
+00:06:58,460 --> 00:07:05,800
+this minimum maximum
+payoff that they can get in
+00:07:05,800 --> 00:07:10,640
+such a situation. So the
+intuition here is that
+00:07:10,640 --> 00:07:16,140
+agents minus j must commit
+now to a possibly mixed
+00:07:16,140 --> 00:07:22,140
+strategy profile, that
+they play against player j
+00:07:22,140 --> 00:07:26,700
+to punish player j, and
+player j then play their
+00:07:26,700 --> 00:07:30,100
+best response to this
+strategy. Now, player j
+00:07:30,100 --> 00:07:34,900
+receives their minimax value
+if players minus j choose
+00:07:34,900 --> 00:07:37,780
+their strategies in order
+to minimax the expected
+00:07:37,780 --> 00:07:42,120
+utility after they play
+their best response.
+00:07:43,160 --> 00:07:48,220
+In two-player games, a
+player's minimax value
+00:07:48,220 --> 00:07:53,320
+is always equal to their
+maximin value if we
+00:07:53,320 --> 00:07:57,140
+look at the mixed
+strategies. For games with
+00:07:57,140 --> 00:07:59,940
+more than two players, a
+weaker condition holds.
+00:07:59,940 --> 00:08:04,560
+The maximin value of a
+player would be always
+00:08:04,560 --> 00:08:08,820
+less than or equal to
+their minimax value.
+00:08:09,270 --> 00:08:12,660
+Now, since neither an
+agent's maximin strategy
+00:08:12,660 --> 00:08:15,480
+nor their minimax
+strategy depend on the
+00:08:15,480 --> 00:08:18,420
+strategies that the other
+agents actually choose,
+00:08:18,420 --> 00:08:22,740
+the Maximin and Minimax
+strategies give rise
+00:08:22,740 --> 00:08:26,020
+to solution concepts in
+a straightforward way.
+00:08:26,020 --> 00:08:30,920
+So we will call a mixed
+strategy profile S of
+00:08:30,920 --> 00:08:35,120
+all the agents a Maximin
+strategy profile of
+00:08:35,120 --> 00:08:41,220
+a given game if S1 is
+a Maximin strategy for
+00:08:41,220 --> 00:08:44,680
+player 1, S2 is a Maximin
+strategy for player
+00:08:44,680 --> 00:08:48,840
+2, and so on. For two
+-player games, we can also
+00:08:48,840 --> 00:08:52,620
+define minimax strategy
+in an analogous way.
+00:08:53,260 --> 00:08:57,880
+We shall now consider a
+special class of games where
+00:08:57,880 --> 00:09:01,040
+the connection between
+minimax and maximin strategy
+00:09:01,040 --> 00:09:06,500
+profiles is very tight and
+also linked to the concept of
+00:09:06,500 --> 00:09:11,480
+Nash equilibrium. We say
+that a two-player normoform
+00:09:11,480 --> 00:09:15,860
+game is constant sum if
+there exists some constant C,
+00:09:15,860 --> 00:09:22,800
+such that for every strategy
+profile of the strategies
+00:09:22,800 --> 00:09:27,660
+of the two players, the sum
+of utilities for the two
+00:09:27,660 --> 00:09:32,360
+players is equal to this
+constant. And in particular,
+00:09:32,540 --> 00:09:36,720
+for this constant equals
+zero, we would call
+00:09:36,720 --> 00:09:42,040
+such a game a zero-sum.
+In a zero-sum game, as we
+00:09:42,040 --> 00:09:45,260
+said, the sum of utilities
+of the two players
+00:09:45,260 --> 00:09:50,260
+equals zero, so one of
+the players gets a utility
+00:09:50,260 --> 00:09:54,520
+which is the negative
+of the utility of the
+00:09:54,520 --> 00:09:57,640
+other players. So this
+is a pure conflict game.
+00:10:00,260 --> 00:10:02,140
+And for zero-sum games, we
+00:10:02,140 --> 00:10:03,480
+have the following theorem.
+00:10:03,480 --> 00:10:07,540
+So for any finite two
+-player zero-sum game,
+00:10:07,540 --> 00:10:11,140
+the maximum value of the
+minimum expected gain
+00:10:11,140 --> 00:10:14,940
+for one player would
+be equal to the minimum
+00:10:14,940 --> 00:10:17,860
+value of the maximum
+expected loss for the
+00:10:17,860 --> 00:10:21,640
+other player. So maxi
+mean equals to minimax.
+00:10:21,640 --> 00:10:24,320
+Moreover, each
+player has a mixed
+00:10:24,320 --> 00:10:27,760
+strategy which
+realizes this equality.
+00:10:28,720 --> 00:10:32,500
+So by the minimax
+theorem, each player's
+00:10:32,500 --> 00:10:37,040
+maximin value is equal
+to the minimax value. And
+00:10:37,040 --> 00:10:39,640
+by convention, we
+would call the value of
+00:10:39,640 --> 00:10:43,380
+the game by the maximin
+value for player one.
+00:10:43,420 --> 00:10:48,300
+For both players, the set
+of maximin strategies would
+00:10:48,300 --> 00:10:51,300
+coincide also with the
+set of minimax strategies.
+00:10:51,300 --> 00:10:55,880
+and any maximin strategy
+profile or equivalently
+00:10:55,880 --> 00:10:59,060
+minimax strategy profile
+would be a Nash equilibrium.
+00:10:59,160 --> 00:11:02,920
+Furthermore, these are
+all the Nash equilibria
+00:11:02,920 --> 00:11:06,880
+of this game. So all Nash
+equilibria have the same
+00:11:06,880 --> 00:11:11,740
+payoff vector in zero
+-sum games, namely the one
+00:11:11,740 --> 00:11:14,980
+in which player one gets
+the value of the game.
+00:11:15,660 --> 00:11:20,280
+Let's get back to our
+example of matching pennies.
+00:11:21,100 --> 00:11:24,260
+The value of the game
+here is zero, and this
+00:11:24,260 --> 00:11:27,160
+is because the unique
+Nash equilibrium here
+00:11:27,160 --> 00:11:31,420
+consists of both players
+randomizing between
+00:11:31,420 --> 00:11:33,720
+heads and tails with
+equal probability,
+00:11:33,720 --> 00:11:38,560
+which is both the Maximin
+strategy and the Minimax
+00:11:38,560 --> 00:11:41,720
+strategy for each player
+here by the Minimax theorem.
+00:11:43,240 --> 00:11:47,800
+And Minimax theorem allows
+us to compute Maximin
+00:11:47,800 --> 00:11:51,180
+and Minimax strategy for
+general sum to play a game.
+00:11:51,180 --> 00:11:55,850
+given the solution for
+zero-sum games because the
+00:11:56,390 --> 00:12:01,260
+maximum strategy for player
+i depends only on i utilities
+00:12:01,260 --> 00:12:05,660
+in the game, right? So we
+can change the utility of
+00:12:05,660 --> 00:12:13,600
+the other player minus i
+player without changing the i's
+00:12:13,600 --> 00:12:18,080
+maximum strategy. So we
+can define a zero-sum game
+00:12:18,080 --> 00:12:23,400
+where the utility of the
+second player minus i are the
+00:12:23,400 --> 00:12:27,740
+negatives of the utility
+of player i in the game and
+00:12:27,740 --> 00:12:32,240
+solve as for the zero-sum
+game for the Nash equilibrium
+00:12:32,240 --> 00:12:37,020
+and by doing this to get
+the maximum strategies and
+00:12:37,020 --> 00:12:40,700
+similarly solve for the
+minimax strategies in the game.

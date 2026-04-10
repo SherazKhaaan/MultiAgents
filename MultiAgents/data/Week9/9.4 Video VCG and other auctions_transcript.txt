@@ -1,0 +1,830 @@
+00:00:01,210 --> 00:00:05,150
+Now let us consider some
+other types of auctions,
+00:00:05,150 --> 00:00:09,290
+other types of mechanisms
+and the first one is a
+00:00:09,290 --> 00:00:15,230
+reverse auction where we
+swap buyers with sellers.
+00:00:15,230 --> 00:00:19,410
+So here we have one
+buyer who accepts bids
+00:00:19,410 --> 00:00:23,460
+from multiple sellers.
+So this is what occurs
+00:00:23,460 --> 00:00:27,370
+when a buyer engages
+in a request for
+00:00:27,370 --> 00:00:30,750
+quote for instance from
+insurance companies.
+00:00:30,910 --> 00:00:34,730
+Reverse auctions are
+simply auctions where we
+00:00:34,730 --> 00:00:38,290
+substitute the word
+seller for buyer and vice
+00:00:38,290 --> 00:00:42,450
+versa and furthermore we
+also need to negate all
+00:00:42,450 --> 00:00:47,010
+the numbers that indicate
+prices or bid amounts.
+00:00:47,370 --> 00:00:50,850
+Another auction variation
+also with a single good
+00:00:50,850 --> 00:00:55,410
+is an auction with uncertain
+number of bidders where
+00:00:55,410 --> 00:00:59,870
+the bidders don't know for
+sure how many competitors
+00:00:59,870 --> 00:01:04,130
+they're going to face in
+the auction. Often this
+00:01:04,130 --> 00:01:07,850
+is the case in sealed bid
+auctions or in auctions
+00:01:07,850 --> 00:01:11,830
+which are held over the
+internet and can also occur
+00:01:11,830 --> 00:01:16,230
+when there is an entry
+cost for participation in
+00:01:16,230 --> 00:01:21,230
+auction so some agents may
+decide to stay away and
+00:01:21,230 --> 00:01:24,970
+we do not know how many
+will decide to participate.
+00:01:25,230 --> 00:01:29,470
+So this type of auctions
+where the bidders have to pay
+00:01:29,470 --> 00:01:33,990
+a cost for participation is
+called auctions with entry
+00:01:33,990 --> 00:01:37,610
+costs and these entry
+costs can have different
+00:01:37,610 --> 00:01:42,910
+interpretations. So this may
+be the cost for researching an
+00:01:42,910 --> 00:01:48,370
+auction or driving or
+navigating a web browser or just
+00:01:48,370 --> 00:01:53,870
+spending the time to bid in
+an auction and an equilibrium
+00:01:53,870 --> 00:01:58,910
+analysis in such protocols
+may be much more complex
+00:01:58,910 --> 00:02:04,290
+imagine that a first price
+auction costs one pound to
+00:02:04,290 --> 00:02:09,350
+attend now how should
+bidders decide whether or not
+00:02:09,350 --> 00:02:14,390
+to attend the auction and then
+And if they do, how should
+00:02:14,390 --> 00:02:18,790
+they decide to bid, given
+that they are no longer
+00:02:18,790 --> 00:02:23,870
+sure how many other bidders
+will have chosen to attend.
+00:02:24,010 --> 00:02:28,070
+Things are much easier in
+such auctions for second
+00:02:28,070 --> 00:02:32,770
+price or English auctions,
+because to decide whether to
+00:02:32,770 --> 00:02:36,090
+participate, bidders only
+need to evaluate their
+00:02:36,090 --> 00:02:40,670
+expected gain from participation.
+This means that the
+00:02:40,670 --> 00:02:44,470
+equilibrium strategy in these
+auctions does now depend
+00:02:44,470 --> 00:02:48,390
+on the distribution of other
+agents' valuations and on
+00:02:48,390 --> 00:02:52,210
+the number of these agents.
+But the good news is that
+00:02:52,210 --> 00:02:57,430
+once they have decided to
+bid, it remains an equilibrium
+00:02:57,430 --> 00:03:01,570
+for bidders to bid
+truthfully. In first price
+00:03:01,570 --> 00:03:05,590
+auctions and generally in
+other auctions that do not have
+00:03:05,590 --> 00:03:08,770
+a dominant strategy
+equilibrium like second price,
+00:03:09,230 --> 00:03:14,530
+auctions with entry costs
+are harder to analyze. And
+00:03:14,530 --> 00:03:19,040
+the complication stems from
+the fact that a bidder doesn't
+00:03:19,040 --> 00:03:23,670
+know for sure what are the
+other agents' valuations,
+00:03:23,670 --> 00:03:27,310
+and hence they're also
+uncertain about the number of
+00:03:27,310 --> 00:03:30,710
+agents who will decide to
+participate in the auction.
+00:03:30,710 --> 00:03:35,840
+And since an agent's
+equilibrium strategy, given that
+00:03:35,840 --> 00:03:39,690
+they have chosen to
+participate, would depend on the
+00:03:39,690 --> 00:03:42,750
+number of other participants,
+the equilibrium strategy
+00:03:42,750 --> 00:03:46,670
+is more complicated to
+compute now. And that in turn
+00:03:46,670 --> 00:03:51,650
+makes it more difficult to
+determine the agent's expected
+00:03:51,650 --> 00:03:54,850
+gain from entering the
+auction in the first place.
+00:03:55,170 --> 00:03:59,110
+Now, single-good
+auctions are the simplest
+00:03:59,110 --> 00:04:02,030
+model of auctions.
+In practice, though,
+00:04:02,280 --> 00:04:04,830
+often there will be
+more than one good
+00:04:04,830 --> 00:04:07,010
+to allocate, and
+different goods
+00:04:07,010 --> 00:04:09,910
+may end up going to
+different bidders.
+00:04:09,910 --> 00:04:16,270
+In multi-unit auctions,
+we have one kind of good,
+00:04:16,270 --> 00:04:18,590
+one type of good, but
+there are multiple
+00:04:18,590 --> 00:04:22,870
+identical copies of that
+good. For instance, we can
+00:04:22,870 --> 00:04:26,570
+think of new cars, tickets
+to a concert, music
+00:04:26,570 --> 00:04:30,350
+downloads or shares of
+stock in the same company.
+00:04:30,890 --> 00:04:34,990
+Now, sealed bid auctions
+in multi-unit settings
+00:04:34,990 --> 00:04:40,230
+differ from their single
+unit analogues in a few ways.
+00:04:40,410 --> 00:04:45,710
+First is the payment
+rules. If, for example,
+00:04:45,710 --> 00:04:47,730
+there are three items
+for sale and each
+00:04:47,730 --> 00:04:52,650
+of the top three bids
+requests a single unit,
+00:04:52,650 --> 00:04:55,990
+then each bid will
+win one good, however,
+00:04:56,390 --> 00:05:00,630
+how much each bidder
+should pay for the item
+00:05:00,630 --> 00:05:05,690
+they received. And there
+are two common schemes.
+00:05:05,690 --> 00:05:07,690
+The first one is called the
+00:05:07,690 --> 00:05:09,970
+discriminatory
+pricing rule. rule.
+00:05:10,350 --> 00:05:13,670
+This is where each
+of the three top
+00:05:13,670 --> 00:05:15,510
+bidders would pay
+a different amount
+00:05:15,510 --> 00:05:18,290
+and usually it would
+be their own bid.
+00:05:18,730 --> 00:05:23,450
+And another rule is the
+uniform pricing rule where
+00:05:23,450 --> 00:05:27,170
+all winners would pay
+the same amount and this
+00:05:27,170 --> 00:05:30,690
+usually would be either
+the highest among the
+00:05:30,690 --> 00:05:34,630
+losing bids or the lowest
+among the winning bids.
+00:05:34,990 --> 00:05:37,610
+The second difference is that
+00:05:37,610 --> 00:05:40,730
+instead of placing
+a single bid,
+00:05:40,850 --> 00:05:43,810
+bidders generally have
+to provide a price offer
+00:05:43,810 --> 00:05:47,330
+for every number of units
+they want to receive.
+00:05:47,330 --> 00:05:52,870
+If a bidder simply names
+a number of units and is
+00:05:52,870 --> 00:05:57,010
+unwilling to accept any fewer,
+we would say that they place
+00:05:57,010 --> 00:06:01,810
+an all or nothing bid. And
+if they name one number
+00:06:01,810 --> 00:06:05,650
+of units but would accept
+any smaller number of the
+00:06:05,650 --> 00:06:10,950
+same price per unit, we would
+call their bid divisible.
+00:06:11,370 --> 00:06:15,910
+For English auctions
+with multiple units,
+00:06:15,910 --> 00:06:18,710
+the designers
+would face the same
+00:06:18,710 --> 00:06:21,790
+problems that we
+discussed above. However,
+00:06:22,090 --> 00:06:26,070
+since the bidders can
+revise their offers from
+00:06:26,070 --> 00:06:28,790
+one round to the next,
+these auctions would
+00:06:28,790 --> 00:06:31,630
+rarely ask bidders to
+specify more than one
+00:06:31,630 --> 00:06:35,310
+number of units along
+with their price offer.
+00:06:35,490 --> 00:06:40,290
+In multi-unit Dutch auctions,
+the seller would call
+00:06:40,290 --> 00:06:44,770
+out descending per unit
+prices and agents would need
+00:06:44,770 --> 00:06:48,450
+to augment their signals
+with the quantity that they
+00:06:48,450 --> 00:06:53,190
+wish to buy. And if there
+is not the entire available
+00:06:53,190 --> 00:06:57,310
+quantity, then the auction
+would continue and it
+00:06:57,310 --> 00:07:02,790
+may continue either from the
+current level of the price
+00:07:02,790 --> 00:07:08,210
+or the price can be reset
+to some percentage above
+00:07:08,210 --> 00:07:14,150
+the current price or even
+to the original high price.
+00:07:14,150 --> 00:07:21,870
+A special case of multi
+-unit auctions is the setting
+00:07:21,870 --> 00:07:27,450
+with single-unit demand,
+so we are given k identical
+00:07:27,450 --> 00:07:32,210
+goods for sale, but the
+bidders want only one unit
+00:07:32,210 --> 00:07:37,410
+each, so there is no point
+to buy many copies of the
+00:07:37,410 --> 00:07:41,510
+same item for them. And they
+have independent private
+00:07:41,510 --> 00:07:46,830
+values for these single
+units. Now in this case the
+00:07:46,830 --> 00:07:51,530
+second price auction
+generalizes to the K plus one
+00:07:51,530 --> 00:07:57,910
+price auction. This is the
+auction where we sell K
+00:07:57,910 --> 00:08:03,770
+goods to the K highest
+bidders for the same price and
+00:08:03,770 --> 00:08:08,610
+we set this price at the
+amount which is the highest
+00:08:08,610 --> 00:08:14,810
+losing bid. And the K plus
+one price auction, in turn,
+00:08:14,810 --> 00:08:18,090
+is a special case of a
+mechanism which is called
+00:08:18,090 --> 00:08:23,510
+the Vickrey-Clark-Groff's
+VCG mechanism, which is named
+00:08:23,510 --> 00:08:27,890
+by the researchers that
+developed this mechanism.
+00:08:27,890 --> 00:08:30,530
+And it applies to more general
+00:08:30,530 --> 00:08:32,850
+domains, such as
+combinatorial domains.
+00:08:32,870 --> 00:08:38,890
+We're going to define it
+in a minute. Now, what is
+00:08:38,890 --> 00:08:43,230
+good about this mechanism
+is that it is efficient and
+00:08:43,230 --> 00:08:48,070
+dominant strategy truthful,
+as well as we have seen
+00:08:48,070 --> 00:08:51,290
+that for the second price
+auction mechanism. So
+00:08:51,290 --> 00:08:56,430
+BCG works for general
+domains, it's efficient and
+00:08:56,430 --> 00:09:00,710
+dominant strategy truthful,
+the K plus one price auction
+00:09:00,710 --> 00:09:05,170
+is the special case of
+this mechanism for multi
+00:09:05,170 --> 00:09:12,230
+-unit, single unit demand
+auctions, and the second price
+00:09:12,230 --> 00:09:19,230
+auction is the single
+good auction special case.
+00:09:20,170 --> 00:09:24,050
+let us now consider
+the general scenario of
+00:09:24,050 --> 00:09:28,260
+combinatorial auctions so this
+is a broader auction setting
+00:09:28,260 --> 00:09:32,010
+where a whole variety
+of different goods are
+00:09:32,010 --> 00:09:36,050
+available in the same
+market and this differs from
+00:09:36,050 --> 00:09:39,630
+the multi-unit setting
+because we no longer assume
+00:09:39,630 --> 00:09:43,170
+that goods are of the
+same kind So they are
+00:09:43,170 --> 00:09:48,050
+interchangeable. Now the
+goods, we may like different
+00:09:48,050 --> 00:09:51,930
+combination of goods. For
+instance, I may want to have
+00:09:51,930 --> 00:09:57,390
+a pen and paper, but not
+pen or paper separately.
+00:09:57,430 --> 00:10:01,770
+So the key issue here is
+the bidder's valuations
+00:10:01,770 --> 00:10:07,170
+would strongly depend on which
+set of goods they receive.
+00:10:07,300 --> 00:10:10,510
+There are many examples
+of such auctions, for
+00:10:10,510 --> 00:10:13,670
+instance, governmental auctions
+for the electromagnetic
+00:10:13,670 --> 00:10:17,870
+spectrum, energy auctions
+or corporate procurement
+00:10:17,870 --> 00:10:22,890
+auctions, and auctions
+for paths, for instance,
+00:10:22,910 --> 00:10:27,150
+shipping rights or bandwidth
+in a network and so on.
+00:10:27,730 --> 00:10:34,950
+Formally, we have a set of
+nbdis n, and now instead
+00:10:34,950 --> 00:10:39,690
+of a single good, we
+have a set of items g, m
+00:10:39,690 --> 00:10:47,730
+items, and we have agent
+types θ1, θn, that belong
+00:10:47,730 --> 00:10:53,770
+to the space θ in the
+power of n of agent types.
+00:10:53,770 --> 00:11:01,210
+Now we have a valuation
+function that takes a
+00:11:01,210 --> 00:11:08,650
+subset of the goods and an
+agent type and given that
+00:11:08,650 --> 00:11:14,310
+it receives the value
+for that set of goods for
+00:11:14,310 --> 00:11:18,910
+the agent of a particular
+type. Now, a mechanism
+00:11:18,910 --> 00:11:24,970
+is a pair of functions,
+F and T, where F is the
+00:11:24,970 --> 00:11:28,150
+allocation function and T
+is the payment function.
+00:11:28,170 --> 00:11:34,510
+So the allocation function
+takes a combination of
+00:11:34,510 --> 00:11:42,150
+types and decides how to
+allocate the goods for
+00:11:42,150 --> 00:11:48,250
+the agents. So the allocation,
+the set of feasible
+00:11:48,250 --> 00:11:54,210
+allocations is a subset
+of the power set of the
+00:11:54,210 --> 00:11:57,930
+goods in the power fence,
+so each agent gets some
+00:11:57,930 --> 00:12:02,150
+subset, and we consider
+only feasible allocations
+00:12:02,150 --> 00:12:08,890
+where we, if we allocated
+some item A to agent 1,
+00:12:08,890 --> 00:12:12,330
+we cannot allocate it
+already to agent B. So we
+00:12:12,330 --> 00:12:16,650
+only consider allocations
+that can be implemented.
+00:12:17,690 --> 00:12:22,630
+T is the transfer function
+that indicates the payment
+00:12:22,630 --> 00:12:26,990
+that each agent would
+receive from the mechanism.
+00:12:26,990 --> 00:12:29,750
+So if this payment is
+negative, that means that the
+00:12:29,750 --> 00:12:36,090
+agent pays to the mechanism.
+And the utility of agent i
+00:12:36,090 --> 00:12:41,210
+from an allocation x would
+depend linearly on the
+00:12:41,210 --> 00:12:44,550
+transfer, and such a function
+is called quasi-linear, we
+00:12:44,550 --> 00:12:48,970
+already mentioned that earlier.
+So this is the following
+00:12:48,970 --> 00:12:53,370
+function, the utility of
+agent i from the allocation
+00:12:53,370 --> 00:13:00,530
+x and the transfer t when
+the type of agent i is theta
+00:13:00,530 --> 00:13:05,990
+i would be the value of
+the agent with type theta i
+00:13:05,990 --> 00:13:14,090
+for the allocation x plus the
+payment ti for that agent.
+00:13:14,090 --> 00:13:19,770
+So, or in other words, we
+can write minus the price
+00:13:19,770 --> 00:13:25,770
+that they pay to the
+mechanism, but we define it in
+00:13:25,770 --> 00:13:29,450
+terms of the transfers from
+the mechanism to the agent,
+00:13:29,450 --> 00:13:34,590
+and once again, this is
+negative if the agent pays to
+00:13:34,590 --> 00:13:40,850
+the mechanism. Now how is
+the VCG mechanism defined?
+00:13:40,850 --> 00:13:44,210
+Let us define the
+allocation function and
+00:13:44,210 --> 00:13:46,370
+the transfer function
+for this mechanism.
+00:13:46,890 --> 00:13:54,950
+So let theta i hat would
+denote the type that agent i
+00:13:54,950 --> 00:13:59,530
+reports to the mechanism
+and the allocation function
+00:13:59,530 --> 00:14:04,510
+of this mechanism is
+efficient. So, the allocation
+00:14:04,510 --> 00:14:11,390
+would be to maximize the
+sum of the agent valuations.
+00:14:11,390 --> 00:14:15,610
+So, we look at all possible
+allocation among the feasible
+00:14:15,610 --> 00:14:20,230
+allocations that we have,
+and we take the one that
+00:14:20,230 --> 00:14:27,690
+maximizes the sum of the
+agent valuations. Now, see
+00:14:27,690 --> 00:14:31,630
+that here we only look at
+the values of the agents,
+00:14:31,630 --> 00:14:38,070
+without yet the transfers
+that they're going to have
+00:14:38,070 --> 00:14:41,830
+so this is not the utility
+this is value of the agent
+00:14:41,830 --> 00:14:46,230
+and now the transfer function
+would pay each agent the
+00:14:46,230 --> 00:14:51,170
+amount by which their
+presence affects the other
+00:14:51,170 --> 00:14:57,750
+participants and so if my
+presence is good is useful for
+00:14:57,750 --> 00:15:01,590
+the other participants then
+i will get some payment
+00:15:01,590 --> 00:15:05,950
+from the mechanism if my
+presence is harmful for the
+00:15:05,950 --> 00:15:10,930
+other participants then i
+will need to pay some price to
+00:15:10,930 --> 00:15:18,110
+the mechanism so what we have
+is the difference between
+00:15:18,110 --> 00:15:25,250
+how much the other players,
+what will be their value
+00:15:25,250 --> 00:15:30,470
+when I am present minus
+when I am not present. So
+00:15:30,470 --> 00:15:37,250
+here we have the value of
+all other agents but us, but
+00:15:37,250 --> 00:15:45,630
+player i, from the allocation
+where all the agents are
+00:15:45,630 --> 00:15:51,430
+present, including agent
+I, and the type of each of
+00:15:51,430 --> 00:15:55,000
+these agents. So we take
+the sum of their valuations,
+00:15:55,000 --> 00:16:00,730
+where the allocation does
+take into account the presence
+00:16:00,730 --> 00:16:06,390
+of agent I as well. And
+here we take the maximal
+00:16:06,390 --> 00:16:12,330
+possible sum of valuations,
+how much these agents can
+00:16:12,330 --> 00:16:16,590
+do without agent i. So here
+we look at all possible
+00:16:16,590 --> 00:16:21,930
+allocations and the values
+of the agents from this
+00:16:21,930 --> 00:16:30,010
+allocation without agent i. So
+this will be how much, what's
+00:16:30,010 --> 00:16:34,150
+the effect of the presence
+of agent I on the values
+00:16:34,150 --> 00:16:39,170
+of other players on the
+allocation by the mechanism.
+00:16:39,310 --> 00:16:44,450
+Now we can see that the
+second price auction is indeed
+00:16:44,450 --> 00:16:50,270
+the special case of this
+mechanism. So the allocation
+00:16:50,270 --> 00:16:52,590
+in the second price
+auction is efficient. We
+00:16:52,590 --> 00:16:57,510
+allocate the item to the
+highest bidding agent, right?
+00:16:57,510 --> 00:17:02,190
+So this does coincide with
+the allocation function
+00:17:02,190 --> 00:17:07,150
+of the VCG mechanism.
+And the payment is as
+00:17:07,150 --> 00:17:11,690
+following. So if we are
+the highest bidder, then
+00:17:11,690 --> 00:17:16,470
+when we are present, the
+item is allocated to us,
+00:17:16,810 --> 00:17:28,770
+right? So the value
+for the other players
+00:17:28,940 --> 00:17:32,030
+from this allocation
+will be zero.
+00:17:32,590 --> 00:17:40,050
+When we are not present,
+then the item is allocated to
+00:17:40,050 --> 00:17:46,030
+the second highest bidder.
+so the value of the other
+00:17:46,030 --> 00:17:51,090
+agent allocations will be the
+value of the second highest
+00:17:51,090 --> 00:17:56,610
+bidder so my transfer if
+I'm the highest bidder in
+00:17:56,610 --> 00:18:00,970
+the overall auction would
+be minus the second highest
+00:18:00,970 --> 00:18:04,790
+bid so this is exactly the
+price that you need to pay
+00:18:04,790 --> 00:18:09,190
+in the second price auction
+And if you are an agent whose
+00:18:10,030 --> 00:18:15,030
+value is not the highest,
+then the item is not
+00:18:15,030 --> 00:18:18,910
+allocated to you here, and it
+is not allocated to you here,
+00:18:18,910 --> 00:18:24,070
+so the difference will be
+zero because you have no
+00:18:24,070 --> 00:18:29,030
+effect on the allocation of
+the mechanism. now we said
+00:18:29,030 --> 00:18:33,810
+that the vcg mechanism is
+efficient and truthful and
+00:18:33,810 --> 00:18:37,750
+dominant strategies but it
+also has some other good
+00:18:37,750 --> 00:18:44,110
+properties it is individually
+rational so every agent gets
+00:18:44,110 --> 00:18:48,510
+a non-negative utility from
+this mechanism you never
+00:18:48,510 --> 00:18:55,930
+will be in a loss and the
+mechanism is also weakly budget
+00:18:55,930 --> 00:19:00,790
+balanced meaning that it
+never pays the agents more
+00:19:00,790 --> 00:19:05,610
+than it collects from them so
+they're always some surplus
+00:19:05,610 --> 00:19:10,250
+never the deficit we say
+that a mechanism is strongly
+00:19:10,250 --> 00:19:14,730
+budget balanced if it pays
+to the agents exactly the
+00:19:14,730 --> 00:19:17,670
+same amount that it collects
+from them so there is no
+00:19:17,670 --> 00:19:21,450
+surplus and no deficit the
+visagee mechanism doesn't
+00:19:21,450 --> 00:19:27,710
+have this property so there
+could be some surplus but
+00:19:27,710 --> 00:19:31,890
+there is never a deficit it
+is weekly budget balanced.
+00:19:32,510 --> 00:19:37,030
+And finally let's have a
+look at two-sided or double
+00:19:37,030 --> 00:19:42,470
+auctions which are a
+typical example in financial
+00:19:42,470 --> 00:19:47,370
+markets and stock markets.
+So here we have many buyers
+00:19:47,370 --> 00:19:53,810
+and many sellers and one
+of the primary models of
+00:19:53,810 --> 00:20:00,170
+such auctions are continuous
+double auctions where the
+00:20:00,170 --> 00:20:04,250
+many potential buyers
+and sellers who have many
+00:20:04,250 --> 00:20:09,330
+units of the same good and
+they bid at their own pace
+00:20:09,330 --> 00:20:14,470
+and as many times as they
+want continuously in time.
+00:20:14,890 --> 00:20:18,970
+Now assume we have a
+few sellers and this
+00:20:18,970 --> 00:20:23,430
+is for how much
+they're ready to sell
+00:20:23,430 --> 00:20:27,010
+their items and we have
+a few buyers and these
+00:20:27,010 --> 00:20:30,210
+are the prices by
+which they're going,
+00:20:30,690 --> 00:20:37,310
+they're ready to buy and
+we need to see what trades
+00:20:37,310 --> 00:20:41,990
+the mechanism will make. So
+for this we need to match
+00:20:41,990 --> 00:20:48,910
+the buyers and sellers so
+that the bid of the buyer
+00:20:48,910 --> 00:20:53,870
+exceeds the bid of the
+seller. So the price that the
+00:20:53,870 --> 00:20:59,410
+buyer is willing to pay
+should exceed the price that
+00:20:59,410 --> 00:21:06,430
+the seller is willing to
+accept and to see that at what
+00:21:06,430 --> 00:21:11,430
+price we are going to make
+our trades we draw the
+00:21:11,430 --> 00:21:16,790
+demand curve and the supply
+curve and we see where they
+00:21:16,790 --> 00:21:20,890
+meet so here is the demand
+curve so these are the
+00:21:20,890 --> 00:21:28,910
+prices that our buyers offer
+and the supply curve is the
+00:21:28,910 --> 00:21:33,490
+curve of the prices that
+our sellers ask for right
+00:21:33,490 --> 00:21:39,070
+and here we have the buyers
+and sellers where the price
+00:21:39,070 --> 00:21:42,830
+offered by the buyer
+exceeds the price offered by
+00:21:42,830 --> 00:21:46,730
+the seller and here here,
+these two meet, so they meet
+00:21:46,730 --> 00:21:52,210
+at the price of $10, so we
+will have three trades of
+00:21:52,210 --> 00:21:55,670
+these buyers and these
+sellers at the price of $10.
+00:21:57,830 --> 00:22:00,730
+This is the end of
+this week's topic,
+00:22:00,730 --> 00:22:02,870
+thank you and see you in class.

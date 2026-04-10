@@ -1,0 +1,485 @@
+00:00:01,240 --> 00:00:04,460
+Okay, so congestion games
+define an interesting
+00:00:04,460 --> 00:00:08,860
+class of n-player, many
+-action games that nevertheless
+00:00:08,860 --> 00:00:11,280
+have a simple
+structure and concise
+00:00:11,280 --> 00:00:14,520
+representation, as well as
+plenty useful applications.
+00:00:14,920 --> 00:00:18,240
+Now, what can we say
+about these games
+00:00:18,240 --> 00:00:20,420
+from the theoretical
+point of view?
+00:00:20,420 --> 00:00:23,010
+Do they have pure
+strategy Nash equilibria?
+00:00:23,010 --> 00:00:25,860
+Can we find those
+equilibria efficiently?
+00:00:25,860 --> 00:00:30,240
+would agents interacting
+together in a
+00:00:30,240 --> 00:00:34,420
+decentralized way naturally
+find such equilibria?
+00:00:34,560 --> 00:00:38,280
+Note that the more of these
+questions we can answer
+00:00:38,280 --> 00:00:41,140
+yes to, the more we
+can be comfortable with
+00:00:41,140 --> 00:00:44,080
+treating Pew-Strange-Nash
+equilibria as reasonable
+00:00:44,080 --> 00:00:47,820
+predictions for what rational
+players should end up
+00:00:47,820 --> 00:00:51,900
+doing in a congestion games.
+To answer many of these
+00:00:51,900 --> 00:00:55,260
+questions, we shall consider
+best response dynamics.
+00:00:55,260 --> 00:00:58,720
+We shall present it as
+an algorithm, but you
+00:00:58,720 --> 00:01:02,000
+could equally well think
+about it as a natural model
+00:01:02,000 --> 00:01:05,440
+for how agents would
+actually behave in a game.
+00:01:05,940 --> 00:01:10,560
+The basic idea is this. We
+start with players playing
+00:01:10,560 --> 00:01:13,920
+an arbitrary set of
+actions, and then in an
+00:01:13,920 --> 00:01:17,880
+arbitrary order they take
+turns changing their actions
+00:01:17,880 --> 00:01:21,400
+so that they're best
+responding to their opponents.
+00:01:21,940 --> 00:01:27,020
+We continue until if
+this process convergence.
+00:01:27,960 --> 00:01:33,760
+In general, it can last
+forever, but we can make
+00:01:33,760 --> 00:01:37,140
+the following simple
+observation. If it does
+00:01:37,140 --> 00:01:41,040
+terminate, if best response
+dynamic halts, then it
+00:01:41,040 --> 00:01:43,890
+will always return a pure
+strategy Nash equilibrium,
+00:01:43,890 --> 00:01:47,060
+because by definition
+this is a state in which
+00:01:47,060 --> 00:01:49,640
+all the players are playing
+their best response.
+00:01:50,280 --> 00:01:53,380
+Consider the following
+example. We have two
+00:01:53,380 --> 00:01:57,260
+players, red and blue,
+traveling from node
+00:01:57,260 --> 00:02:01,760
+S to node T in the
+following directed graph.
+00:02:03,140 --> 00:02:05,180
+In the starting point,
+00:02:05,180 --> 00:02:08,860
+the red player is taking
+the upper path from S to
+00:02:08,860 --> 00:02:12,540
+T, and the blue player
+is taking the lower path.
+00:02:12,980 --> 00:02:19,480
+Now, the cost that the red
+player is incurring in the
+00:02:19,480 --> 00:02:25,440
+current state is 1 plus 0
+plus 3, so 4 altogether.
+00:02:25,540 --> 00:02:32,000
+And they have a better
+way, a cheaper path from
+00:02:32,000 --> 00:02:37,120
+S to T if they deviate
+to this road here. they
+00:02:37,120 --> 00:02:42,780
+will pay 1 plus 0 plus
+0 plus 0 plus 1, so the
+00:02:42,780 --> 00:02:45,780
+total cost will be 2.
+So this is a profitable
+00:02:45,780 --> 00:02:50,980
+deviation to the red player.
+Now let's look at the
+00:02:51,240 --> 00:02:55,560
+blue player. The blue
+player currently is paying
+00:02:56,140 --> 00:03:00,900
+6, they're here alone,
+and 1, there are two
+00:03:00,900 --> 00:03:04,700
+players here, so 7 is their
+current cost. And they
+00:03:04,700 --> 00:03:08,800
+also have a beneficial
+deviation to this path,
+00:03:08,990 --> 00:03:12,900
+where they will be
+paying, the congestion
+00:03:12,900 --> 00:03:17,380
+here is two, so the cost
+for this path is one,
+00:03:17,590 --> 00:03:21,880
+the congestion here
+is one, another one,
+00:03:22,880 --> 00:03:25,460
+three here, because
+there are two players
+00:03:25,460 --> 00:03:30,200
+using this link, and one
+here. So, altogether,
+00:03:30,480 --> 00:03:34,560
+it will be 6, but this is
+smaller than 7, so this
+00:03:34,560 --> 00:03:36,800
+is a profitable deviation
+for the blue player.
+00:03:37,940 --> 00:03:42,980
+However, when this player
+deviated, they increased the
+00:03:42,980 --> 00:03:46,660
+congestion on this central
+link, and the cost of
+00:03:46,660 --> 00:03:52,100
+this link has increased from
+0 that the red player paid
+00:03:52,100 --> 00:03:57,580
+when they were here alone
+to 3. And now the first
+00:03:58,180 --> 00:04:08,840
+player is playing 1 plus
+0 plus 0 plus 3 plus 1, so
+00:04:08,840 --> 00:04:12,200
+they're paying 5. And they
+have a profitable deviation
+00:04:12,200 --> 00:04:16,840
+back to their initial path,
+the upper path, on which
+00:04:16,840 --> 00:04:22,400
+they have the cost of 4. After
+this, none of the players
+00:04:22,400 --> 00:04:25,700
+have a beneficial deviation,
+so we reached a Nash
+00:04:25,700 --> 00:04:31,040
+equilibria by applying the
+sequence of best responses.
+00:04:33,620 --> 00:04:36,500
+We can encode the best
+response dynamic in the
+00:04:36,500 --> 00:04:40,140
+following algorithm. So
+we start with an arbitrary
+00:04:40,140 --> 00:04:45,160
+action profile, a1, a n,
+and as long as there exists
+00:04:45,160 --> 00:04:52,380
+an agent I that can
+decrease their cost, we will
+00:04:52,380 --> 00:04:55,140
+choose an action that
+will minimize their cost.
+00:04:56,580 --> 00:05:02,840
+And if and when this process
+terminates, we will return
+00:05:02,840 --> 00:05:06,320
+the current strategy
+profile that we said that if
+00:05:06,320 --> 00:05:10,900
+the process indeed terminates,
+then it will be in Nash
+00:05:10,900 --> 00:05:13,740
+equilibrium because everyone
+will be playing their
+00:05:13,740 --> 00:05:19,160
+best response in this state.
+The question is, however,
+00:05:19,460 --> 00:05:23,680
+do best response dynamic
+always halt? Can we hope
+00:05:23,680 --> 00:05:27,680
+for this algorithm to
+terminate? Of course, this
+00:05:27,680 --> 00:05:31,120
+is not true. Consider,
+for example, the game of
+00:05:31,120 --> 00:05:36,060
+matching pennies, where we
+have seen that from every
+00:05:36,060 --> 00:05:38,720
+profile, there is a
+profitable deviation and we
+00:05:38,720 --> 00:05:42,000
+have a cycle of those
+and no Peustral-Gynash
+00:05:42,000 --> 00:05:46,100
+equilibrium at all. But what
+we, what the above claim
+00:05:46,500 --> 00:05:49,800
+means is that to
+prove the existence of
+00:05:49,800 --> 00:05:52,760
+Peustral-Gynash
+equilibria in a class of
+00:05:52,760 --> 00:05:55,760
+games, in congestion
+games in particular,
+00:05:56,020 --> 00:05:57,300
+it will be
+00:05:57,680 --> 00:06:00,720
+sufficient to analyze
+the above algorithm
+00:06:00,720 --> 00:06:03,600
+and prove that it
+always terminates.
+00:06:04,980 --> 00:06:08,560
+And indeed, for the class
+of congestion games, we
+00:06:08,560 --> 00:06:13,460
+have this result from 1973,
+that for every congestion
+00:06:13,460 --> 00:06:18,480
+game, every sequence of
+improvement steps is finite,
+00:06:18,480 --> 00:06:21,720
+always halts. And this
+property is called the
+00:06:21,720 --> 00:06:25,650
+finite improvement property.
+Now, the corollary of this
+00:06:25,650 --> 00:06:29,520
+theorem is that every
+congestion game has at least
+00:06:29,520 --> 00:06:33,480
+one equilibrium in pure
+strategies. Note that the
+00:06:33,480 --> 00:06:37,540
+finite improvement property
+is a stronger property
+00:06:37,540 --> 00:06:39,900
+than just the existence
+of a pure strategy in Nash
+00:06:39,900 --> 00:06:44,000
+equilibrium because not only
+we have one, we can only
+00:06:44,000 --> 00:06:47,580
+reach one by applying this
+natural dynamics where
+00:06:47,580 --> 00:06:50,940
+in the arbitrary order,
+starting from the arbitrary
+00:06:51,240 --> 00:06:55,480
+profile, the agents can
+reach such an equilibrium.
+00:06:55,960 --> 00:06:58,720
+To prove this
+theorem, we make use
+00:06:58,720 --> 00:07:00,760
+of a potential
+function argument.
+00:07:00,800 --> 00:07:04,480
+For every state A, let's
+define the following
+00:07:04,480 --> 00:07:08,240
+function phi of A,
+which is the sum
+00:07:08,240 --> 00:07:12,460
+over all the resources,
+j goes from 1 to m,
+00:07:12,460 --> 00:07:19,060
+of the cumulative delay on
+these resources. So we run
+00:07:19,060 --> 00:07:22,940
+the argument of the delay
+function from 1 to the actual
+00:07:22,940 --> 00:07:27,840
+congestion on that resource
+in the profile A and
+00:07:27,840 --> 00:07:32,620
+take the value of the delay
+function in this argument.
+00:07:32,620 --> 00:07:34,280
+This function is called
+00:07:34,280 --> 00:07:36,560
+Rosenthal's potential function.
+00:07:36,560 --> 00:07:39,140
+The name potential
+comes from physics
+00:07:39,140 --> 00:07:42,600
+due to the conceptual
+similarity with
+00:07:42,600 --> 00:07:44,340
+the potential
+function in physics.
+00:07:44,540 --> 00:07:48,340
+Now, consider how the
+potential function changes
+00:07:48,340 --> 00:07:50,840
+in a single round of
+best response dynamics.
+00:07:50,840 --> 00:07:55,420
+when player i switches
+from playing some action
+00:07:55,420 --> 00:07:58,820
+a, i to playing some
+other action b, i instead.
+00:08:00,390 --> 00:08:02,940
+First of all,
+because this was a
+00:08:02,940 --> 00:08:04,740
+step of best response dynamics,
+00:08:04,740 --> 00:08:08,500
+we know that the switch
+decreased the cost for
+00:08:08,500 --> 00:08:12,460
+player i. So the change
+in the cost function
+00:08:12,460 --> 00:08:17,640
+for player i is negative.
+Right. Now, what it
+00:08:17,640 --> 00:08:23,260
+was, what was this change
+when agent I moved from
+00:08:23,260 --> 00:08:28,900
+resources in set AI to
+resources in set BI?
+00:08:29,000 --> 00:08:33,920
+So on those which are
+in the intersection of
+00:08:33,920 --> 00:08:36,740
+the two strategies, the
+congestion is the same.
+00:08:36,740 --> 00:08:41,620
+Right. And on those which
+are in B but not in A, the
+00:08:41,620 --> 00:08:47,660
+congestion increased by one.
+On those which are in A but
+00:08:47,660 --> 00:08:50,740
+not B, the congestion is
+the same, but those are not
+00:08:50,740 --> 00:08:55,580
+part of the strategy of
+the agent I anymore, so we
+00:08:55,580 --> 00:08:59,660
+subtract them from this
+amount. And this amount should
+00:08:59,660 --> 00:09:04,000
+be, once again, negative
+because the cost has decreased,
+00:09:04,000 --> 00:09:09,480
+we said, as the deviation
+from AI to BI was profitable
+00:09:09,480 --> 00:09:12,660
+by the definition of the
+best response dynamics. Now,
+00:09:12,860 --> 00:09:17,100
+let's see what will be the
+respective change in the
+00:09:17,100 --> 00:09:21,800
+potential function, phi,
+when we move from a i to b i.
+00:09:21,800 --> 00:09:27,380
+When we substitute it
+in the definition of the
+00:09:27,380 --> 00:09:29,800
+function, we shall see
+that the difference
+00:09:29,800 --> 00:09:34,300
+will be exactly as the
+difference in the costs.
+00:09:36,760 --> 00:09:39,520
+And so, also
+should be negative.
+00:09:39,920 --> 00:09:43,300
+Now, we know that the
+change of the potential
+00:09:43,300 --> 00:09:47,330
+function in each improvement
+step is negative,
+00:09:48,260 --> 00:09:52,280
+and since it can take on
+only finitely many different
+00:09:52,280 --> 00:09:55,340
+values, because we have
+finitely many profiles,
+00:09:55,620 --> 00:09:58,020
+and the function is
+decreasing between
+00:09:58,020 --> 00:10:00,360
+each round of best
+response dynamics,
+00:10:00,360 --> 00:10:03,400
+best response dynamics
+must eventually halt,
+00:10:03,400 --> 00:10:06,920
+and hence output abuse
+strategy in Nash equilibrium.
+00:10:08,280 --> 00:10:11,400
+We can make the following
+definition. We shall
+00:10:11,400 --> 00:10:16,580
+say that a game with player
+set n, with n players,
+00:10:16,580 --> 00:10:20,640
+and action sets a i for
+each player i in our set
+00:10:20,640 --> 00:10:24,800
+of players, and utility
+function u i for each of the
+00:10:24,800 --> 00:10:28,300
+players, would be called
+a potential game, if
+00:10:28,300 --> 00:10:30,820
+there exists a function
+from the set of strategy
+00:10:30,820 --> 00:10:35,360
+profiles to real numbers,
+such that for every action
+00:10:35,360 --> 00:10:42,060
+profile, A, every agent,
+I, and alternative choice,
+00:10:42,200 --> 00:10:43,020
+A prime,
+00:10:43,280 --> 00:10:43,860
+I,
+00:10:43,860 --> 00:10:50,060
+the change in the utility
+of the deviating player
+00:10:50,060 --> 00:10:55,600
+equals exactly the change in
+the potential function. This
+00:10:55,600 --> 00:10:59,280
+function is called the exact
+potential function. And
+00:10:59,280 --> 00:11:03,000
+congestion games, as we
+have proved, do possess such
+00:11:03,000 --> 00:11:07,480
+functions, so they're called
+exact potential games.

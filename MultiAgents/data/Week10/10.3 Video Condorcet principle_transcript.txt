@@ -1,0 +1,481 @@
+00:00:01,690 --> 00:00:03,910
+Marquis de Candace, who also
+00:00:03,910 --> 00:00:05,890
+lived in the 18th century,
+00:00:06,130 --> 00:00:08,190
+was a philosopher
+and mathematician
+00:00:08,190 --> 00:00:11,130
+and did a lot of work
+on voting, and in
+00:00:11,130 --> 00:00:14,270
+particular he presented
+the following paradox.
+00:00:14,710 --> 00:00:18,970
+The preferences of the
+majority may be cyclical,
+00:00:18,970 --> 00:00:23,710
+meaning there is no clear
+winner. Consider the following
+00:00:23,710 --> 00:00:27,030
+preference profile among
+three voters for three
+00:00:27,030 --> 00:00:31,170
+alternatives. In this
+example, we see that candidate
+00:00:31,170 --> 00:00:35,670
+A is preferred over
+candidate B by two voters,
+00:00:35,710 --> 00:00:41,230
+which is a majority among
+the three, B is preferred
+00:00:41,230 --> 00:00:47,750
+over C by the majority
+of two voters, and C is
+00:00:47,750 --> 00:00:53,090
+preferred over A again by
+the majority of two voters.
+00:00:53,090 --> 00:00:58,150
+And that means that we
+have a cycle of majority
+00:00:58,150 --> 00:01:02,150
+preferences between the three
+candidates even though the
+00:01:02,150 --> 00:01:06,270
+individual rankings of
+the voters were acyclical.
+00:01:06,310 --> 00:01:10,390
+This may be trivial to us
+now, but at the time this
+00:01:10,390 --> 00:01:15,190
+was a big discovery and a
+large criticism of democracy.
+00:01:15,770 --> 00:01:19,990
+Condorcet then characterized
+a clearly winning alternative
+00:01:19,990 --> 00:01:24,770
+as the following. A condesse
+winner is a candidate
+00:01:24,770 --> 00:01:28,810
+who defeats every other
+candidate in head-to-head
+00:01:28,810 --> 00:01:34,070
+pairways majority comparisons.
+So for every opponent B,
+00:01:34,070 --> 00:01:39,730
+more than half the voters
+prefer the winner A over B.
+00:01:39,870 --> 00:01:45,190
+The condesse criterion or
+principle requires that every
+00:01:45,190 --> 00:01:48,750
+voting rule which promises
+is a single winner, must
+00:01:48,750 --> 00:01:53,150
+elect the condeser winner
+whenever one exists. We
+00:01:53,150 --> 00:01:57,670
+have seen the example where
+there is no such candidate,
+00:01:57,670 --> 00:02:02,630
+and instead we have a cycle
+of majority preferences,
+00:02:02,630 --> 00:02:05,510
+which is also called
+the condeser cycle.
+00:02:06,330 --> 00:02:11,710
+So the condeser principle
+ensures that the rule
+00:02:11,710 --> 00:02:16,410
+respects clear pair-wise
+majorities, thus elevating
+00:02:16,410 --> 00:02:20,970
+consensus over mere
+first-place popularity.
+00:02:20,970 --> 00:02:23,550
+And rules satisfying
+the condeset principle
+00:02:23,550 --> 00:02:26,510
+are called condeset
+consistent or
+00:02:26,510 --> 00:02:30,350
+condeset extensions or
+simply condeset methods.
+00:02:30,350 --> 00:02:34,070
+However, while
+intuitively appealing,
+00:02:34,250 --> 00:02:37,210
+not all reasonable
+rules do satisfy
+00:02:37,210 --> 00:02:39,130
+this principle. For instance,
+00:02:39,270 --> 00:02:42,450
+positional scoring rules
+and elimination-based
+00:02:42,450 --> 00:02:46,330
+methods that we defined
+earlier often fail.
+00:02:46,500 --> 00:02:50,850
+We have already seen this
+for plurality and for
+00:02:50,850 --> 00:02:54,550
+instant run-off voting.
+In our previous example,
+00:02:54,810 --> 00:03:00,530
+A was the plurality
+winner and C was elected
+00:03:00,530 --> 00:03:05,470
+under the IRV rule.
+However, the condense winner
+00:03:05,470 --> 00:03:08,390
+is B, and this is
+because a majority of
+00:03:08,390 --> 00:03:13,710
+voters, namely voters 3,
+4, and 5 rank B over A,
+00:03:14,110 --> 00:03:16,970
+a majority of voters, voters
+00:03:16,970 --> 00:03:21,110
+1, 2, 3, 3 and 5 rank B over C,
+00:03:21,690 --> 00:03:24,770
+and a majority of voters 1,
+00:03:24,770 --> 00:03:28,470
+2, 3, and 4 rank B over D.
+00:03:28,630 --> 00:03:30,010
+In contrast,
+00:03:30,250 --> 00:03:32,510
+the board count
+in this particular
+00:03:32,510 --> 00:03:36,390
+example did elect
+candidate B, however,
+00:03:36,570 --> 00:03:39,970
+there are preference
+profiles on which it
+00:03:39,970 --> 00:03:43,950
+may also fail to elect
+the condescer winner.
+00:03:43,950 --> 00:03:47,430
+Consider the following
+simple example.
+00:03:47,610 --> 00:03:51,670
+Here B is the winner
+under the board
+00:03:51,670 --> 00:03:54,290
+account with seven
+points. However,
+00:03:54,530 --> 00:03:58,010
+the condeser winner
+is A. This is because
+00:03:58,010 --> 00:04:01,770
+the majority of voters,
+voters 1 and vote 2,
+00:04:01,910 --> 00:04:05,490
+rank A over all
+other alternatives.
+00:04:05,570 --> 00:04:08,710
+And therefore the board account
+00:04:08,710 --> 00:04:11,850
+is not condeser consistent.
+00:04:12,250 --> 00:04:16,610
+And this extends to all
+positional scoring rules and
+00:04:16,610 --> 00:04:19,870
+elimination-based methods that
+we have considered so far,
+00:04:20,340 --> 00:04:26,010
+that they fail consistency
+as they can elect candidates
+00:04:26,010 --> 00:04:29,490
+who lose head-to-head to
+others, even when a clear
+00:04:29,490 --> 00:04:33,650
+pairwise champion does
+exist. So this motivates a
+00:04:33,650 --> 00:04:38,910
+separate family of pairwise
+comparison rules or condosé
+00:04:38,910 --> 00:04:43,990
+methods which explicitly evaluate
+all head-to-head maturity
+00:04:43,990 --> 00:04:48,190
+contests between candidates
+and define winners based
+00:04:48,190 --> 00:04:52,830
+on properties like being
+undefeated, maximizing minimal
+00:04:52,830 --> 00:04:56,630
+winning margins or having
+the most pairwise victories.
+00:04:56,630 --> 00:05:00,990
+These rules guarantee
+electing the condenser winner
+00:05:00,990 --> 00:05:04,830
+when one exists, prioritizing
+transitive maturities
+00:05:04,830 --> 00:05:09,510
+over positional or sequential
+heuristics, though they
+00:05:09,510 --> 00:05:14,650
+may struggle with cycles and
+require more computation.
+00:05:15,250 --> 00:05:19,990
+The first method was devised
+by Ramon Rule, who was
+00:05:19,990 --> 00:05:25,310
+a monk at the border of 13th
+and 14th century and also
+00:05:25,310 --> 00:05:29,510
+was a missionary and
+philosopher and, in general,
+00:05:29,510 --> 00:05:33,130
+one of the most influential
+intellectuals of his time.
+00:05:33,310 --> 00:05:35,490
+The rule, however,
+00:05:35,670 --> 00:05:40,570
+is frequently named after
+Arthur Gerbert Copland,
+00:05:41,110 --> 00:05:46,750
+who advocated it independently
+in 1951's lecture.
+00:05:47,030 --> 00:05:51,330
+Under this method, each
+alternative receives
+00:05:51,330 --> 00:05:54,570
+one one point for each
+head-to-head comparison
+00:05:54,570 --> 00:05:58,300
+it wins and half a point
+for tied comparisons.
+00:05:58,790 --> 00:06:02,230
+Now note that Copland-Talloul's
+00:06:02,230 --> 00:06:04,110
+rule is Condorcet consistent.
+00:06:04,210 --> 00:06:08,870
+This is because if there is
+a Condorcet winner it will
+00:06:08,870 --> 00:06:14,110
+achieve a score of m-1 under
+this rule because it will
+00:06:14,110 --> 00:06:18,470
+beat all other candidates
+and there are m-1 of them.
+00:06:18,770 --> 00:06:21,750
+This is the maximum
+score achievable.
+00:06:21,790 --> 00:06:26,290
+Further, the score is
+necessarily unique because
+00:06:26,290 --> 00:06:30,170
+there can be only one
+winner of a head-to-head
+00:06:30,170 --> 00:06:33,770
+comparison and so if
+alternative A beats all
+00:06:33,770 --> 00:06:36,710
+other alternatives in a
+head-to-head comparison,
+00:06:36,710 --> 00:06:39,770
+the maximum score for
+any other alternative
+00:06:39,770 --> 00:06:44,810
+is at most M-2
+because they lose to
+00:06:44,810 --> 00:06:49,210
+alternative A at least.
+Let's look again at our
+00:06:49,210 --> 00:06:52,130
+earlier example, now
+under the Lules rule.
+00:06:52,950 --> 00:06:57,730
+Candidate A, who was the
+winner under plurality,
+00:06:57,730 --> 00:07:01,830
+loses all its head
+-to-head comparisons.
+00:07:01,930 --> 00:07:06,650
+So its Copland score
+is zero. Such a
+00:07:06,650 --> 00:07:10,010
+candidate is also
+called a condense loser.
+00:07:10,750 --> 00:07:15,990
+Alternative B is the
+winner, which we have also
+00:07:15,990 --> 00:07:19,990
+seen is the condenser
+winner, and candidate C
+00:07:19,990 --> 00:07:23,910
+gets 2 points because
+C beats D with majority
+00:07:23,910 --> 00:07:30,020
+from voters 1, 2, 3,
+and 4, and candidate
+00:07:30,020 --> 00:07:35,660
+candidate A with majority
+from voters 3, 4, and 5,
+00:07:35,660 --> 00:07:40,370
+and candidate D gets
+one point for beating
+00:07:40,370 --> 00:07:45,070
+candidate A with majority
+from voters 3, 4, and 5.
+00:07:46,280 --> 00:07:51,050
+The next Maximin rule
+picks the candidate with
+00:07:51,050 --> 00:07:55,270
+the strongest worst-case
+matchup. That is, for each
+00:07:55,270 --> 00:07:59,610
+candidate, we find the
+minimum votes they get in
+00:07:59,610 --> 00:08:03,130
+any head-to-head contest
+against another, and
+00:08:03,130 --> 00:08:06,850
+then select the one with
+the highest such minimum.
+00:08:06,890 --> 00:08:10,530
+This ensures security in
+their weakest pairing.
+00:08:10,530 --> 00:08:15,110
+When a condenser winner
+exists, it would be
+00:08:15,110 --> 00:08:19,490
+a candidate who beats
+everyone by over half
+00:08:19,490 --> 00:08:24,410
+the votes, and so its
+maximum score exceeds an
+00:08:24,410 --> 00:08:29,290
+over two, while others
+fall below, guaranteeing
+00:08:29,290 --> 00:08:32,450
+that the condenser
+winner wins the election.
+00:08:33,030 --> 00:08:37,910
+The next rule was proposed
+by Charles Ludwig Dodgson,
+00:08:37,910 --> 00:08:41,490
+who lived in the 19th
+century and was a professor
+00:08:41,490 --> 00:08:44,930
+of mathematics at Oxford
+and a pioneer photographer,
+00:08:44,930 --> 00:08:49,650
+but is better known by his
+pen name Lewis Carroll.
+00:08:50,030 --> 00:08:54,570
+Under the Dodgson's rule,
+the score of an alternative
+00:08:54,570 --> 00:08:59,790
+x is the minimum number
+of swaps between adjacent
+00:08:59,790 --> 00:09:04,870
+alternatives that are needed
+to make x a condeset winner.
+00:09:04,870 --> 00:09:06,870
+And then we select
+an alternative
+00:09:06,870 --> 00:09:09,170
+with a minimum such score.
+00:09:09,790 --> 00:09:14,490
+Note that Dodgson's rule
+is trivially condeset
+00:09:14,490 --> 00:09:17,630
+consistent because because a
+condenser winner would have
+00:09:17,630 --> 00:09:21,530
+a score of 0 and all other
+alternatives would have
+00:09:21,530 --> 00:09:25,430
+some positive score as they
+are not condenser winner.
+00:09:25,750 --> 00:09:31,910
+Also this rule is unfortunately
+NP-hard to compute.
+00:09:32,470 --> 00:09:36,750
+We will now calculate the
+Dodgson score of candidate
+00:09:36,750 --> 00:09:39,190
+B in the following
+preference profile. this
+00:09:39,190 --> 00:09:43,030
+is a profile which is
+different from the one we
+00:09:43,030 --> 00:09:49,010
+considered so far. Here
+B is actually losing in
+00:09:49,010 --> 00:09:53,880
+head-to-head comparisons
+with all other preferences.
+00:09:53,950 --> 00:09:59,370
+So it is below A three
+times, times, it is
+00:09:59,370 --> 00:10:06,470
+below C three times and
+below D also three times.
+00:10:07,270 --> 00:10:11,190
+We start by flipping
+candidates B and C in voter
+00:10:11,190 --> 00:10:16,470
+force preference and get
+the following profile.
+00:10:16,470 --> 00:10:21,710
+So here B is above C
+and now B is beating
+00:10:21,710 --> 00:10:25,270
+C in a pairwise comparison
+because B is above C
+00:10:25,270 --> 00:10:30,070
+also in two other votes.
+So the majority prefers
+00:10:30,070 --> 00:10:35,370
+B over C, but B is
+still losing to A and D.
+00:10:35,540 --> 00:10:40,210
+So we will now swap B
+and D also in voter 4's
+00:10:40,210 --> 00:10:44,050
+preference and get the
+following profile where B
+00:10:44,050 --> 00:10:50,110
+is above D in this vote
+and also in votes of voters
+00:10:50,110 --> 00:10:54,450
+1 and 2. So B now is
+beating both C and D in
+00:10:54,450 --> 00:10:57,870
+pairwise comparisons,
+but is still losing to A.
+00:10:58,350 --> 00:11:04,010
+So finally, we swap A and
+B in the ranking of voter
+00:11:04,010 --> 00:11:11,230
+1, and we get B over A here,
+and also in the votes of
+00:11:11,230 --> 00:11:16,230
+voters 4 and 5. So B is now
+beating all other alternatives
+00:11:16,230 --> 00:11:19,850
+according to the preferences
+of the majority. and
+00:11:19,850 --> 00:11:24,970
+so it is a contested winner
+in this modified profile
+00:11:24,970 --> 00:11:28,750
+and it took us three swaps
+which is the minimum number
+00:11:28,750 --> 00:11:34,110
+of swaps for B so the
+Dodgson score of B is three.
+00:11:35,830 --> 00:11:39,890
+This is the end of this
+week's topic. Thank you
+00:11:39,890 --> 00:11:41,930
+and see you in class
+where we are going to talk
+00:11:41,930 --> 00:11:45,850
+about strategic manipulations
+of voting rules.

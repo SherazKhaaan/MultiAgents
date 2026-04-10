@@ -1,0 +1,45 @@
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Describe different auction formats (e.g., first-price, second-price, English, Dutch), their rules, and underlying assumptions.
+
+Model resource allocation settings as auctions and identify the conditions under which each auction type is appropriate.
+
+Analyse bidder strategies and equilibrium concepts in auctions.
+
+Apply mathematical and algorithmic methods to compute equilibrium bids and expected outcomes in simple auction settings.
+
+Evaluate the efficiency, revenue, and vulnerability to manipulation for various auction mechanisms.
+
+Compare the strategic properties and economic performance of alternative auction formats in theory and in application.
+
+Discuss applications of auction theory in economics, computer science, marketplaces, and multi-agent systems.
+
+ 
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.
+
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Describe different auction formats (e.g., first-price, second-price, English, Dutch), their rules, and underlying assumptions.
+
+Model resource allocation settings as auctions and identify the conditions under which each auction type is appropriate.
+
+Analyse bidder strategies and equilibrium concepts in auctions.
+
+Apply mathematical and algorithmic methods to compute equilibrium bids and expected outcomes in simple auction settings.
+
+Evaluate the efficiency, revenue, and vulnerability to manipulation for various auction mechanisms.
+
+Compare the strategic properties and economic performance of alternative auction formats in theory and in application.
+
+Discuss applications of auction theory in economics, computer science, marketplaces, and multi-agent systems.
+
+ 
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.

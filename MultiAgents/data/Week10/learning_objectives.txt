@@ -1,0 +1,45 @@
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Explain fundamental concepts of voting theory, including preference aggregation, voting rules, and social choice functions.
+
+Describe and compare classical voting systems (e.g., plurality, Borda, approval, STV), identifying their properties and susceptibilities.
+
+Model group decision problems using formal voting frameworks, translating real-world scenarios into mathematical terms.
+
+Analyse the strengths, limitations, and vulnerabilities of various voting rules, such as susceptibility to strategic voting or manipulation.
+
+Apply mathematical methods and algorithms to solve voting problems and determine election winners for different rules.
+
+Solve theoretical and computational problems involving collective decision making and social choice.
+
+Discuss the role and impact of voting theory in societal, organisational, and computational contexts.
+
+ 
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.
+
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Explain fundamental concepts of voting theory, including preference aggregation, voting rules, and social choice functions.
+
+Describe and compare classical voting systems (e.g., plurality, Borda, approval, STV), identifying their properties and susceptibilities.
+
+Model group decision problems using formal voting frameworks, translating real-world scenarios into mathematical terms.
+
+Analyse the strengths, limitations, and vulnerabilities of various voting rules, such as susceptibility to strategic voting or manipulation.
+
+Apply mathematical methods and algorithms to solve voting problems and determine election winners for different rules.
+
+Solve theoretical and computational problems involving collective decision making and social choice.
+
+Discuss the role and impact of voting theory in societal, organisational, and computational contexts.
+
+ 
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.

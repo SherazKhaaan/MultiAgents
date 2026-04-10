@@ -1,0 +1,339 @@
+00:00:00,410 --> 00:00:03,390
+For two agents, the simple
+cut-and-choose procedure
+00:00:03,390 --> 00:00:06,370
+already guarantees both
+proportionality and envy
+00:00:06,370 --> 00:00:09,990
+-freeness. However, for
+more than two agents,
+00:00:09,990 --> 00:00:13,110
+achieving these two goals
+is more challenging, and we
+00:00:13,110 --> 00:00:16,270
+typically design and
+analyze separate algorithms.
+00:00:16,270 --> 00:00:18,510
+Some procedures
+focus on enduring
+00:00:18,510 --> 00:00:20,530
+proportionality for all agents,
+00:00:20,530 --> 00:00:22,570
+while others are
+tailored specifically
+00:00:22,570 --> 00:00:24,690
+to guarantee envy-freeness.
+00:00:24,890 --> 00:00:28,050
+The Dubin's Spanier
+algorithm, also
+00:00:28,050 --> 00:00:30,930
+known as a moving
+knife algorithm,
+00:00:31,090 --> 00:00:33,570
+ensures proportionality
+for end players.
+00:00:33,570 --> 00:00:37,510
+It works as follows. A
+referee moves a knife
+00:00:37,510 --> 00:00:40,990
+continuously across
+the cake, and when any
+00:00:40,990 --> 00:00:45,050
+player finds the piece
+of the cake left of the
+00:00:45,050 --> 00:00:48,790
+knife worth at least one
+end, they shall stop.
+00:00:48,970 --> 00:00:52,910
+They receive that piece
+of cake and get removed
+00:00:52,910 --> 00:00:56,270
+from the game, with ties
+being broken arbitrarily.
+00:00:56,270 --> 00:00:59,110
+Now the process repeats
+with the remaining
+00:00:59,110 --> 00:01:02,230
+players until one
+player is left, and that
+00:01:02,230 --> 00:01:05,290
+player will receive the
+remainder of the cake.
+00:01:05,310 --> 00:01:08,250
+Let's see why this
+allocation is proportional.
+00:01:08,310 --> 00:01:12,810
+Any player who shouted stop
+received a piece of cake
+00:01:12,810 --> 00:01:16,550
+which is worth at least 1
+nth to them, so they received
+00:01:16,550 --> 00:01:20,290
+their proportional share.
+The last player did not
+00:01:20,290 --> 00:01:24,630
+shout stop at all or shouted
+stop together with some
+00:01:24,630 --> 00:01:28,510
+other player, so they must
+have valued the previous n
+00:01:28,510 --> 00:01:33,630
+-1 pieces each at at most 1
+nth, and hence the remaining
+00:01:33,630 --> 00:01:37,950
+piece of cake that they
+receive is valued by them
+00:01:37,950 --> 00:01:42,190
+at at least 1 nth. So the
+allocation is proportional.
+00:01:42,510 --> 00:01:45,710
+As for envy-freeness,
+Dubin-Spenia protocol
+00:01:45,710 --> 00:01:47,770
+may fail to produce
+an envy-free
+00:01:47,770 --> 00:01:51,130
+allocation when we have
+more than two agents.
+00:01:51,130 --> 00:01:54,490
+Let's consider the
+following example. We have a
+00:01:54,490 --> 00:01:57,190
+piece of cake, half of
+which is chocolate and half
+00:01:57,190 --> 00:02:01,030
+of which is sponge. And
+we have agent 1 who likes
+00:02:01,030 --> 00:02:05,050
+everything and agents 2
+and 3 who like sponge only.
+00:02:05,390 --> 00:02:09,010
+Now, agent one shall
+stop at one-third and
+00:02:09,010 --> 00:02:11,630
+gets the first third
+of the cake from
+00:02:11,630 --> 00:02:14,570
+zero to one-third. And
+agent two and three
+00:02:14,570 --> 00:02:18,690
+shall stop at the same
+time at two-thirds.
+00:02:18,750 --> 00:02:23,210
+One of them, we break
+the ties arbitrarily, so
+00:02:23,210 --> 00:02:26,770
+let's say it's agent
+two, will get the piece
+00:02:26,770 --> 00:02:29,850
+from one-third to two
+-thirds. And the other one,
+00:02:29,850 --> 00:02:32,330
+agent three, will get
+the piece from two-thirds
+00:02:32,330 --> 00:02:35,850
+to one. However, now
+agent 2 envies agent 3
+00:02:35,850 --> 00:02:39,750
+because agent 3 gets
+more sponge than agent 2.
+00:02:40,010 --> 00:02:44,410
+So this allocation is not
+envy-free and also Dubin
+00:02:44,410 --> 00:02:46,830
+-Spenny algorithm produces
+an allocation which is
+00:02:46,830 --> 00:02:51,140
+not necessarily equitable
+and not perito-optimal.
+00:02:51,140 --> 00:02:54,250
+Now, the complexity of
+this algorithm under the
+00:02:54,250 --> 00:02:59,970
+Robertson-Webb model is theta
+of n-squared operations,
+00:02:59,970 --> 00:03:06,790
+and this is because at each
+iteration we remove one
+00:03:06,790 --> 00:03:10,090
+player from the game, so
+we make n cuts, then we
+00:03:10,090 --> 00:03:18,110
+make n-1 cuts, n-2 cuts,
+and so on, until we get to
+00:03:18,110 --> 00:03:22,270
+2 cuts at the last piece
+of cake, so the total
+00:03:22,270 --> 00:03:27,150
+complexity, the sum of this
+progression is n squared.
+00:03:27,570 --> 00:03:30,730
+We can do better from
+the computational point
+00:03:30,730 --> 00:03:33,470
+of view, so there's
+another algorithm called
+00:03:33,470 --> 00:03:37,090
+even-puzz algorithm
+that also achieves
+00:03:37,090 --> 00:03:40,670
+proportionality for n
+players and takes fewer
+00:03:40,670 --> 00:03:44,690
+operations than the
+moving knife algorithm.
+00:03:44,970 --> 00:03:48,130
+For ease of exposition,
+we will describe this
+00:03:48,130 --> 00:03:51,850
+algorithm for the number of
+agents, which is some power
+00:03:51,850 --> 00:03:57,590
+of 2, but it's extendable
+to any number of agents.
+00:03:57,990 --> 00:04:01,790
+So at each iteration,
+let's denote the remainder
+00:04:01,790 --> 00:04:07,170
+of our cake at S, S, T,
+interval from S to T, while
+00:04:07,170 --> 00:04:09,450
+at the beginning, when
+we have the whole cake,
+00:04:09,450 --> 00:04:14,630
+S is 0 and T is 1. Now,
+if the number of agents is
+00:04:14,630 --> 00:04:19,790
+1, then the player receives
+this remainder, and otherwise
+00:04:19,790 --> 00:04:25,210
+we iterate with the
+following procedure. So,
+00:04:25,210 --> 00:04:31,110
+each player i will make a
+mark on the cake zi that will
+00:04:31,110 --> 00:04:36,690
+divide the remainder of
+the cake st into two pieces
+00:04:36,690 --> 00:04:43,330
+which they value equally.
+So if VI is the evaluation
+00:04:43,330 --> 00:04:48,770
+of agent I for the piece
+from S to T, then we will
+00:04:48,770 --> 00:04:56,630
+cut or we mark the cake at
+the point ZI, which takes
+00:04:56,630 --> 00:05:00,650
+exactly half of the value
+of VI from the point S.
+00:05:01,150 --> 00:05:06,890
+And now we will
+consider the mark Z star
+00:05:06,890 --> 00:05:11,010
+that will divide our
+agents into two halves.
+00:05:12,350 --> 00:05:18,110
+And we shall recursively
+repeat this procedure for
+00:05:18,110 --> 00:05:20,470
+the half of the agents
+on the left from the mark
+00:05:20,470 --> 00:05:24,870
+as star and to the right
+from the mark as star.
+00:05:30,250 --> 00:05:32,810
+Robertson-Webb model is O of n
+00:05:32,810 --> 00:05:34,970
+log n. Let's see
+why this is true.
+00:05:35,750 --> 00:05:41,030
+The recursion depth
+is O of log n because
+00:05:41,030 --> 00:05:43,590
+we half the number
+of players at each
+00:05:43,590 --> 00:05:47,510
+duration, and each
+step requires O of n
+00:05:47,510 --> 00:05:51,650
+operations, so in total
+we have O of n log n.
+00:05:51,870 --> 00:05:56,470
+And it is known that
+any proportional cake
+00:05:56,470 --> 00:06:00,490
+cutting algorithm requires
+omega at least n log
+00:06:00,490 --> 00:06:04,790
+n operations in this
+computational model, and
+00:06:04,790 --> 00:06:09,230
+so the even-pass algorithm
+is actually optimal
+00:06:09,230 --> 00:06:13,850
+under the Robertson-Webb
+computational model.
+00:06:14,110 --> 00:06:17,550
+Let's see why it
+produces a proportional
+00:06:17,550 --> 00:06:20,210
+location. We can
+prove it by induction.
+00:06:21,230 --> 00:06:26,590
+So what we do is we prove
+that after k steps, the
+00:06:26,590 --> 00:06:31,850
+players that share a piece of
+cake will value it at least
+00:06:31,990 --> 00:06:38,750
+at 1 divided by 2 in the
+power of k. When k is 0,
+00:06:38,750 --> 00:06:41,250
+this is true because the
+piece is initially the whole
+00:06:41,250 --> 00:06:44,410
+cake and it's valued at
+1. And for the induction
+00:06:44,410 --> 00:06:49,230
+step, if the piece of cake
+at step k is x, y, from x to
+00:06:49,230 --> 00:06:54,810
+y, then at step k plus 1
+the players are sharing the
+00:06:54,810 --> 00:07:00,310
+piece which they value at
+as at least half of the
+00:07:00,310 --> 00:07:05,350
+value of x y to them right
+and so if the value of x y
+00:07:05,350 --> 00:07:10,880
+was at least 1 divided by
+2 in the power of k now the
+00:07:10,880 --> 00:07:16,550
+half of that is valued as
+at least 1 divided by 2 in
+00:07:16,550 --> 00:07:21,600
+the power of k plus 1 right
+now what are these What
+00:07:21,600 --> 00:07:25,810
+is this case? So the process
+ends after log n steps.
+00:07:25,810 --> 00:07:29,270
+So at the end of the
+whole procedure, we will
+00:07:29,270 --> 00:07:33,250
+have 1 divided by 2
+in the power of log n,
+00:07:33,550 --> 00:07:35,950
+right? And 2 in the
+power of log n is exactly
+00:07:35,950 --> 00:07:38,590
+n. So we have that
+at the end of the
+00:07:38,590 --> 00:07:44,190
+procedure, the allocated
+piece is valued as at
+00:07:44,190 --> 00:07:47,240
+least 1 over n. So we
+have proportionality.

@@ -1,0 +1,111 @@
+00:00:01,080 --> 00:00:03,840
+We have seen that in
+The Prisoner's Dilemma,
+00:00:03,840 --> 00:00:06,300
+defecting is an
+equilibrium in dominance
+00:00:06,300 --> 00:00:10,160
+strategies, since each player
+is better off defecting
+00:00:10,160 --> 00:00:12,260
+regardless of what
+the other player does.
+00:00:12,280 --> 00:00:15,860
+Nonetheless, in many
+experimental and real-world
+00:00:15,860 --> 00:00:19,500
+settings, players frequently
+choose to cooperate.
+00:00:19,500 --> 00:00:20,340
+Why?
+00:00:20,460 --> 00:00:24,060
+While it could be associated
+with mistakes and bounded
+00:00:24,060 --> 00:00:27,040
+rationality, in many
+cases, This cooperative
+00:00:27,040 --> 00:00:30,760
+behavior is led by factors
+such as social preferences,
+00:00:31,000 --> 00:00:33,100
+norms of reciprocity, and
+00:00:33,100 --> 00:00:35,300
+expectation of
+future interaction.
+00:00:35,300 --> 00:00:38,140
+Indeed, in many
+strategic situations,
+00:00:38,140 --> 00:00:39,960
+players interact repeatedly.
+00:00:39,960 --> 00:00:43,760
+Perhaps repeated play might
+foster cooperation because
+00:00:43,760 --> 00:00:47,220
+the players would care
+not only about immediate
+00:00:47,220 --> 00:00:50,520
+payoffs but also about the
+future consequences of their
+00:00:50,520 --> 00:00:55,060
+actions. To this end, we
+define a framework of repeated
+00:00:55,060 --> 00:01:00,400
+games where the so-called
+stage game, the same game,
+00:01:00,400 --> 00:01:04,400
+is played multiple times
+by the same set of players.
+00:01:04,400 --> 00:01:08,260
+We shall see that when a
+game is played repeatedly,
+00:01:08,480 --> 00:01:11,060
+then strategies that
+reward cooperation and
+00:01:11,060 --> 00:01:14,440
+punish defection can make
+mutual cooperation more
+00:01:14,440 --> 00:01:18,240
+attractive than short
+-term exploitation. Indeed,
+00:01:18,340 --> 00:01:21,480
+the prospect of future
+rounds supports trust
+00:01:21,480 --> 00:01:24,900
+and reciprocity, as
+defecting today may trigger
+00:01:24,900 --> 00:01:30,600
+retaliation tomorrow,
+whereas cooperating can
+00:01:30,600 --> 00:01:34,140
+sustain beneficial long
+-run relationships. For
+00:01:39,510 --> 00:01:42,390
+the formal analysis
+of repeated games, we
+00:01:42,390 --> 00:01:45,210
+need to specify whether
+the agents get to see
+00:01:45,210 --> 00:01:47,790
+what the other agents
+played earlier and
+00:01:47,790 --> 00:01:51,030
+remember what they knew,
+and what is the utility
+00:01:51,030 --> 00:01:53,830
+of a player from the
+entire repeated game.
+00:01:54,450 --> 00:01:58,130
+We answer these questions
+in two steps. We first
+00:01:58,130 --> 00:02:01,690
+consider the case in which
+the game is repeated a finite
+00:02:01,690 --> 00:02:05,730
+and commonly known number
+of times. And then we
+00:02:05,730 --> 00:02:09,030
+consider the case in which the
+game is repeated infinitely
+00:02:09,030 --> 00:02:14,190
+often or a finite but
+unknown number of times.

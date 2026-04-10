@@ -1,0 +1,304 @@
+00:00:01,370 --> 00:00:03,930
+Hello and welcome
+to Cooperation,
+00:00:03,930 --> 00:00:06,210
+Coordination and
+Multi-Agent Systems.
+00:00:06,850 --> 00:00:10,390
+We have arrived at the
+last part of the module,
+00:00:10,390 --> 00:00:12,850
+concerned with
+computational social choice
+00:00:12,850 --> 00:00:16,070
+and voting theory, that
+sits at the intersection
+00:00:16,070 --> 00:00:19,870
+of algorithms, game
+theory and social choice,
+00:00:19,910 --> 00:00:23,830
+asking how groups of
+strategic agents can make
+00:00:23,830 --> 00:00:27,650
+collective decisions
+in a principled way. In
+00:00:27,650 --> 00:00:30,330
+the last two weeks, we
+will study how different
+00:00:30,330 --> 00:00:33,770
+voting mechanisms, or
+as we call them rules,
+00:00:33,930 --> 00:00:38,990
+aggregate individual
+preferences of the voters into a
+00:00:38,990 --> 00:00:43,230
+single outcome, what kinds of
+paradoxes and impossibility
+00:00:43,230 --> 00:00:46,890
+results arise in such
+scenarios, and how
+00:00:46,890 --> 00:00:51,070
+computational considerations
+shape what is feasible in
+00:00:51,070 --> 00:00:55,730
+practice. We will see how
+complexity can sometimes protect
+00:00:55,730 --> 00:00:59,170
+systems from manipulation
+by self-interested agents,
+00:00:59,170 --> 00:01:03,230
+how algorithmic techniques
+help design better rules
+00:01:03,230 --> 00:01:07,190
+for elections and committee
+selection, and how these
+00:01:07,190 --> 00:01:11,690
+ideas apply not only to
+political voting, but also to
+00:01:11,690 --> 00:01:15,510
+recommender systems, resource
+allocation, and decision
+00:01:15,510 --> 00:01:20,570
+-making in multi-agent AI
+systems. Voting theory
+00:01:20,570 --> 00:01:24,430
+provides a rich toolbox
+for aggregating individual
+00:01:24,430 --> 00:01:28,030
+preferences into collective
+decisions, which makes it
+00:01:28,030 --> 00:01:31,270
+highly relevant beyond
+traditional political elections.
+00:01:31,270 --> 00:01:35,230
+In recommender systems,
+voting rules can be used
+00:01:35,230 --> 00:01:38,470
+to combine the preferences
+of many users when
+00:01:38,470 --> 00:01:41,790
+selecting lists of items
+for instance, movies,
+00:01:41,930 --> 00:01:45,450
+news, articles, or
+products, ensuring that
+00:01:45,450 --> 00:01:49,470
+recommendations reflect
+diverse tastes rather than
+00:01:49,470 --> 00:01:52,390
+just the majority or
+the most active users.
+00:01:53,070 --> 00:01:54,930
+For resource allocation,
+00:01:55,150 --> 00:01:58,610
+voting-based methods
+help select bundles of
+00:01:58,610 --> 00:02:02,130
+projects or items, such
+as participatory budgeting
+00:02:02,130 --> 00:02:05,190
+outcomes or shared
+computational resources,
+00:02:05,190 --> 00:02:07,650
+in a way that
+balances efficiency
+00:02:07,650 --> 00:02:09,990
+with fairness and
+representation.
+00:02:10,230 --> 00:02:15,830
+In multi-agent AI decision
+-making, voting rules
+00:02:15,830 --> 00:02:19,770
+provide principled protocols
+for groups of agents or
+00:02:19,770 --> 00:02:24,910
+models to choose joint
+actions, negotiate plans, or
+00:02:24,910 --> 00:02:28,730
+aggregate beliefs enabling
+robust and interpretable
+00:02:28,730 --> 00:02:32,590
+collective behavior in
+settings like ensembles,
+00:02:32,590 --> 00:02:37,310
+swarm robotics, or distributed
+AI systems. Here is a
+00:02:37,310 --> 00:02:41,110
+typical scenario in the
+voting context. We have five
+00:02:41,110 --> 00:02:45,260
+voters who express their
+preferences over the three
+00:02:45,260 --> 00:02:48,310
+available alternatives,
+A, B and C, and we need
+00:02:48,310 --> 00:02:51,930
+to find a good ranking of
+the alternatives to reflect
+00:02:51,930 --> 00:02:55,230
+this information. So we
+have five voters, voter
+00:02:55,230 --> 00:03:01,430
+1, 2, 3, 4 and 5, where
+voter 1 prefer item A over
+00:03:01,430 --> 00:03:06,670
+B and over C, voter 2 likes
+alternative B the most,
+00:03:06,830 --> 00:03:10,590
+then C, then A, and
+so on. So how would
+00:03:10,590 --> 00:03:13,870
+we rank the three
+alternatives to reflect
+00:03:13,870 --> 00:03:17,590
+all these preferences
+by five voters?
+00:03:18,190 --> 00:03:22,910
+A standard voting model
+specifies who is making the
+00:03:22,910 --> 00:03:27,850
+decision, what they are
+deciding over, and how their
+00:03:27,850 --> 00:03:32,410
+opinions are represented. We
+start with a set of alternatives
+00:03:32,410 --> 00:03:36,050
+of candidates. We have a
+finite set of alternatives,
+00:03:36,050 --> 00:03:42,170
+C1 and so on, CM, that
+represent the possible
+00:03:42,170 --> 00:03:47,430
+outcomes or options among
+which the society must choose.
+00:03:47,820 --> 00:03:52,950
+There is also a set
+of voters, N with N
+00:03:52,950 --> 00:03:55,670
+voters, who represent
+the agents, who can
+00:03:55,670 --> 00:03:58,610
+be people, organizations
+or AI systems, who
+00:03:58,610 --> 00:04:02,230
+hold preferences over
+the alternatives.
+00:04:03,390 --> 00:04:07,510
+These preferences may be
+given as rankings, approvals
+00:04:07,510 --> 00:04:11,410
+or scores, and the task of
+voting theory is then to
+00:04:11,410 --> 00:04:16,030
+design aggregation rules
+that map these individual
+00:04:16,030 --> 00:04:19,850
+preferences into a single
+collective outcome, such as
+00:04:19,850 --> 00:04:24,130
+a chosen winner or a
+committee or a social ranking.
+00:04:25,890 --> 00:04:29,990
+As we already mentioned,
+voters can express their
+00:04:29,990 --> 00:04:34,050
+preferences in different formats,
+and the choice of formats
+00:04:34,050 --> 00:04:38,250
+strongly influences which
+voting rules are appropriate
+00:04:38,250 --> 00:04:41,810
+and what information about
+preferences is captured.
+00:04:41,810 --> 00:04:46,150
+In many settings, voters
+provide full rankings of
+00:04:46,150 --> 00:04:49,270
+the alternatives, ordering
+them from most to least
+00:04:49,270 --> 00:04:53,350
+preferred. This is the classic
+framework of social choice
+00:04:53,350 --> 00:04:59,770
+theory and supports a wide
+range of voting rules.
+00:04:59,970 --> 00:05:02,250
+In other contexts,
+00:05:02,270 --> 00:05:06,270
+voters submit approval
+sets indicating which
+00:05:06,270 --> 00:05:10,750
+options they find acceptable
+without specifying
+00:05:10,750 --> 00:05:13,570
+a strict order
+among them, which is
+00:05:13,570 --> 00:05:16,930
+especially natural when
+there are many alternatives
+00:05:16,930 --> 00:05:19,130
+and it is difficult
+to rank them all.
+00:05:19,910 --> 00:05:24,030
+Finally, in rating-based
+systems, such as online
+00:05:24,030 --> 00:05:28,230
+platforms, voters assigns
+scores or stars to
+00:05:28,230 --> 00:05:31,890
+each alternative, for
+example on a 1 to 5 scale,
+00:05:31,890 --> 00:05:35,670
+and this gives a cardinal
+notion of intensity of
+00:05:35,670 --> 00:05:39,410
+preference that can be
+aggregated in different ways.
+00:05:40,190 --> 00:05:44,450
+Now, voting rules can be
+broadly categorized according
+00:05:44,450 --> 00:05:48,190
+to what kind of outcome
+they produce from a
+00:05:48,190 --> 00:05:52,050
+profile of individual
+preferences. At the most basic
+00:05:52,050 --> 00:05:56,630
+level, single winner rules
+or as we call them, social
+00:05:56,630 --> 00:06:00,770
+choice functions, select
+one alternative, such as
+00:06:00,770 --> 00:06:04,130
+a candidate or option, to
+be the collective choice.
+00:06:04,190 --> 00:06:08,410
+Multi-winner rules extend
+this idea by returning
+00:06:08,410 --> 00:06:12,550
+a fixed-size committee
+or set of winners, which
+00:06:12,550 --> 00:06:15,330
+is important for applications
+like parliamentary
+00:06:15,330 --> 00:06:19,170
+elections or recommendation
+lists. Social
+00:06:19,170 --> 00:06:22,930
+welfare functions, unlike
+social choice functions,
+00:06:23,190 --> 00:06:27,010
+go further by returning
+an entire ranking of
+00:06:27,010 --> 00:06:29,850
+the alternatives,
+representing society's
+00:06:29,850 --> 00:06:32,750
+collective ordering
+rather than just a winner
+00:06:32,750 --> 00:06:35,810
+or committee, and thus
+capturing more detailed
+00:06:35,810 --> 00:06:38,870
+information about
+collective preferences.

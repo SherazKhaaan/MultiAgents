@@ -1,0 +1,271 @@
+00:00:01,500 --> 00:00:04,640
+For NV-freeness, though,
+we need to work much
+00:00:04,640 --> 00:00:07,760
+harder because, in general,
+NV-free cake cutting is
+00:00:07,760 --> 00:00:11,380
+algorithmically way more
+challenging than proportional
+00:00:11,380 --> 00:00:14,060
+cake cutting. We shall
+introduce an algorithm
+00:00:14,060 --> 00:00:18,060
+which is called Selfridge
+-Conway algorithm that
+00:00:18,060 --> 00:00:22,140
+guarantees NV-freeness
+for three players only.
+00:00:22,280 --> 00:00:25,860
+And the algorithm takes place
+00:00:25,860 --> 00:00:29,520
+in three stages. In stage 0,
+00:00:29,820 --> 00:00:32,020
+player 1 will cut the cake into
+00:00:32,020 --> 00:00:35,180
+three pieces that
+they value equally.
+00:00:35,380 --> 00:00:41,520
+Now player 2 will trim the
+largest piece such that
+00:00:41,520 --> 00:00:44,900
+the two largest pieces are
+now equal in their eyes.
+00:00:45,660 --> 00:00:50,640
+And we now have four
+pieces in total, right?
+00:00:50,640 --> 00:00:54,940
+The two most valuable
+equal pieces, one of which
+00:00:54,940 --> 00:00:58,660
+was trimmed. the trimming
+and the remaining
+00:00:58,660 --> 00:01:04,000
+original piece. Now let
+cake 2 be the trimming and
+00:01:04,000 --> 00:01:07,800
+cake 1 be the other
+three pieces altogether.
+00:01:08,140 --> 00:01:15,980
+In stage 1 we divide cake
+1 first. We let player 3 to
+00:01:15,980 --> 00:01:21,020
+choose their highest value
+piece in cake 1 and if
+00:01:21,020 --> 00:01:24,800
+player 3 did not choose the
+trimmed piece then player 2
+00:01:24,800 --> 00:01:28,840
+is allocated the trimmed
+piece. Otherwise, if player
+00:01:28,840 --> 00:01:32,520
+3 chose the trimmed piece,
+then player 2 chooses their
+00:01:32,520 --> 00:01:36,020
+highest valued piece out
+of the two remaining ones.
+00:01:36,240 --> 00:01:40,340
+And the remaining piece
+is allocated to player 1.
+00:01:41,200 --> 00:01:45,720
+And at the last stage
+2, we finally divide
+00:01:45,720 --> 00:01:50,440
+cake 2. At this point,
+either player 2 or player
+00:01:50,440 --> 00:01:54,540
+3 received the trimmed
+piece and among players
+00:01:54,540 --> 00:01:57,700
+2 and 3 let t be the
+player that received
+00:01:57,700 --> 00:02:00,600
+the trimmed piece and
+t' be the other player.
+00:02:00,740 --> 00:02:06,440
+Now at stage 2 we let
+player t' divide cake 2
+00:02:06,440 --> 00:02:09,520
+into three pieces that
+they value equally and
+00:02:09,520 --> 00:02:15,960
+then players t1 and then
+player t' in this order
+00:02:15,960 --> 00:02:19,120
+Here we'll choose one of
+the three pieces each.
+00:02:20,290 --> 00:02:23,760
+Let's now prove that
+the Selfridge conveyor
+00:02:23,760 --> 00:02:26,280
+location is NV-free
+for three agents.
+00:02:27,120 --> 00:02:30,100
+Now for each player,
+the valuations are
+00:02:30,100 --> 00:02:34,380
+additive, so we can show
+NV-freeness on Cake 1 and
+00:02:34,380 --> 00:02:38,540
+Cake 2 separately,
+and if that is true on
+00:02:38,540 --> 00:02:41,580
+each of the cakes, then
+it is NV-free overall.
+00:02:41,970 --> 00:02:43,850
+So we will do it
+for each player.
+00:02:43,850 --> 00:02:47,160
+Consider first player T prime.
+00:02:47,500 --> 00:02:53,940
+So for them, clearly the
+allocation on cake two is
+00:02:53,940 --> 00:02:57,700
+NB3 because they divided
+it equally according to
+00:02:57,700 --> 00:03:03,880
+their own valuation. and
+on cake one if t prime is
+00:03:03,880 --> 00:03:08,660
+player three then they got
+to choose their highest
+00:03:08,660 --> 00:03:12,640
+valued piece out of all
+three original pieces so they
+00:03:12,640 --> 00:03:17,290
+must be envy free now if
+t prime is player two then
+00:03:18,580 --> 00:03:23,260
+they were the agent who
+trimmed the two largest pieces
+00:03:23,260 --> 00:03:28,860
+such that they were equal
+in stage zero so they
+00:03:28,860 --> 00:03:33,170
+received one of those largest
+pieces in stage one and
+00:03:33,420 --> 00:03:37,380
+that is why they must be
+envy free because they
+00:03:37,380 --> 00:03:41,420
+received their highest value
+piece overall let's now
+00:03:41,420 --> 00:03:45,060
+consider player t on cake
+two they choose their highest
+00:03:45,060 --> 00:03:49,160
+value piece first so
+they are envy free and on
+00:03:49,160 --> 00:03:53,500
+cake one the argument it is
+the same as above so player
+00:03:53,500 --> 00:03:57,800
+three and two are both
+envy free so player t is
+00:03:57,800 --> 00:04:03,180
+certainly envy free for
+player one on cake one since
+00:04:03,180 --> 00:04:06,500
+they did not receive the
+trimmed piece then they
+00:04:06,500 --> 00:04:10,660
+received a piece which is
+certainly worth one third of
+00:04:10,660 --> 00:04:15,640
+them because they were
+the agent who cut the cake
+00:04:15,640 --> 00:04:20,380
+equally in stage 0. On cake
+2, player 1 does not envy
+00:04:20,380 --> 00:04:23,560
+T prime because they choose
+before T prime, right?
+00:04:23,700 --> 00:04:28,840
+And the only concern left
+is player T. So we need
+00:04:28,840 --> 00:04:33,300
+to show that player 1
+does not envy player T on
+00:04:33,300 --> 00:04:37,040
+cake 2. But notice that
+T received the trimmed
+00:04:37,040 --> 00:04:42,120
+piece from cake 1, which
+can only be worth at most
+00:04:42,120 --> 00:04:46,340
+one third if T then receives
+the entire cake two.
+00:04:46,660 --> 00:04:51,180
+And in this way, player
+one has an irrevocable
+00:04:51,180 --> 00:04:53,680
+advantage over T
+in the allocation
+00:04:53,680 --> 00:04:57,440
+of cake two, so they
+do not envy player T.
+00:04:57,660 --> 00:05:02,560
+As for more than three
+agents, it has been shown
+00:05:02,560 --> 00:05:07,030
+that an envy-free cake
+cutting algorithm always
+00:05:07,030 --> 00:05:10,890
+exists. So there was a theorem
+by Brahms and Taylor in
+00:05:10,890 --> 00:05:14,860
+1995 that says that there
+exists an NV-free cake
+00:05:14,860 --> 00:05:18,240
+cutting algorithm for any
+number of players under
+00:05:18,240 --> 00:05:21,760
+the Robertson web model.
+However, by changing the
+00:05:21,760 --> 00:05:25,260
+valuation function of the
+players, the complexity of
+00:05:25,260 --> 00:05:28,380
+the algorithm that was
+described by Brahms and
+00:05:28,380 --> 00:05:32,280
+Taylor can be made arbitrarily
+high, so it cannot be
+00:05:32,280 --> 00:05:35,720
+bounded as a function of
+the number of players n.
+00:05:35,880 --> 00:05:40,440
+Later, it was shown that
+such a bound actually does
+00:05:40,440 --> 00:05:44,300
+exist, but it is... There's
+a theorem by Aziz and
+00:05:44,300 --> 00:05:48,620
+McKinsey from 2016 that says
+that a bounded Denver-free
+00:05:48,620 --> 00:05:52,760
+algorithm does exist for
+any number of players n, but
+00:05:52,760 --> 00:05:56,820
+its complexity is extremely
+high, which is O of n in
+00:05:56,820 --> 00:06:01,460
+the power of n, in the power
+of n, and so five times.
+00:06:01,700 --> 00:06:06,020
+A lower bound of omega of
+n squared was also shown
+00:06:06,020 --> 00:06:10,500
+for envy-free k-cutting
+algorithms by Prakash in 2009,
+00:06:11,620 --> 00:06:16,300
+but there is a gap between
+the upper and lower
+00:06:16,300 --> 00:06:19,040
+bound for the complexity
+of these algorithms.
+00:06:20,340 --> 00:06:22,260
+This is the end of this topic.
+00:06:22,260 --> 00:06:24,160
+Thank you, and
+see you in class.

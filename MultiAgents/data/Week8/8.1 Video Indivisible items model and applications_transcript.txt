@@ -1,0 +1,131 @@
+00:00:00,730 --> 00:00:03,290
+Hello, and welcome
+to Cooperation,
+00:00:03,290 --> 00:00:05,950
+Coordination, and
+Multi-Agent Systems.
+00:00:06,130 --> 00:00:09,330
+This week we shall
+discuss the problem of
+00:00:09,330 --> 00:00:12,550
+fair allocation when
+goods are indivisible
+00:00:12,550 --> 00:00:15,610
+and cannot be shared
+among several agents.
+00:00:15,610 --> 00:00:19,530
+We have one or more items
+to be divided, which
+00:00:19,530 --> 00:00:22,890
+can be represented by
+paintings, jewelry, house,
+00:00:22,890 --> 00:00:26,730
+car, and so on, and there
+are N agents who want
+00:00:26,730 --> 00:00:30,610
+these goods. The goal is
+to divide the items among
+00:00:30,610 --> 00:00:34,430
+the agents as fairly or
+efficiently as possible.
+00:00:34,470 --> 00:00:37,630
+Finding an allocation that
+is optimal with respect
+00:00:37,630 --> 00:00:40,510
+to a chosen fairness
+or efficiency criterion
+00:00:40,510 --> 00:00:43,970
+is then a combinatorial
+optimization problem
+00:00:43,970 --> 00:00:47,650
+because we cannot divide
+the items as fractions.
+00:00:48,210 --> 00:00:52,870
+Allocation of indivisible
+goods appears in many real
+00:00:52,870 --> 00:00:56,450
+-world scenarios. We can
+consider dividing inheritance
+00:00:56,450 --> 00:01:00,450
+items among hares,
+allocating tasks among team
+00:01:00,450 --> 00:01:04,470
+members, assigning dormitory
+rooms to students, and
+00:01:04,470 --> 00:01:07,870
+distributing computing
+resources in data centers.
+00:01:07,870 --> 00:01:11,510
+The fundamental challenge
+is that we often cannot
+00:01:11,510 --> 00:01:15,150
+achieve perfect fairness,
+so we need to explore
+00:01:15,150 --> 00:01:18,690
+approximations that maintain
+some fairness properties.
+00:01:19,290 --> 00:01:20,310
+Formally,
+00:01:20,450 --> 00:01:22,690
+an indivisible goods
+allocation problem
+00:01:22,690 --> 00:01:25,790
+involves the
+following ingredients.
+00:01:25,790 --> 00:01:30,670
+We have a set G of M
+indivisible goods, a set of
+00:01:30,670 --> 00:01:37,210
+players N with N agents, and
+each agent I has a valuation
+00:01:37,210 --> 00:01:40,770
+function that allocates a
+real or for computational
+00:01:40,770 --> 00:01:45,110
+purposes This is an integer
+value for any subset
+00:01:45,110 --> 00:01:51,030
+of items where for the
+empty set we give value 0.
+00:01:51,030 --> 00:01:55,170
+We will say that valuations
+are additive if for
+00:01:55,170 --> 00:02:00,110
+any set of items S, any
+subset of the whole set
+00:02:00,110 --> 00:02:05,870
+of items G, And for any
+agent I, their value for
+00:02:05,870 --> 00:02:11,190
+the set S is given by the
+sum of values of agent
+00:02:11,190 --> 00:02:17,790
+I for individual items
+G in our set S of goods.
+00:02:18,150 --> 00:02:21,830
+An allocation is then a
+partition of the goods, which
+00:02:21,830 --> 00:02:25,670
+we denote as A, where AI
+is the bundle which we
+00:02:25,670 --> 00:02:29,890
+allocate to agent I, and
+these bundles are disjoined.
+00:02:29,890 --> 00:02:35,060
+So for two agents I and
+J, their bundles are not
+00:02:35,060 --> 00:02:38,350
+intersecting. We say that
+the allocation is complete
+00:02:38,350 --> 00:02:42,430
+if we allocate all the goods,
+so the union of allocated
+00:02:42,430 --> 00:02:46,730
+bundles is exactly the
+set G of all the goods.
+00:02:46,730 --> 00:02:49,730
+And otherwise, if we
+do not allocate all the
+00:02:49,730 --> 00:02:52,530
+bundles, we say that the
+allocation is partial.

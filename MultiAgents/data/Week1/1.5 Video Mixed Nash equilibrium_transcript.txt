@@ -1,0 +1,500 @@
+00:00:01,400 --> 00:00:05,680
+We have introduced the
+concept of Nash equilibrium in
+00:00:05,680 --> 00:00:10,100
+Pew strategies so far and
+have seen on the example of
+00:00:10,100 --> 00:00:14,100
+coordination games that a
+game may have multiple such
+00:00:14,100 --> 00:00:18,520
+equilibria. So it's not
+necessarily unique, which
+00:00:18,520 --> 00:00:23,180
+makes it also a problematic
+solution concept. Moreover,
+00:00:23,340 --> 00:00:25,940
+in some games such an
+00:00:25,940 --> 00:00:28,860
+equilibrium may
+not exist at all.
+00:00:29,370 --> 00:00:33,140
+Consider, for example,
+the following game.
+00:00:33,140 --> 00:00:36,080
+It is called Matching
+Pennies game,
+00:00:36,080 --> 00:00:40,460
+where players have
+conflicting interests.
+00:00:41,130 --> 00:00:45,380
+So, if they have coordinated
+00:00:45,710 --> 00:00:48,760
+outcomes, head
+-head or tail-tail,
+00:00:48,880 --> 00:00:54,600
+then the raw player is
+happy, has utility 1, but
+00:00:54,600 --> 00:00:59,140
+the column player is
+unhappy, has utility minus 1.
+00:00:59,140 --> 00:01:05,260
+However, in the uncoordinated
+outcomes, head-tail
+00:01:05,260 --> 00:01:10,280
+or tail-head, the row
+player is unhappy, has
+00:01:10,280 --> 00:01:14,960
+utility minus 1, while the
+column player is happy,
+00:01:15,080 --> 00:01:19,340
+has utility 1. And you can
+see that from each strategy
+00:01:19,340 --> 00:01:23,260
+profile, one of the players
+would have a profitable
+00:01:23,260 --> 00:01:27,080
+deviation here. So if
+we start with head-head,
+00:01:27,240 --> 00:01:30,100
+then the column player is
+unhappy and has a profitable
+00:01:30,100 --> 00:01:34,480
+deviation to tail. From
+this profile, the raw
+00:01:34,480 --> 00:01:38,760
+player has a profitable
+deviation to tail. From this
+00:01:38,760 --> 00:01:41,880
+profile, the column
+player has a profitable
+00:01:41,880 --> 00:01:46,920
+deviation to head. And from
+From this profile, the raw
+00:01:46,920 --> 00:01:50,200
+player has a profitable
+deviation to head, and we
+00:01:50,200 --> 00:01:53,300
+are back in the strategy
+profile that we started
+00:01:53,300 --> 00:01:58,080
+from. So we have a cycle of
+profitable deviations here,
+00:01:58,080 --> 00:02:01,920
+and there is no pure
+strategy Nash equilibrium.
+00:02:02,850 --> 00:02:04,640
+So what shall we do then?
+00:02:05,430 --> 00:02:09,660
+The answer is in
+randomization, of course. So if
+00:02:09,660 --> 00:02:14,100
+there are no stable
+outcomes in Pew strategies,
+00:02:14,240 --> 00:02:18,720
+then maybe we can randomize
+among these strategies,
+00:02:18,720 --> 00:02:23,260
+play what is called a
+mixed strategy, which is a
+00:02:23,260 --> 00:02:26,500
+probability distribution
+of a set of Pew strategies.
+00:02:26,500 --> 00:02:31,940
+And then Pew strategy can be
+viewed as a mixed strategy
+00:02:31,940 --> 00:02:35,680
+where only one action
+is played with positive
+00:02:35,680 --> 00:02:39,680
+probability. However, in a
+general mixed strategy, more than
+00:02:39,680 --> 00:02:42,300
+one action can be played
+with positive probability.
+00:02:42,800 --> 00:02:46,500
+There are infinitely
+many mixed strategies
+00:02:46,500 --> 00:02:49,880
+which are available
+to each player, even
+00:02:49,880 --> 00:02:55,120
+if their set of pure
+strategies are finite.
+00:02:55,780 --> 00:03:01,020
+The payoffs to the agents
+in mixed strategies
+00:03:01,020 --> 00:03:03,960
+would be given by the
+expectations given this
+00:03:03,960 --> 00:03:07,720
+probability distribution.
+So for each player i,
+00:03:07,980 --> 00:03:13,880
+let delta i be the probability
+distribution of the set
+00:03:13,880 --> 00:03:18,620
+of pure strategies of player
+i, S i, right? So this
+00:03:18,620 --> 00:03:23,240
+is the set of mixed strategies
+for player i, and let
+00:03:23,240 --> 00:03:26,980
+delta be the Cartesian
+product of this mixed strategy
+00:03:26,980 --> 00:03:31,400
+set. So this is the set of
+all strategy profiles in
+00:03:31,400 --> 00:03:36,320
+mixed strategies. Now, when a
+mixed strategy, a combination
+00:03:36,320 --> 00:03:39,820
+of mixed strategies, S
+tilde, is played, the payoff
+00:03:39,820 --> 00:03:42,340
+to each player would be
+determined by the expected
+00:03:42,340 --> 00:03:48,400
+utility. So, we summarize
+by all the pure strategies,
+00:03:48,830 --> 00:03:52,740
+pure strategy combinations,
+and we take the
+00:03:52,740 --> 00:03:56,760
+utility of each player
+i from this combination,
+00:03:56,760 --> 00:04:01,080
+given the probability
+of playing this strategy
+00:04:01,080 --> 00:04:03,640
+under the probability
+distribution s tilde.
+00:04:04,180 --> 00:04:10,740
+Where this probability
+distribution is a product over
+00:04:10,740 --> 00:04:15,380
+all the players in the
+game of their probability
+00:04:15,380 --> 00:04:20,790
+distributions that they give
+to each pure strategy Sj.
+00:04:23,410 --> 00:04:26,960
+Now the concept of
+equilibrium applies to mixed
+00:04:26,960 --> 00:04:30,920
+strategies in the very same
+way as before as for pure
+00:04:30,920 --> 00:04:35,220
+strategies. In an equilibrium,
+each player's now mixed
+00:04:35,220 --> 00:04:39,400
+rather than pure strategy
+should be a best response to
+00:04:39,400 --> 00:04:42,400
+the strategy of the others.
+For a formal definition,
+00:04:42,400 --> 00:04:47,060
+we just need to replace the
+pure actions of the players
+00:04:47,060 --> 00:04:51,360
+with their mixed strategies
+and the utility from
+00:04:51,360 --> 00:04:56,100
+playing pure strategies with
+the expected utilities given
+00:04:56,100 --> 00:04:58,640
+the probability distribution
+given by the mixed
+00:04:58,640 --> 00:05:06,120
+strategies. And now to the
+good news, thanks to John Nash,
+00:05:06,120 --> 00:05:11,580
+every game with a finite
+set of players and finite
+00:05:11,580 --> 00:05:17,360
+sets of actions has at least
+one Nash equilibrium in
+00:05:17,360 --> 00:05:21,340
+mixed strategies. For example,
+in the matching pennies,
+00:05:21,340 --> 00:05:24,680
+where there is no pure
+strategy Nash equilibrium,
+00:05:24,780 --> 00:05:30,060
+the mixed strategy
+profile, where every agent
+00:05:30,060 --> 00:05:32,660
+randomizes between
+the two available
+00:05:32,660 --> 00:05:35,740
+strategies with the same
+probability, one half,
+00:05:35,740 --> 00:05:39,860
+would be a mixed strategy
+Nash equilibrium.
+00:05:40,500 --> 00:05:42,940
+Let's see how we compute this.
+00:05:42,940 --> 00:05:46,770
+So consider the matching
+pennies game. We have two
+00:05:46,770 --> 00:05:51,150
+strategies for each of the
+players, heads or tails,
+00:05:51,280 --> 00:05:55,140
+and assume that player
+1 plays heads with
+00:05:55,140 --> 00:06:02,040
+probability p and tails
+with 1-p, and player 2 plays
+00:06:02,040 --> 00:06:07,700
+heads with probability q
+and tails with 1 minus Q.
+00:06:07,980 --> 00:06:15,400
+We say that a player
+is indifferent about
+00:06:15,400 --> 00:06:18,520
+playing heads or tails,
+in which case they would
+00:06:18,520 --> 00:06:22,440
+indeed randomize between
+the two strategies if
+00:06:22,440 --> 00:06:25,520
+their utilities from
+playing heads or tails
+00:06:25,520 --> 00:06:29,090
+are the same, right? So
+we write this equation.
+00:06:29,400 --> 00:06:33,400
+The expected utility of
+player I from playing
+00:06:33,400 --> 00:06:41,620
+heads would be minus 1
+if the raw player plays
+00:06:41,620 --> 00:06:47,600
+heads and 1 if the raw
+player plays tails.
+00:06:47,660 --> 00:06:51,180
+So the raw player plays
+heads with probability
+00:06:51,180 --> 00:06:55,040
+p and tails with
+probability 1 minus
+00:06:55,040 --> 00:06:58,820
+p. So the expected
+utility of player 2 from
+00:06:58,820 --> 00:07:03,500
+playing heads is minus
+p plus 1 minus p.
+00:07:03,800 --> 00:07:07,040
+And in the same
+way, we compute the
+00:07:07,040 --> 00:07:09,140
+expected utility
+from playing tails.
+00:07:09,140 --> 00:07:13,460
+It is 1 with probability
+p that the first player
+00:07:13,460 --> 00:07:18,740
+plays heads, and it is
+minus 1 with the probability
+00:07:18,740 --> 00:07:23,060
+1 minus p that the first
+player plays tails.
+00:07:23,180 --> 00:07:27,760
+We solve this equation.
+We get p equals 1
+00:07:27,760 --> 00:07:30,480
+half, off, and from
+the symmetry in the
+00:07:30,480 --> 00:07:33,860
+game we get the same
+value for the queue.
+00:07:35,420 --> 00:07:37,560
+Now the expected utility then
+00:07:37,560 --> 00:07:40,180
+for each of the players is 0.
+00:07:42,340 --> 00:07:45,740
+Let's consider another
+example. This is a game
+00:07:45,740 --> 00:07:49,400
+of stag hunt, which is
+a generalization of a
+00:07:49,400 --> 00:07:53,640
+coordination game, where
+both players are better off
+00:07:53,640 --> 00:07:58,000
+when they play coordinated
+outcomes. However,
+00:07:58,460 --> 00:08:03,420
+their payoffs from the
+uncoordinated outcomes may
+00:08:03,420 --> 00:08:07,340
+differ from zero here. So
+this is a more general game.
+00:08:07,800 --> 00:08:10,460
+The story here is the
+following. So there are
+00:08:10,460 --> 00:08:13,480
+two hunters that are
+going to hunt a stag.
+00:08:13,580 --> 00:08:18,640
+And if both of them are
+sticking to the strategy of
+00:08:18,640 --> 00:08:23,080
+chasing the stag, then they
+get a stag and the payoff
+00:08:23,080 --> 00:08:27,260
+for each agent will be
+four in this game. However,
+00:08:27,460 --> 00:08:30,780
+each of them can deviate
+from this strategy
+00:08:30,780 --> 00:08:33,580
+and get distracted
+and go chase a hare.
+00:08:34,000 --> 00:08:37,740
+Hare is smaller than a
+stag, so if you're the
+00:08:37,740 --> 00:08:42,140
+one who goes for the
+hare, you get utility 3,
+00:08:42,140 --> 00:08:45,780
+while the other player
+gets utility 1. And if both
+00:08:45,780 --> 00:08:49,040
+chase the hare, then
+each one gets utility 3.
+00:08:49,360 --> 00:08:51,580
+Now, there are
+two pure strategy
+00:08:51,580 --> 00:08:54,220
+Nash equilibria
+here in this game.
+00:08:54,540 --> 00:08:59,520
+Both players play stack
+or both players play hair,
+00:08:59,520 --> 00:09:05,620
+while uncoordinated outcomes
+are not Nash equilibria. You
+00:09:05,620 --> 00:09:10,240
+can see that because in hair
+stack, the column player
+00:09:10,240 --> 00:09:14,380
+has a profitable deviation
+to hair, and in stack hair,
+00:09:14,380 --> 00:09:18,220
+the raw player has a
+profitable deviation to hair.
+00:09:19,000 --> 00:09:20,140
+However,
+00:09:20,380 --> 00:09:24,320
+there are also
+strictly mixed Nash
+00:09:24,320 --> 00:09:29,680
+Equilibrium in this
+game. Let's compute them.
+00:09:31,180 --> 00:09:37,240
+So we assume, as before,
+that the raw player plays one
+00:09:37,240 --> 00:09:41,060
+strategy, strategy stag,
+with probability p, and the
+00:09:41,060 --> 00:09:44,500
+other strategy, strategy
+hare, with probability 1-p.
+00:09:44,500 --> 00:09:49,100
+and the column player,
+player 2, plays stag with
+00:09:49,100 --> 00:09:55,600
+probability q and hair with
+probability 1 minus q. So again,
+00:09:55,600 --> 00:10:01,140
+we say that a player will
+randomize between the two
+00:10:01,140 --> 00:10:07,720
+strategies if the utilities
+from players, these strategies
+00:10:07,720 --> 00:10:11,720
+are the same, so they're
+indifferent. So we look
+00:10:11,720 --> 00:10:15,540
+at the expected utility of
+the player from playing stag
+00:10:15,780 --> 00:10:21,960
+and make it equal to the
+utility of the player from
+00:10:21,960 --> 00:10:26,880
+playing here, right? So
+the expected utility of the
+00:10:26,880 --> 00:10:31,800
+second player from playing
+stag is 4 with probability P
+00:10:31,800 --> 00:10:37,340
+that the raw player plays
+stag. And it is 1 with
+00:10:37,340 --> 00:10:42,360
+probability 1 minus P that the
+raw player is playing here.
+00:10:43,420 --> 00:10:51,100
+And the utility of playing
+here is always 3 with
+00:10:51,290 --> 00:10:56,120
+probability P that the
+first player playing stag,
+00:10:56,120 --> 00:10:59,180
+and with probability 1 minus
+P that the first player
+00:10:59,180 --> 00:11:03,180
+is playing here. So we
+solve this equation, we get
+00:11:03,180 --> 00:11:08,520
+two-thirds for P. Once
+again, the game is symmetric,
+00:11:08,520 --> 00:11:14,960
+so we have the same
+solution for Q from
+00:11:14,960 --> 00:11:19,860
+considering the expected
+utilities of the first player.
+00:11:21,720 --> 00:11:25,260
+Now let's modify the
+game a little bit.
+00:11:25,260 --> 00:11:30,400
+We changed the utility of
+player 2, of the column
+00:11:30,400 --> 00:11:35,100
+player here a little bit,
+from 1 to 2. and let's
+00:11:35,100 --> 00:11:43,140
+see whose strategy will
+change as a result, right?
+00:11:44,220 --> 00:11:52,080
+So we have seen that the
+probability distribution
+00:11:52,080 --> 00:11:56,820
+for the first player is
+used in the expected utility
+00:11:56,820 --> 00:12:00,560
+of the second player,
+right? So if the utility of
+00:12:00,560 --> 00:12:06,100
+the second player changes, it
+will affect the probability
+00:12:06,100 --> 00:12:10,000
+distribution of player
+1. So here, when we solve
+00:12:10,000 --> 00:12:15,060
+this new equation, we
+will have p equals 1 half.
+00:12:15,120 --> 00:12:17,880
+The utility for the
+first player, however,
+00:12:17,880 --> 00:12:22,060
+did not change. So
+when we solve for q for
+00:12:22,060 --> 00:12:23,880
+the probability
+distribution of the second
+00:12:23,880 --> 00:12:27,280
+player, we will have
+2 thirds as before.

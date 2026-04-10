@@ -1,0 +1,191 @@
+00:00:01,590 --> 00:00:04,290
+Of course, it would be
+interesting to give some
+00:00:04,290 --> 00:00:07,910
+guarantees on price of
+anarchy and stability for
+00:00:07,910 --> 00:00:11,770
+classes of games, not just
+for special instances.
+00:00:12,070 --> 00:00:15,130
+For example, for the
+subclass of congestion
+00:00:15,130 --> 00:00:17,990
+games where all
+resource cost functions
+00:00:17,990 --> 00:00:20,730
+are linear, it has
+been proven that the
+00:00:20,730 --> 00:00:23,270
+price of anarchy is at
+most two and a half.
+00:00:23,550 --> 00:00:27,030
+Moreover, this bound is tight
+00:00:27,450 --> 00:00:30,570
+because there are
+linear congestion games
+00:00:30,570 --> 00:00:32,990
+with three or more
+players where the price of
+00:00:32,990 --> 00:00:36,550
+anarchy for the social
+cost equal to two and
+00:00:36,550 --> 00:00:39,250
+a half. And we shall
+see this example here.
+00:00:39,390 --> 00:00:46,510
+So this is a directed
+graph with four players
+00:00:46,510 --> 00:00:52,250
+where the set of the
+sources and destinations is
+00:00:52,250 --> 00:00:55,430
+given here. So the first
+player goes from A to
+00:00:55,430 --> 00:01:00,070
+B, the second player goes
+from A to C, the third
+00:01:00,070 --> 00:01:05,710
+one from B to C, and the
+last one from C to B.
+00:01:05,710 --> 00:01:08,070
+Now, in this game,
+the optimal solution
+00:01:08,070 --> 00:01:10,110
+is for all the
+players to take the
+00:01:10,110 --> 00:01:13,810
+path with cost K
+directly to their sink.
+00:01:15,510 --> 00:01:19,970
+So there will be one
+player here with the
+00:01:19,970 --> 00:01:23,010
+cost of one. There will
+be one player here,
+00:01:23,010 --> 00:01:25,810
+cost of one. There will
+be one player here,
+00:01:25,810 --> 00:01:27,590
+cost of one, and there
+will be one player
+00:01:27,590 --> 00:01:31,010
+here, cost of one. So
+the total cost is four.
+00:01:33,550 --> 00:01:36,610
+Now the optimal
+solution is also
+00:01:36,610 --> 00:01:39,250
+a Nash equilibrium.
+To see this,
+00:01:39,470 --> 00:01:42,950
+for any player, we
+should consider any other
+00:01:42,950 --> 00:01:46,550
+path that could take
+them to their sink.
+00:01:46,550 --> 00:01:50,190
+In every other path,
+the player must travel
+00:01:50,190 --> 00:01:53,910
+at least one edge
+with cost k, and so
+00:01:53,910 --> 00:01:57,650
+there will be no useful
+deviation for them.
+00:01:57,830 --> 00:02:01,090
+However, this is not the
+only Nash equilibrium. room
+00:02:01,540 --> 00:02:05,330
+consider for example the
+situation where the first player
+00:02:05,330 --> 00:02:12,250
+takes the path ACB so they
+go here and here so they
+00:02:12,250 --> 00:02:18,790
+use two links with cost K
+player two taking the path
+00:02:18,790 --> 00:02:27,310
+ABC ABC they also use two
+links with cost k player three
+00:02:27,310 --> 00:02:35,530
+taking bac sorry this is
+a link with cost zero and
+00:02:35,530 --> 00:02:41,930
+this is a link with cost k
+and player four takes the
+00:02:41,930 --> 00:02:49,010
+root c a b so they go by
+this link with cost zero and
+00:02:49,010 --> 00:02:54,250
+then take the link with cost
+k. Now the cost for player
+00:02:54,250 --> 00:03:02,230
+1 would be 2 plus 1, 3 in
+total. The cost for player
+00:03:02,230 --> 00:03:06,750
+2 would be 2 plus 1, 3 in
+total as well. For player 3
+00:03:06,750 --> 00:03:12,330
+the cost will be 0 plus 2,
+so 2. And for the fourth
+00:03:12,330 --> 00:03:17,840
+player it will be also 0
+plus 2, so 2. And the overall
+00:03:17,840 --> 00:03:23,430
+social cost will be then 3
+plus 3 plus 2 plus 2, so 10.
+00:03:24,050 --> 00:03:26,850
+To see that this is a
+Nash equilibrium, it is
+00:03:26,850 --> 00:03:30,430
+clear that any player's
+deviation to a path of length
+00:03:30,430 --> 00:03:34,350
+3 or more is not useful.
+And deviating to a
+00:03:34,350 --> 00:03:37,130
+path of length 1 will
+result in the same exact
+00:03:37,130 --> 00:03:43,070
+individual cost. So So, if
+player I deviated to AB,
+00:03:43,530 --> 00:03:46,170
+then players 1, 2,
+and 4 would be taken
+00:03:46,170 --> 00:03:49,990
+AB, and player 1
+will have a cost of
+00:03:49,990 --> 00:03:52,370
+3, so that's not a
+useful deviation.
+00:03:52,570 --> 00:03:57,290
+Similarly, if player 2
+deviates to AC, then they
+00:03:57,290 --> 00:04:00,570
+would have a cost of 3.
+And if player 3 deviates
+00:04:00,570 --> 00:04:02,950
+to BC, they would have
+a cost of 2. And the
+00:04:02,950 --> 00:04:06,370
+player 4 deviates to
+cost, sorry, and player
+00:04:06,370 --> 00:04:10,230
+4 deviating to CB would
+also have a cost of 2.
+00:04:10,230 --> 00:04:14,190
+So this strategy profile
+is in Nash equilibrium. And
+00:04:14,190 --> 00:04:18,610
+therefore, we have that the
+lower bound for the price of
+00:04:18,610 --> 00:04:22,870
+anarchy in this case is 10
+over 4. so two and a half
+00:04:25,010 --> 00:04:28,370
+this is the end of
+this week's topic thank
+00:04:28,370 --> 00:04:30,650
+you for your attention
+and see you in class

@@ -1,0 +1,253 @@
+00:00:01,430 --> 00:00:03,610
+When we consider
+the case of additive
+00:00:03,610 --> 00:00:06,630
+valuations, proving
+the existence of
+00:00:06,630 --> 00:00:09,510
+an EF1 allocation
+is rather simple.
+00:00:09,510 --> 00:00:13,690
+In fact, we can use a simple
+round-robin procedure.
+00:00:13,690 --> 00:00:15,370
+It goes as following.
+00:00:15,370 --> 00:00:20,530
+We have agents taking
+turns and choose their most
+00:00:20,530 --> 00:00:24,830
+preferred item among the
+remaining items. So agent
+00:00:24,830 --> 00:00:29,610
+I will choose in rounds I,
+N plus I, 2N plus I, and
+00:00:29,610 --> 00:00:34,970
+so on. so i mod n and
+looking at the following
+00:00:34,970 --> 00:00:38,810
+example we have the following
+allocation so if we go
+00:00:39,140 --> 00:00:43,890
+in the order a1 a2 a3 then
+the first agent chooses
+00:00:43,890 --> 00:00:47,470
+first they take their
+most valuable item which
+00:00:47,470 --> 00:00:53,530
+is g2 second i second
+agent is a2 they will take
+00:00:53,530 --> 00:00:59,830
+their most valuable item
+g3 and the third agent
+00:00:59,830 --> 00:01:03,910
+and A3 will take their
+most valuable item G1.
+00:01:03,950 --> 00:01:06,990
+Now we still have items G4
+00:01:06,990 --> 00:01:09,970
+and G5 left, so we go again,
+00:01:10,450 --> 00:01:15,710
+A1 will take G4
+and A2 will take
+00:01:15,710 --> 00:01:18,760
+4, and this will
+be our allocation.
+00:01:19,600 --> 00:01:23,330
+This round-robin
+procedure always enjoys an
+00:01:23,330 --> 00:01:26,830
+EF1 allocation. The
+intuition is that player
+00:01:26,830 --> 00:01:30,170
+i cannot envy player
+j by more than one
+00:01:30,170 --> 00:01:34,150
+good, since if j chose
+before i in one round,
+00:01:34,290 --> 00:01:38,990
+i will choose before
+j in the next round.
+00:01:38,990 --> 00:01:42,130
+And within each phase,
+we will ensure if one
+00:01:42,130 --> 00:01:44,610
+allocation, and then
+since the valuations are
+00:01:44,610 --> 00:01:47,910
+additive, we can extend
+the claims across rounds.
+00:01:48,150 --> 00:01:54,190
+Formally, consider agents
+i and j so that i goes
+00:01:54,190 --> 00:01:58,030
+before j in the ordering
+of allocation items,
+00:01:58,030 --> 00:02:03,430
+and let's see why i does
+not end with j. So i's
+00:02:03,430 --> 00:02:09,370
+first item is no worse
+to i than j's first item,
+00:02:09,530 --> 00:02:12,670
+i's second item is no
+worse to i than j's
+00:02:12,670 --> 00:02:16,530
+second item, and so
+on. So if we remove I's
+00:02:16,530 --> 00:02:21,330
+first item, then J
+does not envy I either.
+00:02:21,450 --> 00:02:24,450
+So J's first item is
+no worth to J than
+00:02:24,450 --> 00:02:27,710
+I's second item, J's
+second item is no
+00:02:27,710 --> 00:02:32,110
+worth to J than I's
+third item, and so on.
+00:02:32,730 --> 00:02:36,990
+The round-robin procedure
+is widely used in
+00:02:36,990 --> 00:02:40,250
+practice due to its
+simplicity and transparency.
+00:02:40,250 --> 00:02:44,170
+Examples include
+fantasy sports drafts,
+00:02:44,170 --> 00:02:47,250
+allocating dormitory
+rooms in colleges, and
+00:02:47,250 --> 00:02:49,890
+even children taking
+turn selection toys.
+00:02:49,950 --> 00:02:54,970
+Its fairness guarantees,
+specifically the envy-freeness
+00:02:54,970 --> 00:02:58,090
+up to one good, provide a
+theoretical justification
+00:02:58,090 --> 00:03:02,190
+to why this procedure
+feels fair to participants.
+00:03:02,530 --> 00:03:03,850
+However,
+00:03:03,990 --> 00:03:07,130
+round-robin does not
+guarantee parity efficiency,
+00:03:07,130 --> 00:03:10,850
+meaning that there could
+be alternative allocations
+00:03:10,850 --> 00:03:14,190
+where some players are
+better off without making
+00:03:14,190 --> 00:03:18,050
+others worse off. Let's
+consider the following example.
+00:03:18,050 --> 00:03:21,590
+We have two agents and four
+items, and the valuations
+00:03:21,590 --> 00:03:26,150
+of agent i for the items
+are 10, 9, 8, and 7,
+00:03:26,150 --> 00:03:31,190
+while the valuations of
+agent 2 are 100, 3, 2, and
+00:03:31,190 --> 00:03:36,850
+1. So by round robin we
+first allocate to agent
+00:03:36,850 --> 00:03:43,270
+i, So agent I will get
+item one, right? And then
+00:03:43,270 --> 00:03:48,630
+the second agent will
+choose item three, which is
+00:03:48,630 --> 00:03:51,990
+the most valuable available
+item to them. Then we
+00:03:51,990 --> 00:03:56,290
+go again to agent one,
+and they will take off
+00:03:56,290 --> 00:04:01,150
+available items three and
+four, the third item that
+00:04:01,150 --> 00:04:05,730
+values eight for them,
+and the last item will go
+00:04:05,730 --> 00:04:12,170
+to agent two. So, this
+allocation is EF1. However,
+00:04:12,310 --> 00:04:17,950
+there is an improvement for
+both agents. So, if agent
+00:04:17,950 --> 00:04:25,890
+1 will exchange their item
+1 for two items, 2 and 4,
+00:04:26,210 --> 00:04:31,470
+they will have an
+improvement. and also
+00:04:31,470 --> 00:04:36,390
+agent 2 will get
+an item which they
+00:04:36,390 --> 00:04:39,310
+value a lot, which
+they value at 100.
+00:04:39,310 --> 00:04:42,130
+So this is an improvement
+for both agents.
+00:04:42,670 --> 00:04:46,590
+Round-robin also fails
+strategy provenance. That
+00:04:46,590 --> 00:04:49,790
+is, agents may have
+incentives to misreport their
+00:04:49,790 --> 00:04:53,510
+valuations and gain higher
+utility from the resulting
+00:04:53,510 --> 00:04:56,930
+allocation compared to
+the truthful one. Consider
+00:04:56,930 --> 00:05:00,530
+the following example. we
+have two items sorry two
+00:05:00,530 --> 00:05:03,990
+agents again and four
+items and the valuations of
+00:05:03,990 --> 00:05:08,470
+agent one for the items
+are nine eight two one and
+00:05:08,470 --> 00:05:12,810
+the valuations of agent
+two are one nine two three
+00:05:12,810 --> 00:05:18,370
+we can see that for truthful
+valuations round robin
+00:05:18,370 --> 00:05:26,190
+will allocate items one and
+three to agent i to agent
+00:05:26,190 --> 00:05:30,550
+one and their total utility
+will be 11, and items
+00:05:30,550 --> 00:05:38,410
+2 and 4 to agent 2. However,
+if agent 1 picks item
+00:05:38,410 --> 00:05:42,630
+2 first, which is second
+valuable item for them,
+00:05:42,750 --> 00:05:43,310
+right,
+00:05:43,490 --> 00:05:47,430
+then agent 2 will not have
+the opportunity to take the
+00:05:47,430 --> 00:05:53,430
+second item, so agent 2 will
+then take item 4 instead,
+00:05:53,430 --> 00:05:59,630
+right, and then agent 1
+can take item 1 in the
+00:05:59,630 --> 00:06:04,110
+second round, so they will
+have the total utility of items
+00:06:04,110 --> 00:06:10,430
+1 and 2, 17 against 11 in
+the truthful allocation.

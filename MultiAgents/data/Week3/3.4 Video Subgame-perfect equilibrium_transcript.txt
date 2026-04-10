@@ -1,0 +1,608 @@
+00:00:01,370 --> 00:00:05,220
+We shall now introduce a
+solution concept which is
+00:00:05,220 --> 00:00:09,790
+meaningful only in the
+context of extensive form and
+00:00:09,790 --> 00:00:13,370
+this is a concept of sub
+-game perfect equilibrium. Sub
+00:00:13,370 --> 00:00:17,110
+-game perfect equilibrium
+refines the idea of Nash
+00:00:17,110 --> 00:00:20,830
+equilibrium for dynamic games
+by requiring that player
+00:00:20,830 --> 00:00:24,950
+strategies prescribe
+optimal behavior not only in
+00:00:24,950 --> 00:00:28,990
+the game as a whole but
+after every possible history.
+00:00:28,990 --> 00:00:32,650
+In an extensive form game,
+a strategy profile is sub
+00:00:32,650 --> 00:00:37,350
+-game perfect equilibrium if
+it induces a Nash equilibrium
+00:00:37,350 --> 00:00:42,390
+in every sub-game, ruling
+out non-credible threats
+00:00:42,390 --> 00:00:45,690
+and implausible off-path
+behavior. This concept
+00:00:45,690 --> 00:00:48,690
+is particularly useful for
+analyzing sequential decision
+00:00:48,690 --> 00:00:52,210
+-making, as it ensures
+that strategies remain
+00:00:52,210 --> 00:00:56,490
+sequentially rational at every
+stage of the interaction.
+00:00:57,110 --> 00:00:59,450
+Let us get back to our previous
+00:00:59,450 --> 00:01:02,770
+example, where we
+had two players,
+00:01:03,010 --> 00:01:07,470
+one and two, and four
+strategies for each of
+00:01:07,470 --> 00:01:11,330
+them that indicate the
+actions in two of the
+00:01:11,330 --> 00:01:13,710
+choice nodes that are
+available to the players.
+00:01:13,810 --> 00:01:18,650
+We had, if you remember,
+five different outcomes
+00:01:18,650 --> 00:01:23,570
+in the extensive form
+and 16 strategy profiles
+00:01:23,570 --> 00:01:27,850
+in the normal form
+representation. Let's find Nash
+00:01:27,850 --> 00:01:32,910
+equilibria of this game.
+There are three strategy
+00:01:33,030 --> 00:01:35,730
+profiles that correspond
+to Nash equilibria.
+00:01:37,750 --> 00:01:42,410
+AGCF, you can check that
+the second player, the
+00:01:42,410 --> 00:01:46,950
+column player, will not
+deviate here, and also the raw
+00:01:46,950 --> 00:01:50,700
+player will not deviate, so
+this is a Nash equilibrium,
+00:01:50,700 --> 00:01:55,570
+and in a similar way,
+AHCF is also a Nash
+00:01:55,570 --> 00:02:02,550
+equilibrium, right? Now,
+you can see that these two
+00:02:02,550 --> 00:02:06,230
+combinations of strategy
+profiles actually correspond
+00:02:06,230 --> 00:02:12,270
+to the same leaf in our
+tree, because in both cases,
+00:02:12,270 --> 00:02:18,370
+the first agent take the
+first action, action A
+00:02:18,370 --> 00:02:24,840
+here, so we actually never
+end up in the second choice
+00:02:24,840 --> 00:02:30,690
+node for the first player.
+So it's only the action
+00:02:30,730 --> 00:02:36,190
+COD that matters here for
+the second player, and
+00:02:36,190 --> 00:02:42,050
+these two correspond to the
+same strategy choice for
+00:02:42,050 --> 00:02:45,910
+the second player. Now,
+there is also another third
+00:02:45,910 --> 00:02:50,790
+Nash equilibrium here,
+BH and CE, with another
+00:02:50,790 --> 00:02:55,530
+utility function, so this
+takes really a different leaf
+00:02:55,530 --> 00:02:58,370
+in the tree of the extensive
+form representation.
+00:02:58,670 --> 00:03:02,510
+Let us compare this
+Nash equilibria when we
+00:03:02,510 --> 00:03:05,570
+take into account the
+temporal structure of the
+00:03:05,570 --> 00:03:09,970
+extensive form
+representation. So, let's have
+00:03:09,970 --> 00:03:14,490
+a look at the Nash
+Equilibrium A, G, C, F.
+00:03:15,370 --> 00:03:25,370
+Since we have chosen
+action A, then the second
+00:03:25,370 --> 00:03:29,450
+player has a choice
+here between C or D.
+00:03:30,170 --> 00:03:35,730
+Now, what is the best thing
+for agent 2 to do here?
+00:03:35,890 --> 00:03:41,970
+If they choose D, they
+will have utility 3.
+00:03:41,970 --> 00:03:45,550
+If they choose C, they
+will have utility 8.
+00:03:45,550 --> 00:03:49,290
+So indeed, if we end
+up in this choice node,
+00:03:49,290 --> 00:03:52,870
+if we end up here,
+then it is a rational
+00:03:52,870 --> 00:03:57,170
+move for agent 2 to
+choose C rather than
+00:03:57,170 --> 00:04:02,930
+D. So this choice of
+an action is rational.
+00:04:03,310 --> 00:04:08,290
+okay now what about
+agent one choosing
+00:04:08,290 --> 00:04:13,790
+a instead of b okay
+if they choose b
+00:04:14,570 --> 00:04:19,590
+then we know that second
+agent declared that
+00:04:19,590 --> 00:04:22,190
+they will choose f in
+the second choice node
+00:04:22,650 --> 00:04:28,750
+okay then in the second choice
+node for player one what
+00:04:28,750 --> 00:04:34,210
+will be the best thing to
+do they are either in this
+00:04:34,210 --> 00:04:37,590
+situation where they get
+utility two or they're in this
+00:04:37,590 --> 00:04:42,270
+situation where they get
+utility one. So, G is better
+00:04:42,270 --> 00:04:46,370
+than H in the second choice
+node. And in the first
+00:04:46,370 --> 00:04:51,570
+choice node, we then know
+that we are either ending up
+00:04:51,570 --> 00:04:57,270
+in this leaf or in this leaf.
+So, we are comparing the
+00:04:57,850 --> 00:05:00,170
+strategy combinations that lead
+00:05:00,170 --> 00:05:03,350
+us to utility 2
+or to utility 3.
+00:05:03,670 --> 00:05:07,910
+So 3 is better than 2, so
+indeed A is a better choice
+00:05:07,910 --> 00:05:13,430
+than B. So A is also a
+rational choice. And G, we
+00:05:13,430 --> 00:05:17,270
+said, is a rational choice
+in this subtree of the game.
+00:05:18,110 --> 00:05:22,790
+Now for agent 2, we
+also can check whether F
+00:05:22,790 --> 00:05:27,910
+was a reasonable thing to
+do in this choice node.
+00:05:27,910 --> 00:05:31,290
+So if they choose E,
+their utility will be 5.
+00:05:31,590 --> 00:05:37,990
+If they choose F and they
+trust the agent, the first
+00:05:37,990 --> 00:05:41,970
+agent to be rational when
+they choose between G and H,
+00:05:41,970 --> 00:05:45,090
+then they will end up with
+utility 10. So this is
+00:05:45,090 --> 00:05:49,170
+better indeed. So F is also
+a rational choice here. So
+00:05:49,170 --> 00:05:53,610
+all the actions that are
+specified in this strategy
+00:05:53,610 --> 00:06:00,470
+profile are rational choices
+in any subtree of the game.
+00:06:02,530 --> 00:06:07,710
+However, if we look at
+another equilibrium BHCE, we
+00:06:07,710 --> 00:06:11,250
+see that the first agent
+says that they will choose
+00:06:11,250 --> 00:06:16,910
+action H in their second
+choice node that is here right
+00:06:16,910 --> 00:06:23,950
+and that means that they
+choose to have utility 1 in
+00:06:23,970 --> 00:06:30,110
+this leaf node rather than
+having utility 2 in this
+00:06:30,110 --> 00:06:36,090
+leaf which is not a rational
+choice So agent one is making
+00:06:36,090 --> 00:06:41,730
+what is called non-credible
+threat at this note.
+00:06:41,730 --> 00:06:44,650
+Why is this a non-credible
+threat? Because they know
+00:06:44,650 --> 00:06:50,750
+that agent two are going
+to choose E in their second
+00:06:50,750 --> 00:06:55,650
+choice note. So they will
+never end up in this choice
+00:06:55,650 --> 00:06:59,150
+note for the first player.
+So they're saying whatever,
+00:06:59,810 --> 00:07:00,950
+right? However,
+00:07:01,890 --> 00:07:05,830
+this is not a
+rational choice to
+00:07:05,830 --> 00:07:08,430
+make at this
+subtree in the game.
+00:07:09,650 --> 00:07:13,030
+And this is exactly
+the idea behind the
+00:07:13,030 --> 00:07:15,510
+notion of subgame
+perfect equilibrium.
+00:07:15,530 --> 00:07:19,210
+It will rule out all
+the situations where the
+00:07:19,210 --> 00:07:23,370
+agents make non-credible
+threats, or, in other words,
+00:07:23,370 --> 00:07:27,470
+where they choose actions
+which are not rational
+00:07:27,470 --> 00:07:30,790
+in the respective sub
+-game, in the respective
+00:07:30,790 --> 00:07:34,670
+sub-tree of the extensive
+form representation.
+00:07:34,850 --> 00:07:36,810
+So, given the
+perfect information
+00:07:36,810 --> 00:07:38,970
+extensive form game G,
+00:07:38,970 --> 00:07:43,010
+the sub-game of G, which
+is rooted at some non
+00:07:43,010 --> 00:07:46,690
+-terminal node H, would
+be the restriction of
+00:07:46,690 --> 00:07:51,030
+our tree to the descendants
+of H. And the set
+00:07:51,030 --> 00:07:55,010
+of subgames of G consists
+of all the subgames of
+00:07:55,010 --> 00:07:58,390
+G which are rooted at
+some node of the game.
+00:07:58,390 --> 00:08:01,570
+Now the definition of the
+subgame perfect equilibrium
+00:08:01,570 --> 00:08:04,530
+is the following. The
+subgame perfect equilibria
+00:08:04,530 --> 00:08:09,070
+of game G are all
+strategy profiles, S, such
+00:08:09,070 --> 00:08:13,630
+that for any subgame G'
+of G, doesn't matter at
+00:08:13,630 --> 00:08:17,210
+which non-terminal node we
+take it, The restriction
+00:08:17,210 --> 00:08:21,790
+of S to G prime is a Nash
+equilibrium of G prime.
+00:08:21,790 --> 00:08:26,390
+So we need to have a
+Nash equilibrium at every
+00:08:26,390 --> 00:08:31,130
+sub-tree of our representation
+in order to have
+00:08:31,430 --> 00:08:34,830
+a sub-game perfect
+equilibrium of the whole game.
+00:08:34,850 --> 00:08:38,770
+So back to our example,
+the Nash equilibrium
+00:08:38,790 --> 00:08:42,830
+BHCE is not a sub-game
+perfect equilibrium
+00:08:42,830 --> 00:08:46,470
+because here we do not
+have a Nash equilibrium
+00:08:46,470 --> 00:08:51,550
+of this small sub-game
+of our whole game.
+00:08:53,030 --> 00:08:56,030
+Now, sub-game perfect
+equilibrium is a
+00:08:56,030 --> 00:08:58,250
+stronger concept than
+Nash equilibrium.
+00:08:58,250 --> 00:09:01,770
+Every sub-game perfect
+equilibrium is also a Nash
+00:09:01,770 --> 00:09:04,290
+equilibrium. We said it
+must be a Nash equilibrium
+00:09:04,290 --> 00:09:08,110
+of every sub-game,
+including the whole game,
+00:09:08,110 --> 00:09:11,150
+right? So it is a Nash
+equilibrium. But as we have
+00:09:11,150 --> 00:09:14,930
+seen, not every Nash
+equilibrium will be a sub
+00:09:14,930 --> 00:09:17,510
+-game perfect equilibrium,
+right? So there are Nash
+00:09:17,510 --> 00:09:21,890
+equilibria which have
+those non-credible threads.
+00:09:21,890 --> 00:09:25,330
+Now, even though
+sub-game perfect
+00:09:25,330 --> 00:09:27,350
+equilibrium is a
+stronger, strictly
+00:09:27,350 --> 00:09:29,290
+stronger concept than
+Nash equilibrium,
+00:09:29,310 --> 00:09:33,130
+every perfect information
+extensive form game has at
+00:09:33,130 --> 00:09:36,650
+least one sub-game perfect
+equilibrium. And that,
+00:09:36,650 --> 00:09:41,630
+once again, is telling us
+that the set of perfect
+00:09:41,630 --> 00:09:46,610
+information extensive form
+games is strictly smaller than
+00:09:46,610 --> 00:09:50,810
+the set of all normal form
+non-cooperative games.
+00:09:50,870 --> 00:09:54,630
+Now, to compute subgame
+perfect equilibrium,
+00:09:54,630 --> 00:09:56,610
+we simply use
+backward induction.
+00:09:56,910 --> 00:10:00,570
+We identify the equilibria
+in the bottom most
+00:10:00,570 --> 00:10:03,850
+subgame trees and assume
+that those equilibria
+00:10:03,850 --> 00:10:07,130
+will be played as one
+backs up and considers
+00:10:07,130 --> 00:10:10,890
+increasingly larger trees.
+And then we can use this
+00:10:10,890 --> 00:10:13,870
+procedure to compute a
+sample Nash equilibrium.
+00:10:13,910 --> 00:10:16,850
+And this way we are
+guaranteed to find a subgame
+00:10:16,850 --> 00:10:20,650
+perfect equilibrium rather
+than possibly finding a
+00:10:20,650 --> 00:10:23,430
+Nash equilibrium that
+involves non-credible threats.
+00:10:23,510 --> 00:10:27,050
+This procedure is
+computationally simple. as it
+00:10:27,050 --> 00:10:30,840
+can be implemented as a
+single depth-force traversal
+00:10:30,840 --> 00:10:34,690
+of the game tree and
+thus requires time which
+00:10:34,690 --> 00:10:38,280
+is linear in the size of
+the game representation.
+00:10:38,710 --> 00:10:42,130
+Now can we say that
+the prediction of
+00:10:42,130 --> 00:10:44,470
+subgame perfect equilibrium
+is always reasonable
+00:10:44,470 --> 00:10:47,710
+or can we also see
+some inefficiencies
+00:10:47,830 --> 00:10:51,110
+in this concept as we
+have seen with the Nash
+00:10:51,110 --> 00:10:54,250
+equilibrium? Consider the
+following example, it's
+00:10:54,250 --> 00:10:57,230
+called a centipede game,
+we have two players,
+00:10:57,430 --> 00:11:02,290
+one and two, and at
+each choice node here,
+00:11:02,770 --> 00:11:06,370
+one agent after
+another, they have to
+00:11:06,370 --> 00:11:09,850
+choose whether to
+go aside or down,
+00:11:10,190 --> 00:11:14,250
+okay? If the first player
+here goes down, then the
+00:11:14,250 --> 00:11:17,530
+utilities to the players
+are 1-0. If they go
+00:11:17,530 --> 00:11:21,850
+aside, then the second player
+has a choice. Once again
+00:11:21,850 --> 00:11:25,110
+they can go down or
+aside, if they go down the
+00:11:25,110 --> 00:11:29,110
+utilities will be 0-2,
+if they go aside then the
+00:11:29,110 --> 00:11:33,710
+choice will be for player
+1 again. If they go down
+00:11:33,710 --> 00:11:37,050
+the utilities are 3-1, if
+they go aside the second
+00:11:37,050 --> 00:11:40,450
+player has to choose, if
+they go down the utilities
+00:11:40,450 --> 00:11:43,710
+are 2-4, if they go
+aside the first agent has
+00:11:43,710 --> 00:11:47,970
+gets to choose and if
+they go down the utilities
+00:11:47,970 --> 00:11:51,850
+are 4-3, if they go aside
+the utilities are 3-5.
+00:11:52,090 --> 00:11:55,670
+Now what happens with the
+subgame perfect equilibrium
+00:11:55,670 --> 00:11:59,610
+here? So we need to find
+a Nash equilibrium of
+00:11:59,610 --> 00:12:02,670
+every subgame tree. So we
+start from the leaves here,
+00:12:02,670 --> 00:12:06,550
+we start from the bottom
+most choice node where
+00:12:06,550 --> 00:12:11,710
+player i has to make a choice.
+Now player i is choosing
+00:12:11,710 --> 00:12:15,170
+between be in utility
+three and utility four so
+00:12:15,170 --> 00:12:22,190
+they would go they would go
+down here right so now in
+00:12:22,190 --> 00:12:27,170
+the previous choice note
+of player two they need
+00:12:27,170 --> 00:12:30,970
+to see what they need to
+do in this game so if they
+00:12:30,970 --> 00:12:35,070
+go down the utility for
+them will be four if they go
+00:12:35,070 --> 00:12:39,830
+aside then they know that
+agent one will go down
+00:12:39,830 --> 00:12:43,190
+so the utility will be
+three so four is better for
+00:12:43,190 --> 00:12:46,170
+them than three so they
+will choose to go down here.
+00:12:46,790 --> 00:12:51,750
+Now agent one needs to make
+a choice in this choice
+00:12:51,750 --> 00:12:58,670
+node so they compare utility
+three against the utility
+00:12:58,670 --> 00:13:02,550
+if they go aside. If they go
+aside they know that player
+00:13:02,630 --> 00:13:06,550
+two will go down so the
+utility for them will be two
+00:13:06,550 --> 00:13:09,990
+so three is better than two
+so they will choose to go
+00:13:09,990 --> 00:13:15,050
+down here as well what does
+player two decide in this
+00:13:15,050 --> 00:13:18,570
+choice node so if they go
+down they will have utility
+00:13:18,570 --> 00:13:22,230
+two if they go aside player
+one will go down and they
+00:13:22,230 --> 00:13:25,030
+will have utility one so
+two is better than one they
+00:13:25,030 --> 00:13:29,970
+will have to go down here and
+finally player one is looking
+00:13:29,970 --> 00:13:34,750
+at the choice of getting
+one if they go down or if
+00:13:34,750 --> 00:13:38,190
+they go aside but player
+two goes down they will have
+00:13:38,190 --> 00:13:41,430
+zero so one is better than
+zero and what we have is
+00:13:41,430 --> 00:13:44,250
+that a very at the very
+beginning of the game the first
+00:13:44,250 --> 00:13:48,210
+player goes down and this
+whole interaction does not
+00:13:48,210 --> 00:13:53,830
+happen right and we cannot
+realize those much higher
+00:13:53,830 --> 00:13:58,850
+utilities for both of the
+players in the game due to this
+00:13:58,850 --> 00:14:04,990
+reasoning. So that probably
+reminds us of the inefficiency
+00:14:04,990 --> 00:14:07,610
+of Nash Equilibria in
+the game of Prisoner's
+00:14:07,610 --> 00:14:11,970
+Dilemma, where we have seen
+that the agents have unilateral
+00:14:11,970 --> 00:14:16,590
+incentives to defect and
+not cooperate in the game.

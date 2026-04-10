@@ -1,0 +1,787 @@
+00:00:01,150 --> 00:00:03,690
+Hello and welcome
+to Cooperation,
+00:00:03,690 --> 00:00:06,510
+Coordination and
+Multi-Agent Systems.
+00:00:06,770 --> 00:00:09,830
+This week we continue
+talking about elections.
+00:00:09,830 --> 00:00:12,850
+However, our focus
+will be on another
+00:00:12,850 --> 00:00:16,070
+family of elections
+where instead of choosing
+00:00:16,070 --> 00:00:19,890
+a single best candidate,
+the goal is to choose
+00:00:19,890 --> 00:00:23,170
+a group of candidates,
+i.e. a committee.
+00:00:23,510 --> 00:00:26,970
+Such elections are even
+more ubiquitous than the
+00:00:26,970 --> 00:00:31,130
+single winner ones and include
+parliamentary elections,
+00:00:31,190 --> 00:00:34,810
+various business decisions,
+for example an internet
+00:00:34,810 --> 00:00:38,950
+store has to decide what
+products to show on its
+00:00:38,950 --> 00:00:42,590
+home page, or short
+listing tasks, for instance
+00:00:42,590 --> 00:00:47,070
+prior to deciding who should
+receive an award or a job
+00:00:47,070 --> 00:00:49,950
+in a company, typically
+there is a procedure that
+00:00:49,950 --> 00:00:54,330
+finds the finalists. These
+elections are far more
+00:00:54,330 --> 00:00:58,010
+varied than the single
+winner ones and different
+00:00:58,010 --> 00:01:01,790
+scenarios may require rules
+which follow different
+00:01:01,790 --> 00:01:05,810
+principles. Indeed, a rule
+that is good for shortlisting
+00:01:05,810 --> 00:01:09,870
+would likely select a poorly
+representative parliament
+00:01:09,870 --> 00:01:13,850
+if a society were to
+use it for that purpose.
+00:01:13,970 --> 00:01:17,450
+To this end, we
+distinguish the following
+00:01:17,450 --> 00:01:21,090
+three main types of multi
+-winner elections. The
+00:01:21,090 --> 00:01:24,610
+first one is excellence
+-based elections. In
+00:01:24,610 --> 00:01:28,450
+this case, the voters
+correspond to experts,
+00:01:28,450 --> 00:01:32,250
+acting as judges,
+referees, or reviewers.
+00:01:32,250 --> 00:01:36,330
+They have their opinions on
+the quality of the candidates
+00:01:36,330 --> 00:01:39,010
+or their suitability
+for the position that
+00:01:39,010 --> 00:01:42,870
+candidates have applied for.
+And the goal is to select
+00:01:42,870 --> 00:01:47,110
+the finalists. The finalists
+are then evaluated far more
+00:01:47,110 --> 00:01:50,230
+accurately, for instance,
+invited for an interview,
+00:01:50,230 --> 00:01:54,330
+and say a single one of
+them is eventually chosen.
+00:01:54,370 --> 00:01:57,550
+Thus, multi-win rules that
+00:01:57,550 --> 00:01:59,750
+focus on candidate excellence
+00:01:59,750 --> 00:02:02,610
+should simply pick
+the individuals of the
+00:02:02,610 --> 00:02:05,350
+highest quality,
+independently and without
+00:02:05,350 --> 00:02:08,570
+regard to any
+interactions between them.
+00:02:08,570 --> 00:02:09,710
+For example,
+00:02:09,890 --> 00:02:13,930
+two very similar candidates
+should either both be
+00:02:13,930 --> 00:02:17,670
+selected or should both
+be rejected, with possible
+00:02:17,670 --> 00:02:21,550
+exceptions for boundary
+cases. In this way, excellence
+00:02:21,550 --> 00:02:25,610
+-based elections resemble
+single-winner elections.
+00:02:25,990 --> 00:02:29,070
+Another goal we may
+have in a multi-winner
+00:02:29,070 --> 00:02:33,230
+scenario is to select
+a diverse committee.
+00:02:33,230 --> 00:02:36,450
+For instance,
+consider the task of
+00:02:36,450 --> 00:02:39,550
+selecting locations for
+a number of facilities,
+00:02:39,550 --> 00:02:42,770
+such as fire
+stations in a city.
+00:02:43,210 --> 00:02:47,490
+even though a location in
+the city center minimizes
+00:02:47,490 --> 00:02:51,170
+the average driving time
+to all other points in
+00:02:51,170 --> 00:02:54,690
+the city and thus this
+is objectively the best
+00:02:54,690 --> 00:02:59,150
+solution if we were to build
+just a single fire station
+00:02:59,150 --> 00:03:03,290
+we do not want to build
+all fire stations in
+00:03:03,290 --> 00:03:07,310
+the central area rather we
+would prefer to distribute
+00:03:07,310 --> 00:03:11,190
+them more uniformly so
+that each point in the
+00:03:11,190 --> 00:03:15,710
+city is in a close proximity
+for some fire station.
+00:03:15,770 --> 00:03:17,090
+Similarly,
+00:03:17,230 --> 00:03:20,890
+consider an internet
+store that has to choose
+00:03:20,890 --> 00:03:24,610
+which products to
+display on its homepage.
+00:03:24,710 --> 00:03:28,690
+One of the best
+strategies is to present a
+00:03:28,690 --> 00:03:31,770
+set of options which
+is as diverse as
+00:03:31,770 --> 00:03:35,090
+possible, keeping in
+mind that each customer
+00:03:35,090 --> 00:03:38,170
+should see something
+appealing to him or her.
+00:03:38,330 --> 00:03:41,750
+Selecting a diverse
+committee is guided by very
+00:03:41,750 --> 00:03:44,910
+different principles than
+excellence-based elections.
+00:03:44,910 --> 00:03:47,610
+It is no longer possible to
+00:03:47,610 --> 00:03:50,050
+evaluate the
+candidates separately,
+00:03:50,250 --> 00:03:52,510
+and, for example, if there
+00:03:52,510 --> 00:03:54,550
+are two similar candidates,
+00:03:54,550 --> 00:03:58,610
+then we may either
+select one of them or
+00:03:58,610 --> 00:04:00,490
+neither of them if
+there are better
+00:04:00,490 --> 00:04:05,370
+options, but we should
+not select them both.
+00:04:05,850 --> 00:04:07,010
+Finally,
+00:04:07,410 --> 00:04:10,130
+we may be after a proportional
+00:04:10,130 --> 00:04:12,650
+representation of
+the voters' opinions.
+00:04:13,310 --> 00:04:16,810
+Parliamentary elections
+are perhaps the best
+00:04:16,810 --> 00:04:20,110
+-known type of multi
+-winner elections. In this
+00:04:20,110 --> 00:04:23,730
+case, the goal is to
+select a committee, say,
+00:04:23,950 --> 00:04:25,270
+members of the parliament,
+00:04:25,270 --> 00:04:29,730
+in such a way that the
+views of the society are
+00:04:29,730 --> 00:04:34,550
+represented proportionally.
+That is, the main objective of
+00:04:34,550 --> 00:04:38,510
+proportional representation
+is to find a committee of,
+00:04:38,510 --> 00:04:42,870
+say, k representatives,
+each associated with an
+00:04:42,870 --> 00:04:48,810
+equally sized constituency of
+approximately n over k voters,
+00:04:48,810 --> 00:04:52,430
+where n is the total
+number of voters. This
+00:04:52,430 --> 00:04:57,310
+constituency may be territorial
+or virtual, that is, depending
+00:04:57,310 --> 00:05:01,870
+on either geography or
+preferences of the voters.
+00:05:02,150 --> 00:05:05,650
+Multi-winner elections
+lead to a number of
+00:05:05,650 --> 00:05:09,610
+challenges, of which we
+identify the following two.
+00:05:09,770 --> 00:05:14,130
+The first one pertains to
+the problem of choosing
+00:05:14,130 --> 00:05:17,770
+a voting rule for a
+particular election type.
+00:05:17,770 --> 00:05:22,230
+How can we predict if a
+given rule would provide
+00:05:22,230 --> 00:05:26,010
+good results for a given
+setting? One approach
+00:05:26,010 --> 00:05:29,930
+is to seek axiomatic
+properties useful for
+00:05:29,930 --> 00:05:33,010
+judging the suitability
+of a multi-winner rule for
+00:05:33,010 --> 00:05:36,170
+a particular application,
+and then to analyze
+00:05:36,170 --> 00:05:39,850
+different rules with
+respect to these properties.
+00:05:39,850 --> 00:05:43,910
+For instance, we may
+check whether a rule that
+00:05:43,910 --> 00:05:47,570
+is meant for excellence
+-based elections extends
+00:05:47,570 --> 00:05:51,010
+the selected committee
+without removing anyone
+00:05:51,010 --> 00:05:54,170
+from it when we increase
+the target committee
+00:05:54,170 --> 00:05:58,710
+size. The idea is that
+if a candidate was good
+00:05:58,710 --> 00:06:02,310
+enough to be included in
+the list of k best ones,
+00:06:02,310 --> 00:06:05,150
+then it should be good
+enough to be included in
+00:06:05,150 --> 00:06:09,030
+the list of k plus one
+best ones. Or we may
+00:06:09,030 --> 00:06:12,450
+check whether a rule for
+finding a proportional
+00:06:12,450 --> 00:06:16,090
+committee satisfies
+certain proportionality
+00:06:16,090 --> 00:06:19,510
+criteria, and we shall
+define some of these later.
+00:06:20,110 --> 00:06:24,070
+The second challenge
+regards our ability to
+00:06:24,070 --> 00:06:27,250
+compute the results of
+multi-winner elections.
+00:06:27,250 --> 00:06:30,930
+In the single-winner
+setting, almost all prominent
+00:06:30,930 --> 00:06:34,790
+voting rules are polynomial
+time computable, although there
+00:06:34,790 --> 00:06:37,990
+are important exceptions,
+such as the Dodgson's rule.
+00:06:37,990 --> 00:06:41,470
+For the multi-winner setting,
+the situation is much
+00:06:41,470 --> 00:06:44,790
+more complex. There is a
+number of polynomial time
+00:06:44,790 --> 00:06:49,550
+computable rules, but many
+interesting ones are NP-hard.
+00:06:49,550 --> 00:06:51,790
+There are several ways in which
+00:06:51,790 --> 00:06:53,710
+we can deal with this problem.
+00:06:53,710 --> 00:06:57,910
+For elections of small
+enough size, we may be able
+00:06:57,910 --> 00:07:02,250
+to compute a winning
+committee either through FPT,
+00:07:02,250 --> 00:07:05,750
+Fixed Parameter Tractable
+Winner Determination
+00:07:05,750 --> 00:07:10,470
+algorithms, which are efficient
+when certain parameters,
+00:07:10,470 --> 00:07:13,370
+such as the number of
+voters or the number of
+00:07:13,370 --> 00:07:17,990
+candidates, are small, or
+through fast heuristics.
+00:07:17,990 --> 00:07:22,110
+If this approach is
+infeasible, then we may use
+00:07:22,110 --> 00:07:26,770
+deterministic or randomized
+approximation algorithms.
+00:07:26,790 --> 00:07:30,830
+Such approximation
+algorithms can, in turn, be
+00:07:30,830 --> 00:07:34,830
+viewed as new, easy to
+compute rules, which even
+00:07:34,830 --> 00:07:37,930
+sometimes correspond to
+previously known voting rules.
+00:07:37,930 --> 00:07:43,730
+And this way we can study
+axiomatic properties of
+00:07:43,730 --> 00:07:46,770
+these new rules defined
+by such approximation
+00:07:46,770 --> 00:07:51,910
+algorithms just as we do for
+the original voting rules.
+00:07:52,930 --> 00:07:58,570
+Recall that an election
+is given by a pair C,
+00:07:58,570 --> 00:08:01,990
+R, where C is the set of
+candidates candidates,
+00:08:02,090 --> 00:08:06,110
+and R is a profile of
+the voters' preferences.
+00:08:07,150 --> 00:08:09,410
+In the ordinal model,
+00:08:09,790 --> 00:08:18,110
+the profile R consists
+of linear orders, one for
+00:08:18,110 --> 00:08:23,850
+each voter, and each
+such order ranks all the
+00:08:23,850 --> 00:08:27,450
+candidates and is often
+referred to as the preference
+00:08:27,450 --> 00:08:32,890
+order or the ordinal
+ballot of voter I. In the
+00:08:32,890 --> 00:08:38,430
+approval, or as we call
+it also dichotomous model,
+00:08:38,610 --> 00:08:44,230
+the profile contains for
+each voter I the set AI of
+00:08:44,230 --> 00:08:49,530
+those candidates that this
+voter approves of and is
+00:08:49,530 --> 00:08:53,850
+often referred to as the
+approval ballot of this voter.
+00:08:54,170 --> 00:08:58,550
+Consider the following
+example with two types of
+00:08:58,550 --> 00:09:01,510
+elections, the ordinal
+one and the approval one,
+00:09:01,590 --> 00:09:06,570
+for the candidate set
+with five candidates A,
+00:09:06,570 --> 00:09:11,350
+B, C, D, E, and six
+voters from one to six.
+00:09:11,370 --> 00:09:16,070
+And we have ordinal
+ballots for these voters
+00:09:16,070 --> 00:09:19,010
+over these candidates
+and the approval ballots,
+00:09:19,010 --> 00:09:23,370
+where the approval ballots
+are formed by taking
+00:09:23,370 --> 00:09:26,810
+the top-ranked candidates
+from the ordinal
+00:09:26,810 --> 00:09:29,910
+ballots for each voter,
+choosing individually
+00:09:29,910 --> 00:09:34,950
+how many candidates to
+approve of. For example,
+00:09:35,090 --> 00:09:39,330
+the first voter approves
+on their three top
+00:09:39,330 --> 00:09:43,320
+choices A, B and C, the
+second voter approves
+00:09:43,320 --> 00:09:48,050
+on two top choices, A
+and E, and the third
+00:09:48,050 --> 00:09:51,850
+voter approves only
+on the top choice, D.
+00:09:52,690 --> 00:09:57,830
+Now, recall that a single
+winner voting rule is
+00:09:57,830 --> 00:10:02,810
+a function that, given
+an election CR, The R
+00:10:02,810 --> 00:10:08,430
+returns a set of candidates
+that tie as winners,
+00:10:08,430 --> 00:10:13,110
+and when it selects a
+single candidate, for
+00:10:13,110 --> 00:10:15,750
+instance when it is already
+paired with a tie-breaking
+00:10:15,750 --> 00:10:19,210
+scheme, it's called
+resolute. For example,
+00:10:19,410 --> 00:10:23,030
+the plurality rule
+selects those candidates
+00:10:23,030 --> 00:10:26,370
+that are ranked first
+by the largest number of
+00:10:26,370 --> 00:10:28,930
+voters. Formally, we
+assume the voters have
+00:10:28,930 --> 00:10:32,010
+ordinal preferences, but
+in practice, each voter
+00:10:32,010 --> 00:10:36,660
+provides its top candidate
+only. Analogously,
+00:10:37,590 --> 00:10:40,430
+a multi-winner voting rule F,
+00:10:40,790 --> 00:10:48,230
+given an election CR
+and a positive committee
+00:10:48,230 --> 00:10:52,790
+size K, positive
+integer K, which is
+00:10:52,790 --> 00:10:57,770
+at most as the size
+of the candidate sets,
+00:10:58,610 --> 00:11:07,830
+returns a non-empty family
+of size K subsets of
+00:11:07,830 --> 00:11:13,170
+candidates, which we refer
+to as the winning committees.
+00:11:13,170 --> 00:11:18,150
+In practice, there always
+is some tie-breaking
+00:11:18,150 --> 00:11:22,190
+scheme that selects a single
+winning committee. And
+00:11:22,190 --> 00:11:28,050
+for simplicity, we can
+assume that the tie-breaking
+00:11:28,050 --> 00:11:31,770
+model is the so-called
+parallel universe tie-breaking
+00:11:31,770 --> 00:11:35,830
+model, where voting
+rule outputs all the
+00:11:35,830 --> 00:11:39,270
+committees that could end
+up winning for some way of
+00:11:39,270 --> 00:11:43,250
+resolving ties that occur
+while executing the rule.
+00:11:43,750 --> 00:11:47,630
+If a rule always selects
+a single committee, for
+00:11:47,630 --> 00:11:50,750
+instance, because it is
+already combined with some
+00:11:50,750 --> 00:11:54,470
+tie-breaking scheme,
+then we say that it is
+00:11:54,470 --> 00:11:58,870
+resolute exactly as we did
+for single-winner rules.
+00:11:59,630 --> 00:12:04,050
+One of the most famous
+examples of multi-winner
+00:12:04,050 --> 00:12:08,110
+voting rules is the single
+transferable vote rule
+00:12:08,110 --> 00:12:13,850
+for ordinal elections,
+which generalizes the single
+00:12:13,850 --> 00:12:18,410
+winner instant runoff
+voting rule to committee
+00:12:18,410 --> 00:12:22,510
+selection. Consider an
+election with M candidates,
+00:12:22,510 --> 00:12:27,390
+N voters, and with the
+target committee size K.
+00:12:27,570 --> 00:12:33,170
+STV proceeds in rounds,
+just as IRV does,
+00:12:34,150 --> 00:12:39,090
+however, until we have K
+rather than one candidates
+00:12:39,090 --> 00:12:42,250
+which are elected. And
+a single round proceeds
+00:12:42,250 --> 00:12:48,170
+as follows. We check if
+there is a candidate ranked
+00:12:48,170 --> 00:12:52,150
+first by some quarter
+of voters, where this
+00:12:52,150 --> 00:12:59,590
+quarter is given by at least
+n over k plus 1 voters.
+00:12:59,590 --> 00:13:05,590
+So this quarter q is
+calculated as the integer
+00:13:05,590 --> 00:13:09,710
+part of the fraction
+n divided by k plus 1
+00:13:09,710 --> 00:13:15,490
+plus 1. So this way we
+have at least n over k
+00:13:15,490 --> 00:13:22,170
+plus 1 voters. And for
+k equal 1, we have at
+00:13:22,170 --> 00:13:25,600
+least n over 2 voters,
+which is the majority.
+00:13:25,600 --> 00:13:32,510
+So IRV is indeed a special
+case of STV for k equal 1.
+00:13:33,370 --> 00:13:36,290
+All right, so we
+computed this quarter.
+00:13:36,370 --> 00:13:44,410
+And now, analogously to
+the IRV rule, we do the
+00:13:44,410 --> 00:13:49,810
+following. So if we have
+a candidate that has
+00:13:50,270 --> 00:13:55,350
+such a quarter of supporters
+who rank this candidate
+00:13:55,350 --> 00:13:58,750
+first in their preference
+list, then this
+00:13:58,750 --> 00:14:01,590
+candidate is included in
+the winning committee.
+00:14:01,890 --> 00:14:05,810
+The Q voters that rank
+him or her first are
+00:14:05,810 --> 00:14:09,190
+removed from the election,
+and he or she is also
+00:14:09,190 --> 00:14:11,950
+removed from all the
+remaining preference orders.
+00:14:11,950 --> 00:14:16,010
+If such a candidate
+does not exist, then a
+00:14:16,010 --> 00:14:19,210
+candidate that is ranked
+first by the smallest
+00:14:19,210 --> 00:14:23,650
+number of voters is
+eliminated from the election.
+00:14:25,550 --> 00:14:31,110
+And we proceed
+with our modified
+00:14:31,110 --> 00:14:36,850
+ballots until we
+reach a quarter 4k
+00:14:37,170 --> 00:14:40,750
+candidates to form
+our winning committee.
+00:14:41,730 --> 00:14:45,050
+Let's consider the ordinal
+election from our earlier
+00:14:45,050 --> 00:14:50,390
+example with the target
+committee size k equal 2.
+00:14:50,550 --> 00:14:55,190
+So first we need to
+compute the quarter. So we
+00:14:55,190 --> 00:15:00,690
+have 6 voters divided by
+k plus 1 divided by 3.
+00:15:01,010 --> 00:15:05,870
+The integer part of this
+fraction is 2 and we
+00:15:05,870 --> 00:15:10,170
+add 1 so the quarter
+is 3. We need at least
+00:15:10,170 --> 00:15:15,390
+three voters to place
+our candidate in the
+00:15:15,390 --> 00:15:18,990
+first position in their
+ranking for that candidate
+00:15:18,990 --> 00:15:21,150
+to be included in the
+winning committee.
+00:15:22,110 --> 00:15:25,730
+Now, none of the candidates
+is ranked first by
+00:15:25,730 --> 00:15:28,530
+at least three voters.
+So we have one vote for
+00:15:28,530 --> 00:15:33,150
+A, one vote for E, D and
+B and two votes for C.
+00:15:33,150 --> 00:15:37,830
+So in the first round,
+STV will remove one of
+00:15:37,830 --> 00:15:43,150
+the candidates A, E, D
+or B from the election.
+00:15:43,590 --> 00:15:47,690
+And for instance, let's remove
+00:15:47,690 --> 00:15:50,930
+A, right? If we remove A,
+00:15:51,210 --> 00:15:56,710
+then B moves to the first
+position in the vote of voter
+00:15:56,710 --> 00:16:01,850
+1. So we have two votes
+for B, two votes for C, and
+00:16:01,850 --> 00:16:06,730
+one vote for E and D. So
+once again, now that the
+00:16:06,730 --> 00:16:11,850
+candidates have the quarter,
+have three votes, so we
+00:16:11,850 --> 00:16:17,130
+eliminate one of the candidates
+who have the smallest
+00:16:17,130 --> 00:16:20,710
+number of votes, so it's
+either E or D. Let's remove D.
+00:16:21,390 --> 00:16:23,370
+If we remove D,
+00:16:23,590 --> 00:16:29,090
+then A is already
+removed, So B moves to
+00:16:29,090 --> 00:16:33,910
+the first position in
+the vote of voter 3.
+00:16:33,910 --> 00:16:37,970
+So we now have B in the
+first position in the first
+00:16:37,970 --> 00:16:42,610
+vote, in the third vote,
+and in the sixth vote. So B
+00:16:42,610 --> 00:16:49,810
+finally has the quarter of
+3 and is included in the
+00:16:49,810 --> 00:16:55,150
+winning committee. Now we
+remove B from the preference
+00:16:55,150 --> 00:16:59,290
+lists, and we also remove
+these three supporters,
+00:16:59,410 --> 00:17:05,650
+voter 1, voter 3, and voter
+6. So we are left with
+00:17:05,650 --> 00:17:12,250
+voter 2, who places candidate
+E in the first position,
+00:17:12,250 --> 00:17:17,430
+and voters 4 and 5, who
+place voter C in the first
+00:17:17,430 --> 00:17:20,930
+position. Once again, none
+of the candidates has the
+00:17:20,930 --> 00:17:25,550
+quarter of three votes, so
+we need to eliminate someone,
+00:17:25,550 --> 00:17:31,390
+and this will be candidate
+E that has smaller votes
+00:17:31,390 --> 00:17:38,750
+than candidate C. So after
+we eliminate E in the second
+00:17:38,750 --> 00:17:43,410
+vote, so these three
+candidates are already removed,
+00:17:43,410 --> 00:17:48,630
+so C also moves to the first
+position, so now we have
+00:17:48,630 --> 00:17:54,050
+C in the second, fourth and
+fifth votes, so C finally
+00:17:54,050 --> 00:17:59,550
+has the quarter and joins
+candidate B in the winning
+00:17:59,550 --> 00:18:02,470
+committee. so the winning
+committee will contain
+00:18:02,470 --> 00:18:08,970
+candidates B and C for this
+election under the STV rule.
+00:18:09,810 --> 00:18:14,890
+STV is just one example
+of multi-winner rules, and
+00:18:14,890 --> 00:18:19,910
+next we shall describe several
+families of such rules,
+00:18:19,910 --> 00:18:24,010
+starting with multi
+-winner analogues of single
+00:18:24,010 --> 00:18:27,070
+-winner positional scoring
+rules that we shall call
+00:18:27,070 --> 00:18:31,890
+committee scoring rules,
+Rules which are based on the
+00:18:31,890 --> 00:18:36,170
+Condorcet Principle, again,
+extensions of the rules
+00:18:36,170 --> 00:18:39,550
+that we considered for the
+single winner case, and we
+00:18:39,550 --> 00:18:44,570
+also will define some rules
+for approval elections.

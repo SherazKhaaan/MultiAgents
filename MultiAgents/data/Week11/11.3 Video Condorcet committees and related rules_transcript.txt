@@ -1,0 +1,260 @@
+00:00:01,630 --> 00:00:05,290
+One of the most important
+notions regarding
+00:00:05,290 --> 00:00:08,150
+single-winner elections
+in the ordinal model
+00:00:08,370 --> 00:00:12,550
+is that of a condeser
+winner. A candidate C is
+00:00:12,550 --> 00:00:16,090
+a condeser winner if for
+every other candidate
+00:00:16,090 --> 00:00:19,730
+D a majority of the
+voters prefer C to D.
+00:00:19,770 --> 00:00:23,590
+And a single-winner rule
+is condeser consistent
+00:00:23,590 --> 00:00:25,550
+if it selects the condeser
+00:00:25,550 --> 00:00:28,030
+winner whenever one exists.
+00:00:28,230 --> 00:00:32,110
+And two prominent And
+examples of condeser
+00:00:32,110 --> 00:00:35,710
+-consistent rules that we
+have considered include
+00:00:35,710 --> 00:00:40,770
+the Copland or Luhls rule
+and the Maximin rule.
+00:00:40,770 --> 00:00:45,910
+Now, the notion of the
+condeser-winner was also
+00:00:45,910 --> 00:00:49,030
+adopted to the multi-winner
+setting, and the first
+00:00:49,030 --> 00:00:54,550
+attempt was by Fishburne
+in 1981, and it goes as
+00:00:54,550 --> 00:00:59,190
+follows. so we say that a
+committee C is a condensate
+00:00:59,190 --> 00:01:03,150
+committee if for every
+other committee D of
+00:01:03,150 --> 00:01:08,910
+the same size a majority
+of voters prefer C to D.
+00:01:09,030 --> 00:01:12,310
+However, for this
+definition to be meaningful
+00:01:12,310 --> 00:01:17,030
+one has to either assume
+that the voters have
+00:01:17,030 --> 00:01:21,630
+explicit preferences over
+the committees or that
+00:01:21,630 --> 00:01:25,470
+there is some accepted
+mechanism for lifting
+00:01:25,470 --> 00:01:30,450
+preferences over candidates
+to those over committees.
+00:01:30,930 --> 00:01:36,970
+And to this end, there
+was another interpretation
+00:01:36,970 --> 00:01:41,450
+of Condorcet consistency
+provided by Guerlain
+00:01:41,450 --> 00:01:49,430
+in 1985 and by Ratliff
+in 2003. and it is based
+00:01:49,430 --> 00:01:53,910
+directly on the preferences
+over the candidates.
+00:01:54,660 --> 00:01:58,710
+But also this notion
+can be understood in
+00:01:58,710 --> 00:02:02,470
+terms of Fishman's kandeser
+committees as well.
+00:02:02,630 --> 00:02:11,890
+So for election given by
+the set of candidates C and
+00:02:11,890 --> 00:02:19,510
+preference relation R with
+a committee size K, let
+00:02:19,510 --> 00:02:29,570
+us have S be some committee
+of this size, and we say
+00:02:29,570 --> 00:02:34,970
+that S is a condescend
+set, if for every candidate
+00:02:34,970 --> 00:02:42,230
+C in this set S, and for
+every candidate D outside of
+00:02:42,230 --> 00:02:46,850
+this set, it holds that more
+than half of the voters,
+00:02:46,850 --> 00:02:50,490
+the majority of voters,
+prefer C to D. And we
+00:02:50,490 --> 00:02:55,150
+shall say that C is a weak
+condensate set if at least
+00:02:55,150 --> 00:03:02,850
+half of the voters prefer
+C inside S to D outside S.
+00:03:04,130 --> 00:03:09,450
+Now we say that a multi
+-win rule is stable if
+00:03:09,450 --> 00:03:13,250
+it outputs a possibly
+weak condensate set
+00:03:13,250 --> 00:03:18,170
+of a given size k whenever
+such a set exists.
+00:03:18,450 --> 00:03:20,390
+And for example, there are
+00:03:20,390 --> 00:03:23,670
+following weakly stable rules.
+00:03:25,070 --> 00:03:29,790
+The first one extends
+the Copland rule and the
+00:03:29,790 --> 00:03:33,270
+other one extends the Maximin
+rules. These rules are
+00:03:33,270 --> 00:03:36,010
+natural analogous of the
+Copland and Maximin rules
+00:03:36,010 --> 00:03:39,910
+for, however, a particular
+way of handling the
+00:03:39,910 --> 00:03:44,070
+cases where exactly half
+of the voters prefer
+00:03:44,390 --> 00:03:49,550
+candidate C to D and D to
+C under the Copeland rule.
+00:03:49,830 --> 00:03:53,750
+So let's consider the first
+one of them. It's called
+00:03:53,750 --> 00:03:59,290
+number of external defeats,
+NED. And under this
+00:03:59,290 --> 00:04:04,470
+rule, the score of a
+committee S is the number of
+00:04:04,470 --> 00:04:10,030
+pairs, CD of candidates
+such as C is inside of S
+00:04:10,030 --> 00:04:15,770
+and D is outside of S,
+such that at least half of
+00:04:15,770 --> 00:04:22,190
+the voters prefer C to D.
+So we are choosing a weak
+00:04:22,190 --> 00:04:26,430
+condescend set if such a set
+exists. So the committees
+00:04:26,430 --> 00:04:29,750
+with the highest such
+score are the winners.
+00:04:30,710 --> 00:04:34,110
+The next rule, the minimum
+00:04:34,110 --> 00:04:36,650
+size of external opposition,
+00:04:36,850 --> 00:04:42,860
+S-E-O rule. For this rule,
+the score of a committee S
+00:04:42,860 --> 00:04:48,090
+in a given election will be
+given by the minimum number
+00:04:49,330 --> 00:04:57,690
+of voters that prefer C to
+D, where C is a candidate
+00:04:57,690 --> 00:05:03,090
+in our set S and D is a
+candidate outside of our
+00:05:03,090 --> 00:05:07,690
+set S. So the score of a
+committee S is the smallest
+00:05:07,690 --> 00:05:10,770
+number of voters, once again,
+that prefer some committee
+00:05:10,770 --> 00:05:15,770
+member to a committee non
+-member. And the committees
+00:05:15,770 --> 00:05:19,070
+with the highest score,
+once again, are the winners.
+00:05:20,270 --> 00:05:23,930
+In the ordinal election
+from our previous example,
+00:05:23,930 --> 00:05:28,970
+the committee that consists
+of candidates B and C
+00:05:28,970 --> 00:05:33,870
+will be a weak condenser
+set of size 2. Indeed, we
+00:05:33,870 --> 00:05:38,950
+can check that exactly half
+of the voters prefer B to
+00:05:38,950 --> 00:05:48,230
+A, so we have B above A
+in the votes of voters 4,
+00:05:48,230 --> 00:05:53,890
+5 and 6. B is above A here,
+here, and here, right?
+00:05:55,650 --> 00:06:02,330
+And half of the voters
+prefer C to A, and
+00:06:02,330 --> 00:06:08,450
+this happens in the
+votes also 4, 5, and 6.
+00:06:10,070 --> 00:06:14,530
+and strict majorities
+of the voters prefer
+00:06:14,530 --> 00:06:20,250
+each of B and C to each
+of other candidates D
+00:06:20,250 --> 00:06:24,170
+and E. So we have B over
+D and E in the first
+00:06:24,170 --> 00:06:28,050
+vote, we have B over
+D in the second vote,
+00:06:28,330 --> 00:06:33,530
+B over E in the second
+vote, and B over both
+00:06:33,530 --> 00:06:36,570
+D and E in the rest
+of the vote. So at
+00:06:36,570 --> 00:06:41,450
+least in four votes, B
+is above both of them.
+00:06:41,770 --> 00:06:44,890
+And similar for C,
+00:06:45,250 --> 00:06:47,810
+it is above D and
+E here, and it is
+00:06:47,810 --> 00:06:51,510
+above D and E in
+these three votes.
+00:06:52,570 --> 00:06:56,590
+So B and C is the
+committee which is a weak
+00:06:56,590 --> 00:07:00,970
+condensate winner. And
+in fact, it is the unique
+00:07:00,970 --> 00:07:03,230
+weak condensate winner
+of size two for this
+00:07:03,230 --> 00:07:06,790
+election. And so it
+is the unique winning
+00:07:06,790 --> 00:07:13,250
+committee under both the
+NED and the SEO rule.

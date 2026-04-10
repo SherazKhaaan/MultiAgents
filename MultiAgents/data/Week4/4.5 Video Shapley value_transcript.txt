@@ -1,0 +1,562 @@
+00:00:01,370 --> 00:00:04,690
+We have seen that dividing
+the ice cream equally
+00:00:04,690 --> 00:00:07,610
+between Charlie and
+Marcy and giving zero
+00:00:07,610 --> 00:00:11,590
+to Betty was a core
+outcome. But is it fair?
+00:00:12,070 --> 00:00:15,090
+One of the solution
+concepts that capture
+00:00:15,090 --> 00:00:17,970
+the notion of fairness
+is the Sharple value.
+00:00:17,970 --> 00:00:21,030
+The Sharple value is based
+on the intuition that
+00:00:21,030 --> 00:00:23,970
+the payment that each
+agent receives from the
+00:00:23,970 --> 00:00:28,240
+game should be proportional
+to their contribution
+00:00:28,240 --> 00:00:30,990
+to the coalition that
+they participate in.
+00:00:31,370 --> 00:00:34,910
+A naive implementation of
+this idea would be to pay
+00:00:34,910 --> 00:00:37,790
+each agent according to
+how much they increase
+00:00:37,790 --> 00:00:40,750
+the value of the coalition
+of all other players when
+00:00:40,750 --> 00:00:43,910
+they join in. That is to
+set the payoff of player
+00:00:43,910 --> 00:00:48,170
+I to the value of the
+grand coalition minus the
+00:00:48,170 --> 00:00:51,490
+value of the grand coalition
+without our player I.
+00:00:51,490 --> 00:00:54,490
+However, under this payoff
+scheme, the total payoff
+00:00:54,490 --> 00:00:58,490
+assigned to the agents may
+differ from the value of the
+00:00:58,490 --> 00:01:02,190
+grand coalition. For example,
+in the three-player majority
+00:01:02,190 --> 00:01:05,650
+game, each agent's payoff
+under the scheme would be
+00:01:05,650 --> 00:01:09,970
+zero, while the value of
+the grant coalition is one.
+00:01:10,570 --> 00:01:14,930
+To avoid this problem, we
+can fix an ordering of the
+00:01:14,930 --> 00:01:18,550
+agents and pay each agent
+according to how much they
+00:01:18,550 --> 00:01:21,830
+contribute to the coalition
+formed by their predecessors
+00:01:21,830 --> 00:01:25,430
+in this ordering. That is,
+agent I would receive the
+00:01:25,430 --> 00:01:28,930
+value of singleton coalition
+consisting of that agent.
+00:01:28,930 --> 00:01:32,890
+Agent 2 will receive the
+difference between the
+00:01:32,890 --> 00:01:36,650
+value of coalition of players
+1 and 2 minus the value of
+00:01:36,650 --> 00:01:40,550
+the coalition consisting of
+just player 1 without agent
+00:01:40,550 --> 00:01:44,490
+2 and so on. And it is
+easy to see that this way
+00:01:44,490 --> 00:01:48,390
+the payoff scheme will
+distribute the value of the grand
+00:01:48,390 --> 00:01:52,330
+coalition among the agents.
+So we fix this problem.
+00:01:52,450 --> 00:01:57,570
+However, it suffers from
+another issue. The two agents
+00:01:57,570 --> 00:02:01,470
+that play symmetric roles
+in the game may receive
+00:02:01,470 --> 00:02:05,230
+very different payoffs. For
+instance, in the same three
+00:02:05,230 --> 00:02:08,370
+-player majority game, under
+the order-based payoff
+00:02:08,370 --> 00:02:11,470
+scheme, one agent, the
+one that happens to be the
+00:02:11,470 --> 00:02:16,450
+second in the ordering, will
+receive payoff one, while
+00:02:16,450 --> 00:02:20,550
+two other agents will
+receive payoff zero. However,
+00:02:21,070 --> 00:02:23,530
+all three agents are
+clearly identical
+00:02:23,530 --> 00:02:25,270
+in terms of their contribution.
+00:02:25,390 --> 00:02:29,230
+That means that the payoffs
+in this scheme strongly
+00:02:29,230 --> 00:02:33,510
+depend on the selected
+ordering of the agents.
+00:02:33,900 --> 00:02:37,570
+And this dependence can
+be eliminated by averaging
+00:02:37,570 --> 00:02:42,090
+over all possible orderings
+or permutations of the
+00:02:42,090 --> 00:02:47,310
+players. So let pi of
+n denote the set of all
+00:02:47,310 --> 00:02:51,810
+permutations of the players
+in the set n, and given a
+00:02:51,810 --> 00:02:56,630
+particular permutation pi,
+we shall denote by s pi
+00:02:56,630 --> 00:03:03,190
+of i the set of all
+predecessors of player i in the
+00:03:03,190 --> 00:03:07,270
+order in the permutation
+pi. So these are all the
+00:03:07,270 --> 00:03:14,850
+agents J that come in the
+order pi before agent I.
+00:03:15,090 --> 00:03:18,990
+For example, if we have
+three agents in our
+00:03:18,990 --> 00:03:22,450
+set, then we have six
+possible permutations.
+00:03:22,810 --> 00:03:27,030
+So this is our pi of n. And
+for a particular permutation
+00:03:27,030 --> 00:03:30,770
+of a particular order
+pi, which is 3, 2, and 1,
+00:03:30,770 --> 00:03:34,490
+we have the set of predecessors
+for 3 is an empty set.
+00:03:34,490 --> 00:03:39,130
+The set of predecessors
+for 2 is agent 3, and the
+00:03:39,130 --> 00:03:43,850
+set of predecessors for 1
+is a pair of agents 2 and 3.
+00:03:44,250 --> 00:03:48,430
+Now, the marginal contribution
+of an agent i with
+00:03:48,430 --> 00:03:53,190
+respect to a particular
+permutation pi in a game that
+00:03:53,190 --> 00:03:56,250
+consists of the set of
+players n and a characteristic
+00:03:56,250 --> 00:04:02,110
+function. V would be the
+difference of the values of
+00:04:02,110 --> 00:04:07,470
+the coalition that consists
+of the predecessors of I
+00:04:07,470 --> 00:04:13,030
+together with agent I and
+the set of predecessors of
+00:04:13,030 --> 00:04:18,130
+I without agent I. So this
+will be exactly how much
+00:04:18,130 --> 00:04:23,570
+player I contributes to the
+set of its predecessors.
+00:04:23,570 --> 00:04:27,190
+And given a characteristic
+function game g with a set
+00:04:27,190 --> 00:04:31,270
+of players i and characteristic
+function v, where the
+00:04:31,270 --> 00:04:36,310
+number of agents is n, the
+Shapley value of a player
+00:04:36,310 --> 00:04:40,790
+would be the average of
+their marginal contributions
+00:04:40,790 --> 00:04:46,370
+over all possible permutations
+of the agents. So,
+00:04:46,370 --> 00:04:49,350
+we have 1 divided by n
+factorial, this is the number
+00:04:49,350 --> 00:04:55,050
+of permutations of n agents,
+and we take the sum of
+00:04:55,050 --> 00:04:59,350
+marginal contributions over
+all possible permutations.
+00:05:00,670 --> 00:05:05,330
+So, sharply value of each
+agent, we denote it as
+00:05:05,330 --> 00:05:10,390
+phi i for agent i, would
+be the average marginal
+00:05:10,390 --> 00:05:13,150
+contribution of player i
+to the coalition of their
+00:05:13,150 --> 00:05:17,370
+predecessors. over all
+possible permutations. So
+00:05:17,370 --> 00:05:20,290
+the probabilistic
+interpretation of that would be
+00:05:20,290 --> 00:05:23,630
+that if we choose a permutation
+of players uniformly
+00:05:23,630 --> 00:05:26,790
+at random among all
+possible permutations of
+00:05:26,790 --> 00:05:30,390
+the players n, then the
+Shapley value phi i of
+00:05:30,390 --> 00:05:33,950
+agent i would be the expected
+marginal contribution
+00:05:33,950 --> 00:05:37,130
+of player i to the coalition
+of its predecessors.
+00:05:37,490 --> 00:05:41,610
+Let's get back to our
+ice cream example and
+00:05:41,610 --> 00:05:44,910
+calculate the Shapley
+value for Petty. So we have
+00:05:44,910 --> 00:05:48,490
+three agents, Charlie,
+Marcy and Petty, and there
+00:05:48,490 --> 00:05:51,030
+are six permutations of
+the players, Charlie,
+00:05:51,030 --> 00:05:53,770
+Marcy, Petty, Marcy,
+Charlie, Petty, and so on.
+00:05:54,310 --> 00:05:58,490
+And we need to calculate
+the marginal contribution
+00:05:58,490 --> 00:06:02,750
+of Petty to the set
+of her predecessors.
+00:06:04,010 --> 00:06:09,150
+So when Petty joins last, the
+00:06:09,150 --> 00:06:12,190
+marginal contribution
+would be 250.
+00:06:12,190 --> 00:06:15,250
+So this is 1,000, the value
+of the Grant Coalition,
+00:06:15,250 --> 00:06:19,190
+minus the value of the pair
+Charlie and Marcy, which is
+00:06:19,190 --> 00:06:29,710
+750. 50. When Petty joins
+second, the contribution of
+00:06:29,710 --> 00:06:33,210
+Petty to the singleton
+coalition of either Charlie or
+00:06:33,210 --> 00:06:38,390
+Marcy would be 500. Together,
+they get 500. Without them,
+00:06:38,390 --> 00:06:42,470
+the singleton coalition
+gets zero. And when Petty
+00:06:42,470 --> 00:06:46,890
+joins first, the marginal
+contribution is zero because
+00:06:46,890 --> 00:06:49,710
+the value of the singleton
+coalition of Petty is zero.
+00:06:49,710 --> 00:06:53,790
+So now we need to take
+the average of this
+00:06:53,790 --> 00:07:00,390
+number. So we have
+250 plus 250, because
+00:07:09,050 --> 00:07:12,750
+there are two orderings
+in which Petty is last,
+00:07:12,890 --> 00:07:17,210
+plus 500 plus 500, and we
+divide this by the number
+00:07:17,210 --> 00:07:21,710
+of all permutations, which
+is six, and we get 250.
+00:07:22,630 --> 00:07:26,110
+The Shapley value has many
+attractive properties,
+00:07:26,230 --> 00:07:29,810
+First, it is efficient,
+that is, it distributes
+00:07:29,810 --> 00:07:33,310
+the value of the grand
+coalition among all players.
+00:07:33,310 --> 00:07:36,690
+So the sum of the Sharpley
+values for all the
+00:07:36,690 --> 00:07:39,990
+players would be as the
+value of the grand coalition.
+00:07:40,570 --> 00:07:44,030
+Another useful property of
+the Sharpley value is that
+00:07:44,030 --> 00:07:48,090
+it does not allocate any
+payoffs to players who do not
+00:07:48,090 --> 00:07:52,210
+contribute to any coalition.
+So formally, given the
+00:07:52,210 --> 00:07:55,530
+characteristic function game
+g with the set of players n
+00:07:55,530 --> 00:07:59,090
+and characteristic function
+v, a player i is said to
+00:07:59,090 --> 00:08:04,040
+be a null player if their
+contribution to any coalition
+00:08:04,040 --> 00:08:09,650
+c is 0. So the value of
+coalition C with player I is
+00:08:09,650 --> 00:08:13,570
+the same as the value of
+coalition C without player I.
+00:08:13,570 --> 00:08:16,850
+And now if I is a null player,
+00:08:16,850 --> 00:08:18,550
+following this definition,
+00:08:18,550 --> 00:08:20,990
+then the sharply
+value that will be
+00:08:20,990 --> 00:08:24,010
+allocated to this
+player will be 0.
+00:08:24,470 --> 00:08:28,430
+Another important
+observation is that if two
+00:08:28,430 --> 00:08:31,690
+players contribute
+equally to each coalition,
+00:08:31,690 --> 00:08:35,790
+then their sharply values
+are equal. We will say
+00:08:35,790 --> 00:08:39,510
+that in a characteristic
+function game G, players
+00:08:39,510 --> 00:08:44,410
+i and j are symmetric
+if to any coalition c of
+00:08:44,410 --> 00:08:48,650
+players that do not contain
+i and j, the value of
+00:08:48,650 --> 00:08:52,870
+the coalition with i equals
+to the value of coalition
+00:08:52,870 --> 00:08:58,010
+with j. So if players
+i and j are symmetric
+00:08:58,010 --> 00:09:02,630
+following this definition,
+then the sharply values
+00:09:02,630 --> 00:09:06,830
+that will be assigned to
+them will also be equal.
+00:09:07,010 --> 00:09:10,990
+Consider a set of players
+n that is involved in
+00:09:10,990 --> 00:09:15,310
+two coalitional games g1
+and g2 with their respective
+00:09:15,310 --> 00:09:19,750
+characteristic functions
+v1 and v2. Now, the
+00:09:19,750 --> 00:09:24,710
+sum of games G1 and G2
+would be a coalitional game
+00:09:24,710 --> 00:09:30,750
+G+, which is given by the
+same set of agents N that
+00:09:30,750 --> 00:09:34,510
+participates in both games,
+and the characteristic
+00:09:34,510 --> 00:09:38,190
+function V+, which is
+defined as follow. For
+00:09:38,190 --> 00:09:43,210
+any coalition C of players,
+the value of the coalition
+00:09:43,210 --> 00:09:46,270
+C would be given by the
+sum of characteristic
+00:09:46,270 --> 00:09:50,110
+functions of the first
+game and the second game.
+00:09:50,110 --> 00:09:54,730
+If we have a game which
+is defined as a sum of two
+00:09:54,730 --> 00:09:59,230
+games, then the sharply
+value of every player I
+00:09:59,230 --> 00:10:02,610
+would satisfy the following
+property. The Sharpley
+00:10:02,610 --> 00:10:06,650
+value of the game G plus
+would be the sum of Sharpley
+00:10:06,650 --> 00:10:11,730
+values in the game G1
+and G2. So this is a
+00:10:11,730 --> 00:10:14,490
+useful property for computation
+of the Sharpley value
+00:10:14,490 --> 00:10:17,990
+because sometimes it will
+be easier to decompose
+00:10:17,990 --> 00:10:21,790
+the game into a sum of
+games and compute the
+00:10:21,790 --> 00:10:25,030
+Sharpley value in each of
+the games and take the sum.
+00:10:25,050 --> 00:10:28,250
+To summarize, we have
+shown that the Sharpley
+00:10:28,250 --> 00:10:30,970
+value possesses four
+desirable properties.
+00:10:30,970 --> 00:10:35,950
+So it is efficiency, it
+redistributes the value
+00:10:35,950 --> 00:10:39,830
+of the grand coalition
+among all players.
+00:10:40,410 --> 00:10:43,390
+The dummy player,
+so if we have a null
+00:10:43,390 --> 00:10:45,470
+player or a dummy
+player, then the
+00:10:45,470 --> 00:10:48,870
+sharply value to
+that player is zero.
+00:10:49,130 --> 00:10:51,650
+Symmetry, if we
+have two players,
+00:10:51,650 --> 00:10:53,050
+i and j, who are symmetric,
+00:10:53,370 --> 00:10:58,630
+then the sharply values
+paid to these players will
+00:10:58,630 --> 00:11:02,790
+be the same. and additivity.
+If we have a game
+00:11:02,790 --> 00:11:06,330
+which is a sum of two
+games, G1 and G2, then the
+00:11:06,330 --> 00:11:10,170
+Shapley value for player i
+in this game would be the
+00:11:10,170 --> 00:11:14,890
+sum of Shapley values in
+these games, G1 and G2.
+00:11:15,210 --> 00:11:19,170
+Now, Shapley value is
+the only pay-of-division
+00:11:19,170 --> 00:11:22,030
+scheme that has these
+four properties.
+00:11:22,030 --> 00:11:25,210
+So, these properties
+can also be used to
+00:11:25,210 --> 00:11:29,010
+simplify the computation
+of the Shapley value.
+00:11:29,090 --> 00:11:32,230
+Let's consider the following
+example. We have a game
+00:11:32,240 --> 00:11:37,330
+G with a set of n players
+where the value of the grand
+00:11:37,330 --> 00:11:41,850
+coalition is 1 and the value
+for any other coalition
+00:11:41,850 --> 00:11:45,870
+is 0. Now, we can compute
+the Shapley value of a player
+00:11:45,870 --> 00:11:51,630
+i by observing that the
+marginal contribution of that
+00:11:51,630 --> 00:11:56,730
+player is 1 only if they
+appear in the last position
+00:11:56,730 --> 00:12:00,810
+in a permutation pi, right?
+And it is zero otherwise.
+00:12:00,830 --> 00:12:06,750
+So there are exactly
+n minus 1 factorial
+00:12:06,750 --> 00:12:10,030
+permutations with player
+i in the last position.
+00:12:10,270 --> 00:12:13,230
+So we have that the
+Shapley value is
+00:12:13,230 --> 00:12:15,890
+n minus 1 factorial
+divided by n
+00:12:15,890 --> 00:12:18,770
+factorial, and this
+is 1 divided by n.
+00:12:19,050 --> 00:12:22,010
+Alternatively, we
+can simply observe
+00:12:22,010 --> 00:12:24,830
+that all players are
+symmetric. right?
+00:12:24,970 --> 00:12:29,530
+And that's why the Sharple
+value for each player
+00:12:29,530 --> 00:12:33,430
+should be the same. And
+now the value of the
+00:12:33,430 --> 00:12:38,070
+grand coalition is 1, so
+by the efficiency property
+00:12:38,070 --> 00:12:43,470
+we have that the Sharple
+value for each agent
+00:12:43,470 --> 00:12:46,210
+is the value of the
+grand coalition 1 divided
+00:12:46,210 --> 00:12:51,030
+by the number of agents
+n. So it is 1 nth again.

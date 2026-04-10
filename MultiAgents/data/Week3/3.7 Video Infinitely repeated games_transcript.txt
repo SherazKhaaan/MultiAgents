@@ -1,0 +1,194 @@
+00:00:00,790 --> 00:00:03,690
+We shall now consider the
+second case where the game
+00:00:03,690 --> 00:00:08,490
+is repeated an infinite or
+unknown number of times. In
+00:00:08,490 --> 00:00:11,710
+extensive form, an infinitely
+repeated game corresponds
+00:00:11,710 --> 00:00:15,250
+to an infinite tree. The
+payoffs cannot be attached
+00:00:15,250 --> 00:00:19,170
+to any terminal nodes and
+they also cannot be defined
+00:00:19,170 --> 00:00:22,330
+as the sum of the payoffs
+in the stage games because
+00:00:22,330 --> 00:00:26,870
+such a sum will be infinite.
+and so there are two
+00:00:26,870 --> 00:00:30,610
+common ways of defining a
+player's payoff in an infinitely
+00:00:30,610 --> 00:00:34,130
+repeated game the first
+one is the average reward
+00:00:34,130 --> 00:00:38,290
+of the stage game in the
+limit and the second one is
+00:00:38,290 --> 00:00:42,790
+the future discounted reward
+given an infinite sequence
+00:00:42,790 --> 00:00:48,130
+of payoffs ui1 ui2 and so
+on for player i the average
+00:00:48,130 --> 00:00:52,630
+reward of player i would be
+the sum of their utilities
+00:00:52,630 --> 00:00:56,890
+from round 1 to round k
+divided by the number of
+00:00:56,890 --> 00:01:01,610
+rounds k when we take the
+limit sending k to infinity.
+00:01:02,850 --> 00:01:06,130
+The future discounted reward
+to a player at a certain
+00:01:06,130 --> 00:01:09,570
+point of the game is the
+sum of their payoff in
+00:01:09,570 --> 00:01:13,050
+the immediate stage game
+plus the sum of future
+00:01:13,050 --> 00:01:16,390
+rewards discounted by a
+constant factor. This is a
+00:01:16,390 --> 00:01:20,130
+recursive definition, since
+the future rewards give a
+00:01:20,130 --> 00:01:23,910
+higher weight to early
+payoffs than to later ones.
+00:01:23,910 --> 00:01:24,990
+Formally,
+00:01:25,130 --> 00:01:28,590
+given an infinite sequence
+of payoffs Ui1, Ui2, and
+00:01:28,590 --> 00:01:32,250
+so on for player i, and
+a discount factor beta
+00:01:32,250 --> 00:01:36,290
+somewhere between 0 and 1,
+the future discounted reward
+00:01:36,290 --> 00:01:40,270
+of player i is given by
+the sum from the first
+00:01:40,270 --> 00:01:44,130
+round to infinity of beta
+in the power of the number
+00:01:44,130 --> 00:01:48,590
+of rounds and multiplied
+by the respective utility.
+00:01:48,930 --> 00:01:52,690
+Now, the discount factor
+can be interpreted in two
+00:01:52,690 --> 00:01:56,410
+ways. First, it can be
+taken as a representation
+00:01:56,410 --> 00:02:00,390
+of the fact that the agent
+cares more about their
+00:02:00,390 --> 00:02:03,550
+well-being in the near
+term than in the long term.
+00:02:03,770 --> 00:02:07,090
+Alternatively, it can be
+assumed that the agent cares
+00:02:07,090 --> 00:02:10,430
+about the future just as
+much as they care about the
+00:02:10,430 --> 00:02:14,210
+present but there is some
+probability probability beta
+00:02:14,210 --> 00:02:18,090
+with which we do continue
+to the next round each time
+00:02:18,090 --> 00:02:22,050
+and with probability one
+minus beta the game will be
+00:02:22,050 --> 00:02:27,790
+stopped at any given round
+now in prisoner's dilemma when
+00:02:27,790 --> 00:02:31,750
+it's played when it's
+repeated infinitely many times
+00:02:31,750 --> 00:02:36,210
+indeed we can find some
+strategies that foster cooperation
+00:02:36,210 --> 00:02:40,010
+in the long term the first
+strategy is called tit
+00:02:40,010 --> 00:02:44,570
+for tat and it goes as
+follows so a player starts by
+00:02:44,570 --> 00:02:48,970
+cooperating and thereafter
+they choose in round j plus
+00:02:48,970 --> 00:02:53,170
+one the very action that
+was chosen by their opponent
+00:02:53,170 --> 00:02:58,030
+in the previous round j so
+we mirror what our opponents
+00:02:58,030 --> 00:03:02,890
+do every time and if we both
+start by cooperation and
+00:03:02,890 --> 00:03:06,350
+use this strategy then we
+shall cooperate forever now
+00:03:06,350 --> 00:03:09,770
+the trigger strategy is a
+little bit stricter a player
+00:03:09,770 --> 00:03:14,070
+starts by cooperating and
+if ever the other player
+00:03:14,070 --> 00:03:18,890
+defects then the first player
+defects forever so if my
+00:03:18,890 --> 00:03:22,770
+opening defects i will never
+forgive them i will defect
+00:03:22,770 --> 00:03:25,790
+forever even if they start
+cooperating again i will
+00:03:25,790 --> 00:03:31,170
+not uh choose cooperation
+again but if both players start
+00:03:31,170 --> 00:03:33,870
+by cooperating and they
+apply this strategy then
+00:03:33,870 --> 00:03:39,350
+once again they will cooperate
+forever so uh We can prove
+00:03:39,350 --> 00:03:42,630
+that both tit-for-tat and
+trigger strategy are in Nash
+00:03:42,630 --> 00:03:45,630
+equilibrium for sufficiently
+large discount factor.
+00:03:45,630 --> 00:03:50,730
+We shall solve some
+exercises in the class to
+00:03:50,730 --> 00:03:54,110
+see how large this
+discount factor should be.
+00:03:54,110 --> 00:03:57,450
+And moreover, they form
+an equilibrium not just
+00:03:57,450 --> 00:04:00,610
+with themselves, but also
+with each other. So we
+00:04:00,610 --> 00:04:04,710
+indeed, this way, can
+achieve cooperation in each
+00:04:04,710 --> 00:04:08,670
+round of an infinitely
+repeated prisoner's dilemma.
+00:04:09,390 --> 00:04:12,870
+This is the end of this
+week's topic. Thank
+00:04:12,870 --> 00:04:14,670
+you for your attention
+and see you in class.

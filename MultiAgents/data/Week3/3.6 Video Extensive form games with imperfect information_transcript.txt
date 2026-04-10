@@ -1,0 +1,296 @@
+00:00:01,430 --> 00:00:04,590
+When the game is repeated
+a finite and a commonly
+00:00:04,590 --> 00:00:07,550
+known number of times,
+we can represent it
+00:00:07,550 --> 00:00:10,430
+in extensive form with
+imperfect information.
+00:00:10,690 --> 00:00:14,230
+In our previous discussion
+of extensive form games,
+00:00:14,230 --> 00:00:17,430
+we have allowed players
+to specify the action that
+00:00:17,430 --> 00:00:20,630
+they would take at every
+choice node of the game.
+00:00:20,630 --> 00:00:25,110
+This implied that players
+know the node they're in,
+00:00:25,110 --> 00:00:29,350
+and recalling that in such
+games we equate the nodes
+00:00:29,350 --> 00:00:33,930
+with the histories that led to
+them, all the prior choices,
+00:00:33,930 --> 00:00:37,590
+including those of other
+players. However, we might
+00:00:37,590 --> 00:00:39,970
+not always want to make
+such a strong assumption
+00:00:39,970 --> 00:00:42,870
+about the players and the
+environment they interact in.
+00:00:42,910 --> 00:00:45,630
+And imperfect information games
+00:00:45,630 --> 00:00:47,890
+address this very limitation.
+00:00:48,630 --> 00:00:51,750
+An imperfect information
+game is an extensive form
+00:00:51,750 --> 00:00:56,330
+game in which each player's
+choice nodes are partitioned
+00:00:56,330 --> 00:01:01,110
+into what we call information
+sets. And if two nodes
+00:01:01,110 --> 00:01:04,470
+are in the same information
+set, then the agent
+00:01:04,470 --> 00:01:09,030
+cannot distinguish between
+them. This is to model the
+00:01:09,030 --> 00:01:13,110
+situations in which we do
+not know the choices that,
+00:01:13,110 --> 00:01:15,930
+let's say, other players
+have made in the game, so we
+00:01:15,930 --> 00:01:21,090
+cannot observe the whole
+history and we may see
+00:01:21,090 --> 00:01:26,350
+different choices as the same
+choice in the game. Formally,
+00:01:26,650 --> 00:01:30,090
+a finite imperfect
+information game in extensive
+00:01:30,090 --> 00:01:33,750
+form is given by a tuple
+where all the ingredients
+00:01:33,750 --> 00:01:38,410
+are the same as in a perfect
+information game, plus one
+00:01:38,410 --> 00:01:43,710
+additional ingredient i, and
+this component represents
+00:01:43,710 --> 00:01:49,810
+the partition of the choice
+nodes into the information
+00:01:49,810 --> 00:01:56,190
+sets. So we say that i
+is a vector of i1, i n,
+00:01:56,190 --> 00:02:01,930
+where for each i it's a
+vector, this is a partition
+00:02:01,930 --> 00:02:06,470
+of the choice node where
+player i is the player that
+00:02:06,470 --> 00:02:15,430
+takes an action. so that
+the action set of two notes
+00:02:15,430 --> 00:02:20,170
+in this set are the same
+and also the player that is
+00:02:20,170 --> 00:02:23,170
+taking an action there
+is the same so we cannot
+00:02:23,170 --> 00:02:27,650
+distinguish between these two
+notes by looking only at who
+00:02:27,650 --> 00:02:31,290
+is playing and what actions
+are available to them.
+00:02:32,830 --> 00:02:36,890
+Have a look at the following
+example. If here player
+00:02:36,890 --> 00:02:41,410
+1 cannot see what action
+player 2 has made in their
+00:02:41,410 --> 00:02:44,950
+choice node here, then they
+cannot distinguish between
+00:02:44,950 --> 00:02:49,350
+these two choice nodes in
+which they take an action and
+00:02:49,350 --> 00:02:53,430
+the action set is exactly
+the same, right? So the
+00:02:53,430 --> 00:02:58,150
+player one has two information
+sets here, the set including
+00:02:58,150 --> 00:03:01,030
+the top choice node and
+the set including the
+00:03:01,030 --> 00:03:05,230
+bottom choice nodes where
+the agent cannot distinguish
+00:03:05,230 --> 00:03:09,070
+between these two in the
+same information set. Now, a
+00:03:09,070 --> 00:03:11,850
+Pew strategy for an agent
+in an imperfect information
+00:03:11,850 --> 00:03:16,530
+game selects one of the
+available actions in each
+00:03:16,530 --> 00:03:20,690
+information set of the agent,
+instead of being that for
+00:03:20,690 --> 00:03:25,590
+every node as in perfect
+information game. So formally,
+00:03:26,070 --> 00:03:30,410
+given an imperfect
+information game in extensive
+00:03:30,410 --> 00:03:33,870
+form, the set of pure
+strategy of player i is given
+00:03:33,870 --> 00:03:38,750
+by the product where we
+go over all the partitions
+00:03:38,750 --> 00:03:44,010
+of player i, over all
+the information sets of
+00:03:44,010 --> 00:03:47,810
+player i, and we indicate
+the set of actions which
+00:03:47,810 --> 00:03:52,270
+are available for that
+player in that partition.
+00:03:52,550 --> 00:03:55,970
+Now, perfect information
+games are a special case of
+00:03:55,970 --> 00:03:59,610
+imperfect information games
+where every element of each
+00:03:59,610 --> 00:04:04,530
+partition is just one node,
+where it's a singleton.
+00:04:05,690 --> 00:04:08,710
+We have mentioned earlier
+that perfect information
+00:04:08,710 --> 00:04:11,930
+games were not expressive
+enough to capture the Prisoner's
+00:04:11,930 --> 00:04:14,630
+Dilemma game, as well as
+many others. And that's
+00:04:14,630 --> 00:04:19,010
+because we would have to
+assume that the agents can
+00:04:19,010 --> 00:04:25,170
+see the choice of other
+agents in a sequential way,
+00:04:25,170 --> 00:04:28,550
+while if the game is in
+fact played simultaneously,
+00:04:28,840 --> 00:04:32,590
+the players do not get
+to see the actual choices
+00:04:32,590 --> 00:04:35,970
+of their opponents. Now,
+in contrast, any normal
+00:04:35,970 --> 00:04:38,870
+form game can be trivially
+transformed into an
+00:04:38,870 --> 00:04:41,990
+equivalent imperfect
+information game, because
+00:04:41,990 --> 00:04:45,240
+here we don't have to
+make the same assumption.
+00:04:46,850 --> 00:04:51,330
+And in perfect information
+games, unlike perfect
+00:04:51,330 --> 00:04:54,930
+games with perfect
+information, may not always
+00:04:54,930 --> 00:04:57,510
+admit a pure strategy
+in Nash equilibrium.
+00:04:57,610 --> 00:05:01,250
+Let's take as an
+example the prisoner's
+00:05:01,250 --> 00:05:03,050
+dilemma, which is
+repeated twice.
+00:05:03,170 --> 00:05:08,050
+The corresponding tree of
+the twice played prisoner's
+00:05:08,050 --> 00:05:11,090
+dilemma in extensive
+form is here. So here we
+00:05:11,090 --> 00:05:15,990
+have player one choosing
+between cooperating and
+00:05:15,990 --> 00:05:19,070
+detect, then player two
+choosing between the same
+00:05:19,070 --> 00:05:24,950
+actions, and they have the
+information set here that
+00:05:24,950 --> 00:05:27,610
+combines these two nodes,
+because they cannot
+00:05:27,610 --> 00:05:31,090
+distinguish between them
+not knowing what player one
+00:05:31,090 --> 00:05:35,390
+has done. And then we
+get to go to the second
+00:05:35,390 --> 00:05:40,950
+round of the game and the
+utilities here are given by
+00:05:40,950 --> 00:05:46,790
+the sums of the payoffs
+over the two-stage game.
+00:05:48,890 --> 00:05:52,790
+Now what strategies should
+players take in repeated
+00:05:52,790 --> 00:05:55,590
+games? One obvious
+strategy in the repeated
+00:05:55,590 --> 00:05:59,070
+game would be to adopt
+the same strategy in each
+00:05:59,070 --> 00:06:03,490
+stage of the game. Such
+a memoryless strategy is
+00:06:03,490 --> 00:06:07,190
+called a stationary
+strategy. In general though,
+00:06:07,350 --> 00:06:10,410
+the action or a mixture
+of actions played at a
+00:06:10,410 --> 00:06:13,930
+stage game can depend on
+the history of play so
+00:06:13,930 --> 00:06:17,670
+far. This fact plays a
+particularly important
+00:06:17,670 --> 00:06:22,190
+role in infinitely repeated
+games. In the finite
+00:06:22,190 --> 00:06:25,910
+and known repetition
+case, We encounter again
+00:06:25,910 --> 00:06:28,030
+the phenomenon of backward
+induction, though.
+00:06:28,250 --> 00:06:30,870
+Recall the game of centipede
+00:06:30,870 --> 00:06:32,310
+that we have seen earlier.
+00:06:32,310 --> 00:06:36,230
+And that is why the
+only equilibrium
+00:06:36,230 --> 00:06:38,950
+of a finitely
+repeated prisoner's
+00:06:38,950 --> 00:06:42,130
+dilemma would again
+be to always defect.

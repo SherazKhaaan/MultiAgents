@@ -1,0 +1,227 @@
+00:00:00,990 --> 00:00:04,030
+So, do fair solutions
+always exist,
+00:00:04,030 --> 00:00:06,130
+and can we find
+them efficiently?
+00:00:06,130 --> 00:00:09,670
+In other words, what are
+some algorithms that can
+00:00:09,670 --> 00:00:13,410
+achieve proportional or envy
+-free allocations, and how
+00:00:13,410 --> 00:00:16,830
+do we measure the complexity
+of these algorithms?
+00:00:17,030 --> 00:00:20,890
+For proportional
+allocation, we will show a
+00:00:20,890 --> 00:00:24,870
+very simple algorithm
+that works for two or
+00:00:24,870 --> 00:00:29,470
+more agents. For envy
+-free allocations, if we
+00:00:29,470 --> 00:00:32,040
+are not after completeness,
+we can just throw
+00:00:32,040 --> 00:00:35,110
+out the whole cake and
+no one will be envy.
+00:00:35,130 --> 00:00:39,350
+However, if we want an envy
+-free and also a complete
+00:00:39,350 --> 00:00:42,630
+allocation, then such an
+allocation is possible. It
+00:00:42,630 --> 00:00:47,130
+will exist, but finding
+it will be very expensive.
+00:00:47,510 --> 00:00:52,690
+For two players, a simple
+protocol is the cut
+00:00:52,690 --> 00:00:54,890
+-and-choose algorithm.
+It works as follows.
+00:00:55,130 --> 00:00:58,750
+Player 1 cuts the
+cake into two pieces,
+00:00:58,750 --> 00:01:02,410
+x1 and x2, which they
+value equally. So
+00:01:02,410 --> 00:01:06,090
+the value of agent
+1 for the piece x1
+00:01:06,250 --> 00:01:09,670
+equals the value of the
+same agent 1 for the
+00:01:09,670 --> 00:01:13,050
+piece x2, which has to
+be exactly 1 half then.
+00:01:13,250 --> 00:01:16,130
+Now the second player
+chooses the piece that
+00:01:16,130 --> 00:01:19,790
+they prefer, and player
+1 receives the other
+00:01:19,790 --> 00:01:23,510
+piece. We now claim
+that this allocation is
+00:01:23,510 --> 00:01:28,010
+both envy-free and
+hence also proportional.
+00:01:28,010 --> 00:01:33,030
+We have shown earlier that
+for two agents an allocation
+00:01:33,030 --> 00:01:36,270
+is envy-free if and only
+if it is proportional,
+00:01:36,270 --> 00:01:39,190
+so it's enough now to
+show just one part of it.
+00:01:39,190 --> 00:01:41,390
+Let's see why this is true.
+00:01:41,490 --> 00:01:44,470
+So player one cuts the
+cake into two pieces that
+00:01:44,470 --> 00:01:48,410
+they value equally. So they
+will not envy player two
+00:01:48,410 --> 00:01:52,730
+whichever piece the player
+two will choose, right?
+00:01:52,730 --> 00:01:56,010
+Because they have the same
+valuation for both pieces.
+00:01:56,010 --> 00:02:00,250
+And player two has the
+opportunity to choose the
+00:02:00,250 --> 00:02:03,470
+piece that they value
+most. So they also will not
+00:02:03,470 --> 00:02:07,750
+envy player one. And so the
+allocation is envy free.
+00:02:08,330 --> 00:02:09,290
+However,
+00:02:09,490 --> 00:02:10,830
+the cut and choose allocation
+00:02:10,830 --> 00:02:13,030
+is not necessarily equitable.
+00:02:13,030 --> 00:02:16,310
+Let's consider the following
+example. We have a cake,
+00:02:16,310 --> 00:02:21,250
+half of which is chocolate,
+another half is sponge,
+00:02:21,250 --> 00:02:26,650
+and we have agent 1 that
+likes chocolate and agent 2
+00:02:26,650 --> 00:02:31,850
+that likes everything. Now,
+if the first agent cuts
+00:02:31,850 --> 00:02:37,230
+first, then since they have
+valuation one for the piece
+00:02:37,230 --> 00:02:40,730
+of chocolate, they will
+divide this part into halves.
+00:02:40,730 --> 00:02:47,430
+So, the allocation will
+be one-fourth will go to
+00:02:47,430 --> 00:02:51,490
+the first agent and this
+three-fourth of the cake
+00:02:51,490 --> 00:02:55,330
+will go to the second agent.
+The first agent will have
+00:02:55,330 --> 00:02:59,870
+value half for this part,
+right, and the second
+00:02:59,870 --> 00:03:04,870
+agent will have value three
+-fourths for this part.
+00:03:04,870 --> 00:03:09,110
+Now, if the second agent
+cuts first, then they will
+00:03:09,110 --> 00:03:12,070
+divide the cake into two
+halves, right, because
+00:03:12,070 --> 00:03:17,010
+they value the whole cake
+equally. and then this
+00:03:17,010 --> 00:03:20,210
+whole part will go to
+the first agent who will
+00:03:20,210 --> 00:03:24,170
+choose the chocolate part
+and this part will go to
+00:03:24,170 --> 00:03:26,870
+the second agent. The
+second agent will have value
+00:03:26,870 --> 00:03:30,790
+one half for this piece.
+The first agent will have
+00:03:30,790 --> 00:03:34,090
+value one for the piece
+that they get allocated.
+00:03:34,370 --> 00:03:37,830
+To implement the cut and
+choose algorithm, agents
+00:03:37,830 --> 00:03:42,640
+should be able to cut a
+piece of a given value and
+00:03:42,640 --> 00:03:46,710
+evaluate a piece of cake.
+So we measure the complexity
+00:03:46,710 --> 00:03:51,110
+of cake-cutting algorithms
+using the Robertson
+00:03:51,110 --> 00:03:55,070
+-Webb model, which defines
+the following two types of
+00:03:55,070 --> 00:03:59,410
+operations. The first one
+is the evaluation query.
+00:03:59,430 --> 00:04:04,550
+So given X and Y,
+given a piece X and Y,
+00:04:04,550 --> 00:04:08,250
+it returns the value
+of agent I for the
+00:04:08,250 --> 00:04:11,790
+piece X and Y, from X
+to Y. So it asks how
+00:04:11,790 --> 00:04:16,450
+much does player i
+value the piece x, y.
+00:04:16,450 --> 00:04:21,590
+And another operation is
+cut query. So for agent i,
+00:04:21,590 --> 00:04:28,030
+this function takes the
+initial point x and some
+00:04:28,030 --> 00:04:34,290
+parameter alpha and returns
+a point y such that the value
+00:04:34,290 --> 00:04:38,910
+of player i for the piece
+from x to y is exactly
+00:04:38,910 --> 00:04:43,770
+alpha. So it asks, please
+cut a piece of cake starting
+00:04:43,770 --> 00:04:49,250
+at point X that player I
+values at alpha exactly.
+00:04:49,430 --> 00:04:52,810
+And under the Robertson
+web model, the cut and
+00:04:52,810 --> 00:04:55,410
+choose algorithm requires
+just two operations,
+00:04:55,450 --> 00:05:00,490
+right? So we have one
+agent with a cut query, and
+00:05:00,490 --> 00:05:03,710
+then we have another agent
+with a valuation query.

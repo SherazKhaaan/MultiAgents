@@ -1,0 +1,188 @@
+00:00:01,110 --> 00:00:04,110
+Unlike the stable
+roommate problem,
+00:00:04,150 --> 00:00:06,010
+in stable matching problem,
+00:00:06,010 --> 00:00:10,150
+a solution does always
+exist, and we can
+00:00:10,150 --> 00:00:13,170
+compute a stable
+matching given the Gale
+00:00:13,170 --> 00:00:16,830
+and Shapley deferred
+acceptance algorithm.
+00:00:16,830 --> 00:00:18,530
+It works as follows.
+00:00:18,530 --> 00:00:23,070
+Each woman starts off being
+matched to no one, and
+00:00:23,070 --> 00:00:27,430
+men will propose to women
+in rounds as follows.
+00:00:27,810 --> 00:00:31,370
+First, each man Y makes
+a proposal to his most
+00:00:31,370 --> 00:00:35,050
+preferred woman. After
+this, each woman X that has
+00:00:35,050 --> 00:00:39,110
+received a proposal tentatively
+accepts the proposal from
+00:00:39,110 --> 00:00:42,530
+her most preferred man
+and rejects all the rest.
+00:00:42,590 --> 00:00:46,790
+Then, each man Y whose
+proposal was rejected in the
+00:00:46,790 --> 00:00:50,450
+previous round makes a
+proposal to his next most
+00:00:50,450 --> 00:00:54,190
+preferred woman. and each
+woman X that has a new
+00:00:54,190 --> 00:00:57,890
+proposal tentatively accepts
+the proposal from her
+00:00:57,890 --> 00:01:02,050
+most preferred man and
+rejects all the rest. The
+00:01:02,050 --> 00:01:05,730
+algorithm terminates when
+no new proposals are made,
+00:01:05,730 --> 00:01:08,530
+at which point the matching
+that corresponds to
+00:01:08,530 --> 00:01:12,190
+proposals that are tentatively
+accepted is made final.
+00:01:12,770 --> 00:01:16,350
+Note that in this procedure
+men propose to women
+00:01:16,350 --> 00:01:22,150
+in decreasing order of
+preferences and women once
+00:01:22,150 --> 00:01:26,550
+matched never become
+unmatched they only trade up
+00:01:26,550 --> 00:01:31,290
+and due to that the deferred
+acceptance algorithm
+00:01:31,290 --> 00:01:35,130
+terminates after at most
+n squared iterations
+00:01:35,130 --> 00:01:39,710
+because each time a man
+proposes to a new woman and
+00:01:39,710 --> 00:01:43,810
+so only n squared possible
+proposals are there.
+00:01:43,930 --> 00:01:48,350
+Now not only the DA
+algorithm terminates,
+00:01:48,350 --> 00:01:52,010
+it also matches all
+men and all women.
+00:01:52,010 --> 00:01:55,530
+Suppose for the sake of
+contradiction that some
+00:01:55,530 --> 00:01:59,650
+men Y remains unmatched.
+Now, because we have
+00:01:59,650 --> 00:02:04,290
+a set of women equal to
+the set of men in size,
+00:02:04,290 --> 00:02:08,570
+some women X should
+remain unmatched as well.
+00:02:08,570 --> 00:02:12,310
+Now, Y has proposed
+to all women in his
+00:02:12,310 --> 00:02:14,590
+list if he is
+unmatched, right? So, in
+00:02:14,590 --> 00:02:17,770
+particular, he did
+propose to woman X.
+00:02:17,770 --> 00:02:23,370
+So, X was matched
+at some point in the
+00:02:23,370 --> 00:02:26,010
+deferred acceptance
+procedure. And this
+00:02:26,010 --> 00:02:29,190
+contradicts our previous
+observation that once
+00:02:29,190 --> 00:02:32,030
+matched, a woman never
+becomes unmatched.
+00:02:32,030 --> 00:02:33,490
+She only trades up.
+00:02:33,830 --> 00:02:35,110
+And finally,
+00:02:35,290 --> 00:02:39,130
+not only the deferred
+acceptance algorithm terminates
+00:02:39,130 --> 00:02:43,070
+at a perfect matching, it
+outputs a stable matching.
+00:02:43,590 --> 00:02:47,590
+consider some pair x and
+y which is not in the
+00:02:47,590 --> 00:02:50,650
+matching and there are
+two possible cases first
+00:02:50,650 --> 00:02:56,130
+case is that man y never
+proposed to woman x and
+00:02:56,130 --> 00:02:59,090
+that means that y is
+matched to a woman that he
+00:02:59,090 --> 00:03:04,030
+prefers over x and another
+possibility is that y did
+00:03:04,030 --> 00:03:07,070
+propose to x but then
+if they're not matched
+00:03:07,070 --> 00:03:11,850
+That means that X rejected
+Y, and it means that she
+00:03:11,850 --> 00:03:15,970
+is matched to someone
+whom she prefers over Y.
+00:03:15,970 --> 00:03:20,830
+In either case, X and Y
+are not a blocking pair.
+00:03:21,420 --> 00:03:24,330
+To put it all together,
+the default acceptance
+00:03:24,330 --> 00:03:28,010
+algorithm terminates after
+O of N squared iterations
+00:03:28,010 --> 00:03:31,550
+and finds a stable
+matching for any problem
+00:03:31,550 --> 00:03:36,710
+instance. This algorithm
+was proposed by David Gale
+00:03:36,710 --> 00:03:39,710
+and Lloyd Shapley and
+published in American
+00:03:39,710 --> 00:03:45,750
+Mathematical Monthly Journal
+back in 1962. Now, in
+00:03:46,160 --> 00:03:51,770
+2012, this result won a
+Nobel Prize in economics.
+00:03:51,990 --> 00:03:55,170
+Lloyd Shapley and Alvin
+Roth, who developed
+00:03:55,170 --> 00:03:57,050
+the deferred
+acceptance algorithm,
+00:03:57,690 --> 00:04:00,710
+received a Nobel Prize
+for the theory of stable
+00:04:00,710 --> 00:04:04,190
+allocations and the
+practice of market design.

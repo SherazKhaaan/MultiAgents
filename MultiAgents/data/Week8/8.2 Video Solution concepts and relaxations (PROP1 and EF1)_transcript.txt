@@ -1,0 +1,399 @@
+00:00:01,080 --> 00:00:03,400
+We now introduce
+the basic solution
+00:00:03,400 --> 00:00:06,260
+concepts that formalize
+what it means for
+00:00:06,260 --> 00:00:08,480
+an allocation to be
+fair and efficient.
+00:00:09,140 --> 00:00:12,180
+Proportionality
+requires that each agent
+00:00:12,180 --> 00:00:15,760
+receives at least a
+one-enthe share of the
+00:00:15,760 --> 00:00:18,780
+total value according
+to their own valuation,
+00:00:18,840 --> 00:00:22,820
+while envy-freeness
+strengthens this by asking that
+00:00:22,820 --> 00:00:26,180
+no agent prefers someone
+else's bundle to their
+00:00:26,180 --> 00:00:30,520
+own. Equitability, instead,
+equalizes the agents'
+00:00:30,520 --> 00:00:34,020
+attained utilities, ensuring
+everyone feels equally
+00:00:34,020 --> 00:00:38,580
+well-off, even if they
+value goods differently.
+00:00:38,660 --> 00:00:39,680
+Finally,
+00:00:39,800 --> 00:00:43,020
+Pareto-Optimality captures
+efficiency. It rules
+00:00:43,020 --> 00:00:47,540
+out allocations that could
+make at least one agent
+00:00:47,540 --> 00:00:50,700
+strictly better off,
+without making anyone worse
+00:00:50,700 --> 00:00:54,440
+off. Together, these notions
+give us a vocabulary to
+00:00:54,440 --> 00:00:57,280
+compare and evaluate
+different allocation rules.
+00:00:57,280 --> 00:01:00,940
+So formally, we say
+that allocation A is
+00:01:00,940 --> 00:01:04,180
+proportional if the value
+of agent I for their own
+00:01:04,180 --> 00:01:08,800
+bundle AI is at least as
+much as their value for
+00:01:08,800 --> 00:01:12,420
+the whole set of items
+divided by N, the number
+00:01:12,420 --> 00:01:16,420
+of agents. An allocation
+is only free if agent
+00:01:16,420 --> 00:01:19,940
+I values their own
+bundle at least as much
+00:01:19,940 --> 00:01:25,040
+as the bundle of agent
+J for any other agent J.
+00:01:25,040 --> 00:01:29,480
+An allocation is equitable
+if the value of agent I for
+00:01:29,480 --> 00:01:33,040
+their own bundle equals the
+value of agent J for their
+00:01:33,040 --> 00:01:36,960
+bundle for any pair of
+agents. And finally, an
+00:01:36,960 --> 00:01:40,920
+allocation is perito-optimal
+if there is no other allocation
+00:01:40,920 --> 00:01:47,340
+B, such that the value of
+agent I for bundle BI is
+00:01:47,340 --> 00:01:52,820
+as much as their value for
+their allocated bundle AI.
+00:01:52,860 --> 00:01:57,720
+And this inequality holds
+for all the agents, while
+00:01:57,720 --> 00:02:02,360
+at least for one agent
+this inequality is strict.
+00:02:03,220 --> 00:02:05,740
+The core challenge
+with indivisible
+00:02:05,740 --> 00:02:08,020
+goods is that envy-freeness and
+00:02:08,020 --> 00:02:10,400
+proportionality are
+generally infeasible.
+00:02:10,780 --> 00:02:14,720
+Unlike divisible settings,
+like cake cutting, we
+00:02:14,720 --> 00:02:18,140
+cannot simply divide each
+good to ensure everyone gets
+00:02:18,140 --> 00:02:21,020
+their proportional share.
+And there are instances
+00:02:21,020 --> 00:02:24,340
+that do not admit proportional,
+complete envy-free
+00:02:24,340 --> 00:02:28,220
+or equitable allocations.
+For instance, consider a
+00:02:28,220 --> 00:02:31,880
+setting with just two
+agents and one item, where
+00:02:31,880 --> 00:02:36,500
+both agents assign some
+positive value to this item.
+00:02:36,760 --> 00:02:40,580
+In many settings with
+indivisible goods, the exact
+00:02:40,580 --> 00:02:44,020
+fairness notions from the
+previous slides are simply
+00:02:44,020 --> 00:02:47,150
+too demanding, so we turn
+to natural relaxations.
+00:02:47,150 --> 00:02:51,540
+Here we introduce proportionality
+up to one good, or
+00:02:51,540 --> 00:02:55,580
+as we abbreviated prop 1,
+and envy-freeness up to
+00:02:55,580 --> 00:03:00,400
+one good, EF1, which allow us
+to ignore or hypothetically
+00:03:00,400 --> 00:03:04,140
+reassign a single item
+when checking fairness.
+00:03:04,260 --> 00:03:08,420
+Intuitively, prop 1 says
+that each agent could
+00:03:08,420 --> 00:03:12,240
+reach their proportional
+one-enth share by
+00:03:12,240 --> 00:03:15,260
+adding at most one extra
+good to their bundle.
+00:03:15,260 --> 00:03:20,460
+while EF1 says that any
+envy an agent has toward
+00:03:20,460 --> 00:03:24,220
+another agent can be
+eliminated by removing at
+00:03:24,220 --> 00:03:27,220
+most one good from the
+other agent's bundle.
+00:03:27,260 --> 00:03:30,400
+These relaxations retain
+much of the spirit
+00:03:30,400 --> 00:03:33,020
+of proportionality
+and envy-freeness but
+00:03:33,020 --> 00:03:36,380
+are often achievable even
+when exact proportional
+00:03:36,380 --> 00:03:38,920
+or envy-free allocations
+do not exist.
+00:03:39,040 --> 00:03:42,700
+Formally, we say that an
+allocation A is proportional
+00:03:42,700 --> 00:03:47,300
+up to one good If for
+each agent i, there is an
+00:03:47,300 --> 00:03:52,520
+item g, such that if we add
+this item g to the bundle
+00:03:52,520 --> 00:03:57,480
+ai of agent i, this allocation
+becomes proportional.
+00:03:57,480 --> 00:04:02,500
+So its value to agent i
+is at least as much as
+00:04:02,500 --> 00:04:07,280
+the value for the whole set
+of items g, divided by n,
+00:04:07,280 --> 00:04:11,500
+the number of agents. And
+location is envy-free up
+00:04:11,500 --> 00:04:15,340
+to one good, if one, if
+for each pair of agents i
+00:04:15,340 --> 00:04:20,620
+and j, there is an item g
+in the bundle of agent j,
+00:04:20,620 --> 00:04:25,200
+such that if we remove this
+item from the bundle of
+00:04:25,200 --> 00:04:32,040
+agent j, then agent i is no
+longer envious of agent j.
+00:04:32,280 --> 00:04:36,240
+For instance, if we consider
+the same example with two
+00:04:36,240 --> 00:04:39,480
+agents and one item, for
+instance a house, giving
+00:04:39,480 --> 00:04:43,950
+the house to one of the agents
+would be both proportional
+00:04:44,100 --> 00:04:48,260
+up to one good and envy
+-free up to one good. because
+00:04:48,260 --> 00:04:54,520
+if we add the item to the
+bundle of the empty hands
+00:04:54,520 --> 00:04:59,280
+agent, they will be happy,
+or if we remove the house
+00:04:59,280 --> 00:05:04,560
+of the envied agent, then
+there is no envy anymore.
+00:05:05,250 --> 00:05:09,100
+We now explore the
+relationship between EF1 and
+00:05:09,100 --> 00:05:13,060
+prop1 and show that their
+interaction depends crucially
+00:05:13,060 --> 00:05:16,420
+on the valuation model.
+For general, possibly
+00:05:16,420 --> 00:05:19,800
+non-additive valuations,
+even a complete allocation
+00:05:19,800 --> 00:05:23,660
+that is envy-free, and
+hence EF1, need not
+00:05:23,660 --> 00:05:27,380
+satisfy prop 1, as we can
+illustrate by the example
+00:05:27,380 --> 00:05:32,180
+where all agents only value
+the grand bundle and any
+00:05:32,180 --> 00:05:35,380
+partition into singleton
+fails proportionality.
+00:05:35,760 --> 00:05:41,320
+Consider the case with
+n greater than two items
+00:05:41,320 --> 00:05:45,140
+and n agents, so the
+number of items equals the
+00:05:45,140 --> 00:05:47,440
+number of agents, where
+we have more than two,
+00:05:47,440 --> 00:05:51,720
+and the valuation of each
+agent is given as follows.
+00:05:51,720 --> 00:05:54,620
+So the value for the
+whole set of items is
+00:05:54,620 --> 00:06:00,440
+one, while the value for
+any smaller subset of items
+00:06:00,440 --> 00:06:05,260
+is zero. Now, if we give
+each agent one item,
+00:06:05,440 --> 00:06:10,500
+the allocation will be
+NV3 and has also EF1 and
+00:06:10,500 --> 00:06:15,140
+complete. However, this
+is not prop1 because if
+00:06:15,140 --> 00:06:20,500
+we add one more item to
+any bundle of any agent,
+00:06:20,500 --> 00:06:23,160
+this will not make them
+happy. This will still
+00:06:23,160 --> 00:06:28,280
+have value 0, while the
+proportionality requires
+00:06:28,280 --> 00:06:32,200
+value 1 divided by n,
+the number of agents.
+00:06:33,240 --> 00:06:36,720
+Now, for additive
+valuations, however,
+00:06:37,100 --> 00:06:45,440
+if 1s does imply prop 1,
+does imply proportionality
+00:06:45,440 --> 00:06:49,020
+up to one agent. So suppose
+we have an allocation
+00:06:49,020 --> 00:06:52,620
+which is EF1 and complete,
+and consider some
+00:06:52,620 --> 00:06:57,600
+agent I, and let G star
+be their most valuable
+00:06:57,600 --> 00:07:04,260
+item in G minus the
+allocated bundle AI to them.
+00:07:04,790 --> 00:07:07,740
+So now by envy-freeness up to
+00:07:07,740 --> 00:07:11,320
+one item for every
+other agent j,
+00:07:11,320 --> 00:07:15,720
+we have that the value
+of agent i for their own
+00:07:15,720 --> 00:07:18,600
+bundle is at least as
+much as the value of
+00:07:18,600 --> 00:07:23,700
+agent i for the bundle
+of agent j minus good g.
+00:07:23,780 --> 00:07:26,660
+Now by additivity of
+the valuation function,
+00:07:26,660 --> 00:07:30,880
+this is equal to
+valuation of i to ij
+00:07:30,880 --> 00:07:35,220
+minus the valuation
+of i to this item g.
+00:07:35,220 --> 00:07:39,800
+And this is for some
+specific item g in aj.
+00:07:40,000 --> 00:07:44,620
+However, it doesn't matter
+how we choose this item g,
+00:07:44,620 --> 00:07:50,320
+the value for this item
+for agent i is at least
+00:07:50,320 --> 00:07:54,360
+as much as the value of
+agent i for this item G
+00:07:54,360 --> 00:07:58,460
+star that we identified
+at the very beginning.
+00:07:58,840 --> 00:08:03,620
+Now, if we add the item
+G star to the bundle AI,
+00:08:03,720 --> 00:08:07,060
+the value to this
+combined bundle by the
+00:08:07,060 --> 00:08:11,260
+additivity is the sum of
+values of I for bundle
+00:08:11,260 --> 00:08:16,660
+AI and the value of I
+for the item G star.
+00:08:16,660 --> 00:08:21,340
+And by the previous inequality
+that we received from
+00:08:21,340 --> 00:08:24,940
+Nv freeness up to one good.
+This is greater or equal
+00:08:24,940 --> 00:08:30,460
+than the value of I for
+the bundle A, J of agent J.
+00:08:30,480 --> 00:08:37,220
+Now let us now multiply
+this by N, the number
+00:08:37,220 --> 00:08:40,400
+of agents, and we receive
+the following. So N
+00:08:40,400 --> 00:08:44,780
+times the value of agent
+I for this combined
+00:08:44,780 --> 00:08:50,020
+bundle A, I plus item
+J star will be greater
+00:08:50,020 --> 00:08:56,240
+or equal than n times
+the value of i for a j,
+00:08:56,240 --> 00:09:04,660
+or we can take it, this is
+true for any agent j, so
+00:09:04,660 --> 00:09:10,620
+instead we can take the
+sum of agents j for all the
+00:09:10,620 --> 00:09:15,860
+agents that we have, and this
+will be the value of agent
+00:09:15,860 --> 00:09:22,100
+I for the whole set of items
+because A is an allocation,
+00:09:22,100 --> 00:09:28,160
+so the partition of the
+items for all the agents.

@@ -1,0 +1,293 @@
+00:00:01,150 --> 00:00:04,110
+A multi-agent system
+is composed of multiple
+00:00:04,110 --> 00:00:06,870
+interaction software
+components, agents,
+00:00:06,870 --> 00:00:09,750
+which may be cooperative or
+00:00:09,750 --> 00:00:12,250
+competitive, self-interested.
+00:00:12,390 --> 00:00:15,670
+The latter case is
+usually modeled as a non
+00:00:15,670 --> 00:00:18,350
+-cooperative game where
+players strategically
+00:00:18,350 --> 00:00:20,890
+optimize their own
+utility functions.
+00:00:21,290 --> 00:00:26,070
+In this topic, we shall study
+what games are, what they
+00:00:26,070 --> 00:00:29,650
+model and how we represent
+them, and what is a solution
+00:00:29,650 --> 00:00:33,150
+for a game from the
+perspective of a player how
+00:00:33,150 --> 00:00:36,180
+to play in the game and
+from the perspective of the
+00:00:36,180 --> 00:00:40,750
+system administrator what
+would be a reasonable outcome.
+00:00:40,950 --> 00:00:45,190
+We shall see how to compute
+a solution whether it always
+00:00:45,190 --> 00:00:50,170
+exists how many are they
+how hard it is to find them
+00:00:50,190 --> 00:00:53,750
+and can we expect the
+participants to naturally
+00:00:53,750 --> 00:00:57,950
+converge to such a solution
+and how we can evaluate the
+00:00:57,950 --> 00:01:01,690
+quality of a solution, how
+good it is comparing to other
+00:01:01,690 --> 00:01:04,970
+possible outcome, for example,
+to the social optimum.
+00:01:05,310 --> 00:01:08,630
+One of the canonical
+examples in game theory
+00:01:08,630 --> 00:01:12,350
+is the prisoner's dilemma,
+where two suspects
+00:01:12,350 --> 00:01:15,790
+in a crime are interrogated
+in separate rooms,
+00:01:17,530 --> 00:01:22,250
+and each has two choices
+whether to cooperate,
+00:01:22,250 --> 00:01:26,990
+deny the crime or defect,
+read the other out.
+00:01:27,610 --> 00:01:30,150
+With no confessions
+there is enough evidence
+00:01:30,150 --> 00:01:32,970
+to convict on lesser
+charge and one
+00:01:32,970 --> 00:01:36,130
+confession is enough
+to establish guilt.
+00:01:36,190 --> 00:01:39,810
+Police then offers plea
+bargain for confessing.
+00:01:40,950 --> 00:01:45,490
+This strategic conflict
+can be encoded in a payoff
+00:01:45,490 --> 00:01:51,470
+matrix, where we have two
+players represented by
+00:01:51,470 --> 00:01:56,010
+the rows and the columns
+of the matrix, and inside
+00:01:56,010 --> 00:02:00,970
+the matrix each cell
+represents the payoffs for
+00:02:00,970 --> 00:02:05,150
+the two players. The first
+number in the cell is the
+00:02:05,150 --> 00:02:10,170
+payment for the raw player,
+and the second one is
+00:02:10,170 --> 00:02:13,470
+the payment for the column
+player. For instance,
+00:02:13,470 --> 00:02:18,630
+if both agents are
+cooperating, denying the crime,
+00:02:18,790 --> 00:02:21,810
+then they go to prison
+for one year each.
+00:02:21,810 --> 00:02:25,570
+If both of them defecting,
+confessing, then they
+00:02:25,570 --> 00:02:29,170
+both go to prison for
+five years each. If one
+00:02:29,170 --> 00:02:32,400
+of them cooperating and
+the other one is defecting,
+00:02:32,400 --> 00:02:40,250
+then the one who cooperates
+goes to the prison
+00:02:40,250 --> 00:02:43,390
+for 10 years and the
+defecting one goes free.
+00:02:43,970 --> 00:02:48,330
+You can see that the
+only stable outcome
+00:02:48,330 --> 00:02:53,210
+here is defect, even
+though cooperating
+00:02:53,210 --> 00:02:58,170
+would give lesser
+charge to both agents.
+00:02:59,870 --> 00:03:04,550
+in this way games model
+strategic interactions or
+00:03:04,550 --> 00:03:08,470
+conflicts between rational
+decision makers that we call
+00:03:08,470 --> 00:03:13,790
+players in a non-cooperative
+or competitive game players
+00:03:13,790 --> 00:03:18,290
+take actions and enjoy game
+outcomes individually that
+00:03:18,290 --> 00:03:22,030
+is there are no binding
+contracts among the players
+00:03:22,470 --> 00:03:26,670
+We model such a game
+in strategic or normal
+00:03:26,670 --> 00:03:30,670
+form that consists of
+at least two players.
+00:03:30,670 --> 00:03:34,330
+Player is a general
+entity here. It can be an
+00:03:34,330 --> 00:03:38,270
+individual, a company,
+a nation, a protocol,
+00:03:38,270 --> 00:03:41,990
+an animal, an artificial
+agent, and so on.
+00:03:41,990 --> 00:03:44,690
+For each agent,
+for each player,
+00:03:44,690 --> 00:03:47,170
+we have a set of strategies.
+00:03:47,790 --> 00:03:51,070
+Strategies are actions
+which a player chooses
+00:03:51,070 --> 00:03:54,910
+to follow. and an
+outcome is determined by
+00:03:54,910 --> 00:03:59,010
+mutual choice of strategies
+for all the players.
+00:03:59,190 --> 00:04:04,290
+Also, for each player,
+we specify the preference
+00:04:04,290 --> 00:04:07,970
+relation over
+possible outcomes. The
+00:04:07,970 --> 00:04:10,990
+preference relation is
+usually modeled as a utility
+00:04:10,990 --> 00:04:14,350
+or payoff function over
+the set of outcomes.
+00:04:15,170 --> 00:04:21,710
+Formally, a game is a tuple
+gamma that includes n, a
+00:04:21,710 --> 00:04:27,130
+finite set of players, for
+each player i in the set n,
+00:04:27,350 --> 00:04:30,910
+the set si of strategies,
+00:04:31,340 --> 00:04:35,310
+and also for each player
+i in the set of players
+00:04:35,310 --> 00:04:40,590
+And we have UI, the
+utility function that goes
+00:04:40,590 --> 00:04:44,830
+from the set of strategies
+for all the players,
+00:04:44,830 --> 00:04:47,910
+which is a Cartesian
+product over the sets
+00:04:47,910 --> 00:04:55,610
+of individual strategies,
+to the real numbers.
+00:04:59,130 --> 00:05:03,430
+A vector of strategies
+for all the players is
+00:05:03,430 --> 00:05:09,380
+called a profile. and we
+use for each player i the
+00:05:10,030 --> 00:05:14,330
+notation s minus i to
+denote the vector of all
+00:05:14,330 --> 00:05:18,730
+the players but player i
+so reduced by the single
+00:05:18,730 --> 00:05:22,450
+entry of player i.
+Similarly for your profile s
+00:05:22,450 --> 00:05:29,150
+we use s with a subcase
+c to denote the strategy
+00:05:29,150 --> 00:05:35,290
+choices of a player
+coalition C of players in N,
+00:05:35,290 --> 00:05:41,510
+and S with a subcase minus
+C for the complement.
+00:05:41,510 --> 00:05:44,830
+So, we write the
+whole profile as
+00:05:44,830 --> 00:05:48,610
+the combination of
+S C and S minus C.
+00:05:48,800 --> 00:05:51,010
+Accordingly, we
+can also denote the
+00:05:51,010 --> 00:05:53,630
+strategy sets for
+player subsets.
+00:05:54,950 --> 00:05:58,810
+Every non-cooperative game
+can be represented in such
+00:05:58,810 --> 00:06:03,150
+normal form. However,
+there are other game types
+00:06:03,150 --> 00:06:06,930
+that we shall study in this
+module. An extensive form
+00:06:06,930 --> 00:06:10,670
+game, which is represented
+by the game tree, where
+00:06:10,670 --> 00:06:14,070
+players take their actions
+in turns rather than
+00:06:14,070 --> 00:06:17,890
+simultaneously as in normal
+form games. We shall also
+00:06:17,890 --> 00:06:21,950
+look at repeated games,
+where some underlying game is
+00:06:21,950 --> 00:06:25,910
+played repeatedly rather
+than just once, as in single
+00:06:25,910 --> 00:06:29,090
+shot games, and the
+players strive to optimize
+00:06:29,090 --> 00:06:34,190
+their overall payoffs. Finally,
+we shall study cooperative
+00:06:34,190 --> 00:06:38,370
+or coalitional games
+where players, although
+00:06:38,370 --> 00:06:41,730
+have individual interests
+as in non-cooperative games,
+00:06:41,730 --> 00:06:45,550
+coordinate their actions
+to achieve common goals and
+00:06:45,550 --> 00:06:48,750
+may have binding contracts
+and utility transfers.
+00:06:49,610 --> 00:06:54,230
+Such a game is defined
+then by a characteristic
+00:06:54,230 --> 00:06:57,950
+function over the set of
+possible player coalitions.

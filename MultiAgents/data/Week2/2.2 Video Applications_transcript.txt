@@ -1,0 +1,162 @@
+00:00:00,990 --> 00:00:04,090
+Congestion games are
+powerful tools for modeling
+00:00:04,090 --> 00:00:06,730
+decentralized decision
+-making in shared,
+00:00:06,730 --> 00:00:09,410
+congestible environments,
+supporting the design of
+00:00:09,410 --> 00:00:13,010
+incentives, pricing, and
+protocols for diverse
+00:00:13,010 --> 00:00:15,670
+complex systems where
+congestion is a key factor.
+00:00:15,670 --> 00:00:18,570
+Congestion games model
+how drivers or vehicles
+00:00:18,570 --> 00:00:21,910
+choose routes, each aiming
+to minimize travel time.
+00:00:21,910 --> 00:00:24,670
+The classic use case
+is the analysis of road
+00:00:24,670 --> 00:00:28,410
+traffic, navigation apps,
+and highway network design.
+00:00:28,850 --> 00:00:32,110
+In wired and wired
+networks, data packets or
+00:00:32,110 --> 00:00:34,990
+users select routes or
+channels and performance
+00:00:34,990 --> 00:00:37,930
+measured by latency or
+bandwidth decreases with
+00:00:37,930 --> 00:00:40,670
+congestion on individual
+links or frequencies.
+00:00:40,770 --> 00:00:43,090
+Applications are in TCP and IP
+00:00:43,090 --> 00:00:45,190
+routing, spectrum allocation,
+00:00:45,190 --> 00:00:47,730
+and load balancing
+in cellular networks.
+00:00:47,730 --> 00:00:50,430
+In cloud and
+distributed computing,
+00:00:50,650 --> 00:00:53,750
+tasks or jobs in distributed
+systems such as data
+00:00:53,750 --> 00:00:56,890
+centers or cloud platforms
+compete for computational
+00:00:56,890 --> 00:01:00,550
+resources, CPUs, memory
+or bandwidth. Congestion
+00:01:00,550 --> 00:01:03,450
+games in such settings
+capture resource sharing
+00:01:03,450 --> 00:01:06,910
+and system efficiency. In
+multi-agent systems and
+00:01:06,910 --> 00:01:10,310
+robotics, multiple robots
+or agents sharing physical
+00:01:10,310 --> 00:01:12,850
+infrastructure such
+as warehouse aisles or
+00:01:12,850 --> 00:01:15,850
+sensor networks use
+congestion games to coordinate
+00:01:15,850 --> 00:01:19,110
+movement or task allocation
+and avoid bottlenecks.
+00:01:19,470 --> 00:01:23,730
+In electricity grids and smart
+energy systems, consumers
+00:01:23,730 --> 00:01:26,830
+or smart devices choose
+when to use electricity
+00:01:26,830 --> 00:01:30,430
+and costs rise with
+collective demand. Congestion
+00:01:30,430 --> 00:01:34,690
+games help analyze demand
+response and peak shifting.
+00:01:34,860 --> 00:01:37,830
+In Internet of Things
+and sensor networks,
+00:01:37,830 --> 00:01:39,790
+devices compete
+for transmission
+00:01:39,790 --> 00:01:42,930
+time, battery usage
+or shared sensors.
+00:01:42,950 --> 00:01:45,910
+Congestion games can
+inform protocol design for
+00:01:45,910 --> 00:01:49,060
+fairness and efficiency
+in such domains. In
+00:01:49,060 --> 00:01:52,410
+crowdsourcing and shared
+economy, platforms like
+00:01:52,410 --> 00:01:56,250
+ride-hailing of shared
+bikes allocate resources,
+00:01:56,250 --> 00:01:59,230
+drivers or bikes,
+across a city. Too many
+00:01:59,230 --> 00:02:02,650
+users in one location or
+time reduces utility for
+00:02:02,650 --> 00:02:06,110
+all. This can be modeled
+by a congestion game.
+00:02:06,110 --> 00:02:09,530
+In resource allocation in
+AI and machine learning,
+00:02:09,650 --> 00:02:11,710
+competing AI agents select
+00:02:11,710 --> 00:02:13,990
+computing resources
+or data sources.
+00:02:14,150 --> 00:02:17,150
+Congestion effects arise
+in federated learning,
+00:02:17,250 --> 00:02:20,970
+module assembling, or
+online ad auctions.
+00:02:21,570 --> 00:02:23,270
+In cybersecurity,
+00:02:23,810 --> 00:02:25,710
+attackers and
+defenders allocate
+00:02:25,710 --> 00:02:27,810
+resources across
+network services.
+00:02:28,270 --> 00:02:30,930
+Overconcentration or
+congestion on targets
+00:02:30,930 --> 00:02:34,170
+changes payoffs relevant
+for intrusion detection
+00:02:34,170 --> 00:02:37,210
+and defense games.
+Finally, in urban planning
+00:02:37,210 --> 00:02:40,830
+and facility location,
+citizens or services choose
+00:02:40,830 --> 00:02:43,370
+between public
+resources such as parks,
+00:02:43,370 --> 00:02:47,470
+hospitals or schools and
+overuse degrades quality.
+00:02:47,470 --> 00:02:49,870
+Congestion games model optimal
+00:02:49,870 --> 00:02:52,070
+placement and usage management.

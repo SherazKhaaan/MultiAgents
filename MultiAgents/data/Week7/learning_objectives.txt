@@ -1,0 +1,47 @@
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Explain foundational concepts of fair division, including proportionality, envy-freeness, and efficiency.
+Model resource allocation problems as fair division scenarios using mathematical and algorithmic frameworks.
+
+Apply classic algorithms to achieve fair outcomes for divisible and indivisible goods.
+
+Analyse the strengths and limitations of different fair division procedures by evaluating guarantees, complexity, and strategic aspects.
+
+Assess allocation solutions for fairness and optimality using formal properties and counterexamples.
+
+Solve practical and theoretical problems involving cake-cutting, rent division, item allocation, or other fair division contexts.
+
+Discuss applications of fair division in economics, computer science, law, and everyday resource-sharing situations.
+
+Reflect on ethical, strategic, and computational challenges inherent to achieving fairness among multiple agents.
+
+ 
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.
+
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Explain foundational concepts of fair division, including proportionality, envy-freeness, and efficiency.
+Model resource allocation problems as fair division scenarios using mathematical and algorithmic frameworks.
+
+Apply classic algorithms to achieve fair outcomes for divisible and indivisible goods.
+
+Analyse the strengths and limitations of different fair division procedures by evaluating guarantees, complexity, and strategic aspects.
+
+Assess allocation solutions for fairness and optimality using formal properties and counterexamples.
+
+Solve practical and theoretical problems involving cake-cutting, rent division, item allocation, or other fair division contexts.
+
+Discuss applications of fair division in economics, computer science, law, and everyday resource-sharing situations.
+
+Reflect on ethical, strategic, and computational challenges inherent to achieving fairness among multiple agents.
+
+ 
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.

@@ -1,0 +1,233 @@
+00:00:00,920 --> 00:00:03,540
+Hello, and welcome
+to Cooperation,
+00:00:03,540 --> 00:00:05,840
+Coordination, and
+Multi-agent Systems.
+00:00:06,020 --> 00:00:09,100
+In the first part of
+this module, we focused
+00:00:09,100 --> 00:00:12,420
+on games, both non
+-cooperative and cooperative,
+00:00:12,620 --> 00:00:15,620
+studying extensive and
+normal form representations,
+00:00:15,800 --> 00:00:19,060
+characteristic function
+games, hedonic games,
+00:00:19,060 --> 00:00:21,840
+and matching models,
+and using tools from
+00:00:21,840 --> 00:00:24,700
+algorithmic game theory
+to analyze and solve the
+00:00:24,700 --> 00:00:28,060
+resulting problems. In
+the second half, we turn
+00:00:28,060 --> 00:00:30,600
+from strategic interaction
+to collective decision
+00:00:30,600 --> 00:00:34,280
+-making. We will examine
+fair division, mechanism
+00:00:34,280 --> 00:00:37,860
+design, and voting,
+three core topics that
+00:00:37,860 --> 00:00:40,660
+lie at the heart of
+computational social choice.
+00:00:41,240 --> 00:00:44,520
+We start with fair
+division, which is the
+00:00:44,520 --> 00:00:46,970
+problem of dividing
+one or several goods
+00:00:46,970 --> 00:00:49,780
+amongst two or more
+agents in a way that
+00:00:49,780 --> 00:00:52,120
+satisfies a suitable
+fairness criterion.
+00:00:52,220 --> 00:00:55,420
+That is, fair division
+may be considered part
+00:00:55,420 --> 00:00:58,440
+of the larger research area
+of multi-agent resource
+00:00:58,440 --> 00:01:01,260
+allocation. What is
+special about fair division
+00:01:01,260 --> 00:01:04,640
+is the explicit focus
+on fairness concerns.
+00:01:04,740 --> 00:01:07,400
+Multi-agent resource
+allocation, and
+00:01:07,400 --> 00:01:09,720
+thereby also fair
+division, are also
+00:01:09,720 --> 00:01:11,900
+central topics in
+multi-agent systems.
+00:01:11,900 --> 00:01:14,880
+First, much work in
+multi-agent systems
+00:01:14,880 --> 00:01:17,280
+is itself directed
+towards designing
+00:01:17,280 --> 00:01:19,340
+mechanisms for
+resource allocation.
+00:01:19,540 --> 00:01:23,220
+Second, in most other cases,
+resource allocation arises
+00:01:23,220 --> 00:01:26,300
+at least as an important
+side issue. For example,
+00:01:26,300 --> 00:01:30,040
+in collaborative problem
+solving, the agents may have
+00:01:30,040 --> 00:01:33,080
+to first agree on a suitable
+division of the resources
+00:01:33,080 --> 00:01:36,360
+available to them so that
+each individual agent
+00:01:36,360 --> 00:01:39,620
+can carry out the tasks
+assigned to them successfully.
+00:01:40,060 --> 00:01:41,180
+Finally,
+00:01:41,300 --> 00:01:45,320
+many of the typical
+application areas studied
+00:01:45,320 --> 00:01:47,340
+in the multi-agent
+systems research community
+00:01:47,340 --> 00:01:51,000
+are also closely related
+to multi-agent resource
+00:01:51,000 --> 00:01:53,940
+allocation, for instance,
+electronic commerce.
+00:01:54,160 --> 00:01:58,340
+Fairness often plays an
+important role in such scenarios.
+00:01:58,340 --> 00:02:01,540
+A user may only be willing
+to have their software
+00:02:01,540 --> 00:02:04,720
+agent interact with other
+agents in a system provided
+00:02:04,720 --> 00:02:08,460
+by a third party if the
+developers of that system can
+00:02:08,460 --> 00:02:11,740
+give some fairness guarantees.
+The developers of an
+00:02:11,740 --> 00:02:14,940
+electronic e-commerce platform
+may wish to ensure some
+00:02:14,940 --> 00:02:18,520
+basic fairness properties
+for their customers so as
+00:02:18,520 --> 00:02:22,540
+to not lose their custom in
+the future, and so forth.
+00:02:23,200 --> 00:02:26,720
+Throughout this topic, we
+shall consider a finite
+00:02:26,720 --> 00:02:29,780
+set of agents, often
+also referred to as
+00:02:29,780 --> 00:02:33,720
+individual suppliers. These
+agents need to agree on
+00:02:33,720 --> 00:02:37,920
+the division of a number
+of goods or resources,
+00:02:37,920 --> 00:02:42,300
+items, objects, commodities
+between them. There
+00:02:42,300 --> 00:02:45,260
+are different types of
+goods and the nature of a
+00:02:45,260 --> 00:02:48,300
+fair division problem
+will, to a large extent,
+00:02:48,460 --> 00:02:52,180
+depend on the type of
+goods under consideration.
+00:02:52,340 --> 00:02:56,140
+Maybe the most important
+distinction is that between
+00:02:56,140 --> 00:03:00,380
+divisible and indivisible
+goods. An example for a
+00:03:00,380 --> 00:03:03,680
+divisible good would be a
+cake. You can allocate a
+00:03:03,680 --> 00:03:07,800
+slice of any size to an
+agent. An example of an
+00:03:07,800 --> 00:03:11,920
+indivisible good would be a
+book. It arguably only makes
+00:03:11,920 --> 00:03:15,420
+sense to allocate a book
+to an agent in one piece.
+00:03:15,620 --> 00:03:18,580
+Sometimes there are
+both divisible and
+00:03:18,580 --> 00:03:21,680
+indivisible goods. A
+typical example is the case
+00:03:21,680 --> 00:03:24,400
+of fair division with a
+set of indivisible goods
+00:03:24,400 --> 00:03:26,760
+and money, which is
+a divisible resource.
+00:03:27,780 --> 00:03:30,540
+Besides the distinction
+between divisible and
+00:03:30,540 --> 00:03:34,220
+indivisible goods, we may
+classify goods according to
+00:03:34,220 --> 00:03:37,900
+whether they are static or
+whether they can potentially
+00:03:37,900 --> 00:03:40,480
+change their properties
+during the process of
+00:03:40,480 --> 00:03:44,180
+allocation, as in the
+case of for perishable or
+00:03:44,180 --> 00:03:48,960
+consumable goods, whether
+they can or cannot be shared
+00:03:48,960 --> 00:03:53,100
+between more than one
+agent, or whether they are
+00:03:53,100 --> 00:03:56,800
+available in single or
+multiple units, meaning that
+00:03:56,800 --> 00:04:00,020
+there may be several
+indistinguishable copies of the
+00:04:00,020 --> 00:04:03,620
+same good. We will only
+consider fair division problems
+00:04:03,620 --> 00:04:07,260
+with static goods that
+are available in single
+00:04:07,260 --> 00:04:11,240
+units and that cannot be
+shared. We do consider
+00:04:11,240 --> 00:04:14,700
+though both divisible goods,
+which will be the topic
+00:04:14,700 --> 00:04:18,680
+for this week, and indivisible
+goods for next week.

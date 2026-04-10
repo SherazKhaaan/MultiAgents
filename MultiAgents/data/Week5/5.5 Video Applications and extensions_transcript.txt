@@ -1,0 +1,425 @@
+00:00:01,210 --> 00:00:06,130
+The deferred acceptance
+algorithm, or in short DA, has
+00:00:06,130 --> 00:00:08,990
+evolved from theoretical
+elegance into one of the
+00:00:08,990 --> 00:00:12,630
+most consequential algorithmic
+tools in modern society,
+00:00:12,630 --> 00:00:16,030
+fundamentally reshaping
+how millions of individuals
+00:00:16,030 --> 00:00:20,110
+are matched to institutions
+annually. Far from remaining
+00:00:20,110 --> 00:00:24,030
+confined to academic study,
+DA forms the computational
+00:00:24,030 --> 00:00:26,790
+backbone of mission
+-critical allocation systems
+00:00:26,790 --> 00:00:31,450
+across education, medicine,
+and labor markets worldwide.
+00:00:32,190 --> 00:00:36,090
+For instance, in
+university admissions,
+00:00:36,250 --> 00:00:39,450
+DA underpins centralised
+national systems
+00:00:39,450 --> 00:00:42,450
+such as the UK's UCAS,
+Universities and Colleges
+00:00:42,450 --> 00:00:45,870
+Admission Service, which
+processes applications
+00:00:45,870 --> 00:00:48,990
+from over 600,000
+students annually.
+00:00:48,990 --> 00:00:52,810
+Similarly, the university's
+admission centre,
+00:00:53,240 --> 00:00:57,690
+UAC in New South Wales,
+Australia, uses a DA
+00:00:57,690 --> 00:01:00,570
+variant to allocate
+over 40,000 high school
+00:01:00,570 --> 00:01:03,690
+graduates to university
+degrees each year. At
+00:01:03,690 --> 00:01:06,770
+the secondary level,
+DA has transformed
+00:01:06,770 --> 00:01:10,690
+school district placement
+in major U.S. cities.
+00:01:10,690 --> 00:01:15,170
+New York City Public
+Schools employs a DA-based
+00:01:15,170 --> 00:01:17,710
+matching algorithm for
+high school admissions,
+00:01:17,710 --> 00:01:21,030
+allowing students
+to rank up to 12
+00:01:21,030 --> 00:01:23,910
+school programs and
+using algorithmic
+00:01:23,910 --> 00:01:26,310
+matching based on
+student preferences,
+00:01:26,530 --> 00:01:31,550
+program capacities and priority
+rules. Boston similarly
+00:01:31,550 --> 00:01:34,790
+implemented DA for middle
+school and high school
+00:01:34,790 --> 00:01:38,930
+placement, which replaced
+the previously used First
+00:01:38,930 --> 00:01:43,250
+Choices First system that
+had produced months of
+00:01:43,250 --> 00:01:46,730
+administrative delays and
+30,000 manual administrative
+00:01:46,730 --> 00:01:49,770
+assignments. The
+algorithmic approach brought
+00:01:49,770 --> 00:01:53,910
+unprecedented transparency and
+efficiency to this process.
+00:01:54,510 --> 00:01:58,870
+Probably the most high
+-stakes application,
+00:01:58,870 --> 00:02:01,970
+though, is the medical
+residency matching system.
+00:02:02,250 --> 00:02:03,730
+The U.S.
+00:02:04,110 --> 00:02:08,530
+National Resident Matching
+Program, NRMP, uses a DA
+00:02:08,530 --> 00:02:12,370
+variant to match approximately
+30,000 medical graduates
+00:02:12,370 --> 00:02:16,490
+to hospital residency positions
+annually, a process that
+00:02:16,490 --> 00:02:19,490
+directly determines the
+training pathway for the next
+00:02:19,490 --> 00:02:23,210
+generation of physicians.
+Other labor markets have
+00:02:23,210 --> 00:02:26,130
+adopted similar approaches
+for assigning new graduates
+00:02:26,130 --> 00:02:30,010
+to public service positions
+and academic appointments.
+00:02:30,110 --> 00:02:33,650
+Beyond education and
+traditional labor markets,
+00:02:33,650 --> 00:02:35,930
+the deferred acceptance
+algorithm and related
+00:02:35,930 --> 00:02:39,050
+matching techniques have
+proven remarkably adaptable,
+00:02:39,050 --> 00:02:41,790
+solving coordination
+problems across some of
+00:02:41,790 --> 00:02:44,930
+society's most sensitive
+and technically demanding
+00:02:44,930 --> 00:02:48,170
+domains. The classical
+stable marriage problem
+00:02:48,170 --> 00:02:51,890
+remains directly applicable
+to mentoring programs,
+00:02:52,010 --> 00:02:54,810
+professional partnerships,
+and other contexts
+00:02:54,810 --> 00:02:57,850
+where two populations
+seek mutual matches based
+00:02:57,850 --> 00:03:01,070
+on individual preferences.
+More significantly,
+00:03:01,310 --> 00:03:04,910
+DA-based methods have been
+extended to adoption and
+00:03:04,910 --> 00:03:08,970
+foster care matching. In the
+United States, approximately
+00:03:08,970 --> 00:03:14,390
+400,000 children reside
+in foster care, with
+00:03:14,390 --> 00:03:19,390
+roughly 100,000 awaiting adoption.
+Market design researchers
+00:03:19,390 --> 00:03:21,790
+at the University of
+Zurich, Boston College and
+00:03:21,790 --> 00:03:25,150
+Cornell University are
+collaborating on an adoption
+00:03:25,150 --> 00:03:28,430
+matching project that applies
+game theoretic techniques
+00:03:28,430 --> 00:03:31,130
+to improve how children
+are matched to families
+00:03:31,130 --> 00:03:36,590
+A domain where algorithmic
+transparency, fairness and
+00:03:36,590 --> 00:03:39,970
+welfare optimization for the
+most vulnerable population
+00:03:39,970 --> 00:03:46,130
+are paramount the algorithm's
+flexibility extends
+00:03:46,130 --> 00:03:51,250
+naturally to many to one
+matchings where institutions
+00:03:51,250 --> 00:03:55,490
+have quarters schools with
+limited seats hospitals
+00:03:55,490 --> 00:03:58,830
+with residency capacity
+constraints and other
+00:03:58,830 --> 00:04:02,310
+organizations benefit from
+da's ability to simultaneously
+00:04:02,310 --> 00:04:06,330
+satisfy stability and
+capacity constraints. This is
+00:04:06,330 --> 00:04:11,350
+critical infrastructure. The
+UK's NHS blood and transplant
+00:04:11,350 --> 00:04:15,510
+operates the living kidney
+sharing scheme using
+00:04:15,510 --> 00:04:18,050
+matching algorithms
+designed on stable matching
+00:04:18,050 --> 00:04:22,290
+principles to pair compatible
+living kidney donors with
+00:04:22,290 --> 00:04:25,970
+recipients, accounting for
+blood type compatibility,
+00:04:26,230 --> 00:04:30,150
+tissue matching, and
+medical urgency. And perhaps
+00:04:30,150 --> 00:04:33,690
+the most consequential
+application is organ allocation,
+00:04:33,690 --> 00:04:36,570
+where lives literally
+depend on matching quality.
+00:04:37,190 --> 00:04:40,670
+Kidney exchange
+programs have evolved
+00:04:40,670 --> 00:04:44,530
+substantially, addressing
+the double coincidence of
+00:04:44,530 --> 00:04:47,950
+one's problem. A patient
+-donor pair may be
+00:04:47,950 --> 00:04:50,690
+incompatible, for example,
+due to blood type,
+00:04:50,830 --> 00:04:53,450
+yet each could find
+compatible partners
+00:04:53,450 --> 00:04:57,690
+elsewhere. And recent
+algorithms, such as
+00:04:57,690 --> 00:05:00,690
+the unpaired kidney
+exchange algorithm that
+00:05:00,690 --> 00:05:03,950
+studied using French
+administrative data,
+00:05:04,170 --> 00:05:08,010
+substantially reduce
+waiting times for hard-to
+00:05:08,010 --> 00:05:12,950
+-match patients, achieving
+63% match rates by
+00:05:12,950 --> 00:05:16,730
+allowing donation chains
+where a patient receives a
+00:05:16,730 --> 00:05:19,950
+kidney from a donor outside
+their original pair.
+00:05:20,210 --> 00:05:24,810
+Modern organ allocation
+systems now also integrate
+00:05:24,810 --> 00:05:29,670
+AI-enhanced matching with
+survival prediction models,
+00:05:29,670 --> 00:05:33,010
+as demonstrated by
+systems like SmartMatch,
+00:05:33,010 --> 00:05:37,810
+which use neural networks
+to optimize graph survival
+00:05:37,810 --> 00:05:41,250
+predictions while balancing
+equity and efficiency.
+00:05:42,210 --> 00:05:46,350
+In an unexpectedly diverse
+application, matching
+00:05:46,350 --> 00:05:54,390
+algorithms inform how the web
+delivers content globally.
+00:05:54,510 --> 00:05:59,850
+Content delivery network
+CDNs distribute approximately
+00:05:59,850 --> 00:06:04,130
+50% of global internet
+traffic by solving a real
+00:06:04,130 --> 00:06:08,660
+-time matching problem. Users
+seeking content preferring
+00:06:08,670 --> 00:06:12,970
+low latency and minimal
+packet loss are matched to
+00:06:12,970 --> 00:06:16,890
+geographically distributed
+edge servers with constraints
+00:06:16,890 --> 00:06:22,310
+on bandwidth and collocation
+capacity. While CDN
+00:06:22,310 --> 00:06:26,610
+routing employs optimization
+rather than a strict DA
+00:06:26,610 --> 00:06:31,130
+algorithm, the underlying
+principle, which is balancing
+00:06:31,130 --> 00:06:34,530
+user preferences with
+server capacity while
+00:06:34,530 --> 00:06:39,010
+maintaining system stability,
+reflects the same market
+00:06:39,010 --> 00:06:42,930
+design philosophy. The stable
+matching problem becomes
+00:06:42,930 --> 00:06:46,370
+more complex and practically
+important when institutions
+00:06:46,370 --> 00:06:50,210
+hold quarters. Hospitals
+seek multiple residents,
+00:06:50,310 --> 00:06:54,790
+schools admit several
+students. This many-to-one
+00:06:54,790 --> 00:06:57,670
+matching dramatically
+expands real-world
+00:06:57,670 --> 00:07:02,190
+applicability. But what's
+important is that the
+00:07:02,190 --> 00:07:05,310
+default acceptance algorithm
+does extend to this
+00:07:05,310 --> 00:07:09,310
+setting and produce a
+stable matching. Formally,
+00:07:09,570 --> 00:07:12,830
+we define stability in
+many-to-one matching as
+00:07:12,830 --> 00:07:17,430
+follows. So, there should
+be no pair XY, where X is
+00:07:17,430 --> 00:07:22,730
+a school and Y is a
+student, such that Y is not
+00:07:22,730 --> 00:07:26,550
+admitted to X, X prefers
+Y to one of its current
+00:07:26,550 --> 00:07:31,070
+students, and Y prefers X
+to their current school.
+00:07:31,650 --> 00:07:34,570
+Another possible extension
+of the setting is
+00:07:34,570 --> 00:07:38,310
+unacceptable pairs. Some
+men or women, student
+00:07:38,310 --> 00:07:41,830
+hospitals and so on
+may find some potential
+00:07:41,830 --> 00:07:44,810
+match unacceptable.
+For example, a medical
+00:07:44,810 --> 00:07:47,890
+student may not want
+to move to Southampton.
+00:07:48,550 --> 00:07:53,790
+The numbers of men and women,
+students and slots also
+00:07:53,790 --> 00:07:57,350
+need not to be equal.
+And in such a setting we
+00:07:57,350 --> 00:08:00,590
+define stability as follows.
+So there should be no pair
+00:08:00,590 --> 00:08:05,590
+x y where x is a school and
+y is a student such that
+00:08:05,590 --> 00:08:10,460
+y is not admitted to x,
+y and x find each other
+00:08:10,460 --> 00:08:15,350
+acceptable, x has a free
+slot or prefers y to one of
+00:08:15,350 --> 00:08:19,970
+its current students and y
+is unmatched or prefers x
+00:08:19,970 --> 00:08:24,930
+to their current school. So
+once again the DA algorithm
+00:08:24,930 --> 00:08:28,690
+still works for this
+setting. And finally, the
+00:08:28,690 --> 00:08:33,590
+algorithm also extends to the
+settings with indifferences.
+00:08:33,590 --> 00:08:37,030
+Indeed, preferences
+may have ties. A school
+00:08:37,030 --> 00:08:39,830
+partitions students into
+four groups, for instance,
+00:08:39,830 --> 00:08:44,230
+according to whether they
+live in the catchment area
+00:08:44,230 --> 00:08:49,070
+and whether they have a
+sibling in school. And the
+00:08:49,070 --> 00:08:53,930
+preferences may be over
+the groups, but within each
+00:08:53,930 --> 00:08:57,490
+group the school is indifferent
+between the students.
+00:08:57,490 --> 00:09:01,570
+And we define the weak
+stability in a way that
+00:09:01,570 --> 00:09:05,770
+there should be no
+pair x-y, where x is a
+00:09:05,770 --> 00:09:09,050
+school, y is a student,
+such that x and y strictly
+00:09:09,050 --> 00:09:11,950
+prefer each other to
+their current partners.

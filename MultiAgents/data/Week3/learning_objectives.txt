@@ -1,0 +1,43 @@
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Define the core concepts of non-cooperative game theory, including strategy profiles, payoff functions, and the distinction between cooperative and non-cooperative games.
+
+Formulate real-world scenarios as strategic-form (normal-form) or extensive-form games involving rational, self-interested agents.
+
+Identify and classify various types of strategies (pure, mixed, dominant, and best response strategies) in strategic games.
+
+Analyse game-theoretic models to determine the existence and properties of Nash equilibria (in pure and mixed strategies) and other solution concepts.
+
+Explain and interpret equilibrium behaviour in classical games such as the Prisoner's Dilemma, Matching Pennies, Battle of the Sexes, and coordination games.
+
+Evaluate the potential for and limitations of non-cooperative solutions, including issues of uniqueness, multiplicity, and inefficiency of equilibria.
+
+Demonstrate competency in using mathematical notation and reasoning to represent and solve strategic games.
+
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.
+
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Define the core concepts of non-cooperative game theory, including strategy profiles, payoff functions, and the distinction between cooperative and non-cooperative games.
+
+Formulate real-world scenarios as strategic-form (normal-form) or extensive-form games involving rational, self-interested agents.
+
+Identify and classify various types of strategies (pure, mixed, dominant, and best response strategies) in strategic games.
+
+Analyse game-theoretic models to determine the existence and properties of Nash equilibria (in pure and mixed strategies) and other solution concepts.
+
+Explain and interpret equilibrium behaviour in classical games such as the Prisoner's Dilemma, Matching Pennies, Battle of the Sexes, and coordination games.
+
+Evaluate the potential for and limitations of non-cooperative solutions, including issues of uniqueness, multiplicity, and inefficiency of equilibria.
+
+Demonstrate competency in using mathematical notation and reasoning to represent and solve strategic games.
+
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.

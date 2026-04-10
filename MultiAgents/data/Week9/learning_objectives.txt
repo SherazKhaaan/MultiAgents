@@ -1,0 +1,43 @@
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Describe core concepts of mechanism design, including social choice functions, incentive compatibility, and strategyproofness.
+
+Model strategic environments using mechanisms for resource allocation, public goods provision, and collective decision making.
+
+Analyse key mechanism design theorems (e.g., Revelation Principle) and their implications for designing robust systems.
+
+Evaluate mechanisms in terms of efficiency, fairness, and susceptibility to manipulation by self-interested agents.
+
+Apply design principles to construct mechanisms that achieve desired objectives, such as truthful reporting or optimal revenue.
+
+Assess real-world applications of mechanism design in economics, computer science, and multi-agent environments.
+
+Reflect on trade-offs between robustness, practicality, and optimality in the design and implementation of mechanisms.
+
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.
+
+Learning Objectives
+
+After studying this topic, students will be able to:
+
+Describe core concepts of mechanism design, including social choice functions, incentive compatibility, and strategyproofness.
+
+Model strategic environments using mechanisms for resource allocation, public goods provision, and collective decision making.
+
+Analyse key mechanism design theorems (e.g., Revelation Principle) and their implications for designing robust systems.
+
+Evaluate mechanisms in terms of efficiency, fairness, and susceptibility to manipulation by self-interested agents.
+
+Apply design principles to construct mechanisms that achieve desired objectives, such as truthful reporting or optimal revenue.
+
+Assess real-world applications of mechanism design in economics, computer science, and multi-agent environments.
+
+Reflect on trade-offs between robustness, practicality, and optimality in the design and implementation of mechanisms.
+
+Instructions
+
+Please watch the videos before you come to the LGT and attempt the exercises before the lab.
